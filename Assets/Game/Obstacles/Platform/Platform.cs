@@ -17,7 +17,7 @@ public class Platform : MonoBehaviour {
 
     /* --- Parameters --- */
     [SerializeField] protected Transform endPoint = null;
-    [SerializeField] private float speed = 0f;
+    [SerializeField] protected float speed = 0f;
 
     /* --- Properties --- */
     [SerializeField, ReadOnly] protected Vector3 target = Vector3.zero;

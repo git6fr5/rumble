@@ -8,6 +8,11 @@ using UnityEngine;
 /// </summary>
 public class MovingPlatform : Platform {
 
+    /* --- Static Variables --- */
+    public static float SlowSpeed = 0.25f;
+    public static float MidSpeed = 0.75f;
+    public static float FastSpeed = 1.25f;
+
     /* --- Parameters --- */
     [SerializeField] private Transform[] pathPoints = null;
 
@@ -38,9 +43,10 @@ public class MovingPlatform : Platform {
     }
 
     /* --- Methods --- */
-    public void Init(Transform endPoint, List<Transform> points) {
+    public void Init(Transform endPoint, List<Transform> points, float speed) {
         this.pathPoints = points.ToArray();
         this.endPoint = endPoint;
+        this.speed = speed;
         Init();
     }
 

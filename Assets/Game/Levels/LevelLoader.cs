@@ -268,7 +268,26 @@ public class LevelLoader : MonoBehaviour {
             return;
         }
         print("found control point");
-       
+
+        // Get the speed.
+        int speedID = controlPoint.vectorID.y;
+        float speed = 0f;
+        if (speedID == 0) {
+            // slow
+            speed = MovingPlatform.SlowSpeed;
+        }
+        else if (speedID == 1) {
+            // mid
+            speed = MovingPlatform.MidSpeed;
+        }
+        else if (speedID == 2) {
+            // fast
+            speed = MovingPlatform.FastSpeed;
+        }
+        else {
+            return;
+        }
+
         // Get the direction.
         int directionID = controlPoint.vectorID.x;
         Vector2Int direction = Vector2Int.zero;
@@ -284,7 +303,7 @@ public class LevelLoader : MonoBehaviour {
         else if (directionID == 3) {
             direction = Vector2Int.left;
         }
-        if (direction == Vector2Int.zero) {
+        else {
             return;
         }
         print("found direction");
@@ -353,7 +372,7 @@ public class LevelLoader : MonoBehaviour {
         endPoint.SetParent(movingPlatform.transform);
         endPoint.localPosition = Vector3.right * size;
 
-        movingPlatform.Init(endPoint, points);
+        movingPlatform.Init(endPoint, points, speed);
 
     }
 
