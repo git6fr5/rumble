@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.03, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -147,7 +147,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2898351466398347270, guid: 3aebd8a8f551dbb4f8af63ebecfec634, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4521833ce27f73f4bb7fcbf9b3e5418a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -171,9 +171,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.06, y: -0.21}
   serializedVersion: 2
-  m_Radius: 0.4375
+  m_Radius: 0.3
 --- !u!114 &7796884856344786375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,16 +186,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50702ef27723254eb95c097f248ed37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
   hurtbox: {fileID: 7796884858004004147}
   feetbox: {fileID: 7796884856050851655}
   idle:
-  - {fileID: -2898351466398347270, guid: 3aebd8a8f551dbb4f8af63ebecfec634, type: 3}
+  - {fileID: 21300000, guid: 4521833ce27f73f4bb7fcbf9b3e5418a, type: 3}
   move:
-  - {fileID: -2898351466398347270, guid: 3aebd8a8f551dbb4f8af63ebecfec634, type: 3}
+  - {fileID: 6671033078307956087, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
+  - {fileID: -1815768720336585311, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
+  - {fileID: 533844743297374663, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
+  - {fileID: -4337058123868923179, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
+  - {fileID: 3572729194923482978, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
+  - {fileID: -3899070720159901285, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
   jump:
-  - {fileID: -2898351466398347270, guid: 3aebd8a8f551dbb4f8af63ebecfec634, type: 3}
+  - {fileID: -10621735536549748, guid: e69bb4328a68ce7449b7aae8dad9ba3a, type: 3}
+  action:
+  - {fileID: 533844743297374663, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
+  actionFrame: 0
   stretchiness: 0
   movementEffect:
+    animation: []
+    particle: {fileID: 0}
+    frame: 0
+  jumpEffect:
     animation: []
     particle: {fileID: 0}
     frame: 0
@@ -321,7 +334,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.31}
+  m_Size: {x: 0.5, y: 0.25}
   m_EdgeRadius: 0
 --- !u!114 &7796884856947863410
 MonoBehaviour:
@@ -424,6 +437,7 @@ MonoBehaviour:
   movementFlag: 0
   directionFlag: 0
   airborneFlag: 0
+  actionFlag: 0
   prevPosition: {x: 0, y: 0, z: 0}
   calculatedSpeed: 0
   jumpHeight: 0
@@ -539,7 +553,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.03, y: -0.075}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}

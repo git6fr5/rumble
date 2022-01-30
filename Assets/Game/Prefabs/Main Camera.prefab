@@ -304,7 +304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295b2a8921dae7e4ba573e740a2bc7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScale: 1
   mainPlayer: {fileID: 0}
+  levelLoader: {fileID: 0}
   backgroundObject: {fileID: 1414087867795945635}
   globalLightObject: {fileID: 1414087867019021740}
   gameOverObject: {fileID: 1414087865906925909}
@@ -317,6 +319,16 @@ MonoBehaviour:
   reset: 0
   followPlayer: 1
   followOffset: {x: 3, y: 3, z: -10}
+  shakeStrength: 1
+  shakeDuration: 0.5
+  elapsedTime: 0
+  shake: 0
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1414087867795945635
 GameObject:
   m_ObjectHideFlags: 0

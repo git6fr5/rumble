@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* --- Definitions --- */
+using ActionState = Controller.ActionState;
+
 /// <summary>
 /// 
 /// </summary>
@@ -34,6 +37,7 @@ public class Fox : Animal {
         // Which means it can still do so even after leaving the ground.
         if (!mesh.feetbox.empty && dashTimer == null) {
             canDash = true;
+            actionFlag = ActionState.None;
         }
         else {
             pauseEnergy = true;
@@ -41,13 +45,20 @@ public class Fox : Animal {
 
         if (dashTimer != null) {
             pauseEnergy = true;
+
+            Vector3 offset = (Vector3)Random.insideUnitCircle * 0.05f;
+            mesh.spriteRenderer.material.SetVector("_Offset", offset);
+            mesh.spriteRenderer.material.SetColor("_AddColor", Color.blue);
+        }
+        else {
+            mesh.spriteRenderer.material.SetVector("_Offset", Vector3.zero);
+            mesh.spriteRenderer.material.SetColor("_AddColor", new Color(0f, 0f, 0f, 0f));
         }
 
         // Check the input.
         if (Input.GetKeyDown(actionKey)) {
             action = true;
         }
-
 
     }
 
@@ -73,6 +84,7 @@ public class Fox : Animal {
         dashTimer = StartCoroutine(IEDash(dashDuration));
 
         IEnumerator IEDash(float delay) {
+            actionFlag = ActionState.Action;
             int afterImages = 2;
             for (int i = 0; i < afterImages; i++) {
                 SpriteRenderer afterImage = new GameObject("AfterImage", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
@@ -86,6 +98,7 @@ public class Fox : Animal {
                 yield return new WaitForSeconds(delay / (float)afterImages);
             }
             think = true;
+            actionFlag = ActionState.None;
             yield return (dashTimer = null);
         }
 

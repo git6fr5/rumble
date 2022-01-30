@@ -35,6 +35,10 @@ public class Player : Controller {
             action = true;
         }
 
+        // 
+        if (transform.position.sqrMagnitude > GameRules.BoundLimit * GameRules.BoundLimit) {
+            GameRules.ResetLevel();
+        }
     }
 
     /* --- Overridden Events --- */

@@ -104,6 +104,11 @@ public class Animal : Controller {
             Dismount();
         }
 
+        // 
+        if (transform.position.sqrMagnitude > GameRules.BoundLimit * GameRules.BoundLimit) {
+            GameRules.ResetLevel();
+        }
+
     }
 
     protected bool Energy() {

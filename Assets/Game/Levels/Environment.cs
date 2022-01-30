@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.U2D;
 
 /// <summary>
 /// Stores specific data on how to generate the level.
@@ -24,15 +25,27 @@ public class Environment : MonoBehaviour {
 
     }
 
+    [System.Serializable]
+    public class ColorScheme {
+
+        public Color particleBirthColor;
+        public Color particleMidColor;
+        public Color particleDeathColor;
+
+    }
+
     /* --- Components --- */
     // Entities.
     [SerializeField] public Transform animalParentTransform; // The location to look for the entities.
     [SerializeField] public Transform obstacleParentTransform; // The location to look for the entities.
     // Tiles.
-    [SerializeField] public Sprite[] floorSprites; // A set of sprites used to tile the floor of the level.
+    [SerializeField] public RuleTile floorTile; // A set of sprites used to tile the floor of the level.
+
+    /* --- Parameters --- */
+    [SerializeField] public ColorScheme colorScheme;
 
     /* --- Properties --- */
-    [SerializeField, ReadOnly] public FloorTile floorTile; // The set of floor tiles generated from the floor sprites.
+    // [SerializeField, ReadOnly] public RuleTile floorTile; // The set of floor tiles generated from the floor sprites.
     [SerializeField, ReadOnly] public List<Entity> animals; // The set of entities found from the parent transform.
     [SerializeField, ReadOnly] public List<Entity> obstacles; // The set of entities found from the parent transform.
 
@@ -45,8 +58,9 @@ public class Environment : MonoBehaviour {
 
     /* --- Tile Methods --- */
     public void RefreshTiles() {
-        floorTile = (FloorTile)ScriptableObject.CreateInstance(typeof(FloorTile));
-        floorTile.Init(floorSprites);
+        // floorTile = (FloorTile)ScriptableObject.CreateInstance(typeof(FloorTile));
+        // floorTile.Init(floorSprites);
+        // floorTile = floorSprites;
     }
 
     /* --- Entity Methods --- */

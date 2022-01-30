@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* --- Definitions --- */
+using ActionState = Controller.ActionState;
+
 /// <summary>
 /// 
 /// </summary>
@@ -31,6 +34,7 @@ public class Rabbit : Animal {
         // Check that we're on the ground.
         if (!mesh.feetbox.empty && !justHopped) {
             canHop = true;
+            actionFlag = ActionState.None;
         }
         else {
             pauseEnergy = true;
@@ -44,6 +48,7 @@ public class Rabbit : Animal {
                 charge = maxCharge;
             }
             pauseEnergy = true;
+            actionFlag = ActionState.PreAction;
         }
 
         // Check the input.
@@ -80,6 +85,7 @@ public class Rabbit : Animal {
         hopTimer = StartCoroutine(IEHop(hopDelay));
 
         IEnumerator IEHop(float delay) {
+            actionFlag = ActionState.Action;
             yield return new WaitForSeconds(delay);
             justHopped = false;
             yield return (hopTimer = null);

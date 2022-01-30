@@ -40,8 +40,8 @@ public class LevelLoader : MonoBehaviour {
     }
 
     /* --- Components --- */
-    [SerializeField] private LDtkComponentProject lDtkData;
-    [SerializeField] private Level level;
+    [SerializeField] public LDtkComponentProject lDtkData;
+    [SerializeField] public Level level;
 
     /* --- Parameters --- */
     [SerializeField] public bool load;
@@ -124,7 +124,9 @@ public class LevelLoader : MonoBehaviour {
         if (level.obstacles != null) {
             print("Resetting Obstacles");
             for (int i = 0; i < level.obstacles.Count; i++) {
-                Destroy(level.obstacles[i].gameObject);
+                if (level.obstacles[i] != null) {
+                    Destroy(level.obstacles[i].gameObject);
+                }
             }
         }
         level.obstacles = new List<Entity>();

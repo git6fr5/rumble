@@ -7,6 +7,7 @@ using UnityEngine;
 using Movement = Controller.Movement;
 using Direction = Controller.Direction;
 using Airborne = Controller.Airborne;
+using ActionState = Controller.ActionState;
 
 /// <summary>
 /// Handles the collision framework and animation
@@ -39,18 +40,31 @@ public class Mesh : MonoBehaviour {
         [HideInInspector] public Sprite[] animation;
         [SerializeField] public Particle particle;
         [SerializeField] public int frame;
+        [HideInInspector] private bool clearedLastCheck;
 
         public bool Check(AnimationData animationData, int currFrame) {
-            return animation == animationData.animation && frame == currFrame;
+            bool correctSettings = animation == animationData.animation && frame == currFrame;
+            if (correctSettings) {
+                if (clearedLastCheck) {
+                    return false;
+                }
+                else {
+                    clearedLastCheck = true;
+                    return true;
+                }
+            }
+            clearedLastCheck = false;
+            return false;
         }
 
         public void Create() {
-            print("Creating");
-            if (particle == null) {
+            if (particle == null || GameRules.MainLoader == null) {
+                print("No particle effect for this action");
                 return;
             }
-            GameObject newParticleObject = Instantiate(particle.gameObject, particle.transform.position, Quaternion.identity, null);
-            newParticleObject.SetActive(true);
+            Particle newParticle = Instantiate(particle.gameObject, particle.transform.position, Quaternion.identity, null).GetComponent<Particle>();
+            newParticle.gameObject.SetActive(true);
+            newParticle.Shade(GameRules.MainLoader.level.environment);
         }
 
     }
@@ -74,10 +88,13 @@ public class Mesh : MonoBehaviour {
     [SerializeField] private Sprite[] idle = null;
     [SerializeField] private Sprite[] move = null;
     [SerializeField] private Sprite[] jump = null;
+    [SerializeField] private Sprite[] action = null;
+    [SerializeField] private int actionFrame = 0;
     [SerializeField] private float stretchiness = 0.1f;
 
     [Space(2), Header("Effects")]
     [SerializeField] private EffectData movementEffect;
+    [SerializeField] private EffectData jumpEffect;
 
     /* --- Properties --- */
     [SerializeField] private AnimationData animationData; // Used to set what the current active animation is.
@@ -105,6 +122,7 @@ public class Mesh : MonoBehaviour {
         animationData = new AnimationData(idle, 0, idle.Length);
 
         movementEffect.animation = move;
+        jumpEffect.animation = jump;
 
     }
 
@@ -121,6 +139,9 @@ public class Mesh : MonoBehaviour {
 
         if (movementEffect.Check(animationData, currFrame)) {
             movementEffect.Create();
+        }
+        else if (jumpEffect.Check(animationData, currFrame)) {
+            jumpEffect.Create();
         }
 
     }
@@ -145,7 +166,25 @@ public class Mesh : MonoBehaviour {
         Sprite[] prevAnimation = animationData.animation;
         animationData.timeInterval += Time.deltaTime;
         animationData.interval = null;
-        if (controller.airborneFlag != Airborne.Grounded) {
+
+        if (controller.actionFlag != ActionState.None) {
+            animationData.animation = action;
+            if (controller.actionFlag == ActionState.PreAction) {
+                animationData.startIndex = 0;
+                animationData.length = actionFrame;
+                // animationData.interval = 
+            }
+            else if (controller.actionFlag == ActionState.Action) {
+                animationData.startIndex = actionFrame;
+                animationData.length = 1;
+            }
+            else if (controller.actionFlag == ActionState.PostAction) {
+                animationData.startIndex = actionFrame;
+                animationData.length = action.Length - actionFrame;
+            }
+
+        }
+        else if (controller.airborneFlag != Airborne.Grounded) {
             animationData.animation = jump;
             animationData.startIndex = 0;
             animationData.length = jump.Length;

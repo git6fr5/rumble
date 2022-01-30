@@ -27,12 +27,16 @@ public class GameRules : MonoBehaviour {
     public static float Acceleration = 100f;
     public static float Floatiness = 0.4f;
     public static float KnockbackDuration = 0.15f;
+    public static float BoundLimit = 100f;
     // Animation.
     public static float FrameRate = 24f;
     public static float OutlineWidth = 1f / 16f;
     // Camera.
     public static UnityEngine.Camera MainCamera;
     public static Vector3 MousePosition => MainCamera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+
+    /* --- Parameters --- */
+    public float timeScale = 1f;
 
     /* --- Properties --- */
     public Controller mainPlayer;
@@ -65,6 +69,8 @@ public class GameRules : MonoBehaviour {
         if (shake) {
             shake = Shake();
         }
+
+        Time.timeScale = timeScale;
     }
 
     /* --- Methods --- */

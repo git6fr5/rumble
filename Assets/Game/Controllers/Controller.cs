@@ -27,6 +27,13 @@ public class Controller : MonoBehaviour {
         Rising,
         Falling
     }
+    // Action States
+    public enum ActionState {
+        None,
+        PreAction,
+        Action,
+        PostAction,
+    }
 
     /* --- Components --- */
     [HideInInspector] public Rigidbody2D body; // Handles physics calculations.
@@ -60,6 +67,7 @@ public class Controller : MonoBehaviour {
     [SerializeField, ReadOnly] public Movement movementFlag = Movement.Idle; // Flags what type of movement this controller is in.
     [SerializeField, ReadOnly] public Direction directionFlag = Direction.Right; // Flags what type of movement this controller is in.
     [SerializeField, ReadOnly] public Airborne airborneFlag = Airborne.Grounded; // Flags what type of movement this controller is in
+    [SerializeField, ReadOnly] public ActionState actionFlag = ActionState.None; // Flags what type of movement this controller is in
 
     /* --- Debug --- */
     [Space(2), Header("Debug")]

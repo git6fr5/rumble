@@ -58,4 +58,15 @@ public class Particle : MonoBehaviour {
         spriteRenderer.sprite = particleData.animation[index];
     }
 
+    public void Shade(Environment environment) {
+
+        if (spriteRenderer== null) {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+        spriteRenderer.material.SetColor("_BirthColor", environment.colorScheme.particleBirthColor);
+        spriteRenderer.material.SetColor("_MidColor", environment.colorScheme.particleMidColor);
+        spriteRenderer.material.SetColor("_DeathColor", environment.colorScheme.particleDeathColor);
+
+    }
+
 }
