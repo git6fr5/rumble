@@ -25,7 +25,7 @@ public class FallingSpike : Spike {
         base.Init(); // Runs the base initialization.
         
         // Set up the body.
-        origin = transform.position;
+        origin = transform.localPosition;
         falling = false;
         spriteRenderer.enabled = true;
         body = GetComponent<Rigidbody2D>();
@@ -38,6 +38,11 @@ public class FallingSpike : Spike {
         if (falling && collider.tag == GameRules.GroundTag) {
             Shatter();
         }
+    }
+
+    protected override void CheckAttachToPlatform() {
+        Vector3 direction = Vector3.up;
+        CheckAttachToPlatform(direction);
     }
 
     /* --- Methods --- */
@@ -99,7 +104,7 @@ public class FallingSpike : Spike {
         // Reset after a delay.
         IEnumerator IEReset(float delay) {
             yield return new WaitForSeconds(delay);
-            transform.position = origin;
+            transform.localPosition = origin;
             Init();
             yield return null;
         }

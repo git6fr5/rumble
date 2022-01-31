@@ -29,6 +29,8 @@ public class Spike : MonoBehaviour {
         hurtbox.isTrigger = true;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        CheckAttachToPlatform();
     }
 
     protected virtual void ProcessCollision(Collider2D collider) {
@@ -46,6 +48,23 @@ public class Spike : MonoBehaviour {
             Destroy(animal.gameObject);
         }
 
+    }
+
+    protected virtual void CheckAttachToPlatform() {
+        Vector3 direction = Vector3.down;
+        CheckAttachToPlatform(direction);
+    }
+
+    protected void CheckAttachToPlatform(Vector3 direction) {
+        Vector3 start = transform.position;
+        RaycastHit2D[] hits = Physics2D.RaycastAll(start + direction * (hurtbox.size.y + GameRules.MovementPrecision), direction, 1f);
+        Debug.DrawLine(start, start + direction * 1f, Color.white, 3f);
+
+        for (int i = 0; i < hits.Length; i++) {
+            if (hits[i].collider.GetComponent<Platform>()) {
+                transform.SetParent(hits[i].collider.transform);
+            }
+        }
     }
 
 }
