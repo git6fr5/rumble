@@ -53,6 +53,9 @@ public class GameRules : MonoBehaviour {
     public bool reset;
     public bool followPlayer;
     public Vector3 followOffset;
+    [Range(0f, 5f)] public float movingPlatformSlowSpeed = 0.25f;
+    [Range(0f, 5f)] public float movingPlatformMidSpeed = 0.75f;
+    [Range(0f, 5f)] public float movingPlatformFastSpeed = 1.25f;
 
     /* --- Unity --- */
     // Runs once before the first frame.
@@ -69,6 +72,10 @@ public class GameRules : MonoBehaviour {
         if (shake) {
             shake = Shake();
         }
+
+        MovingPlatform.SlowSpeed = movingPlatformSlowSpeed;
+        MovingPlatform.MidSpeed = movingPlatformMidSpeed;
+        MovingPlatform.FastSpeed = movingPlatformFastSpeed;
 
         Time.timeScale = timeScale;
     }
