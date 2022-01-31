@@ -11,6 +11,7 @@ public class Spike : MonoBehaviour {
 
     /* --- Components --- */
     [HideInInspector] protected BoxCollider2D hurtbox;
+    [HideInInspector] protected SpriteRenderer spriteRenderer;
 
     /* --- Unity --- */
     private void Start() {
@@ -21,7 +22,17 @@ public class Spike : MonoBehaviour {
         ProcessCollision(collider);
     }
 
-    private static void ProcessCollision(Collider2D collider) {
+    /* --- Virtual Methods --- */
+    public virtual void Init() {
+        // Set up the collision.
+        hurtbox = GetComponent<BoxCollider2D>();
+        hurtbox.isTrigger = true;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    protected virtual void ProcessCollision(Collider2D collider) {
+
         // Check for the player or an animal.
         Player player = collider.GetComponent<Hurtbox>()?.controller.GetComponent<Player>();
         Animal animal = collider.GetComponent<Hurtbox>()?.controller.GetComponent<Animal>();
@@ -32,15 +43,9 @@ public class Spike : MonoBehaviour {
         }
         // If just an animal.
         if (animal != null && !animal.isControlled) {
-            //
+            Destroy(animal.gameObject);
         }
-    }
 
-    /* --- Virtual Methods --- */
-    public virtual void Init() {
-        // Set up the collision.
-        hurtbox = GetComponent<BoxCollider2D>();
-        hurtbox.isTrigger = true;
     }
 
 }

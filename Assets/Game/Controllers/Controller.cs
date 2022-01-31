@@ -187,6 +187,7 @@ public class Controller : MonoBehaviour {
         IEnumerator IEKnockback(float delay) {
             yield return new WaitForSeconds(delay);
             movementFlag = Movement.Knocked;
+            think = true;
             yield return (knockbackTimer = null);
         }
     }

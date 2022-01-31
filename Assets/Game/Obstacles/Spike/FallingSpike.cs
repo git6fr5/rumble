@@ -12,7 +12,8 @@ public class FallingSpike : Spike {
     [SerializeField, Range(1.5f, 10f)] private float resetDelay = 3f;
 
     /* --- Properties --- */
-    [SerializeField, ReadOnly] Vector3 origin;
+    [SerializeField, ReadOnly] private Vector3 origin;
+    [SerializeField, ReadOnly] private bool falling;
 
     /* --- Unity --- */
     private void Update() {
@@ -25,13 +26,26 @@ public class FallingSpike : Spike {
         
         // Set up the body.
         origin = transform.position;
+        falling = false;
+        spriteRenderer.enabled = true;
         body = GetComponent<Rigidbody2D>();
         body.constraints = RigidbodyConstraints2D.FreezeAll;
         body.gravityScale = 0f;
     }
 
+    protected override void ProcessCollision(Collider2D collider) {
+        base.ProcessCollision(collider);
+        if (falling && collider.tag == GameRules.GroundTag) {
+            Shatter();
+        }
+    }
+
     /* --- Methods --- */
     private void CheckFall() {
+
+        if (falling) {
+            return;
+        }
 
         // Draw the line
         Vector3 start = transform.position;
@@ -40,20 +54,44 @@ public class FallingSpike : Spike {
         Debug.DrawLine(start, start + direction * 50f, Color.white, Time.deltaTime);
 
         // Fall if necessary
+        bool playerInLineOfSight = false;
+        float distanceToPlayer = Mathf.Infinity;
+        float distanceToGround = Mathf.Infinity;
         if (hits != null && hits.Length > 0f) {
             for (int i = 0; i < hits.Length; i++) {
+
+                if (hits[i].collider == hurtbox) {
+                    i += 1;
+                    if (i > hits.Length - 1) {
+                        break;
+                    }
+                }
+
+                float distanceToThing = (transform.position - hits[i].collider.transform.position).sqrMagnitude;
+                if (hits[i].collider.tag == GameRules.GroundTag && distanceToThing < distanceToGround) {
+                    distanceToGround = distanceToThing;
+                }
+
                 Player player = hits[i].collider.GetComponent<Hurtbox>()?.controller.GetComponent<Player>();
                 Animal animal = hits[i].collider.GetComponent<Hurtbox>()?.controller.GetComponent<Animal>();
                 if ((animal != null && animal.isControlled) || player != null) {
-                    Fall();
+                    playerInLineOfSight = true;
+                    distanceToPlayer = distanceToThing;
                 }
+                
             }
         }
+
+        if (playerInLineOfSight && distanceToPlayer < distanceToGround) {
+            Fall();
+        }
+
     }
 
     private void Fall() {
 
         // Edit the body.
+        falling = true;
         body.constraints = RigidbodyConstraints2D.FreezeRotation;
         body.gravityScale = 1f;
         StartCoroutine(IEReset(resetDelay));
@@ -65,6 +103,10 @@ public class FallingSpike : Spike {
             Init();
             yield return null;
         }
+    }
+
+    private void Shatter() {
+        // spriteRenderer.enabled = false;
     }
 
 
