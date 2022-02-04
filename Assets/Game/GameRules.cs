@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1000)]
 public class GameRules : MonoBehaviour {
 
     /* --- Static Tags --- */
@@ -57,6 +58,13 @@ public class GameRules : MonoBehaviour {
     [Range(0f, 5f)] public float movingPlatformMidSpeed = 0.75f;
     [Range(0f, 5f)] public float movingPlatformFastSpeed = 1.25f;
 
+    [Range(0f, 20f)] public float windFastOnInterval = 5f;
+    [Range(0f, 20f)] public float windFastOffInterval = 5f;
+
+    [Range(0f, 20f)] public float windMidOnInterval = 10f;
+    [Range(0f, 20f)] public float windMidOffInterval = 10f;
+
+
     /* --- Unity --- */
     // Runs once before the first frame.
     void Start() {
@@ -96,6 +104,12 @@ public class GameRules : MonoBehaviour {
         GravityScale = gravityScale;
         FrameRate = frameRate;
 
+        Wind.WindFastOnInterval = windFastOnInterval;
+        Wind.WindFastOffInterval = windFastOffInterval;
+
+        Wind.WindMidOnInterval = windMidOnInterval;
+        Wind.WindMidOffInterval = windMidOffInterval;
+
         // Instance
         Instance = this;
     }
@@ -118,6 +132,7 @@ public class GameRules : MonoBehaviour {
         return true;
     }
 
+    
     /* --- Events --- */
     public static void CameraShake(float strength, float duration) {
         if (strength == 0f) {
@@ -133,6 +148,16 @@ public class GameRules : MonoBehaviour {
             Instance.shakeDuration = Mathf.Max(Instance.shakeDuration, Instance.elapsedTime + duration);
         }
     }
+
+    public static bool OnScreen(Vector3 position) {
+
+        Vector2 screenPos = MainCamera.WorldToScreenPoint(position);
+        bool xCheck = screenPos.x < 1f && screenPos.x > 0f;
+        bool yCheck = screenPos.y < 1f && screenPos.y > 0f;
+        return xCheck && yCheck;
+          
+    }
+
 
     public static void GameOver() {
         GameOverObject.SetActive(true);

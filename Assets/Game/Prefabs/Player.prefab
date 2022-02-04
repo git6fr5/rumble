@@ -175,7 +175,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1231201233
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -8508215229416790591, guid: 5ef64e10a56d3204caa07e8415c6e1d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -288,7 +288,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1231201233
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 4038999209595040707, guid: 67417f293413bb142b6eb88909076615, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -409,6 +409,7 @@ GameObject:
   - component: {fileID: 8727185908026591830}
   - component: {fileID: 8727185908026591831}
   - component: {fileID: 8727185908026591828}
+  - component: {fileID: 1052063935078839414}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -471,8 +472,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -22149485
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3379d76e3003f0a43b8319e3083d9b63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -498,9 +499,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.44}
+  m_Offset: {x: 0, y: -0.3}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.25
 --- !u!114 &8727185908026591828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50702ef27723254eb95c097f248ed37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  postActionDuration: 0.1
   spriteRenderer: {fileID: 0}
   hurtbox: {fileID: 8727185908977376791}
   feetbox: {fileID: 8727185907800039864}
@@ -527,7 +529,7 @@ MonoBehaviour:
   - {fileID: 5363976019116430839, guid: f3fe43f8347fc9c4b8207e3a8aa08435, type: 3}
   - {fileID: 7690863956530751010, guid: f3fe43f8347fc9c4b8207e3a8aa08435, type: 3}
   - {fileID: -7049564903398706187, guid: f3fe43f8347fc9c4b8207e3a8aa08435, type: 3}
-  jump:
+  jumpRising:
   - {fileID: -1250191865418920643, guid: a061b433f48418448b735b83533408f5, type: 3}
   - {fileID: 624228209195569348, guid: a061b433f48418448b735b83533408f5, type: 3}
   - {fileID: 7350533713087658606, guid: a061b433f48418448b735b83533408f5, type: 3}
@@ -536,10 +538,13 @@ MonoBehaviour:
   - {fileID: -991947637551132289, guid: a061b433f48418448b735b83533408f5, type: 3}
   - {fileID: -6569915889829055916, guid: a061b433f48418448b735b83533408f5, type: 3}
   - {fileID: -965704800764171311, guid: a061b433f48418448b735b83533408f5, type: 3}
-  - {fileID: -1388162727822992519, guid: a061b433f48418448b735b83533408f5, type: 3}
-  - {fileID: 1746912137419164365, guid: a061b433f48418448b735b83533408f5, type: 3}
+  jumpFalling: []
+  postJump:
+  - {fileID: -447658812508101093, guid: 2ecd1ee3f5e76e5469b76ab0f645a5b6, type: 3}
+  - {fileID: -1631417988875319858, guid: 2ecd1ee3f5e76e5469b76ab0f645a5b6, type: 3}
+  preAction: []
   action: []
-  actionFrame: 0
+  postAction: []
   stretchiness: 0.01
   movementEffect:
     animation: []
@@ -555,6 +560,26 @@ MonoBehaviour:
     length: 0
     timeInterval: 0
   stretch: {x: 0, y: 0}
+  runningAction: 0
+  runningJump: 0
+  postActionTimer: 0
+  postJumpTimer: 0
+--- !u!70 &1052063935078839414
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727185908026591826}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.45}
+  m_Size: {x: 0.75, y: 0.3}
+  m_Direction: 1
 --- !u!1 &8727185908572624342
 GameObject:
   m_ObjectHideFlags: 0

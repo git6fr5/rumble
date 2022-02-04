@@ -12,8 +12,9 @@ using UnityEngine.U2D;
 public class Platform : MonoBehaviour {
 
     /* --- Variables --- */
-    private SpriteShapeController shape;
-    private BoxCollider2D box;
+    protected SpriteShapeRenderer spriteShapeRenderer;
+    protected SpriteShapeController shape;
+    protected BoxCollider2D box;
 
     /* --- Parameters --- */
     [SerializeField] protected Transform endPoint = null;
@@ -59,6 +60,7 @@ public class Platform : MonoBehaviour {
     protected virtual void Init() {
 
         shape = GetComponent<SpriteShapeController>();
+        spriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
 
         shape.spline.Clear();
         shape.spline.InsertPointAt(0, new Vector3(-.5f, 0f, 0f));

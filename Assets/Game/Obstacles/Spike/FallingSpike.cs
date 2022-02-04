@@ -48,6 +48,10 @@ public class FallingSpike : Spike {
     /* --- Methods --- */
     private void CheckFall() {
 
+        //if (!GameRules.OnScreen(transform.position)) {
+        //    return;
+        //}
+
         if (falling) {
             return;
         }
@@ -56,7 +60,6 @@ public class FallingSpike : Spike {
         Vector3 start = transform.position;
         Vector3 direction = Vector3.down;
         RaycastHit2D[] hits = Physics2D.RaycastAll(start + direction * (hurtbox.size.y + GameRules.MovementPrecision), direction, Mathf.Infinity);
-        Debug.DrawLine(start, start + direction * 50f, Color.white, Time.deltaTime);
 
         // Fall if necessary
         bool playerInLineOfSight = false;
@@ -72,9 +75,10 @@ public class FallingSpike : Spike {
                     }
                 }
 
-                float distanceToThing = (transform.position - hits[i].collider.transform.position).sqrMagnitude;
+                float distanceToThing = (transform.position - (Vector3)hits[i].point).magnitude;
                 if (hits[i].collider.tag == GameRules.GroundTag && distanceToThing < distanceToGround) {
                     distanceToGround = distanceToThing;
+                    print(distanceToGround);
                 }
 
                 Player player = hits[i].collider.GetComponent<Hurtbox>()?.controller.GetComponent<Player>();
@@ -86,6 +90,8 @@ public class FallingSpike : Spike {
                 
             }
         }
+
+        Debug.DrawLine(start, start + direction * distanceToGround, Color.white, Time.deltaTime);
 
         if (playerInLineOfSight && distanceToPlayer < distanceToGround) {
             Fall();

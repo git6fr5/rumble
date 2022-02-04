@@ -40,6 +40,14 @@ public class MovingPlatform : Platform {
             pathIndex = (pathIndex + 1) % pathPoints.Length;
             target = pathPoints[pathIndex].position;
         }
+
+        Debug.DrawLine(transform.position, transform.position + Vector3.right, Color.white);
+
+        Effect();
+    }
+
+    protected virtual void Effect() {
+        //
     }
 
     /* --- Methods --- */

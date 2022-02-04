@@ -41,6 +41,7 @@ public class Controlbox : Container {
             collidedController.isControlled = true;
             collidedController.controllingObject = controller.gameObject;
             controller.transform.parent = collidedController.transform;
+            controller.transform.localPosition = Vector2.zero;
             controller.gameObject.SetActive(false);
         }
     }

@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1231201233
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -8508215229416790591, guid: 5ef64e10a56d3204caa07e8415c6e1d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -579,9 +579,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.22}
+  m_Offset: {x: 0, y: -0.05}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 0.25
 --- !u!114 &7058037197668975579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,36 +594,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50702ef27723254eb95c097f248ed37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  postActionDuration: 0.1
   spriteRenderer: {fileID: 0}
   hurtbox: {fileID: 7058037197763536799}
   feetbox: {fileID: 7058037197596409427}
   idle:
   - {fileID: 21300000, guid: 789e57578a28a534fa5b105a3c8c0c19, type: 3}
   move:
-  - {fileID: -4299272763654591352, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -1599319735827673979, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: 6706774051619115281, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -3037987684175040935, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -308651757923237381, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -834475163854709725, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: 5853221860560002664, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -8376867758857404335, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -7826126157995257763, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -6425738148097781722, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  jump:
-  - {fileID: -308651757923237381, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
+  - {fileID: 8825223485239838599, guid: 1a8f7f92ae3b02f4ca6bf1cdff49ae9e, type: 3}
+  - {fileID: -8546132979221994649, guid: 1a8f7f92ae3b02f4ca6bf1cdff49ae9e, type: 3}
+  - {fileID: -3467070458566595056, guid: 1a8f7f92ae3b02f4ca6bf1cdff49ae9e, type: 3}
+  - {fileID: -8478682757649641481, guid: 1a8f7f92ae3b02f4ca6bf1cdff49ae9e, type: 3}
+  - {fileID: 6887241734071953076, guid: 1a8f7f92ae3b02f4ca6bf1cdff49ae9e, type: 3}
+  - {fileID: -3914583848654811345, guid: 1a8f7f92ae3b02f4ca6bf1cdff49ae9e, type: 3}
+  jumpRising:
+  - {fileID: 21300000, guid: adea8e7a443ef7941aa8f7e8faeb59d8, type: 3}
+  jumpFalling:
+  - {fileID: 21300000, guid: 4ef64661c6ac07047917954a3322a200, type: 3}
+  postJump:
+  - {fileID: -8019549572507869376, guid: 4f3713df80182dc4c9a54a7b9eb34bf3, type: 3}
+  preAction:
+  - {fileID: -8224575109827442285, guid: 59709b11aaee251478702fd4466630e6, type: 3}
+  - {fileID: 6820735799297798984, guid: 59709b11aaee251478702fd4466630e6, type: 3}
+  - {fileID: 8834859701460195353, guid: 59709b11aaee251478702fd4466630e6, type: 3}
+  - {fileID: 3839136862649241629, guid: 59709b11aaee251478702fd4466630e6, type: 3}
   action:
-  - {fileID: -4299272763654591352, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -1599319735827673979, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: 6706774051619115281, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -3037987684175040935, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -308651757923237381, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -834475163854709725, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: 5853221860560002664, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -8376867758857404335, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -7826126157995257763, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  - {fileID: -6425738148097781722, guid: 59e74c79e2f578945bb4a80f66e125e2, type: 3}
-  actionFrame: 5
+  - {fileID: 1539363680286043349, guid: 6f93b388db8bb254ea2f65d42b8d7fd3, type: 3}
+  - {fileID: 2423620971915118410, guid: 6f93b388db8bb254ea2f65d42b8d7fd3, type: 3}
+  - {fileID: 6316592230914487680, guid: 6f93b388db8bb254ea2f65d42b8d7fd3, type: 3}
+  - {fileID: 8687891489761630652, guid: 6f93b388db8bb254ea2f65d42b8d7fd3, type: 3}
+  - {fileID: 4096264966509598624, guid: 6f93b388db8bb254ea2f65d42b8d7fd3, type: 3}
+  - {fileID: 2738549450302641363, guid: 6f93b388db8bb254ea2f65d42b8d7fd3, type: 3}
+  - {fileID: 4419194887006907090, guid: 6f93b388db8bb254ea2f65d42b8d7fd3, type: 3}
+  - {fileID: 3501193729369150730, guid: 6f93b388db8bb254ea2f65d42b8d7fd3, type: 3}
+  postAction:
+  - {fileID: -7569951194414141073, guid: 4f3713df80182dc4c9a54a7b9eb34bf3, type: 3}
   stretchiness: 0.01
   movementEffect:
     animation: []
@@ -639,6 +644,10 @@ MonoBehaviour:
     length: 0
     timeInterval: 0
   stretch: {x: 0, y: 0}
+  runningAction: 0
+  runningJump: 0
+  postActionTimer: 0
+  postJumpTimer: 0
 --- !u!1 &7058037197763536794
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +791,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1231201233
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 4038999209595040707, guid: 67417f293413bb142b6eb88909076615, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

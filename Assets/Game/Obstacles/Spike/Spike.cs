@@ -45,7 +45,7 @@ public class Spike : MonoBehaviour {
         }
         // If just an animal.
         if (animal != null && !animal.isControlled) {
-            Destroy(animal.gameObject);
+            // Destroy(animal.gameObject);
         }
 
     }

@@ -36,7 +36,7 @@ public class Mesh : MonoBehaviour {
 
     [System.Serializable]
     public class EffectData {
-        
+
         [HideInInspector] public Sprite[] animation;
         [SerializeField] public Particle particle;
         [SerializeField] public int frame;
@@ -69,6 +69,10 @@ public class Mesh : MonoBehaviour {
 
     }
 
+    /* --- Static Variables --- */
+    public float postActionDuration = 8f / 24f;
+    public static float PostJumpDuration = 4f / 24f;
+
     /* --- Dictionaries --- */
     public static Dictionary<Direction, Quaternion> DirectionQuaternions = new Dictionary<Direction, Quaternion>() {
         {Direction.Right, Quaternion.Euler(0, 0, 0) },
@@ -87,9 +91,12 @@ public class Mesh : MonoBehaviour {
     [Space(2), Header("Animations")]
     [SerializeField] private Sprite[] idle = null;
     [SerializeField] private Sprite[] move = null;
-    [SerializeField] private Sprite[] jump = null;
+    [SerializeField] private Sprite[] jumpRising = null;
+    [SerializeField] private Sprite[] jumpFalling = null;
+    [SerializeField] private Sprite[] postJump = null;
+    [SerializeField] private Sprite[] preAction = null;
     [SerializeField] private Sprite[] action = null;
-    [SerializeField] private int actionFrame = 0;
+    [SerializeField] private Sprite[] postAction = null;
     [SerializeField] private float stretchiness = 0.1f;
 
     [Space(2), Header("Effects")]
@@ -99,6 +106,10 @@ public class Mesh : MonoBehaviour {
     /* --- Properties --- */
     [SerializeField] private AnimationData animationData; // Used to set what the current active animation is.
     [SerializeField, ReadOnly] private Vector2 stretch = Vector2.zero;
+    [SerializeField, ReadOnly] private bool runningAction = false;
+    [SerializeField, ReadOnly] private bool runningJump = false;
+    [SerializeField, ReadOnly] private float postActionTimer = 0f;
+    [SerializeField, ReadOnly] private float postJumpTimer = 0f;
 
     /* --- Unity --- */
     // Runs once before the first frame.
@@ -122,7 +133,7 @@ public class Mesh : MonoBehaviour {
         animationData = new AnimationData(idle, 0, idle.Length);
 
         movementEffect.animation = move;
-        jumpEffect.animation = jump;
+        jumpEffect.animation = jumpRising;
 
     }
 
@@ -167,51 +178,106 @@ public class Mesh : MonoBehaviour {
         animationData.timeInterval += Time.deltaTime;
         animationData.interval = null;
 
-        if (controller.actionFlag != ActionState.None) {
-            animationData.animation = action;
-            if (controller.actionFlag == ActionState.PreAction) {
-                animationData.startIndex = 0;
-                animationData.length = actionFrame;
-                // animationData.interval = 
-            }
-            else if (controller.actionFlag == ActionState.Action) {
-                animationData.startIndex = actionFrame;
-                animationData.length = 1;
-            }
-            else if (controller.actionFlag == ActionState.PostAction) {
-                animationData.startIndex = actionFrame;
-                animationData.length = action.Length - actionFrame;
-            }
-
+        if (controller.actionFlag != ActionState.None || runningAction) {
+            AnimateAction();
         }
-        else if (controller.airborneFlag != Airborne.Grounded) {
-            animationData.animation = jump;
-            animationData.startIndex = 0;
-            animationData.length = jump.Length;
+        else if (controller.airborneFlag != Airborne.Grounded || runningJump) {
+            AnimateJump();
         }
         else if (controller.movementFlag != Movement.Idle) {
-            animationData.animation = move;
-            animationData.startIndex = 0;
-            animationData.length = move.Length;
+            AnimateMovement();
         }
         else {
-            animationData.animation = idle;
+            AnimateIdle();
+        }
+
+    }
+
+    private void AnimateAction() {
+
+        if (!runningAction) {
+            postActionTimer = 0f;
+            runningAction = true;
+        }
+
+        bool actionActive = controller.actionFlag != ActionState.None;
+        if (!actionActive) {
+            postActionTimer += Time.deltaTime;
+        }
+
+        // Run the pre-dash
+        if (actionActive) {
+            if (controller.actionFlag == ActionState.PreAction) {
+                animationData.animation = preAction;
+                animationData.startIndex = 0;
+                animationData.length = preAction.Length;
+            }
+            else if (controller.actionFlag == ActionState.Action) {
+                animationData.animation = action;
+                animationData.startIndex = 0;
+                animationData.length = action.Length;
+            }
+        }
+        else if (!actionActive && postActionTimer < postActionDuration) {
+            animationData.animation = postAction;
             animationData.startIndex = 0;
-            animationData.length = idle.Length;
+            animationData.length = postAction.Length;
+            animationData.interval = postActionDuration; ;
         }
-        if (prevAnimation != animationData.animation) {
-            print("Switching Animation");
-            if (animationData.animation == jump) {
-                print("JUMP");
-            }
-            if (animationData.animation == move) {
-                print("MOVE");
-            }
-            if (animationData.animation == idle) {
-                print("IDLE");
-            }
-            animationData.timeInterval = 0f;
+
+        if (!actionActive && postActionTimer > postActionDuration) {
+            runningAction = false;
         }
+
+    }
+
+    protected virtual void AnimateJump() {
+
+        if (!runningJump) {
+            postJumpTimer = 0f;
+            runningJump = true;
+        }
+
+        bool jumpActive = controller.airborneFlag != Airborne.Grounded;
+        if (!jumpActive) {
+            postJumpTimer += Time.deltaTime;
+        }
+
+        if (jumpActive) {
+            if (controller.airborneFlag == Airborne.Rising || jumpFalling.Length == 0) {
+                animationData.animation = jumpRising;
+                animationData.startIndex = 0;
+                animationData.length = jumpRising.Length;
+            }
+            else if (controller.airborneFlag == Airborne.Falling) {
+                animationData.animation = jumpFalling;
+                animationData.startIndex = 0;
+                animationData.length = jumpFalling.Length;
+            }
+        }
+        else if (!jumpActive && postJumpTimer < PostJumpDuration) {
+            animationData.animation = postJump;
+            animationData.startIndex = 0;
+            animationData.length = postJump.Length;
+            animationData.interval = PostJumpDuration; ;
+        }
+
+        if (!jumpActive && postJumpTimer > PostJumpDuration) {
+            runningJump = false;
+        }
+
+    }
+
+    protected virtual void AnimateMovement() {
+        animationData.animation = move;
+        animationData.startIndex = 0;
+        animationData.length = move.Length;
+    }
+
+    protected virtual void AnimateIdle() {
+        animationData.animation = idle;
+        animationData.startIndex = 0;
+        animationData.length = idle.Length;
     }
 
 

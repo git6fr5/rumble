@@ -25,14 +25,14 @@ public class Controller : MonoBehaviour {
     public enum Airborne {
         Grounded,
         Rising,
-        Falling
+        Falling,
+        Landing
     }
     // Action States
     public enum ActionState {
         None,
         PreAction,
         Action,
-        PostAction,
     }
 
     /* --- Components --- */
@@ -44,7 +44,7 @@ public class Controller : MonoBehaviour {
     [SerializeField] public float baseSpeed; // The base speed at which this character moves.
     [SerializeField] public float baseWeight; // The base weight that the character has.
     [SerializeField] public float baseJump; // The base weight that the character has.
-    
+
     /* --- Properties --- */
     [Space(2), Header("Properties")]
     [SerializeField, ReadOnly] protected float moveSpeed; // The character's movement speed.
@@ -54,7 +54,7 @@ public class Controller : MonoBehaviour {
     [SerializeField, ReadOnly] public float floatiness; // The character's floating weight
     [SerializeField, ReadOnly] protected float knockbackDuration; // The base acceleration at which this character moves.
     [HideInInspector] protected Coroutine knockbackTimer; // The base acceleration at which this character moves.
-    
+
     /* --- Switches --- */
     [Space(2), Header("Switches")]
     [SerializeField, ReadOnly] public bool think; // Whether this character is in control.
@@ -192,6 +192,25 @@ public class Controller : MonoBehaviour {
         }
     }
 
+    public void SetMass(float mass, float deltaTime) {
+
+        body.mass = mass;
+        StartCoroutine(IESetWeight(deltaTime));
+
+        IEnumerator IESetWeight(float deltaTime) {
+            yield return new WaitForSeconds(deltaTime);
+            body.mass = 1f;
+            yield return null;
+        }
+
+    }
+
+    public void Freeze(float timer, float delay, Color color) {
+        Vector3 offset = (Vector3)Random.insideUnitCircle * 0.05f;
+        mesh.spriteRenderer.material.SetVector("_Offset", offset * timer / delay);
+        mesh.spriteRenderer.material.SetColor("_AddColor", color * 0.25f * timer / delay);
+
+    }
 
     /* --- Virtual Events --- */
     // Performs an action.
@@ -233,6 +252,9 @@ public class Controller : MonoBehaviour {
             }
         }
         else {
+            if (airborneFlag != Airborne.Grounded) {
+                body.velocity = Vector2.zero; // This should not be done here :(
+            }
             airborneFlag = Airborne.Grounded;
         }
     }

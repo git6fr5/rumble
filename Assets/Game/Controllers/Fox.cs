@@ -78,12 +78,15 @@ public class Fox : Animal {
     private void Dash() {
 
         Vector2 dashVector = new Vector2(Input.GetAxisRaw("Horizontal"), 0f).normalized;
-        body.velocity = dashVector * dashSpeed;
+        body.velocity = Vector2.zero;
         weight = 0f;
         think = false;
         dashTimer = StartCoroutine(IEDash(dashDuration));
+        actionFlag = ActionState.PreAction;
 
         IEnumerator IEDash(float delay) {
+            yield return new WaitForSeconds(0.15f);
+            body.velocity = dashVector * dashSpeed;
             actionFlag = ActionState.Action;
             int afterImages = 2;
             for (int i = 0; i < afterImages; i++) {

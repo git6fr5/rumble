@@ -17,6 +17,7 @@ public class LevelLoader : MonoBehaviour {
 
     /* --- Static Variables --- */
     // Layer Names
+    public static string WaterWindLayer = "Water_Wind_Layer";
     public static string AnimalLayer = "Animal_Layer";
     public static string ObstacleLayer = "Obstacle_Layer";
     public static string ControlLayer = "Control_Layer";
@@ -42,6 +43,7 @@ public class LevelLoader : MonoBehaviour {
     /* --- Components --- */
     [SerializeField] public LDtkComponentProject lDtkData;
     [SerializeField] public Level level;
+    [SerializeField] public Wind levelWind;
 
     /* --- Parameters --- */
     [SerializeField] public bool load;
@@ -88,6 +90,7 @@ public class LevelLoader : MonoBehaviour {
 
             // Load the entity data.
             int gridSize = level.gridSize;
+            List<LDtkTileData> windData = LoadLayer(ldtkLevel, WaterWindLayer, gridSize);
             List<LDtkTileData> floorData = LoadLayer(ldtkLevel, FloorLayer, gridSize);
             List<LDtkTileData> controlData = LoadLayer(ldtkLevel, ControlLayer, gridSize);
             List<LDtkTileData> animalData = LoadLayer(ldtkLevel, AnimalLayer, gridSize);
@@ -104,7 +107,7 @@ public class LevelLoader : MonoBehaviour {
             level.nonEmptyTiles = LoadTiles(level, floormap, floorData);
 
             // Set the controls.
-            SetControls(controlData, level.obstacles);
+            SetControls(controlData, windData, level.obstacles);
         }
 
     }
@@ -227,7 +230,7 @@ public class LevelLoader : MonoBehaviour {
         return null;
     }
 
-    private void SetControls(List<LDtkTileData> controlData, List<Entity> obstacles) {
+    private void SetControls(List<LDtkTileData> controlData, List<LDtkTileData> windData, List<Entity> obstacles) {
 
         // Set the player.
         for (int i = 0; i < controlData.Count; i++) {
@@ -246,11 +249,59 @@ public class LevelLoader : MonoBehaviour {
         for (int i = 0; i < obstacles.Count; i++) {
 
             MovingPlatform movingPlatform = obstacles[i].GetComponent<MovingPlatform>();
-            print(i);
             if (movingPlatform != null) {
                 Vector2Int gridPosition = obstacles[i].gridPosition;
                 SetMovingPlatform(movingPlatform, gridPosition, controlData);
             }
+
+            //CrumblingPlatform crumblingPlatform = obstacles[i].GetComponent<CrumblingPlatform>();
+            //if (crumblingPlatform != null) {
+            //    Vector2Int gridPosition = obstacles[i].gridPosition;
+            //    SetCrumblingPlatform(crumblingPlatform, gridPosition, controlData);
+            //}
+
+            //ExplodingPlatform explodingPlatform = obstacles[i].GetComponent<ExplodingPlatform>();
+            //if (explodingPlatform != null) {
+            //    Vector2Int gridPosition = obstacles[i].gridPosition;
+            //    SetExplodingPlatform(explodingPlatform, gridPosition, controlData);
+            //}
+        }
+
+        if (windData.Count > 0) {
+
+            levelWind.gameObject.SetActive(true);
+
+            // x = 1 => left, x = 2 => right
+            if (windData[0].vectorID.x == 1) {
+                levelWind.windDirection = Vector2.left;
+            }
+            else if (windData[0].vectorID.x == 2) {
+                levelWind.windDirection = Vector2.right;
+            }
+            else if (windData[0].vectorID.x == 3) {
+                levelWind.windDirection = Vector2.up;
+            }
+            else if (windData[0].vectorID.x == 4) {
+                levelWind.windDirection = Vector2.down;
+            }
+
+            if (windData[0].vectorID.y == 0) {
+                levelWind.alternate = false;
+
+            }
+            else if (windData[0].vectorID.y == 1) {
+                levelWind.alternate = true;
+                levelWind.onInterval = Wind.WindMidOnInterval;
+                levelWind.offInterval = Wind.WindMidOffInterval;
+
+            }
+            else if (windData[0].vectorID.y == 2) {
+                levelWind.alternate = true;
+                levelWind.onInterval = Wind.WindFastOnInterval;
+                levelWind.offInterval = Wind.WindFastOffInterval;
+
+            }
+
         }
 
     }
@@ -332,16 +383,6 @@ public class LevelLoader : MonoBehaviour {
         }
         print("found beacon");
 
-        // Create the path points.
-        Transform pointA = new GameObject("Point A").transform;
-        pointA.position = level.GridToWorldPosition(controlPoint.gridPosition);
-        Transform pointB = new GameObject("Point B").transform;
-        pointB.position = level.GridToWorldPosition(beaconPoint.gridPosition);
-
-        List<Transform> points = new List<Transform>();
-        points.Add(pointA);
-        points.Add(pointB);
-
         // Raycast out to find the different blocks.
         MovingPlatform prevPlatform = movingPlatform;
         int size = 1;
@@ -350,7 +391,9 @@ public class LevelLoader : MonoBehaviour {
         recursions = 0;
 
         while (!didNotFindAnything && recursions < 50) {
-            RaycastHit2D[] hits = Physics2D.RaycastAll(prevPlatform.transform.position, Vector2.right, 1f);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(prevPlatform.transform.position + Vector3.right * 0.5f, Vector3.right * 0.25f, 1f);
+            print(prevPlatform.transform.position);
+            didNotFindAnything = true;
             for (int i = 0; i < hits.Length; i++) {
                 MovingPlatform nextPlatform = hits[i].collider.GetComponent<MovingPlatform>();
                 if (nextPlatform != null && nextPlatform != prevPlatform) {
@@ -358,10 +401,10 @@ public class LevelLoader : MonoBehaviour {
                     prevPlatform = nextPlatform;
                     destroyThesePlatforms.Add(nextPlatform);
                     recursions += 1;
+                    didNotFindAnything = false;
                     break;
                 }
             }
-            didNotFindAnything = true;
         }
         for (int i = 0; i < destroyThesePlatforms.Count; i++) {
             Destroy(destroyThesePlatforms[i].gameObject);
@@ -372,8 +415,122 @@ public class LevelLoader : MonoBehaviour {
         endPoint.SetParent(movingPlatform.transform);
         endPoint.localPosition = Vector3.right * size;
 
+        // Create the path points.
+        Transform pointA = new GameObject("Point A").transform;
+        pointA.position = level.GridToWorldPosition(controlPoint.gridPosition);
+        Transform pointB = new GameObject("Point B").transform;
+        pointB.position = level.GridToWorldPosition(beaconPoint.gridPosition);
+        if (direction.x > 0) {
+            pointB.position -= new Vector3(direction.x, 0f, 0f) * (size - 1);
+        }
+
+
+        List<Transform> points = new List<Transform>();
+        points.Add(pointA);
+        points.Add(pointB);
+
         movingPlatform.Init(endPoint, points, speed);
 
     }
+
+    //private void SetCrumblingPlatform(CrumblingPlatform crumblingPlatform, Vector2Int gridPosition, List<LDtkTileData> controlData) {
+
+    //    // Get the control point.
+    //    LDtkTileData controlPoint = null;
+    //    for (int i = 0; i < controlData.Count; i++) {
+    //        if (controlData[i].gridPosition == gridPosition) {
+    //            controlPoint = controlData[i];
+    //        }
+    //    }
+    //    if (controlPoint == null) {
+    //        return;
+    //    }
+    //    print("found control point");
+
+    //    // Raycast out to find the different blocks.
+    //    CrumblingPlatform prevPlatform = crumblingPlatform;
+    //    int size = 1;
+    //    bool didNotFindAnything = false;
+    //    List<CrumblingPlatform> destroyThesePlatforms = new List<CrumblingPlatform>();
+    //    int recursions = 0;
+
+    //    while (!didNotFindAnything && recursions < 50) {
+    //        RaycastHit2D[] hits = Physics2D.RaycastAll(prevPlatform.transform.position + Vector3.right * 0.5f, Vector3.right * 0.25f, 1f);
+    //        print(prevPlatform.transform.position);
+    //        didNotFindAnything = true;
+    //        for (int i = 0; i < hits.Length; i++) {
+    //            CrumblingPlatform nextPlatform = hits[i].collider.GetComponent<CrumblingPlatform>();
+    //            if (nextPlatform != null && nextPlatform != prevPlatform) {
+    //                size += 1;
+    //                prevPlatform = nextPlatform;
+    //                destroyThesePlatforms.Add(nextPlatform);
+    //                recursions += 1;
+    //                didNotFindAnything = false;
+    //                break;
+    //            }
+    //        }
+    //    }
+    //    for (int i = 0; i < destroyThesePlatforms.Count; i++) {
+    //        Destroy(destroyThesePlatforms[i].gameObject);
+    //    }
+    //    destroyThesePlatforms = null;
+
+    //    Transform endPoint = new GameObject("End Point").transform;
+    //    endPoint.SetParent(crumblingPlatform.transform);
+    //    endPoint.localPosition = Vector3.right * size;
+
+    //    crumblingPlatform.Init(endPoint);
+
+    //}
+
+    //private void SetExplodingPlatform(ExplodingPlatform explodingPlatform, Vector2Int gridPosition, List<LDtkTileData> controlData) {
+
+    //    // Get the control point.
+    //    LDtkTileData controlPoint = null;
+    //    for (int i = 0; i < controlData.Count; i++) {
+    //        if (controlData[i].gridPosition == gridPosition) {
+    //            controlPoint = controlData[i];
+    //        }
+    //    }
+    //    if (controlPoint == null) {
+    //        return;
+    //    }
+    //    print("found control point");
+
+    //    // Raycast out to find the different blocks.
+    //    ExplodingPlatform prevPlatform = explodingPlatform;
+    //    int size = 1;
+    //    bool didNotFindAnything = false;
+    //    List<ExplodingPlatform> destroyThesePlatforms = new List<ExplodingPlatform>();
+    //    int recursions = 0;
+
+    //    while (!didNotFindAnything && recursions < 50) {
+    //        RaycastHit2D[] hits = Physics2D.RaycastAll(prevPlatform.transform.position + Vector3.right * 0.5f, Vector3.right * 0.25f, 1f);
+    //        print(prevPlatform.transform.position);
+    //        didNotFindAnything = true;
+    //        for (int i = 0; i < hits.Length; i++) {
+    //            ExplodingPlatform nextPlatform = hits[i].collider.GetComponent<ExplodingPlatform>();
+    //            if (nextPlatform != null && nextPlatform != prevPlatform) {
+    //                size += 1;
+    //                prevPlatform = nextPlatform;
+    //                destroyThesePlatforms.Add(nextPlatform);
+    //                recursions += 1;
+    //                didNotFindAnything = false;
+    //                break;
+    //            }
+    //        }
+    //    }
+    //    for (int i = 0; i < destroyThesePlatforms.Count; i++) {
+    //        Destroy(destroyThesePlatforms[i].gameObject);
+    //    }
+    //    destroyThesePlatforms = null;
+
+    //    Transform endPoint = new GameObject("End Point").transform;
+    //    endPoint.SetParent(explodingPlatform.transform);
+    //    endPoint.localPosition = Vector3.right * size;
+
+    //    explodingPlatform.Init(endPoint);
+
+    //}
 
 }

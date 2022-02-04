@@ -126,7 +126,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 45d271735cbd92a4ea355ba909244578, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -171,9 +171,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06, y: -0.21}
+  m_Offset: {x: 0.06, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.25
 --- !u!114 &7796884856344786375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,12 +198,21 @@ MonoBehaviour:
   - {fileID: -4337058123868923179, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
   - {fileID: 3572729194923482978, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
   - {fileID: -3899070720159901285, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
-  jump:
-  - {fileID: -10621735536549748, guid: e69bb4328a68ce7449b7aae8dad9ba3a, type: 3}
+  jumpRising:
+  - {fileID: 21300000, guid: 858a86fdccb99de43bf5aec56d0666cd, type: 3}
+  jumpFalling:
+  - {fileID: 21300000, guid: 2f0f74c1cd97a7a4e8f75c743c0b6168, type: 3}
+  postJump:
+  - {fileID: -4487997145768514653, guid: 8241dd73aa851d64faaec684cf221847, type: 3}
+  preAction:
+  - {fileID: 21300000, guid: 40fd1b2f01c51174593b627172814462, type: 3}
   action:
-  - {fileID: 533844743297374663, guid: 5fd1ec13e928cb047951f5c8c07f0cf7, type: 3}
-  actionFrame: 0
-  stretchiness: 0
+  - {fileID: -3876621413349325333, guid: 84d0b4cbd40cf694fa0df81d28e9f647, type: 3}
+  - {fileID: 2768832359836441843, guid: 84d0b4cbd40cf694fa0df81d28e9f647, type: 3}
+  postAction:
+  - {fileID: -2380667814844585542, guid: ce9c04a2285693c40ab567c28c56b484, type: 3}
+  - {fileID: 7236978648758963570, guid: ce9c04a2285693c40ab567c28c56b484, type: 3}
+  stretchiness: 0.01
   movementEffect:
     animation: []
     particle: {fileID: 0}
@@ -218,6 +227,10 @@ MonoBehaviour:
     length: 0
     timeInterval: 0
   stretch: {x: 0, y: 0}
+  runningAction: 0
+  runningJump: 0
+  postActionTimer: 0
+  postJumpTimer: 0
 --- !u!1 &7796884856631136992
 GameObject:
   m_ObjectHideFlags: 0
