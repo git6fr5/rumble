@@ -267,6 +267,7 @@ public class LevelLoader : MonoBehaviour {
             //}
         }
 
+        levelWind.gameObject.SetActive(false);
         if (windData.Count > 0) {
 
             levelWind.gameObject.SetActive(true);

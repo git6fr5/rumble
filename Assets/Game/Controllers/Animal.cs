@@ -132,16 +132,25 @@ public class Animal : Controller {
     }
 
     private void Dismount() {
+
         isControlled = false;
-        if (controllingObject != null) {
-            controllingObject.SetActive(true);
-            controllingObject.transform.SetParent(null);
-            controllingObject.transform.position = transform.position + 1.5f * Vector3.up;
-            Controller controller = controllingObject.GetComponent<Controller>();
-            controller.think = true;
-            controller.body.velocity = new Vector2(0f, 5f) + body.velocity;
-            controllingObject = null;
+        if (controllingObject == null) {
+            return;
         }
+
+        controllingObject.SetActive(true);
+        controllingObject.transform.SetParent(null);
+        Controller controller = controllingObject.GetComponent<Controller>();
+        // controller.think = true;
+        // controllingObject.transform.position = transform.position;
+        // controller.body.velocity = new Vector2(0f, 15f) + body.velocity;
+        controllingObject = null;
+
+        Player player = controller.GetComponent<Player>();
+        if (player) {
+            player.Dismount();
+        }
+
         gameObject.SetActive(false);
     }
 

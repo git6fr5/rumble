@@ -264,6 +264,10 @@ PrefabInstance:
       propertyPath: windFastOnInterval
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1414087867103869775, guid: 11c705d62f78af4409e45e298cd8c182, type: 3}
+      propertyPath: movingPlatformSlowSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1414087867103869873, guid: 11c705d62f78af4409e45e298cd8c182, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -632,7 +636,7 @@ MonoBehaviour:
   level: {fileID: 1016112525}
   levelWind: {fileID: 724646911}
   load: 1
-  id: 0
+  id: 40
 --- !u!1001 &1089702967
 PrefabInstance:
   m_ObjectHideFlags: 0
