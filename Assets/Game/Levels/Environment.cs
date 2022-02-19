@@ -9,70 +9,45 @@ using UnityEngine.U2D;
 /// </summary>
 public class Environment : MonoBehaviour {
 
-    /* --- Data Structures --- */
-    public class FloorTile : TileBase {
-
-        Sprite[] sprites;
-        public void Init(Sprite[] sprites) {
-            this.sprites = sprites;
-        }
-
-        public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData) {
-            base.GetTileData(position, tilemap, ref tileData);
-            tileData.colliderType = Tile.ColliderType.Sprite;
-            tileData.sprite = this.sprites[0];
-        }
-
-    }
-
-    [System.Serializable]
-    public class ColorScheme {
-
-        public Color particleBirthColor;
-        public Color particleMidColor;
-        public Color particleDeathColor;
-
-    }
-
     /* --- Components --- */
     // Entities.
-    [SerializeField] public Transform animalParentTransform; // The location to look for the entities.
-    [SerializeField] public Transform obstacleParentTransform; // The location to look for the entities.
+    [SerializeField] public Transform controlParentTransform; // The location to look for the entities.
+    [SerializeField] public Transform decorParentTransform; // The location to look for the entities.
+    [SerializeField] public Transform spiritParentTransform; // The location to look for the entities.
+    [SerializeField] public Transform snailParentTransform; // The location to look for the entities.
+    [SerializeField] public Transform platformParentTransform; // The location to look for the entities.
     // Tiles.
     [SerializeField] public RuleTile floorTile; // A set of sprites used to tile the floor of the level.
 
     /* --- Parameters --- */
-    [SerializeField] public ColorScheme colorScheme;
 
     /* --- Properties --- */
-    // [SerializeField, ReadOnly] public RuleTile floorTile; // The set of floor tiles generated from the floor sprites.
-    [SerializeField, ReadOnly] public List<Entity> animals; // The set of entities found from the parent transform.
-    [SerializeField, ReadOnly] public List<Entity> obstacles; // The set of entities found from the parent transform.
+    [SerializeField, ReadOnly] public List<Entity> controls;
+    [SerializeField, ReadOnly] public List<Entity> decor;
+    [SerializeField, ReadOnly] public List<Entity> snails;
+    [SerializeField, ReadOnly] public List<Entity> spirits;
+    [SerializeField, ReadOnly] public List<Entity> platforms;
 
     /* --- Unity --- */
     // Runs once before the first frame.
     void Start() {
-        RefreshTiles();
         RefreshEntities();
-    }
-
-    /* --- Tile Methods --- */
-    public void RefreshTiles() {
-        // floorTile = (FloorTile)ScriptableObject.CreateInstance(typeof(FloorTile));
-        // floorTile.Init(floorSprites);
-        // floorTile = floorSprites;
     }
 
     /* --- Entity Methods --- */
     // Refreshes the set of entities.
     void RefreshEntities() {
-        animals = new List<Entity>();
-        obstacles = new List<Entity>();
-        foreach (Transform child in animalParentTransform) {
-            FindAllEntitiesInTransform(child, ref animals);
-        }
-        foreach (Transform child in obstacleParentTransform) {
-            FindAllEntitiesInTransform(child, ref obstacles);
+        FindEntities(controlParentTransform, ref controls);
+        FindEntities(decorParentTransform, ref decor);
+        FindEntities(snailParentTransform, ref snails);
+        FindEntities(spiritParentTransform, ref spirits);
+        FindEntities(platformParentTransform, ref platforms);
+    }
+
+    private void FindEntities(Transform parent, ref List<Entity> entityList) {
+        entityList = new List<Entity>();
+        foreach (Transform child in parent) {
+            FindAllEntitiesInTransform(child, ref entityList);
         }
     }
 

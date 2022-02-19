@@ -9,6 +9,9 @@ public class Level : MonoBehaviour {
 
     public Tilemap floorMap;
 
+    public int jsonID;
+    public string levelName;
+
     public int height;
     public int width;
     public int gridSize;
@@ -16,14 +19,16 @@ public class Level : MonoBehaviour {
     public int worldHeight;
     public int worldWidth;
 
-    public List<Entity> animals;
-    public List<Entity> obstacles;
+    public List<Entity> controls;
+    public List<Entity> decor;
+    public List<Entity> snails;
+    public List<Entity> spirits;
+    public List<Entity> platforms;
 
     public List<Vector3Int> nonEmptyTiles;
 
     public Vector2Int gridOrigin => new Vector2Int(worldWidth, worldHeight);
-    public Vector2Int connectPosition;
-    public Vector2Int controlPosition;
+    public List<Vector2Int> controlPositions = new List<Vector2Int>();
 
     public Vector3 GridToWorldPosition(Vector2Int gridPosition) {
         return new Vector3((gridPosition.x + gridOrigin.x) + 0.5f, - (gridPosition.y + gridOrigin.y) + 0.5f, 0f);
@@ -40,8 +45,11 @@ public class Level : MonoBehaviour {
         Gizmos.DrawWireSphere(startTilePosition, 1f);
 
         Gizmos.color = Color.red;
-        Vector3 endTilePosition = (Vector3)GridToTilePosition(connectPosition + gridOrigin);
-        Gizmos.DrawWireSphere(endTilePosition, 0.75f);
+        for (int i = 0; i < controlPositions.Count; i++) {
+            Vector3 endTilePosition = (Vector3)GridToTilePosition(controlPositions[i]);
+            Gizmos.DrawWireSphere(endTilePosition, 0.75f);
+        }
+
     }
 
 }

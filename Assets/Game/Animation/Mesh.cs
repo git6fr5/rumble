@@ -13,7 +13,7 @@ using ActionState = Controller.ActionState;
 /// Handles the collision framework and animation
 /// </summary>
 [RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class Mesh : MonoBehaviour {
 
     /* --- Data Structures --- */
@@ -59,12 +59,11 @@ public class Mesh : MonoBehaviour {
 
         public void Create() {
             if (particle == null || GameRules.MainLoader == null) {
-                print("No particle effect for this action");
+                // print("No particle effect for this action");
                 return;
             }
             Particle newParticle = Instantiate(particle.gameObject, particle.transform.position, Quaternion.identity, null).GetComponent<Particle>();
             newParticle.gameObject.SetActive(true);
-            newParticle.Shade(GameRules.MainLoader.level.environment);
         }
 
     }
@@ -81,7 +80,7 @@ public class Mesh : MonoBehaviour {
 
     /* --- Components --- */
     [HideInInspector] private Controller controller;
-    [HideInInspector] private CircleCollider2D collisionBall;
+    [HideInInspector] private CapsuleCollider2D collisionBall;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     [Space(2), Header("Collisions")]
     [SerializeField] public Hurtbox hurtbox; // Handles the damage collision checks.
@@ -129,7 +128,7 @@ public class Mesh : MonoBehaviour {
     private void Init() {
         controller = transform.parent.GetComponent<Controller>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        collisionBall = GetComponent<CircleCollider2D>();
+        collisionBall = GetComponent<CapsuleCollider2D>();
         animationData = new AnimationData(idle, 0, idle.Length);
 
         movementEffect.animation = move;
@@ -189,6 +188,10 @@ public class Mesh : MonoBehaviour {
         }
         else {
             AnimateIdle();
+        }
+
+        if (animationData.animation != prevAnimation) {
+            animationData.timeInterval = 0f;
         }
 
     }

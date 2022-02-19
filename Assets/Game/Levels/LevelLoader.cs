@@ -17,11 +17,14 @@ public class LevelLoader : MonoBehaviour {
 
     /* --- Static Variables --- */
     // Layer Names
-    public static string WaterWindLayer = "Water_Wind_Layer";
-    public static string AnimalLayer = "Animal_Layer";
-    public static string ObstacleLayer = "Obstacle_Layer";
-    public static string ControlLayer = "Control_Layer";
-    public static string FloorLayer = "Tile_Layer";
+    public static string ControlLayer = "Control";
+    public static string DecorLayer = "Decor";
+    public static string SnailLayer = "Snails";
+    public static string SpiritLayer = "Spirits";
+    public static string PlatformLayer = "Platforms";
+    public static string GroundLayer = "Ground";
+
+    public static Vector2Int CheckPointID = new Vector2Int(0, 3);
 
     /* --- Data Structures --- */
     public class LDtkTileData {
@@ -43,7 +46,6 @@ public class LevelLoader : MonoBehaviour {
     /* --- Components --- */
     [SerializeField] public LDtkComponentProject lDtkData;
     [SerializeField] public Level level;
-    [SerializeField] public Wind levelWind;
 
     /* --- Parameters --- */
     [SerializeField] public bool load;
@@ -72,7 +74,7 @@ public class LevelLoader : MonoBehaviour {
         LdtkJson json = lDtkData.FromJson();
 
         for (int i = 0; i < json.Levels.Length; i++) {
-            print(json.Levels[i].Identifier);
+            // print(json.Levels[i].Identifier);
             if (json.Levels[i].Identifier == "Level_" + id.ToString()) {
 
                 // Read the json data.
@@ -92,64 +94,105 @@ public class LevelLoader : MonoBehaviour {
         return null;
     }
 
+    public void OpenLevelByName(Level level, string levelName, bool resetPlayer = true) {
+        LDtkLevel ldtkLevel = GetLevelByName(level, lDtkData, levelName);
+        OpenLevel(level, ldtkLevel, resetPlayer);
+    }
+
+    protected LDtkLevel GetLevelByName(Level level, LDtkComponentProject lDtkData, string levelName) {
+
+        // Get the json file from the LDtk Data.
+        LdtkJson json = lDtkData.FromJson();
+
+        for (int i = 0; i < json.Levels.Length; i++) {
+            // print(json.Levels[i].Identifier);
+            if (json.Levels[i].Identifier == levelName) {
+
+                // Read the json data.
+                level.gridSize = (int)json.DefaultGridSize;
+                level.height = (int)(json.Levels[i].PxHei / json.DefaultGridSize);
+                level.width = (int)(json.Levels[i].PxWid / json.DefaultGridSize);
+
+                level.worldHeight = (int)(json.Levels[i].WorldY / json.DefaultGridSize);
+                level.worldWidth = (int)(json.Levels[i].WorldX / json.DefaultGridSize);
+
+                return json.Levels[i];
+
+            }
+        }
+
+        Debug.Log("Could not find room");
+        return null;
+    }
+
     protected void OpenLevel(Level level, LDtkLevel ldtkLevel, bool resetPlayer = true) {
 
         if (ldtkLevel != null) {
 
             // Load the entity data.
             int gridSize = level.gridSize;
-            List<LDtkTileData> windData = LoadLayer(ldtkLevel, WaterWindLayer, gridSize);
-            List<LDtkTileData> floorData = LoadLayer(ldtkLevel, FloorLayer, gridSize);
             List<LDtkTileData> controlData = LoadLayer(ldtkLevel, ControlLayer, gridSize);
-            List<LDtkTileData> animalData = LoadLayer(ldtkLevel, AnimalLayer, gridSize);
-            List<LDtkTileData> obstacleData = LoadLayer(ldtkLevel, ObstacleLayer, gridSize);
+            List<LDtkTileData> decorData = LoadLayer(ldtkLevel, DecorLayer, gridSize);
+            List<LDtkTileData> snailData = LoadLayer(ldtkLevel, SnailLayer, gridSize);
+            List<LDtkTileData> spiritData = LoadLayer(ldtkLevel, SpiritLayer, gridSize);
+            List<LDtkTileData> platformData = LoadLayer(ldtkLevel, PlatformLayer, gridSize);
+            List<LDtkTileData> groundData = LoadLayer(ldtkLevel, GroundLayer, gridSize);
 
             // Grab the data from the level.
-            List<Entity> animalList = level.environment.animals;
-            List<Entity> obstacleList = level.environment.obstacles;
+            // List<Entity> animalList = level.environment.animals;
+            // List<Entity> obstacleList = level.environment.obstacles;
             Tilemap floormap = level.floorMap;
 
             // Instatiantate and set up the entities using the data.
-            level.animals = LoadEntities(level, animalData, animalList);
-            level.obstacles = LoadEntities(level, obstacleData, obstacleList);
-            level.nonEmptyTiles = LoadTiles(level, floormap, floorData);
+            if (level.controls == null || level.controls.Count == 0) {
+                level.controls = LoadEntities(level, controlData, level.environment.controls);
+            }
+            if (level.decor == null || level.decor.Count == 0) {
+                level.decor = LoadEntities(level, decorData, level.environment.decor);
+            }
+            level.snails = LoadEntities(level, snailData, level.environment.snails);
+            level.spirits = LoadEntities(level, spiritData, level.environment.spirits);
+            level.platforms = LoadEntities(level, platformData, level.environment.platforms);
+            level.nonEmptyTiles = LoadTiles(level, floormap, groundData);
 
             // Set the controls.
-            SetControls(level, controlData, windData, level.obstacles, resetPlayer);
+            SetPlatforms(level, controlData, level.platforms);
+            SetControls(level);
         }
 
     }
 
-    private void ResetLevel(Level level) {
+    public virtual void Reset() {
+        ResetLevel(level);
+    }
 
-        GameRules.MainPlayer.transform.SetParent(null);
+    protected void ResetLevel(Level level) {
 
-        if (level.animals != null) {
-            print("Resetting Entities");
-            for (int i = 0; i < level.animals.Count; i++) {
-                Destroy(level.animals[i].gameObject);
-            }
-        }
-        level.animals = new List<Entity>();
+        // GameRules.MainPlayer.transform.SetParent(null);
 
-        if (level.obstacles != null) {
-            print("Resetting Obstacles");
-            for (int i = 0; i < level.obstacles.Count; i++) {
-                if (level.obstacles[i] != null) {
-                    Destroy(level.obstacles[i].gameObject);
-                }
-            }
-        }
-        level.obstacles = new List<Entity>();
+        ResetEntities(ref level.decor);
+        ResetEntities(ref level.snails);
+        ResetEntities(ref level.spirits);
+        ResetEntities(ref level.platforms);
 
         if (level.nonEmptyTiles != null) {
-            print("Resetting Tiles");
             for (int i = 0; i < level.nonEmptyTiles.Count; i++) {
                 level.floorMap.SetTile(level.nonEmptyTiles[i], null);
             }
         }
         level.nonEmptyTiles = new List<Vector3Int>();
 
+    }
+
+    private void ResetEntities(ref List<Entity> entities) {
+        if (entities != null) {
+            for (int i = 0; i < entities.Count; i++) {
+                if (entities[i] != null) {
+                    Destroy(entities[i].gameObject);
+                }
+            }
+        }
+        entities = new List<Entity>();
     }
 
     private LDtkUnity.LayerInstance GetLayer(LDtkUnity.Level ldtkLevel, string layerName) {
@@ -238,75 +281,43 @@ public class LevelLoader : MonoBehaviour {
         return null;
     }
 
-    private void SetControls(Level level, List<LDtkTileData> controlData, List<LDtkTileData> windData, List<Entity> obstacles, bool resetPlayer = true) {
-
-        // Set the player.
-        
-        for (int i = 0; i < controlData.Count; i++) {
-            if (resetPlayer && controlData[i].vectorID == new Vector2Int(5, 0)) {
-                Vector3 controlPosition = level.GridToWorldPosition(controlData[i].gridPosition + new Vector2Int(0, -1));
-                GameRules.MainPlayer.transform.position = controlPosition;
-                GameRules.MainPlayer.think = true;
-                GameRules.MainPlayer.body.velocity = Vector2.zero;
-                GameRules.MainPlayer.gameObject.SetActive(true);
-            }
-            if (controlData[i].vectorID == new Vector2Int(5, 0)) {
-                level.controlPosition = controlData[i].gridPosition;
-            }
-        }
+    private void SetControls(Level level) {
 
         // Set the obstacles.
-        for (int i = 0; i < obstacles.Count; i++) {
-
-            MovingPlatform movingPlatform = obstacles[i].GetComponent<MovingPlatform>();
-            if (movingPlatform != null) {
-                Vector2Int gridPosition = obstacles[i].gridPosition;
-                SetMovingPlatform(movingPlatform, gridPosition, controlData);
+        for (int i = 0; i < level.controls.Count; i++) {
+            LevelLabel levelLabel = level.controls[i].GetComponent<LevelLabel>();
+            if (levelLabel != null) {
+                levelLabel.Init(level.levelName);
             }
-
+            if (level.controls[i].vectorID == new Vector2Int(0, 3)) {
+                foreach (Transform child in level.controls[i].transform) {
+                    Hearthbox hearthbox = child.GetComponent<Hearthbox>();
+                    if (hearthbox != null) {
+                        hearthbox.Init(level);
+                    }
+                }
+            }
+            
         }
 
-        levelWind.gameObject.SetActive(false);
-        if (windData.Count > 0) {
+    }
 
-            levelWind.gameObject.SetActive(true);
+    private void SetPlatforms(Level level, List<LDtkTileData> controlData, List<Entity> platforms, bool resetPlayer = true) {
 
-            // x = 1 => left, x = 2 => right
-            if (windData[0].vectorID.x == 1) {
-                levelWind.windDirection = Vector2.left;
-            }
-            else if (windData[0].vectorID.x == 2) {
-                levelWind.windDirection = Vector2.right;
-            }
-            else if (windData[0].vectorID.x == 3) {
-                levelWind.windDirection = Vector2.up;
-            }
-            else if (windData[0].vectorID.x == 4) {
-                levelWind.windDirection = Vector2.down;
-            }
-
-            if (windData[0].vectorID.y == 0) {
-                levelWind.alternate = false;
-
-            }
-            else if (windData[0].vectorID.y == 1) {
-                levelWind.alternate = true;
-                levelWind.onInterval = Wind.WindMidOnInterval;
-                levelWind.offInterval = Wind.WindMidOffInterval;
-
-            }
-            else if (windData[0].vectorID.y == 2) {
-                levelWind.alternate = true;
-                levelWind.onInterval = Wind.WindFastOnInterval;
-                levelWind.offInterval = Wind.WindFastOffInterval;
-
+        // Set the obstacles.
+        for (int i = 0; i < platforms.Count; i++) {
+            MovingPlatform movingPlatform = platforms[i].GetComponent<MovingPlatform>();
+           // print("found platform");
+            if (movingPlatform != null) {
+                Vector2Int gridPosition = platforms[i].gridPosition;
+                SetMovingPlatform(level, movingPlatform, gridPosition, controlData);
             }
 
         }
 
     }
 
-    private void SetMovingPlatform(MovingPlatform movingPlatform, Vector2Int gridPosition, List<LDtkTileData> controlData) {
+    private void SetMovingPlatform(Level level, MovingPlatform movingPlatform, Vector2Int gridPosition, List<LDtkTileData> controlData) {
 
         // Get the control point.
         LDtkTileData controlPoint = null;
@@ -318,7 +329,7 @@ public class LevelLoader : MonoBehaviour {
         if (controlPoint == null) {
             return;
         }
-        print("found control point");
+        // print("found control point");
 
         // Get the speed.
         int speedID = controlPoint.vectorID.y;
@@ -343,21 +354,21 @@ public class LevelLoader : MonoBehaviour {
         int directionID = controlPoint.vectorID.x;
         Vector2Int direction = Vector2Int.zero;
         if (directionID == 0) {
-            direction = Vector2Int.down;
-        }
-        else if (directionID == 1) {
-            direction = Vector2Int.up;
-        }
-        else if (directionID == 2) {
             direction = Vector2Int.right;
         }
-        else if (directionID == 3) {
+        else if (directionID == 1) {
+            direction = Vector2Int.down;
+        }
+        else if (directionID == 2) {
             direction = Vector2Int.left;
+        }
+        else if (directionID == 3) {
+            direction = Vector2Int.up;
         }
         else {
             return;
         }
-        print("found direction");
+        // print("found direction");
 
         // Find the second point.
         // Super inefficient.
@@ -381,7 +392,7 @@ public class LevelLoader : MonoBehaviour {
         if (beaconPoint == null) {
             return;
         }
-        print("found beacon");
+        // print("found beacon");
 
         // Raycast out to find the different blocks.
         MovingPlatform prevPlatform = movingPlatform;
@@ -392,7 +403,7 @@ public class LevelLoader : MonoBehaviour {
 
         while (!didNotFindAnything && recursions < 50) {
             RaycastHit2D[] hits = Physics2D.RaycastAll(prevPlatform.transform.position + Vector3.right * 0.5f, Vector3.right * 0.25f, 1f);
-            print(prevPlatform.transform.position);
+            // print(prevPlatform.transform.position);
             didNotFindAnything = true;
             for (int i = 0; i < hits.Length; i++) {
                 MovingPlatform nextPlatform = hits[i].collider.GetComponent<MovingPlatform>();

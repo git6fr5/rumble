@@ -24,7 +24,10 @@ public class Particle : MonoBehaviour {
 
     /* --- Parameters --- */
     [SerializeField] private Sprite[] particle;
-    [SerializeField] private bool loop;
+    [SerializeField] private int frameRate = -1;
+    [SerializeField] public bool loop;
+    [SerializeField] public bool pause;
+    [SerializeField] public bool pauseOnEnd;
 
     /* --- Properties --- */
     [SerializeField] private ParticleData particleData;
@@ -38,7 +41,13 @@ public class Particle : MonoBehaviour {
     // Runs once every frame.
     private void Update() {
         float deltaTime = Time.deltaTime;
-        Animate(deltaTime);
+        if (!pause) {
+            Animate(deltaTime);
+            bool isEnd = spriteRenderer.sprite == particleData.animation[particleData.animation.Length - 1];
+            if (pauseOnEnd && isEnd) {
+                pause = true;
+            }
+        }
     }
 
     /* --- Methods --- */
@@ -50,23 +59,13 @@ public class Particle : MonoBehaviour {
     private void Animate(float deltaTime) {
         // Set the current frame.
         particleData.timeInterval += deltaTime;
-        int index = (int)Mathf.Floor(particleData.timeInterval * GameRules.FrameRate);
+        float frameRate = this.frameRate > 0 ? (float)this.frameRate : GameRules.FrameRate;
+        int index = (int)Mathf.Floor(particleData.timeInterval * frameRate);
         if (!loop && index >= particleData.length) {
             Destroy(gameObject);
         }
         index = index % particleData.length;
         spriteRenderer.sprite = particleData.animation[index];
-    }
-
-    public void Shade(Environment environment) {
-
-        if (spriteRenderer== null) {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-        spriteRenderer.material.SetColor("_BirthColor", environment.colorScheme.particleBirthColor);
-        spriteRenderer.material.SetColor("_MidColor", environment.colorScheme.particleMidColor);
-        spriteRenderer.material.SetColor("_DeathColor", environment.colorScheme.particleDeathColor);
-
     }
 
 }

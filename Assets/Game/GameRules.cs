@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1000)]
 public class GameRules : MonoBehaviour {
@@ -14,9 +15,11 @@ public class GameRules : MonoBehaviour {
     // Instance.
     public static GameRules Instance;
     // Player.
-    public static Controller MainPlayer;
+    public static Player MainPlayer;
     // Level
     public static LevelLoader MainLoader;
+    // Minimap
+    public static Minimap MainMap;
     // Objects.
     public static GameObject BackgroundObject;
     public static GameObject GameOverObject;
@@ -28,7 +31,7 @@ public class GameRules : MonoBehaviour {
     public static float Acceleration = 100f;
     public static float Floatiness = 0.4f;
     public static float KnockbackDuration = 0.15f;
-    public static float BoundLimit = 100f;
+    public static float BoundLimit = 50f;
     // Animation.
     public static float FrameRate = 24f;
     public static float OutlineWidth = 1f / 16f;
@@ -40,8 +43,9 @@ public class GameRules : MonoBehaviour {
     public float timeScale = 1f;
 
     /* --- Properties --- */
-    public Controller mainPlayer;
+    public Player mainPlayer;
     public LevelLoader levelLoader;
+    public Minimap minimap;
     public GameObject backgroundObject;
     public GameObject globalLightObject;
     public GameObject gameOverObject;
@@ -57,13 +61,6 @@ public class GameRules : MonoBehaviour {
     [Range(0f, 5f)] public float movingPlatformSlowSpeed = 0.25f;
     [Range(0f, 5f)] public float movingPlatformMidSpeed = 0.75f;
     [Range(0f, 5f)] public float movingPlatformFastSpeed = 1.25f;
-
-    [Range(0f, 20f)] public float windFastOnInterval = 5f;
-    [Range(0f, 20f)] public float windFastOffInterval = 5f;
-
-    [Range(0f, 20f)] public float windMidOnInterval = 10f;
-    [Range(0f, 20f)] public float windMidOffInterval = 10f;
-
 
     /* --- Unity --- */
     // Runs once before the first frame.
@@ -85,6 +82,17 @@ public class GameRules : MonoBehaviour {
         MovingPlatform.MidSpeed = movingPlatformMidSpeed;
         MovingPlatform.FastSpeed = movingPlatformFastSpeed;
 
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            if (MainMap.gameObject.activeSelf) {
+                MainMap.gameObject.SetActive(false);
+                timeScale = 1f;
+            }
+            else {
+                MainMap.Init();
+                timeScale = 0f;
+            }
+        }
+
         Time.timeScale = timeScale;
     }
 
@@ -94,6 +102,7 @@ public class GameRules : MonoBehaviour {
         MainCamera = Camera.main;
         MainPlayer = mainPlayer;
         MainLoader = levelLoader;
+        MainMap = minimap;
 
         BackgroundObject = backgroundObject;
         GameOverObject = gameOverObject;
@@ -103,12 +112,6 @@ public class GameRules : MonoBehaviour {
         VelocityDamping = velocityDamping;
         GravityScale = gravityScale;
         FrameRate = frameRate;
-
-        Wind.WindFastOnInterval = windFastOnInterval;
-        Wind.WindFastOffInterval = windFastOffInterval;
-
-        Wind.WindMidOnInterval = windMidOnInterval;
-        Wind.WindMidOffInterval = windMidOffInterval;
 
         // Instance
         Instance = this;
@@ -165,8 +168,29 @@ public class GameRules : MonoBehaviour {
     }
 
     public static void ResetLevel() {
+
+        MainPlayer.transform.parent = null;
+        MainPlayer.think = true;
+        MainPlayer.actionFlag = Controller.ActionState.None;
+        MainPlayer.gameObject.SetActive(true);
+        MainPlayer.body.velocity = Vector3.up * 5f;    
+        MainPlayer.transform.position = MainPlayer.hearth.transform.position + Vector3.up * 0.5f;
+
+        //Instance.StartCoroutine(IEResetLevel());
+        //IEnumerator IEResetLevel() {
+        //    Instance.timeScale = 0.25f;
+        //    yield return new WaitForSeconds(Instance.timeScale * 0.25f);
+        //    Instance.timeScale = 1f;
+        //    yield return null;
+        //}
+
         if (MainLoader != null) {
-            MainLoader.load = true;
+            // MainLoader.load = true;
+            MainLoader.Reset();
+        }
+        else {
+            // string sceneName = SceneManager.GetActiveScene().name;
+            // SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
     }
 
@@ -177,6 +201,3 @@ public class GameRules : MonoBehaviour {
 
 }
 
-public class ReadOnlyAttribute : PropertyAttribute {
-
-}
