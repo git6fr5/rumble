@@ -73,14 +73,14 @@ public class Player : Controller {
             }
         }
 
-        StartCoroutine(IEAction(direction, distance, spiritbox, 7f / GameRules.FrameRate));
+        StartCoroutine(IEAction(direction, distance, spiritbox, (float)mesh.action.Length / GameRules.FrameRate));
 
     }
 
     IEnumerator IEAction(Vector3 direction, float distance, Spiritbox spiritbox, float delay) {
 
         float speed = (distance / delay);
-        print(speed);
+        // print(speed);
         moveDirection = direction.x;
         moveSpeed = speed;
         think = false;

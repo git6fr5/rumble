@@ -188,7 +188,14 @@ public class LevelLoader : MonoBehaviour {
         if (entities != null) {
             for (int i = 0; i < entities.Count; i++) {
                 if (entities[i] != null) {
-                    Destroy(entities[i].gameObject);
+                    // Exceptions...
+                    Spirit spirit = entities[i].GetComponent<Spirit>();
+                    if (spirit != null && spirit.isControlled) {
+                        // Don't destroy
+                    }
+                    else {
+                        Destroy(entities[i].gameObject);
+                    }
                 }
             }
         }

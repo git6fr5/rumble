@@ -88,14 +88,14 @@ public class Mesh : MonoBehaviour {
 
     /* --- Parameters --- */
     [Space(2), Header("Animations")]
-    [SerializeField] private Sprite[] idle = null;
-    [SerializeField] private Sprite[] move = null;
-    [SerializeField] private Sprite[] jumpRising = null;
-    [SerializeField] private Sprite[] jumpFalling = null;
-    [SerializeField] private Sprite[] postJump = null;
-    [SerializeField] private Sprite[] preAction = null;
-    [SerializeField] private Sprite[] action = null;
-    [SerializeField] private Sprite[] postAction = null;
+    [SerializeField] public Sprite[] idle = null;
+    [SerializeField] public Sprite[] move = null;
+    [SerializeField] public Sprite[] jumpRising = null;
+    [SerializeField] public Sprite[] jumpFalling = null;
+    [SerializeField] public Sprite[] postJump = null;
+    [SerializeField] public Sprite[] preAction = null;
+    [SerializeField] public Sprite[] action = null;
+    [SerializeField] public Sprite[] postAction = null;
     [SerializeField] private float stretchiness = 0.1f;
 
     [Space(2), Header("Effects")]

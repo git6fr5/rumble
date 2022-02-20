@@ -55,7 +55,7 @@ public class Coin : MonoBehaviour {
         if (spirit != null && spirit.isControlled) {
             Player possessor = spirit.possessor.GetComponent<Player>();
             if (possessor != null) {
-                player.CollectCoin();
+                possessor.CollectCoin();
                 Destroy(gameObject);
             }
         }

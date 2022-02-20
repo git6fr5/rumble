@@ -10,6 +10,10 @@ using UnityEngine;
 /// </summary>
 public class Spirit : Controller {
 
+    /* --- Components --- */
+    public MeshSprite baseMeshSprite;
+    public MeshSprite possessMeshSprite;
+
     /* --- Parameters --- */
     [SerializeField] public Transform[] patrolPoints; // The paths between which the guard patrols.
     [SerializeField] private float pauseDuration = 1f; // The duration for which the guard pauses at a patrol point.
@@ -97,7 +101,23 @@ public class Spirit : Controller {
         //if (transform.position.sqrMagnitude > GameRules.BoundLimit * GameRules.BoundLimit) {
         //    GameRules.ResetLevel();
         //}
+        if (body.velocity.y < -200f) {
+            GameRules.ResetLevel();
+        }
+    }
 
+    public void Possess(Controller possessor) {
+        isControlled = true;
+        this.possessor = possessor;
+        if (possessor.GetComponent<Player>() != null) {
+            possessor.GetComponent<Player>().spirit = this;
+        }
+        possessor.transform.parent = transform;
+        possessor.transform.localPosition = Vector2.zero;
+        possessor.gameObject.SetActive(false);
+
+        possessMeshSprite.gameObject.SetActive(true);
+        possessMeshSprite.Organize();
     }
 
     public void Dismount() {
@@ -106,6 +126,9 @@ public class Spirit : Controller {
         if (possessor == null) {
             return;
         }
+
+        baseMeshSprite.gameObject.SetActive(true);
+        baseMeshSprite.Organize();
 
         possessor.gameObject.SetActive(true);
         possessor.transform.SetParent(null);
@@ -116,6 +139,7 @@ public class Spirit : Controller {
         possessor = null;
 
         gameObject.SetActive(false);
+
     }
 
     protected virtual void ActionCheck() {

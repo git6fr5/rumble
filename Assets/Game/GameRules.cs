@@ -175,6 +175,9 @@ public class GameRules : MonoBehaviour {
         MainPlayer.gameObject.SetActive(true);
         MainPlayer.body.velocity = Vector3.up * 5f;    
         MainPlayer.transform.position = MainPlayer.hearth.transform.position + Vector3.up * 0.5f;
+        if (MainPlayer.spirit != null) {
+            Destroy(MainPlayer.spirit.gameObject);
+        }
 
         //Instance.StartCoroutine(IEResetLevel());
         //IEnumerator IEResetLevel() {
