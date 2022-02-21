@@ -158,7 +158,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!70 &8363364307152065842
@@ -591,14 +591,15 @@ MonoBehaviour:
   - {fileID: -3426081719330030179, guid: f5714f0c914ee1c49afe8a5404fa034b, type: 3}
   - {fileID: -3769544209421153258, guid: f5714f0c914ee1c49afe8a5404fa034b, type: 3}
   - {fileID: 5735849333440198138, guid: f5714f0c914ee1c49afe8a5404fa034b, type: 3}
+  offset: 0
   idleLength: 4
   moveLength: 4
   jumpLength: 1
   fallLength: 1
   landLength: 2
   preActionLength: 4
-  actionLength: 4
-  postActionLength: 0
+  actionLength: 3
+  postActionLength: 1
 --- !u!1 &3764309705595255316
 GameObject:
   m_ObjectHideFlags: 0
