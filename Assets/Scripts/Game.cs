@@ -53,8 +53,16 @@ namespace Platformer {
         int m_HitFrames = 0;
         int m_StopFrames = 16;
 
+        // temp.
+        [SerializeField] private Material material;
+        [SerializeField] private ColorPalette palette;
+
         void Awake() {
             Instance = this;
+
+            // temp.
+            palette.Set(material);
+
         }
 
         void Start() {
