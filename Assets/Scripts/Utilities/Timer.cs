@@ -7,6 +7,17 @@ namespace Platformer.Utilites {
 
     public class Timer {
 
+        // Rename this to triangle ticks
+        public static bool TriangleTickDownIf(ref float t, float T, float dt, bool p) {
+            bool wasnotzero = t != 0f;
+            if (p) {  t += dt; }
+            else { t -= dt; }
+            if (t >= T) { t = T; }
+            if (t < 0f) { t = 0f; }
+            bool isnowzero = t == 0f;
+            return wasnotzero && isnowzero;
+        }
+
         // Starts the timer to its max value.
         public static void Start(ref float t, float T) {
             t = T; 

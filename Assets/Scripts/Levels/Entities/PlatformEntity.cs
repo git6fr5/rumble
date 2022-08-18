@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 // Platformer.
 using Platformer.LevelLoader;
+using Platformer.Obstacles;
 
 namespace Platformer.LevelLoader {
 
@@ -20,10 +21,10 @@ namespace Platformer.LevelLoader {
         public override void OnControl(int index, List<LDtkTileData> controlData) {
             int length = PlatformEntity.GetLength(transform.position);
             Vector3[] path = PatrolEntity.GetPath(transform.position, index, controlData, length);
-            // Platform platform = GetComponent<Platform>();
-            // if (platform != null) {
-            //     platform.Init(length, path);
-            // }
+            Platform platform = GetComponent<Platform>();
+            if (platform != null) {
+                platform.Init(length, path);
+            }
         }
 
         // The logic of turning the ldtk data into a length.

@@ -1,3 +1,5 @@
+// TODO: Clean
+
 /* --- Libraries --- */
 using System.Collections;
 using System.Collections.Generic;
@@ -15,13 +17,16 @@ namespace Platformer.Rendering {
 
         [SerializeField] private Color[] m_Color;
 
-        public void Set(Material material, int first = 1) {
-
-            string tag = first == 1 ? "A" : "B";
+        public void SetBlend(Material material, string tag = "A") {
             for (int i = 0; i < 6; i++) {
                 material.SetColor("_Color" + tag + i.ToString(), m_Color[i]);
             }
+        }
 
+        public void SetSimple(Material material) {
+            for (int i = 0; i < 6; i++) {
+                material.SetColor("_Color" + i.ToString(), m_Color[i]);
+            }
         }
 
     }

@@ -12,6 +12,7 @@ using UnityEngine.U2D;
 
 using Platformer.Obstacles;
 using Platformer.Rendering;
+using Platformer.Utilites;
 
 using PixelPerfectCamera = UnityEngine.Experimental.Rendering.Universal.PixelPerfectCamera;
 
@@ -72,11 +73,24 @@ namespace Platformer.Rendering {
         [SerializeField] private Volume[] m_Lighting;
         [SerializeField] private VisualEffect[] m_Weather;
 
+        [SerializeField, ReadOnly] private float m_Recoloration = 0f;
+        [SerializeField] private Material m_ColorPaletteMaterial;
+        public Material ColorPaletteMaterial => m_ColorPaletteMaterial;
+        [SerializeField] private ColorPalette m_CurrentPalette;
+
+        // Color shifts.
+        [SerializeField] private Color m_ForegroundColorShift;
+        public static Color ForegroundColorShift => Instance.m_ForegroundColorShift;
+
         #endregion
 
         // Runs once before the first frame.
         void Awake() {
             Instance = this;
+            // temp.
+            m_CurrentPalette.SetBlend(m_ColorPaletteMaterial, "A");
+            m_CurrentPalette.SetBlend(m_ColorPaletteMaterial, "B");
+            m_ColorPaletteMaterial.SetFloat("_Radius", 1f);
         }
 
         void Start() {
@@ -101,6 +115,12 @@ namespace Platformer.Rendering {
             if (m_Shake) {
                 m_Shake = Shake();
             }
+
+            if (m_Recoloration < 1f) {
+                Timer.TickUp(ref m_Recoloration, 1f, Time.deltaTime / 0.25f);
+                m_ColorPaletteMaterial.SetFloat("_Radius", m_Recoloration);
+            }
+
         }
 
         public void Shape(Vector2Int shape, int ppu = 16) {
@@ -169,6 +189,20 @@ namespace Platformer.Rendering {
             float strength = m_ShakeStrength * m_Curve.Evaluate(m_ElapsedTime / m_ShakeDuration);
             transform.position += (Vector3)Random.insideUnitCircle * strength;
             return true;
+        }
+
+        public static void Recolor(ColorPalette colorPalette) {
+           Instance.StartRecoloration(colorPalette);
+        }
+
+        public void StartRecoloration(ColorPalette colorPalette) {
+             // Swap the colors.
+            m_CurrentPalette.SetBlend(m_ColorPaletteMaterial, "B");
+            colorPalette.SetBlend(m_ColorPaletteMaterial, "A");
+            m_CurrentPalette = colorPalette;
+            // Restart the recoloration.
+            m_Recoloration = 0f;
+            Instance.ColorPaletteMaterial.SetFloat("_Radius", 0f);
         }
 
     }

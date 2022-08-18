@@ -128,7 +128,7 @@ namespace Platformer.LevelLoader {
         public static void InitializeGroundLayer(Transform transform) {
             GroundMap = new GameObject("Ground", typeof(Tilemap), typeof(TilemapRenderer), typeof(TilemapCollider2D)).GetComponent<Tilemap>();
             GroundMap.GetComponent<TilemapRenderer>().sortingLayerName = Screen.RenderingLayers.Foreground;
-            // GroundMap.color = new Color(0.8f, 0.8f, 0.8f, 1f);
+            GroundMap.color = Screen.ForegroundColorShift;
 
             GroundMap.gameObject.AddComponent<Rigidbody2D>();
             GroundMap.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;

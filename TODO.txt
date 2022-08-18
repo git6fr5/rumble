@@ -1,100 +1,81 @@
-player
-	idle a
-	idle b
-	squish on the jump
-	rope
-background
-	vines
-	grass
-enemy
+crab hurt
+crab death
+player charge?
+
+spit fire
+spit hit
+
+shield release
+shield hit
+shield return
+shield catch
+
+
+ldtk
+flipbook
+tilesets
+
+*games we have to finish*
+
+RUMBLE - Platformer
+take the cat mechanic, put it into an animal in rumble, and publish
+
+CUTE SOULS - Platformer
+
+PICK-A-SLIME - Puzzle
+
+GALAXY TROTTERS - Puzzle
+
+LEGEND OF BREAD - Dungeon Crawler
+
+// comment on flipbook
+// comment on orb
+
+wormholes
+blackholes
+ghost-in-a-box
+shadowblocks
+
+
+flipbook
+game
+screen
+platform
+orb
+ldtk entities
+
+ground sound manager
+screen swap, swaps decor and particle effects
+background value
+tileset value
+
+noise when pickin up orb
+all the palettes
+
 platforms
 spikes
-lighting
-effects
-sound
-
-trees
-clouds
-birds
-falling leaves
-
-pulsing lights
-
+falling spikes
+wormholes
+blackholes -> from galaxy trotters/cache v -> move -> load cache v
+things that pop out of the ground
 
 grass
-rope
-stars
-outlines
-stretchiness
+vines
+lights
 
+particle effects
+respawn
 
+ripple effect
+portal effect
+shadow power
+ghost power
 
-shield
-tilemap value
-vignette
-go towards the light
-vine movement
-load level timer
-
-sound
-house
-harlow (eccentric)
-crawler
-
-mine explosion riding
-
-
-ground pound
-sloped ground (gentle/steep)
-coins
-thwomps
-
-dragons' lair lava bubble
-
-goblin bob omb
-
-double jump = cloud jumping
-Bumper
-Seesaw
-Lift (opposite to sink)
-rising lava
-warp box
-pushable box
-floating box
-
-
-
-
-
-
-rune that plays on the tiara when it activates a spell
-impact effects for projectiles
-activate/ charge effects for weapons
-
-outline shadergraph that normalizes input width to texture size
-glowing shadergraph that takes emission sheet
-
-dummy room to test out movement.
-character abilities
-enemies
-vfx
-sfx
-
-the divine dancer
-
-
-block version of all the platforms (i.e. they are like the ground in that they interact with projectiles + you cant jump into them from over -> however they are only a 1 x 1 block)
-
-lava ground tile
-magma block that you hide in the lava that spits magma based on the given control interval
-
-
-
-
-
-
-enemies
-
+throw and circle power? (liek the black hole?)
+reverse gravity power
+magnet power
+flappy bird power
+walk on walls power
 
 
 

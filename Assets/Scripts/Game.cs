@@ -1,3 +1,5 @@
+// TODO: Clean
+
 /* --- Libraries --- */
 using System.Collections;
 using System.Collections.Generic;
@@ -18,9 +20,12 @@ namespace Platformer {
     [DefaultExecutionOrder(-1000)]
     public class Game : MonoBehaviour {
 
+        #region Variables
+
         // Singleton.
         public static Game Instance;
 
+        // Ticks.
         [SerializeField] private float m_TimeScale;
         [SerializeField] private float m_Ticks;
         public static float Ticks => Instance.m_Ticks;
@@ -33,38 +38,38 @@ namespace Platformer {
         [SerializeField] private PhysicsSettings m_Physics;
         public static PhysicsSettings Physics => Instance.m_Physics;
 
+        // Level loading.
         [SerializeField] private LDtkLoader m_LevelLoader;
         public static LDtkLoader LevelLoader => Instance.m_LevelLoader;
 
+        // Sound manager.
         [SerializeField] private SoundManager m_SoundManager;
         public static SoundManager SoundManager => Instance.m_SoundManager;
 
+        // Grid.
         [SerializeField] private Grid m_Grid;
         public static Grid MainGrid => Instance.m_Grid;
 
         // Opening level.
         [SerializeField] private string m_OpeningLevel;
 
-        bool m_RampStop;
-        float m_RampIncrement = 1f / 128f;
-        float m_Ramp = 0f;
+        // Ramp stop.
+        [HideInInspector] private bool m_RampStop;
+        [HideInInspector] private float m_RampIncrement = 1f / 128f;
+        [HideInInspector] private float m_Ramp = 0f;
+        // Hit stop.
+        [HideInInspector] private bool m_HitStop;
+        [HideInInspector] private int m_HitFrames = 0;
+        [HideInInspector] private int m_StopFrames = 16;
 
-        bool m_HitStop;
-        int m_HitFrames = 0;
-        int m_StopFrames = 16;
+        #endregion
 
-        // temp.
-        [SerializeField] private Material material;
-        [SerializeField] private ColorPalette palette;
-
+        // Runs once on instantiation.
         void Awake() {
             Instance = this;
-
-            // temp.
-            palette.Set(material);
-
         }
 
+        // Runs once before the first frame.
         void Start() {
             Level.InitializeGroundLayer(m_Grid.transform);
             Level.InitializeWaterLayer(m_Grid.transform);
@@ -73,6 +78,7 @@ namespace Platformer {
             StartCoroutine(IELoadOpeningLevel());
         }
 
+        // Load the opening level.
         private IEnumerator IELoadOpeningLevel() {
             yield return 0;
             m_LevelLoader.SetLoadPoint(m_OpeningLevel, m_Player.transform);
@@ -83,9 +89,57 @@ namespace Platformer {
             yield return null;
         }
 
+        // Runs once every frame.
         void Update() {
             Time.timeScale = m_TimeScale;
+            UpdateRamp();
+            UpdateHit();
+        }
 
+        // Runs once every fixed interval.
+        void FixedUpdate() {
+            m_Ticks += Time.fixedDeltaTime;
+        }
+
+        // Pause the game.
+        public static void Pause() {
+            Instance.m_TimeScale = 0f;
+        }
+
+        // Run a hit stop.
+        public static void HitStop(int frames = 16) {
+            if (Instance.m_RampStop) { return; }
+            // Pause the game.
+            Pause();
+            // Set up the hitstop
+            Instance.m_HitStop = true;
+            Instance.m_HitFrames = 0;
+            Instance.m_StopFrames = frames;
+        }
+
+        private void UpdateHit() {
+            if (m_HitStop) {
+                m_HitFrames += 1;
+                if (m_HitFrames >= m_StopFrames) {
+                    m_TimeScale = 1f;
+                }
+            }
+        }
+
+        // Run a ramp stop.
+        public static void RampStop(int frames = 128) {
+            // Pause the game.
+            Pause();
+            // Set up the rampstop
+            Instance.m_Ramp = 0f;
+            Instance.m_RampStop = true;
+            Instance.m_RampIncrement = 1f / (float)frames;
+            // Disable the hitstop.
+            Instance.m_HitStop = false;
+            Instance.m_HitFrames = 0;
+        }
+
+        private void UpdateRamp() {
             if (m_RampStop) {
                 m_Ramp += m_RampIncrement;
                 if (m_Ramp > 0.5f) {
@@ -96,49 +150,14 @@ namespace Platformer {
                     m_TimeScale = 1f;
                 }
             }
-
-            if (m_HitStop) {
-                m_HitFrames += 1;
-                if (m_HitFrames >= m_StopFrames) {
-                    m_TimeScale = 1f;
-                }
-            }
-            
         }
 
-        void FixedUpdate() {
-            m_Ticks += Time.fixedDeltaTime;
-        }
-
-        public static void Pause() {
-            Instance.m_TimeScale = 0f;
-        }
-
-        public static void HitStop(int frames = 16) {
-            if (Instance.m_RampStop) {
-                return;
-            }
-
-            Pause();
-            Instance.m_HitStop = true;
-            Instance.m_HitFrames = 0;
-            Instance.m_StopFrames = frames;
-        }
-
-        public static void RampStop(int frames = 128) {
-            Pause();
-            Instance.m_Ramp = 0f;
-            Instance.m_RampStop = true;
-            Instance.m_RampIncrement = 1f / (float)frames;
-
-            Instance.m_HitStop = false;
-            Instance.m_HitFrames = 0;
-        }
-
+        // Validate an array.
         public static bool Validate<T>(T[] array) {
             return array != null && array.Length > 0;
         }
 
+        // Validate a list.
         public static bool Validate<T>(List<T> list) {
             return list != null && list.Count > 0;
         }

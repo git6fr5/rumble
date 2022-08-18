@@ -1,9 +1,12 @@
+// TODO: Clean
 /* --- Libraries --- */
+// System.
 using System.Collections;
 using System.Collections.Generic;
+// Unity.
 using UnityEngine;
 using UnityEngine.VFX;
-
+// Platformer.
 using Platformer.Utilites;
 using Platformer.Character;
 using Platformer.Physics;
@@ -12,7 +15,7 @@ using Platformer.Rendering;
 namespace Platformer.Rendering {
 
     ///<summary>
-    ///
+    /// Animates the character.
     ///<summary>
     [RequireComponent(typeof(SpriteRenderer))]
     public class Flipbook : MonoBehaviour {
@@ -116,9 +119,9 @@ namespace Platformer.Rendering {
 
         #endregion
 
-        /* --- Initialization --- */
         #region Initialization
 
+        // Runs once before the first frame.
         void Start() {
             OrganizeSprites();
         }
@@ -156,7 +159,6 @@ namespace Platformer.Rendering {
 
         #endregion
 
-        /* --- Rendering --- */
         #region Rendering
 
         void Update() {

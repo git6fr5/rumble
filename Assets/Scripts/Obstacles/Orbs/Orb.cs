@@ -1,3 +1,5 @@
+// TODO: Clean
+
 /* --- Libraries --- */
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +9,8 @@ using UnityEngine.VFX;
 using Platformer.Utilites;
 using Platformer.Obstacles;
 using Platformer.Character;
+using Platformer.Rendering;
+using Screen = Platformer.Rendering.Screen;
 
 namespace Platformer {
 
@@ -20,8 +24,10 @@ namespace Platformer {
         private static float ResetDelay = 3.5f;
 
         public enum Type {
-            DashOrb, HopOrb
+            DashOrb, HopOrb, GhostOrb, ShadowOrb
         }
+
+        [SerializeField] private ColorPalette m_Palette;
 
         [SerializeField] private Type m_Type;
 
@@ -41,6 +47,7 @@ namespace Platformer {
         void Start() {
             m_Origin = transform.position;
             m_Hitbox.isTrigger = true;
+            m_Palette.SetSimple(m_SpriteRenderer.material);
         }
 
         void FixedUpdate() {
@@ -57,7 +64,8 @@ namespace Platformer {
 
         void Collect(CharacterState state) {
             // Game.HitStop(8);
-            
+            state.OverrideFall(false);
+            state.OverrideMovement(false);
             state.Dash.Enable(false);
             state.Hop.Enable(false);
 
@@ -76,6 +84,8 @@ namespace Platformer {
                 m_CollectEffect.Play();
             }
             SoundManager.PlaySound(m_CollectSound, 0.15f);
+
+            Screen.Recolor(m_Palette);
             
             m_SpriteRenderer.enabled = false;
             m_Hitbox.enabled = false;
