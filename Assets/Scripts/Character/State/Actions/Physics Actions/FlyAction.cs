@@ -19,6 +19,8 @@ namespace Platformer.Character.Actions {
         [SerializeField] private float m_Speed;
         [SerializeField] private float m_Acceleration;
 
+        [SerializeField] private AudioClip m_FlySound;
+
         // Process the physics of this action.
         public override void Process(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
             if (state.Disabled) { return; }
@@ -37,6 +39,8 @@ namespace Platformer.Character.Actions {
                     body.velocity = Vector2.zero;
                 }
             }
+
+            SoundManager.PlaySound(m_FlySound, 0.05f);
             
         }
 

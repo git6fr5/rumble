@@ -12,25 +12,26 @@ using Platformer.Character;
 using Platformer.Rendering;
 using Screen = Platformer.Rendering.Screen;
 
-namespace Platformer {
+namespace Platformer.Obstacles {
 
     ///<summary>
     ///
     ///<summary>
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(CircleCollider2D))]
+    [DefaultExecutionOrder(1000)]
     public class Orb : MonoBehaviour {
 
         private static float ResetDelay = 3.5f;
 
         public enum Type {
-            DashOrb, HopOrb, GhostOrb, ShadowOrb
+            DashOrb, HopOrb, GhostOrb, ShadowOrb, None
         }
 
-        [SerializeField] private ColorPalette m_Palette;
+        [SerializeField] protected ColorPalette m_Palette;
         public ColorPalette Palette => m_Palette;
 
-        [SerializeField] private Type m_Type;
+        [SerializeField] protected Type m_Type;
 
         protected SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
         protected CircleCollider2D m_Hitbox => GetComponent<CircleCollider2D>();
@@ -92,7 +93,7 @@ namespace Platformer {
             if (m_CollectEffect != null) {
                 m_CollectEffect.Play();
             }
-            SoundManager.PlaySound(m_CollectSound, 0.15f);
+            SoundManager.PlaySound(m_CollectSound, 0.05f);
 
             Screen.Recolor(m_Palette);
             

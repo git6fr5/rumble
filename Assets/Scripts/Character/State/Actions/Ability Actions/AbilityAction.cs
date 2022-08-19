@@ -31,7 +31,7 @@ namespace Platformer.Character.Actions {
             m_Enabled = enable;
             m_Refreshed = enable;
             if (enable) {
-                Game.HitStop();
+                Game.HitStop(4);
             }
         }
         

@@ -96,6 +96,17 @@ namespace Platformer.Utilites {
             SFXSources[SFXSources.Count - 1].Play();
         }
 
+        public static void StopSound(AudioClip audioClip) {
+            List<AudioSource> playingSFX = SFXSources.FindAll(source => source.clip == audioClip && source.isPlaying);
+            if (playingSFX != null && playingSFX.Count > 0) {
+
+                for (int i = 0; i < playingSFX.Count; i++) {
+                    playingSFX[i].Stop();
+                }
+
+            }
+        }
+
     }
 }
 

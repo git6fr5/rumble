@@ -61,6 +61,9 @@ namespace Platformer.Character {
         public ShadowAction Shadow => m_Shadow;
 
         [SerializeField] private RespawnBlock m_RespawnBlock;
+        public RespawnBlock Respawn => m_RespawnBlock;
+        [SerializeField] private AudioClip m_ResetSound;
+        [SerializeField] private AudioClip m_ResetSoundB;
 
         #endregion
 
@@ -79,6 +82,9 @@ namespace Platformer.Character {
             OverrideFall(false);
             OverrideMovement(false);
             Screen.Recolor(Screen.DefaultPalette);
+
+            SoundManager.PlaySound(m_ResetSound, 0.15f);
+            SoundManager.PlaySound(m_ResetSoundB, 0.15f);
         }
 
         private IEnumerator IEReset() {

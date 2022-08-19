@@ -143,13 +143,13 @@ namespace Platformer.Character.Actions {
         }
 
         public void Lock(CharacterState state, ShadowBlock block) {
-            m_LockedTicks = 0.125f;
-            if (!m_Locked) {
-                m_LockedTicks += 0.3f;
-            }
+            m_LockedTicks = 0.3f;
 
             if (m_LockedBlock != null) {
                 m_LockedBlock.Unlock();
+            }
+            else {
+                m_LockedTicks += 0.125f;
             }
 
             block.Lock();

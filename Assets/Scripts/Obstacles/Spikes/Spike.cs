@@ -76,7 +76,7 @@ namespace Platformer.Obstacles {
             if (m_ShatterEffect != null) {
                 m_ShatterEffect.Play();
             }
-            SoundManager.PlaySound(m_ShatterSound);
+            SoundManager.PlaySound(m_ShatterSound, 0.15f);
             m_Hitbox.enabled = false;
             m_SpriteRenderer.enabled = false;
             StartCoroutine(IEReset());
@@ -104,7 +104,7 @@ namespace Platformer.Obstacles {
             if (m_RegrowEffect != null) {
                 m_RegrowEffect.Play();
             }
-            SoundManager.PlaySound(m_RegrowSound, 0.2f);
+            SoundManager.PlaySound(m_RegrowSound, 0.15f);
 
             yield return new WaitForSeconds(ResetDelay * (1f - 2f * ratio));
             Regrow();

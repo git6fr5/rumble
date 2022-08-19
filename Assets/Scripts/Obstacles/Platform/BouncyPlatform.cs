@@ -19,6 +19,8 @@ namespace Platformer.Obstacles {
         [SerializeField] private float m_SinkSpeed;
         [SerializeField] private float m_SinkDistance = 0.5f;
 
+        [SerializeField] private AudioClip m_BounceSound;
+
         void LateUpdate() {
             m_Bouncing = m_PressedDown ? true : m_Bouncing;
         }
@@ -30,6 +32,7 @@ namespace Platformer.Obstacles {
                 Obstacle.Move(transform, apex, m_SinkSpeed, Time.fixedDeltaTime, m_CollisionContainer);
                 float distance = (transform.position - apex).magnitude;
                 if (distance < Game.Physics.MovementPrecision) {
+                    SoundManager.PlaySound(m_BounceSound, 0.15f);
                     BounceBodies();
                     m_Bouncing = false;
                 }

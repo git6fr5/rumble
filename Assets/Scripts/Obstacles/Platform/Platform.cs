@@ -57,7 +57,7 @@ namespace Platformer.Obstacles {
             bool prevOnPressedDown = m_OnPressedDown;
             m_OnPressedDown = !waspressed && isnowpressed && m_PressedTicks == PressedBuffer ? true : m_OnPressedDown;
 
-            if (!prevOnPressedDown && m_OnPressedDown) {
+            if (!waspressed && isnowpressed) {
                 SoundManager.PlaySound(OnPressedSound, 0.15f);
             }
 

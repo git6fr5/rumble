@@ -21,6 +21,9 @@ namespace Platformer.Obstacles {
         [SerializeField] private float m_ShakeStrength;
         private float Strength => m_ShakeStrength * m_CrumbleTicks / m_CrumbleBuffer;
 
+        [SerializeField] private AudioClip m_CrumblingSound;
+        [SerializeField] private AudioClip m_CrumbleSound;
+
         void LateUpdate() {
             m_Crumbling = m_PressedDown ? true : m_Crumbling;
             Obstacle.Shake(transform, m_Origin, Strength);
@@ -28,6 +31,10 @@ namespace Platformer.Obstacles {
 
         void FixedUpdate() {
             Timer.TriangleTickDownIf(ref m_CrumbleTicks, m_CrumbleBuffer, Time.fixedDeltaTime, m_Crumbling);
+
+            if (m_Crumbling) {
+                SoundManager.PlaySound(m_CrumblingSound, Mathf.Sqrt(m_CrumbleTicks / m_CrumbleBuffer) * 0.1f);
+            }
 
             if (m_CrumbleTicks >= m_CrumbleBuffer) {
                 Activate(false);
@@ -41,6 +48,9 @@ namespace Platformer.Obstacles {
         private void Activate(bool activate) {
             m_Hitbox.enabled = activate;
             m_SpriteShapeRenderer.enabled = activate;
+            if (!activate && m_Crumbling) {
+                SoundManager.PlaySound(m_CrumbleSound, 0.15f);
+            }
         }
 
     }

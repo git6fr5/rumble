@@ -24,6 +24,15 @@ namespace Platformer.Character.Actions {
 
         #endregion
 
+        public override void Enable(CharacterState character, bool enable) {
+            base.Enable(character, enable);
+            if (enable) {
+                if (character.Input.Action1.Held) {
+                    Activate(character.Body, character.Input, character);
+                }
+            }
+        }
+
         // When this ability is activated.
         public override void Activate(Rigidbody2D body, InputSystem input, CharacterState state) {
             if (!m_Enabled) { return; }

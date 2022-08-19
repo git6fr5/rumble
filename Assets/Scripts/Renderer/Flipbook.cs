@@ -249,6 +249,7 @@ namespace Platformer.Rendering {
                 if (m_LandEffect != null) { m_LandEffect.Play(); }
                 SoundManager.PlaySound(m_LandSound, 0.15f);
             }
+
         }
 
         private void GetStepEffect() {

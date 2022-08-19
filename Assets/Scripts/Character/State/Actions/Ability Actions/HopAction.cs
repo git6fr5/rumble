@@ -31,6 +31,7 @@ namespace Platformer.Character.Actions {
         [SerializeField] private float m_MaxCharge;
 
         // Tracks the timeline of the dash.
+        [SerializeField] private AudioClip m_ChargeSound;
 
         #endregion
 
@@ -52,6 +53,7 @@ namespace Platformer.Character.Actions {
             // Set this on cooldown.
             m_Charge = 0f;
             m_Refreshed = false;
+            SoundManager.StopSound(m_ChargeSound);
 
         }
 
@@ -66,11 +68,14 @@ namespace Platformer.Character.Actions {
             if (!state.Disabled && m_Refreshed && input.Action1.Held) {
                 if (m_Charge == 0f) {
                     body.SetVelocity(Vector2.zero);
+                    SoundManager.PlaySound(m_ChargeSound, 0.15f);
                 }
                 bool finished = Timer.TickUp(ref m_Charge, m_MaxCharge, dt);
                 state.OverrideMovement(true);
                 state.OverrideFall(true);
                 body.SetWeight(0.05f);
+
+
             }
 
             if (!state.Disabled && !body.Rising() && !m_Refreshed) {

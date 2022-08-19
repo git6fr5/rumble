@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Platformer.Utilites;
 using Platformer.Character;
 using Platformer.Obstacles;
 
@@ -26,6 +27,8 @@ namespace Platformer.Obstacles {
         [SerializeField] private CharacterState m_Touched;
 
         [SerializeField] private Orb m_ShadowOrb;
+
+        [SerializeField] private AudioClip m_ActivateSound;
 
         void Start() {
             m_ShadowOrb.Palette.SetSimple(m_SpriteRenderer.material);
@@ -65,7 +68,7 @@ namespace Platformer.Obstacles {
             m_Locked = true;
             m_CollisionBox.enabled = false;
             m_TriggerBox.enabled = false;
-
+            SoundManager.PlaySound(m_ActivateSound, 0.15f);
         }
 
         public void Unlock() {
