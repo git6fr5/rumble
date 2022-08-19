@@ -28,6 +28,7 @@ namespace Platformer {
         }
 
         [SerializeField] private ColorPalette m_Palette;
+        public ColorPalette Palette => m_Palette;
 
         [SerializeField] private Type m_Type;
 
@@ -66,15 +67,23 @@ namespace Platformer {
             // Game.HitStop(8);
             state.OverrideFall(false);
             state.OverrideMovement(false);
-            state.Dash.Enable(false);
-            state.Hop.Enable(false);
+            state.Dash.Enable(state,false);
+            state.Hop.Enable(state, false);
+            state.Ghost.Enable(state, false);
+            state.Shadow.Enable(state, false);
 
             switch (m_Type) {
                 case Type.DashOrb:
-                    state.Dash.Enable(true);
+                    state.Dash.Enable(state, true);
                     break;
                 case Type.HopOrb:
-                    state.Hop.Enable(true);
+                    state.Hop.Enable(state, true);
+                    break;
+                case Type.GhostOrb:
+                    state.Ghost.Enable(state, true);
+                    break;
+                case Type.ShadowOrb:
+                    state.Shadow.Enable(state, true);
                     break;
                 default:
                     break;

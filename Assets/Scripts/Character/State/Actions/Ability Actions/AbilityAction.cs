@@ -27,9 +27,12 @@ namespace Platformer.Character.Actions {
         public bool Enabled => m_Enabled;
         
         // Enable/disable this ability.
-        public void Enable(bool enable) {
+        public virtual void Enable(CharacterState character, bool enable) {
             m_Enabled = enable;
             m_Refreshed = enable;
+            if (enable) {
+                Game.HitStop();
+            }
         }
         
         // When this ability is activated.

@@ -77,6 +77,8 @@ namespace Platformer.Rendering {
         [SerializeField] private Material m_ColorPaletteMaterial;
         public Material ColorPaletteMaterial => m_ColorPaletteMaterial;
         [SerializeField] private ColorPalette m_CurrentPalette;
+        [HideInInspector] private ColorPalette m_DefaultPalette;
+        public static ColorPalette DefaultPalette => Instance.m_DefaultPalette;
 
         // Color shifts.
         [SerializeField] private Color m_ForegroundColorShift;
@@ -91,6 +93,7 @@ namespace Platformer.Rendering {
             m_CurrentPalette.SetBlend(m_ColorPaletteMaterial, "A");
             m_CurrentPalette.SetBlend(m_ColorPaletteMaterial, "B");
             m_ColorPaletteMaterial.SetFloat("_Radius", 1f);
+            m_DefaultPalette = m_CurrentPalette;
         }
 
         void Start() {

@@ -56,6 +56,8 @@ namespace Platformer.Rendering {
         [SerializeField] private int m_DashFrames;
         [SerializeField] private int m_ChargeHopFrames;
         [SerializeField] private int m_HopFrames;
+        [SerializeField] private int m_ShadowDashFrames;
+        [SerializeField] private int m_ShadowLockFrames;
 
         // Sounds.
         [Space(2), Header("Sounds")]
@@ -66,6 +68,8 @@ namespace Platformer.Rendering {
         [SerializeField] private AudioClip m_DeathSound;
         [SerializeField] private AudioClip m_DashSound;
         [SerializeField] private AudioClip m_HopSound;
+        [SerializeField] private AudioClip m_ShadowDashSound;
+        [SerializeField] private AudioClip m_ShadowLockSound;
 
         // Effects.
         [Space(2), Header("Effects")]
@@ -76,6 +80,8 @@ namespace Platformer.Rendering {
         [SerializeField] private VisualEffect m_LandEffect;
         [SerializeField] private VisualEffect m_DashEffect;
         [SerializeField] private VisualEffect m_HopEffect;
+        [SerializeField] private VisualEffect m_ShadowDashEffect;
+        [SerializeField] private VisualEffect m_ShadowLockEffect;
 
         // Animations
         [SerializeField, ReadOnly] private Sprite[] m_IdleAnimation;
@@ -87,6 +93,8 @@ namespace Platformer.Rendering {
         [SerializeField, ReadOnly] private Sprite[] m_DashAnimation;
         [SerializeField, ReadOnly] private Sprite[] m_ChargeHopAnimation;
         [SerializeField, ReadOnly] private Sprite[] m_HopAnimation;
+        [SerializeField, ReadOnly] private Sprite[] m_ShadowDashAnimation;
+        [SerializeField, ReadOnly] private Sprite[] m_ShadowLockedAnimation;
 
         // Animation Conditions.
 
@@ -95,10 +103,13 @@ namespace Platformer.Rendering {
         private float Direction => m_Character.Input.Direction.Facing;
         private bool Rising => !m_Character.OnGround && m_Character.Body.Rising();
         private bool Falling => !m_Character.OnGround && !m_Character.Body.Rising();
-        private bool Predashing => m_Character.Dash.Enabled && m_Character.Dash.Predashing;
+        private bool Predashing => (m_Character.Dash.Enabled && m_Character.Dash.Predashing) || (m_Character.Shadow.Enabled && m_Character.Shadow.Predashing);
         private bool Dashing => m_Character.Dash.Enabled && m_Character.Dash.Dashing;
         private bool ChargingHop => m_Character.Hop.Enabled && m_Character.Hop.Charge != 0f;
         private bool Hopping => m_Character.Hop.Enabled && !m_Character.Hop.Refreshed && Rising;
+        
+        private bool ShadowDashing => m_Character.Shadow.Enabled && m_Character.Shadow.Dashing;
+        private bool ShadowLocked => m_Character.Shadow.Enabled && m_Character.Shadow.Locked;
 
         // Landing Conditions.
         private bool CacheOnGround = true;
@@ -116,6 +127,9 @@ namespace Platformer.Rendering {
         // Ability Conditions.
         private bool Dash => m_CurrentAnimation == m_PredashAnimation && m_PreviousAnimation != m_PredashAnimation;
         private bool Hop => m_CurrentAnimation == m_HopAnimation && m_PreviousAnimation != m_HopAnimation;
+        
+        private bool ShadowDash = false; // m_CurrentAnimation == m_PredashAnimation && m_PreviousAnimation != m_PredashAnimation;
+        private bool ShadowLock = false; // m_CurrentAnimation == m_PredashAnimation && m_PreviousAnimation != m_PredashAnimation;
 
         #endregion
 
@@ -145,6 +159,8 @@ namespace Platformer.Rendering {
             index = SliceSheet(index, m_DashFrames, ref m_DashAnimation);
             index = SliceSheet(index, m_ChargeHopFrames, ref m_ChargeHopAnimation);
             index = SliceSheet(index, m_HopFrames, ref m_HopAnimation);
+            index = SliceSheet(index, m_ShadowDashFrames, ref m_ShadowDashAnimation);
+            index = SliceSheet(index, m_ShadowLockFrames, ref m_ShadowLockedAnimation);
             return index;
         }
 
@@ -190,7 +206,13 @@ namespace Platformer.Rendering {
 
         // Gets the current animation info.
         public virtual Sprite[] GetAnimation() {
-            if (ChargingHop && Game.Validate<Sprite>(m_ChargeHopAnimation)) {
+            if (ShadowLocked && Game.Validate<Sprite>(m_ShadowLockedAnimation)) {
+                return m_ShadowLockedAnimation;
+            }
+            else if (ShadowDashing && Game.Validate<Sprite>(m_ShadowDashAnimation)) {
+                return m_ShadowDashAnimation;
+            }
+            else if (ChargingHop && Game.Validate<Sprite>(m_ChargeHopAnimation)) {
                 return m_ChargeHopAnimation;
             }
             else if (Hopping && Game.Validate<Sprite>(m_HopAnimation)) {
@@ -255,6 +277,14 @@ namespace Platformer.Rendering {
             else if (Dash) {
                 // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
                 SoundManager.PlaySound(m_DashSound, 0.15f);
+            }
+            else if (ShadowDash) {
+                // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
+                SoundManager.PlaySound(m_ShadowDashSound, 0.15f);
+            }
+            else if (ShadowLock) {
+                // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
+                SoundManager.PlaySound(m_ShadowLockSound, 0.15f);
             }
 
         }

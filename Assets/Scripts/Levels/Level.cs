@@ -233,6 +233,15 @@ namespace Platformer.LevelLoader {
 
             if (player) {
 
+                character.OverrideFall(false);
+                character.OverrideMovement(false);
+                character.Dash.Enable(character, false);
+                character.Hop.Enable(character, false);
+                character.Ghost.Enable(character, false);
+                character.Shadow.Enable(character, false);
+
+                Platformer.Rendering.Screen.Recolor(Screen.DefaultPalette);
+
                 if (m_Loaded) {
                     m_Unloading = false;
                 }

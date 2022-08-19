@@ -43,11 +43,11 @@ namespace Platformer.Character.Actions {
             state.OverrideMovement(false);
 
             body.Move(Vector2.up * Game.Physics.MovementPrecision);
-            body.SetVelocity(m_Speed * m_Charge / m_MaxCharge * Vector2.up);
+            body.SetVelocity(m_Speed * Mathf.Sqrt(m_Charge / m_MaxCharge) * Vector2.up);
             body.SetWeight(m_Weight);
 
             // Clear the inputs.
-            input.Action2.ClearReleaseBuffer();
+            input.Action1.ClearReleaseBuffer();
 
             // Set this on cooldown.
             m_Charge = 0f;
@@ -63,7 +63,7 @@ namespace Platformer.Character.Actions {
             RefreshHopSettings(ref m_Speed, ref m_Weight, m_Height, m_RisingTime);
             
             // Charge the hop.
-            if (!state.Disabled && m_Refreshed && input.Action2.Held) {
+            if (!state.Disabled && m_Refreshed && input.Action1.Held) {
                 if (m_Charge == 0f) {
                     body.SetVelocity(Vector2.zero);
                 }
@@ -93,7 +93,7 @@ namespace Platformer.Character.Actions {
 
         // Checks the input for whether this ability should be activated.
         public override bool CheckInput(InputSystem input) {
-            return input.Action2.Released;
+            return input.Action1.Released;
         }
 
         

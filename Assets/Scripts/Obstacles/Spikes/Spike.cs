@@ -59,6 +59,7 @@ namespace Platformer.Obstacles {
             if (character != null && character.IsPlayer) {
                 Vector3 knockbackDirection = GetKnockbackDirection(m_Rotation);
                 bool didDamage = true; // character.Damage(1, knockbackDirection, m_KnockbackForce);
+                character.Reset();
                 if (didDamage) {
                     Shatter();
                 }
