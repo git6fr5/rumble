@@ -12,9 +12,10 @@ namespace Platformer.Physics {
     public class CollisionCheck {
 
         // Checks whether anything within the circle is touching something on the given layer.
-        public static bool Touching(Vector3 center, float radius, LayerMask layer) {
+        public static bool Touching(Vector3 center, float radius, Vector3 direction, LayerMask layer) {
+            Vector3 normal = Quaternion.Euler(0f, 0f, 90f) * direction;
             for (int i = -1; i <= 1; i++) {
-                Vector3 offset = Vector3.down * radius + i * Vector3.left * radius / 1.5f;
+                Vector3 offset = direction * radius + i * normal * radius / 1.5f;
                 Collider2D temp = Physics2D.OverlapCircle(center + offset, Game.Physics.CollisionPrecision, layer);
                 if (temp != null) {
                     return true;

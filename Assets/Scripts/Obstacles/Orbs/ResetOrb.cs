@@ -25,6 +25,7 @@ namespace Platformer.Obstacles {
         [SerializeField] private Orb m_HopOrb;
         [SerializeField] private Orb m_GhostOrb;
         [SerializeField] private Orb m_ShadowOrb;
+        [SerializeField] private Orb m_StickyOrb;
 
         void Awake() {
             m_Palette = Screen.DefaultPalette;
@@ -48,6 +49,10 @@ namespace Platformer.Obstacles {
             else if (state.Shadow.Enabled) {
                 m_Palette = m_ShadowOrb.Palette;
                 m_Type = Type.ShadowOrb;
+            }
+            else if (state.Sticky.Enabled) {
+                m_Palette = m_StickyOrb.Palette;
+                m_Type = Type.StickyOrb;
             }
             else {
                 m_Palette = Screen.DefaultPalette;

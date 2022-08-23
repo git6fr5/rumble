@@ -40,6 +40,11 @@ namespace Platformer.Physics {
             rb.velocity = rb.velocity.y < -s ? new Vector2(rb.velocity.x, -s) : rb.velocity;
         }
 
+        // Clamps the rigidbodies rising speed.
+        public static void ClampRiseSpeed(this Rigidbody2D rb, float s) {
+            rb.velocity = rb.velocity.y > s ? new Vector2(rb.velocity.x, s) : rb.velocity;
+        }
+
         // Clamps the rigidbodies gravity scale.
         public static void SetWeight(this Rigidbody2D rb, float w) {
             rb.gravityScale = Game.Physics.GravityScale * w;

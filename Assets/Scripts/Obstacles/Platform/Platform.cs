@@ -34,7 +34,7 @@ namespace Platformer.Obstacles {
 
         [SerializeField] private AudioClip OnPressedSound;
 
-        public void Init(int length, Vector3[] path) {
+        public virtual void Init(int length, Vector3[] path) {
             m_Origin = transform.position;
             m_Path = path;
             m_SpriteShapeController = GetComponent<SpriteShapeController>();

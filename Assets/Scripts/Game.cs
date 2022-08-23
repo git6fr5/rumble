@@ -67,6 +67,7 @@ namespace Platformer {
         // Runs once on instantiation.
         void Awake() {
             Instance = this;
+            Application.targetFrameRate = 60;
         }
 
         // Runs once before the first frame.

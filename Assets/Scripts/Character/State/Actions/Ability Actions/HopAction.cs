@@ -29,6 +29,7 @@ namespace Platformer.Character.Actions {
         [SerializeField, ReadOnly] private float m_Charge;
         public float Charge => m_Charge;
         [SerializeField] private float m_MaxCharge;
+        public float Ratio => m_Charge / m_MaxCharge;
 
         // Tracks the timeline of the dash.
         [SerializeField] private AudioClip m_ChargeSound;
@@ -60,10 +61,10 @@ namespace Platformer.Character.Actions {
         // Refreshes the settings for this ability every interval.
         public override void Refresh(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
             if (!m_Enabled) { return; }
-            
+
             m_Refreshed = state.OnGround ? true : m_Refreshed;
             RefreshHopSettings(ref m_Speed, ref m_Weight, m_Height, m_RisingTime);
-            
+
             // Charge the hop.
             if (!state.Disabled && m_Refreshed && input.Action1.Held) {
                 if (m_Charge == 0f) {
@@ -71,16 +72,18 @@ namespace Platformer.Character.Actions {
                     SoundManager.PlaySound(m_ChargeSound, 0.15f);
                 }
                 bool finished = Timer.TickUp(ref m_Charge, m_MaxCharge, dt);
+
+                body.ClampRiseSpeed(0f);
                 state.OverrideMovement(true);
                 state.OverrideFall(true);
                 body.SetWeight(0.05f);
-
 
             }
 
             if (!state.Disabled && !body.Rising() && !m_Refreshed) {
                 state.OverrideFall(false);
             }
+
 
         }
 
@@ -101,7 +104,7 @@ namespace Platformer.Character.Actions {
             return input.Action1.Released;
         }
 
-        
+
 
     }
 }

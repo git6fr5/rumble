@@ -79,6 +79,7 @@ namespace Platformer.Rendering {
         [SerializeField] private VisualEffect m_JumpEffect;
         [SerializeField] private VisualEffect m_LandEffect;
         [SerializeField] private VisualEffect m_DashEffect;
+        [SerializeField] private VisualEffect m_ChargeHopEffect;
         [SerializeField] private VisualEffect m_HopEffect;
         [SerializeField] private VisualEffect m_ShadowDashEffect;
         [SerializeField] private VisualEffect m_ShadowLockEffect;
@@ -276,7 +277,7 @@ namespace Platformer.Rendering {
                 SoundManager.PlaySound(m_HopSound, 0.15f);
             }
             else if (Dash) {
-                // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
+                if (m_DashEffect != null) { m_DashEffect.Play(); }
                 SoundManager.PlaySound(m_DashSound, 0.15f);
             }
             else if (ShadowDash) {
@@ -286,6 +287,15 @@ namespace Platformer.Rendering {
             else if (ShadowLock) {
                 // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
                 SoundManager.PlaySound(m_ShadowLockSound, 0.15f);
+            }
+
+            if (ChargingHop && m_ChargeHopEffect != null) {
+                m_ChargeHopEffect.gameObject.SetActive(true);
+                m_ChargeHopEffect.SetFloat("Ratio", 0.5f * m_Character.Hop.Ratio);
+            }
+            else if (m_ChargeHopEffect != null) {
+                m_ChargeHopEffect.gameObject.SetActive(false);
+                m_ChargeHopEffect.SetFloat("Ratio", 0f);
             }
 
         }

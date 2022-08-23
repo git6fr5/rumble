@@ -25,7 +25,7 @@ namespace Platformer.Obstacles {
         private static float ResetDelay = 3.5f;
 
         public enum Type {
-            DashOrb, HopOrb, GhostOrb, ShadowOrb, None
+            None, DashOrb, HopOrb, GhostOrb, ShadowOrb, StickyOrb
         }
 
         [SerializeField] protected ColorPalette m_Palette;
@@ -68,10 +68,7 @@ namespace Platformer.Obstacles {
             // Game.HitStop(8);
             state.OverrideFall(false);
             state.OverrideMovement(false);
-            state.Dash.Enable(state,false);
-            state.Hop.Enable(state, false);
-            state.Ghost.Enable(state, false);
-            state.Shadow.Enable(state, false);
+            state.DisableAllAbilityActions();
 
             switch (m_Type) {
                 case Type.DashOrb:
@@ -85,6 +82,9 @@ namespace Platformer.Obstacles {
                     break;
                 case Type.ShadowOrb:
                     state.Shadow.Enable(state, true);
+                    break;
+                case Type.StickyOrb:
+                    state.Sticky.Enable(state, true);
                     break;
                 default:
                     break;

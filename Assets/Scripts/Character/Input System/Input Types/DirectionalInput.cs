@@ -19,6 +19,7 @@ namespace Platformer.Character.Input {
         // The useable information from the inputted direction.
         public float Facing => m_Facing;
         public float Move => m_Direction.x;
+        public float Climb => m_Direction.y;
         public Vector2 Fly => m_Direction.normalized;
 
         // Updates this directional input.

@@ -35,6 +35,9 @@ namespace Platformer.Character {
         public bool IsPlayer => this == Game.MainPlayer;
         [SerializeField, ReadOnly] private bool m_OnGround;
         public bool OnGround => m_OnGround;
+        [SerializeField, ReadOnly] private bool m_FacingWall;
+        public bool FacingWall => m_FacingWall;
+        public Vector3 FacingDirection => m_Input.Direction.Facing * Vector3.right;
         [SerializeField, ReadOnly] private float m_DisableTicks = 0f;
         public bool Disabled => m_DisableTicks > 0f;
         [SerializeField, ReadOnly] private bool m_MovementOverride = false;
@@ -47,10 +50,13 @@ namespace Platformer.Character {
         public MoveAction Move => m_Movement;
         [SerializeField] private FlyAction m_Fly;
         public FlyAction Fly => m_Fly;
-        [SerializeField] private JumpAction m_Jump;
-        public JumpAction Jump => m_Jump;
         [SerializeField] private FallAction m_Fall;
         public FallAction Fall => m_Fall;
+         [SerializeField] private ClimbAction m_Climb;
+        public ClimbAction Climb => m_Climb;
+
+        [SerializeField] private JumpAction m_Jump;
+        public JumpAction Jump => m_Jump;
         [SerializeField] private DashAction m_Dash;
         public DashAction Dash => m_Dash;
         [SerializeField] private HopAction m_Hop;
@@ -59,6 +65,8 @@ namespace Platformer.Character {
         public GhostAction Ghost => m_Ghost;
         [SerializeField] private ShadowAction m_Shadow;
         public ShadowAction Shadow => m_Shadow;
+        [SerializeField] private StickyAction m_Sticky;
+        public StickyAction Sticky => m_Sticky;
 
         [SerializeField] private RespawnBlock m_RespawnBlock;
         public RespawnBlock Respawn => m_RespawnBlock;
@@ -71,12 +79,6 @@ namespace Platformer.Character {
             // Game.HitStop();
             // transform.position = Vector3.up * 1.5f + m_RespawnBlock.Origin;
             m_Body.velocity = Vector2.zero;
-            // StartCoroutine(IEReset());
-            m_Dash.Enable(this, false);
-            m_Hop.Enable(this, false);
-            m_Ghost.Enable(this, false);
-            m_Shadow.Enable(this, false);
-
             transform.position = Vector3.up * 1.5f + m_RespawnBlock.Origin;
             Disable(0f);
             OverrideFall(false);
@@ -87,16 +89,12 @@ namespace Platformer.Character {
             SoundManager.PlaySound(m_ResetSoundB, 0.15f);
         }
 
-        private IEnumerator IEReset() {
-            Disable(1f);
-            for (int i = 0; i < 8; i++) {
-                yield return 0;
-            }
-            transform.position = Vector3.up * 1.5f + m_RespawnBlock.Origin;
-            Disable(0f);
-            OverrideFall(false);
-            OverrideMovement(false);
-            Screen.Recolor(Screen.DefaultPalette);
+        public void DisableAllAbilityActions() {
+            m_Dash.Enable(this, false);
+            m_Hop.Enable(this, false);
+            m_Ghost.Enable(this, false);
+            m_Shadow.Enable(this, false);
+            m_Sticky.Enable(this, false);
         }
 
         public void SetResetPoint(RespawnBlock block) {
@@ -121,21 +119,26 @@ namespace Platformer.Character {
             m_Hop.Process(m_Body, m_Input, this);
             m_Ghost.Process(m_Body, m_Input, this);
             m_Shadow.Process(m_Body, m_Input, this);
+            m_Sticky.Process(m_Body, m_Input, this);
         }
 
         void FixedUpdate() {
             Timer.TickDown(ref m_DisableTicks, Time.fixedDeltaTime);
-            m_OnGround = CollisionCheck.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Game.Physics.CollisionLayers.Ground);
+            m_OnGround = CollisionCheck.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.down, Game.Physics.CollisionLayers.Ground);
+            m_FacingWall = CollisionCheck.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, FacingDirection,  Game.Physics.CollisionLayers.Ground);
 
             m_Jump.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Dash.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Hop.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Ghost.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Shadow.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
+            m_Sticky.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
 
             m_Movement.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Fall.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Fly.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
+            m_Climb.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
+
         }
 
     }
