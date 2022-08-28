@@ -68,6 +68,9 @@ namespace Platformer.Character.Actions {
 
             Game.ParticleGrid.Spin((Vector3)body.position, Ratio * 1e6f, 50f, -1f);
 
+            Game.MainPlayer.ExplodeDust.Activate();
+
+
         }
 
         // Refreshes the settings for this ability every interval.
@@ -93,6 +96,7 @@ namespace Platformer.Character.Actions {
                 float force = Ratio * 5e3f;
                 float radius = (1f -Ratio) * 5f + 5f;
                 Game.ParticleGrid.Spin((Vector3)body.position, force, radius, 1f);
+
 
             }
 

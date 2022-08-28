@@ -58,6 +58,10 @@ namespace Platformer.Character.Actions {
             // Set this on cooldown.
             Timer.Start(ref m_GhostTicks, m_Duration);
             m_Refreshed = false;
+
+            Game.MainPlayer.ExplodeDust.Activate();
+
+
         }
 
         // Refreshes the settings for this ability every interval.
@@ -72,6 +76,7 @@ namespace Platformer.Character.Actions {
                 state.OverrideMovement(false);
                 state.OverrideFall(false);
                 m_GhostTicks = 0f;
+                
                 // m_Enabled = false;
             }
 

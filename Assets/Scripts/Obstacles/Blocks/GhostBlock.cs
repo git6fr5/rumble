@@ -26,7 +26,23 @@ namespace Platformer.Obstacles {
         [SerializeField] private float m_AnimationDuration;
         [SerializeField, ReadOnly] private float m_AnimationTicks;
 
+        [SerializeField] private Vector3 m_Origin;
+
+        public void Reset() {
+
+            transform.eulerAngles = Vector3.zero;
+
+            transform.position = m_Origin;
+
+            Freeze();
+            Timer.Start(ref m_AnimationTicks, Random.Range(0.75f, 1.25f) * m_AnimationDuration);
+
+        }
+
         void Start() {
+
+            m_Origin = transform.position;
+
             m_GhostOrb.Palette.SetSimple(m_SpriteRenderer.material);
             m_Body.angularDrag = 0.05f;
             Freeze();

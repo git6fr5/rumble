@@ -12,6 +12,8 @@ using Platformer.Character;
 using Platformer.Rendering;
 using Screen = Platformer.Rendering.Screen;
 
+using Platformer.Decor;
+
 namespace Platformer.Obstacles {
 
     ///<summary>
@@ -52,9 +54,19 @@ namespace Platformer.Obstacles {
             m_Palette.SetSimple(m_SpriteRenderer.material);
         }
 
+        float ticks = 0f;
+        float duration = 0.5f;
+
         void FixedUpdate() {
             Timer.Cycle(ref m_Ticks, m_Period, Time.fixedDeltaTime);
             Obstacle.Cycle(transform, m_Ticks, m_Period, m_Origin, m_Ellipse);
+            
+            ticks -= Time.fixedDeltaTime;
+            if (ticks < 0f) {
+                Game.ParticleGrid.Impulses(transform.position, 1e4f, 5f, 0.5f, 3);
+                ticks = duration;
+                // dustA.Activate();
+            }
         }
 
         void OnTriggerEnter2D(Collider2D collider) {
@@ -65,6 +77,8 @@ namespace Platformer.Obstacles {
         }
 
         void Collect(CharacterState state) {
+            Game.MainPlayer.ExplodeDust.Activate();
+            
             Game.HitStop(8);
             state.OverrideFall(false);
             state.OverrideMovement(false);

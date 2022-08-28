@@ -1,0 +1,5056 @@
+<REAPER_PROJECT 0.1 "6.11/x64" 1661669977
+  RIPPLE 0
+  GROUPOVERRIDE 0 0 0
+  AUTOXFADE 1
+  ENVATTACH 1
+  POOLEDENVATTACH 0
+  MIXERUIFLAGS 11 48
+  PEAKGAIN 1
+  FEEDBACK 0
+  PANLAW 1
+  PROJOFFS 0 0 0
+  MAXPROJLEN 0 600
+  GRID 3199 8 1 8 1 0 0 0
+  TIMEMODE 1 5 -1 30 0 0 -1
+  VIDEO_CONFIG 0 0 256
+  PANMODE 3
+  CURSOR 129
+  ZOOM 7.44161579248013 0 0
+  VZOOMEX 6 0
+  USE_REC_CFG 0
+  RECMODE 1
+  SMPTESYNC 0 30 100 40 1000 300 0 0 1 0 0
+  LOOP 0
+  LOOPGRAN 0 4
+  RECORD_PATH "" ""
+  <RECORD_CFG
+  >
+  <APPLYFX_CFG
+  >
+  RENDER_FILE ""
+  RENDER_PATTERN ""
+  RENDER_FMT 0 2 0
+  RENDER_1X 0
+  RENDER_RANGE 1 0 0 18 1000
+  RENDER_RESAMPLE 3 0 1
+  RENDER_ADDTOPROJ 0
+  RENDER_STEMS 0
+  RENDER_DITHER 0
+  TIMELOCKMODE 1
+  TEMPOENVLOCKMODE 1
+  ITEMMIX 0
+  DEFPITCHMODE 589824 0
+  TAKELANE 1
+  SAMPLERATE 44100 0 0
+  <RENDER_CFG
+  >
+  LOCK 1
+  <METRONOME 6 2
+    VOL 0.25 0.125
+    FREQ 800 1600 1
+    BEATLEN 4
+    SAMPLES "" ""
+    PATTERN 2863311530 2863311529
+  >
+  GLOBAL_AUTO -1
+  TEMPO 80 4 4
+  PLAYRATE 1 0 0.25 4
+  SELECTION 78 102
+  SELECTION2 78 102
+  MASTERAUTOMODE 0
+  MASTERTRACKHEIGHT 0 0
+  MASTERPEAKCOL 16576
+  MASTERMUTESOLO 0
+  MASTERTRACKVIEW 0 0.6667 0.5 0.5 0 0 0 0 0 0
+  MASTERHWOUT 0 0 1 0 0 0 0 -1
+  MASTER_NCH 2 2
+  MASTER_VOLUME 1 0 -1 -1 1
+  MASTER_FX 1
+  MASTER_SEL 0
+  <MASTERPLAYSPEEDENV
+    EGUID {C2F30745-7067-4509-9190-714C6EBD270F}
+    ACT 0 -1
+    VIS 0 1 1
+    LANEHEIGHT 0 0
+    ARM 0
+    DEFSHAPE 0 -1 -1
+  >
+  <TEMPOENVEX
+    EGUID {65585712-E7BB-417B-B164-9C34ACFB4620}
+    ACT 1 -1
+    VIS 1 0 1
+    LANEHEIGHT 0 0
+    ARM 0
+    DEFSHAPE 1 -1 -1
+  >
+  MARKER 1 0 "" 1 0 1 R {436F309C-15FA-49F6-9573-22E594B307B4}
+  MARKER 1 78 "" 1 0 1 R
+  <PROJBAY
+  >
+  <TRACK {B5282188-3B44-4CF1-8F6F-1AD2D9751AD4}
+    NAME Melody
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 0.78736664651321 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FREEMODE 0
+    SEL 0
+    REC 0 0 1 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {B5282188-3B44-4CF1-8F6F-1AD2D9751AD4}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 455 270 652 466
+      SHOW 0
+      LASTSEL 2
+      DOCKED 0
+      BYPASS 0 0 0
+      <VST "VST3i: LABS (Spitfire Audio)" "LABS (64 Bit).vst3" 0 "" 359949351{56535453664C626C6162730000000000} ""
+        J2R0Fe5e7f4AAAAAAgAAAAEAAAAAAAAAAgAAAAAAAACPGwAAAQAAAP//EAA=
+        fxsAAAEAAABWc3RXAAAACAAAAAEAAAAAQ2NuSwAAG2dGQkNoAAAAAlNmTGIAAQUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaz1ZDMiGKGgAA
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPExhYnM+PE1FVEEgZmFtaWx5PSJXdXJsaSIgbmFtZT0iU3VwZXIgU29mdCBXdXJsaSBDaG9ydXMi
+        IHByb2R1Y3RNb2RlPSIwIiB2ZXJzaW9uPSIxLjAuMCIgdGFncz0iNTAxMDAwOlBpYW5vIiBtb2RpZmllZD0iMSIvPjxVSSB1aXNpemU9IjEuMCIgdWljb2xsYXBzZWQ9
+        IjEiLz48QVJUSUNTPjxTRVRUSU5HIGlkPSJwX3N5bmNUb1RlbXBvIiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlkPSJwX2R5bmFtaWNzVmVsb2NpdHlNb2RlIiB2YWx1ZT0i
+        Q09NUFJFU1NFRCBWRUxPQ0lUWSBISUdIIi8+PFNFVFRJTkcgaWQ9InBfc2hvcnRSVE1vZGUiIHZhbHVlPSItMi4wIi8+PFNFVFRJTkcgaWQ9InBfdmVsb2NpdHlDdXJ2
+        ZSIgdmFsdWU9IkxJTkVBUiBWRUxPQ0lUWSIvPjxTRVRUSU5HIGlkPSJwX3F1YW50aXNlTW9kZSIgdmFsdWU9IiIvPjxTRVRUSU5HIGlkPSJwX21peGVyQWR2YW5jZWQi
+        IHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InBfbWl4ZXJHbG9iYWwiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InBfbWl4ZXJMb2NrIiB2YWx1ZT0iMCIvPjxTRVRUSU5H
+        IGlkPSJwX21peGVyUGFnZSIgdmFsdWU9IiIvPjxTRVRUSU5HIGlkPSJwX2FydGljTG9jayIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icF9hcnRpY1BhZ2UiIHZhbHVl
+        PSIiLz48U0VUVElORyBpZD0icF9sYXN0U2VsZWN0ZWRQcmltYXJ5QXJ0aWMiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InBfbWlkaUNoYW5uZWwiIHZhbHVlPSIwIi8+
+        PFNFVFRJTkcgaWQ9InBfc2VsZWN0ZWRUYWdzIiB2YWx1ZT0iUGlhbm8iLz48U0VUVElORyBpZD0icF9maWx0ZXJQb3MiIHZhbHVlPSJbXSIvPjxTRVRUSU5HIGlkPSJw
+        X3ByZXNldFBvcyIgdmFsdWU9IlswLCA0MjRdIi8+PFNFVFRJTkcgaWQ9InBfZXZvQ29udGFpbmVyUG9zIiB2YWx1ZT0iW10iLz48U0VUVElORyBpZD0icF9vY3RhdmUi
+        IHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InBfb2Rlc3RJbmRpY2VzIiB2YWx1ZT0iMCwxLDIsMyw0LDUsNiw3LDgsOSwxMCwxMSwxMiwxMywxNCwxNSwxNiwxNywxOCwx
+        OSwyMCwyMSwyMiwyMywyNCwyNSwyNiwyNywyOCwyOSwzMCwzMSwzMiwzMywzNCwzNSwzNiwzNywzOCwzOSw0MCw0MSw0Miw0Myw0NCw0NSw0Niw0Nyw0OCw0OSw1MCw1
+        MSw1Miw1Myw1NCw1NSw1Niw1Nyw1OCw1OSw2MCw2MSw2Miw2Myw2NCw2NSw2Niw2Nyw2OCw2OSw3MCw3MSw3Miw3Myw3NCw3NSw3Niw3Nyw3OCw3OSw4MCw4MSw4Miw4
+        Myw4NCw4NSw4Niw4Nyw4OCw4OSw5MCw5MSw5Miw5Myw5NCw5NSw5Niw5Nyw5OCw5OSwxMDAsMTAxLDEwMiwxMDMsMTA0LDEwNSwxMDYsMTA3LDEwOCwxMDksMTEwLDEx
+        MSwxMTIsMTEzLDExNCwxMTUsMTE2LDExNywxMTgsMTE5LDEyMCwxMjEsMTIyLDEyMywxMjQsMTI1LDEyNiwxMjcsMTI4LDEyOSwxMzAsMTMxLDEzMiwxMzMsMTM0LDEz
+        NSwxMzYsMTM3LDEzOCwxMzksMTQwLDE0MSwxNDIsMTQzLDE0NCwxNDUsMTQ2LDE0NywxNDgsMTQ5LDE1MCwxNTEsMTUyLDE1MywxNTQsMTU1LDE1NiwxNTcsMTU4LDE1
+        OSwxNjAsMTYxLDE2MiwxNjMsMTY0LDE2NSwxNjYsMTY3LDE2OCwxNjksMTcwLDE3MSwxNzIsMTczLDE3NCwxNzUsMTc2LDE3NywxNzgsMTc5LDE4MCwxODEsMTgyLDE4
+        MywxODQsMTg1LDE4NiwxODcsMTg4LDE4OSwxOTAsMTkxLDE5MiwxOTMsMTk0LDE5NSwxOTYsMTk3LDE5OCwxOTksMjAwLDIwMSwyMDIsMjAzLDIwNCwyMDUsMjA2LDIw
+        NywyMDgsMjA5LDIxMCwyMTEsMjEyLDIxMywyMTQsMjE1LDIxNiwyMTcsMjE4LDIxOSwyMjAsMjIxLDIyMiwyMjMsMjI0LDIyNSwyMjYsMjI3LDIyOCwyMjksMjMwLDIz
+        MSwyMzIsMjMzLDIzNCwyMzUsMjM2LDIzNywyMzgsMjM5LDI0MCwyNDEsMjQyLDI0MywyNDQsMjQ1LDI0NiwyNDcsMjQ4LDI0OSwyNTAsMjUxLDI1MiwyNTMsMjU0LDI1
+        NSwyNTYsMjU3LDI1OCwyNTksMjYwLDI2MSwyNjIsMjYzLDI2NCIvPjxTRVRUSU5HIGlkPSJwX3RpbWVTdHJldGNoIiB2YWx1ZT0iRGVmYXVsdCIvPjxTRVRUSU5HIGlk
+        PSJwX3ZvaWNlQ2hva2UiIHZhbHVlPSIwLjAiLz48U0VUVElORyBpZD0icF9sb29wRW5kIiB2YWx1ZT0iMC4wIi8+PEFSVElDPjxTRVRUSU5HIGlkPSJhX25hbWUiIHZh
+        bHVlPSJMQUJTX1N1cGVyX1NvZnRfV3VybGlfQ2hvcnVzIi8+PFNFVFRJTkcgaWQ9ImFfdmVyc2lvbiIgdmFsdWU9IjE2Nzc3MjE2Ii8+PFNFVFRJTkcgaWQ9ImFfdGVt
+        cGxhdGVJZHgiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9ImFfb2Rlc3QiIHZhbHVlPSJSRVZFUkIiLz48U0VUVElORyBpZD0iYV9hY3RpdmUiIHZhbHVlPSIyIi8+PFNF
+        VFRJTkcgaWQ9ImFfYmFja0FjdGl2ZSIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0iYV90d29IYW5kZWQiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9ImFfYXV0b01ha2VV
+        cCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0idF90eXBlIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJ0X2VuYWJsZWQiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InRf
+        bGF0Y2giIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InRfa2V5c3dpdGNoIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJ0X21pZGlDaGFubmVsIiB2YWx1ZT0iMSIvPjxT
+        RVRUSU5HIGlkPSJ0X3ZlbEZyb20iIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InRfdmVsVG8iIHZhbHVlPSIxMjciLz48U0VUVElORyBpZD0idF9jYyIgdmFsdWU9IjMy
+        Ii8+PFNFVFRJTkcgaWQ9InRfY2NWYWx1ZUZyb20iIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InRfY2NWYWx1ZVRvIiB2YWx1ZT0iMTI3Ii8+PFNFVFRJTkcgaWQ9InRf
+        c3BlZWRGcm9tIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9InRfc3BlZWRUbyIgdmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJ0X3Byb2dyYW1DaGFuZ2UiIHZhbHVl
+        PSIwIi8+PFNFVFRJTkcgaWQ9InRfdGVtcG9Gcm9tIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9InRfdGVtcG9UbyIgdmFsdWU9IjAuMCIvPjxTRVRUSU5HIGlkPSJy
+        cl90aW1lb3V0IiB2YWx1ZT0iLTEuMCIvPjxTRVRUSU5HIGlkPSJycl9uZWlnaGJvdXJNaW4iIHZhbHVlPSIzMyIvPjxTRVRUSU5HIGlkPSJycl9uZWlnaGJvdXJNYXgi
+        IHZhbHVlPSI5NiIvPjxTRVRUSU5HIGlkPSJycl91c2VOZWlnaGJvdXIiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJyX2NvdW50IiB2YWx1ZT0iNCIvPjxTRVRUSU5H
+        IGlkPSJycl9pbmMiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InJyX2xheWVycyIgdmFsdWU9IjEiLz48U0VUVElORyBpZD0icnJfZ2FpbiIgdmFsdWU9IjEuMCIvPjxT
+        RVRUSU5HIGlkPSJycl9zdGFydCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icnJfc3luYyIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icnJfcGxheSIgdmFsdWU9IjEi
+        Lz48U0VUVElORyBpZD0icnJfa2V5c3dpdGNoRnJvbSIgdmFsdWU9Ii0xIi8+PFNFVFRJTkcgaWQ9InJyX2tleXN3aXRjaFRvIiB2YWx1ZT0iLTEiLz48U0VUVElORyBp
+        ZD0icnJfa2V5c3dpdGNoVG8iIHZhbHVlPSItMSIvPjxTRVRUSU5HIGlkPSJycl9tb2RlIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJycl9wYXR0ZXJuT2RkcyIgdmFs
+        dWU9IjAiLz48U0VUVElORyBpZD0icnJfcGF0dGVybkV2ZW5zIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJycl9wYXR0ZXJuT2RkU3RhcnQiIHZhbHVlPSIwIi8+PFNF
+        VFRJTkcgaWQ9InJfbWlkaUNoYW5uZWwiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJfdHJhbnNwb3NlIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJyX2xheWVyVHJh
+        bnNwb3NlIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJpX2V4cHJlc3Npb24iIHZhbHVlPSIxLjAiLz48U0VUVElORyBpZD0iaV9keW5hbWljcyIgdmFsdWU9IjAuMCIv
+        PjxTRVRUSU5HIGlkPSJpX3JldmVyYiIgdmFsdWU9IjAuMCIvPjxTRVRUSU5HIGlkPSJpX3JlbGVhc2UiIHZhbHVlPSIwLjUiLz48U0VUVElORyBpZD0iaV90aWdodCIg
+        dmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJpX3ZpYnJhdG8iIHZhbHVlPSIxLjAiLz48U0VUVElORyBpZD0iaV92YXJpYXRpb24iIHZhbHVlPSIxLjAiLz48U0VUVElO
+        RyBpZD0ic19wYW4iIHZhbHVlPSIwLjUiLz48U0VUVElORyBpZD0ic193aWR0aCIgdmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJzX2ZsaXAiIHZhbHVlPSIwLjAiLz48
+        TUlYPjxTRVRUSU5HIGlkPSJtX21haW4iIHZhbHVlPSIxLjAiIG1pY0lkPSIxIi8+PFNFVFRJTkcgaWQ9ImVfbWFpbiIgdmFsdWU9IjEiIG1pY0lkPSIxIi8+PFNFVFRJ
+        TkcgaWQ9ImJfbWFpbiIgdmFsdWU9IjAiIG1pY0lkPSIxIi8+PFNFVFRJTkcgaWQ9Im1fYWx0MSIgdmFsdWU9IjAuMCIgbWljSWQ9IjIiLz48U0VUVElORyBpZD0iZV9h
+        bHQxIiB2YWx1ZT0iMCIgbWljSWQ9IjIiLz48U0VUVElORyBpZD0iYl9hbHQxIiB2YWx1ZT0iMCIgbWljSWQ9IjIiLz48U0VUVElORyBpZD0ibV9hbHQyIiB2YWx1ZT0i
+        MC4wIiBtaWNJZD0iMyIvPjxTRVRUSU5HIGlkPSJlX2FsdDIiIHZhbHVlPSIwIiBtaWNJZD0iMyIvPjxTRVRUSU5HIGlkPSJiX2FsdDIiIHZhbHVlPSIwIiBtaWNJZD0i
+        MyIvPjxTRVRUSU5HIGlkPSJtX2FsdDMiIHZhbHVlPSIwLjAiIG1pY0lkPSI0Ii8+PFNFVFRJTkcgaWQ9ImVfYWx0MyIgdmFsdWU9IjAiIG1pY0lkPSI0Ii8+PFNFVFRJ
+        TkcgaWQ9ImJfYWx0MyIgdmFsdWU9IjAiIG1pY0lkPSI0Ii8+PC9NSVg+PC9BUlRJQz48L0FSVElDUz48UEFSQU1FVEVSUz48UEFSQU0gaWQ9ImdfZ2FpbiIgdmFsdWU9
+        IjQuMCIgY2M9IjciLz48UEFSQU0gaWQ9ImdfcGFuIiB2YWx1ZT0iMC41MDM5MzcwMDU5OTY3MDQxIiBjYz0iMTAiLz48UEFSQU0gaWQ9ImdfdHVuZSIgdmFsdWU9IjAu
+        MCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3JldmVyYiIgdmFsdWU9IjAuMCIgY2M9IjE5Ii8+PFBBUkFNIGlkPSJpX3RpZ2h0IiB2YWx1ZT0iMC41IiBjYz0iMTgiLz48
+        UEFSQU0gaWQ9Imlfc3BlZWQiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9yZWxlYXNlIiB2YWx1ZT0iMC41IiBjYz0iMTciLz48UEFSQU0gaWQ9Imlf
+        ZXhwcmVzc2lvbiIgdmFsdWU9IjEuMCIgY2M9IjExIi8+PFBBUkFNIGlkPSJpX2R5bmFtaWNzIiB2YWx1ZT0iMC4wIiBjYz0iMSIvPjxQQVJBTSBpZD0iaV92YXJpYXRp
+        b24iIHZhbHVlPSIxLjAiIGNjPSIyMCIvPjxQQVJBTSBpZD0iaV92aWJyYXRvIiB2YWx1ZT0iMS4wIiBjYz0iMjEiLz48UEFSQU0gaWQ9ImlfZW52YXR0IiB2YWx1ZT0i
+        MC4wOTk5OTk5ODY1ODg5NTQ5MyIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2VudmRlYyIgdmFsdWU9IjAuMDk5OTk5OTk0MDM5NTM1NTIiIGNjPSItMSIvPjxQQVJBTSBp
+        ZD0iaV9lbnZzdXMiIHZhbHVlPSIxLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9lbnZyZWwiIHZhbHVlPSIyLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9taXhzaW1w
+        bGUiIHZhbHVlPSIwLjUiIGNjPSItMSIvPjxQQVJBTSBpZD0ic19mbGlwIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9InNfd2lkdGgiIHZhbHVlPSIwLjUi
+        IGNjPSItMSIvPjxQQVJBTSBpZD0ic19wYW4iIHZhbHVlPSIwLjUiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9kZWxheSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFN
+        IGlkPSJpX2Ftb3VudCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2Rpc3RvcnQiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9sdXNo
+        VmVyYiIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3BlZHZvbCIgdmFsdWU9IjAuNSIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3BlZER5biIgdmFsdWU9
+        IjAuNSIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2xlbmd0aCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3RpbWVNYWNoaW5lIiB2YWx1ZT0iMC4wIiBj
+        Yz0iLTEiLz48UEFSQU0gaWQ9Imlfc3RyZXRjaCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3NvZnRQZWRhbCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+
+        PFBBUkFNIGlkPSJpX3Jlc3BvbnNlIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWFsbGV0IiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9
+        Imlfc3RvcGVNdXRlIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfZGlyZWN0aW9uIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbHBG
+        aWx0ZXIiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9wb3J0YW1lbnRvIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsxOF0i
+        IHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRhWzE5XSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjBdIiB2YWx1ZT0i
+        MC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsyMV0iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRhWzIyXSIgdmFsdWU9IjAuMCIgY2M9
+        Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjNdIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsyNF0iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQ
+        QVJBTSBpZD0iaV9tZXRhWzI1XSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjZdIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9
+        Im1fbWFpbiIgdmFsdWU9IjEuMCIgY2M9IjIyIi8+PFBBUkFNIGlkPSJtX2FsdDEiIHZhbHVlPSIwLjAiIGNjPSIyMyIvPjxQQVJBTSBpZD0ibV9hbHQyIiB2YWx1ZT0i
+        MC4wIiBjYz0iMjQiLz48UEFSQU0gaWQ9Im1fYWx0MyIgdmFsdWU9IjAuMCIgY2M9IjI1Ii8+PC9QQVJBTUVURVJTPjwvTGFicz4AAAAAAAAAAABKVUNFUHJpdmF0ZURh
+        dGEAAQFCeXBhc3MAAQEDAB0AAAAAAAAASlVDRVByaXZhdGVEYXRhAAAAAAAAAAA=
+        AEZhY3RvcnkgUHJlc2V0cwAQAAAA
+      >
+      PRESETNAME "Factory Presets"
+      FLOATPOS 0 0 0 0
+      FXID {9E050840-B052-4729-AB5E-2A983348E730}
+      WAK 0 0
+      BYPASS 0 0 0
+      <VST "VST: Ambient Reverb (Stone Voices)" AmbientReverb.dll 0 "" 1398161746<56535453564152616D6269656E742072> ""
+        UkFWU+9e7f4CAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAAUAAAAAAAAAAAABAA
+        776t3g3wrd4AAIA/AACAPwAAAADhenQ/RuF6PwAAAADLzMw8y3b+PgAAAAAAAAA/AACAPwAAAADXiZ09l2/5PtijsD7TE8E8husRP8x6Pz4=
+        RGVmYXVsdABEZWZhdWx0ABAAAAA=
+      >
+      PRESETNAME Default
+      FLOATPOS 0 0 0 0
+      FXID {25E3F00A-C3C2-4D55-9931-DE51AE7355EC}
+      WAK 0 0
+      BYPASS 0 0 0
+      <VST "VST: ReaEQ (Cockos)" reaeq.dll 0 "" 1919247729<56535472656571726561657100000000> ""
+        cWVlcu5e7f4CAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAAyQAAAAEAAAAAABAA
+        IQAAAAUAAAAAAAAAAQAAAGBEdcAtMWRAgO21oPfGsD4AAAAAAAAAQAEIAAAAAQAAAIARw/L9KXRAURpxMQTX6D8AAAAAAAAAQAEIAAAAAQAAAMASxzLo7pBA8LJGps7X
+        4j8AAAAAAAAAQAEBAAAAAQAAALekPOI7NcJAzYDIvKs81z8AAAAAAAAAQAEIAAAAAQAAAPXbSupejcFAnwvnPQjO+z8AAAAAAAAAQAEBAAAAAQAAAAAAAAAAAPA/AAAA
+        AA8CAABhAQAA
+        AAAQAAAA
+      >
+      FLOATPOS 0 0 0 0
+      FXID {5A8BE6E9-B549-4C58-943A-590D1AADFD2E}
+      WAK 0 0
+      BYPASS 1 0 0
+      <VST "VST: ReaXcomp (Cockos)" reaxcomp.dll 0 "" 1919252579<5653547265786372656178636F6D7000> ""
+        Y3hlcu5e7f4CAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAACAEAAAEAAAAAABAA
+        OAAAAAQAAAAAAAAAAABpQAAAAAAAAPA/1nA2qkKXpT8AAAAAAAAAQAAAAAAAAAAADwAAAJYAAAAFAAAAEQAAAAAAAAAAQI9AAAAAAAAA8D90g9DqAQWaPwAAAAAAAABA
+        AAAAAAAAAAAPAAAAlgAAAAUAAAARAAAAAAAAAACIs0AAAAAAAADwPwDdjTkR2Hk/AAAAAAAAAEAAAAAAAAAAAA8AAACWAAAABQAAABEAAAAAAAAAAHDXQAAAAAAAAPA/
+        KNIjVXOgiz8AAAAAAAAAQAAAAAAAAAAADwAAAJYAAAAFAAAAEQAAAAEAAAABAAAAAAAAAAAA8D8AAAAAAAAAAAAAAAAAAAAA
+        AAAQAAAA
+      >
+      FLOATPOS 0 0 0 0
+      FXID {0B0F7625-3E7D-491E-9E6E-411BE018B4F7}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      SNAPOFFS 0
+      LENGTH 24
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {01BAEF22-7337-4C36-A0A8-125C3EFE931C}
+      IID 6
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {076EF622-BB3C-4C26-ABCE-7B90670A6D33}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {D444D1DA-2988-4A7B-A24B-380AA1B474EE}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 480 90 43 00
+        E 0 90 3e 60
+        E 240 80 3e 00
+        E 0 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 240 90 43 00
+        E 0 90 41 60
+        E 240 80 41 00
+        E 240 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {8FD681F5-DE98-40B6-8FE8-7FEB925D8180}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 10
+        VELLANE -1 100 0
+        CFGEDITVIEW 45 0.13079 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 24
+      SNAPOFFS 0
+      LENGTH 24
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {B1EC318A-0F62-41BB-ADA4-31D3F94AA8A7}
+      IID 6
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {84460F41-7EDD-46F0-8687-55A5E9CD4376}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {D6764F87-4FDD-4123-963A-38E59A13CF20}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 480 90 43 00
+        E 0 90 3e 60
+        E 240 80 3e 00
+        E 0 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 240 90 43 00
+        E 0 90 41 60
+        E 240 80 41 00
+        E 240 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {8FD681F5-DE98-40B6-8FE8-7FEB925D8180}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 10
+        VELLANE -1 100 0
+        CFGEDITVIEW 45 0.13079 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 48
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {64AED120-6711-40C5-B762-90D65C50A078}
+      IID 14
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 24 32
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {E0CF29AC-734B-49B7-B499-C71F5B1419DC}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {C7C0AA60-6D0D-42FE-886D-8E9E113CA937}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 480 90 43 00
+        E 0 90 3e 60
+        E 240 80 3e 00
+        E 0 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 240 90 43 00
+        E 0 90 41 60
+        E 240 80 41 00
+        E 240 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {6089C031-3BE2-4C83-BA21-0D7D0FF1A434}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 21
+        VELLANE -1 100 0
+        CFGEDITVIEW -15383.146667 0.169097 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 430 139 2052 1086 0 0 0 0 0 0 0 1 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 60
+      SNAPOFFS 0
+      LENGTH 18
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {EAC316E1-F8A7-4FD2-968E-18C5033DE4E9}
+      IID 21
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 36 48
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {AF39FE59-C7B9-4784-9B02-2C4E21540907}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {6341EFB9-A9EB-4794-896C-9B398A672CA0}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 480 90 43 00
+        E 0 90 3e 60
+        E 240 80 3e 00
+        E 0 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 240 90 43 00
+        E 0 90 41 60
+        E 240 80 41 00
+        E 240 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 39 50
+        E 227 90 39 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 43 50
+        E 455 90 43 00
+        E 25 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 43 50
+        E 455 90 43 00
+        E 25 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3e 50
+        E 227 90 3e 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 3e 50
+        E 227 90 3e 00
+        E 13 90 40 50
+        E 227 90 40 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 40 50
+        E 227 90 40 00
+        E 13 90 41 50
+        E 227 90 41 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 41 50
+        E 227 90 41 00
+        E 13 90 43 50
+        E 227 90 43 00
+        E 13 90 48 50
+        E 455 90 48 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 45 50
+        E 227 90 45 00
+        E 13 90 4a 50
+        E 911 90 4a 00
+        E 49 90 48 50
+        E 911 90 48 00
+        E 49 90 45 50
+        E 911 90 45 00
+        E 49 90 43 50
+        E 911 90 43 00
+        E 49 90 41 50
+        E 227 90 41 00
+        E 13 90 40 50
+        E 227 90 40 00
+        E 13 90 3e 50
+        E 227 90 3e 00
+        E 13 90 3c 50
+        E 683 90 3c 00
+        E 37 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {B994981D-6153-4C07-8D56-433983057FBA}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 28
+        VELLANE -1 100 0
+        CFGEDITVIEW 0 0.07159 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 78
+      SNAPOFFS 0
+      LENGTH 24
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {8821412B-3A80-469E-BCA0-9F10F794770A}
+      IID 6
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {288A757C-D768-4A7E-94C4-3F0AE8D39F8D}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {28F5E09F-9DA3-4144-A1A1-DBD4A218E3B6}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 480 90 43 00
+        E 0 90 3e 60
+        E 240 80 3e 00
+        E 0 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 240 90 43 00
+        E 0 90 41 60
+        E 240 80 41 00
+        E 240 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {8FD681F5-DE98-40B6-8FE8-7FEB925D8180}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 10
+        VELLANE -1 100 0
+        CFGEDITVIEW 45 0.13079 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 102
+      SNAPOFFS 0
+      LENGTH 24
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {0B1B1117-7D2B-4FBA-90CD-DB27AF209DA2}
+      IID 6
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {286E0D8B-A53E-4C3B-97A4-316259DBBA1C}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {89FD83DA-B9C1-453E-A3F7-470E65A6648F}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 480 90 43 00
+        E 0 90 3e 60
+        E 240 80 3e 00
+        E 0 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 240 90 43 00
+        E 0 90 41 60
+        E 240 80 41 00
+        E 240 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {8FD681F5-DE98-40B6-8FE8-7FEB925D8180}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 10
+        VELLANE -1 100 0
+        CFGEDITVIEW 45 0.13079 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 126
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {0DF42722-9AC6-40DB-B36F-DF15FF7606EB}
+      IID 14
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 24 32
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {6D9F7654-778F-4122-B29F-4FED12BEE992}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {28151119-196B-43BA-BFB6-9D0DD0157FC3}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 480 90 43 00
+        E 0 90 3e 60
+        E 240 80 3e 00
+        E 0 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 240 90 43 00
+        E 0 90 41 60
+        E 240 80 41 00
+        E 240 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {6089C031-3BE2-4C83-BA21-0D7D0FF1A434}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 21
+        VELLANE -1 100 0
+        CFGEDITVIEW 5624.946667 0.169097 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 1406 265 3028 1212 0 0 0 0 0 0 0 1 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 138
+      SNAPOFFS 0
+      LENGTH 18
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {4DAC7E57-B9CB-46B1-B09C-09875F2049A3}
+      IID 21
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 36 48
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {552B524F-ABCB-4A85-B12E-07400A223BE2}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {1FAFDE10-3EE4-43A9-8FF8-E49BA35CF86C}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 480 90 43 00
+        E 0 90 3e 60
+        E 240 80 3e 00
+        E 0 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 240 90 43 00
+        E 0 90 41 60
+        E 240 80 41 00
+        E 240 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 39 50
+        E 227 90 39 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 43 50
+        E 455 90 43 00
+        E 25 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 43 50
+        E 455 90 43 00
+        E 25 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3e 50
+        E 227 90 3e 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 3e 50
+        E 227 90 3e 00
+        E 13 90 40 50
+        E 227 90 40 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 40 50
+        E 227 90 40 00
+        E 13 90 41 50
+        E 227 90 41 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 41 50
+        E 227 90 41 00
+        E 13 90 43 50
+        E 227 90 43 00
+        E 13 90 48 50
+        E 455 90 48 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 45 50
+        E 227 90 45 00
+        E 13 90 4a 50
+        E 911 90 4a 00
+        E 49 90 48 50
+        E 911 90 48 00
+        E 49 90 45 50
+        E 911 90 45 00
+        E 49 90 43 50
+        E 911 90 43 00
+        E 49 90 41 50
+        E 227 90 41 00
+        E 13 90 40 50
+        E 227 90 40 00
+        E 13 90 3e 50
+        E 227 90 3e 00
+        E 13 90 3c 50
+        E 683 90 3c 00
+        E 37 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {B994981D-6153-4C07-8D56-433983057FBA}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 28
+        VELLANE -1 100 0
+        CFGEDITVIEW 0 0.07159 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+  >
+  <TRACK {5318F2DE-045F-4AE7-94F5-9CB33FF65BA3}
+    NAME Melody
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 0.43161018370141 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FREEMODE 0
+    SEL 0
+    REC 0 0 1 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {5318F2DE-045F-4AE7-94F5-9CB33FF65BA3}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 455 270 692 542
+      SHOW 0
+      LASTSEL 3
+      DOCKED 0
+      BYPASS 0 0 0
+      <VST "VST3i: LABS (Spitfire Audio)" "LABS (64 Bit).vst3" 0 "" 359949351{56535453664C626C6162730000000000} ""
+        J2R0Fe5e7f4AAAAAAgAAAAEAAAAAAAAAAgAAAAAAAACPGwAAAQAAAP//EAA=
+        fxsAAAEAAABWc3RXAAAACAAAAAEAAAAAQ2NuSwAAG2dGQkNoAAAAAlNmTGIAAQUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaz1ZDMiGKGgAA
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPExhYnM+PE1FVEEgZmFtaWx5PSJXdXJsaSIgbmFtZT0iU3VwZXIgU29mdCBXdXJsaSBDaG9ydXMi
+        IHByb2R1Y3RNb2RlPSIwIiB2ZXJzaW9uPSIxLjAuMCIgdGFncz0iNTAxMDAwOlBpYW5vIiBtb2RpZmllZD0iMSIvPjxVSSB1aXNpemU9IjEuMCIgdWljb2xsYXBzZWQ9
+        IjEiLz48QVJUSUNTPjxTRVRUSU5HIGlkPSJwX3N5bmNUb1RlbXBvIiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlkPSJwX2R5bmFtaWNzVmVsb2NpdHlNb2RlIiB2YWx1ZT0i
+        Q09NUFJFU1NFRCBWRUxPQ0lUWSBISUdIIi8+PFNFVFRJTkcgaWQ9InBfc2hvcnRSVE1vZGUiIHZhbHVlPSItMi4wIi8+PFNFVFRJTkcgaWQ9InBfdmVsb2NpdHlDdXJ2
+        ZSIgdmFsdWU9IkxJTkVBUiBWRUxPQ0lUWSIvPjxTRVRUSU5HIGlkPSJwX3F1YW50aXNlTW9kZSIgdmFsdWU9IiIvPjxTRVRUSU5HIGlkPSJwX21peGVyQWR2YW5jZWQi
+        IHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InBfbWl4ZXJHbG9iYWwiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InBfbWl4ZXJMb2NrIiB2YWx1ZT0iMCIvPjxTRVRUSU5H
+        IGlkPSJwX21peGVyUGFnZSIgdmFsdWU9IiIvPjxTRVRUSU5HIGlkPSJwX2FydGljTG9jayIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icF9hcnRpY1BhZ2UiIHZhbHVl
+        PSIiLz48U0VUVElORyBpZD0icF9sYXN0U2VsZWN0ZWRQcmltYXJ5QXJ0aWMiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InBfbWlkaUNoYW5uZWwiIHZhbHVlPSIwIi8+
+        PFNFVFRJTkcgaWQ9InBfc2VsZWN0ZWRUYWdzIiB2YWx1ZT0iUGlhbm8iLz48U0VUVElORyBpZD0icF9maWx0ZXJQb3MiIHZhbHVlPSJbXSIvPjxTRVRUSU5HIGlkPSJw
+        X3ByZXNldFBvcyIgdmFsdWU9IlswLCA0MjRdIi8+PFNFVFRJTkcgaWQ9InBfZXZvQ29udGFpbmVyUG9zIiB2YWx1ZT0iW10iLz48U0VUVElORyBpZD0icF9vY3RhdmUi
+        IHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InBfb2Rlc3RJbmRpY2VzIiB2YWx1ZT0iMCwxLDIsMyw0LDUsNiw3LDgsOSwxMCwxMSwxMiwxMywxNCwxNSwxNiwxNywxOCwx
+        OSwyMCwyMSwyMiwyMywyNCwyNSwyNiwyNywyOCwyOSwzMCwzMSwzMiwzMywzNCwzNSwzNiwzNywzOCwzOSw0MCw0MSw0Miw0Myw0NCw0NSw0Niw0Nyw0OCw0OSw1MCw1
+        MSw1Miw1Myw1NCw1NSw1Niw1Nyw1OCw1OSw2MCw2MSw2Miw2Myw2NCw2NSw2Niw2Nyw2OCw2OSw3MCw3MSw3Miw3Myw3NCw3NSw3Niw3Nyw3OCw3OSw4MCw4MSw4Miw4
+        Myw4NCw4NSw4Niw4Nyw4OCw4OSw5MCw5MSw5Miw5Myw5NCw5NSw5Niw5Nyw5OCw5OSwxMDAsMTAxLDEwMiwxMDMsMTA0LDEwNSwxMDYsMTA3LDEwOCwxMDksMTEwLDEx
+        MSwxMTIsMTEzLDExNCwxMTUsMTE2LDExNywxMTgsMTE5LDEyMCwxMjEsMTIyLDEyMywxMjQsMTI1LDEyNiwxMjcsMTI4LDEyOSwxMzAsMTMxLDEzMiwxMzMsMTM0LDEz
+        NSwxMzYsMTM3LDEzOCwxMzksMTQwLDE0MSwxNDIsMTQzLDE0NCwxNDUsMTQ2LDE0NywxNDgsMTQ5LDE1MCwxNTEsMTUyLDE1MywxNTQsMTU1LDE1NiwxNTcsMTU4LDE1
+        OSwxNjAsMTYxLDE2MiwxNjMsMTY0LDE2NSwxNjYsMTY3LDE2OCwxNjksMTcwLDE3MSwxNzIsMTczLDE3NCwxNzUsMTc2LDE3NywxNzgsMTc5LDE4MCwxODEsMTgyLDE4
+        MywxODQsMTg1LDE4NiwxODcsMTg4LDE4OSwxOTAsMTkxLDE5MiwxOTMsMTk0LDE5NSwxOTYsMTk3LDE5OCwxOTksMjAwLDIwMSwyMDIsMjAzLDIwNCwyMDUsMjA2LDIw
+        NywyMDgsMjA5LDIxMCwyMTEsMjEyLDIxMywyMTQsMjE1LDIxNiwyMTcsMjE4LDIxOSwyMjAsMjIxLDIyMiwyMjMsMjI0LDIyNSwyMjYsMjI3LDIyOCwyMjksMjMwLDIz
+        MSwyMzIsMjMzLDIzNCwyMzUsMjM2LDIzNywyMzgsMjM5LDI0MCwyNDEsMjQyLDI0MywyNDQsMjQ1LDI0NiwyNDcsMjQ4LDI0OSwyNTAsMjUxLDI1MiwyNTMsMjU0LDI1
+        NSwyNTYsMjU3LDI1OCwyNTksMjYwLDI2MSwyNjIsMjYzLDI2NCIvPjxTRVRUSU5HIGlkPSJwX3RpbWVTdHJldGNoIiB2YWx1ZT0iRGVmYXVsdCIvPjxTRVRUSU5HIGlk
+        PSJwX3ZvaWNlQ2hva2UiIHZhbHVlPSIwLjAiLz48U0VUVElORyBpZD0icF9sb29wRW5kIiB2YWx1ZT0iMC4wIi8+PEFSVElDPjxTRVRUSU5HIGlkPSJhX25hbWUiIHZh
+        bHVlPSJMQUJTX1N1cGVyX1NvZnRfV3VybGlfQ2hvcnVzIi8+PFNFVFRJTkcgaWQ9ImFfdmVyc2lvbiIgdmFsdWU9IjE2Nzc3MjE2Ii8+PFNFVFRJTkcgaWQ9ImFfdGVt
+        cGxhdGVJZHgiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9ImFfb2Rlc3QiIHZhbHVlPSJSRVZFUkIiLz48U0VUVElORyBpZD0iYV9hY3RpdmUiIHZhbHVlPSIyIi8+PFNF
+        VFRJTkcgaWQ9ImFfYmFja0FjdGl2ZSIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0iYV90d29IYW5kZWQiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9ImFfYXV0b01ha2VV
+        cCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0idF90eXBlIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJ0X2VuYWJsZWQiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InRf
+        bGF0Y2giIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InRfa2V5c3dpdGNoIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJ0X21pZGlDaGFubmVsIiB2YWx1ZT0iMSIvPjxT
+        RVRUSU5HIGlkPSJ0X3ZlbEZyb20iIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InRfdmVsVG8iIHZhbHVlPSIxMjciLz48U0VUVElORyBpZD0idF9jYyIgdmFsdWU9IjMy
+        Ii8+PFNFVFRJTkcgaWQ9InRfY2NWYWx1ZUZyb20iIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InRfY2NWYWx1ZVRvIiB2YWx1ZT0iMTI3Ii8+PFNFVFRJTkcgaWQ9InRf
+        c3BlZWRGcm9tIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9InRfc3BlZWRUbyIgdmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJ0X3Byb2dyYW1DaGFuZ2UiIHZhbHVl
+        PSIwIi8+PFNFVFRJTkcgaWQ9InRfdGVtcG9Gcm9tIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9InRfdGVtcG9UbyIgdmFsdWU9IjAuMCIvPjxTRVRUSU5HIGlkPSJy
+        cl90aW1lb3V0IiB2YWx1ZT0iLTEuMCIvPjxTRVRUSU5HIGlkPSJycl9uZWlnaGJvdXJNaW4iIHZhbHVlPSIzMyIvPjxTRVRUSU5HIGlkPSJycl9uZWlnaGJvdXJNYXgi
+        IHZhbHVlPSI5NiIvPjxTRVRUSU5HIGlkPSJycl91c2VOZWlnaGJvdXIiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJyX2NvdW50IiB2YWx1ZT0iNCIvPjxTRVRUSU5H
+        IGlkPSJycl9pbmMiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InJyX2xheWVycyIgdmFsdWU9IjEiLz48U0VUVElORyBpZD0icnJfZ2FpbiIgdmFsdWU9IjEuMCIvPjxT
+        RVRUSU5HIGlkPSJycl9zdGFydCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icnJfc3luYyIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icnJfcGxheSIgdmFsdWU9IjEi
+        Lz48U0VUVElORyBpZD0icnJfa2V5c3dpdGNoRnJvbSIgdmFsdWU9Ii0xIi8+PFNFVFRJTkcgaWQ9InJyX2tleXN3aXRjaFRvIiB2YWx1ZT0iLTEiLz48U0VUVElORyBp
+        ZD0icnJfa2V5c3dpdGNoVG8iIHZhbHVlPSItMSIvPjxTRVRUSU5HIGlkPSJycl9tb2RlIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJycl9wYXR0ZXJuT2RkcyIgdmFs
+        dWU9IjAiLz48U0VUVElORyBpZD0icnJfcGF0dGVybkV2ZW5zIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJycl9wYXR0ZXJuT2RkU3RhcnQiIHZhbHVlPSIwIi8+PFNF
+        VFRJTkcgaWQ9InJfbWlkaUNoYW5uZWwiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJfdHJhbnNwb3NlIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJyX2xheWVyVHJh
+        bnNwb3NlIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJpX2V4cHJlc3Npb24iIHZhbHVlPSIxLjAiLz48U0VUVElORyBpZD0iaV9keW5hbWljcyIgdmFsdWU9IjAuMCIv
+        PjxTRVRUSU5HIGlkPSJpX3JldmVyYiIgdmFsdWU9IjAuMCIvPjxTRVRUSU5HIGlkPSJpX3JlbGVhc2UiIHZhbHVlPSIwLjUiLz48U0VUVElORyBpZD0iaV90aWdodCIg
+        dmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJpX3ZpYnJhdG8iIHZhbHVlPSIxLjAiLz48U0VUVElORyBpZD0iaV92YXJpYXRpb24iIHZhbHVlPSIxLjAiLz48U0VUVElO
+        RyBpZD0ic19wYW4iIHZhbHVlPSIwLjUiLz48U0VUVElORyBpZD0ic193aWR0aCIgdmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJzX2ZsaXAiIHZhbHVlPSIwLjAiLz48
+        TUlYPjxTRVRUSU5HIGlkPSJtX21haW4iIHZhbHVlPSIxLjAiIG1pY0lkPSIxIi8+PFNFVFRJTkcgaWQ9ImVfbWFpbiIgdmFsdWU9IjEiIG1pY0lkPSIxIi8+PFNFVFRJ
+        TkcgaWQ9ImJfbWFpbiIgdmFsdWU9IjAiIG1pY0lkPSIxIi8+PFNFVFRJTkcgaWQ9Im1fYWx0MSIgdmFsdWU9IjAuMCIgbWljSWQ9IjIiLz48U0VUVElORyBpZD0iZV9h
+        bHQxIiB2YWx1ZT0iMCIgbWljSWQ9IjIiLz48U0VUVElORyBpZD0iYl9hbHQxIiB2YWx1ZT0iMCIgbWljSWQ9IjIiLz48U0VUVElORyBpZD0ibV9hbHQyIiB2YWx1ZT0i
+        MC4wIiBtaWNJZD0iMyIvPjxTRVRUSU5HIGlkPSJlX2FsdDIiIHZhbHVlPSIwIiBtaWNJZD0iMyIvPjxTRVRUSU5HIGlkPSJiX2FsdDIiIHZhbHVlPSIwIiBtaWNJZD0i
+        MyIvPjxTRVRUSU5HIGlkPSJtX2FsdDMiIHZhbHVlPSIwLjAiIG1pY0lkPSI0Ii8+PFNFVFRJTkcgaWQ9ImVfYWx0MyIgdmFsdWU9IjAiIG1pY0lkPSI0Ii8+PFNFVFRJ
+        TkcgaWQ9ImJfYWx0MyIgdmFsdWU9IjAiIG1pY0lkPSI0Ii8+PC9NSVg+PC9BUlRJQz48L0FSVElDUz48UEFSQU1FVEVSUz48UEFSQU0gaWQ9ImdfZ2FpbiIgdmFsdWU9
+        IjQuMCIgY2M9IjciLz48UEFSQU0gaWQ9ImdfcGFuIiB2YWx1ZT0iMC41MDM5MzcwMDU5OTY3MDQxIiBjYz0iMTAiLz48UEFSQU0gaWQ9ImdfdHVuZSIgdmFsdWU9IjAu
+        MCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3JldmVyYiIgdmFsdWU9IjAuMCIgY2M9IjE5Ii8+PFBBUkFNIGlkPSJpX3RpZ2h0IiB2YWx1ZT0iMC41IiBjYz0iMTgiLz48
+        UEFSQU0gaWQ9Imlfc3BlZWQiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9yZWxlYXNlIiB2YWx1ZT0iMC41IiBjYz0iMTciLz48UEFSQU0gaWQ9Imlf
+        ZXhwcmVzc2lvbiIgdmFsdWU9IjEuMCIgY2M9IjExIi8+PFBBUkFNIGlkPSJpX2R5bmFtaWNzIiB2YWx1ZT0iMC4wIiBjYz0iMSIvPjxQQVJBTSBpZD0iaV92YXJpYXRp
+        b24iIHZhbHVlPSIxLjAiIGNjPSIyMCIvPjxQQVJBTSBpZD0iaV92aWJyYXRvIiB2YWx1ZT0iMS4wIiBjYz0iMjEiLz48UEFSQU0gaWQ9ImlfZW52YXR0IiB2YWx1ZT0i
+        MC4wOTk5OTk5ODY1ODg5NTQ5MyIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2VudmRlYyIgdmFsdWU9IjAuMDk5OTk5OTk0MDM5NTM1NTIiIGNjPSItMSIvPjxQQVJBTSBp
+        ZD0iaV9lbnZzdXMiIHZhbHVlPSIxLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9lbnZyZWwiIHZhbHVlPSIyLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9taXhzaW1w
+        bGUiIHZhbHVlPSIwLjUiIGNjPSItMSIvPjxQQVJBTSBpZD0ic19mbGlwIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9InNfd2lkdGgiIHZhbHVlPSIwLjUi
+        IGNjPSItMSIvPjxQQVJBTSBpZD0ic19wYW4iIHZhbHVlPSIwLjUiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9kZWxheSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFN
+        IGlkPSJpX2Ftb3VudCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2Rpc3RvcnQiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9sdXNo
+        VmVyYiIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3BlZHZvbCIgdmFsdWU9IjAuNSIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3BlZER5biIgdmFsdWU9
+        IjAuNSIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2xlbmd0aCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3RpbWVNYWNoaW5lIiB2YWx1ZT0iMC4wIiBj
+        Yz0iLTEiLz48UEFSQU0gaWQ9Imlfc3RyZXRjaCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3NvZnRQZWRhbCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+
+        PFBBUkFNIGlkPSJpX3Jlc3BvbnNlIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWFsbGV0IiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9
+        Imlfc3RvcGVNdXRlIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfZGlyZWN0aW9uIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbHBG
+        aWx0ZXIiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9wb3J0YW1lbnRvIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsxOF0i
+        IHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRhWzE5XSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjBdIiB2YWx1ZT0i
+        MC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsyMV0iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRhWzIyXSIgdmFsdWU9IjAuMCIgY2M9
+        Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjNdIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsyNF0iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQ
+        QVJBTSBpZD0iaV9tZXRhWzI1XSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjZdIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9
+        Im1fbWFpbiIgdmFsdWU9IjEuMCIgY2M9IjIyIi8+PFBBUkFNIGlkPSJtX2FsdDEiIHZhbHVlPSIwLjAiIGNjPSIyMyIvPjxQQVJBTSBpZD0ibV9hbHQyIiB2YWx1ZT0i
+        MC4wIiBjYz0iMjQiLz48UEFSQU0gaWQ9Im1fYWx0MyIgdmFsdWU9IjAuMCIgY2M9IjI1Ii8+PC9QQVJBTUVURVJTPjwvTGFicz4AAAAAAAAAAABKVUNFUHJpdmF0ZURh
+        dGEAAQFCeXBhc3MAAQEDAB0AAAAAAAAASlVDRVByaXZhdGVEYXRhAAAAAAAAAAA=
+        AEZhY3RvcnkgUHJlc2V0cwAQAAAA
+      >
+      PRESETNAME "Factory Presets"
+      FLOATPOS 0 0 0 0
+      FXID {623246B2-3938-433F-A4DA-C8FA3AE190B0}
+      WAK 0 0
+      BYPASS 0 0 0
+      <VST "VST: Ambient Reverb (Stone Voices)" AmbientReverb.dll 0 "" 1398161746<56535453564152616D6269656E742072> ""
+        UkFWU+9e7f4CAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAAUAAAAAAAAAAAABAA
+        776t3g3wrd4AAIA/AACAPwAAAADhenQ/RuF6PwAAAADLzMw8y3b+PgAAAAAAAAA/AACAPwAAAADWiZ09l2/5PtijsD7TE8E8h+sRP8x6Pz4=
+        RGVmYXVsdABEZWZhdWx0ABAAAAA=
+      >
+      PRESETNAME Default
+      FLOATPOS 0 0 0 0
+      FXID {E1FED251-FC9B-4470-B895-5665793BAAE9}
+      WAK 0 0
+      BYPASS 0 0 0
+      <VST "VST: ReaEQ (Cockos)" reaeq.dll 0 "" 1919247729<56535472656571726561657100000000> ""
+        cWVlcu5e7f4CAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAAyQAAAAEAAAAAABAA
+        IQAAAAUAAAAAAAAAAQAAAEBWyrlTalpAgO21oPfGsD4AAAAAAAAAQAEIAAAAAQAAAAAAAAAAwHJAra9b7/PH+D8AAAAAAAAAQAEIAAAAAQAAAMASxzLo7pBA+bJGps7X
+        4j8AAAAAAAAAQAEBAAAAAQAAALqkPOI7NcJAxoDIvKs81z8AAAAAAAAAQAEIAAAAAQAAAPrbSupejcFAkgvnPQjO+z8AAAAAAAAAQAEBAAAAAQAAAAAAAAAAAPA/AAAA
+        AA8CAABhAQAA
+        AAAQAAAA
+      >
+      FLOATPOS 0 0 0 0
+      FXID {0CFED5A7-FB05-43E9-A691-D5A26991D150}
+      WAK 0 0
+      BYPASS 0 0 0
+      <VST "VST: ReaXcomp (Cockos)" reaxcomp.dll 0 "" 1919252579<5653547265786372656178636F6D7000> ""
+        Y3hlcu5e7f4CAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAACAEAAAEAAAAAABAA
+        OAAAAAQAAAAAAAAAAABpQAAAAAAAAPA/1nA2qkKXpT8AAAAAAAAAQAAAAAAAAAAADwAAAJYAAAAFAAAAEQAAAAAAAAAAQI9AAAAAAAAA8D90g9DqAQWaPwAAAAAAAABA
+        AAAAAAAAAAAPAAAAlgAAAAUAAAARAAAAAAAAAACIs0AAAAAAAADwPwDdjTkR2Hk/AAAAAAAAAEAAAAAAAAAAAA8AAACWAAAABQAAABEAAAAAAAAAAHDXQAAAAAAAAPA/
+        KNIjVXOgiz8AAAAAAAAAQAAAAAAAAAAADwAAAJYAAAAFAAAAEQAAAAEAAAABAAAAAAAAAAAA8D8AAAAAAAAAAAAAAAAAAAAA
+        AAAQAAAA
+      >
+      FLOATPOS 0 0 0 0
+      FXID {5DB3C210-9A6C-410B-83CA-8D7A4B891ECA}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      SNAPOFFS 0
+      LENGTH 24
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {F640D90F-D60A-44E8-80EF-8433DBE12281}
+      IID 6
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {9CFC0C37-FD5F-4F6C-B5C6-BAAF6DB07572}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {A31F9E24-2F94-497D-B4EC-1A9FCAFFD0B9}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {8FD681F5-DE98-40B6-8FE8-7FEB925D8180}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 10
+        VELLANE -1 100 0
+      >
+    >
+    <ITEM
+      POSITION 24
+      SNAPOFFS 0
+      LENGTH 24
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {BAE93AAC-B764-4DDE-91D9-969A8F412AE1}
+      IID 6
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {5029BFEE-E9AE-41FB-92D6-990BDFFBF667}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {F0F7FA20-7273-4950-A052-E808A593ECED}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {8FD681F5-DE98-40B6-8FE8-7FEB925D8180}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 10
+        VELLANE -1 100 0
+      >
+    >
+    <ITEM
+      POSITION 48
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {6FD383EB-F7AC-4BA4-AA9E-2B152BE95C2C}
+      IID 17
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 24 32
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {9AF2E18D-926F-4079-B607-806691C11E81}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {DE1253BA-006B-46FD-A1A6-EFE1264E0B5F}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {DF2CB4C4-54FC-4BF0-9A05-4E70DD3A7DA3}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 24
+        VELLANE -1 100 0
+        CFGEDITVIEW 20041.400137 0.07159 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 60
+      SNAPOFFS 0
+      LENGTH 18
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {D6668CB6-3FB6-4086-ABE9-A9A34A378BA9}
+      IID 22
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 36 48
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {24A771E4-BE34-41D8-A225-62E4AA460370}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {312DCE31-0F97-4D9A-BEDB-A2AC86F5378E}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 39 50
+        E 227 90 39 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 43 50
+        E 455 90 43 00
+        E 25 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 43 50
+        E 455 90 43 00
+        E 25 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3e 50
+        E 227 90 3e 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 3e 50
+        E 227 90 3e 00
+        E 13 90 40 50
+        E 227 90 40 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 40 50
+        E 227 90 40 00
+        E 13 90 41 50
+        E 227 90 41 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 41 50
+        E 227 90 41 00
+        E 13 90 43 50
+        E 227 90 43 00
+        E 13 90 48 50
+        E 455 90 48 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 45 50
+        E 227 90 45 00
+        E 13 90 4a 50
+        E 911 90 4a 00
+        E 49 90 48 50
+        E 911 90 48 00
+        E 49 90 45 50
+        E 911 90 45 00
+        E 49 90 43 50
+        E 911 90 43 00
+        E 49 90 41 50
+        E 227 90 41 00
+        E 13 90 40 50
+        E 227 90 40 00
+        E 13 90 3e 50
+        E 227 90 3e 00
+        E 13 90 3c 50
+        E 683 90 3c 00
+        E 37 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {975D3955-5EF0-4CCB-AA9A-2B82803C9668}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 29
+        VELLANE -1 100 0
+        CFGEDITVIEW 0 0.07159 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 78
+      SNAPOFFS 0
+      LENGTH 24
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {0F0E105A-8CD4-41FE-A6AE-F4BC009DE963}
+      IID 6
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {8C999E98-8125-4851-A076-263E7E3CB291}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {3AFDFF2C-9A09-4EFE-A36D-CE608CCF154F}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {8FD681F5-DE98-40B6-8FE8-7FEB925D8180}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 10
+        VELLANE -1 100 0
+      >
+    >
+    <ITEM
+      POSITION 102
+      SNAPOFFS 0
+      LENGTH 24
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {C97DFA1F-3AEA-4DF2-939F-6CB85DC3CB45}
+      IID 6
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {0C3920BA-ADD1-44B1-ABB6-367EA0B9E717}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {2922A655-D37C-4F1E-ADE5-66BF9CC4926E}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {8FD681F5-DE98-40B6-8FE8-7FEB925D8180}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 10
+        VELLANE -1 100 0
+      >
+    >
+    <ITEM
+      POSITION 126
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {87DF4D8B-7F5D-444A-BD90-CE55629C61E0}
+      IID 17
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 24 32
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {1CA50C17-2774-4B64-871F-6D0941FB58D9}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {861DDB2E-6990-4A21-9FDC-F7D04FD470EE}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {DF2CB4C4-54FC-4BF0-9A05-4E70DD3A7DA3}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 24
+        VELLANE -1 100 0
+        CFGEDITVIEW 20041.400137 0.07159 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 138
+      SNAPOFFS 0
+      LENGTH 18
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {1050E9C5-113D-4A10-B42B-23F3864A39B6}
+      IID 22
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 36 48
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {F42DD909-6607-4001-A162-45B54922AA78}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {3DFB7508-7647-43E2-BA76-D82F72AA8F00}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 39 50
+        E 227 90 39 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 43 50
+        E 455 90 43 00
+        E 25 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 43 50
+        E 455 90 43 00
+        E 25 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3e 50
+        E 227 90 3e 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 3e 50
+        E 227 90 3e 00
+        E 13 90 40 50
+        E 227 90 40 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 40 50
+        E 227 90 40 00
+        E 13 90 41 50
+        E 227 90 41 00
+        E 13 90 45 50
+        E 455 90 45 00
+        E 25 90 41 50
+        E 227 90 41 00
+        E 13 90 43 50
+        E 227 90 43 00
+        E 13 90 48 50
+        E 455 90 48 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 45 50
+        E 227 90 45 00
+        E 13 90 4a 50
+        E 911 90 4a 00
+        E 49 90 48 50
+        E 911 90 48 00
+        E 49 90 45 50
+        E 911 90 45 00
+        E 49 90 43 50
+        E 911 90 43 00
+        E 49 90 41 50
+        E 227 90 41 00
+        E 13 90 40 50
+        E 227 90 40 00
+        E 13 90 3e 50
+        E 227 90 3e 00
+        E 13 90 3c 50
+        E 683 90 3c 00
+        E 37 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {975D3955-5EF0-4CCB-AA9A-2B82803C9668}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 29
+        VELLANE -1 100 0
+        CFGEDITVIEW 0 0.07159 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+  >
+  <TRACK {A6B6DE3D-09B2-4FB5-B8FE-80192DFC7CF7}
+    NAME Bass
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 0.54793648037502 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FREEMODE 0
+    SEL 0
+    REC 0 0 1 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {A6B6DE3D-09B2-4FB5-B8FE-80192DFC7CF7}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 117 97 1285 763
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <VST "VST3i: LABS (Spitfire Audio)" "LABS (64 Bit).vst3" 0 "" 359949351{56535453664C626C6162730000000000} ""
+        J2R0Fe5e7f4AAAAAAgAAAAEAAAAAAAAAAgAAAAAAAACPGwAAAQAAAP//EAA=
+        fxsAAAEAAABWc3RXAAAACAAAAAEAAAAAQ2NuSwAAG2dGQkNoAAAAAlNmTGIAAQUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaz1ZDMiGKGgAA
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPExhYnM+PE1FVEEgZmFtaWx5PSJCYXNzIEd1aXRhciIgbmFtZT0iV2FybSBCYXNzIC0gREkiIHBy
+        b2R1Y3RNb2RlPSIwIiB2ZXJzaW9uPSIxLjAuNCIgdGFncz0iR3VpdGFyIiBtb2RpZmllZD0iMSIvPjxVSSB1aXNpemU9IjEuMCIgdWljb2xsYXBzZWQ9IjEiLz48QVJU
+        SUNTPjxTRVRUSU5HIGlkPSJwX3N5bmNUb1RlbXBvIiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlkPSJwX2R5bmFtaWNzVmVsb2NpdHlNb2RlIiB2YWx1ZT0iQ09NUFJFU1NF
+        RCBWRUxPQ0lUWSBISUdIIi8+PFNFVFRJTkcgaWQ9InBfc2hvcnRSVE1vZGUiIHZhbHVlPSItMi4wIi8+PFNFVFRJTkcgaWQ9InBfdmVsb2NpdHlDdXJ2ZSIgdmFsdWU9
+        IkxJTkVBUiBWRUxPQ0lUWSIvPjxTRVRUSU5HIGlkPSJwX3F1YW50aXNlTW9kZSIgdmFsdWU9IiIvPjxTRVRUSU5HIGlkPSJwX21peGVyQWR2YW5jZWQiIHZhbHVlPSIx
+        Ii8+PFNFVFRJTkcgaWQ9InBfbWl4ZXJHbG9iYWwiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InBfbWl4ZXJMb2NrIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJwX21p
+        eGVyUGFnZSIgdmFsdWU9IiIvPjxTRVRUSU5HIGlkPSJwX2FydGljTG9jayIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icF9hcnRpY1BhZ2UiIHZhbHVlPSIiLz48U0VU
+        VElORyBpZD0icF9sYXN0U2VsZWN0ZWRQcmltYXJ5QXJ0aWMiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InBfbWlkaUNoYW5uZWwiIHZhbHVlPSIwIi8+PFNFVFRJTkcg
+        aWQ9InBfc2VsZWN0ZWRUYWdzIiB2YWx1ZT0iUGlhbm8sV2FycCxHdWl0YXIiLz48U0VUVElORyBpZD0icF9maWx0ZXJQb3MiIHZhbHVlPSJbXSIvPjxTRVRUSU5HIGlk
+        PSJwX3ByZXNldFBvcyIgdmFsdWU9IlswLCAwXSIvPjxTRVRUSU5HIGlkPSJwX2V2b0NvbnRhaW5lclBvcyIgdmFsdWU9IltdIi8+PFNFVFRJTkcgaWQ9InBfb2N0YXZl
+        IiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJwX29kZXN0SW5kaWNlcyIgdmFsdWU9IjAsMSwyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTIsMTMsMTQsMTUsMTYsMTcsMTgs
+        MTksMjAsMjEsMjIsMjMsMjQsMjUsMjYsMjcsMjgsMjksMzAsMzEsMzIsMzMsMzQsMzUsMzYsMzcsMzgsMzksNDAsNDEsNDIsNDMsNDQsNDUsNDYsNDcsNDgsNDksNTAs
+        NTEsNTIsNTMsNTQsNTUsNTYsNTcsNTgsNTksNjAsNjEsNjIsNjMsNjQsNjUsNjYsNjcsNjgsNjksNzAsNzEsNzIsNzMsNzQsNzUsNzYsNzcsNzgsNzksODAsODEsODIs
+        ODMsODQsODUsODYsODcsODgsODksOTAsOTEsOTIsOTMsOTQsOTUsOTYsOTcsOTgsOTksMTAwLDEwMSwxMDIsMTAzLDEwNCwxMDUsMTA2LDEwNywxMDgsMTA5LDExMCwx
+        MTEsMTEyLDExMywxMTQsMTE1LDExNiwxMTcsMTE4LDExOSwxMjAsMTIxLDEyMiwxMjMsMTI0LDEyNSwxMjYsMTI3LDEyOCwxMjksMTMwLDEzMSwxMzIsMTMzLDEzNCwx
+        MzUsMTM2LDEzNywxMzgsMTM5LDE0MCwxNDEsMTQyLDE0MywxNDQsMTQ1LDE0NiwxNDcsMTQ4LDE0OSwxNTAsMTUxLDE1MiwxNTMsMTU0LDE1NSwxNTYsMTU3LDE1OCwx
+        NTksMTYwLDE2MSwxNjIsMTYzLDE2NCwxNjUsMTY2LDE2NywxNjgsMTY5LDE3MCwxNzEsMTcyLDE3MywxNzQsMTc1LDE3NiwxNzcsMTc4LDE3OSwxODAsMTgxLDE4Miwx
+        ODMsMTg0LDE4NSwxODYsMTg3LDE4OCwxODksMTkwLDE5MSwxOTIsMTkzLDE5NCwxOTUsMTk2LDE5NywxOTgsMTk5LDIwMCwyMDEsMjAyLDIwMywyMDQsMjA1LDIwNiwy
+        MDcsMjA4LDIwOSwyMTAsMjExLDIxMiwyMTMsMjE0LDIxNSwyMTYsMjE3LDIxOCwyMTksMjIwLDIyMSwyMjIsMjIzLDIyNCwyMjUsMjI2LDIyNywyMjgsMjI5LDIzMCwy
+        MzEsMjMyLDIzMywyMzQsMjM1LDIzNiwyMzcsMjM4LDIzOSwyNDAsMjQxLDI0MiwyNDMsMjQ0LDI0NSwyNDYsMjQ3LDI0OCwyNDksMjUwLDI1MSwyNTIsMjUzLDI1NCwy
+        NTUsMjU2LDI1NywyNTgsMjU5LDI2MCwyNjEsMjYyLDI2MywyNjQiLz48U0VUVElORyBpZD0icF90aW1lU3RyZXRjaCIgdmFsdWU9IkRlZmF1bHQiLz48U0VUVElORyBp
+        ZD0icF92b2ljZUNob2tlIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9InBfbG9vcEVuZCIgdmFsdWU9IjAuMCIvPjxBUlRJQz48U0VUVElORyBpZD0iYV9uYW1lIiB2
+        YWx1ZT0iV2FybSBCYXNzIC0gREkiLz48U0VUVElORyBpZD0iYV92ZXJzaW9uIiB2YWx1ZT0iMTY3NzgyNDAiLz48U0VUVElORyBpZD0iYV90ZW1wbGF0ZUlkeCIgdmFs
+        dWU9IjAiLz48U0VUVElORyBpZD0iYV9vZGVzdCIgdmFsdWU9IlJFVkVSQiIvPjxTRVRUSU5HIGlkPSJhX2FjdGl2ZSIgdmFsdWU9IjIiLz48U0VUVElORyBpZD0iYV9i
+        YWNrQWN0aXZlIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJhX3R3b0hhbmRlZCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0iYV9hdXRvTWFrZVVwIiB2YWx1ZT0iMCIv
+        PjxTRVRUSU5HIGlkPSJ0X3R5cGUiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InRfZW5hYmxlZCIgdmFsdWU9IjEiLz48U0VUVElORyBpZD0idF9sYXRjaCIgdmFsdWU9
+        IjAiLz48U0VUVElORyBpZD0idF9rZXlzd2l0Y2giIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InRfbWlkaUNoYW5uZWwiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InRf
+        dmVsRnJvbSIgdmFsdWU9IjEiLz48U0VUVElORyBpZD0idF92ZWxUbyIgdmFsdWU9IjEyNyIvPjxTRVRUSU5HIGlkPSJ0X2NjIiB2YWx1ZT0iMzIiLz48U0VUVElORyBp
+        ZD0idF9jY1ZhbHVlRnJvbSIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0idF9jY1ZhbHVlVG8iIHZhbHVlPSIxMjciLz48U0VUVElORyBpZD0idF9zcGVlZEZyb20iIHZh
+        bHVlPSIwLjAiLz48U0VUVElORyBpZD0idF9zcGVlZFRvIiB2YWx1ZT0iMC41Ii8+PFNFVFRJTkcgaWQ9InRfcHJvZ3JhbUNoYW5nZSIgdmFsdWU9IjAiLz48U0VUVElO
+        RyBpZD0idF90ZW1wb0Zyb20iIHZhbHVlPSIwLjAiLz48U0VUVElORyBpZD0idF90ZW1wb1RvIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9InJyX3RpbWVvdXQiIHZh
+        bHVlPSItMS4wIi8+PFNFVFRJTkcgaWQ9InJyX25laWdoYm91ck1pbiIgdmFsdWU9IjI0Ii8+PFNFVFRJTkcgaWQ9InJyX25laWdoYm91ck1heCIgdmFsdWU9IjY0Ii8+
+        PFNFVFRJTkcgaWQ9InJyX3VzZU5laWdoYm91ciIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icnJfY291bnQiIHZhbHVlPSIzIi8+PFNFVFRJTkcgaWQ9InJyX2luYyIg
+        dmFsdWU9IjEiLz48U0VUVElORyBpZD0icnJfbGF5ZXJzIiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlkPSJycl9nYWluIiB2YWx1ZT0iMS4wIi8+PFNFVFRJTkcgaWQ9InJy
+        X3N0YXJ0IiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJycl9zeW5jIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJycl9wbGF5IiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlk
+        PSJycl9rZXlzd2l0Y2hGcm9tIiB2YWx1ZT0iLTEiLz48U0VUVElORyBpZD0icnJfa2V5c3dpdGNoVG8iIHZhbHVlPSItMSIvPjxTRVRUSU5HIGlkPSJycl9rZXlzd2l0
+        Y2hUbyIgdmFsdWU9Ii0xIi8+PFNFVFRJTkcgaWQ9InJyX21vZGUiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJyX3BhdHRlcm5PZGRzIiB2YWx1ZT0iMCIvPjxTRVRU
+        SU5HIGlkPSJycl9wYXR0ZXJuRXZlbnMiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJyX3BhdHRlcm5PZGRTdGFydCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icl9t
+        aWRpQ2hhbm5lbCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icl90cmFuc3Bvc2UiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJfbGF5ZXJUcmFuc3Bvc2UiIHZhbHVl
+        PSIwIi8+PFNFVFRJTkcgaWQ9ImlfZXhwcmVzc2lvbiIgdmFsdWU9IjEuMCIvPjxTRVRUSU5HIGlkPSJpX2R5bmFtaWNzIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9
+        ImlfcmV2ZXJiIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9ImlfcmVsZWFzZSIgdmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJpX3RpZ2h0IiB2YWx1ZT0iMC41MDM5
+        MzcwMDU5OTY3MDQxIi8+PFNFVFRJTkcgaWQ9ImlfdmlicmF0byIgdmFsdWU9IjEuMCIvPjxTRVRUSU5HIGlkPSJpX3ZhcmlhdGlvbiIgdmFsdWU9IjAuMCIvPjxTRVRU
+        SU5HIGlkPSJzX3BhbiIgdmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJzX3dpZHRoIiB2YWx1ZT0iMC41Ii8+PFNFVFRJTkcgaWQ9InNfZmxpcCIgdmFsdWU9IjAuMCIv
+        PjxNSVg+PFNFVFRJTkcgaWQ9Im1fbWFpbiIgdmFsdWU9IjEuMCIgbWljSWQ9IjEiLz48U0VUVElORyBpZD0iZV9tYWluIiB2YWx1ZT0iMSIgbWljSWQ9IjEiLz48U0VU
+        VElORyBpZD0iYl9tYWluIiB2YWx1ZT0iMCIgbWljSWQ9IjEiLz48U0VUVElORyBpZD0ibV9hbHQxIiB2YWx1ZT0iMC4wIiBtaWNJZD0iMiIvPjxTRVRUSU5HIGlkPSJl
+        X2FsdDEiIHZhbHVlPSIwIiBtaWNJZD0iMiIvPjxTRVRUSU5HIGlkPSJiX2FsdDEiIHZhbHVlPSIwIiBtaWNJZD0iMiIvPjxTRVRUSU5HIGlkPSJtX2FsdDIiIHZhbHVl
+        PSIwLjAiIG1pY0lkPSIzIi8+PFNFVFRJTkcgaWQ9ImVfYWx0MiIgdmFsdWU9IjAiIG1pY0lkPSIzIi8+PFNFVFRJTkcgaWQ9ImJfYWx0MiIgdmFsdWU9IjAiIG1pY0lk
+        PSIzIi8+PFNFVFRJTkcgaWQ9Im1fYWx0MyIgdmFsdWU9IjAuMCIgbWljSWQ9IjQiLz48U0VUVElORyBpZD0iZV9hbHQzIiB2YWx1ZT0iMCIgbWljSWQ9IjQiLz48U0VU
+        VElORyBpZD0iYl9hbHQzIiB2YWx1ZT0iMCIgbWljSWQ9IjQiLz48L01JWD48L0FSVElDPjwvQVJUSUNTPjxQQVJBTUVURVJTPjxQQVJBTSBpZD0iZ19nYWluIiB2YWx1
+        ZT0iNC4wIiBjYz0iNyIvPjxQQVJBTSBpZD0iZ19wYW4iIHZhbHVlPSIwLjUwMzkzNzAwNTk5NjcwNDEiIGNjPSIxMCIvPjxQQVJBTSBpZD0iZ190dW5lIiB2YWx1ZT0i
+        MC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfcmV2ZXJiIiB2YWx1ZT0iMC4wIiBjYz0iMTkiLz48UEFSQU0gaWQ9ImlfdGlnaHQiIHZhbHVlPSIwLjUwMzkzNzAwNTk5
+        NjcwNDEiIGNjPSIxOCIvPjxQQVJBTSBpZD0iaV9zcGVlZCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3JlbGVhc2UiIHZhbHVlPSIwLjUiIGNjPSIx
+        NyIvPjxQQVJBTSBpZD0iaV9leHByZXNzaW9uIiB2YWx1ZT0iMS4wIiBjYz0iMTEiLz48UEFSQU0gaWQ9ImlfZHluYW1pY3MiIHZhbHVlPSIwLjAiIGNjPSIxIi8+PFBB
+        UkFNIGlkPSJpX3ZhcmlhdGlvbiIgdmFsdWU9IjAuMCIgY2M9IjIwIi8+PFBBUkFNIGlkPSJpX3ZpYnJhdG8iIHZhbHVlPSIxLjAiIGNjPSIyMSIvPjxQQVJBTSBpZD0i
+        aV9lbnZhdHQiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9lbnZkZWMiIHZhbHVlPSIzLjM5OTk5NTgwMzgzMzAwOCIgY2M9Ii0xIi8+PFBBUkFNIGlk
+        PSJpX2VudnN1cyIgdmFsdWU9IjEuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2VudnJlbCIgdmFsdWU9IjAuMjUiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9taXhzaW1w
+        bGUiIHZhbHVlPSIwLjUiIGNjPSItMSIvPjxQQVJBTSBpZD0ic19mbGlwIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9InNfd2lkdGgiIHZhbHVlPSIwLjUi
+        IGNjPSItMSIvPjxQQVJBTSBpZD0ic19wYW4iIHZhbHVlPSIwLjUiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9kZWxheSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFN
+        IGlkPSJpX2Ftb3VudCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2Rpc3RvcnQiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9sdXNo
+        VmVyYiIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3BlZHZvbCIgdmFsdWU9IjAuNSIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3BlZER5biIgdmFsdWU9
+        IjAuNSIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2xlbmd0aCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3RpbWVNYWNoaW5lIiB2YWx1ZT0iMC4wIiBj
+        Yz0iLTEiLz48UEFSQU0gaWQ9Imlfc3RyZXRjaCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3NvZnRQZWRhbCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+
+        PFBBUkFNIGlkPSJpX3Jlc3BvbnNlIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWFsbGV0IiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9
+        Imlfc3RvcGVNdXRlIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfZGlyZWN0aW9uIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbHBG
+        aWx0ZXIiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9wb3J0YW1lbnRvIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsxOF0i
+        IHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRhWzE5XSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjBdIiB2YWx1ZT0i
+        MC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsyMV0iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRhWzIyXSIgdmFsdWU9IjAuMCIgY2M9
+        Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjNdIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsyNF0iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQ
+        QVJBTSBpZD0iaV9tZXRhWzI1XSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjZdIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9
+        Im1fbWFpbiIgdmFsdWU9IjEuMCIgY2M9IjIyIi8+PFBBUkFNIGlkPSJtX2FsdDEiIHZhbHVlPSIwLjAiIGNjPSIyMyIvPjxQQVJBTSBpZD0ibV9hbHQyIiB2YWx1ZT0i
+        MC4wIiBjYz0iMjQiLz48UEFSQU0gaWQ9Im1fYWx0MyIgdmFsdWU9IjAuMCIgY2M9IjI1Ii8+PC9QQVJBTUVURVJTPjwvTGFicz4AAAAAAAAAAABKVUNFUHJpdmF0ZURh
+        dGEAAQFCeXBhc3MAAQEDAB0AAAAAAAAASlVDRVByaXZhdGVEYXRhAAAAAAAAAAA=
+        AEZhY3RvcnkgUHJlc2V0cwAQAAAA
+      >
+      PRESETNAME "Factory Presets"
+      FLOATPOS 0 0 0 0
+      FXID {E71D520B-640E-4993-B210-D8BE310F4A8E}
+      WAK 0 0
+      BYPASS 0 0 0
+      <VST "VST: ReaEQ (Cockos)" reaeq.dll 0 "" 1919247729<56535472656571726561657100000000> ""
+        cWVlcu5e7f4CAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAA6gAAAAEAAAAAABAA
+        IQAAAAYAAAAAAAAAAQAAAEChqizxo0NAgO21oPfGsD4AAAAAAAAAQAEIAAAAAQAAAIN+sdjK505AaGc/iQEs+z8AAAAAAAAAQAEIAAAAAQAAABp1XK1tamhAZjCSsjvH
+        1z8AAAAAAAAAQAEBAAAAAQAAAMiIGOAIXJhAgO21oPfGsD4AAAAAAAAAQAEIAAAAAQAAACQ06SEyspVAZiR1f5Z62T8AAAAAAAAAQAEIAAAAAQAAAEBRP+QSlIVAZ7+m
+        jm2q9z8AAAAAAAAAQAEBAAAAAQAAAAAAAAAAAPA/AAAAAA8CAABhAQAA
+        AAAQAAAA
+      >
+      FLOATPOS 0 0 0 0
+      FXID {CE2414B3-8A4D-4841-8DF9-3A3BC1AB27A2}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 60
+      SNAPOFFS 0
+      LENGTH 18
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {42D2FE56-6B45-42BF-A770-5A3145B17076}
+      IID 22
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 36 48
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {C2772E8A-82F0-4F64-A630-924191220371}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {070E9A7D-4DE7-4DEF-B532-319953BF3E0E}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 50 90 2d 50
+        E 227 90 2d 00
+        E 13 90 2f 50
+        E 227 90 2f 00
+        E 13 90 37 50
+        E 455 90 37 00
+        E 25 90 2f 50
+        E 227 90 2f 00
+        E 13 90 30 50
+        E 227 90 30 00
+        E 13 90 37 50
+        E 455 90 37 00
+        E 25 90 30 50
+        E 227 90 30 00
+        E 13 90 32 50
+        E 227 90 32 00
+        E 13 90 39 50
+        E 455 90 39 00
+        E 25 90 32 50
+        E 227 90 32 00
+        E 13 90 34 50
+        E 227 90 34 00
+        E 13 90 39 50
+        E 455 90 39 00
+        E 25 90 34 50
+        E 227 90 34 00
+        E 13 90 35 50
+        E 227 90 35 00
+        E 13 90 39 50
+        E 455 90 39 00
+        E 25 90 35 50
+        E 227 90 35 00
+        E 13 90 37 50
+        E 227 90 37 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 37 50
+        E 227 90 37 00
+        E 13 90 39 50
+        E 227 90 39 00
+        E 13 90 3e 50
+        E 467 90 3e 00
+        E 493 90 3c 50
+        E 467 90 3c 00
+        E 0 90 3c 43
+        E 360 80 3c 00
+        E 133 90 39 50
+        E 467 90 39 00
+        E 493 90 37 50
+        E 227 90 37 00
+        E 0 90 39 47
+        E 240 80 39 00
+        E 0 90 3c 47
+        E 240 80 3c 00
+        E 0 90 3e 47
+        E 240 80 3e 00
+        E 13 90 35 50
+        E 227 90 35 00
+        E 13 90 34 50
+        E 227 90 34 00
+        E 13 90 32 50
+        E 227 90 32 00
+        E 13 90 30 50
+        E 683 90 30 00
+        E 24 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {975D3955-5EF0-4CCB-AA9A-2B82803C9668}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 29
+        VELLANE -1 100 0
+        CFGEDITVIEW 25655.583789 0.160985 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 138
+      SNAPOFFS 0
+      LENGTH 18
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {8321C07A-CBD6-4FD3-A607-DC6401EB8F5B}
+      IID 22
+      NAME Outcast_Melody.mid
+      VOLPAN 1 0 1 -1
+      SOFFS 36 48
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {EE419DA9-FAF0-4AA3-A1D4-8AE4C3ECCB47}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {C22DCC96-9867-4C99-B550-D8C8DE0C4B27}
+        E 0 c0 00 00
+        E 0 b0 07 64
+        E 0 b0 0a 40
+        E 0 b0 5b 00
+        E 0 b0 5d 00
+        E 0 90 43 50
+        E 0 b0 79 00
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 455 90 3b 00
+        E 25 90 39 50
+        E 455 90 39 00
+        E 25 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 43 50
+        E 683 90 43 00
+        E 37 90 43 50
+        E 227 90 43 00
+        E 13 90 3c 50
+        E 227 90 3c 00
+        E 13 90 3b 50
+        E 227 90 3b 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 39 50
+        E 683 90 39 00
+        E 50 90 2d 50
+        E 227 90 2d 00
+        E 13 90 2f 50
+        E 227 90 2f 00
+        E 13 90 37 50
+        E 455 90 37 00
+        E 25 90 2f 50
+        E 227 90 2f 00
+        E 13 90 30 50
+        E 227 90 30 00
+        E 13 90 37 50
+        E 455 90 37 00
+        E 25 90 30 50
+        E 227 90 30 00
+        E 13 90 32 50
+        E 227 90 32 00
+        E 13 90 39 50
+        E 455 90 39 00
+        E 25 90 32 50
+        E 227 90 32 00
+        E 13 90 34 50
+        E 227 90 34 00
+        E 13 90 39 50
+        E 455 90 39 00
+        E 25 90 34 50
+        E 227 90 34 00
+        E 13 90 35 50
+        E 227 90 35 00
+        E 13 90 39 50
+        E 455 90 39 00
+        E 25 90 35 50
+        E 227 90 35 00
+        E 13 90 37 50
+        E 227 90 37 00
+        E 13 90 3c 50
+        E 455 90 3c 00
+        E 25 90 37 50
+        E 227 90 37 00
+        E 13 90 39 50
+        E 227 90 39 00
+        E 13 90 3e 50
+        E 467 90 3e 00
+        E 0 90 3e 47
+        E 360 80 3e 00
+        E 133 90 3c 50
+        E 467 90 3c 00
+        E 0 90 3c 43
+        E 360 80 3c 00
+        E 133 90 39 50
+        E 467 90 39 00
+        E 0 90 39 47
+        E 360 80 39 00
+        E 133 90 37 50
+        E 227 90 37 00
+        E 0 90 39 47
+        E 240 80 39 00
+        E 0 90 3c 47
+        E 240 80 3c 00
+        E 0 90 3e 47
+        E 240 80 3e 00
+        E 13 90 35 50
+        E 227 90 35 00
+        E 13 90 34 50
+        E 227 90 34 00
+        E 13 90 32 50
+        E 227 90 32 00
+        E 13 90 30 50
+        E 683 90 30 00
+        E 24 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {975D3955-5EF0-4CCB-AA9A-2B82803C9668}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 29
+        VELLANE -1 100 0
+        CFGEDITVIEW 27659.562119 0.160985 53 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+  >
+  <TRACK {6344184F-31E1-4926-B8A2-254183D4223A}
+    NAME Bass
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 0.54793648037502 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FREEMODE 0
+    SEL 0
+    REC 0 0 1 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {6344184F-31E1-4926-B8A2-254183D4223A}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 117 97 1285 763
+      SHOW 0
+      LASTSEL 0
+      DOCKED 0
+      BYPASS 0 0 0
+      <VST "VST3i: LABS (Spitfire Audio)" "LABS (64 Bit).vst3" 0 "" 359949351{56535453664C626C6162730000000000} ""
+        J2R0Fe5e7f4AAAAAAgAAAAEAAAAAAAAAAgAAAAAAAACcGwAAAQAAAP//EAA=
+        jBsAAAEAAABWc3RXAAAACAAAAAEAAAAAQ2NuSwAAG3RGQkNoAAAAAlNmTGIAAQUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa3FZDMiGXGgAA
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPExhYnM+PE1FVEEgZmFtaWx5PSJCYXNzIEd1aXRhciIgbmFtZT0iV2FybSBCYXNzIC0gREkiIHBy
+        b2R1Y3RNb2RlPSIwIiB2ZXJzaW9uPSIxLjAuNCIgdGFncz0iR3VpdGFyIiBtb2RpZmllZD0iMSIvPjxVSSB1aXNpemU9IjEuMCIgdWljb2xsYXBzZWQ9IjEiLz48QVJU
+        SUNTPjxTRVRUSU5HIGlkPSJwX3N5bmNUb1RlbXBvIiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlkPSJwX2R5bmFtaWNzVmVsb2NpdHlNb2RlIiB2YWx1ZT0iQ09NUFJFU1NF
+        RCBWRUxPQ0lUWSBISUdIIi8+PFNFVFRJTkcgaWQ9InBfc2hvcnRSVE1vZGUiIHZhbHVlPSItMi4wIi8+PFNFVFRJTkcgaWQ9InBfdmVsb2NpdHlDdXJ2ZSIgdmFsdWU9
+        IkxJTkVBUiBWRUxPQ0lUWSIvPjxTRVRUSU5HIGlkPSJwX3F1YW50aXNlTW9kZSIgdmFsdWU9IiIvPjxTRVRUSU5HIGlkPSJwX21peGVyQWR2YW5jZWQiIHZhbHVlPSIx
+        Ii8+PFNFVFRJTkcgaWQ9InBfbWl4ZXJHbG9iYWwiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InBfbWl4ZXJMb2NrIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJwX21p
+        eGVyUGFnZSIgdmFsdWU9IiIvPjxTRVRUSU5HIGlkPSJwX2FydGljTG9jayIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icF9hcnRpY1BhZ2UiIHZhbHVlPSIiLz48U0VU
+        VElORyBpZD0icF9sYXN0U2VsZWN0ZWRQcmltYXJ5QXJ0aWMiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InBfbWlkaUNoYW5uZWwiIHZhbHVlPSIwIi8+PFNFVFRJTkcg
+        aWQ9InBfc2VsZWN0ZWRUYWdzIiB2YWx1ZT0iUGlhbm8sV2FycCxHdWl0YXIiLz48U0VUVElORyBpZD0icF9maWx0ZXJQb3MiIHZhbHVlPSJbXSIvPjxTRVRUSU5HIGlk
+        PSJwX3ByZXNldFBvcyIgdmFsdWU9IlswLCAwXSIvPjxTRVRUSU5HIGlkPSJwX2V2b0NvbnRhaW5lclBvcyIgdmFsdWU9IltdIi8+PFNFVFRJTkcgaWQ9InBfb2N0YXZl
+        IiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJwX29kZXN0SW5kaWNlcyIgdmFsdWU9IjAsMSwyLDMsNCw1LDYsNyw4LDksMTAsMTEsMTIsMTMsMTQsMTUsMTYsMTcsMTgs
+        MTksMjAsMjEsMjIsMjMsMjQsMjUsMjYsMjcsMjgsMjksMzAsMzEsMzIsMzMsMzQsMzUsMzYsMzcsMzgsMzksNDAsNDEsNDIsNDMsNDQsNDUsNDYsNDcsNDgsNDksNTAs
+        NTEsNTIsNTMsNTQsNTUsNTYsNTcsNTgsNTksNjAsNjEsNjIsNjMsNjQsNjUsNjYsNjcsNjgsNjksNzAsNzEsNzIsNzMsNzQsNzUsNzYsNzcsNzgsNzksODAsODEsODIs
+        ODMsODQsODUsODYsODcsODgsODksOTAsOTEsOTIsOTMsOTQsOTUsOTYsOTcsOTgsOTksMTAwLDEwMSwxMDIsMTAzLDEwNCwxMDUsMTA2LDEwNywxMDgsMTA5LDExMCwx
+        MTEsMTEyLDExMywxMTQsMTE1LDExNiwxMTcsMTE4LDExOSwxMjAsMTIxLDEyMiwxMjMsMTI0LDEyNSwxMjYsMTI3LDEyOCwxMjksMTMwLDEzMSwxMzIsMTMzLDEzNCwx
+        MzUsMTM2LDEzNywxMzgsMTM5LDE0MCwxNDEsMTQyLDE0MywxNDQsMTQ1LDE0NiwxNDcsMTQ4LDE0OSwxNTAsMTUxLDE1MiwxNTMsMTU0LDE1NSwxNTYsMTU3LDE1OCwx
+        NTksMTYwLDE2MSwxNjIsMTYzLDE2NCwxNjUsMTY2LDE2NywxNjgsMTY5LDE3MCwxNzEsMTcyLDE3MywxNzQsMTc1LDE3NiwxNzcsMTc4LDE3OSwxODAsMTgxLDE4Miwx
+        ODMsMTg0LDE4NSwxODYsMTg3LDE4OCwxODksMTkwLDE5MSwxOTIsMTkzLDE5NCwxOTUsMTk2LDE5NywxOTgsMTk5LDIwMCwyMDEsMjAyLDIwMywyMDQsMjA1LDIwNiwy
+        MDcsMjA4LDIwOSwyMTAsMjExLDIxMiwyMTMsMjE0LDIxNSwyMTYsMjE3LDIxOCwyMTksMjIwLDIyMSwyMjIsMjIzLDIyNCwyMjUsMjI2LDIyNywyMjgsMjI5LDIzMCwy
+        MzEsMjMyLDIzMywyMzQsMjM1LDIzNiwyMzcsMjM4LDIzOSwyNDAsMjQxLDI0MiwyNDMsMjQ0LDI0NSwyNDYsMjQ3LDI0OCwyNDksMjUwLDI1MSwyNTIsMjUzLDI1NCwy
+        NTUsMjU2LDI1NywyNTgsMjU5LDI2MCwyNjEsMjYyLDI2MywyNjQiLz48U0VUVElORyBpZD0icF90aW1lU3RyZXRjaCIgdmFsdWU9IkRlZmF1bHQiLz48U0VUVElORyBp
+        ZD0icF92b2ljZUNob2tlIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9InBfbG9vcEVuZCIgdmFsdWU9IjAuMCIvPjxBUlRJQz48U0VUVElORyBpZD0iYV9uYW1lIiB2
+        YWx1ZT0iV2FybSBCYXNzIC0gREkiLz48U0VUVElORyBpZD0iYV92ZXJzaW9uIiB2YWx1ZT0iMTY3NzgyNDAiLz48U0VUVElORyBpZD0iYV90ZW1wbGF0ZUlkeCIgdmFs
+        dWU9IjAiLz48U0VUVElORyBpZD0iYV9vZGVzdCIgdmFsdWU9IlJFVkVSQiIvPjxTRVRUSU5HIGlkPSJhX2FjdGl2ZSIgdmFsdWU9IjIiLz48U0VUVElORyBpZD0iYV9i
+        YWNrQWN0aXZlIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJhX3R3b0hhbmRlZCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0iYV9hdXRvTWFrZVVwIiB2YWx1ZT0iMCIv
+        PjxTRVRUSU5HIGlkPSJ0X3R5cGUiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InRfZW5hYmxlZCIgdmFsdWU9IjEiLz48U0VUVElORyBpZD0idF9sYXRjaCIgdmFsdWU9
+        IjAiLz48U0VUVElORyBpZD0idF9rZXlzd2l0Y2giIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InRfbWlkaUNoYW5uZWwiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InRf
+        dmVsRnJvbSIgdmFsdWU9IjEiLz48U0VUVElORyBpZD0idF92ZWxUbyIgdmFsdWU9IjEyNyIvPjxTRVRUSU5HIGlkPSJ0X2NjIiB2YWx1ZT0iMzIiLz48U0VUVElORyBp
+        ZD0idF9jY1ZhbHVlRnJvbSIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0idF9jY1ZhbHVlVG8iIHZhbHVlPSIxMjciLz48U0VUVElORyBpZD0idF9zcGVlZEZyb20iIHZh
+        bHVlPSIwLjAiLz48U0VUVElORyBpZD0idF9zcGVlZFRvIiB2YWx1ZT0iMC41Ii8+PFNFVFRJTkcgaWQ9InRfcHJvZ3JhbUNoYW5nZSIgdmFsdWU9IjAiLz48U0VUVElO
+        RyBpZD0idF90ZW1wb0Zyb20iIHZhbHVlPSIwLjAiLz48U0VUVElORyBpZD0idF90ZW1wb1RvIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9InJyX3RpbWVvdXQiIHZh
+        bHVlPSItMS4wIi8+PFNFVFRJTkcgaWQ9InJyX25laWdoYm91ck1pbiIgdmFsdWU9IjI0Ii8+PFNFVFRJTkcgaWQ9InJyX25laWdoYm91ck1heCIgdmFsdWU9IjY0Ii8+
+        PFNFVFRJTkcgaWQ9InJyX3VzZU5laWdoYm91ciIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icnJfY291bnQiIHZhbHVlPSIzIi8+PFNFVFRJTkcgaWQ9InJyX2luYyIg
+        dmFsdWU9IjEiLz48U0VUVElORyBpZD0icnJfbGF5ZXJzIiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlkPSJycl9nYWluIiB2YWx1ZT0iMS4wIi8+PFNFVFRJTkcgaWQ9InJy
+        X3N0YXJ0IiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJycl9zeW5jIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJycl9wbGF5IiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlk
+        PSJycl9rZXlzd2l0Y2hGcm9tIiB2YWx1ZT0iLTEiLz48U0VUVElORyBpZD0icnJfa2V5c3dpdGNoVG8iIHZhbHVlPSItMSIvPjxTRVRUSU5HIGlkPSJycl9rZXlzd2l0
+        Y2hUbyIgdmFsdWU9Ii0xIi8+PFNFVFRJTkcgaWQ9InJyX21vZGUiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJyX3BhdHRlcm5PZGRzIiB2YWx1ZT0iMCIvPjxTRVRU
+        SU5HIGlkPSJycl9wYXR0ZXJuRXZlbnMiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJyX3BhdHRlcm5PZGRTdGFydCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icl9t
+        aWRpQ2hhbm5lbCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icl90cmFuc3Bvc2UiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJfbGF5ZXJUcmFuc3Bvc2UiIHZhbHVl
+        PSIwIi8+PFNFVFRJTkcgaWQ9ImlfZXhwcmVzc2lvbiIgdmFsdWU9IjEuMCIvPjxTRVRUSU5HIGlkPSJpX2R5bmFtaWNzIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9
+        ImlfcmV2ZXJiIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9ImlfcmVsZWFzZSIgdmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJpX3RpZ2h0IiB2YWx1ZT0iMC41MDM5
+        MzcwMDU5OTY3MDQxIi8+PFNFVFRJTkcgaWQ9ImlfdmlicmF0byIgdmFsdWU9IjEuMCIvPjxTRVRUSU5HIGlkPSJpX3ZhcmlhdGlvbiIgdmFsdWU9IjAuMCIvPjxTRVRU
+        SU5HIGlkPSJzX3BhbiIgdmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJzX3dpZHRoIiB2YWx1ZT0iMC41Ii8+PFNFVFRJTkcgaWQ9InNfZmxpcCIgdmFsdWU9IjAuMCIv
+        PjxNSVg+PFNFVFRJTkcgaWQ9Im1fbWFpbiIgdmFsdWU9IjEuMCIgbWljSWQ9IjEiLz48U0VUVElORyBpZD0iZV9tYWluIiB2YWx1ZT0iMSIgbWljSWQ9IjEiLz48U0VU
+        VElORyBpZD0iYl9tYWluIiB2YWx1ZT0iMCIgbWljSWQ9IjEiLz48U0VUVElORyBpZD0ibV9hbHQxIiB2YWx1ZT0iMC4wIiBtaWNJZD0iMiIvPjxTRVRUSU5HIGlkPSJl
+        X2FsdDEiIHZhbHVlPSIwIiBtaWNJZD0iMiIvPjxTRVRUSU5HIGlkPSJiX2FsdDEiIHZhbHVlPSIwIiBtaWNJZD0iMiIvPjxTRVRUSU5HIGlkPSJtX2FsdDIiIHZhbHVl
+        PSIwLjAiIG1pY0lkPSIzIi8+PFNFVFRJTkcgaWQ9ImVfYWx0MiIgdmFsdWU9IjAiIG1pY0lkPSIzIi8+PFNFVFRJTkcgaWQ9ImJfYWx0MiIgdmFsdWU9IjAiIG1pY0lk
+        PSIzIi8+PFNFVFRJTkcgaWQ9Im1fYWx0MyIgdmFsdWU9IjAuMCIgbWljSWQ9IjQiLz48U0VUVElORyBpZD0iZV9hbHQzIiB2YWx1ZT0iMCIgbWljSWQ9IjQiLz48U0VU
+        VElORyBpZD0iYl9hbHQzIiB2YWx1ZT0iMCIgbWljSWQ9IjQiLz48L01JWD48L0FSVElDPjwvQVJUSUNTPjxQQVJBTUVURVJTPjxQQVJBTSBpZD0iZ19nYWluIiB2YWx1
+        ZT0iMS45NTI5NDcyNTg5NDkyOCIgY2M9IjciLz48UEFSQU0gaWQ9ImdfcGFuIiB2YWx1ZT0iMC41MDM5MzcwMDU5OTY3MDQxIiBjYz0iMTAiLz48UEFSQU0gaWQ9Imdf
+        dHVuZSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3JldmVyYiIgdmFsdWU9IjAuMCIgY2M9IjE5Ii8+PFBBUkFNIGlkPSJpX3RpZ2h0IiB2YWx1ZT0i
+        MC41MDM5MzcwMDU5OTY3MDQxIiBjYz0iMTgiLz48UEFSQU0gaWQ9Imlfc3BlZWQiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9yZWxlYXNlIiB2YWx1
+        ZT0iMC41IiBjYz0iMTciLz48UEFSQU0gaWQ9ImlfZXhwcmVzc2lvbiIgdmFsdWU9IjEuMCIgY2M9IjExIi8+PFBBUkFNIGlkPSJpX2R5bmFtaWNzIiB2YWx1ZT0iMC4w
+        IiBjYz0iMSIvPjxQQVJBTSBpZD0iaV92YXJpYXRpb24iIHZhbHVlPSIwLjAiIGNjPSIyMCIvPjxQQVJBTSBpZD0iaV92aWJyYXRvIiB2YWx1ZT0iMS4wIiBjYz0iMjEi
+        Lz48UEFSQU0gaWQ9ImlfZW52YXR0IiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfZW52ZGVjIiB2YWx1ZT0iMy4zOTk5OTU4MDM4MzMwMDgiIGNjPSIt
+        MSIvPjxQQVJBTSBpZD0iaV9lbnZzdXMiIHZhbHVlPSIxLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9lbnZyZWwiIHZhbHVlPSIwLjI1IiBjYz0iLTEiLz48UEFSQU0g
+        aWQ9ImlfbWl4c2ltcGxlIiB2YWx1ZT0iMC41IiBjYz0iLTEiLz48UEFSQU0gaWQ9InNfZmxpcCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJzX3dpZHRo
+        IiB2YWx1ZT0iMC41IiBjYz0iLTEiLz48UEFSQU0gaWQ9InNfcGFuIiB2YWx1ZT0iMC41IiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfZGVsYXkiIHZhbHVlPSIwLjAiIGNj
+        PSItMSIvPjxQQVJBTSBpZD0iaV9hbW91bnQiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9kaXN0b3J0IiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFS
+        QU0gaWQ9ImlfbHVzaFZlcmIiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9wZWR2b2wiIHZhbHVlPSIwLjUiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9w
+        ZWREeW4iIHZhbHVlPSIwLjUiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9sZW5ndGgiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV90aW1lTWFjaGluZSIg
+        dmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3N0cmV0Y2giIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9zb2Z0UGVkYWwiIHZhbHVlPSIw
+        LjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9yZXNwb25zZSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21hbGxldCIgdmFsdWU9IjAuMCIgY2M9Ii0x
+        Ii8+PFBBUkFNIGlkPSJpX3N0b3BlTXV0ZSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2RpcmVjdGlvbiIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBB
+        UkFNIGlkPSJpX2xwRmlsdGVyIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfcG9ydGFtZW50byIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlk
+        PSJpX21ldGFbMThdIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsxOV0iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRh
+        WzIwXSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjFdIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsyMl0iIHZh
+        bHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRhWzIzXSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjRdIiB2YWx1ZT0iMC4w
+        IiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsyNV0iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRhWzI2XSIgdmFsdWU9IjAuMCIgY2M9Ii0x
+        Ii8+PFBBUkFNIGlkPSJtX21haW4iIHZhbHVlPSIxLjAiIGNjPSIyMiIvPjxQQVJBTSBpZD0ibV9hbHQxIiB2YWx1ZT0iMC4wIiBjYz0iMjMiLz48UEFSQU0gaWQ9Im1f
+        YWx0MiIgdmFsdWU9IjAuMCIgY2M9IjI0Ii8+PFBBUkFNIGlkPSJtX2FsdDMiIHZhbHVlPSIwLjAiIGNjPSIyNSIvPjwvUEFSQU1FVEVSUz48L0xhYnM+AAAAAAAAAAAA
+        SlVDRVByaXZhdGVEYXRhAAEBQnlwYXNzAAEBAwAdAAAAAAAAAEpVQ0VQcml2YXRlRGF0YQAAAAAAAAAA
+        AEZhY3RvcnkgUHJlc2V0cwAQAAAA
+      >
+      PRESETNAME "Factory Presets"
+      FLOATPOS 0 0 0 0
+      FXID {4C585C73-C95E-4F1B-B6FC-F4E002790C02}
+      WAK 0 0
+      BYPASS 0 0 0
+      <VST "VST: ReaEQ (Cockos)" reaeq.dll 0 "" 1919247729<56535472656571726561657100000000> ""
+        cWVlcu5e7f4CAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAA6gAAAAEAAAAAABAA
+        IQAAAAYAAAAAAAAAAQAAAEChqizxo0NAgO21oPfGsD4AAAAAAAAAQAEIAAAAAQAAAIF+sdjK505Ab2c/iQEs+z8AAAAAAAAAQAEIAAAAAQAAABN1XK1tamhAbDCSsjvH
+        1z8AAAAAAAAAQAEBAAAAAQAAAMKIGOAIXJhAgO21oPfGsD4AAAAAAAAAQAEIAAAAAQAAACk06SEyspVAbSR1f5Z62T8AAAAAAAAAQAEIAAAAAQAAAEBRP+QSlIVAbL+m
+        jm2q9z8AAAAAAAAAQAEBAAAAAQAAAAAAAAAAAPA/AAAAAA8CAABhAQAA
+        AAAQAAAA
+      >
+      FLOATPOS 0 0 0 0
+      FXID {3C88101F-977E-4980-B172-28787ACEB0BC}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 0
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {24B8DED7-AF33-4106-9EA9-2A548998191A}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {D0E9DDCA-EB5F-401F-A904-52476DCE0169}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {806B9980-9710-4F11-8600-B214A078AD10}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        e 0 90 24 50
+        e 1823 90 24 00
+        e 97 90 21 50
+        e 1823 90 21 00
+        e 97 90 1f 50
+        e 1823 90 1f 00
+        e 97 90 1d 50
+        e 1823 90 1d 00
+        e 97 90 24 50
+        e 683 90 24 00
+        e 157 90 2b 50
+        e 113 90 2b 00
+        e 7 90 28 50
+        e 911 90 28 00
+        e 49 90 21 50
+        e 1367 90 21 00
+        e 73 90 32 50
+        e 455 90 32 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW -294.62543 0.136478 75 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 12
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {7CD1C5F6-3791-43E8-B121-69832944AF8C}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {D9A09AF8-8CEA-498D-9F55-EBF6F5FA561E}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {E6A3E662-39CF-4CC8-ACEB-BC7324FC6FBD}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        E 0 90 24 50
+        E 1320 90 24 00
+        E 120 90 28 60
+        E 480 80 28 00
+        E 0 90 21 50
+        E 1823 90 21 00
+        E 97 90 1f 50
+        E 1320 90 1f 00
+        E 120 90 24 60
+        E 480 80 24 00
+        E 0 90 1d 50
+        E 1320 90 1d 00
+        E 120 90 21 60
+        E 360 80 21 00
+        E 120 90 24 50
+        E 683 90 24 00
+        E 157 90 2b 50
+        E 113 90 2b 00
+        E 7 90 28 50
+        E 911 90 28 00
+        E 49 90 21 50
+        E 1367 90 21 00
+        E 73 90 32 50
+        E 455 90 32 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW -407.04 0.217546 62 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 2079 104 3701 1051 0 0 0 0 0 0 0 1 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 12
+      SNAPOFFS 0
+      LENGTH 0.00001
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {657961BB-3417-42FC-8E1D-1E523D45CFE6}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {0E4BF3D0-30CC-4F30-B3CC-D4734E9583DC}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {7D0F4151-5845-49AE-B653-872FCE8697DD}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        e 0 90 24 50
+        e 1823 90 24 00
+        e 97 90 21 50
+        e 1823 90 21 00
+        e 97 90 1f 50
+        e 1823 90 1f 00
+        e 97 90 1d 50
+        e 1823 90 1d 00
+        e 97 90 24 50
+        e 683 90 24 00
+        e 157 90 2b 50
+        e 113 90 2b 00
+        e 7 90 28 50
+        e 911 90 28 00
+        e 49 90 21 50
+        e 1367 90 21 00
+        e 73 90 32 50
+        e 455 90 32 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW -294.62543 0.136478 75 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 24
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {EC122E99-FD33-4AED-BA1D-5D331C5F8154}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {7D3163BE-AC84-47FC-84CE-6F65387CE2E1}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {AD84411E-4FF5-4333-929A-4A06DA73CD66}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        E 0 90 24 50
+        E 720 90 24 00
+        E 0 90 24 46
+        E 240 80 24 00
+        E 0 90 2b 45
+        E 240 80 2b 00
+        E 0 90 2d 3b
+        E 240 80 2d 00
+        E 0 90 28 60
+        E 480 80 28 00
+        E 0 90 21 50
+        E 720 90 21 00
+        E 0 90 21 45
+        E 240 80 21 00
+        E 0 90 24 23
+        E 480 80 24 00
+        e 0 90 28 41
+        e 480 80 28 00
+        E 0 90 1f 50
+        E 1320 90 1f 00
+        E 120 90 24 60
+        E 480 80 24 00
+        E 0 90 1d 50
+        E 360 90 1d 00
+        E 120 90 1f 50
+        E 360 80 1f 00
+        E 120 90 1d 50
+        E 240 80 1d 00
+        E 0 90 1f 21
+        E 240 80 1f 00
+        E 0 90 21 39
+        E 240 80 21 00
+        E 0 90 24 47
+        E 120 80 24 00
+        E 120 90 24 50
+        E 683 90 24 00
+        E 157 90 2b 50
+        E 113 90 2b 00
+        E 7 90 28 50
+        E 911 90 28 00
+        E 49 90 21 50
+        E 1367 90 21 00
+        E 73 90 32 50
+        E 455 90 32 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW 0 0.217546 62 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 2079 104 3701 1051 0 0 0 0 0 0 0 1 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 36
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {A9DAC8FA-9E56-403A-843B-4836A5A3F83C}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {95794E82-F95E-4ADE-847D-4D8C6C1462A7}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {FE8A5C3A-CEC3-4341-9959-354E557BEFD6}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        E 0 90 24 50
+        E 480 90 24 00
+        E 0 90 24 53
+        E 360 80 24 00
+        E 0 90 24 3a
+        E 120 80 24 00
+        E 0 90 24 52
+        E 360 80 24 00
+        E 0 90 24 26
+        E 120 80 24 00
+        E 0 90 28 60
+        E 360 80 28 00
+        E 0 90 28 27
+        E 120 80 28 00
+        E 0 90 21 50
+        E 360 90 21 00
+        E 0 90 21 22
+        E 120 80 21 00
+        E 0 90 21 4a
+        E 240 80 21 00
+        E 0 90 21 20
+        E 120 80 21 00
+        E 0 90 21 2f
+        E 120 80 21 00
+        E 0 90 21 4a
+        E 360 80 21 00
+        E 0 90 23 41
+        E 120 80 23 00
+        E 0 90 28 4a
+        E 360 80 28 00
+        E 120 90 1f 50
+        E 360 90 1f 00
+        E 0 90 1f 4a
+        E 120 80 1f 00
+        E 120 90 1f 4a
+        E 120 80 1f 00
+        E 120 90 1f 4a
+        E 120 80 1f 00
+        E 240 90 1f 4a
+        E 240 80 1f 00
+        E 0 90 24 50
+        E 240 80 24 00
+        e 0 90 28 4a
+        e 240 80 28 00
+        E 0 90 1d 50
+        E 1320 90 1d 00
+        E 120 90 21 60
+        E 360 80 21 00
+        E 120 90 24 50
+        E 683 90 24 00
+        E 157 90 2b 50
+        E 113 90 2b 00
+        E 7 90 28 50
+        E 911 90 28 00
+        E 49 90 21 50
+        E 1367 90 21 00
+        E 73 90 32 50
+        E 455 90 32 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW 1014.030028 0.217546 62 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 2079 104 3701 1051 0 0 0 0 0 0 0 1 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 54
+      SNAPOFFS 0
+      LENGTH 6
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {B970A56E-2E27-46C5-8605-B47B6037CE2C}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {72BF1BF9-2D65-4115-8309-82029DB1CBE1}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {20F0A76E-3E96-4292-BEF3-FEC126569641}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        E 0 90 24 50
+        E 0 90 34 41
+        E 1320 90 24 00
+        E 600 80 34 00
+        E 0 90 21 50
+        e 0 90 30 50
+        E 1823 90 21 00
+        E 97 90 1f 50
+        E 1320 90 1f 00
+        E 120 90 24 60
+        e 480 80 30 00
+        E 0 80 24 00
+        E 0 90 1d 50
+        E 1320 90 1d 00
+        E 120 90 21 60
+        E 360 80 21 00
+        E 120 90 24 50
+        E 683 90 24 00
+        E 157 90 2b 50
+        E 113 90 2b 00
+        E 7 90 28 50
+        E 911 90 28 00
+        E 49 90 21 50
+        E 1367 90 21 00
+        E 73 90 32 50
+        E 455 90 32 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW 11040 0.217546 62 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 2079 104 3701 1051 0 0 0 0 0 0 0 1 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 78
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {7CEAEDF3-CDE0-4DC5-85B4-0A72DDD82639}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {607C7DD5-743E-4909-A148-972F5EECA2FE}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {986F8619-7262-4CF2-873B-905C19A87978}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        e 0 90 24 50
+        e 1823 90 24 00
+        e 97 90 21 50
+        e 1823 90 21 00
+        e 97 90 1f 50
+        e 1823 90 1f 00
+        e 97 90 1d 50
+        e 1823 90 1d 00
+        e 97 90 24 50
+        e 683 90 24 00
+        e 157 90 2b 50
+        e 113 90 2b 00
+        e 7 90 28 50
+        e 911 90 28 00
+        e 49 90 21 50
+        e 1367 90 21 00
+        e 73 90 32 50
+        e 455 90 32 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW -294.62543 0.136478 75 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 90
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {08563422-51B3-4DEE-8828-9DB716FC748A}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {2F667D39-99C7-4DEA-84DF-4CEABB97BB19}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {AE692DC7-2416-4797-B318-FDD5BA6B3563}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        E 0 90 24 50
+        E 1320 90 24 00
+        E 120 90 28 60
+        E 480 80 28 00
+        E 0 90 21 50
+        E 1823 90 21 00
+        E 97 90 1f 50
+        E 1320 90 1f 00
+        E 120 90 24 60
+        E 480 80 24 00
+        E 0 90 1d 50
+        E 1320 90 1d 00
+        E 120 90 21 60
+        E 360 80 21 00
+        E 120 90 24 50
+        E 683 90 24 00
+        E 157 90 2b 50
+        E 113 90 2b 00
+        E 7 90 28 50
+        E 911 90 28 00
+        E 49 90 21 50
+        E 1367 90 21 00
+        E 73 90 32 50
+        E 455 90 32 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW -407.04 0.217546 62 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 2079 104 3701 1051 0 0 0 0 0 0 0 1 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 90
+      SNAPOFFS 0
+      LENGTH 0.00001
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {FE962206-7AE6-4FB4-914D-704247DDBCAD}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {CFBBB8D8-0A8A-4F29-8544-7DBB6FD78F63}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {C32EE2E0-EA9C-4898-A796-49BC1743D153}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        e 0 90 24 50
+        e 1823 90 24 00
+        e 97 90 21 50
+        e 1823 90 21 00
+        e 97 90 1f 50
+        e 1823 90 1f 00
+        e 97 90 1d 50
+        e 1823 90 1d 00
+        e 97 90 24 50
+        e 683 90 24 00
+        e 157 90 2b 50
+        e 113 90 2b 00
+        e 7 90 28 50
+        e 911 90 28 00
+        e 49 90 21 50
+        e 1367 90 21 00
+        e 73 90 32 50
+        e 455 90 32 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1f 50
+        e 455 90 1f 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        e 25 90 1d 50
+        e 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW -294.62543 0.136478 75 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 102
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {263D10DA-4BE9-4E1F-A26A-CD889C52A2FA}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {BD9DC741-8705-4EA0-9342-757C3EF46B02}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {4DE78BE9-0FC1-4F3A-B077-A098BB7C0874}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        E 0 90 24 50
+        E 720 90 24 00
+        E 0 90 24 46
+        E 240 80 24 00
+        E 0 90 2b 45
+        E 240 80 2b 00
+        E 0 90 2d 3b
+        E 240 80 2d 00
+        E 0 90 28 60
+        E 480 80 28 00
+        E 0 90 21 50
+        E 720 90 21 00
+        E 0 90 21 45
+        E 240 80 21 00
+        E 0 90 24 23
+        E 480 80 24 00
+        e 0 90 28 41
+        e 480 80 28 00
+        E 0 90 1f 50
+        E 1320 90 1f 00
+        E 120 90 24 60
+        E 480 80 24 00
+        E 0 90 1d 50
+        E 360 90 1d 00
+        E 120 90 1f 50
+        E 360 80 1f 00
+        E 120 90 1d 50
+        E 240 80 1d 00
+        E 0 90 1f 21
+        E 240 80 1f 00
+        E 0 90 21 39
+        E 240 80 21 00
+        E 0 90 24 47
+        E 120 80 24 00
+        E 120 90 24 50
+        E 683 90 24 00
+        E 157 90 2b 50
+        E 113 90 2b 00
+        E 7 90 28 50
+        E 911 90 28 00
+        E 49 90 21 50
+        E 1367 90 21 00
+        E 73 90 32 50
+        E 455 90 32 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW 0 0.217546 62 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 2079 104 3701 1051 0 0 0 0 0 0 0 1 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 114
+      SNAPOFFS 0
+      LENGTH 12
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {6EBC352D-E6F3-4FBF-BC26-C817CF2B17D5}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {93484C95-5E39-4A08-93F4-88333961E9C5}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {F355B4F3-88B0-45B8-9B28-31ABEA8A3AEB}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        E 0 90 24 50
+        E 480 90 24 00
+        E 0 90 24 53
+        E 360 80 24 00
+        E 0 90 24 3a
+        E 120 80 24 00
+        E 0 90 24 52
+        E 360 80 24 00
+        E 0 90 24 26
+        E 120 80 24 00
+        E 0 90 28 60
+        E 360 80 28 00
+        E 0 90 28 27
+        E 120 80 28 00
+        E 0 90 21 50
+        E 360 90 21 00
+        E 0 90 21 22
+        E 120 80 21 00
+        E 0 90 21 4a
+        E 240 80 21 00
+        E 0 90 21 20
+        E 120 80 21 00
+        E 0 90 21 2f
+        E 120 80 21 00
+        E 0 90 21 4a
+        E 360 80 21 00
+        E 0 90 23 41
+        E 120 80 23 00
+        E 0 90 28 4a
+        E 360 80 28 00
+        E 120 90 1f 50
+        E 360 90 1f 00
+        E 0 90 1f 4a
+        E 120 80 1f 00
+        E 120 90 1f 4a
+        E 120 80 1f 00
+        E 120 90 1f 4a
+        E 120 80 1f 00
+        E 240 90 1f 4a
+        E 240 80 1f 00
+        E 0 90 24 50
+        E 240 80 24 00
+        e 0 90 28 4a
+        e 240 80 28 00
+        E 0 90 1d 50
+        E 1320 90 1d 00
+        E 120 90 21 60
+        E 360 80 21 00
+        E 120 90 24 50
+        E 683 90 24 00
+        E 157 90 2b 50
+        E 113 90 2b 00
+        E 7 90 28 50
+        E 911 90 28 00
+        E 49 90 21 50
+        E 1367 90 21 00
+        E 73 90 32 50
+        E 455 90 32 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW 1014.030028 0.217546 62 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 2079 104 3701 1051 0 0 0 0 0 0 0 1 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 132
+      SNAPOFFS 0
+      LENGTH 6
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {3EDF3329-C202-48AF-BF6E-955747670714}
+      IID 10
+      NAME "Piano - Outcast_Bass.mid"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {9E82F12F-F008-4827-A757-6F558086F62E}
+      <SOURCE MIDI
+        HASDATA 1 480 QN
+        CCINTERP 32
+        POOLEDEVTS {23823F9A-C7D2-4144-B1A2-0AA7847208CB}
+        <X 0 0 0 0 3 Piano
+          /wNQaWFubw==
+        >
+        <X 0 0
+          /1kCAAA=
+        >
+        E 0 90 24 50
+        E 0 90 34 41
+        E 1320 90 24 00
+        E 600 80 34 00
+        E 0 90 21 50
+        e 0 90 30 50
+        E 1823 90 21 00
+        E 97 90 1f 50
+        E 1320 90 1f 00
+        E 120 90 24 60
+        e 480 80 30 00
+        E 0 80 24 00
+        E 0 90 1d 50
+        E 1320 90 1d 00
+        E 120 90 21 60
+        E 360 80 21 00
+        E 120 90 24 50
+        E 683 90 24 00
+        E 157 90 2b 50
+        E 113 90 2b 00
+        E 7 90 28 50
+        E 911 90 28 00
+        E 49 90 21 50
+        E 1367 90 21 00
+        E 73 90 32 50
+        E 455 90 32 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1f 50
+        E 455 90 1f 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 90 1d 50
+        E 455 90 1d 00
+        E 25 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {4DB7A937-723F-40CE-B311-969A19F8E74F}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 17
+        VELLANE -1 100 0
+        CFGEDITVIEW 11040 0.217546 62 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 2079 104 3701 1051 0 0 0 0 0 0 0 1 0 0.5 0 0 1 64
+      >
+    >
+  >
+  <TRACK {32DD8097-1396-4F88-B246-2F6B934FE9CA}
+    NAME ""
+    PEAKCOL 16576
+    BEAT -1
+    AUTOMODE 0
+    VOLPAN 0.62932758817064 0 -1 -1 1
+    MUTESOLO 0 0 0
+    IPHASE 0
+    PLAYOFFS 0 1
+    ISBUS 0 0
+    BUSCOMP 0 0 0 0 0
+    SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0
+    FREEMODE 0
+    SEL 1
+    REC 0 0 1 0 0 0 0
+    VU 2
+    TRACKHEIGHT 0 0 0
+    INQ 0 0 0 0.5 100 0 0 100
+    NCHAN 2
+    FX 1
+    TRACKID {32DD8097-1396-4F88-B246-2F6B934FE9CA}
+    PERF 0
+    MIDIOUT -1
+    MAINSEND 1 0
+    <FXCHAIN
+      WNDRECT 148 466 652 466
+      SHOW 0
+      LASTSEL 1
+      DOCKED 0
+      BYPASS 0 0 0
+      <VST "VST3i: LABS (Spitfire Audio)" "LABS (64 Bit).vst3" 0 "" 359949351{56535453664C626C6162730000000000} ""
+        J2R0Fe5e7f4AAAAAAgAAAAEAAAAAAAAAAgAAAAAAAABYGwAAAQAAAP//EAA=
+        SBsAAAEAAABWc3RXAAAACAAAAAEAAAAAQ2NuSwAAGzBGQkNoAAAAAlNmTGIAAQUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAamFZDMiFTGgAA
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPExhYnM+PE1FVEEgZmFtaWx5PSJEcnVtcyIgbmFtZT0iRHJ1bXMiIHByb2R1Y3RNb2RlPSIwIiB2
+        ZXJzaW9uPSIxLjAuMyIgdGFncz0iMTAxMDAwMDpEcnVtcyIgbW9kaWZpZWQ9IjAiLz48VUkgdWlzaXplPSIxLjAiIHVpY29sbGFwc2VkPSIxIi8+PEFSVElDUz48U0VU
+        VElORyBpZD0icF9zeW5jVG9UZW1wbyIgdmFsdWU9IjEiLz48U0VUVElORyBpZD0icF9keW5hbWljc1ZlbG9jaXR5TW9kZSIgdmFsdWU9IkNPTVBSRVNTRUQgVkVMT0NJ
+        VFkgSElHSCIvPjxTRVRUSU5HIGlkPSJwX3Nob3J0UlRNb2RlIiB2YWx1ZT0iLTIuMCIvPjxTRVRUSU5HIGlkPSJwX3ZlbG9jaXR5Q3VydmUiIHZhbHVlPSJMSU5FQVIg
+        VkVMT0NJVFkiLz48U0VUVElORyBpZD0icF9xdWFudGlzZU1vZGUiIHZhbHVlPSIiLz48U0VUVElORyBpZD0icF9taXhlckFkdmFuY2VkIiB2YWx1ZT0iMSIvPjxTRVRU
+        SU5HIGlkPSJwX21peGVyR2xvYmFsIiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlkPSJwX21peGVyTG9jayIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icF9taXhlclBhZ2Ui
+        IHZhbHVlPSIiLz48U0VUVElORyBpZD0icF9hcnRpY0xvY2siIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InBfYXJ0aWNQYWdlIiB2YWx1ZT0iIi8+PFNFVFRJTkcgaWQ9
+        InBfbGFzdFNlbGVjdGVkUHJpbWFyeUFydGljIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJwX21pZGlDaGFubmVsIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJwX3Nl
+        bGVjdGVkVGFncyIgdmFsdWU9IiIvPjxTRVRUSU5HIGlkPSJwX2ZpbHRlclBvcyIgdmFsdWU9IltdIi8+PFNFVFRJTkcgaWQ9InBfcHJlc2V0UG9zIiB2YWx1ZT0iWzAs
+        IDgyMl0iLz48U0VUVElORyBpZD0icF9ldm9Db250YWluZXJQb3MiIHZhbHVlPSJbXSIvPjxTRVRUSU5HIGlkPSJwX29jdGF2ZSIgdmFsdWU9IjAiLz48U0VUVElORyBp
+        ZD0icF9vZGVzdEluZGljZXMiIHZhbHVlPSIwLDEsMiwzLDQsNSw2LDcsOCw5LDEwLDExLDEyLDEzLDE0LDE1LDE2LDE3LDE4LDE5LDIwLDIxLDIyLDIzLDI0LDI1LDI2
+        LDI3LDI4LDI5LDMwLDMxLDMyLDMzLDM0LDM1LDM2LDM3LDM4LDM5LDQwLDQxLDQyLDQzLDQ0LDQ1LDQ2LDQ3LDQ4LDQ5LDUwLDUxLDUyLDUzLDU0LDU1LDU2LDU3LDU4
+        LDU5LDYwLDYxLDYyLDYzLDY0LDY1LDY2LDY3LDY4LDY5LDcwLDcxLDcyLDczLDc0LDc1LDc2LDc3LDc4LDc5LDgwLDgxLDgyLDgzLDg0LDg1LDg2LDg3LDg4LDg5LDkw
+        LDkxLDkyLDkzLDk0LDk1LDk2LDk3LDk4LDk5LDEwMCwxMDEsMTAyLDEwMywxMDQsMTA1LDEwNiwxMDcsMTA4LDEwOSwxMTAsMTExLDExMiwxMTMsMTE0LDExNSwxMTYs
+        MTE3LDExOCwxMTksMTIwLDEyMSwxMjIsMTIzLDEyNCwxMjUsMTI2LDEyNywxMjgsMTI5LDEzMCwxMzEsMTMyLDEzMywxMzQsMTM1LDEzNiwxMzcsMTM4LDEzOSwxNDAs
+        MTQxLDE0MiwxNDMsMTQ0LDE0NSwxNDYsMTQ3LDE0OCwxNDksMTUwLDE1MSwxNTIsMTUzLDE1NCwxNTUsMTU2LDE1NywxNTgsMTU5LDE2MCwxNjEsMTYyLDE2MywxNjQs
+        MTY1LDE2NiwxNjcsMTY4LDE2OSwxNzAsMTcxLDE3MiwxNzMsMTc0LDE3NSwxNzYsMTc3LDE3OCwxNzksMTgwLDE4MSwxODIsMTgzLDE4NCwxODUsMTg2LDE4NywxODgs
+        MTg5LDE5MCwxOTEsMTkyLDE5MywxOTQsMTk1LDE5NiwxOTcsMTk4LDE5OSwyMDAsMjAxLDIwMiwyMDMsMjA0LDIwNSwyMDYsMjA3LDIwOCwyMDksMjEwLDIxMSwyMTIs
+        MjEzLDIxNCwyMTUsMjE2LDIxNywyMTgsMjE5LDIyMCwyMjEsMjIyLDIyMywyMjQsMjI1LDIyNiwyMjcsMjI4LDIyOSwyMzAsMjMxLDIzMiwyMzMsMjM0LDIzNSwyMzYs
+        MjM3LDIzOCwyMzksMjQwLDI0MSwyNDIsMjQzLDI0NCwyNDUsMjQ2LDI0NywyNDgsMjQ5LDI1MCwyNTEsMjUyLDI1MywyNTQsMjU1LDI1NiwyNTcsMjU4LDI1OSwyNjAs
+        MjYxLDI2MiwyNjMsMjY0Ii8+PFNFVFRJTkcgaWQ9InBfdGltZVN0cmV0Y2giIHZhbHVlPSJEZWZhdWx0Ii8+PFNFVFRJTkcgaWQ9InBfdm9pY2VDaG9rZSIgdmFsdWU9
+        IjAuMCIvPjxTRVRUSU5HIGlkPSJwX2xvb3BFbmQiIHZhbHVlPSIwLjAiLz48QVJUSUM+PFNFVFRJTkcgaWQ9ImFfbmFtZSIgdmFsdWU9IkxBQlNfRHJ1bXMiLz48U0VU
+        VElORyBpZD0iYV92ZXJzaW9uIiB2YWx1ZT0iMTY3Nzc5ODQiLz48U0VUVElORyBpZD0iYV90ZW1wbGF0ZUlkeCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0iYV9vZGVz
+        dCIgdmFsdWU9IlJFVkVSQiIvPjxTRVRUSU5HIGlkPSJhX2FjdGl2ZSIgdmFsdWU9IjIiLz48U0VUVElORyBpZD0iYV9iYWNrQWN0aXZlIiB2YWx1ZT0iMCIvPjxTRVRU
+        SU5HIGlkPSJhX3R3b0hhbmRlZCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0iYV9hdXRvTWFrZVVwIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJ0X3R5cGUiIHZhbHVl
+        PSIwIi8+PFNFVFRJTkcgaWQ9InRfZW5hYmxlZCIgdmFsdWU9IjEiLz48U0VUVElORyBpZD0idF9sYXRjaCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0idF9rZXlzd2l0
+        Y2giIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InRfbWlkaUNoYW5uZWwiIHZhbHVlPSIxIi8+PFNFVFRJTkcgaWQ9InRfdmVsRnJvbSIgdmFsdWU9IjEiLz48U0VUVElO
+        RyBpZD0idF92ZWxUbyIgdmFsdWU9IjEyNyIvPjxTRVRUSU5HIGlkPSJ0X2NjIiB2YWx1ZT0iMzIiLz48U0VUVElORyBpZD0idF9jY1ZhbHVlRnJvbSIgdmFsdWU9IjAi
+        Lz48U0VUVElORyBpZD0idF9jY1ZhbHVlVG8iIHZhbHVlPSIxMjciLz48U0VUVElORyBpZD0idF9zcGVlZEZyb20iIHZhbHVlPSIwLjAiLz48U0VUVElORyBpZD0idF9z
+        cGVlZFRvIiB2YWx1ZT0iMC41Ii8+PFNFVFRJTkcgaWQ9InRfcHJvZ3JhbUNoYW5nZSIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0idF90ZW1wb0Zyb20iIHZhbHVlPSIw
+        LjAiLz48U0VUVElORyBpZD0idF90ZW1wb1RvIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9InJyX3RpbWVvdXQiIHZhbHVlPSItMS4wIi8+PFNFVFRJTkcgaWQ9InJy
+        X25laWdoYm91ck1pbiIgdmFsdWU9IjM2Ii8+PFNFVFRJTkcgaWQ9InJyX25laWdoYm91ck1heCIgdmFsdWU9IjYxIi8+PFNFVFRJTkcgaWQ9InJyX3VzZU5laWdoYm91
+        ciIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icnJfY291bnQiIHZhbHVlPSI5Ii8+PFNFVFRJTkcgaWQ9InJyX2luYyIgdmFsdWU9IjEiLz48U0VUVElORyBpZD0icnJf
+        bGF5ZXJzIiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlkPSJycl9nYWluIiB2YWx1ZT0iMS4wIi8+PFNFVFRJTkcgaWQ9InJyX3N0YXJ0IiB2YWx1ZT0iMCIvPjxTRVRUSU5H
+        IGlkPSJycl9zeW5jIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJycl9wbGF5IiB2YWx1ZT0iMSIvPjxTRVRUSU5HIGlkPSJycl9rZXlzd2l0Y2hGcm9tIiB2YWx1ZT0i
+        LTEiLz48U0VUVElORyBpZD0icnJfa2V5c3dpdGNoVG8iIHZhbHVlPSItMSIvPjxTRVRUSU5HIGlkPSJycl9rZXlzd2l0Y2hUbyIgdmFsdWU9Ii0xIi8+PFNFVFRJTkcg
+        aWQ9InJyX21vZGUiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJyX3BhdHRlcm5PZGRzIiB2YWx1ZT0iMCIvPjxTRVRUSU5HIGlkPSJycl9wYXR0ZXJuRXZlbnMiIHZh
+        bHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJyX3BhdHRlcm5PZGRTdGFydCIgdmFsdWU9IjAiLz48U0VUVElORyBpZD0icl9taWRpQ2hhbm5lbCIgdmFsdWU9IjAiLz48U0VU
+        VElORyBpZD0icl90cmFuc3Bvc2UiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9InJfbGF5ZXJUcmFuc3Bvc2UiIHZhbHVlPSIwIi8+PFNFVFRJTkcgaWQ9ImlfZXhwcmVz
+        c2lvbiIgdmFsdWU9IjEuMCIvPjxTRVRUSU5HIGlkPSJpX2R5bmFtaWNzIiB2YWx1ZT0iMC4wIi8+PFNFVFRJTkcgaWQ9ImlfcmV2ZXJiIiB2YWx1ZT0iMC4wIi8+PFNF
+        VFRJTkcgaWQ9ImlfcmVsZWFzZSIgdmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJpX3RpZ2h0IiB2YWx1ZT0iMC41Ii8+PFNFVFRJTkcgaWQ9ImlfdmlicmF0byIgdmFs
+        dWU9IjEuMCIvPjxTRVRUSU5HIGlkPSJpX3ZhcmlhdGlvbiIgdmFsdWU9IjAuMCIvPjxTRVRUSU5HIGlkPSJzX3BhbiIgdmFsdWU9IjAuNSIvPjxTRVRUSU5HIGlkPSJz
+        X3dpZHRoIiB2YWx1ZT0iMC41Ii8+PFNFVFRJTkcgaWQ9InNfZmxpcCIgdmFsdWU9IjAuMCIvPjxNSVg+PFNFVFRJTkcgaWQ9Im1fbWFpbiIgdmFsdWU9IjEuMCIgbWlj
+        SWQ9IjEiLz48U0VUVElORyBpZD0iZV9tYWluIiB2YWx1ZT0iMSIgbWljSWQ9IjEiLz48U0VUVElORyBpZD0iYl9tYWluIiB2YWx1ZT0iMCIgbWljSWQ9IjEiLz48U0VU
+        VElORyBpZD0ibV9hbHQxIiB2YWx1ZT0iMC4wIiBtaWNJZD0iMiIvPjxTRVRUSU5HIGlkPSJlX2FsdDEiIHZhbHVlPSIwIiBtaWNJZD0iMiIvPjxTRVRUSU5HIGlkPSJi
+        X2FsdDEiIHZhbHVlPSIwIiBtaWNJZD0iMiIvPjxTRVRUSU5HIGlkPSJtX2FsdDIiIHZhbHVlPSIwLjAiIG1pY0lkPSIzIi8+PFNFVFRJTkcgaWQ9ImVfYWx0MiIgdmFs
+        dWU9IjAiIG1pY0lkPSIzIi8+PFNFVFRJTkcgaWQ9ImJfYWx0MiIgdmFsdWU9IjAiIG1pY0lkPSIzIi8+PFNFVFRJTkcgaWQ9Im1fYWx0MyIgdmFsdWU9IjAuMCIgbWlj
+        SWQ9IjQiLz48U0VUVElORyBpZD0iZV9hbHQzIiB2YWx1ZT0iMCIgbWljSWQ9IjQiLz48U0VUVElORyBpZD0iYl9hbHQzIiB2YWx1ZT0iMCIgbWljSWQ9IjQiLz48L01J
+        WD48L0FSVElDPjwvQVJUSUNTPjxQQVJBTUVURVJTPjxQQVJBTSBpZD0iZ19nYWluIiB2YWx1ZT0iMS4wIiBjYz0iNyIvPjxQQVJBTSBpZD0iZ19wYW4iIHZhbHVlPSIw
+        LjUiIGNjPSIxMCIvPjxQQVJBTSBpZD0iZ190dW5lIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfcmV2ZXJiIiB2YWx1ZT0iMC4wIiBjYz0iMTkiLz48
+        UEFSQU0gaWQ9ImlfdGlnaHQiIHZhbHVlPSIwLjUiIGNjPSIxOCIvPjxQQVJBTSBpZD0iaV9zcGVlZCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3Jl
+        bGVhc2UiIHZhbHVlPSIwLjUiIGNjPSIxNyIvPjxQQVJBTSBpZD0iaV9leHByZXNzaW9uIiB2YWx1ZT0iMS4wIiBjYz0iMTEiLz48UEFSQU0gaWQ9ImlfZHluYW1pY3Mi
+        IHZhbHVlPSIwLjAiIGNjPSIxIi8+PFBBUkFNIGlkPSJpX3ZhcmlhdGlvbiIgdmFsdWU9IjAuMCIgY2M9IjIwIi8+PFBBUkFNIGlkPSJpX3ZpYnJhdG8iIHZhbHVlPSIx
+        LjAiIGNjPSIyMSIvPjxQQVJBTSBpZD0iaV9lbnZhdHQiIHZhbHVlPSIwLjA5OTk5OTk4NjU4ODk1NDkzIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfZW52ZGVjIiB2YWx1
+        ZT0iMC4wOTk5OTk5OTQwMzk1MzU1MiIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2VudnN1cyIgdmFsdWU9IjEuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2VudnJlbCIg
+        dmFsdWU9IjIuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21peHNpbXBsZSIgdmFsdWU9IjAuNSIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJzX2ZsaXAiIHZhbHVlPSIwLjAi
+        IGNjPSItMSIvPjxQQVJBTSBpZD0ic193aWR0aCIgdmFsdWU9IjAuNSIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJzX3BhbiIgdmFsdWU9IjAuNSIgY2M9Ii0xIi8+PFBBUkFN
+        IGlkPSJpX2RlbGF5IiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfYW1vdW50IiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfZGlzdG9y
+        dCIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX2x1c2hWZXJiIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfcGVkdm9sIiB2YWx1ZT0i
+        MC41IiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfcGVkRHluIiB2YWx1ZT0iMC41IiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbGVuZ3RoIiB2YWx1ZT0iMC4wIiBjYz0iLTEi
+        Lz48UEFSQU0gaWQ9ImlfdGltZU1hY2hpbmUiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9zdHJldGNoIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFS
+        QU0gaWQ9Imlfc29mdFBlZGFsIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfcmVzcG9uc2UiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0i
+        aV9tYWxsZXQiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9zdG9wZU11dGUiIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9kaXJlY3Rp
+        b24iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9scEZpbHRlciIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX3BvcnRhbWVudG8iIHZh
+        bHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRhWzE4XSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMTldIiB2YWx1ZT0iMC4w
+        IiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsyMF0iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0iaV9tZXRhWzIxXSIgdmFsdWU9IjAuMCIgY2M9Ii0x
+        Ii8+PFBBUkFNIGlkPSJpX21ldGFbMjJdIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9ImlfbWV0YVsyM10iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJB
+        TSBpZD0iaV9tZXRhWzI0XSIgdmFsdWU9IjAuMCIgY2M9Ii0xIi8+PFBBUkFNIGlkPSJpX21ldGFbMjVdIiB2YWx1ZT0iMC4wIiBjYz0iLTEiLz48UEFSQU0gaWQ9Imlf
+        bWV0YVsyNl0iIHZhbHVlPSIwLjAiIGNjPSItMSIvPjxQQVJBTSBpZD0ibV9tYWluIiB2YWx1ZT0iMS4wIiBjYz0iMjIiLz48UEFSQU0gaWQ9Im1fYWx0MSIgdmFsdWU9
+        IjAuMCIgY2M9IjIzIi8+PFBBUkFNIGlkPSJtX2FsdDIiIHZhbHVlPSIwLjAiIGNjPSIyNCIvPjxQQVJBTSBpZD0ibV9hbHQzIiB2YWx1ZT0iMC4wIiBjYz0iMjUiLz48
+        L1BBUkFNRVRFUlM+PC9MYWJzPgAAAAAAAAAAAEpVQ0VQcml2YXRlRGF0YQABAUJ5cGFzcwABAQMAHQAAAAAAAABKVUNFUHJpdmF0ZURhdGEAAAAAAAAAAA==
+        AEZhY3RvcnkgUHJlc2V0cwAQAAAA
+      >
+      PRESETNAME "Factory Presets"
+      FLOATPOS 0 0 0 0
+      FXID {BFFF6DD4-7B41-49BD-ACA6-4FF8E0451846}
+      WAK 0 0
+      BYPASS 0 0 0
+      <VST "VST: ReaEQ (Cockos)" reaeq.dll 0 "" 1919247729<56535472656571726561657100000000> ""
+        cWVlcu5e7f4CAAAAAQAAAAAAAAACAAAAAAAAAAIAAAABAAAAAAAAAAIAAAAAAAAA6gAAAAEAAAAAABAA
+        IQAAAAYAAAAAAAAAAQAAALqwVeq3yElAgO21oPfGsD4AAAAAAAAAQAEIAAAAAQAAAFYR0JSbY1NAePyDGlqV9T8AAAAAAAAAQAEIAAAAAQAAAAB6dYMB1YxAaGDU9rhb
+        +T8AAAAAAAAAQAEBAAAAAQAAAHWEdW89r8ZA3pz1AwFq4j8AAAAAAAAAQAEIAAAAAQAAAG6E2j+HXXdA5ju8N0O11j8AAAAAAAAAQAEIAAAAAQAAAFD6nRtOyq9AUEIz
+        z7kJ4D8AAAAAAAAAQAEBAAAAAQAAAAAAAAAAAPA/AAAAAA8CAABhAQAA
+        AAAQAAAA
+      >
+      FLOATPOS 0 0 0 0
+      FXID {1C0BB87A-B9E0-4498-ACDC-5B4A0B8B6BC6}
+      WAK 0 0
+    >
+    <ITEM
+      POSITION 78
+      SNAPOFFS 0
+      LENGTH 6
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {866B505C-5B93-4025-A3B1-9124E5D7DDB8}
+      IID 12
+      NAME "untitled MIDI item"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {B989531C-7C76-4381-840C-35287D0D06E1}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {30BB51BA-A4AE-4189-AC51-006425B0E5AA}
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 24
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 24 40
+        E 240 80 24 00
+        E 0 90 24 27
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 24
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 23280 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {AF19E73F-8884-4DDF-A52D-89859D845D32}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 19
+        VELLANE -1 100 0
+        CFGEDITVIEW -380.757835 0.104876 61 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 84
+      SNAPOFFS 0
+      LENGTH 6
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {CF2BEA12-B9DB-4944-8EC1-26DFF4F2714E}
+      IID 12
+      NAME "untitled MIDI item"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {477BB986-E87F-42A8-B2DB-FE79FCC11352}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {FEBB3087-F48C-4F70-A8BF-762F6FF7FC1C}
+        E 0 90 24 4a
+        e 0 90 2f 34
+        E 240 80 24 00
+        e 0 80 2f 00
+        E 240 90 24 2b
+        E 0 90 2f 1e
+        E 240 80 24 00
+        E 0 80 2f 00
+        E 0 90 24 2b
+        E 0 90 2f 23
+        E 240 80 24 00
+        E 0 80 2f 00
+        E 0 90 27 2b
+        E 0 90 2f 30
+        E 240 80 27 00
+        E 0 80 2f 00
+        E 0 90 24 2b
+        E 0 90 27 29
+        E 240 80 24 00
+        E 0 80 27 00
+        E 0 90 24 24
+        E 0 90 2f 23
+        E 240 80 24 00
+        E 0 80 2f 00
+        E 0 90 24 2b
+        E 0 90 27 29
+        E 240 80 24 00
+        E 0 80 27 00
+        E 0 90 24 4a
+        E 0 90 2f 22
+        E 240 80 24 00
+        E 0 80 2f 00
+        E 0 90 2d 1e
+        E 240 80 2d 00
+        E 0 90 24 2b
+        E 0 90 2b 1e
+        E 240 80 24 00
+        E 0 80 2b 00
+        E 0 90 2a 1e
+        E 240 80 2a 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 0 90 27 25
+        E 240 80 27 00
+        E 0 90 24 2b
+        E 0 90 27 25
+        E 240 80 24 00
+        E 0 80 27 00
+        E 0 90 27 25
+        E 240 80 27 00
+        E 0 90 24 40
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 0 90 29 24
+        E 240 80 27 00
+        E 0 80 29 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 24
+        E 0 90 27 34
+        E 240 80 24 00
+        E 0 80 27 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 23280 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {AF19E73F-8884-4DDF-A52D-89859D845D32}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 19
+        VELLANE -1 100 0
+        CFGEDITVIEW -381.923699 0.104876 61 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 90.75
+      SNAPOFFS 0
+      LENGTH 5.25
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {724B8D44-F558-4137-808E-7036DF26233E}
+      IID 12
+      NAME "untitled MIDI item"
+      VOLPAN 1 0 1 -1
+      SOFFS 0.75 1
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {45AF25FA-5075-474B-84E6-AE7934016F28}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {DBBFAE83-3035-4164-80C4-91086F2527F0}
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 720 90 27 2b
+        E 240 80 27 00
+        E 720 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 24 40
+        E 240 80 24 00
+        E 0 90 24 27
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 720 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 23280 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {AF19E73F-8884-4DDF-A52D-89859D845D32}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 19
+        VELLANE -1 100 0
+        CFGEDITVIEW -380.757835 0.104876 61 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 96
+      SNAPOFFS 0
+      LENGTH 6
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {6F8B51A8-79D1-45C5-9AFC-82CE27B87874}
+      IID 12
+      NAME "untitled MIDI item"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {A1802FAB-7DC8-4B83-80BC-F3D4EEE47606}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {F1EB84CC-01D3-4A3C-8A0A-342726E70F14}
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 24
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 24 40
+        E 240 80 24 00
+        E 0 90 24 27
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 24
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 23280 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {AF19E73F-8884-4DDF-A52D-89859D845D32}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 19
+        VELLANE -1 100 0
+        CFGEDITVIEW -380.757835 0.104876 61 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 102
+      SNAPOFFS 0
+      LENGTH 6
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {7783062D-06AD-4D19-80EF-4011AEFDF9D4}
+      IID 12
+      NAME "untitled MIDI item"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {20EB3B95-A5BC-4D76-A734-7E1C9DE08295}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {1323E15F-231D-4097-86EE-4E94D4D99F36}
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 24
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 24 40
+        E 240 80 24 00
+        E 0 90 24 27
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 24
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 23280 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {AF19E73F-8884-4DDF-A52D-89859D845D32}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 19
+        VELLANE -1 100 0
+        CFGEDITVIEW -380.757835 0.104876 61 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 108
+      SNAPOFFS 0
+      LENGTH 6
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {790271FA-6B46-4898-9675-6D84E1CB29E7}
+      IID 12
+      NAME "untitled MIDI item"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {C0CC0F32-93C7-4378-9FB3-FA0528D4A46C}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {14195E33-53BE-4B20-A624-4A84F6B09B7D}
+        E 0 90 24 4a
+        e 0 90 2f 34
+        E 240 80 24 00
+        e 0 80 2f 00
+        E 240 90 24 2b
+        E 0 90 2f 1e
+        E 240 80 24 00
+        E 0 80 2f 00
+        E 0 90 24 2b
+        E 0 90 2f 23
+        E 240 80 24 00
+        E 0 80 2f 00
+        E 0 90 27 2b
+        E 0 90 2f 30
+        E 240 80 27 00
+        E 0 80 2f 00
+        E 0 90 24 2b
+        E 0 90 27 29
+        E 240 80 24 00
+        E 0 80 27 00
+        E 0 90 24 24
+        E 0 90 2f 23
+        E 240 80 24 00
+        E 0 80 2f 00
+        E 0 90 24 2b
+        E 0 90 27 29
+        E 240 80 24 00
+        E 0 80 27 00
+        E 0 90 24 4a
+        E 0 90 2f 22
+        E 240 80 24 00
+        E 0 80 2f 00
+        E 0 90 2d 1e
+        E 240 80 2d 00
+        E 0 90 24 2b
+        E 0 90 2b 1e
+        E 240 80 24 00
+        E 0 80 2b 00
+        E 0 90 2a 1e
+        E 240 80 2a 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 0 90 27 25
+        E 240 80 27 00
+        E 0 90 24 2b
+        E 0 90 27 25
+        E 240 80 24 00
+        E 0 80 27 00
+        E 0 90 27 25
+        E 240 80 27 00
+        E 0 90 24 40
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 0 90 29 24
+        E 240 80 27 00
+        E 0 80 29 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 24
+        E 0 90 27 34
+        E 240 80 24 00
+        E 0 80 27 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 23280 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {AF19E73F-8884-4DDF-A52D-89859D845D32}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 19
+        VELLANE -1 100 0
+        CFGEDITVIEW -381.923699 0.104876 61 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 114.75
+      SNAPOFFS 0
+      LENGTH 5.25
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {42D1CE01-2897-4034-A539-208B9B8B17FB}
+      IID 12
+      NAME "untitled MIDI item"
+      VOLPAN 1 0 1 -1
+      SOFFS 0.75 1
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {0C3FCEDD-E6A8-4D37-A6A4-F0BAAA17CC5D}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {A622336C-B82C-413A-9EE3-82565CDBB46A}
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 720 90 27 2b
+        E 240 80 27 00
+        E 720 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 24 40
+        E 240 80 24 00
+        E 0 90 24 27
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 720 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 23280 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {AF19E73F-8884-4DDF-A52D-89859D845D32}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 19
+        VELLANE -1 100 0
+        CFGEDITVIEW -380.757835 0.104876 61 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+    <ITEM
+      POSITION 120
+      SNAPOFFS 0
+      LENGTH 6
+      LOOP 1
+      ALLTAKES 0
+      FADEIN 1 0 0 1 0 0
+      FADEOUT 1 0 0 1 0 0
+      MUTE 0
+      SEL 1
+      IGUID {B4A19955-8CBF-4452-8B2E-BA2A94DE0BF0}
+      IID 12
+      NAME "untitled MIDI item"
+      VOLPAN 1 0 1 -1
+      SOFFS 0 0
+      PLAYRATE 1 1 0 -1 0 0.0025
+      CHANMODE 0
+      GUID {A3384826-8388-4B92-AFDB-9F863D08DEB5}
+      <SOURCE MIDI
+        HASDATA 1 960 QN
+        CCINTERP 32
+        POOLEDEVTS {080259F4-3939-4A6F-A9E7-525A567DE722}
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 24
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 24 40
+        E 240 80 24 00
+        E 0 90 24 27
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 27 2b
+        E 240 80 27 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 24
+        E 240 80 24 00
+        E 0 90 24 2b
+        E 240 80 24 00
+        E 0 90 24 4a
+        E 240 80 24 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 240 90 27 2b
+        E 240 80 27 00
+        E 240 90 24 2b
+        E 240 80 24 00
+        E 23280 b0 7b 00
+        CCINTERP 32
+        CHASE_CC_TAKEOFFS 1
+        GUID {AF19E73F-8884-4DDF-A52D-89859D845D32}
+        IGNTEMPO 0 120 4 4
+        SRCCOLOR 19
+        VELLANE -1 100 0
+        CFGEDITVIEW -380.757835 0.104876 61 12 0 -1 0 0 0 0.5
+        KEYSNAP 0
+        TRACKSEL 0
+        EVTFILTER 0 -1 -1 -1 -1 0 0 0 0 -1 -1 -1 -1 0 -1 0 -1 -1
+        CFGEDIT 1 1 0 1 0 0 1 1 1 1 1 0.25 264 85 1886 1032 0 0 0 0 0 0 0 0 0 0.5 0 0 1 64
+      >
+    >
+  >
+>

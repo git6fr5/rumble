@@ -17,6 +17,7 @@ namespace Platformer.Character.Actions {
     public class MoveAction : PhysicsAction {
 
         [SerializeField] private float m_Speed;
+        public float Speed;
         [SerializeField] private float m_Acceleration;
 
         // Process the physics of this action.

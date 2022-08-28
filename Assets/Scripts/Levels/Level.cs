@@ -70,6 +70,11 @@ namespace Platformer.LevelLoader {
         /* --- Initialization --- */
         #region Initialization
 
+        // public void Reset() {
+        //     LDtkLoader.UnloadEntities(this);
+        //     LDtkLoader.UnloadEntities(this);
+        // }
+
         public void Init(int jsonID, LdtkJson  json) {
             transform.localPosition = Vector3.zero;
             ReadJSONData(json, jsonID);
@@ -265,7 +270,7 @@ namespace Platformer.LevelLoader {
             CharacterState character = collider.GetComponent<CharacterState>();
             bool player = character != null && character.IsPlayer;
             if (player) {
-                Timer.Start(ref m_UnloadTicks, 0f);
+                Timer.Start(ref m_UnloadTicks, 0.1f);
                 LightSwitch(false);
                 m_Unloading = true;
             }

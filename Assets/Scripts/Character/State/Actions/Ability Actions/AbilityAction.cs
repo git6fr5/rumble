@@ -32,6 +32,10 @@ namespace Platformer.Character.Actions {
             m_Refreshed = enable;
             if (enable) {
                 Game.HitStop(4);
+                character.TrailSparkle.Play();
+            }
+            if (!enable) {
+                character.TrailSparkle.Stop();
             }
         }
         

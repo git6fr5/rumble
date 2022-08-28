@@ -7,6 +7,7 @@ using UnityEngine.VFX;
 using Platformer.Character;
 using Platformer.Obstacles;
 using Platformer.Utilites;
+using Platformer.Decor;
 
 namespace Platformer.Obstacles {
 

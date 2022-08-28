@@ -67,6 +67,45 @@ namespace Platformer.Utilites {
             AmbientSource.clip = audioClip;
         }
 
+        // [HideInInspector] private bool m_PrevNot;
+        // int m_MSCClipIndex;
+        // public AudioClip[] m_MSCClips;
+        // float waitTicks;
+        // float waitDuration = 3f;
+        // int count;
+
+        // void FixedUpdate() {
+        //     if (MSCSource == null) {
+        //         return;
+        //     }
+
+        //     if (MSCSource.time > 1f && m_PrevNot) {
+        //         count += 1;
+        //         m_PrevNot = false;
+        //     }
+            
+        //     m_PrevNot = MSCSource.time > 1f;
+
+        //     if (count >= 1) {
+        //         MSCSource.loop = false;
+        //         count = 0;
+        //     }
+
+        //     if (!MSCSource.isPlaying) {
+        //         bool finished = Timer.TickDown(ref waitTicks, Time.fixedDeltaTime);
+        //         if (finished) {
+        //             m_MSCClipIndex = (m_MSCClipIndex + 1) % m_MSCClips.Length;
+        //             MSCSource.clip = m_MSCClips[m_MSCClipIndex];
+        //             MSCSource.loop = true;
+        //             MSCSource.Play();
+        //         }
+        //     }
+        //     else {
+        //         waitTicks = waitDuration;
+        //     }
+
+        // }
+
 
         public static void PlaySound(AudioClip audioClip, float volume = 0.45f) {
             if (audioClip == null || SFXSources == null) { return; }

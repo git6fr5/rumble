@@ -9,6 +9,8 @@ using Platformer.Character;
 using Platformer.Obstacles;
 using Platformer.Utilites;
 
+using Platformer.Decor;
+
 namespace Monet {
 
     ///<summary>
@@ -31,6 +33,7 @@ namespace Monet {
         [SerializeField] private float m_ShakeStrength;
         private float Strength => m_ShakeStrength * m_CrumbleTicks / m_CrumbleBuffer;
 
+        public Sparkle m_Sparkle;
         
         #endregion
         
@@ -40,6 +43,8 @@ namespace Monet {
 
         private void Update() {
             if (!Falling) {
+                m_Sparkle.Reset();
+                m_Sparkle.enabled = false;
                 CheckFall();
                 Obstacle.Shake(transform, m_Origin, Strength);
             }
@@ -80,6 +85,7 @@ namespace Monet {
         }
 
         private void Fall() {
+            m_Sparkle.enabled = true;
             transform.position = m_Origin + Game.Physics.CollisionPrecision * Direction;
             m_Body.constraints = RigidbodyConstraints2D.FreezeRotation;
             m_Body.gravityScale = FallGravity;

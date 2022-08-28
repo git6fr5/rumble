@@ -266,6 +266,21 @@ namespace Platformer.Rendering {
                 yield return new WaitForSeconds(interval);
             }
         }
+
+        public void Impulses(Vector3 position, float force, float radius, float interval, int count) {
+            if (m_Grid == null) { return; }
+            
+            position = position - transform.position;
+            position.z = 0f;
+            StartCoroutine(IEImpulse(position, force, radius, interval, count));
+        }
+
+        private IEnumerator IEImpulse(Vector3 position, float force, float radius, float interval, int count) {
+            for (int i = 0; i < count; i++) {
+                m_Grid.ApplyImplosiveForce(force, position, radius, 100f, 0.5f);
+                yield return new WaitForSeconds(interval);
+            }
+        }
         
     }
 

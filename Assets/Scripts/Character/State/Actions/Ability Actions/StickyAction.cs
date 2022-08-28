@@ -49,6 +49,7 @@ namespace Platformer.Character.Actions {
                 if (character.Input.Action1.Held) {
                     Activate(character.Body, character.Input, character);
                 }
+                m_CoyoteTicks = 0f;
             }
             if (!enable) {
                 m_WallJumping = false;
@@ -90,10 +91,13 @@ namespace Platformer.Character.Actions {
                 SoundManager.PlaySound(m_StartJumpSound, 0.1f);
 
                 m_WallJumping = true;
+
+                Game.MainPlayer.ExplodeDust.Activate();
                 
             }
 
             if ((state.FacingWall || m_CoyoteTicks > 0f) && m_Refreshed) {
+                Debug.Log("trying");
                 state.OverrideMovement(true);
                 state.OverrideFall(true);
 

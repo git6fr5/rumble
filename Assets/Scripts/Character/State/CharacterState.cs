@@ -12,6 +12,8 @@ using Platformer.Obstacles;
 using Platformer.Rendering;
 using Screen = Platformer.Rendering.Screen;
 
+using Platformer.Decor;
+
 namespace Platformer.Character {
 
     ///<summary>
@@ -73,26 +75,55 @@ namespace Platformer.Character {
         [SerializeField] private AudioClip m_ResetSound;
         [SerializeField] private AudioClip m_ResetSoundB;
 
+        public Dust ExplodeDust;
+        public Sparkle TrailSparkle;
+
         #endregion
 
         public void Reset() {
             // Game.HitStop();
             // transform.position = Vector3.up * 1.5f + m_RespawnBlock.Origin;
+            ExplodeDust.Activate();
+            TrailSparkle.Stop();
+
             Vector3 explosionPosition = transform.position - Game.ParticleGrid.transform.position;
             explosionPosition.z = 0f;
             Game.ParticleGrid.Ripple(transform.position, 1e4f, 10f, 0.5f, 3);
             
             DisableAllAbilityActions();
             m_Body.velocity = Vector2.zero;
+            m_Body.gravityScale = 0f;
             transform.position = Vector3.up * 1.5f + m_RespawnBlock.Origin;
 
-            Disable(0f);
-            OverrideFall(false);
-            OverrideMovement(false);
+            Disable(0.12f);
+            OverrideFall(true);
+            OverrideMovement(true);
             Screen.Recolor(Screen.DefaultPalette);
 
             SoundManager.PlaySound(m_ResetSound, 0.15f);
             SoundManager.PlaySound(m_ResetSoundB, 0.15f);
+
+            StartCoroutine(IEReset());
+
+        }
+
+        private IEnumerator IEReset() {
+            // m_Collider.enabled = false;
+            yield return new WaitForSeconds(0.12f);
+            // m_Collider.enabled = true;
+            OverrideFall(false);
+            OverrideMovement(false);
+
+            GhostBlock[] ghostBlocks = (GhostBlock[])GameObject.FindObjectsOfType(typeof(GhostBlock));
+            for (int i = 0; i < ghostBlocks.Length; i++) {
+                ghostBlocks[i].Reset();
+            }
+
+            // Orb[] orbs = (Orb[])GameObject.FindObjectsOfType(typeof(Orb));
+            // for (int i = 0; i < orbs.Length; i++) {
+            //     orbs[i].Reset();
+            // }
+
         }
 
         public void DisableAllAbilityActions() {

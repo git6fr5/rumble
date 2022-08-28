@@ -53,7 +53,8 @@ namespace Platformer.Character.Actions {
                 character.OverrideMovement(false);
                 character.OverrideFall(false);
                 if (m_Dashing) {
-                    character.Body.SetVelocity(m_CachedVelocity);
+                    // character.Body.SetVelocity(m_CachedVelocity);
+                    AdjustSpeedOnEndDash(character.Body, character.Input, character.Move.Speed);
                     m_Dashing = false;
                 }
                 m_DashTicks = 0f;
@@ -123,19 +124,33 @@ namespace Platformer.Character.Actions {
             if (EndPreDash) {
                 m_CachedDirection = input.Direction.Fly != Vector2.zero ? input.Direction.Fly : m_CachedDirection;
                 body.SetVelocity(m_CachedDirection * DashSpeed);
+                
                 m_PreDashing = false;
                 m_Dashing = true;
             }
             
             // When ending the dash, halt the body by alot.
             if (EndDash) {
-                body.SetVelocity(m_CachedVelocity);
+                // body.SetVelocity(m_CachedVelocity);
+                body.velocity *= 0.75f;
+
+                AdjustSpeedOnEndDash(body, input, state.Move.Speed);
+
                 state.OverrideMovement(false);
                 state.OverrideFall(false);
                 m_Dashing = false;
                 if (m_LockedBlock != null) {
                     m_LockedBlock.Unlock();
                 }
+            }
+        }
+
+        private void AdjustSpeedOnEndDash(Rigidbody2D body, InputSystem input, float speed) {
+            if (input.Direction.Move == Mathf.Sign(m_CachedDirection.x)) {
+                body.SetVelocity(m_CachedDirection * speed);
+            }
+            else {
+                body.SetVelocity(Vector2.zero);
             }
         }
 
@@ -158,6 +173,7 @@ namespace Platformer.Character.Actions {
             }
             else {
                 m_LockedTicks += 0.3f;
+                Game.MainPlayer.ExplodeDust.Activate();
             }
 
             Game.ParticleGrid.Implode(state.Body.position, 1e5f, 4f, 0.75f);

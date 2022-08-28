@@ -104,8 +104,8 @@ namespace Platformer.Decor {
         }
 
         public void Stop() {
-            gameObject.SetActive(false);
             Reset();
+            gameObject.SetActive(false);
         }
 
         public void Reset() {

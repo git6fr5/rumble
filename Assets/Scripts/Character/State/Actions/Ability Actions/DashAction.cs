@@ -47,7 +47,9 @@ namespace Platformer.Character.Actions {
                 character.OverrideMovement(false);
                 character.OverrideFall(false);
                 if (m_Dashing) {
-                    character.Body.SetVelocity(m_CachedVelocity);
+                    AdjustSpeedOnEndDash(character.Body, character.Input, character.Move.Speed);
+                    // character.Body.velocity *= 0.75f;
+
                     m_Dashing = false;
                 }
                 m_DashTicks = 0f;
@@ -67,7 +69,7 @@ namespace Platformer.Character.Actions {
             body.SetVelocity(Vector2.zero);
             body.SetWeight(0f);
             // input.Direction.Fly != Vector2.zero ? input.Direction.Fly : 
-            m_CachedVelocity = body.velocity;
+            // m_CachedVelocity = body.velocity;
 
             // Clear the inputs.
             input.Action1.ClearPressBuffer();
@@ -91,14 +93,20 @@ namespace Platformer.Character.Actions {
                 body.SetVelocity(m_CachedDirection * DashSpeed);
                 m_PreDashing = false;
                 m_Dashing = true;
+
+                Game.MainPlayer.ExplodeDust.Activate();
+
             }
             
             // When ending the dash, halt the body by alot.
             if (EndDash) {
-                body.SetVelocity(m_CachedVelocity);
+                // body.SetVelocity(m_CachedVelocity);
+                AdjustSpeedOnEndDash(body, input, state.Move.Speed);
+
                 state.OverrideMovement(false);
                 state.OverrideFall(false);
                 m_Dashing = false;
+
             }
 
             if (m_PreDashing) {
@@ -106,6 +114,15 @@ namespace Platformer.Character.Actions {
             }
             else if (m_Dashing) {
                 Game.ParticleGrid.Explode((Vector3)body.position, 1e2f, 7.5f, 0.75f);
+            }
+        }
+
+        private void AdjustSpeedOnEndDash(Rigidbody2D body, InputSystem input, float speed) {
+            if (input.Direction.Move == Mathf.Sign(m_CachedDirection.x)) {
+                body.SetVelocity(m_CachedDirection * speed);
+            }
+            else {
+                body.SetVelocity(Vector2.zero);
             }
         }
 
