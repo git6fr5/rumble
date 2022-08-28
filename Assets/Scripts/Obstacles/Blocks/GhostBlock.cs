@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Platformer.Utilites;
 using Platformer.Character;
 using Platformer.Obstacles;
 
@@ -21,10 +22,28 @@ namespace Platformer.Obstacles {
         [SerializeField] private bool m_Touched;
         [SerializeField] private Orb m_GhostOrb;
 
+        [SerializeField] private Sprite[] m_Sprites;
+        [SerializeField] private float m_AnimationDuration;
+        [SerializeField, ReadOnly] private float m_AnimationTicks;
+
         void Start() {
             m_GhostOrb.Palette.SetSimple(m_SpriteRenderer.material);
             m_Body.angularDrag = 0.05f;
             Freeze();
+            Timer.Start(ref m_AnimationTicks, Random.Range(0.75f, 1.25f) * m_AnimationDuration);
+        }
+
+        void FixedUpdate() {
+            if (!Game.MainPlayer.Ghost.Enabled) {
+                return;
+            }
+
+            bool finished = Timer.TickDown(ref m_AnimationTicks, Time.fixedDeltaTime);
+            if (finished) {
+                m_SpriteRenderer.sprite = m_Sprites[Random.Range(0, m_Sprites.Length)];
+                Timer.Start(ref m_AnimationTicks, Random.Range(0.75f, 1.25f) * m_AnimationDuration);
+            }
+
         }
 
         void Update() {

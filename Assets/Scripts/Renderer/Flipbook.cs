@@ -79,16 +79,16 @@ namespace Platformer.Rendering {
 
         // Effects.
         [Space(2), Header("Effects")]
-        [SerializeField] private VisualEffect m_HurtEffect;
-        [SerializeField] private VisualEffect m_DeathEffect;
+        // [SerializeField] private VisualEffect m_HurtEffect;
+        // [SerializeField] private Dust m_StepDust;
         [SerializeField] private Dust m_StepDust;
-        [SerializeField] private VisualEffect m_JumpEffect;
-        [SerializeField] private VisualEffect m_LandEffect;
-        [SerializeField] private VisualEffect m_DashEffect;
-        [SerializeField] private VisualEffect m_ChargeHopEffect;
-        [SerializeField] private VisualEffect m_HopEffect;
-        [SerializeField] private VisualEffect m_ShadowDashEffect;
-        [SerializeField] private VisualEffect m_ShadowLockEffect;
+        [SerializeField] private Dust m_JumpDust;
+        [SerializeField] private Dust m_LandDust;
+        [SerializeField] private Sparkle m_DashSparkle;
+        [SerializeField] private Sparkle m_ChargeHopSparkle;
+        [SerializeField] private Sparkle m_HopSparkle;
+        // [SerializeField] private VisualEffect m_ShadowDashEffect;
+        // [SerializeField] private VisualEffect m_ShadowLockEffect;
 
         // Animations
         [SerializeField, ReadOnly] private Sprite[] m_IdleAnimation;
@@ -275,11 +275,14 @@ namespace Platformer.Rendering {
             CacheOnGround = m_Character.OnGround;
 
             if (Jump) {
-                if (m_JumpEffect != null) { m_JumpEffect.Play(); }
+                // if (m_JumpEffect != null) { m_JumpEffect.Play(); }
+                m_JumpDust.Activate();
+                m_StepDust.Activate();
                 SoundManager.PlaySound(m_JumpSound, 0.2f);
             }
             else if (Land) {
-                if (m_LandEffect != null) { m_LandEffect.Play(); }
+                m_LandDust.Activate();
+                m_StepDust.Activate();
                 SoundManager.PlaySound(m_LandSound, 0.15f);
             }
 
@@ -300,6 +303,7 @@ namespace Platformer.Rendering {
                 SoundManager.PlaySound(m_StepSound, vB);
                 PlayGroundStepSoundB = true;
                 GroundStepSoundVolume = vB;
+                m_StepDust.Activate();
             }
 
             if (ClimbStepA) {
@@ -308,6 +312,7 @@ namespace Platformer.Rendering {
                 SoundManager.PlaySound(m_ClimbStepSound, vA);
                 PlayGroundStepSoundA = true;
                 GroundStepSoundVolume = vA;
+                m_StepDust.Activate();
             }
             else if (ClimbStepB && m_DoubleStepSound) {
                 // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
@@ -315,6 +320,7 @@ namespace Platformer.Rendering {
                 SoundManager.PlaySound(m_ClimbStepSound, vB);
                 PlayGroundStepSoundB = true;
                 GroundStepSoundVolume = vB;
+                m_StepDust.Activate();
             }
 
         }
@@ -322,14 +328,16 @@ namespace Platformer.Rendering {
         private void GetAbilityEffect() {
             if (WallJump) {
                 // if (m_StepEffectA != null) { m_StepEffectA.Play(); }
+                // m_WallJumpDust.Activate();
                 SoundManager.PlaySound(m_WallJumpSound, 0.15f);
             }
             else if (Hop) {
                 // if (m_StepEffectA != null) { m_StepEffectA.Play(); }
+                // m_HopSparkle.Activate();
                 SoundManager.PlaySound(m_HopSound, 0.15f);
             }
             else if (Dash) {
-                if (m_DashEffect != null) { m_DashEffect.Play(); }
+                // m_DashDust.Activate();
                 SoundManager.PlaySound(m_DashSound, 0.15f);
             }
             else if (ShadowDash) {
@@ -338,17 +346,19 @@ namespace Platformer.Rendering {
             }
             else if (ShadowLock) {
                 // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
+                // m_ShadowLockDust.Activate();
                 SoundManager.PlaySound(m_ShadowLockSound, 0.15f);
             }
 
-            if (ChargingHop && m_ChargeHopEffect != null) {
-                m_ChargeHopEffect.gameObject.SetActive(true);
-                m_ChargeHopEffect.SetFloat("Ratio", 0.5f * m_Character.Hop.Ratio);
-            }
-            else if (m_ChargeHopEffect != null) {
-                m_ChargeHopEffect.gameObject.SetActive(false);
-                m_ChargeHopEffect.SetFloat("Ratio", 0f);
-            }
+            // if (ChargingHop && m_ChargeHopEffect != null) {
+            //     // m_ChargeHopEffect.gameObject.SetActive(true);
+            //     // m_ChargeHopEffect.SetFloat("Ratio", 0.5f * m_Character.Hop.Ratio);
+            //     // m_ChargeSparkle.Activate();
+            // }
+            // else if (m_ChargeHopEffect != null) {
+            //     // m_ChargeHopEffect.gameObject.SetActive(false);
+            //     // m_ChargeHopEffect.SetFloat("Ratio", 0f);
+            // }
 
         }
 
@@ -378,7 +388,7 @@ namespace Platformer.Rendering {
         private float GetFrameRate() {
             float frameRate = Screen.FrameRate;
             if (m_CurrentAnimation == m_ShadowLockedAnimation) {
-                return frameRate;
+                return 8f * frameRate;
             }
             else if (m_CurrentAnimation == m_ShadowDashAnimation) {
                 return frameRate;

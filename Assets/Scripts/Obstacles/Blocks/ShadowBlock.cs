@@ -14,11 +14,10 @@ namespace Platformer.Obstacles {
     ///<summary>
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(BoxCollider2D))]
-    [RequireComponent(typeof(SpriteRenderer))]
     public class ShadowBlock : MonoBehaviour {
 
         private Rigidbody2D m_Body => GetComponent<Rigidbody2D>();
-        private SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
+        [SerializeField] private SpriteRenderer m_SpriteRenderer;
 
         [SerializeField] private BoxCollider2D m_CollisionBox;
         [SerializeField] private BoxCollider2D m_TriggerBox;
@@ -36,9 +35,21 @@ namespace Platformer.Obstacles {
         }
 
         void Update() {
+            if (Game.MainPlayer.Shadow.Enabled) {
+                m_SpriteRenderer.transform.localScale = new Vector3(1f, 1f, 1f) * 1.25f;
+            } 
+            else {
+                m_SpriteRenderer.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+
             if (m_Locked) {
                 //
+                m_SpriteRenderer.transform.eulerAngles += Vector3.forward * Time.deltaTime * 720f;
             }
+            else {
+                m_SpriteRenderer.transform.eulerAngles = Vector3.zero;
+            }
+            
             if (!m_Locked && m_Touched != null && m_Touched.Shadow.Dashing) {
                 m_Touched.Shadow.Lock(m_Touched, this);
                 m_Touched = null;

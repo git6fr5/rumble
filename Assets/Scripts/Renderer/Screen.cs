@@ -127,7 +127,7 @@ namespace Platformer.Rendering {
 
         }
 
-        public void Shape(Vector2Int shape, int ppu = 32) {
+        public void Shape(Vector2Int shape, int ppu = 64) {
             // ppu /= 2;
             m_PixelPerfectCamera.refResolutionX = shape.x * ppu;
             m_PixelPerfectCamera.refResolutionY = shape.y * ppu;
