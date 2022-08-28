@@ -36,6 +36,16 @@ namespace Platformer.Character.Actions {
 
         #endregion
 
+        public override void Enable(CharacterState character, bool enable) {
+            if (enable) {
+                if (character.Input.Action1.Held) {
+                    character.Body.velocity = Vector2.zero;
+                    m_Charge = 0f;
+                }
+            }
+            base.Enable(character, enable);
+        }
+
         // When this ability is activated.
         public override void Activate(Rigidbody2D body, InputSystem input, CharacterState state) {
             if (!m_Enabled) { return; }
@@ -55,6 +65,8 @@ namespace Platformer.Character.Actions {
             m_Charge = 0f;
             m_Refreshed = false;
             SoundManager.StopSound(m_ChargeSound);
+
+            Game.ParticleGrid.Spin((Vector3)body.position, Ratio * 1e6f, 50f, -1f);
 
         }
 
@@ -77,6 +89,10 @@ namespace Platformer.Character.Actions {
                 state.OverrideMovement(true);
                 state.OverrideFall(true);
                 body.SetWeight(0.05f);
+
+                float force = Ratio * 5e3f;
+                float radius = (1f -Ratio) * 5f + 5f;
+                Game.ParticleGrid.Spin((Vector3)body.position, force, radius, 1f);
 
             }
 

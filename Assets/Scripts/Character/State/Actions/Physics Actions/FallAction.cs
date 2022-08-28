@@ -44,6 +44,7 @@ namespace Platformer.Character.Actions {
                     
                 }
                 else {
+
                     // If it is falling, also multiply the sink weight.
                     body.gravityScale *= (state.Jump.Weight * state.Jump.Sink);
 
@@ -53,9 +54,16 @@ namespace Platformer.Character.Actions {
                         Timer.TickDown(ref m_AntiGravityTicks, dt);
                     }
 
+                    if (state.Jump.CoyoteTicks > 0f) {
+                        body.gravityScale *= 0.5f;
+                    }
+
                 }
 
             }
+
+            body.ClampFallSpeed(25f);
+
         }
 
     }

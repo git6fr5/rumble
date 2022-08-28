@@ -226,6 +226,11 @@ namespace Platformer.LevelLoader {
 
         /* --- Entering --- */
         #region Entering
+
+        // public void Reload() {
+        //     LDtkLoader.UnloadEntities(this);
+        //     LDtkLoader.LoadEntities(this, m_LDtkLevel, Game.LevelLoader.LevelEnvironment);
+        // }
         
         void OnTriggerEnter2D(Collider2D collider) {
             CharacterState character = collider.GetComponent<CharacterState>();
@@ -235,10 +240,7 @@ namespace Platformer.LevelLoader {
 
                 character.OverrideFall(false);
                 character.OverrideMovement(false);
-                character.Dash.Enable(character, false);
-                character.Hop.Enable(character, false);
-                character.Ghost.Enable(character, false);
-                character.Shadow.Enable(character, false);
+                character.DisableAllAbilityActions();
 
                 Platformer.Rendering.Screen.Recolor(Screen.DefaultPalette);
 
@@ -263,7 +265,7 @@ namespace Platformer.LevelLoader {
             CharacterState character = collider.GetComponent<CharacterState>();
             bool player = character != null && character.IsPlayer;
             if (player) {
-                Timer.Start(ref m_UnloadTicks, 2f);
+                Timer.Start(ref m_UnloadTicks, 0f);
                 LightSwitch(false);
                 m_Unloading = true;
             }

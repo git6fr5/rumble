@@ -19,9 +19,11 @@ namespace Platformer.CustomTiles {
 
         // Stores the neigbouring tile data.
         private int[] m_BitArray;
+        private int[,] m_PatternArray;
 
         // Converts the bit array into a base 2 ID.
         public int BinaryValue => GetBinaryValue();
+
 
         // Constructs the bit array.
         public NeighbourTileArray(Vector3Int position, ITilemap tilemap) {
@@ -46,6 +48,49 @@ namespace Platformer.CustomTiles {
                 val += (int)Mathf.Pow(2, i) * m_BitArray[i];
             }
             return val;
+        }
+
+        private int[,] GetPatternArray() {
+
+            // 0 = nothing above => line
+            // 1 = line
+            // 2 corner
+
+            int[,] pattern = new int[4,4];
+            
+            if (m_BitArray[1] != 0) {
+
+                for (int i = 0; i < 4; i++) {
+                    pattern[i, 0] += 1;
+                }
+
+            }
+
+            if (m_BitArray[3] != 0) {
+
+                for (int i = 0; i < 4; i++) {
+                    pattern[0, i] += 1;
+                }
+
+            }
+
+            if (m_BitArray[6] != 0) {
+
+                for (int i = 0; i < 4; i++) {
+                    pattern[i, 3] += 1;
+                }
+
+            }
+
+            if (m_BitArray[4] != 0) {
+
+                for (int i = 0; i < 4; i++) {
+                    pattern[3, i] += 1;
+                }
+
+            }
+
+            return pattern;
         }
 
     }

@@ -57,6 +57,13 @@ namespace Platformer.Character.Actions {
                     m_Dashing = false;
                 }
                 m_DashTicks = 0f;
+
+                if (m_LockedBlock != null) {
+                    m_LockedBlock.Unlock();
+                }
+                m_LockedTicks = 0f;
+                m_Locked = false;
+
             }
             base.Enable(character, enable);
         }
@@ -65,8 +72,8 @@ namespace Platformer.Character.Actions {
         public override void Activate(Rigidbody2D body, InputSystem input, CharacterState state) {
             if (!m_Enabled) { return; }
 
+            m_CachedDirection = input.Direction.Fly != Vector2.zero ? input.Direction.Fly : m_CachedDirection;
             if (m_Locked) { 
-                m_CachedDirection = input.Direction.Fly != Vector2.zero ? input.Direction.Fly : m_CachedDirection;
                 return;
             }
 
@@ -74,9 +81,9 @@ namespace Platformer.Character.Actions {
             state.OverrideMovement(true);
             state.OverrideFall(true);
 
+            body.Move(0.15f * Vector3.up);
             body.SetVelocity(Vector2.zero);
             body.SetWeight(0f);
-            m_CachedDirection = input.Direction.Fly != Vector2.zero ? input.Direction.Fly : m_CachedDirection;
             m_CachedVelocity = body.velocity;
 
             // Clear the inputs.
@@ -114,6 +121,7 @@ namespace Platformer.Character.Actions {
             
             // When ending the predash, start the dash.
             if (EndPreDash) {
+                m_CachedDirection = input.Direction.Fly != Vector2.zero ? input.Direction.Fly : m_CachedDirection;
                 body.SetVelocity(m_CachedDirection * DashSpeed);
                 m_PreDashing = false;
                 m_Dashing = true;
@@ -143,14 +151,16 @@ namespace Platformer.Character.Actions {
         }
 
         public void Lock(CharacterState state, ShadowBlock block) {
-            m_LockedTicks = 0.3f;
+            m_LockedTicks = 0.125f;
 
             if (m_LockedBlock != null) {
                 m_LockedBlock.Unlock();
             }
             else {
-                m_LockedTicks += 0.125f;
+                m_LockedTicks += 0.3f;
             }
+
+            Game.ParticleGrid.Implode(state.Body.position, 1e5f, 4f, 0.75f);
 
             block.Lock();
             m_LockedBlock = block;

@@ -21,7 +21,7 @@ namespace Platformer.Obstacles {
         }
 
         [SerializeField] private Beat m_Beat;
-        private static float Period = 6f;
+        private static float Period = 4f;
 
         [SerializeField] private GameObject m_DisabledObject;
 

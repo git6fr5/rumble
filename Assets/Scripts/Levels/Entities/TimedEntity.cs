@@ -24,6 +24,14 @@ namespace Platformer.LevelLoader {
             if (timedSpike != null) {
                 timedSpike.Init(offset);
             }
+            Spitter spitter = GetComponent<Spitter>();
+            if (spitter != null) {
+                spitter.Init(offset);
+            }
+            Spikeball spikeball = GetComponent<Spikeball>();
+            if (spikeball != null) {
+                spikeball.Init(offset);
+            }
 
         }
 

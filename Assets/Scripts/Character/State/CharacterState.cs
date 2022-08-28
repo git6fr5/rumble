@@ -78,8 +78,14 @@ namespace Platformer.Character {
         public void Reset() {
             // Game.HitStop();
             // transform.position = Vector3.up * 1.5f + m_RespawnBlock.Origin;
+            Vector3 explosionPosition = transform.position - Game.ParticleGrid.transform.position;
+            explosionPosition.z = 0f;
+            Game.ParticleGrid.Ripple(transform.position, 1e4f, 10f, 0.5f, 3);
+            
+            DisableAllAbilityActions();
             m_Body.velocity = Vector2.zero;
             transform.position = Vector3.up * 1.5f + m_RespawnBlock.Origin;
+
             Disable(0f);
             OverrideFall(false);
             OverrideMovement(false);
@@ -120,6 +126,8 @@ namespace Platformer.Character {
             m_Ghost.Process(m_Body, m_Input, this);
             m_Shadow.Process(m_Body, m_Input, this);
             m_Sticky.Process(m_Body, m_Input, this);
+
+            Game.ParticleGrid.Implode(transform.position, m_Body.velocity.magnitude * 25f, 10f);
         }
 
         void FixedUpdate() {
@@ -138,7 +146,7 @@ namespace Platformer.Character {
             m_Fall.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Fly.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Climb.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
-
+            
         }
 
     }

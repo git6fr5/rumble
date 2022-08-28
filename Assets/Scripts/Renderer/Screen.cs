@@ -37,6 +37,7 @@ namespace Platformer.Rendering {
         // Components.
         [HideInInspector] public Camera m_MainCamera;
         [SerializeField] public PixelPerfectCamera m_PixelPerfectCamera;
+        public static int PixelSize => Instance.m_PixelPerfectCamera.assetsPPU;
 
         // Settings.
         [SerializeField, ReadOnly] private Vector3 m_Origin;
@@ -126,7 +127,7 @@ namespace Platformer.Rendering {
 
         }
 
-        public void Shape(Vector2Int shape, int ppu = 16) {
+        public void Shape(Vector2Int shape, int ppu = 32) {
             // ppu /= 2;
             m_PixelPerfectCamera.refResolutionX = shape.x * ppu;
             m_PixelPerfectCamera.refResolutionY = shape.y * ppu;
@@ -206,6 +207,12 @@ namespace Platformer.Rendering {
             // Restart the recoloration.
             m_Recoloration = 0f;
             Instance.ColorPaletteMaterial.SetFloat("_Radius", 0f);
+        }
+
+        public static Vector2 RandomPositionWithinBounds() {
+            float x = Instance.m_ScreenSize.x;
+            float y = Instance.m_ScreenSize.y;
+            return (Vector2)Instance.transform.position + new Vector2(Random.Range(-x, x), Random.Range(-y, y)) * 1.5f;
         }
 
     }

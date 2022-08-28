@@ -15,6 +15,7 @@ namespace Platformer.Character.Input {
         // Whether this is a joystick, keypad or anything else.
         [SerializeField] private Vector2 m_Direction;
         [SerializeField] private float m_Facing;
+        [SerializeField] private bool m_LockFacing;
 
         // The useable information from the inputted direction.
         public float Facing => m_Facing;
@@ -25,7 +26,19 @@ namespace Platformer.Character.Input {
         // Updates this directional input.
         public void OnUpdate(Vector2 vector) {
             m_Direction = vector;
-            m_Facing = m_Direction.x != 0f ? m_Direction.x : Facing;
+            if (!m_LockFacing) {
+                m_Facing = m_Direction.x != 0f ? m_Direction.x : Facing;
+            }
+        }
+        
+        // Forcibly flips the facing direction of this.
+        public void ForceFacing(float direction) {
+            m_Facing = Mathf.Sign(direction);
+        }
+
+        // Forcibly locks the direction being faced.
+        public void LockFacing(bool lockFacing) {
+            m_LockFacing = lockFacing;
         }
 
     }

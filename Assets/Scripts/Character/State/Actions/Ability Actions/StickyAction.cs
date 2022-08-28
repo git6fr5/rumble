@@ -25,6 +25,7 @@ namespace Platformer.Character.Actions {
         [SerializeField] private float m_Duration;
 
         [SerializeField] private bool m_WallJumping;
+        public bool WallJumping => m_Enabled && m_WallJumping;
 
         // Allows a little leeway for when this character is no longer
         // in contact with the ground.
@@ -34,6 +35,12 @@ namespace Platformer.Character.Actions {
 
         [SerializeField] private float m_CachedDirection;
 
+        [SerializeField] private AudioClip m_StartJumpSound;
+        [SerializeField] private AudioClip m_StartClimbSound;
+        [SerializeField] private AudioClip m_EndJumpSound;
+        [SerializeField] private AudioClip m_WallJumpingSound;
+
+
         #endregion
 
         public override void Enable(CharacterState character, bool enable) {
@@ -42,6 +49,11 @@ namespace Platformer.Character.Actions {
                 if (character.Input.Action1.Held) {
                     Activate(character.Body, character.Input, character);
                 }
+            }
+            if (!enable) {
+                m_WallJumping = false;
+                character.Input.Direction.LockFacing(false);
+                m_StickTicks = 0f;
             }
         }
 
@@ -70,6 +82,12 @@ namespace Platformer.Character.Actions {
                 m_CachedDirection *= -1f;
 
                 input.Action0.ClearPressBuffer();
+                if (state.FacingWall) {
+                    input.Direction.ForceFacing(m_CachedDirection);
+                }
+                input.Direction.LockFacing(true);
+
+                SoundManager.PlaySound(m_StartJumpSound, 0.1f);
 
                 m_WallJumping = true;
                 
@@ -89,6 +107,8 @@ namespace Platformer.Character.Actions {
 
                 // Set this on cooldown.
                 Timer.Start(ref m_StickTicks, m_Duration);
+                SoundManager.PlaySound(m_StartClimbSound, 0.1f);
+
                 m_Refreshed = false;
             }
             
@@ -112,27 +132,34 @@ namespace Platformer.Character.Actions {
                 state.OverrideFall(false);
                 m_StickTicks = 0f;
                 m_WallJumping = false;
+                input.Direction.LockFacing(false);
             }
 
             if (m_WallJumping) {
 
-                if (!input.Action0.Held || state.FacingWall) {
+                if (!input.Action1.Held || (input.Action1.Held && state.FacingWall)) {
                     m_WallJumping = false;
+                    input.Direction.LockFacing(false);
+                    SoundManager.PlaySound(m_EndJumpSound, 0.1f);
                 }
                 else {
+                    // body.velocity = new Vector2(body.velocity.x * 1.025f, body.velocity.y);
+                    SoundManager.PlaySound(m_WallJumpingSound, 0.1f);
                     return;
                 }
 
             }
-            
+
             // When ending the dash, halt the body by alot.
             bool finished = Timer.TickDown(ref m_StickTicks, dt);
             if (finished || (!state.FacingWall && m_CoyoteTicks == 0f)) {
                 state.OverrideMovement(false);
                 state.OverrideFall(false);
+                m_WallJumping = false;
                 m_StickTicks = 0f;
             }
 
+            
         }
 
         // Checks the state for whether this ability can be activated.

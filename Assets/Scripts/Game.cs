@@ -47,8 +47,12 @@ namespace Platformer {
         public static SoundManager SoundManager => Instance.m_SoundManager;
 
         // Grid.
-        [SerializeField] private Grid m_Grid;
-        public static Grid MainGrid => Instance.m_Grid;
+        [SerializeField] private UnityEngine.Grid m_Grid;
+        public static UnityEngine.Grid MainGrid => Instance.m_Grid;
+
+        // Particle rid.
+        [SerializeField] private GridRenderer m_ParticleGrid;
+        public static GridRenderer ParticleGrid => Instance.m_ParticleGrid;
 
         // Opening level.
         [SerializeField] private string m_OpeningLevel;
@@ -76,6 +80,7 @@ namespace Platformer {
             Level.InitializeWaterLayer(m_Grid.transform);
             m_LevelLoader.Init();
             Screen.Instance.gameObject.SetActive(false);
+            m_Player.gameObject.SetActive(false);
             StartCoroutine(IELoadOpeningLevel());
         }
 
@@ -87,6 +92,8 @@ namespace Platformer {
             Screen.Instance.gameObject.SetActive(true);
             yield return 0;
             m_SoundManager.OnStart();
+            m_ParticleGrid.BuildGrid();
+            m_Player.gameObject.SetActive(true);
             yield return null;
         }
 

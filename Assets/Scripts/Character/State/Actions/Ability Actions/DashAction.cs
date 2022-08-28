@@ -66,7 +66,6 @@ namespace Platformer.Character.Actions {
 
             body.SetVelocity(Vector2.zero);
             body.SetWeight(0f);
-            m_CachedDirection = new Vector2(input.Direction.Facing, 0f);
             // input.Direction.Fly != Vector2.zero ? input.Direction.Fly : 
             m_CachedVelocity = body.velocity;
 
@@ -88,6 +87,7 @@ namespace Platformer.Character.Actions {
             
             // When ending the predash, start the dash.
             if (EndPreDash) {
+                m_CachedDirection = new Vector2(input.Direction.Facing, 0f);
                 body.SetVelocity(m_CachedDirection * DashSpeed);
                 m_PreDashing = false;
                 m_Dashing = true;
@@ -99,6 +99,13 @@ namespace Platformer.Character.Actions {
                 state.OverrideMovement(false);
                 state.OverrideFall(false);
                 m_Dashing = false;
+            }
+
+            if (m_PreDashing) {
+                Game.ParticleGrid.Implode((Vector3)body.position, 1e4f, 7.5f, 1f);
+            }
+            else if (m_Dashing) {
+                Game.ParticleGrid.Explode((Vector3)body.position, 1e2f, 7.5f, 0.75f);
             }
         }
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 // Platformer.
 using Platformer.LevelLoader;
+using Platformer.Obstacles;
 
 namespace Platformer.LevelLoader {
 
@@ -19,10 +20,10 @@ namespace Platformer.LevelLoader {
         // Take the control data and turn it into a path.
         public override void OnControl(int index, List<LDtkTileData> controlData) {
             Vector3[] path = PatrolEntity.GetPath(transform.position, index, controlData);
-            // Enemy enemy = GetComponent<Enemy>();
-            // if (enemy != null) {
-            //     enemy.Init(path);
-            // }
+            MovingSpikeball movingSpikeBall = GetComponent<MovingSpikeball>();
+            if (movingSpikeBall != null) {
+                movingSpikeBall.Init(path);
+            }
         }
 
         // The logic of turning the ldtk data into a path.

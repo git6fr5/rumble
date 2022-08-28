@@ -65,7 +65,7 @@ namespace Platformer.Obstacles {
         }
 
         void Collect(CharacterState state) {
-            // Game.HitStop(8);
+            Game.HitStop(8);
             state.OverrideFall(false);
             state.OverrideMovement(false);
             state.DisableAllAbilityActions();

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 // Platformer.
+using Platformer.Decor;
 using Platformer.Utilites;
 using Platformer.Character;
 using Platformer.Physics;
@@ -58,6 +59,9 @@ namespace Platformer.Rendering {
         [SerializeField] private int m_HopFrames;
         [SerializeField] private int m_ShadowDashFrames;
         [SerializeField] private int m_ShadowLockFrames;
+        [SerializeField] private int m_FlyFrames;
+        [SerializeField] private int m_WallClimbFrames;
+        [SerializeField] private int m_WallJumpFrames;
 
         // Sounds.
         [Space(2), Header("Sounds")]
@@ -70,12 +74,14 @@ namespace Platformer.Rendering {
         [SerializeField] private AudioClip m_HopSound;
         [SerializeField] private AudioClip m_ShadowDashSound;
         [SerializeField] private AudioClip m_ShadowLockSound;
+        [SerializeField] private AudioClip m_ClimbStepSound;
+        [SerializeField] private AudioClip m_WallJumpSound;
 
         // Effects.
         [Space(2), Header("Effects")]
         [SerializeField] private VisualEffect m_HurtEffect;
         [SerializeField] private VisualEffect m_DeathEffect;
-        [SerializeField] private VisualEffect m_StepEffect;
+        [SerializeField] private Dust m_StepDust;
         [SerializeField] private VisualEffect m_JumpEffect;
         [SerializeField] private VisualEffect m_LandEffect;
         [SerializeField] private VisualEffect m_DashEffect;
@@ -96,6 +102,9 @@ namespace Platformer.Rendering {
         [SerializeField, ReadOnly] private Sprite[] m_HopAnimation;
         [SerializeField, ReadOnly] private Sprite[] m_ShadowDashAnimation;
         [SerializeField, ReadOnly] private Sprite[] m_ShadowLockedAnimation;
+        [SerializeField, ReadOnly] private Sprite[] m_FlyAnimation;
+        [SerializeField, ReadOnly] private Sprite[] m_WallClimbAnimation;
+        [SerializeField, ReadOnly] private Sprite[] m_WallJumpAnimation;
 
         // Animation Conditions.
 
@@ -112,6 +121,11 @@ namespace Platformer.Rendering {
         private bool ShadowDashing => m_Character.Shadow.Enabled && m_Character.Shadow.Dashing;
         private bool ShadowLocked => m_Character.Shadow.Enabled && m_Character.Shadow.Locked;
 
+        private bool WallClimbing => m_Character.Sticky.Enabled && m_Character.Sticky.Climbing;
+        private bool WallJumping => m_Character.Sticky.Enabled && m_Character.Sticky.WallJumping;
+        
+        private bool Flying => m_Character.Ghost.Enabled && m_Character.MovementOverride == true;
+
         // Landing Conditions.
         private bool CacheOnGround = true;
         private bool Jump = false;
@@ -125,9 +139,13 @@ namespace Platformer.Rendering {
         [HideInInspector] public bool PlayGroundStepSoundB = false;
         [HideInInspector] public float GroundStepSoundVolume = 0f;
 
+        private bool ClimbStepA => m_CurrentAnimation == m_WallClimbAnimation && ((m_CurrentFrame == 0 && m_PreviousFrame != 0) || (m_PreviousAnimation != m_WallClimbAnimation));
+        private bool ClimbStepB => m_CurrentAnimation == m_WallClimbAnimation && m_CurrentFrame == (int)Mathf.Ceil(m_WallClimbFrames / 2f) && m_PreviousFrame != (int)Mathf.Ceil(m_WallClimbFrames / 2f);
+
         // Ability Conditions.
         private bool Dash => m_CurrentAnimation == m_PredashAnimation && m_PreviousAnimation != m_PredashAnimation;
         private bool Hop => m_CurrentAnimation == m_HopAnimation && m_PreviousAnimation != m_HopAnimation;
+        private bool WallJump => m_CurrentAnimation == m_WallJumpAnimation && m_PreviousAnimation != m_WallJumpAnimation;
         
         private bool ShadowDash = false; // m_CurrentAnimation == m_PredashAnimation && m_PreviousAnimation != m_PredashAnimation;
         private bool ShadowLock = false; // m_CurrentAnimation == m_PredashAnimation && m_PreviousAnimation != m_PredashAnimation;
@@ -162,6 +180,9 @@ namespace Platformer.Rendering {
             index = SliceSheet(index, m_HopFrames, ref m_HopAnimation);
             index = SliceSheet(index, m_ShadowDashFrames, ref m_ShadowDashAnimation);
             index = SliceSheet(index, m_ShadowLockFrames, ref m_ShadowLockedAnimation);
+            index = SliceSheet(index, m_FlyFrames, ref m_FlyAnimation);
+            index = SliceSheet(index, m_WallClimbFrames, ref m_WallClimbAnimation);
+            index = SliceSheet(index, m_WallJumpFrames, ref m_WallJumpAnimation);
             return index;
         }
 
@@ -189,8 +210,10 @@ namespace Platformer.Rendering {
 
             // Update the current animation, frame and sprite.
             m_CurrentAnimation = GetAnimation();
+
+            float frameRate = GetFrameRate();
             m_Ticks = m_PreviousAnimation == m_CurrentAnimation ? m_Ticks + deltaTime : 0f;
-            m_CurrentFrame = (int)Mathf.Floor(m_Ticks * Screen.FrameRate) % m_CurrentAnimation.Length;
+            m_CurrentFrame = (int)Mathf.Floor(m_Ticks * frameRate) % m_CurrentAnimation.Length;
             m_SpriteRenderer.sprite = m_CurrentAnimation[m_CurrentFrame];
 
             // Check for whtether an attack any other effects have started.
@@ -207,7 +230,16 @@ namespace Platformer.Rendering {
 
         // Gets the current animation info.
         public virtual Sprite[] GetAnimation() {
-            if (ShadowLocked && Game.Validate<Sprite>(m_ShadowLockedAnimation)) {
+            if (WallJumping && Game.Validate<Sprite>(m_WallJumpAnimation)) {
+                return m_WallJumpAnimation;
+            }
+            else if (WallClimbing && Game.Validate<Sprite>(m_WallClimbAnimation)) {
+                return m_WallClimbAnimation;
+            }
+            else if (Flying && Game.Validate<Sprite>(m_FlyAnimation)) {
+                return m_FlyAnimation;
+            }
+            else if (ShadowLocked && Game.Validate<Sprite>(m_ShadowLockedAnimation)) {
                 return m_ShadowLockedAnimation;
             }
             else if (ShadowDashing && Game.Validate<Sprite>(m_ShadowDashAnimation)) {
@@ -260,6 +292,7 @@ namespace Platformer.Rendering {
                 SoundManager.PlaySound(m_StepSound, vA);
                 PlayGroundStepSoundA = true;
                 GroundStepSoundVolume = vA;
+                m_StepDust.Activate();
             }
             else if (StepB && m_DoubleStepSound) {
                 // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
@@ -269,10 +302,29 @@ namespace Platformer.Rendering {
                 GroundStepSoundVolume = vB;
             }
 
+            if (ClimbStepA) {
+                // if (m_StepEffectA != null) { m_StepEffectA.Play(); }
+                float vA = Random.Range(0.05f, 0.075f);
+                SoundManager.PlaySound(m_ClimbStepSound, vA);
+                PlayGroundStepSoundA = true;
+                GroundStepSoundVolume = vA;
+            }
+            else if (ClimbStepB && m_DoubleStepSound) {
+                // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
+                float vB = Random.Range(0.03f, 0.05f);
+                SoundManager.PlaySound(m_ClimbStepSound, vB);
+                PlayGroundStepSoundB = true;
+                GroundStepSoundVolume = vB;
+            }
+
         }
 
         private void GetAbilityEffect() {
-            if (Hop) {
+            if (WallJump) {
+                // if (m_StepEffectA != null) { m_StepEffectA.Play(); }
+                SoundManager.PlaySound(m_WallJumpSound, 0.15f);
+            }
+            else if (Hop) {
                 // if (m_StepEffectA != null) { m_StepEffectA.Play(); }
                 SoundManager.PlaySound(m_HopSound, 0.15f);
             }
@@ -321,6 +373,38 @@ namespace Platformer.Rendering {
                 transform.localScale += (Vector3)(stretch + m_CachedStretch);
             }
             m_CachedStretch = stretch;
+        }
+
+        private float GetFrameRate() {
+            float frameRate = Screen.FrameRate;
+            if (m_CurrentAnimation == m_ShadowLockedAnimation) {
+                return frameRate;
+            }
+            else if (m_CurrentAnimation == m_ShadowDashAnimation) {
+                return frameRate;
+            }
+            else if (m_CurrentAnimation == m_ChargeHopAnimation) {
+                return frameRate * (1f + 1f * Mathf.Pow(m_Character.Hop.Ratio, 2));
+            }
+            else if (m_CurrentAnimation == m_HopAnimation) {
+                return 4f * frameRate;
+            }
+            else if (m_CurrentAnimation == m_PredashAnimation) {
+                return 30f * frameRate;
+            }
+            else if (m_CurrentAnimation == m_DashAnimation) {
+                return frameRate;
+            }
+            else if (m_CurrentAnimation == m_RisingAnimation) {
+                return frameRate;
+            }
+            else if (m_CurrentAnimation == m_FallingAnimation) {
+                return frameRate;
+            }
+            else if (m_CurrentAnimation == m_MovementAnimation) {
+                return frameRate;
+            }
+            return frameRate;
         }
 
         #endregion
