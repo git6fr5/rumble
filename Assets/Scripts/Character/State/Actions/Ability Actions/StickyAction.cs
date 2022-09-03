@@ -124,7 +124,7 @@ namespace Platformer.Character.Actions {
 
         }
 
-        private void WhileClimbing(Rigidbody2D body, Input input) {
+        private void WhileClimbing(Rigidbody2D body, InputSystem input) {
             // Cache the target and current velocities.
             float targetSpeed = input.Direction.Climb * m_Speed;
             float currentSpeed = body.velocity.y;

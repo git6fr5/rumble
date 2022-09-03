@@ -48,17 +48,9 @@ namespace Platformer.Character {
         public bool FallOverride => m_FallOverride;
         
         // Actions.
-        [SerializeField] private MoveAction m_Movement;
-        public MoveAction Move => m_Movement;
-        [SerializeField] private FlyAction m_Fly;
-        public FlyAction Fly => m_Fly;
-        [SerializeField] private FallAction m_Fall;
-        public FallAction Fall => m_Fall;
-         [SerializeField] private ClimbAction m_Climb;
-        public ClimbAction Climb => m_Climb;
+        [SerializeField] private DefaultAction m_Default;
+        public DefaultAction Default => m_Default;
 
-        [SerializeField] private JumpAction m_Jump;
-        public JumpAction Jump => m_Jump;
         [SerializeField] private DashAction m_Dash;
         public DashAction Dash => m_Dash;
         [SerializeField] private HopAction m_Hop;
@@ -153,7 +145,7 @@ namespace Platformer.Character {
         }
 
         void Update() {
-            m_Jump.Process(m_Body, m_Input, this);
+            m_Default.Process(m_Body, m_Input, this);
             m_Dash.Process(m_Body, m_Input, this);
             m_Hop.Process(m_Body, m_Input, this);
             m_Ghost.Process(m_Body, m_Input, this);
@@ -167,19 +159,14 @@ namespace Platformer.Character {
             Timer.TickDown(ref m_DisableTicks, Time.fixedDeltaTime);
             m_OnGround = CollisionCheck.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.down, Game.Physics.CollisionLayers.Ground);
             m_FacingWall = CollisionCheck.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, FacingDirection,  Game.Physics.CollisionLayers.Ground);
-
-            m_Jump.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
+            
+            m_Default.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Dash.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Hop.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Ghost.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Shadow.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
             m_Sticky.Refresh(m_Body, m_Input, this, Time.fixedDeltaTime);
 
-            m_Movement.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
-            m_Fall.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
-            m_Fly.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
-            m_Climb.Process(m_Body, m_Input, this, Time.fixedDeltaTime);
-            
         }
 
     }

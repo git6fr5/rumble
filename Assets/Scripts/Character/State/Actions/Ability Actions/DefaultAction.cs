@@ -122,7 +122,7 @@ namespace Platformer.Character.Actions {
         }
 
         // Process the physics of this action.
-        public override void WhileMoving(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
+        private void WhileMoving(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
             // Cache the target and current velocities.
             float targetSpeed = input.Direction.Move * m_Speed;
             float currentSpeed = body.velocity.x;

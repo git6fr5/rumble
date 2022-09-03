@@ -43,6 +43,12 @@ namespace Platformer.Character.Actions {
             base.Enable(character, enable);
         }
 
+        // When this ability is activated.
+        public override void Activate(Rigidbody2D body, InputSystem input, CharacterState state) {
+            if (!m_Enabled) { return; }
+
+        }
+
         // Refreshes the settings for this ability every interval.
         public override void Refresh(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
             if (!m_Enabled) { return; }
