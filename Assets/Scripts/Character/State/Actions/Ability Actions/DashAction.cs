@@ -14,25 +14,25 @@ namespace Platformer.Character.Actions {
     /// An ability that near-instantly moves the character.
     ///<summary>
     [System.Serializable]
-    public class DashAction : AbilityAction {
+    public class DashAction : Action {
 
         #region Variables
 
-        // Tracks whether the dash has started.
-        [SerializeField, ReadOnly] private bool m_PreDashing;
-        public bool Predashing => m_PreDashing;
+        // The different stages of the dash.
+        [SerializeField, ReadOnly] private bool m_Predashing;
+        public bool Predashing => m_Predashing;
         [SerializeField, ReadOnly] private bool m_Dashing;
         public bool Dashing => m_Dashing;
-        [SerializeField, ReadOnly] private Vector2 m_CachedDirection;
-        [SerializeField, ReadOnly] private Vector2 m_CachedVelocity;
 
-        // Tracks the timeline of the dash.
-        [SerializeField, ReadOnly] private float m_DashTicks;
+        // The durations of the different stages of the dash.
         [SerializeField] private float m_PreDashBuffer;
         [SerializeField] private float m_DashBuffer;
         [SerializeField] private float m_CooldownBufferTicks;
+
+        // Tracks the timeline of the dash.
+        [SerializeField, ReadOnly] private float m_DashTicks;
         public float Cooldown => m_PreDashBuffer + m_DashBuffer + m_CooldownBufferTicks;
-        public bool EndPreDash => m_PreDashing && m_DashTicks <= Cooldown - m_PreDashBuffer;
+        public bool EndPredash => m_Predashing && m_DashTicks <= Cooldown - m_PreDashBuffer;
         public bool EndDash => m_Dashing && m_DashTicks <= Cooldown - m_PreDashBuffer - m_DashBuffer;
         public bool HalfwayFinished => m_Dashing && m_DashTicks <= Cooldown - m_PreDashBuffer - m_DashBuffer / 2f;
 
@@ -40,95 +40,111 @@ namespace Platformer.Character.Actions {
         [SerializeField] private float m_DashDistance;
         private float DashSpeed => m_DashDistance / m_DashBuffer;
 
+        // The sound for this ability.
+        [SerializeField] private AudioClip m_DashSound;
+
         #endregion
 
-        public override void Enable(CharacterState character, bool enable) {
+        // Enable/disable this ability.
+        public override void Enable(CharacterState state, bool enable) {
             if (!enable) {
-                character.OverrideMovement(false);
-                character.OverrideFall(false);
-                if (m_Dashing) {
-                    AdjustSpeedOnEndDash(character.Body, character.Input, character.Move.Speed);
-                    // character.Body.velocity *= 0.75f;
-
-                    m_Dashing = false;
-                }
-                m_DashTicks = 0f;
+                OnEndDash(m_DashTicks, m_Dashing, state, state.Body, state.Input);
             }
-            base.Enable(character, enable);
+            base.Enable(state, enable);
         }
 
         // When this ability is activated.
         public override void Activate(Rigidbody2D body, InputSystem input, CharacterState state) {
             if (!m_Enabled) { return; }
 
-            // Chain the dash actions.
-            state.Disable(Cooldown - m_CooldownBufferTicks);
-            state.OverrideMovement(true);
-            state.OverrideFall(true);
-
-            body.SetVelocity(Vector2.zero);
-            body.SetWeight(0f);
-            // input.Direction.Fly != Vector2.zero ? input.Direction.Fly : 
-            // m_CachedVelocity = body.velocity;
-
-            // Clear the inputs.
+            OnStartPredash(body, input, state);
             input.Action1.ClearPressBuffer();
-
-            // Set this on cooldown.
-            m_PreDashing = true;
-            Timer.Start(ref m_DashTicks, Cooldown);
             m_Refreshed = false;
+
         }
 
         // Refreshes the settings for this ability every interval.
         public override void Refresh(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
             if (!m_Enabled) { return; }
 
+            // Refreshing.
             m_Refreshed = state.OnGround ? true : m_Refreshed;
+            
+            // Chaining the events of the dash.
             Timer.TickDown(ref m_DashTicks, dt);
-            
-            // When ending the predash, start the dash.
-            if (EndPreDash) {
-                m_CachedDirection = new Vector2(input.Direction.Facing, 0f);
-                body.SetVelocity(m_CachedDirection * DashSpeed);
-                m_PreDashing = false;
-                m_Dashing = true;
-
-                Game.MainPlayer.ExplodeDust.Activate();
-
+            if (EndPredash) {
+                OnStartDash(ref m_Predashing, ref m_Dashing, DashSpeed, body, input);
             }
-            
-            // When ending the dash, halt the body by alot.
-            if (EndDash) {
-                // body.SetVelocity(m_CachedVelocity);
-                AdjustSpeedOnEndDash(body, input, state.Move.Speed);
-
-                state.OverrideMovement(false);
-                state.OverrideFall(false);
-                m_Dashing = false;
-
+            else if (EndDash) {
+                OnEndDash(ref m_DashTicks, ref m_Dashing, state.Move.Speed, body, input);
             }
 
-            if (m_PreDashing) {
+            // Effects that occur while dashing.
+            if (m_Predashing) {
                 Game.ParticleGrid.Implode((Vector3)body.position, 1e4f, 7.5f, 1f);
             }
             else if (m_Dashing) {
                 Game.ParticleGrid.Explode((Vector3)body.position, 1e2f, 7.5f, 0.75f);
             }
+
         }
 
-        private void AdjustSpeedOnEndDash(Rigidbody2D body, InputSystem input, float speed) {
-            if (input.Direction.Move == Mathf.Sign(m_CachedDirection.x)) {
-                body.SetVelocity(m_CachedDirection * speed);
+        private void OnStartPredash(Rigidbody2D body, InputSystem input, CharacterState state) {
+            // Stop the body momentarily.
+            body.SetVelocity(Vector2.zero);
+            body.SetWeight(0f);
+
+            // Disable the body.
+            state.Default.Disable();
+
+            // Track the timeline of the dash.
+            m_Predashing = true;
+            m_Dashing = false;
+            Timer.Start(ref m_DashTicks, Cooldown);
+        }
+
+        // Starts the dash.
+        private static void OnStartDash(float dashSpeed, Rigidbody2D body, InputSystem input) {
+            // Shoot the body in the direction being faced.
+            body.SetVelocity(input.Direction.Facing * dashSpeed);
+            
+            // Track the timeline of the dash.
+            m_Predashing = false;
+            m_Dashing = true;
+
+            // Give the player feedback.
+            // EffectManager.ExplodeEffect(body.position);
+            SoundManager.PlaySound(m_DashSound, 0.15f);
+
+        }
+
+        // Ends the dash.
+        private static void OnEndDash(float moveSpeed, Rigidbody2D body, InputSystem input) {
+            
+            // Adjust the speed for the end of the dash.
+            if (m_Dashing) {
+                float inputDirection = input.Direction.Move;
+                float direction = Mathf.Sign(body.velocity.x);
+                if (inputDirection == direction) {
+                    body.SetVelocity(direction * moveSpeed * Vector2.right);
+                }
+                else {
+                    body.SetVelocity(Vector2.zero);
+                }
             }
-            else {
-                body.SetVelocity(Vector2.zero);
-            }
+
+            // Re-enable the body.
+            state.Default.Enable();
+
+            // Track the timeline of the dash.
+            m_Predashing = false;
+            m_Dashing = false;
+            m_DashTicks = 0f;
+
         }
 
         // Checks the state for whether this ability can be activated.
         public override bool CheckState(CharacterState state) {
-            if (state.Disabled) { return false; }
             return m_Refreshed && m_DashTicks == 0f;
         }
 
@@ -136,7 +152,6 @@ namespace Platformer.Character.Actions {
         public override bool CheckInput(InputSystem input) {
             return input.Action1.Pressed;
         }
-
         
 
     }

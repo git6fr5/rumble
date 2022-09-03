@@ -12,10 +12,10 @@ namespace Platformer.Character.Actions {
 
     ///<summary>
     /// An abstract class defining the functionality of a
-    /// character's ability. 
+    /// character's action. 
     ///<summary>
     [System.Serializable]
-    public abstract class AbilityAction {
+    public abstract class Action {
 
         // Checks whether the external activation conditions for this
         // ability have been fulfilled.
@@ -25,18 +25,12 @@ namespace Platformer.Character.Actions {
         // Checks whether this ability is enabled.
         [SerializeField] protected bool m_Enabled;
         public bool Enabled => m_Enabled;
-        
+
         // Enable/disable this ability.
-        public virtual void Enable(CharacterState character, bool enable) {
+        public virtual void Enable(CharacterState state, bool enable) {
             m_Enabled = enable;
             m_Refreshed = enable;
-            if (enable) {
-                Game.HitStop(4);
-                character.TrailSparkle.Play();
-            }
-            if (!enable) {
-                character.TrailSparkle.Stop();
-            }
+            state.Trail.Play(enable);
         }
         
         // When this ability is activated.

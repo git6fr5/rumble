@@ -46,6 +46,19 @@ namespace Platformer.Utilites {
         }
 
         // Ticks the timer down by the given interval if the predicate is fulfilled.
+        public static bool TickDownIfElseReset(ref float t, float T, float dt, bool p) {
+            bool wasnotzero = t > 0f;
+            bool isnowzero = false;
+            if (p) {  t -= dt; }
+            else { t = T; }
+            if (t <= 0f) {
+                t = 0f;
+                isnowzero = true;
+            }
+            return wasnotzero && isnowzero;
+        }
+
+        // Ticks the timer down by the given interval if the predicate is fulfilled.
         public static bool TickDownIf(ref float t, float dt, bool p) {
             bool wasnotzero = t > 0f;
             bool isnowzero = false;

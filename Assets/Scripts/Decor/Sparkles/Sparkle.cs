@@ -99,13 +99,8 @@ namespace Platformer.Decor {
             m_Sparkles.Add(spriteRenderer);
         }
 
-        public void Play() {
-            gameObject.SetActive(true);
-        }
-
-        public void Stop() {
-            Reset();
-            gameObject.SetActive(false);
+        public void Play(bool play) {
+            gameObject.SetActive(play);
         }
 
         public void Reset() {
@@ -114,6 +109,10 @@ namespace Platformer.Decor {
                 Destroy(m_Sparkles[i].gameObject);
             }
             m_Sparkles.RemoveAll(thing => thing == null);
+        }
+
+        private void OnDisable() {
+            Reset();
         }
 
         private void OnDestroy() {

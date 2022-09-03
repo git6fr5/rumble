@@ -150,7 +150,7 @@ namespace Platformer {
         private void UpdateRamp() {
             if (m_RampStop) {
                 m_Ramp += m_RampIncrement;
-                if (m_Ramp > 0.5f) {
+                if (m_Ramp > 0f) {
                     m_TimeScale += m_RampIncrement;
                 }
                 if (m_TimeScale >= 1f) {

@@ -43,14 +43,6 @@ namespace Platformer.Decor {
             return Game.MainPlayer.Dash.Enabled;
         }
 
-        // protected override void AdjustPosition(float deltaTime) {
-        //     m_Sparkles.RemoveAll(thing => thing == null);
-        //     Vector3 deltaPosition = Vector3.up * m_Speed * deltaTime;
-        //     for (int i = 0; i < m_Sparkles.Count; i++) {
-        //         m_Sparkles[i].transform.position += deltaPosition;
-        //     }
-        // }
-
         protected override void ExtraStuff(float dt) {
             transform.position += (Vector3)m_Direction * dt * m_Speed;
 
