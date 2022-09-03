@@ -133,6 +133,7 @@ namespace Platformer.Utilites {
             SFXSources[SFXSources.Count - 1].clip = audioClip;
             SFXSources[SFXSources.Count - 1].volume = volume;
             SFXSources[SFXSources.Count - 1].Play();
+            
         }
 
         public static void StopSound(AudioClip audioClip) {

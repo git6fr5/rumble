@@ -25,12 +25,17 @@ namespace Platformer.Decor {
         protected override void AdjustPosition(float deltaTime) {
             m_Sparkles.RemoveAll(thing => thing == null);
             for (int i = 0; i < m_Sparkles.Count; i++) {
-                float speed = (1f-m_Sparkles[i].GetComponent<SpriteRenderer>().color.a) + m_Speed;
+                float speed = m_Sparkles[i].GetComponent<SpriteRenderer>().color.a * m_Speed / 2f + m_Speed / 2f;
                 Vector3 deltaPosition = ((Vector3)(Vector2)Camera.main.transform.position-m_Sparkles[i].transform.position).normalized * speed * deltaTime;
                 m_Sparkles[i].transform.position += deltaPosition;
+                float distance = ((Vector2)(Camera.main.transform.position-m_Sparkles[i].transform.position)).magnitude;
+                if (distance < 0.25f) {
+                    Destroy(m_Sparkles[i].gameObject);
+                }
             }
         }
 
     }
 
 }
+

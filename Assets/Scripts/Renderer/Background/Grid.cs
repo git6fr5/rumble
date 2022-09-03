@@ -23,8 +23,8 @@ namespace Platformer.Rendering {
 
             // The grid settings.
             Vector3 offset = new Vector3(Screen.ScreenSize.x, Screen.ScreenSize.y, 0f) / 2f - new Vector3(0.25f, 0.25f, 0f);
-            float scaleX = Screen.ScreenSize.x / (float)horizontalPrecision; // Distance We Need To Cover / Amount
-            float scaleY = Screen.ScreenSize.y / (float)verticalPrecision; // Distance We Need To Cover / Amount
+            float scaleX = (Screen.ScreenSize.x + 2f) / (float)horizontalPrecision; // Distance We Need To Cover / Amount
+            float scaleY = (Screen.ScreenSize.y + 2f) / (float)verticalPrecision; // Distance We Need To Cover / Amount
 
             // The physical properties
             PointMass.InvMass = 1f / mass;

@@ -127,8 +127,6 @@ namespace Platformer.Character {
         }
 
         public void DisableAllAbilityActions() {
-            state.OverrideFall(false);
-            state.OverrideMovement(false);
             m_Dash.Enable(this, false);
             m_Hop.Enable(this, false);
             m_Ghost.Enable(this, false);

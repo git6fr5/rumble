@@ -14,14 +14,14 @@ namespace Platformer.Character.Actions {
     /// An ability that near-instantly moves the character.
     ///<summary>
     [System.Serializable]
-    public class StickyAction : Action {
+    public class StickyAction : AbilityAction {
 
         #region Variables
 
-        public bool Climbing => m_Enabled && m_ClimbTicks > 0f && !m_WallJumping;
+        public bool Climbing => m_Enabled && m_StickTicks > 0f && !m_WallJumping;
 
         // Tracks whether the dash has started.
-        [SerializeField, ReadOnly] private float m_ClimbTicks;
+        [SerializeField, ReadOnly] private float m_StickTicks;
         [SerializeField] private float m_Duration;
 
         [SerializeField] private bool m_WallJumping;
@@ -41,8 +41,6 @@ namespace Platformer.Character.Actions {
         [SerializeField] private AudioClip m_WallJumpingSound;
 
 
-        [SerializeField] private float m_WallJumpSpeed = 12.5f;
-
         #endregion
 
         public override void Enable(CharacterState character, bool enable) {
@@ -56,7 +54,7 @@ namespace Platformer.Character.Actions {
             if (!enable) {
                 m_WallJumping = false;
                 character.Input.Direction.LockFacing(false);
-                m_ClimbTicks = 0f;
+                m_StickTicks = 0f;
             }
         }
 
@@ -64,141 +62,121 @@ namespace Platformer.Character.Actions {
         public override void Activate(Rigidbody2D body, InputSystem input, CharacterState state) {
             if (!m_Enabled) { return; }
 
+            // if (input.Action0.Pressed && !m_Refreshed && m_StickTicks != 0f) {
+            //     body.velocity = 20f * (new Vector2(-input.Direction.Facing, 1f)).normalized;
+            //     state.OverrideMovement(true);
+            //     state.OverrideFall(false);
+            //     m_WallJumping = true;
+            //     m_StickTicks = 0f;
+            // }
+
             if (input.Action0.Pressed && Climbing) {
-                OnStartWallJump(body, input, state);
+
+                state.OverrideMovement(true);
+                state.OverrideFall(true);
+
+                Vector2 direction = new Vector2(-m_CachedDirection, 0).normalized;
+                body.Move(direction * Game.Physics.MovementPrecision);
+                body.SetVelocity(12.5f * direction);
+                body.SetWeight(0f);
+
+                m_CachedDirection *= -1f;
+
                 input.Action0.ClearPressBuffer();
+                if (state.FacingWall) {
+                    input.Direction.ForceFacing(m_CachedDirection);
+                }
+                input.Direction.LockFacing(true);
+
+                SoundManager.PlaySound(m_StartJumpSound, 0.1f);
+
+                m_WallJumping = true;
+
+                Game.MainPlayer.ExplodeDust.Activate();
+                
             }
 
-            if (input.Action1.Pressed && m_Refreshed) {
-                OnStartClimb(body, input, state);
+            if ((state.FacingWall || m_CoyoteTicks > 0f) && m_Refreshed) {
+                state.OverrideMovement(true);
+                state.OverrideFall(true);
+
+                body.SetVelocity(Vector2.zero);
+                body.SetWeight(0f);
+
+                // Clear the inputs.
                 input.Action1.ClearPressBuffer();
+
+                m_CachedDirection = state.FacingWall ? input.Direction.Facing : -input.Direction.Facing;
+
+                // Set this on cooldown.
+                Timer.Start(ref m_StickTicks, m_Duration);
+                SoundManager.PlaySound(m_StartClimbSound, 0.1f);
+
                 m_Refreshed = false;
             }
-
+            
         }
 
         // Refreshes the settings for this ability every interval.
         public override void Refresh(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
             if (!m_Enabled) { return; }
 
-            Timer.TickDownIfElseReset(ref m_CoyoteTicks, m_CoyoteBuffer, dt, !state.FacingWall);
-            m_Refreshed = (state.OnGround && state.FacingWall || m_CoyoteTicks > 0f);
-
-            if (!input.Action1.Held) {
-                if (m_Climbing) {
-                    OnEndClimb(input, state);
-                }
-                if (m_WallJumping) {
-                    OnEndWallJump(input);
-                }
-                return;
-            }
-
-            if (m_WallJumping) {
-                WhileWallJumping(body);
-                if (state.FacingWall) {
-                    OnAttachToWall();
-                }
-            }
-
-            if (m_Climbing) {
-                WhileClimbing(body, input);
-                bool finished = Timer.TickDown(ref m_ClimbTicks, dt);
-                if (finished || (!state.FacingWall && m_CoyoteTicks == 0f)) {
-                    OnEndClimb(state);
-                }
-            }
-
-        }
-
-        private void OnStartClimb(Rigidbody2D body, InputSystem input, CharacterState state) {
-            
-            state.Default.Disable();
-
-            body.SetVelocity(Vector2.zero);
-            body.SetWeight(0f);
-
-            // Set this on cooldown.
-            Timer.Start(ref m_ClimbTicks, m_Duration);
-            SoundManager.PlaySound(m_StartClimbSound, 0.1f);
-
-        }
-
-        private void WhileClimbing(Rigidbody2D body, Input input) {
-            // Cache the target and current velocities.
-            float targetSpeed = input.Direction.Climb * m_Speed;
-            float currentSpeed = body.velocity.y;
-
-            // Calculate the change in velocity this frame.
-            float unitSpeed = Mathf.Sign(targetSpeed - currentSpeed);
-            float deltaSpeed = unitSpeed * dt * m_Acceleration;
-
-            // Calculate the precision of the change.
-            if (Mathf.Abs(targetSpeed - currentSpeed) < Mathf.Abs(deltaSpeed)) {
-                body.velocity = new Vector2(0f, targetSpeed);
+            if (!state.FacingWall) {
+                Timer.TickDown(ref m_CoyoteTicks, dt);
             }
             else {
-                body.velocity = new Vector2(0f, currentSpeed + deltaSpeed);
+                Timer.Start(ref m_CoyoteTicks, m_CoyoteBuffer);
             }
 
-            Game.ParticleGrid.Implode(state.Body.position, 2e4f, 4f, 0.7f);
-        }
+            m_Refreshed = state.OnGround ? true : m_Refreshed;
 
-        private void OnEndClimb(InputSystem input, CharacterState state) {
-            state.Default.Enable();
-            m_ClimbTicks = 0f;
-        }
-
-        private void OnStartWallJump(Rigidbody2D body, InputSystem input, CharacterState state) {
-            // Disable the state.
-            state.Default.Disable();
-
-            // Get the direction of the wall jump.
-            if (state.FacingWall) {
-                input.Direction.ForceFacing(-input.Direction.Facing);
-            }
-            input.Direction.LockFacing(true);
-
-            // Set the body.
-            Vector2 direction = input.Direction.Facing * Vector2.right;
-            body.Move(direction * Game.Physics.MovementPrecision);
-            body.SetVelocity(m_WallJumpSpeed * direction);
-            body.SetWeight(0f);
-
-            // Track the state.
-            m_WallJumping = true;
-            m_Climbing = false;
-
-            // Give the player feedback.
-            Game.MainPlayer.ExplodeDust.Activate();
-            SoundManager.PlaySound(m_StartJumpSound, 0.1f);
-
-        }
-
-        private void WhileWallJumping(Rigidbody2D body) {
-            Game.ParticleGrid.Spin((Vector3)body.position, 1e4f, 2f, -1f);
-            SoundManager.PlaySound(m_WallJumpingSound, 0.1f);
-        }
-
-        private void OnEndWallJump(InputSystem input) {
-            input.Direction.LockFacing(false);
-            if (m_WallJumping) {
-                SoundManager.PlaySound(m_EndJumpSound, 0.1f);
+            if (!input.Action1.Held) {
+                state.OverrideMovement(false);
+                state.OverrideFall(false);
+                m_StickTicks = 0f;
                 m_WallJumping = false;
+                input.Direction.LockFacing(false);
             }
+
+            if (m_WallJumping) {
+
+                if (!input.Action1.Held || (input.Action1.Held && state.FacingWall)) {
+                    m_WallJumping = false;
+                    input.Direction.LockFacing(false);
+                    SoundManager.PlaySound(m_EndJumpSound, 0.1f);
+                }
+                else {
+                    // body.velocity = new Vector2(body.velocity.x * 1.025f, body.velocity.y);
+                    SoundManager.PlaySound(m_WallJumpingSound, 0.1f);
+                    return;
+                }
+
+            }
+
+            // When ending the dash, halt the body by alot.
+            bool finished = Timer.TickDown(ref m_StickTicks, dt);
+            if (finished || (!state.FacingWall && m_CoyoteTicks == 0f)) {
+                state.OverrideMovement(false);
+                state.OverrideFall(false);
+                m_WallJumping = false;
+                m_StickTicks = 0f;
+            }
+
+            
         }
 
         // Checks the state for whether this ability can be activated.
         public override bool CheckState(CharacterState state) {
             if (state.Disabled) { return false; }
-            return m_CanClimb;
+            return true;
         }
 
         // Checks the input for whether this ability should be activated.
         public override bool CheckInput(InputSystem input) {
-            return input.Action1.Pressed || input.Action0.Pressed;
-        }       
+            return input.Action1.Held || input.Action0.Pressed;
+        }
+
+        
 
     }
-
 }

@@ -17,9 +17,11 @@ namespace Platformer.Decor {
     public class Smoke : Sparkle {
 
         [SerializeField] protected float m_Speed = 0.75f;   
+
+        [SerializeField] private bool m_OverrideAndPlay = false;
         
         protected override bool IsActive() {
-            return Game.MainPlayer.Hop.Enabled;
+            return (Game.Instance != null && Game.MainPlayer.Hop.Enabled) || m_OverrideAndPlay;
         }
 
         protected override void AdjustPosition(float deltaTime) {

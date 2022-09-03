@@ -30,18 +30,28 @@ namespace Platformer.Decor {
 
         [SerializeField] private Sparkle m_SecondarySparkle;
 
+        [SerializeField] private bool m_OverrideAndPlay = false;
+
         void Awake() {
             m_Origin = transform.position;
         }
         
         protected override bool IsActive() {
-            if (!Game.MainPlayer.Dash.Enabled) {
+            bool enabled = (Game.Instance != null && Game.MainPlayer.Dash.Enabled) || m_OverrideAndPlay;
+            if (!enabled) {
                 m_SecondarySparkle.Reset();
-                m_SecondarySparkle.enabled = false;
             }
-            m_SecondarySparkle.enabled = true;
-            return Game.MainPlayer.Dash.Enabled;
+            m_SecondarySparkle.enabled = enabled;
+            return enabled;
         }
+
+        // protected override void AdjustPosition(float deltaTime) {
+        //     m_Sparkles.RemoveAll(thing => thing == null);
+        //     Vector3 deltaPosition = Vector3.up * m_Speed * deltaTime;
+        //     for (int i = 0; i < m_Sparkles.Count; i++) {
+        //         m_Sparkles[i].transform.position += deltaPosition;
+        //     }
+        // }
 
         protected override void ExtraStuff(float dt) {
             transform.position += (Vector3)m_Direction * dt * m_Speed;
