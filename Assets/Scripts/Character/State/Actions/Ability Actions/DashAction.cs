@@ -110,10 +110,10 @@ namespace Platformer.Character.Actions {
             }
 
             if (m_PreDashing) {
-                Game.ParticleGrid.Implode((Vector3)body.position, 1e4f, 7.5f, 1f);
+                // Play effect.
             }
             else if (m_Dashing) {
-                Game.ParticleGrid.Explode((Vector3)body.position, 1e2f, 7.5f, 0.75f);
+                // Play effect.
             }
         }
 

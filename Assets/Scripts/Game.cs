@@ -50,9 +50,9 @@ namespace Platformer {
         [SerializeField] private UnityEngine.Grid m_Grid;
         public static UnityEngine.Grid MainGrid => Instance.m_Grid;
 
-        // Particle rid.
-        [SerializeField] private GridRenderer m_ParticleGrid;
-        public static GridRenderer ParticleGrid => Instance.m_ParticleGrid;
+        // Score.
+        [SerializeField] private ScoreTracker m_Score;
+        public static ScoreTracker Score => Instance.m_Score;
 
         // Opening level.
         [SerializeField] private string m_OpeningLevel;
@@ -71,7 +71,7 @@ namespace Platformer {
         // Runs once on instantiation.
         void Awake() {
             Instance = this;
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = 120; // Settings.FrameRate
         }
 
         // Runs once before the first frame.
@@ -92,7 +92,7 @@ namespace Platformer {
             Screen.Instance.gameObject.SetActive(true);
             yield return 0;
             m_SoundManager.OnStart();
-            m_ParticleGrid.BuildGrid();
+            m_Score.Init(LevelLoader.Levels);
             m_Player.gameObject.SetActive(true);
             yield return null;
         }

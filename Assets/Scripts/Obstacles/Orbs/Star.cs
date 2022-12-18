@@ -21,6 +21,8 @@ namespace Platformer.Obstacles {
     [RequireComponent(typeof(CircleCollider2D))]
     public class Star : MonoBehaviour {
 
+        private static float ResetDelay = 1.5f;
+
         protected SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
         protected CircleCollider2D m_Hitbox => GetComponent<CircleCollider2D>();
 
@@ -31,6 +33,11 @@ namespace Platformer.Obstacles {
 
         [SerializeField] private VisualEffect m_CollectEffect;
         [SerializeField] private AudioClip m_CollectSound;
+        [SerializeField] private VisualEffect m_RefreshEffect;
+        [SerializeField] private AudioClip m_RefreshSound;
+
+        [SerializeField] private Transform m_Follow = null;
+        public Transform Following => m_Follow;
 
         void Start() {
             m_Origin = transform.position;
@@ -38,18 +45,24 @@ namespace Platformer.Obstacles {
         }
 
         void FixedUpdate() {
-            Timer.Cycle(ref m_Ticks, m_Period, Time.fixedDeltaTime);
-            Obstacle.Cycle(transform, m_Ticks, m_Period, m_Origin, m_Ellipse);
+            if (m_Follow == null) {
+                Timer.Cycle(ref m_Ticks, m_Period, Time.fixedDeltaTime);
+                Obstacle.Cycle(transform, m_Ticks, m_Period, m_Origin, m_Ellipse);
+            }
+            else {
+                float mag = (m_Follow.position - transform.position).magnitude;
+                Obstacle.Move(transform, m_Follow.position, mag * 5f, Time.fixedDeltaTime);
+            }
         }
 
         void OnTriggerEnter2D(Collider2D collider) {
             CharacterState state = collider.GetComponent<CharacterState>();
             if (state != null && state.IsPlayer) {
-                Collect(state);
+                m_Follow = state.transform;
             }
         }
 
-        void Collect(CharacterState state) {
+        public void Collect() {
             // Game.HitStop(8);
             
             if (m_CollectEffect != null) {
@@ -57,9 +70,51 @@ namespace Platformer.Obstacles {
             }
             SoundManager.PlaySound(m_CollectSound, 0.15f);
 
+            Game.Score.AddStar(this);
+            Destroy(gameObject);
+
+        }
+
+        public void Reset() {
             m_SpriteRenderer.enabled = false;
             m_Hitbox.enabled = false;
+            m_Follow = null;
+            StartCoroutine(IEReset());
+        }
 
+        // Reset after a delay.
+        IEnumerator IEReset() {
+            float ratio = 7f / 16f;
+            yield return new WaitForSeconds(ratio * ResetDelay);
+            int count = 6;
+            Color temp = m_SpriteRenderer.color;
+            Color _temp = temp;
+            _temp.a = 0.2f;
+            m_SpriteRenderer.color = _temp; 
+            for (int i = 0; i < count; i++) {
+                _temp.a += 0.075f;
+                m_SpriteRenderer.color = _temp; 
+                m_SpriteRenderer.enabled = !m_SpriteRenderer.enabled;
+                yield return new WaitForSeconds(ratio * ResetDelay / (float)count);
+
+            }
+            m_SpriteRenderer.color = temp;
+            m_SpriteRenderer.enabled = true;
+
+            if (m_RefreshEffect != null) {
+                m_RefreshEffect.Play();
+            }
+            SoundManager.PlaySound(m_RefreshSound, 0.15f);
+
+            yield return new WaitForSeconds(ResetDelay * (1f - 2f * ratio));
+            Regrow();
+            yield return null;
+        }
+        
+        protected void Regrow() {
+            m_Hitbox.enabled = true;
+            m_SpriteRenderer.enabled = true;
+            m_SpriteRenderer.color = Color.white; 
         }
         
         

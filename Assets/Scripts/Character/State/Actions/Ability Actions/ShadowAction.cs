@@ -176,8 +176,6 @@ namespace Platformer.Character.Actions {
                 Game.MainPlayer.ExplodeDust.Activate();
             }
 
-            Game.ParticleGrid.Implode(state.Body.position, 1e5f, 4f, 0.75f);
-
             block.Lock();
             m_LockedBlock = block;
             m_Locked = true;

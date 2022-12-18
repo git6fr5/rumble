@@ -30,6 +30,7 @@ namespace Platformer.Obstacles {
         [SerializeField] private AudioClip m_SpitSound;
 
         [SerializeField] private float m_Ticks;
+        [SerializeField] private Vector2 m_Direction;
         [SerializeField] protected Spitball m_Spitball;
         
         #endregion
@@ -59,7 +60,7 @@ namespace Platformer.Obstacles {
             spitObject.SetActive(true);
             
             Spitball spitball = spitObject.GetComponent<Spitball>();
-            spitball.Body.SetVelocity(Vector3.down * m_SpitballSpeed);
+            spitball.Body.SetVelocity((Vector3)m_Direction * m_SpitballSpeed);
             spitball.Body.gravityScale = 0.5f;
         }
 

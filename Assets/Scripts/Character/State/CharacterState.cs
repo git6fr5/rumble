@@ -13,6 +13,7 @@ using Platformer.Rendering;
 using Screen = Platformer.Rendering.Screen;
 
 using Platformer.Decor;
+using Star = Platformer.Obstacles.Star;
 
 namespace Platformer.Character {
 
@@ -75,6 +76,8 @@ namespace Platformer.Character {
         [SerializeField] private AudioClip m_ResetSound;
         [SerializeField] private AudioClip m_ResetSoundB;
 
+        [SerializeField] private List<Star> m_Stars = new List<Star>();
+
         public Dust ExplodeDust;
         public Sparkle TrailSparkle;
 
@@ -86,9 +89,7 @@ namespace Platformer.Character {
             ExplodeDust.Activate();
             TrailSparkle.Stop();
 
-            Vector3 explosionPosition = transform.position - Game.ParticleGrid.transform.position;
-            explosionPosition.z = 0f;
-            Game.ParticleGrid.Ripple(transform.position, 1e4f, 10f, 0.5f, 3);
+            Game.Score.AddDeath();
             
             DisableAllAbilityActions();
             m_Body.velocity = Vector2.zero;
@@ -104,6 +105,11 @@ namespace Platformer.Character {
             SoundManager.PlaySound(m_ResetSoundB, 0.15f);
 
             StartCoroutine(IEReset());
+
+            Star[] stars = (Star[])GameObject.FindObjectsOfType(typeof(Star));
+            for (int i = 0; i < stars.Length; i++) {
+                stars[i].Reset();
+            }
 
         }
 
@@ -136,6 +142,14 @@ namespace Platformer.Character {
 
         public void SetResetPoint(RespawnBlock block) {
             m_RespawnBlock = block;
+
+            Star[] stars = (Star[])GameObject.FindObjectsOfType(typeof(Star));
+            for (int i = 0; i < stars.Length; i++) {
+                if (stars[i].Following == transform) {
+                    stars[i].Collect();
+                }
+            }
+
         }
 
         public void Disable(float duration) {
@@ -157,8 +171,6 @@ namespace Platformer.Character {
             m_Ghost.Process(m_Body, m_Input, this);
             m_Shadow.Process(m_Body, m_Input, this);
             m_Sticky.Process(m_Body, m_Input, this);
-
-            Game.ParticleGrid.Implode(transform.position, m_Body.velocity.magnitude * 25f, 10f);
         }
 
         void FixedUpdate() {

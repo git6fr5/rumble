@@ -15,6 +15,8 @@ namespace Platformer.Obstacles {
     ///<summary>
     public class RespawnBlock : MonoBehaviour {
 
+        public bool Active => Game.MainPlayer.Respawn == this;
+
         [SerializeField] private float m_Period;
         [SerializeField, ReadOnly] private float m_Ticks;
         [SerializeField] private Vector2 m_Ellipse;
@@ -28,6 +30,11 @@ namespace Platformer.Obstacles {
         private SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
 
         [SerializeField] private AudioClip m_ActivateSound;
+
+        [SerializeField] private float m_FirstActivationTime = Mathf.Infinity;
+        [SerializeField] private float m_TotalActivatedTime = 0f;
+        public float FirstActivationTime => m_FirstActivationTime;
+        public float TotalTimeActive => m_TotalActivatedTime;
 
         // [SerializeField] private VisualEffect m_ActivationEffect;
         // [SerializeField, ReadOnly] private float m_ActivationTicks = 0f;
@@ -47,19 +54,20 @@ namespace Platformer.Obstacles {
         protected void Activate(CharacterState character) {
             // Timer.CountdownTicks(ref m_ActivationTicks, true, ActivationBuffer, 0f);
             // m_ActivationEffect.Play();
+            m_FirstActivationTime = Game.Ticks < m_FirstActivationTime ? Game.Ticks : m_FirstActivationTime;
 
             if (Game.MainPlayer.Respawn != this) {
                 SoundManager.PlaySound(m_ActivateSound, 0.15f);
             } 
             character.SetResetPoint(this);
-
         }
 
         private void FixedUpdate() {
             Timer.Cycle(ref m_Ticks, m_Period, Time.fixedDeltaTime);
             Obstacle.Cycle(transform, m_Ticks, m_Period, m_Origin, m_Ellipse);
 
-            if (Game.MainPlayer.Respawn == this) {
+            if (Active) {
+                m_TotalActivatedTime += Time.fixedDeltaTime;
                 m_SpriteRenderer.sprite = m_ActiveSprite;
             }
             else {

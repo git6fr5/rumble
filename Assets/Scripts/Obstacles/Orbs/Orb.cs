@@ -24,7 +24,7 @@ namespace Platformer.Obstacles {
     [DefaultExecutionOrder(1000)]
     public class Orb : MonoBehaviour {
 
-        private static float ResetDelay = 3.5f;
+        private static float ResetDelay = 2.5f;
 
         public enum Type {
             None, DashOrb, HopOrb, GhostOrb, ShadowOrb, StickyOrb

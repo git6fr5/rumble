@@ -17,6 +17,10 @@ using Platformer.Utilites;
 using Platformer.Rendering;
 using Screen = Platformer.Rendering.Screen;
 
+//
+using RespawnBlock = Platformer.Obstacles.RespawnBlock;
+using Star = Platformer.Obstacles.Star;
+
 namespace Platformer.LevelLoader {
 
     /// <summary>
@@ -37,6 +41,8 @@ namespace Platformer.LevelLoader {
         [SerializeField, ReadOnly] private bool m_Unloading;
         [SerializeField, ReadOnly] private float m_UnloadTicks;
         [SerializeField, ReadOnly] private List<Entity> m_Entities = new List<Entity>();
+        public List<Entity> Checkpoints => m_Entities.FindAll(check => check.VectorID == ScoreTracker.CheckpointID);
+        public List<Entity> Stars => m_Entities.FindAll(star => star.VectorID == ScoreTracker.StarID);
 
         // The trigger box for the level.
         [HideInInspector] private BoxCollider2D m_Box;
@@ -64,6 +70,8 @@ namespace Platformer.LevelLoader {
         // Controls.
         private static Vector2Int LoadPointID = new Vector2Int(0, 0);
         [HideInInspector] private List<Vector2Int> m_LoadPositions = new List<Vector2Int>();
+        public List<Vector2Int> LoadPositions => m_LoadPositions;
+        public bool HasLoadPosition => m_LoadPositions != null && m_LoadPositions.Count > 0;
 
         #endregion
 
@@ -118,6 +126,16 @@ namespace Platformer.LevelLoader {
                     m_LoadPositions.Add(controlData[j].GridPosition);
                 }
             }
+
+            // Hard load the respawn blocks.
+            List<LDtkTileData> respawnBlockData = LDtkReader.GetLayerData(json.Levels[jsonID], LDtkLayer.Entity);
+            respawnBlockData.RemoveAll(block => block.VectorID != ScoreTracker.CheckpointID);
+            GenerateEntities(respawnBlockData, controlData, Game.LevelLoader.LevelEnvironment.Entities);
+
+            // Hard load the stars.
+            List<LDtkTileData> starOrbData = LDtkReader.GetLayerData(json.Levels[jsonID], LDtkLayer.Entity);
+            starOrbData.RemoveAll(orb => orb.VectorID != ScoreTracker.StarID);
+            GenerateEntities(starOrbData, controlData, Game.LevelLoader.LevelEnvironment.Entities);
 
         }
 

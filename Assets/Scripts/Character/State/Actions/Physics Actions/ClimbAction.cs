@@ -26,12 +26,7 @@ namespace Platformer.Character.Actions {
 
             float x = 0f;
             if (state.Sticky.WallJumping) {
-                x = body.velocity.x; // input.Direction.Facing * Mathf.Abs(body.velocity.x);
-                // input.Direction.ForceFacing(Mathf.Sign(x));
-                Game.ParticleGrid.Spin((Vector3)body.position, 1e4f, 2f, -1f);
-            }
-            else {
-                Game.ParticleGrid.Implode(state.Body.position, 2e4f, 4f, 0.7f);
+                x = body.velocity.x;
             }
 
             // Cache the target and current velocities.

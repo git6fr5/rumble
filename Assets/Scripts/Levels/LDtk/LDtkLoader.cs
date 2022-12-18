@@ -24,6 +24,7 @@ namespace Platformer.LevelLoader {
         // The given LDtk file.
         [SerializeField] private LDtkComponentProject m_LDtkData;
         [HideInInspector] private LdtkJson m_JSON;
+        public LdtkJson JSON => m_JSON;
 
         // The environment this scene takes place in.
         [SerializeField] private Environment m_Environment;

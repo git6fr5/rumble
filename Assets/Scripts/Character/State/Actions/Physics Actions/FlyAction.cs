@@ -40,7 +40,6 @@ namespace Platformer.Character.Actions {
                 }
             }
 
-            Game.ParticleGrid.Ripple(body.position, 1e5f, 4f, 0.2f, 3);
             SoundManager.PlaySound(m_FlySound, 0.05f);
             
         }
