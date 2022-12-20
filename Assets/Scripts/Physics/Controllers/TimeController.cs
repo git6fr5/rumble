@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Platformer.Physics;
 
+/* --- Definitions --- */
+using Timer = Platformer.Utilities.Timer;
+
 namespace Platformer.Physics {
 
     ///<summary>

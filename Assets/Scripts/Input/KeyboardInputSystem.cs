@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Platformer.Character.Input;
+using Platformer.Input;
 
-namespace Platformer.Character.Input {
+namespace Platformer.Input {
 
     ///<summary>
     /// Collects the inputs from a keyboard.

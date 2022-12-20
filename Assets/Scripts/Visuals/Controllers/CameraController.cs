@@ -7,6 +7,7 @@ using Platformer.Visuals;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
+using Timer = Platformer.Utilities.Timer;
 
 namespace Platformer.Visuals {
 

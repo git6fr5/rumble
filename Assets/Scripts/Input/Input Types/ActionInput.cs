@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Platformer.Character.Input;
 
-namespace Platformer.Character.Input {
+namespace Platformer.Input {
 
     ///<summary>
     /// Processes all the input information for this particular action.

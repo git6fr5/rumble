@@ -20,6 +20,12 @@ namespace Platformer.Physics {
             rb.position += dx;
         }
 
+        // Stops this body.
+        public static void Stop(this Rigidbody rb, Vector2 dx) {
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0f;
+        }
+
         // Adds to the rigidbodies velocity.
         public static void AddVelocity(this Rigidbody2D rb, Vector2 dv) {
             rb.velocity += dv;
