@@ -2,12 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-// Platformer.
-using Platformer.Utilities;
 using Platformer.Decor;
-using Platformer.Rendering;
-using Screen = Platformer.Rendering.Screen;
+
+/* --- Definitions --- */
+using Game = Platformer.Management.GameManager;
 
 namespace Platformer.Decor {
 
@@ -16,7 +14,8 @@ namespace Platformer.Decor {
     ///<summary>
     public class Bubble : Sparkle {
 
-        [SerializeField] protected float m_Speed = 0.75f;   
+        [SerializeField] 
+        protected float m_Speed = 0.75f;   
         
         protected override bool IsActive() {
             return Game.MainPlayer.Sticky.Enabled;

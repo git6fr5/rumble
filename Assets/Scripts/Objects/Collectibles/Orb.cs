@@ -1,126 +1,170 @@
-// TODO: Clean
-
 /* --- Libraries --- */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
-
-using Platformer.Utilities;
 using Platformer.Obstacles;
-using Platformer.Character;
-using Platformer.Rendering;
-using Screen = Platformer.Rendering.Screen;
-
-using Platformer.Decor;
+using Platformer.Decor; // For the particles.
 
 /* --- Definitions --- */
-using ColorPalette = Platformer.Visuals.ColorPalette;
+using Game = Platformer.Management.GameManager;
+using Timer = Platformer.Utilities.Timer;
+using CharacterController = Platformer.Character.CharacterController;
+using ColorPalette = Platformer.Visuals.Rendering.ColorPalette;
 
 namespace Platformer.Obstacles {
 
     ///<summary>
     ///
     ///<summary>
-    [RequireComponent(typeof(SpriteRenderer))]
-    [RequireComponent(typeof(CircleCollider2D))]
     [DefaultExecutionOrder(1000)]
+    [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(CircleCollider2D))]
     public class Orb : MonoBehaviour {
 
-        private static float ResetDelay = 2.5f;
-
+        #region Enumerations.
+        
         public enum Type {
-            None, DashOrb, HopOrb, GhostOrb, ShadowOrb, StickyOrb
+            None, 
+            Dash, 
+            Hop, 
+            Ghost, 
+            Shadow, 
+            Sticky
         }
 
-        [SerializeField] protected ColorPalette m_Palette;
-        public ColorPalette Palette => m_Palette;
+        #endregion
 
-        [SerializeField] protected Type m_Type;
+        #region Variables.
 
+        /* --- Constants --- */
+
+        // The amount of time before the orb naturally respawns.
+        private const float RESET_DELAY = 1.5f;
+
+        // The amount of time before it starts blinking.
+        private const float RESET_BLINK_DELAY = 0.7f;
+
+        // The amount of times the orb blinks before it reappears.
+        private const float RESET_BLINK_COUNT = 3;
+
+        // The opacity of the orb when it first blinks back into screen.
+        private const float RESET_BASE_OPACITY = 0.2f;
+
+        // The opacity increase of the orb per blink.
+        private const float RESET_OPACITY_PER_BLINK = 0.075f;
+
+        // The period with which this bobs.
+        private const float PERIOD = 3f;
+
+        // The ellipse with which an orb moves.
+        private static Vector2 ELLIPSE = new Vector2(0f, 2f/16f);
+
+        /* --- Components --- */
+
+        // The sprite renderer attached to this gameObject.
         protected SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
+
+        // The collider attached to this gameObject
         protected CircleCollider2D m_Hitbox => GetComponent<CircleCollider2D>();
 
-        [SerializeField, ReadOnly] private Vector3 m_Origin;
-        [SerializeField, ReadOnly] private float m_Ticks = 0f;
-        [SerializeField] private float m_Period = 3f;
-        [SerializeField] private Vector2 m_Ellipse = new Vector2(0f, 2f/16f);
+        /* --- Members --- */
 
-        [SerializeField] private VisualEffect m_CollectEffect;
-        [SerializeField] private AudioClip m_CollectSound;
-        [SerializeField] private VisualEffect m_RefreshEffect;
-        [SerializeField] private AudioClip m_RefreshSound;
+        // Used to cache the origin of what this orb is centered around.
+        [SerializeField, ReadOnly] 
+        private Vector3 m_Origin;
 
-        public static void ResetAll() {
-            Orb[] orbs = (Orb[])GameObject.FindObjectsOfType(typeof(Orb));
-            for (int i = 0; i < orbs.Length; i++) {
-                orbs[i].Reset();
-            }
-        }
+        // Tracks the position of the orb in its floating cycle.
+        [HideInInspector] 
+        private float m_FloatTimer = new Timer(PERIOD, PERIOD);
 
+        // The type of orb this is.
+        [SerializeField] 
+        protected Type m_Type;
+
+        // The palette for this particular orb.
+        [SerializeField] 
+        protected ColorPalette m_Palette;
+        public ColorPalette Palette => m_Palette;
+
+        // The effect that plays when this orb is collected
+        [SerializeField] 
+        private VisualEffect m_CollectEffect;
+        
+        // The sound that plays when this orb is collected.
+        [SerializeField] 
+        private AudioClip m_CollectSound;
+        
+        // The effect that when this orb is reset.
+        [SerializeField] 
+        private VisualEffect m_RefreshEffect;
+        
+        // The sound that plays when this orb is reset.
+        [SerializeField] 
+        private AudioClip m_RefreshSound;
+
+        // The sound that plays when this orb blinks.
+        [SerializeField]
+        private AudioClip m_BlinkSound;
+
+        #endregion
+
+        #region Methods.
+
+        // Runs once before the first frame.
         void Start() {
-            m_Origin = transform.position;
             m_Hitbox.isTrigger = true;
+            m_Origin = transform.position;
             m_Palette.SetSimple(m_SpriteRenderer.material);
+            m_FloatTimer.Start(PERIOD);
         }
 
-        float ticks = 0f;
-        float duration = 0.5f;
-
+        // Runs once every fixed interval.
         void FixedUpdate() {
-            Timer.Cycle(ref m_Ticks, m_Period, Time.fixedDeltaTime);
-            Obstacle.Cycle(transform, m_Ticks, m_Period, m_Origin, m_Ellipse);
-            
-            ticks -= Time.fixedDeltaTime;
-            if (ticks < 0f) {
-                // Game.ParticleGrid.Impulses(transform.position, 1e4f, 5f, 0.5f, 3);
-                ticks = duration;
-                // dustA.Activate();
-            }
+            m_FloatTimer.Cycle(Time.fixedDeltaTime);
+            transform.Cycle(m_FloatTimer.Value, m_FloatTimer.MaxValue, m_Origin, ELLIPSE);
         }
 
+        // Runs everytime something enters this trigger area.
         void OnTriggerEnter2D(Collider2D collider) {
-            CharacterState state = collider.GetComponent<CharacterState>();
-            if (state != null && state.IsPlayer) {
-                Collect(state);
+            CharacterController controller = collider.GetComponent<CharacterController>();
+            if (controller != null) {
+                Collect(controller);
             }
         }
 
-        void Collect(CharacterState state) {
-            Game.MainPlayer.ExplodeDust.Activate();
-            
-            Game.HitStop(8);
-            state.OverrideFall(false);
-            state.OverrideMovement(false);
-            state.DisableAllAbilityActions();
+        // Collects this orb.
+        void Collect(CharacterController controller) {
 
+            // Swap the power based on the type of orb.
+            controller.DisableAllAbilityActions();
             switch (m_Type) {
-                case Type.DashOrb:
-                    state.Dash.Enable(state, true);
+                case Type.Dash:
+                    controller.Dash.Enable(controller, true);
                     break;
-                case Type.HopOrb:
-                    state.Hop.Enable(state, true);
+                case Type.Hop:
+                    controller.Hop.Enable(controller, true);
                     break;
-                case Type.GhostOrb:
-                    state.Ghost.Enable(state, true);
+                case Type.Ghost:
+                    controller.Ghost.Enable(controller, true);
                     break;
-                case Type.ShadowOrb:
-                    state.Shadow.Enable(state, true);
+                case Type.Shadow:
+                    controller.Shadow.Enable(controller, true);
                     break;
-                case Type.StickyOrb:
-                    state.Sticky.Enable(state, true);
+                case Type.Sticky:
+                    controller.Sticky.Enable(controller, true);
                     break;
                 default:
+                    controller.Default.Enable(controller, true);
                     break;
             }
 
-            if (m_CollectEffect != null) {
-                m_CollectEffect.Play();
-            }
-            SoundManager.PlaySound(m_CollectSound, 0.05f);
-
-            Screen.Recolor(m_Palette);
+            // The feedback on collecting something.
+            Game.Physics.Time.RunHitStop(8);
+            Game.Audio.Sound.PlaySound(m_CollectSound, 0.05f);
+            Game.Visuals.Particles.PlayEffect(m_CollectEffect);
+            Game.Visuals.Particles.PlayEffect(controller.ImpactEffect);
+            Game.Visuals.Camera.Recolor(m_Palette);
             
+            // Disable the orb for a bit.
             m_SpriteRenderer.enabled = false;
             m_Hitbox.enabled = false;
             StartCoroutine(IEReset());
@@ -129,37 +173,56 @@ namespace Platformer.Obstacles {
 
         // Reset after a delay.
         IEnumerator IEReset() {
-            float ratio = 7f / 16f;
-            yield return new WaitForSeconds(ratio * ResetDelay);
-            int count = 6;
-            Color temp = m_SpriteRenderer.color;
-            Color _temp = temp;
-            _temp.a = 0.2f;
-            m_SpriteRenderer.color = _temp; 
-            for (int i = 0; i < count; i++) {
-                _temp.a += 0.075f;
-                m_SpriteRenderer.color = _temp; 
-                m_SpriteRenderer.enabled = !m_SpriteRenderer.enabled;
-                yield return new WaitForSeconds(ratio * ResetDelay / (float)count);
+            yield return new WaitForSeconds(RESET_BLINK_DELAY);
 
+            // Set up the colors.
+            Color cacheColor = m_SpriteRenderer.color;
+            Color tempColor = m_SpriteRenderer.color;
+            tempColor.a = RESET_BASE_OPACITY;
+            
+            // Blink the orb a couple of times.
+            m_SpriteRenderer.color = tempColor; 
+            for (int i = 0; i < 2 * RESET_BLINK_COUNT; i++) {
+                tempColor.a += RESET_OPACITY_PER_BLINK;
+                m_SpriteRenderer.color = tempColor; 
+                m_SpriteRenderer.enabled = !m_SpriteRenderer.enabled;
+                Game.Audio.Sound.PlaySound(m_BlinkSound, 0.05f);
+                yield return new WaitForSeconds((RESET_DELAY - RESET_BLINK_DELAY) / (float)(2 * RESET_BLINK_COUNT));
             }
-            m_SpriteRenderer.color = temp;
+            
+            // Reset the orbs color.
+            m_SpriteRenderer.color = cacheColor;
             m_SpriteRenderer.enabled = true;
 
-            if (m_RefreshEffect != null) {
-                m_RefreshEffect.Play();
-            }
-            SoundManager.PlaySound(m_RefreshSound, 0.15f);
+            // Wait one more blink just because it feels more correct.
+            yield return new WaitForSeconds((RESET_DELAY - RESET_BLINK_DELAY) / (float)RESET_BLINK_COUNT);
 
-            yield return new WaitForSeconds(ResetDelay * (1f - 2f * ratio));
-            Regrow();
-            yield return null;
-        }
-        
-        protected void Regrow() {
+            // Make the orb collectible agains.
+            Game.Visuals.Particles.PlayEffect(m_RefreshEffect);
+            Game.Audio.Sound.PlaySound(m_RefreshSound, 0.15f);
             m_Hitbox.enabled = true;
             m_SpriteRenderer.enabled = true;
+
+            yield return null;
+        
         }
+        
+        // Resets the orb.
+        public void Reset() {
+            m_Hitbox.enabled = false;
+            m_SpriteRenderer.enabled = false;
+            StartCoroutine(IEReset()); 
+        }
+
+        // Reset all the orbs in the scene.
+        public static void ResetAll() {
+            Orb[] orbs = (Orb[])GameObject.FindObjectsOfType(typeof(Orb));
+            for (int i = 0; i < orbs.Length; i++) {
+                orbs[i].Reset();
+            }
+        }
+
+        #endregion
         
     }
 }

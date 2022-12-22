@@ -24,7 +24,7 @@ namespace Platformer.Rendering {
         #region Variables
 
         // Components.
-        [SerializeField] private CharacterState m_Character;
+        [SerializeField] private CharacterController m_Character;
         [SerializeField] private Sprite[] m_Sprites;
         [HideInInspector] public SpriteRenderer m_SpriteRenderer;
         
@@ -278,12 +278,12 @@ namespace Platformer.Rendering {
                 // if (m_JumpEffect != null) { m_JumpEffect.Play(); }
                 m_JumpDust.Activate();
                 m_StepDust.Activate();
-                SoundManager.PlaySound(m_JumpSound, 0.2f);
+                Game.Audio.Sounds.PlaySound(m_JumpSound, 0.2f);
             }
             else if (Land) {
                 m_LandDust.Activate();
                 m_StepDust.Activate();
-                SoundManager.PlaySound(m_LandSound, 0.15f);
+                Game.Audio.Sounds.PlaySound(m_LandSound, 0.15f);
             }
 
         }
@@ -292,7 +292,7 @@ namespace Platformer.Rendering {
             if (StepA) {
                 // if (m_StepEffectA != null) { m_StepEffectA.Play(); }
                 float vA = Random.Range(0.05f, 0.075f);
-                SoundManager.PlaySound(m_StepSound, vA);
+                Game.Audio.Sounds.PlaySound(m_StepSound, vA);
                 PlayGroundStepSoundA = true;
                 GroundStepSoundVolume = vA;
                 m_StepDust.Activate();
@@ -300,7 +300,7 @@ namespace Platformer.Rendering {
             else if (StepB && m_DoubleStepSound) {
                 // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
                 float vB = Random.Range(0.03f, 0.05f);
-                SoundManager.PlaySound(m_StepSound, vB);
+                Game.Audio.Sounds.PlaySound(m_StepSound, vB);
                 PlayGroundStepSoundB = true;
                 GroundStepSoundVolume = vB;
                 m_StepDust.Activate();
@@ -309,7 +309,7 @@ namespace Platformer.Rendering {
             if (ClimbStepA) {
                 // if (m_StepEffectA != null) { m_StepEffectA.Play(); }
                 float vA = Random.Range(0.05f, 0.075f);
-                SoundManager.PlaySound(m_ClimbStepSound, vA);
+                Game.Audio.Sounds.PlaySound(m_ClimbStepSound, vA);
                 PlayGroundStepSoundA = true;
                 GroundStepSoundVolume = vA;
                 m_StepDust.Activate();
@@ -317,7 +317,7 @@ namespace Platformer.Rendering {
             else if (ClimbStepB && m_DoubleStepSound) {
                 // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
                 float vB = Random.Range(0.03f, 0.05f);
-                SoundManager.PlaySound(m_ClimbStepSound, vB);
+                Game.Audio.Sounds.PlaySound(m_ClimbStepSound, vB);
                 PlayGroundStepSoundB = true;
                 GroundStepSoundVolume = vB;
                 m_StepDust.Activate();
@@ -329,25 +329,25 @@ namespace Platformer.Rendering {
             if (WallJump) {
                 // if (m_StepEffectA != null) { m_StepEffectA.Play(); }
                 // m_WallJumpDust.Activate();
-                SoundManager.PlaySound(m_WallJumpSound, 0.15f);
+                Game.Audio.Sounds.PlaySound(m_WallJumpSound, 0.15f);
             }
             else if (Hop) {
                 // if (m_StepEffectA != null) { m_StepEffectA.Play(); }
                 // m_HopSparkle.Activate();
-                SoundManager.PlaySound(m_HopSound, 0.15f);
+                Game.Audio.Sounds.PlaySound(m_HopSound, 0.15f);
             }
             else if (Dash) {
                 // m_DashDust.Activate();
-                SoundManager.PlaySound(m_DashSound, 0.15f);
+                Game.Audio.Sounds.PlaySound(m_DashSound, 0.15f);
             }
             else if (ShadowDash) {
                 // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
-                SoundManager.PlaySound(m_ShadowDashSound, 0.15f);
+                Game.Audio.Sounds.PlaySound(m_ShadowDashSound, 0.15f);
             }
             else if (ShadowLock) {
                 // if (m_StepEffectB != null) { m_StepEffectB.Play(); }
                 // m_ShadowLockDust.Activate();
-                SoundManager.PlaySound(m_ShadowLockSound, 0.15f);
+                Game.Audio.Sounds.PlaySound(m_ShadowLockSound, 0.15f);
             }
 
             // if (ChargingHop && m_ChargeHopEffect != null) {

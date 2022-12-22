@@ -2,12 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-// Platformer.
-using Platformer.Utilities;
 using Platformer.Decor;
-using Platformer.Rendering;
-using Screen = Platformer.Rendering.Screen;
+
+/* --- Definitions --- */
+using Game = Platformer.Management.GameManager;
 
 namespace Platformer.Decor {
 

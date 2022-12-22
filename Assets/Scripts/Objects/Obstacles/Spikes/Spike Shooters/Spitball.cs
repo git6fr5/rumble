@@ -44,7 +44,7 @@ namespace Platformer.Obstacles {
         }
 
         private void CharacterCollision(Collider2D collider) {
-            CharacterState character = collider.GetComponent<CharacterState>();
+            CharacterController character = collider.GetComponent<CharacterController>();
             if (character != null && character.IsPlayer) {
                 character.Reset();
                 Shatter();
@@ -55,7 +55,7 @@ namespace Platformer.Obstacles {
             // if (m_ShatterEffect != null) {
             //     m_ShatterEffect.Play();
             // }
-            // SoundManager.PlaySound(m_ShatterSound, 0.15f);
+            // Game.Audio.Sounds.PlaySound(m_ShatterSound, 0.15f);
             Destroy(gameObject);
         }
 

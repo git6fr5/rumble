@@ -56,7 +56,7 @@ namespace Platformer.Obstacles {
         }
 
         private void CharacterCollision(Collider2D collider) {
-            CharacterState character = collider.GetComponent<CharacterState>();
+            CharacterController character = collider.GetComponent<CharacterController>();
             if (character != null && character.IsPlayer) {
                 Vector3 knockbackDirection = GetKnockbackDirection(m_Rotation);
                 bool didDamage = true; // character.Damage(1, knockbackDirection, m_KnockbackForce);
@@ -77,7 +77,7 @@ namespace Platformer.Obstacles {
             if (m_ShatterEffect != null) {
                 m_ShatterEffect.Play();
             }
-            SoundManager.PlaySound(m_ShatterSound, 0.15f);
+            Game.Audio.Sounds.PlaySound(m_ShatterSound, 0.15f);
             m_Hitbox.enabled = false;
             m_SpriteRenderer.enabled = false;
             StartCoroutine(IEReset());
@@ -105,7 +105,7 @@ namespace Platformer.Obstacles {
             if (m_RegrowEffect != null) {
                 m_RegrowEffect.Play();
             }
-            SoundManager.PlaySound(m_RegrowSound, 0.15f);
+            Game.Audio.Sounds.PlaySound(m_RegrowSound, 0.15f);
 
             yield return new WaitForSeconds(ResetDelay * (1f - 2f * ratio));
             Regrow();

@@ -24,7 +24,7 @@ namespace Platformer.Character.Actions {
         [SerializeField] private float m_Acceleration;
 
         // Process the physics of this action.
-        public override void Process(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
+        public override void Process(Rigidbody2D body, InputSystem input, CharacterController state, float dt) {
             if (state.Disabled) { return; }
             if (state.MovementOverride) { return; }
 

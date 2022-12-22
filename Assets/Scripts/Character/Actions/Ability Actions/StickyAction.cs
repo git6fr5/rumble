@@ -46,7 +46,7 @@ namespace Platformer.Character.Actions {
 
         #endregion
 
-        public override void Enable(CharacterState character, bool enable) {
+        public override void Enable(CharacterController character, bool enable) {
             base.Enable(character, enable);
             if (enable) {
                 if (character.Input.Action1.Held) {
@@ -62,7 +62,7 @@ namespace Platformer.Character.Actions {
         }
 
         // When this ability is activated.
-        public override void Activate(Rigidbody2D body, InputSystem input, CharacterState state) {
+        public override void Activate(Rigidbody2D body, InputSystem input, CharacterController state) {
             if (!m_Enabled) { return; }
 
             // if (input.Action0.Pressed && !m_Refreshed && m_StickTicks != 0f) {
@@ -91,7 +91,7 @@ namespace Platformer.Character.Actions {
                 }
                 input.Direction.LockFacing(true);
 
-                SoundManager.PlaySound(m_StartJumpSound, 0.1f);
+                Game.Audio.Sounds.PlaySound(m_StartJumpSound, 0.1f);
 
                 m_WallJumping = true;
 
@@ -113,7 +113,7 @@ namespace Platformer.Character.Actions {
 
                 // Set this on cooldown.
                 Timer.Start(ref m_StickTicks, m_Duration);
-                SoundManager.PlaySound(m_StartClimbSound, 0.1f);
+                Game.Audio.Sounds.PlaySound(m_StartClimbSound, 0.1f);
 
                 m_Refreshed = false;
             }
@@ -121,7 +121,7 @@ namespace Platformer.Character.Actions {
         }
 
         // Refreshes the settings for this ability every interval.
-        public override void Refresh(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
+        public override void Refresh(Rigidbody2D body, InputSystem input, CharacterController state, float dt) {
             if (!m_Enabled) { return; }
 
             if (!state.FacingWall) {
@@ -146,11 +146,11 @@ namespace Platformer.Character.Actions {
                 if (!input.Action1.Held || (input.Action1.Held && state.FacingWall)) {
                     m_WallJumping = false;
                     input.Direction.LockFacing(false);
-                    SoundManager.PlaySound(m_EndJumpSound, 0.1f);
+                    Game.Audio.Sounds.PlaySound(m_EndJumpSound, 0.1f);
                 }
                 else {
                     // body.velocity = new Vector2(body.velocity.x * 1.025f, body.velocity.y);
-                    SoundManager.PlaySound(m_WallJumpingSound, 0.1f);
+                    Game.Audio.Sounds.PlaySound(m_WallJumpingSound, 0.1f);
                     return;
                 }
 
@@ -169,7 +169,7 @@ namespace Platformer.Character.Actions {
         }
 
         // Checks the state for whether this ability can be activated.
-        public override bool CheckState(CharacterState state) {
+        public override bool CheckState(CharacterController state) {
             if (state.Disabled) { return false; }
             return true;
         }

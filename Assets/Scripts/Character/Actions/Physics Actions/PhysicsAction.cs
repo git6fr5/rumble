@@ -21,7 +21,7 @@ namespace Platformer.Character.Actions {
     public abstract class PhysicsAction {
 
         // Process the physics of this action.
-        public abstract void Process(Rigidbody2D body, InputSystem input, CharacterState state, float dt);
+        public abstract void Process(Rigidbody2D body, InputSystem input, CharacterController state, float dt);
 
     }
 }

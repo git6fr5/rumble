@@ -75,7 +75,7 @@ namespace Monet {
         }
 
         private void CheckFall() {
-            CharacterState character = CollisionCheck.LineOfSight<CharacterState>(transform.position, Vector3.down, Game.Physics.CollisionLayers.Opaque);
+            CharacterController character = CollisionCheck.LineOfSight<CharacterController>(transform.position, Vector3.down, Game.Physics.CollisionLayers.Opaque);
             m_Crumbling = character != null ? true : m_Crumbling;
         }
 

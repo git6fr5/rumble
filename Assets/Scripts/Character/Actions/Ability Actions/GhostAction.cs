@@ -27,7 +27,7 @@ namespace Platformer.Character.Actions {
 
         #endregion
 
-        public override void Enable(CharacterState character, bool enable) {
+        public override void Enable(CharacterController character, bool enable) {
             base.Enable(character, enable);
             if (enable) {
                 if (character.Input.Action1.Held) {
@@ -37,7 +37,7 @@ namespace Platformer.Character.Actions {
         }
 
         // When this ability is activated.
-        public override void Activate(Rigidbody2D body, InputSystem input, CharacterState state) {
+        public override void Activate(Rigidbody2D body, InputSystem input, CharacterController state) {
             if (!m_Enabled) { return; }
 
             // if (m_GhostTicks > 0f) {
@@ -68,7 +68,7 @@ namespace Platformer.Character.Actions {
         }
 
         // Refreshes the settings for this ability every interval.
-        public override void Refresh(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
+        public override void Refresh(Rigidbody2D body, InputSystem input, CharacterController state, float dt) {
             if (!m_Enabled) { return; }
 
             m_Refreshed = state.OnGround ? true : m_Refreshed;
@@ -86,7 +86,7 @@ namespace Platformer.Character.Actions {
         }
 
         // Checks the state for whether this ability can be activated.
-        public override bool CheckState(CharacterState state) {
+        public override bool CheckState(CharacterController state) {
             if (state.Disabled) { return false; }
             return m_Refreshed;
         }

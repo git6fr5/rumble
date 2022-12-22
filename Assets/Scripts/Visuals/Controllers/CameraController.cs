@@ -111,9 +111,7 @@ namespace Platformer.Visuals {
         // Moves the camera to the target position.
         public Vector3 MoveToTarget() {
             Vector3 targetPosition = (Vector3)m_TargetPosition + CameraPlane;
-            if (targetPosition == transform.position) { return; }
-            
-            Obstacle.Move(transform, actualTarget, snapSpeed, Time.deltaTime, null);
+            transform.Move(actualTarget, snapSpeed, Time.deltaTime);
         }
 
         // Starts the camera shaking.
@@ -125,7 +123,7 @@ namespace Platformer.Visuals {
         // The way the camera moves while it is shaking.
         public void WhileShakingCamera() {
             float strength = VisualSettings.CameraShakeStrength * m_ShakeCurve.Evaluate(m_ShakeTimer.InverseRatio);
-            transform.position += (Vector3)Random.insideUnitCircle * strength;
+            transform.Shake(transform.position, Strength);
         }
 
         // Recolors the screen.

@@ -14,72 +14,159 @@ namespace Platformer.Obstacles {
     ///<summary>
     ///
     ///<summary>
-    [RequireComponent(typeof(BoxCollider2D))]
-    [RequireComponent(typeof(SpriteShapeController))]
+    [RequireComponent(typeof(BoxCollider2D)), RequireComponent(typeof(SpriteShapeController))]
     public class Platform : MonoBehaviour {
 
-        [HideInInspector] protected BoxCollider2D m_Hitbox;
-        [HideInInspector] protected SpriteShapeRenderer m_SpriteShapeRenderer;
-        [HideInInspector] protected SpriteShapeController m_SpriteShapeController;
+        #region Variables.
 
-        [HideInInspector] protected Vector3 m_Origin;
-        [HideInInspector] protected Vector3[] m_Path = null;
-        [SerializeField, ReadOnly] protected int m_PathIndex;
-        [SerializeField, ReadOnly] protected List<Transform> m_CollisionContainer = new List<Transform>();
-        [SerializeField, ReadOnly] protected bool m_PressedDown;
+        /* --- Constants --- */
 
-        private static float PressedBuffer = 0.075f;
-        [SerializeField, ReadOnly] private float m_PressedTicks;
-        [SerializeField, ReadOnly] private bool m_OnPressedDown;
+        // The amount of time before the platform registers that it has been pressed. 
+        private const float PRESS_BUFFER = 0.06f;
 
-        [SerializeField] private AudioClip OnPressedSound;
+        // The height of a platform.
+        private const float PLATFORM_HEIGHT = 5f/16f;
 
-        public virtual void Init(int length, Vector3[] path) {
+        /* --- Components --- */
+
+        // The box collider attached to this platform.
+        protected BoxCollider2D m_Hitbox => GetComponent<BoxCollider2D>();
+        
+        // The sprite shape renderer attached to this platform.
+        protected SpriteShapeRenderer m_SpriteShapeRenderer => GetComponent<SpriteShapeRenderer>();
+        
+        // The sprite shape controller. attached to this platform.
+        protected SpriteShapeController m_SpriteShapeController => GetComponent<SpriteShapeController>();
+
+        // The spline attached to the sprite shape.
+        protected Spline m_Spline => m_SpriteShapeController.spline;
+
+        /* --- Members --- */
+
+        // The position that this platform was spawned at.
+        [HideInInspector]
+        protected Vector3 m_Origin;
+        
+        // The path that this platform follows.
+        [HideInInspector] 
+        protected Vector3[] m_Path = null;
+        
+        // The current position in the path that the path is following.
+        [SerializeField, ReadOnly] 
+        protected int m_PathIndex;
+        
+        // The objects that are attached to the platform.
+        [SerializeField, ReadOnly] 
+        protected List<Transform> m_CollisionContainer = new List<Transform>();
+        
+        // The timer that checks how recently the platform has been pressed.
+        [SerializeField, ReadOnly] 
+        private float m_PressedTimer = new Timer(0f, PRESS_BUFFER);
+        
+        // Whether this platform was just pressed down (being a little lax).
+        [SerializeField, ReadOnly] 
+        private bool m_OnPressedDown;
+
+        // The sound to be played when this platform is pressed.
+        [SerializeField] 
+        private AudioClip m_OnPressedSound;
+
+        #endregion
+
+        #region Methods.
+
+        // Runs once before the first frame.
+        void Start() {
             m_Origin = transform.position;
+            gameObject.layer = Game.Physics.CollisionLayers.Platform;
+            m_SpriteShapeRenderer.sortingLayerName = Game.Camera.Visuals.RenderingLayers.Foreground;
+        }
+
+        // Initalizes from the LDtk files.
+        public virtual void Init(int length, Vector3[] path) {
             m_Path = path;
-            m_SpriteShapeController = GetComponent<SpriteShapeController>();
-            m_SpriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
-
-            m_SpriteShapeRenderer.sortingLayerName = Screen.RenderingLayers.Foreground;
-            m_SpriteShapeRenderer.color = Screen.ForegroundColorShift;
-
-            m_Hitbox = GetComponent<BoxCollider2D>();
-            Obstacle.EditSpline(m_SpriteShapeController.spline, length);
-            Obstacle.EditHitbox(m_Hitbox, length, 5f /16f);
-            gameObject.layer = LayerMask.NameToLayer("Platform");
+            EditSpline(m_SpriteShapeController.spline, length);
+            EditHitbox(m_Hitbox, length, PLATFORM_HEIGHT);
         }
 
+        // Runs once every frame.
         protected virtual void Update() {
-            bool waspressed = m_PressedDown;
-            Obstacle.PressedDown(transform.position, m_CollisionContainer, ref m_PressedDown);
-            bool isnowpressed = m_PressedDown;
+            bool pressedOnPrevFrame = m_PressedDown;
+            bool pressedThisFrame = IsPressedDown(transform.position, m_CollisionContainer, ref m_PressedDown);
 
-            bool prevOnPressedDown = m_OnPressedDown;
-            m_OnPressedDown = !waspressed && isnowpressed && m_PressedTicks == PressedBuffer ? true : m_OnPressedDown;
-
-            if (!waspressed && isnowpressed) {
-                SoundManager.PlaySound(OnPressedSound, 0.15f);
+            m_OnPressedDown = !pressedOnPrevFrame && pressedThisFrame && m_PressedTimer.Ratio == 1f;
+            if (m_OnPressedDown) {
+                Game.Audio.Sounds.PlaySound(m_OnPressedSound, 0.15f);
             }
-
-            Timer.TriangleTickDownIf(ref m_PressedTicks, PressedBuffer, Time.deltaTime, !m_OnPressedDown);
-            // if (m_PressedTicks == 0f && m_OnPressedDown) {
-            //     Obstacle.Shake(transform, m_Origin, 0f);
-            //     m_OnPressedDown = false;
-            // }
-
-            // if (m_OnPressedDown) {
-            //     Obstacle.Shake(transform, m_Origin, 0.05f);
-            // }
+            m_PressedTimer.TriangleTickDownIf(Time.deltaTime, pressedThisFrame);
 
         }
 
+        // Runs when something collides with this platform.
         private void OnCollisionEnter2D(Collision2D collision) {
-            Obstacle.OnCollision(collision, ref m_CollisionContainer, true);
+            // Check if there is a character.
+            CharacterController character = collision.GetComponent<CharacterController>();
+            if (character == null) { return; }
+
+            // Edit the collision container as appropriate.
+            Transform transform = character.transform; 
+            if (!container.Contains(transform)) {
+                container.Add(transform);
+            }
+            
         }
 
+        // Runs when something exit this platform.
         private void OnCollisionExit2D(Collision2D collision) {
-            Obstacle.OnCollision(collision, ref m_CollisionContainer, false);
+            // Check if there is a character.
+            CharacterController character = collision.GetComponent<CharacterController>();
+            if (character == null) { return; }
+
+            // Edit the collision container as appropriate.
+            Transform transform = character.transform; 
+            if (container.Contains(transform)) {
+                container.Remove(transform);
+            }
         }
+
+        // Check if a character is standing on top of this.
+        public bool IsPressedDown() {
+            bool pressedDown = false;
+            for (int i = 0; i < m_CollisionContainer.Count; i++) {
+                CharacterController character = m_CollisionContainer[i].GetComponent<CharacterController>();
+                if (character != null) {
+                    // Check the the characters is in contact and above the obstacle.
+                    Vector3 offset = (Vector3)character.Collider.offset; 
+                    Vector3 height = Vector3.down * character.Collider.radius;
+                    Vector3 position = m_CollisionContainer[i].position + offset + height;
+                    // Can't be accessing physics settings from outside physics
+                    // bool movingVertically = Mathf.Abs(controller.Body.velocity.y) < PhysicsSettings.MovementPrecision;
+                    bool movingVertically = Game.Physics.IsMovingVertically(character.Body);
+                    if (position.y - transform.position.y > 0f && movingVertically) {
+                        pressedDown = true;
+                        return;
+                    }
+                }
+            }
+            return pressedDown;
+        }
+
+        // Edits the spline of an platform.
+        public static void EditSpline(float length) {
+            m_Spline.Clear();
+            m_Spline.InsertPointAt(0, new Vector3(-0.5f, 0f, 0f));
+            m_Spline.InsertPointAt(1, length * Vector3.right + new Vector3(-0.5f, 0f, 0f));
+            m_Spline.SetTangentMode(0, ShapeTangentMode.Continuous);
+            m_Spline.SetTangentMode(1, ShapeTangentMode.Continuous);
+        }
+
+        // Edits the hitbox of the platform.
+        public void EditHitbox(float length, float height) {
+            m_Hitbox.size = new Vector2(length, height);
+            m_Hitbox.offset = new Vector2(length - 1f, 1f - height) / 2f;
+        }
+
+        #endregion
 
     }
 }

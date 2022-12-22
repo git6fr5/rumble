@@ -25,7 +25,7 @@ namespace Platformer.Character.Actions {
         [SerializeField] private AudioClip m_FlySound;
 
         // Process the physics of this action.
-        public override void Process(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
+        public override void Process(Rigidbody2D body, InputSystem input, CharacterController state, float dt) {
             if (state.Disabled) { return; }
             if (!state.MovementOverride || !state.Ghost.Enabled) { return; }
 
@@ -43,7 +43,7 @@ namespace Platformer.Character.Actions {
                 }
             }
 
-            SoundManager.PlaySound(m_FlySound, 0.05f);
+            Game.Audio.Sounds.PlaySound(m_FlySound, 0.05f);
             
         }
 

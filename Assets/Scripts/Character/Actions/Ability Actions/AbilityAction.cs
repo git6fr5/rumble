@@ -30,7 +30,7 @@ namespace Platformer.Character.Actions {
         public bool Enabled => m_Enabled;
         
         // Enable/disable this ability.
-        public virtual void Enable(CharacterState character, bool enable) {
+        public virtual void Enable(CharacterController character, bool enable) {
             m_Enabled = enable;
             m_Refreshed = enable;
             if (enable) {
@@ -43,13 +43,13 @@ namespace Platformer.Character.Actions {
         }
         
         // When this ability is activated.
-        public abstract void Activate(Rigidbody2D body, InputSystem input, CharacterState state);
+        public abstract void Activate(Rigidbody2D body, InputSystem input, CharacterController state);
         
         // Refreshes the settings for this ability every interval.
-        public abstract void Refresh(Rigidbody2D body, InputSystem input, CharacterState state, float dt);
+        public abstract void Refresh(Rigidbody2D body, InputSystem input, CharacterController state, float dt);
 
         // Process the state and input to decide whether to activate the ability.
-        public void Process(Rigidbody2D body, InputSystem input, CharacterState state) {
+        public void Process(Rigidbody2D body, InputSystem input, CharacterController state) {
             bool canActivate = CheckState(state);
             bool doActivate = CheckInput(input);
             if (canActivate && doActivate) {
@@ -58,7 +58,7 @@ namespace Platformer.Character.Actions {
         }
         
         // Checks the state for whether this ability can be activated.
-        public virtual bool CheckState(CharacterState state) {
+        public virtual bool CheckState(CharacterController state) {
             return false;
         }
 

@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Platformer.Utilities;
-using Platformer.Character;
-using Platformer.Obstacles;
+/* --- Definitions --- */
+using Game = Platformer.Management.GameManager;
+using Timer = Platformer.Utilities.Timer;
+using CharacterController = Platformer.Character.CharacterController;
+using ColorPalette = Platformer.Visuals.Rendering.ColorPalette;
 
 namespace Platformer.Obstacles {
 
@@ -13,98 +15,59 @@ namespace Platformer.Obstacles {
     /// 
     ///<summary>
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(BoxCollider2D))]
-    [RequireComponent(typeof(SpriteRenderer))]
-    public class GhostBlock : MonoBehaviour {
+    public class GhostBlock : BlockController {
 
+        #region Variables.
+
+        /* --- Constants --- */
+
+        // The amount of friction the ghost block experiences while active.
+        public const float FRICTION = 0.01f;
+
+        // The amount of drag the ghost block experiences while active.
+        public const float DRAG = 0.05f;
+
+        // The amount of mass the block has (for collisions).
+        public const float MASS = 0.7f;
+
+        /* --- Components --- */
+        
+        // The rigidbody attached to this component.
         private Rigidbody2D m_Body => GetComponent<Rigidbody2D>();
-        private SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
-        [SerializeField] private bool m_Touched;
-        [SerializeField] private Orb m_GhostOrb;
+        
+        #endregion
 
-        [SerializeField] private Sprite[] m_Sprites;
-        [SerializeField] private float m_AnimationDuration;
-        [SerializeField, ReadOnly] private float m_AnimationTicks;
+        #region Methods.
 
-        [SerializeField] private Vector3 m_Origin;
-
-        public static void ResetAll() {
-            GhostBlock[] ghostBlocks = (GhostBlock[])GameObject.FindObjectsOfType(typeof(GhostBlock));
-            for (int i = 0; i < ghostBlocks.Length; i++) {
-                ghostBlocks[i].Reset();
-            }
+        protected override bool CheckActivationCondition() {
+            return Game.MainPlayer.Ghost.Enabled;
         }
 
-        public void Reset() {
-
-            transform.eulerAngles = Vector3.zero;
-
-            transform.position = m_Origin;
-
-            Freeze();
-            Timer.Start(ref m_AnimationTicks, Random.Range(0.75f, 1.25f) * m_AnimationDuration);
-
+        protected override void OnDeactivation() {
+            m_Body.Freeze();
         }
 
-        void Start() {
-
-            m_Origin = transform.position;
-
-            m_GhostOrb.Palette.SetSimple(m_SpriteRenderer.material);
-            m_Body.angularDrag = 0.05f;
-            Freeze();
-            Timer.Start(ref m_AnimationTicks, Random.Range(0.75f, 1.25f) * m_AnimationDuration);
-        }
-
-        void FixedUpdate() {
-            if (!Game.MainPlayer.Ghost.Enabled) {
-                return;
-            }
-
-            bool finished = Timer.TickDown(ref m_AnimationTicks, Time.fixedDeltaTime);
-            if (finished) {
-                m_SpriteRenderer.sprite = m_Sprites[Random.Range(0, m_Sprites.Length)];
-                Timer.Start(ref m_AnimationTicks, Random.Range(0.75f, 1.25f) * m_AnimationDuration);
-            }
-
-        }
-
-        void Update() {
-            if (Game.MainPlayer.Ghost.Enabled) {
-                Release();
-            }
-            else {
-                Freeze();
-            }
-            m_Body.velocity *= 0.99f;
-        }
-
-        protected virtual void Release() {
+        // Runs while the block is released.
+        protected override void WhileActive() {
             if (m_Touched) {
-                m_Body.constraints = RigidbodyConstraints2D.FreezeRotation;
+                m_Body.ReleaseXY();
             }
             else {
-                m_Body.constraints = RigidbodyConstraints2D.None;
+                m_Body.ReleaseAll();
             }
-            m_Body.gravityScale = 0f;
+            m_Body.Slowdown(1f - FRICTION);
         }
 
-        protected virtual void Freeze() {
-            m_Body.constraints = RigidbodyConstraints2D.FreezeAll;
-            m_Body.gravityScale = 0f;
+        // Resets the block.
+        public override void Reset() {
+            transform.eulerAngles = Vector3.zero;
+            m_Body.SetAngularDrag(DRAG);
+            m_Body.SetWeight(0f, MASS);
+            m_Body.Freeze();
+            base.Reset();
         }
 
-        protected virtual void OnTriggerEnter2D(Collider2D collider) {
-            if (collider.GetComponent<CharacterState>() != null) {
-                m_Touched = true;
-            }
-        }
-
-        protected virtual void OnTriggerExit2D(Collider2D collider) {
-            if (collider.GetComponent<CharacterState>() != null) {
-                m_Touched = false;
-            }
-        }
+        #endregion
 
     }
 

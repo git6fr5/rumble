@@ -2,14 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
-
-// Platformer.
-using Platformer.Utilities;
 using Platformer.Decor;
-using Platformer.Rendering;
-using Screen = Platformer.Rendering.Screen;
 
+/* --- Definitions --- */
+using Game = Platformer.Management.GameManager;
 
 namespace Platformer.Decor {
 
@@ -18,19 +14,29 @@ namespace Platformer.Decor {
     ///<summary>
     public class Firefly : Sparkle {
         
-        [SerializeField] protected float m_Speed = 0.75f; 
+        [SerializeField] 
+        protected float m_Speed = 0.75f; 
 
-        [SerializeField] private Vector2 m_Direction; 
-        [SerializeField] private float m_ThinkDuration; 
+        [SerializeField] 
+        private Vector2 m_Direction; 
+        
+        [SerializeField] 
+        private float m_ThinkDuration; 
 
-        [SerializeField] private float m_DirectionTicks = 1f;
-        [SerializeField] private Vector2 m_Target;
+        [SerializeField] 
+        private float m_DirectionTicks = 1f;
+        
+        [SerializeField] 
+        private Vector2 m_Target;
 
-        [SerializeField] private Vector2 m_Origin;
+        [SerializeField] 
+        private Vector2 m_Origin;
 
-        [SerializeField] private Sparkle m_SecondarySparkle;
+        [SerializeField] 
+        private Sparkle m_SecondarySparkle;
 
-        [SerializeField] private bool m_OverrideAndPlay = false;
+        [SerializeField] 
+        private bool m_OverrideAndPlay = false;
 
         void Awake() {
             m_Origin = transform.position;

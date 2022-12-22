@@ -26,7 +26,7 @@ namespace Platformer.Obstacles {
 
             if (m_SinkTicks >= m_SinkBuffer) {
                 if (!m_Sinking) {
-                    SoundManager.PlaySound(m_SinkSound);
+                    Game.Audio.Sounds.PlaySound(m_SinkSound);
                 }
                 m_Sinking = true;
                 Vector3 down = transform.position + Vector3.down;

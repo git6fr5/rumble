@@ -2,28 +2,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-// Platformer.
-using Platformer.Utilities;
 using Platformer.Decor;
-using Platformer.Rendering;
-using Screen = Platformer.Rendering.Screen;
+
+/* --- Definitions --- */
+using Game = Platformer.Management.GameManager;
 
 namespace Platformer.Decor {
 
     public class Sparkle : MonoBehaviour {
 
-        [SerializeField] private int m_MinSortingOrder;
-        [SerializeField] private int m_MaxSortingOrder;
+        [SerializeField] 
+        private int m_MinSortingOrder;
+        
+        [SerializeField] 
+        private int m_MaxSortingOrder;
 
-        [SerializeField] private Sprite m_Sprite;
-        [SerializeField, ReadOnly] protected List<SpriteRenderer> m_Sparkles = new List<SpriteRenderer>();
-        [SerializeField] protected float m_Ticks;
-        [SerializeField] protected float m_Interval = 0.075f;
-        [SerializeField] protected float m_Radius = 0.25f;
+        [SerializeField] 
+        private Sprite m_Sprite;
+        
+        [SerializeField, ReadOnly] 
+        protected List<SpriteRenderer> m_Sparkles = new List<SpriteRenderer>();
+        
+        [SerializeField] 
+        protected float m_Ticks;
+        
+        [SerializeField] 
+        protected float m_Interval = 0.075f;
+        
+        [SerializeField] 
+        protected float m_Radius = 0.25f;
 
-        [SerializeField] protected float m_FadeSpeed = 0.75f;   
-        [SerializeField] protected float m_RotationSpeed = 5f; 
+        [SerializeField] 
+        protected float m_FadeSpeed = 0.75f;   
+        
+        [SerializeField] 
+        protected float m_RotationSpeed = 5f; 
 
         void Start() {
             m_Ticks = m_Interval;
@@ -35,6 +48,8 @@ namespace Platformer.Decor {
                 return;
             }
 
+            bool wasZero = m_Ticks == 0f;
+            m_Ticks -= Time.fixedDeltaTime;
             bool finished = Timer.TickDown(ref m_Ticks, Time.fixedDeltaTime);
             if (finished) {
                 Spawn();

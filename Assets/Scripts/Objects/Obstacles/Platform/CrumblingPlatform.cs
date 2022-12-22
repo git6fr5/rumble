@@ -26,14 +26,14 @@ namespace Platformer.Obstacles {
 
         void LateUpdate() {
             m_Crumbling = m_PressedDown ? true : m_Crumbling;
-            Obstacle.Shake(transform, m_Origin, Strength);
+            transform.Shake(m_Origin, Strength);
         }
 
         void FixedUpdate() {
             Timer.TriangleTickDownIf(ref m_CrumbleTicks, m_CrumbleBuffer, Time.fixedDeltaTime, m_Crumbling);
 
             if (m_Crumbling) {
-                SoundManager.PlaySound(m_CrumblingSound, Mathf.Sqrt(m_CrumbleTicks / m_CrumbleBuffer) * 0.1f);
+                Game.Audio.Sounds.PlaySound(m_CrumblingSound, Mathf.Sqrt(m_CrumbleTicks / m_CrumbleBuffer) * 0.1f);
             }
 
             if (m_CrumbleTicks >= m_CrumbleBuffer) {
@@ -49,7 +49,7 @@ namespace Platformer.Obstacles {
             m_Hitbox.enabled = activate;
             m_SpriteShapeRenderer.enabled = activate;
             if (!activate && m_Crumbling) {
-                SoundManager.PlaySound(m_CrumbleSound, 0.15f);
+                Game.Audio.Sounds.PlaySound(m_CrumbleSound, 0.15f);
             }
         }
 

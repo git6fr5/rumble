@@ -18,7 +18,7 @@ namespace Platformer.Character {
     /// Controls a character.
     ///<summary>
     [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(CircleCollider2D)), RequireComponent(typeof(InputSystem)) ]
-    public class CharacterState : MonoBehaviour {
+    public class CharacterController : MonoBehaviour {
 
         #region Variables.
 

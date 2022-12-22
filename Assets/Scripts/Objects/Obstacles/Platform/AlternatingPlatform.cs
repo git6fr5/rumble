@@ -41,7 +41,7 @@ namespace Platformer.Obstacles {
             bool change = (Game.Ticks % (Period * 0.5f)) > 0.5f * Period - 0.5f;
 
             if (!m_PreChange && change && m_Hitbox.enabled) {
-                SoundManager.PlaySound(m_PreChangeSound, 0.05f);
+                Game.Audio.Sounds.PlaySound(m_PreChangeSound, 0.05f);
             }
             m_PreChange = change;
 
@@ -50,7 +50,7 @@ namespace Platformer.Obstacles {
                 // color *= enableA ? 1f : 0.25f;
                 // m_SpriteShapeRenderer.color = color;
                 if (enableA != m_Hitbox.enabled && enableA) {
-                    SoundManager.PlaySound(m_ChangeSound, 0.03f);
+                    Game.Audio.Sounds.PlaySound(m_ChangeSound, 0.03f);
                 }
 
                 m_SpriteShapeRenderer.enabled = enableA;
@@ -62,7 +62,7 @@ namespace Platformer.Obstacles {
                 // color *= !enableA ? 1f : 0.25f;
                 // m_SpriteShapeRenderer.color = color;
                 if (!enableA != m_Hitbox.enabled && !enableA) {
-                    SoundManager.PlaySound(m_ChangeSound, 0.03f);
+                    Game.Audio.Sounds.PlaySound(m_ChangeSound, 0.03f);
                 }
 
                 m_SpriteShapeRenderer.enabled = !enableA;

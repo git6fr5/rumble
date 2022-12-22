@@ -50,6 +50,12 @@ namespace Platformer.Physics {
             else {
                 m_TimeScale = DEFAULT_TIMESCALE;
             }
+            Time.timeScale = m_TimeScale;
+        }
+
+        // Runs once every fixed interval.
+        void FixedUpdate() {
+            m_Ticks += Time.fixedDeltaTime;
         }
 
         // Run a hit stop.

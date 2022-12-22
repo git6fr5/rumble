@@ -30,6 +30,14 @@ namespace Platformer.Management {
 
         #endregion
 
+        #region Methods.
+
+        public void OnGameLoad() {
+            // Application.targetFrameRate = VisualSettings.FrameRate;
+        }
+
+        #endregion
+
     }
 
 }

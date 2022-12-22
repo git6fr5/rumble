@@ -2,13 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-// Platformer.
-using Platformer.Utilities;
 using Platformer.Decor;
-using Platformer.Obstacles;
-using Platformer.Rendering;
-using Screen = Platformer.Rendering.Screen;
+
+/* --- Definitions --- */
+using Game = Platformer.Management.GameManager;
 
 namespace Platformer.Decor {
 
@@ -21,7 +18,7 @@ namespace Platformer.Decor {
         [SerializeField] private RespawnBlock m_RespawnBlock;
         
         protected override bool IsActive() {
-            return Game.MainPlayer.Respawn == m_RespawnBlock;
+            return Game.MainPlayer.RespawnBlock == m_RespawnBlock;
         }
 
         protected override void AdjustPosition(float deltaTime) {

@@ -1,12 +1,10 @@
 /* --- Libraries --- */
-// System.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Platformer.
-using Platformer.Decor;
-using Platformer.Rendering;
-using Screen = Platformer.Rendering.Screen;
+
+/* --- Definitions --- */
+using Game = Platformer.Management.GameManager;
 
 namespace Platformer.Decor {
 
@@ -22,8 +20,8 @@ namespace Platformer.Decor {
 
         // Runs once on instantiation.
         void Start() {
-            m_SpriteRenderer.sortingLayerName = Screen.RenderingLayers.Foreground;
-            m_SpriteRenderer.color = Screen.ForegroundColorShift;
+            m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.Foreground;
+            // m_SpriteRenderer.color = Game.Visuals.Camera.FOREGROUND_COLOR;
             Pick();
         }
 

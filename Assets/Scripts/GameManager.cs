@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Platformer.LevelLoader;
 using Platformer.Management;
 
 namespace Platformer.Management {
@@ -27,12 +26,14 @@ namespace Platformer.Management {
         [SerializeField] private CharacterController m_Player;
         public static CharacterController MainPlayer => Instance.m_Player;
 
-        // Level loading.
-        [SerializeField] private LDtkLoader m_LevelLoader;
-        public static LDtkLoader LevelLoader => Instance.m_LevelLoader;
+        // Exposes functionality for the levels in the game.
+        [SerializeField] 
+        private LevelManager m_LevelManager;
+        public static LevelManager Level => Instance.m_LevelLoader;
 
         // Exposes functionality for the physics in the game.
-        [SerializeField] private PhysicsManager m_PhysicsManager;
+        [SerializeField] 
+        private PhysicsManager m_PhysicsManager;
         public static PhysicsManager Physics => Instance.m_PhysicsManager;
 
         // Exposes functionality for the audio in the game.
@@ -61,17 +62,18 @@ namespace Platformer.Management {
         // Runs once on instantiation.
         void Awake() {
             Instance = this;
-            Application.targetFrameRate = 120; // Settings.FrameRate
+            m_LevelManager.OnGameLoad();
+            m_PhysicsManager.OnGameLoad();
+            m_AudioManager.OnGameLoad();
+            m_VisualManager.OnGameLoad();
+            player.gameObject.SetActive(false);
+            Pause();
         }
 
         // Runs once before the first frame.
         void Start() {
-            Level.InitializeGroundLayer(m_Grid.transform);
-            Level.InitializeWaterLayer(m_Grid.transform);
-            m_LevelLoader.Init();
-            Screen.Instance.gameObject.SetActive(false);
-            m_Player.gameObject.SetActive(false);
-            StartCoroutine(IELoadOpeningLevel());
+            player.gameObject.SetActive(true);
+            Play();
         }
 
         // Load the opening level.
@@ -87,19 +89,14 @@ namespace Platformer.Management {
             yield return null;
         }
 
-        // Runs once every frame.
-        void Update() {
-            Time.timeScale = m_TimeScale * m_PhysicsManager.Time.TimeScale;
-        }
-
-        // Runs once every fixed interval.
-        void FixedUpdate() {
-            m_Ticks += Time.fixedDeltaTime;
+        // Pause the game.
+        public void Play() {
+            Instance.Physics.Time.SetTimeScale(TimeController.DEFAULT_TIMESCALE);
         }
 
         // Pause the game.
-        public static void Pause() {
-            Instance.m_TimeScale = 0f;
+        public void Pause() {
+            Instance.Physics.Time.SetTimeScale(TimeController.PAUSED_TIMESCALE);
         }
 
         // Validate an array.

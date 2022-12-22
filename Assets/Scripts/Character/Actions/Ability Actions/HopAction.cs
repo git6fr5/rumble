@@ -39,7 +39,7 @@ namespace Platformer.Character.Actions {
 
         #endregion
 
-        public override void Enable(CharacterState character, bool enable) {
+        public override void Enable(CharacterController character, bool enable) {
             if (enable) {
                 if (character.Input.Action1.Held) {
                     character.Body.velocity = Vector2.zero;
@@ -50,7 +50,7 @@ namespace Platformer.Character.Actions {
         }
 
         // When this ability is activated.
-        public override void Activate(Rigidbody2D body, InputSystem input, CharacterState state) {
+        public override void Activate(Rigidbody2D body, InputSystem input, CharacterController state) {
             if (!m_Enabled) { return; }
 
             // Chain the dash actions.
@@ -76,7 +76,7 @@ namespace Platformer.Character.Actions {
         }
 
         // Refreshes the settings for this ability every interval.
-        public override void Refresh(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
+        public override void Refresh(Rigidbody2D body, InputSystem input, CharacterController state, float dt) {
             if (!m_Enabled) { return; }
 
             m_Refreshed = state.OnGround ? true : m_Refreshed;
@@ -86,7 +86,7 @@ namespace Platformer.Character.Actions {
             if (!state.Disabled && m_Refreshed && input.Action1.Held) {
                 if (m_Charge == 0f) {
                     body.SetVelocity(Vector2.zero);
-                    SoundManager.PlaySound(m_ChargeSound, 0.15f);
+                    Game.Audio.Sounds.PlaySound(m_ChargeSound, 0.15f);
                 }
                 bool finished = Timer.TickUp(ref m_Charge, m_MaxCharge, dt);
 
@@ -114,7 +114,7 @@ namespace Platformer.Character.Actions {
         }
 
         // Checks the state for whether this ability can be activated.
-        public override bool CheckState(CharacterState state) {
+        public override bool CheckState(CharacterController state) {
             if (state.Disabled) { return false; }
             return m_Refreshed;
         }

@@ -41,7 +41,7 @@ namespace Platformer.Character.Actions {
         #endregion
 
         // When this ability is activated.
-        public override void Activate(Rigidbody2D body, InputSystem input, CharacterState state) {
+        public override void Activate(Rigidbody2D body, InputSystem input, CharacterController state) {
             if (!m_Enabled) { return; }
             
             // Chain the dash actions.
@@ -59,7 +59,7 @@ namespace Platformer.Character.Actions {
         }
 
         // Refreshes the settings for this ability every interval.
-        public override void Refresh(Rigidbody2D body, InputSystem input, CharacterState state, float dt) {
+        public override void Refresh(Rigidbody2D body, InputSystem input, CharacterController state, float dt) {
             if (!m_Enabled) { return; }
             
             RefreshJumpSettings(ref m_Speed, ref m_Weight, ref m_Sink, m_Height, m_RisingTime, m_FallingTime);
@@ -81,7 +81,7 @@ namespace Platformer.Character.Actions {
         }
 
         // Checks the state for whether this ability can be activated.
-        public override bool CheckState(CharacterState state) {
+        public override bool CheckState(CharacterController state) {
             if (state.Disabled) { return false; }
             return m_Refreshed;
         }
