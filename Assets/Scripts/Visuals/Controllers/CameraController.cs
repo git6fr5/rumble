@@ -1,13 +1,16 @@
 /* --- Libraries --- */
+// System.
 using System.Collections;
 using System.Collections.Generic;
+// Unity.
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityExtensions;
+// Platformer.
 using Platformer.Visuals;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
-using Timer = Platformer.Utilities.Timer;
 
 namespace Platformer.Visuals {
 
@@ -75,6 +78,14 @@ namespace Platformer.Visuals {
         [SerializeField]
         private Material m_ScreenMaterial = null;
 
+        // The animation curve for shaking the screen.
+        [SerializeField]
+        private AnimationCurve m_ShakeCurve;
+
+        // The amount of strength the current screen shake has.
+        [SerializeField]
+        private float m_ShakeStrength = 1f;
+
         #endregion
 
         #region Methods.
@@ -84,11 +95,11 @@ namespace Platformer.Visuals {
             MoveToTarget();
             if (m_ShakeTimer.Active) {
                 WhileShakingCamera();
-                m_ShakeTimer.Tick(Time.deltaTime);
+                m_ShakeTimer.TickDown(Time.deltaTime);
             }
             if (m_RecolorTimer.Active) {
                 WhileColoringScreen();
-                m_RecolorTimer.Tick(Time.deltaTime);
+                m_RecolorTimer.TickDown(Time.deltaTime);
             }
 
         }
@@ -109,9 +120,9 @@ namespace Platformer.Visuals {
         }
         
         // Moves the camera to the target position.
-        public Vector3 MoveToTarget() {
+        public void MoveToTarget() {
             Vector3 targetPosition = (Vector3)m_TargetPosition + CameraPlane;
-            transform.Move(actualTarget, snapSpeed, Time.deltaTime);
+            transform.Move(targetPosition, m_MoveSpeed, Time.deltaTime);
         }
 
         // Starts the camera shaking.
@@ -122,21 +133,21 @@ namespace Platformer.Visuals {
 
         // The way the camera moves while it is shaking.
         public void WhileShakingCamera() {
-            float strength = VisualSettings.CameraShakeStrength * m_ShakeCurve.Evaluate(m_ShakeTimer.InverseRatio);
-            transform.Shake(transform.position, Strength);
+            float strength = VisualSettings.CameraShakeStrength * m_ShakeStrength * m_ShakeCurve.Evaluate(m_ShakeTimer.InverseRatio);
+            transform.Shake(transform.position, strength);
         }
 
         // Recolors the screen.
         public void RecolorScreen(ColorPalette colorPalette) {
-            colorPalette.SetBlend(m_ColorPaletteMaterial, "A");
-            m_CurrentPalette.SetBlend(m_ColorPaletteMaterial, "B");
+            colorPalette.SetBlend(m_ScreenMaterial, "A");
+            m_CurrentPalette.SetBlend(m_ScreenMaterial, "B");
             m_CurrentPalette = colorPalette;
             m_RecolorTimer.Start(RECOLOR_TIME);
         }
 
         // Gradually blends the two color palettes into the second color palette
         public void WhileColoringScreen() {
-            m_ScreenMaterial.SetFloat("_Radius", m_RecolorationTimer.InverseRatio);
+            m_ScreenMaterial.SetFloat("_Radius", m_RecolorTimer.InverseRatio);
         }
 
         // Gets a random position within the screen bounds.

@@ -28,7 +28,7 @@ namespace Platformer.Levels.Tilemaps {
         public Sprite[] sprites { get; private set; }
 
         // Returns the current frame of this animation.
-        public Sprite currentFrame => GetFrame(Game.Physics.ticks);
+        public Sprite currentFrame => GetFrame(Game.Physics.Time.Ticks);
 
         // Gets the frame based on the given ticks.
         public Sprite GetFrame(float ticks) {

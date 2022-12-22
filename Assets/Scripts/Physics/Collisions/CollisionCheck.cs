@@ -11,12 +11,15 @@ namespace Platformer.Physics {
     ///<summary>
     public class CollisionCheck {
 
+        // The collision precision for things to be considered touching.
+        public float CollisionPrecision => PhysicsSettings.CollisionPrecision;
+
         // Checks whether anything within the circle is touching something on the given layer.
-        public static bool Touching(Vector3 center, float radius, Vector3 direction, LayerMask layer) {
+        public bool Touching(Vector3 center, float radius, Vector3 direction, LayerMask layer) {
             Vector3 normal = Quaternion.Euler(0f, 0f, 90f) * direction;
             for (int i = -1; i <= 1; i++) {
                 Vector3 offset = direction * radius + i * normal * radius / 1.5f;
-                Collider2D temp = Physics2D.OverlapCircle(center + offset, Game.Physics.CollisionPrecision, layer);
+                Collider2D temp = Physics2D.OverlapCircle(center + offset, PhysicsSettings.CollisionPrecision, layer);
                 if (temp != null) {
                     return true;
                 }
@@ -25,7 +28,7 @@ namespace Platformer.Physics {
         }
 
         // Finds the closest object of the given class within a specified radius (null if none exist).
-        public static TMonoBehaviour Closest<TMonoBehaviour>(Vector3 position, float radius, LayerMask layers) where TMonoBehaviour : MonoBehaviour {
+        public TMonoBehaviour Closest<TMonoBehaviour>(Vector3 position, float radius, LayerMask layers) where TMonoBehaviour : MonoBehaviour {
             float minDistance = Mathf.Infinity;
             TMonoBehaviour closest = null;
             Collider2D[] colliders = UnityEngine.Physics2D.OverlapCircleAll(position, radius, layers);
@@ -42,7 +45,7 @@ namespace Platformer.Physics {
         }
 
         // Finds all object of the given class within a specified radius (null if none exist).
-        public static List<TMonoBehaviour> All<TMonoBehaviour>(Vector3 position, float radius, LayerMask layers) where TMonoBehaviour : MonoBehaviour {
+        public List<TMonoBehaviour> All<TMonoBehaviour>(Vector3 position, float radius, LayerMask layers) where TMonoBehaviour : MonoBehaviour {
             List<TMonoBehaviour> list = new List<TMonoBehaviour>();
             Collider2D[] colliders = UnityEngine.Physics2D.OverlapCircleAll(position, radius, layers);
             for (int i = 0; i < colliders.Length; i++) {
@@ -55,9 +58,9 @@ namespace Platformer.Physics {
         }
 
         // Finds all object of the given class interseting the line (null if none exist).
-        public static TMonoBehaviour LineOfSight<TMonoBehaviour>(Vector3 position, Vector2 direction, LayerMask layers) where TMonoBehaviour : MonoBehaviour {
-            List<TMonoBehaviour> list = new List<TMonoBehaviour>();
-            RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position, direction, Mathf.Infinity, layers);
+        public TMonoBehaviour LineOfSight<TMonoBehaviour>(Vector3 position, Vector2 direction, LayerMask layers, float distance = -1f) where TMonoBehaviour : MonoBehaviour {
+            distance = distance == -1f ? Mathf.Infinity : distance;
+            RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position + (Vector3)direction * CollisionPrecision, direction, distance, layers);
             TMonoBehaviour behaviour = hit.collider.GetComponent<TMonoBehaviour>();
             if (behaviour != null) {
                 return behaviour;

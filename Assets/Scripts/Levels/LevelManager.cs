@@ -35,6 +35,11 @@ namespace Platformer.Management {
         public TilemapManager m_TilemapManager;
         public TilemapManager Tilemaps => m_TilemapManager;
 
+        // The JSON data corresponding to the given ldtk data.
+        [HideInInspector]
+        private LDtkLayers m_LDtkLayers = new LDtkLayers();
+        public LDtkLayers LDtkLayers => m_LDtkLayers;
+
         // A reference to all the created levels.
         [SerializeField, ReadOnly] 
         public List<Room> m_Rooms = new List<Room>();
@@ -54,7 +59,7 @@ namespace Platformer.Management {
         // The JSON data corresponding to the given ldtk data.
         [HideInInspector]
         private LdtkJson m_JSON;
-
+        
         #endregion
 
         // Initializes the world.
@@ -90,7 +95,7 @@ namespace Platformer.Management {
 
             // Itterate through and load all the level data.
             for (int i = 0; i < m_Rooms.Count; i++) {
-                List<LDtkTileData> tileData = LDtkReader.GetLayerData(m_Rooms[i].ldtkLevel, LDtkLayer.GROUND);
+                List<LDtkTileData> tileData = LDtkReader.GetLayerData(m_Rooms[i].ldtkLevel, m_LDtkLayers.Ground);
                 m_TilemapManager.GenerateMap(m_Rooms[i], tileData);
             }
 
@@ -114,12 +119,19 @@ namespace Platformer.Management {
             }
         }
 
+        // Resets the current room.
+        public void Reset() {
+            Platformer.Objects.Blocks.BlockObject.ResetAll();
+            Platformer.Objects.Orbs.OrbObject.ResetAll();
+            Game.Visuals.Camera.RecolorScreen(Game.Visuals.DefaultPalette);
+        }
+
         // Loads the entities for 
         public void Load(Room room) {
             if (room.ldtkLevel != null) {
                 // Load the data.
-                List<LDtkTileData> entityData = LDtkReader.GetLayerData(room.ldtkLevel, LDtkLayer.ENTITY);
-                List<LDtkTileData> controlData = LDtkReader.GetLayerData(room.ldtkLevel, LDtkLayer.CONTROL);
+                List<LDtkTileData> entityData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Entity);
+                List<LDtkTileData> controlData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Control);
 
                 // Load the level.
                 room.GenerateEntities(entityData, controlData, m_EntityManager.All);

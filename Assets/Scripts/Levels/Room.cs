@@ -97,7 +97,7 @@ namespace Platformer.Levels {
             ReadJSONData(json, jsonID);
             CreateBoundaryBox();
 
-            List<LDtkTileData> controlData = LDtkReader.GetLayerData(json.Levels[jsonID], LDtkLayer.CONTROL);
+            List<LDtkTileData> controlData = LDtkReader.GetLayerData(json.Levels[jsonID], Game.Level.LDtkLayers.Control);
             GetLoadPoints(controlData);
         }
 
@@ -107,7 +107,7 @@ namespace Platformer.Levels {
             for (int i = 0; i < dimensions.y; i++) {
                 for (int j = 0; j < dimensions.x; j++) {
                     Vector3Int position = new Vector3Int(worldPosition.x + j, worldPosition.y - i, 0);
-                    Game.Level.tilemaps.waterMap.RefreshTile(position);
+                    Game.Level.Tilemaps.waterMap.RefreshTile(position);
                 }
             }
 

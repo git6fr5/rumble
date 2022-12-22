@@ -15,10 +15,10 @@ namespace Platformer.Visuals {
         public static int PixelsPerUnit => m_PixelsPerUnit;
 
         // The amount of time it takes the camera to snap between sections of a run.
-        private static int m_CameraSnapTime = 0.33f;
+        private static float m_CameraSnapTime = 0.33f;
 
         // Whether the camera movement between sections should be smooth.
-        private static int m_SmoothCameraMovement = true;
+        private static bool m_SmoothCameraMovement = true;
 
         // The actual snap time.
         public static float CameraSnapTime = m_SmoothCameraMovement ? m_CameraSnapTime : Time.deltaTime;

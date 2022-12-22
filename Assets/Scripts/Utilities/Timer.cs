@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer.Utilities {
+namespace UnityExtensions {
 
     ///<summary>
     ///
@@ -16,7 +16,7 @@ namespace Platformer.Utilities {
         // The current value of the timer.
         [SerializeField] 
         private float m_Value = 0f;
-        public float Value = m_Value;
+        public float Value => m_Value;
 
         // The default reset value of the timer.
         [SerializeField] 
@@ -38,7 +38,7 @@ namespace Platformer.Utilities {
 
         public Timer(float initialValue, float maxValue) {
             m_Value = initialValue;
-            m_MaxValue = m_MaxValue;
+            m_MaxValue = maxValue;
         }
 
         // Starts the timer to its max value.

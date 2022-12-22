@@ -35,7 +35,7 @@ namespace Platformer.Audio {
         private static bool m_MuteAmbience = false;
 
         // The actual volume to play the music at.
-        public static float AmbienceVolume => m_MuteMusic ? 0f : MasterVolume * m_AmbienceVolume;
+        public static float AmbienceVolume => m_MuteAmbience ? 0f : MasterVolume * m_AmbienceVolume;
 
         // The volume of the sfx in the game.
         private static float m_SoundVolume = 0.5f;
@@ -44,7 +44,7 @@ namespace Platformer.Audio {
         private static bool m_MuteSound = false;
 
         // The actual volume to play the music at.
-        public static float SoundVolume => m_MuteMusic ? 0f : MasterVolume * m_SoundVolume;
+        public static float SoundVolume => m_MuteSound ? 0f : MasterVolume * m_SoundVolume;
 
     }
 

@@ -23,9 +23,14 @@ namespace Platformer.Management {
         private ParticleController m_ParticleController;
         public ParticleController Particles => m_ParticleController;
 
-        // The rendering layers in the game.
+        // The default color palette.
         [SerializeField]
-        private RenderingLayers m_RenderingLayers = new RenderingLayer();
+        private ColorPalette m_DefaultPalette;
+        public ColorPalette DefaultPalette => m_DefaultPalette;
+
+        // The rendering layers in the game.
+        [HideInInspector]
+        private RenderingLayers m_RenderingLayers = new RenderingLayers();
         public RenderingLayers RenderingLayers => m_RenderingLayers;
 
         #endregion

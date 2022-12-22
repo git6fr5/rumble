@@ -1,11 +1,12 @@
 /* --- Libraries --- */
+// System.
 using System.Collections;
 using System.Collections.Generic;
+// Unity.
 using UnityEngine;
+using UnityExtensions;
+// Platformer.
 using Platformer.Physics;
-
-/* --- Definitions --- */
-using Timer = Platformer.Utilities.Timer;
 
 namespace Platformer.Physics {
 
@@ -27,7 +28,17 @@ namespace Platformer.Physics {
         // The paused time scale.
         public const float PAUSED_TIMESCALE = 0f;
 
+        /* --- Static --- */
+
+        // The timescale of the current game.
+        private static float m_TimeScale = 1f;
+
         /* --- Members --- */
+
+        // The amount of time the game has been running for.
+        [SerializeField, ReadOnly]
+        private float m_Ticks = 0f;
+        public float Ticks => m_Ticks;
 
         // Whether a ramp stop is currently being run.
         [HideInInspector] 
@@ -59,7 +70,7 @@ namespace Platformer.Physics {
         }
 
         // Run a hit stop.
-        public static void RunHitStop(int frames = 16) {
+        public void RunHitStop(int frames = 16) {
             m_TimeScale = PAUSED_TIMESCALE;
             m_HitStopTimer.Start(frames);
         }
@@ -69,9 +80,9 @@ namespace Platformer.Physics {
         }
 
         // Run a ramp stop.
-        public static void RunRampStop(int frames = 128) {
+        public void RunRampStop(int frames = 128) {
             m_TimeScale = PAUSED_TIMESCALE;
-            m_RampIncrement.Start(frames);
+            m_RampStopTimer.Start(frames);
         }
 
         private void UpdateRampStop() {
@@ -79,6 +90,18 @@ namespace Platformer.Physics {
             if (m_RampStopTimer.InverseRatio > RAMP_THRESHOLD) {
                 m_TimeScale = m_RampStopTimer.InverseRatio;
             }
+        }
+
+        public void Play() {
+            m_TimeScale = DEFAULT_TIMESCALE;
+            m_RampStopTimer.Stop();
+            m_HitStopTimer.Stop();
+        }
+
+        public void Pause() {
+            m_TimeScale = PAUSED_TIMESCALE;
+            m_RampStopTimer.Stop();
+            m_HitStopTimer.Stop();
         }
 
     }

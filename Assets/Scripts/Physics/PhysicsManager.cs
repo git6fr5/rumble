@@ -18,15 +18,23 @@ namespace Platformer.Management {
         private TimeController m_TimeController;
         public TimeController Time => m_TimeController;
 
-        // Controls the flow of time in the game.
-        // [SerializeField]
-        // private CollisionController m_CollisionController;
-        // public CollisionController Collisions => m_CollisionController;
+        // Exposes simple collision functionality.
+        [HideInInspector]
+        private CollisionCheck m_CollisionCheck;
+        public CollisionCheck Collisions => m_CollisionCheck;
 
         // Collision.
         [SerializeField]
         private CollisionLayers m_CollisionLayers = new CollisionLayers();
         public CollisionLayers CollisionLayers => m_CollisionLayers;
+
+        #endregion
+
+        #region Methods.
+
+        public void OnGameLoad() {
+
+        }
 
         #endregion
 

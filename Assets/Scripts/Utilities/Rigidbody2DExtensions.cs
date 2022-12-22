@@ -6,7 +6,7 @@ using UnityEngine;
 /* --- Definitions --- */
 using PhysicsSettings = Platformer.Physics.PhysicsSettings;
 
-namespace Platformer.Utilities {
+namespace UnityExtensions {
 
     ///<summary>
     /// Defines useful and easy to use extensions for the rigidbody.
@@ -19,7 +19,7 @@ namespace Platformer.Utilities {
         }
 
         // Stops this body.
-        public static void Stop(this Rigidbody rb, Vector2 dx) {
+        public static void Stop(this Rigidbody2D rb) {
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0f;
         }
@@ -55,7 +55,7 @@ namespace Platformer.Utilities {
         }
 
         // Slows this body by the given factor.
-        public static void Slowdown(this Rigidbody rb, float c) {
+        public static void Slowdown(this Rigidbody2D rb, float c) {
             rb.velocity *= c;
         }
 

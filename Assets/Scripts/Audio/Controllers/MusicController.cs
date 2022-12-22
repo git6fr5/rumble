@@ -37,7 +37,7 @@ namespace Platformer.Audio {
         }
 
         // Generates the audio source to play the music from.
-        private AudioSource GenerateSources(int count) {
+        private AudioSource GenerateSource() {
             AudioSource audioSource = new GameObject("Music AudioSource", typeof(AudioSource)).GetComponent<AudioSource>();
             audioSource.transform.SetParent(Game.Audio.transform);
             audioSource.transform.localPosition = Vector3.zero;
@@ -47,7 +47,7 @@ namespace Platformer.Audio {
         // Plays the music.
         public void PlayMusic() {
             m_Source.clip = m_Music;
-            m_Source.volume = AudioSettings.MusicVolume * volume;
+            m_Source.volume = AudioSettings.MusicVolume;
             m_Source.loop = true;
             m_Source.pitch = 1f;
             m_Source.Play();
