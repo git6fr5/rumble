@@ -29,7 +29,7 @@ namespace Platformer.Levels.Entities {
 
         // The mapping from LDtk to this entity.
         [SerializeField] 
-        private Vector2Int m_VectorID = new Vector2Int(0, 0);
+        protected Vector2Int m_VectorID = new Vector2Int(0, 0);
         public Vector2Int VectorID => m_VectorID;
 
         // The grid space coordinates this entity should be loaded at.

@@ -38,7 +38,7 @@ namespace Platformer.Audio {
         public static float AmbienceVolume => m_MuteAmbience ? 0f : MasterVolume * m_AmbienceVolume;
 
         // The volume of the sfx in the game.
-        private static float m_SoundVolume = 0.5f;
+        private static float m_SoundVolume = 1f;
 
         // Whether the sound is on mute.
         private static bool m_MuteSound = false;

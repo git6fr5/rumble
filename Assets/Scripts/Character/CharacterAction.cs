@@ -19,17 +19,32 @@ namespace Platformer.Character.Actions {
     [System.Serializable]
     public abstract class CharacterAction {
 
+        #region Enumerations
+
+        public enum ActionPhase {
+            None,
+            PreAction,
+            MidAction,
+            PostAction
+        }
+
+        #endregion
+
         #region Fields
         
         /* --- Member Variables --- */
+
+        // Checks whether the activation conditions have been fulfilled.
+        [SerializeField, ReadOnly] 
+        protected ActionPhase m_ActionPhase = ActionPhase.None;
         
         // Checks whether the activation conditions have been fulfilled.
         [SerializeField, ReadOnly] 
-        protected bool m_Refreshed;
+        protected bool m_Refreshed = false;
 
         // Checks whether this ability is enabled.
-        [SerializeField, ReadOnly] 
-        protected bool m_Enabled;
+        [SerializeField] 
+        protected bool m_Enabled = false;
         public bool Enabled => m_Enabled;
 
         #endregion
@@ -45,6 +60,7 @@ namespace Platformer.Character.Actions {
         // Enables the action.
         public virtual void Enable(CharacterController character, bool enable = true) {
             m_Enabled = enable;
+            m_Refreshed = enable;
         }
 
         #endregion

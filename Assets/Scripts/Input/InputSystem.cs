@@ -15,27 +15,24 @@ namespace Platformer.Input {
         #region Variables
         
         // The characters directional input.
-        [SerializeField] protected DirectionalInput m_Direction;
+        [SerializeField] 
+        protected DirectionalInput m_Direction = new DirectionalInput();
+        public DirectionalInput Direction => m_Direction;
 
         // The characters action inputs.
-        [SerializeField] protected ActionInput m_Action0;
-        [SerializeField] protected ActionInput m_Action1;
-        [SerializeField] protected ActionInput m_Action2;
-
-        // The outputs.
-        public DirectionalInput Direction => m_Direction;
+        [SerializeField] 
+        protected ActionInput m_Action0 = new ActionInput();
         public ActionInput Action0 => m_Action0;
-        public ActionInput Action1 => m_Action1;
-        public ActionInput Action2 => m_Action2;
         
-        #endregion
+        [SerializeField] 
+        protected ActionInput m_Action1 = new ActionInput();
+        public ActionInput Action1 => m_Action1;
+        
+        [SerializeField] 
+        protected ActionInput m_Action2 = new ActionInput();
+        public ActionInput Action2 => m_Action2;
 
-        void Start() {
-            m_Direction = new DirectionalInput();
-            m_Action0 = new ActionInput();
-            m_Action1 = new ActionInput();
-            m_Action2 = new ActionInput();
-        }
+        #endregion
 
         void Update() {
             Think(Time.deltaTime);

@@ -29,55 +29,59 @@ namespace Platformer.Character.Actions {
         // The factor that slows down rising if not holding the input.
         protected const float RISE_FRICTION = 0.1f;
 
-        // The amount of time before noticing we're falling.
-        protected const float COYOTE_BUFFER = 0.08f;
-
         // The friction applied to a body that is still under coyote time.
         protected const float COYOTE_FRICTION = 0.5f;
 
-        // The amount of hang time.
-        protected const float APEX_BUFFER = 0.08f;
-
-        // Holds the player at the m_HangTimer of their jump for a brief moment longer.
-        protected const float HANG_FACTOR = 0.95f;
+        // The maximum speed with which this character can fall.
+        private float MAX_FALL_SPEED = 25f;
 
         /* --- Member Variables --- */
 
         // Whether the character is using the default movement.
-        [SerializeField] 
+        [SerializeField, ReadOnly] 
         public bool m_MoveEnabled = true;
 
         // Whether the character is using the default falling.
-        [SerializeField] 
+        [SerializeField, ReadOnly] 
         public bool m_FallEnabled = true;
 
         // The default speed the character moves at.
         [SerializeField] 
-        private float m_Speed = 5f;
+        private float m_Speed = 7.5f;
+        public float Speed => m_Speed;
 
         // The default acceleration of the character.
         [SerializeField] 
-        private float m_Acceleration = 100f;
+        private float m_Acceleration = 75f;
 
         // The default jump height of the character.
         [SerializeField] 
-        private float m_Height = 3f;
+        private float m_Height = 3.5f;
 
         // The default time taken to reach the m_HangTimer of the jump.
         [SerializeField] 
-        private float m_RisingTime = 1f;
+        private float m_RisingTime = 0.45f;
 
         // The default time taken to fall from the m_HangTimer of the jump.
         [SerializeField] 
-        private float m_FallingTime = 0.75f;
+        private float m_FallingTime = 0.4f;
 
-        // The maximum speed with which this character can fall.
+        // The amount of time before noticing we're falling.
         [SerializeField] 
-        private float m_MaxFallSpeed = 25f;
+        protected float m_CoyoteBuffer = 0.08f;
+
+        // The amount of hang time.
+        [SerializeField] 
+        protected float m_HangBuffer = 0.04f;
+
+        // Holds the player at the apex of their jump for a brief moment longer.
+        [SerializeField] 
+        protected float m_HangFactor = 0.24f;
 
         // The calculated jump speed based on the height, rising and falling time.
         [SerializeField, ReadOnly] 
         private float m_JumpSpeed = 0f;
+        public float JumpSpeed => m_JumpSpeed;
 
         // The calculated m_Weight based on the height, rising and falling time.
         [SerializeField, ReadOnly] 
@@ -89,43 +93,86 @@ namespace Platformer.Character.Actions {
         private float m_Sink = 0f;
 
         // Tracks how long the character has not been on the ground.
-        [SerializeField, ReadOnly] 
-        private Timer m_CoyoteTimer = new Timer(0f, COYOTE_BUFFER);
+        [HideInInspector] 
+        private Timer m_CoyoteTimer = new Timer(0f, 0f);
 
         // Tracks how long its been since the character reached the m_HangTimer.
-        [SerializeField, ReadOnly] 
-        private Timer m_HangTimer = new Timer(0f, APEX_BUFFER);
+        [HideInInspector] 
+        private Timer m_HangTimer = new Timer(0f, 0f);
+
+        // The animation for the character when idle.
+        [SerializeField]
+        private Sprite[] m_IdleAnimation = null;
+
+        // The animation for the character when moving.
+        [SerializeField]
+        private Sprite[] m_MovementAnimation = null;
+
+        // The animation for the character when rising.
+        [SerializeField]
+        private Sprite[] m_RisingAnimation = null;
+
+        // The animation for the character when falling.
+        [SerializeField]
+        private Sprite[] m_FallingAnimation = null;
 
         #endregion
 
         // When enabling/disabling this ability.
         public override void Enable(CharacterController character, bool enable = true) {
             base.Enable(character, enable);
+            m_HangTimer = new Timer(0f, m_HangBuffer);
+            m_CoyoteTimer = new Timer(0f, m_CoyoteBuffer);
             RefreshJumpSettings(ref m_JumpSpeed, ref m_Weight, ref m_Sink, m_Height, m_RisingTime, m_FallingTime);
+
+            m_MoveEnabled = true;
+            m_FallEnabled = true;
+
+            character.Animator.Push(m_IdleAnimation, CharacterAnimator.AnimationPriority.DefaultIdle);
+            character.Animator.Remove(m_MovementAnimation);
+            character.Animator.Remove(m_RisingAnimation);
+            character.Animator.Remove(m_FallingAnimation);
+        }
+
+        // When enabling/disabling this ability by movement and falling seperately.
+        public void Enable(CharacterController character, bool move, bool fall) {
+            Enable(character, true);
+
+            m_MoveEnabled = move;
+            m_FallEnabled = fall;
+        
         }
 
         // Runs once every frame to check the inputs for this ability.
-        public override void InputUpdate(CharacterController controller) {
+        public override void InputUpdate(CharacterController character) {
             if (!m_Enabled) { return; }
 
-            if (controller.Input.Action0.Pressed && m_Refreshed) {
+            // Jumping.
+            if (character.Input.Action0.Pressed && m_Refreshed) {
                 // The character should jump.
-                OnJump(controller);
+                OnJump(character);
 
                 // Release the input and reset the refresh.
-                controller.Input.Action0.ClearPressBuffer();
+                character.Input.Action0.ClearPressBuffer();
+                m_CoyoteTimer.Stop();
                 m_Refreshed = false;
             }
+
             
         }
 
         // 
         public override void PhysicsUpdate(CharacterController character, float dt) {
             if (!m_Enabled) { return; }
-            
+
+            // Landing.
+            if (character.OnGround && !m_Refreshed) {
+                OnLand(character);
+            }
+
             // Refreshing.
             m_Refreshed = character.OnGround || m_CoyoteTimer.Value > 0f;
-
+            
             // Tick the m_CoyoteTimer timer.
             m_CoyoteTimer.TickDownIfElseReset(dt, !character.OnGround);
             if (m_MoveEnabled) { 
@@ -143,11 +190,15 @@ namespace Platformer.Character.Actions {
 
             // Jumping.
             character.Body.Move(Vector2.up * 2f * Game.Physics.Collisions.CollisionPrecision);
-            character.Body.ClampFallSpeed(0f);
+            // These two lines are the key!!!
+            character.Body.ClampFallSpeed(0f); 
             character.Body.AddVelocity(Vector2.up * m_JumpSpeed);
 
-            // Reset the m_CoyoteTimer ticks.
-            m_CoyoteTimer.Stop();
+        }
+
+        private void OnLand(CharacterController character) {
+            character.Animator.Remove(m_RisingAnimation);
+            character.Animator.Remove(m_FallingAnimation);
         }
 
         // Process the physics of this action.
@@ -168,13 +219,20 @@ namespace Platformer.Character.Actions {
 
             // Set the velocity.
             character.Body.SetVelocity(velocity);
+
+            if (character.Input.Direction.Horizontal != 0f) {
+                character.Animator.Push(m_MovementAnimation, CharacterAnimator.AnimationPriority.DefaultMoving);
+            }
+            else {
+                character.Animator.Remove(m_MovementAnimation);
+            }
             
         }
 
         // Not really falling, but rather "while default grav acting on this body"
         private void WhileFalling(CharacterController character, float dt) {
             // Set the m_Weight to the default.
-            float weight = 1f;
+            float weight = m_Weight;
 
             // If the body is not on the ground.
             if (!character.OnGround) { 
@@ -182,39 +240,43 @@ namespace Platformer.Character.Actions {
                 if (character.Rising) {
 
                     // Multiply it by its m_Weight.
-                    m_Weight = weight;
+                    weight = m_Weight;
                     m_HangTimer.Start();
 
                     // If not holding jump, then rapidly slow the rising body.
                     if (!character.Input.Action0.Held) {
                         character.Body.SetVelocity(new Vector2(character.Body.velocity.x, character.Body.velocity.y * (1f - RISE_FRICTION)));
                     }
+
+                    character.Animator.Push(m_RisingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpRising);
                     
                 }
                 else {
                     // If it is falling, also multiply the sink m_Weight.
-                    m_Weight = (weight * m_Sink);
+                    weight = (m_Weight * m_Sink);
 
                     // If it is still at its m_HangTimer, factor this in.
                     if (m_HangTimer.Active) {
-                        m_Weight *= HANG_FACTOR;
+                        weight *= m_HangFactor;
                         m_HangTimer.TickDown(dt);
                     }
 
                     // If the m_CoyoteTimer timer is still ticking, fall slower.
                     if (m_CoyoteTimer.Active) {
-                        m_Weight *= COYOTE_FRICTION;
+                        weight *= COYOTE_FRICTION;
                     }
+
+                    character.Animator.Push(m_FallingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpFalling);
 
                 }
 
             }
 
             // Set the m_Weight.
-            character.Body.SetWeight(m_Weight);
+            character.Body.SetWeight(weight);
 
             // Clamp the fall speed at a given value.
-            character.Body.ClampFallSpeed(m_MaxFallSpeed);
+            character.Body.ClampFallSpeed(MAX_FALL_SPEED);
         }
 
         // Calculates the speed and m_Weight of the jump.

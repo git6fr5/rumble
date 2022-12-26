@@ -35,9 +35,6 @@ namespace Platformer.Objects.Blocks {
         public Vector3 RespawnPosition => transform.position + Vector3.up * RESPAWN_HEIGHT;
 
         [SerializeField] 
-        private AudioClip m_ActivateSound;
-
-        [SerializeField] 
         private float m_FirstActivationTime = Mathf.Infinity;
         public float FirstActivationTime => m_FirstActivationTime;
         

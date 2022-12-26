@@ -25,7 +25,7 @@ namespace Platformer.Visuals {
         /* --- Constants --- */
 
         // The distance of the plane that the camera sits on.
-        public const float CAMERA_PLANE_DISTANCE = 10f;
+        public const float CAMERA_PLANE_DISTANCE = -10f;
 
         // The amount of time it takes to recolor the screen.
         public const float RECOLOR_TIME = 0.24f;
@@ -155,6 +155,16 @@ namespace Platformer.Visuals {
             float x = m_PixelPerfectCamera.refResolutionX / m_PixelPerfectCamera.assetsPPU;
             float y = m_PixelPerfectCamera.refResolutionX / m_PixelPerfectCamera.assetsPPU;
             return (Vector2)transform.position + new Vector2(Random.Range(-x, x), Random.Range(-y, y));
+        }
+
+        public bool IsWithinBounds(Vector2 position) {
+            float boundX = m_PixelPerfectCamera.refResolutionX / m_PixelPerfectCamera.assetsPPU;
+            float boundY = m_PixelPerfectCamera.refResolutionX / m_PixelPerfectCamera.assetsPPU;
+            position.x = position.x - transform.position.x;
+            position.y = position.y - transform.position.y;
+            bool xBounded = position.x < boundX && position.x > -boundX;
+            bool yBounded = position.y < boundY && position.y > - boundY;
+            return xBounded && yBounded;
         }
 
         #endregion

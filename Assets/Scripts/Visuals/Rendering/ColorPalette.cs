@@ -20,14 +20,14 @@ namespace Platformer.Visuals {
 
         // Blends the material between an A and a B color palette.
         public void SetBlend(Material material, string tag = "A") {
-            for (int i = 0; i < COLOR_COUNT; i++) {
+            for (int i = 0; i < m_Color.Length; i++) {
                 material.SetColor("_Color" + tag + i.ToString(), m_Color[i]);
             }
         }
 
         // Sets the materials color.
         public void SetSimple(Material material) {
-            for (int i = 0; i < COLOR_COUNT; i++) {
+            for (int i = 0; i < m_Color.Length; i++) {
                 material.SetColor("_Color" + i.ToString(), m_Color[i]);
             }
         }

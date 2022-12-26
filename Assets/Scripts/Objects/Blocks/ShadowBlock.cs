@@ -23,18 +23,26 @@ namespace Platformer.Objects.Blocks {
             return Game.MainPlayer.Shadow.Enabled;
         }
 
-        protected override void OnActivation() {
-            base.OnActivation();
-            m_Hitbox.enabled = true;
+        // The functionality for when a block is touched.
+        protected override void OnTouched(CharacterController character, bool touched) {
+            if (m_Active) {
+                
+            }
         }
 
-        protected override void OnDeactivation() {
-            base.OnDeactivation();
-            m_Hitbox.enabled = false;
-        }
+        // protected override void OnActivation() {
+        //     base.OnActivation();
+        //     m_Hitbox.enabled = true;
+        // }
+
+        // protected override void OnDeactivation() {
+        //     base.OnDeactivation();
+        //     m_Hitbox.enabled = false;
+        // }
 
         // Resets the block.
         public override void Reset() {
+            m_Hitbox.isTrigger = true;
             base.Reset();
         }
 

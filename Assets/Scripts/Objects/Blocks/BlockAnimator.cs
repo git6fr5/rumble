@@ -13,7 +13,7 @@ namespace Platformer.Objects.Blocks {
     ///<summary>
     /// 
     ///<summary>
-    [RequireComponent(typeof(BlockObject)), RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(SpriteRenderer))]
     public class BlockAnimator : MonoBehaviour {
 
         #region Variables.
@@ -23,8 +23,8 @@ namespace Platformer.Objects.Blocks {
         // The sprite renderer attached to this component.
         private SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
 
-        // The block attached to this component.
-        private BlockObject m_Block => GetComponent<BlockObject>();
+        // The block attached to the parent object.
+        private BlockObject m_Block => transform.parent.GetComponent<BlockObject>();
 
         /* --- Members --- */
 
@@ -82,6 +82,7 @@ namespace Platformer.Objects.Blocks {
             if (m_CachedActive != m_Block.Active) {
                 m_SpriteRenderer.sprite = RandomFrame;
                 m_AnimationTimer.Start(RandomFrameDuration);
+                m_CachedActive = m_Block.Active;
             }
             // Grab a new random frame when the timer hits 0.
             bool finished = m_AnimationTimer.TickDown(Time.fixedDeltaTime);

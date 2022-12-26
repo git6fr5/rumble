@@ -71,7 +71,7 @@ namespace Platformer.Management {
             m_JSON = m_LDtkData.FromJson();
             m_Rooms = Collect(m_JSON, transform);
             // Load the maps for all the levels.
-            PreLoad();
+            Preload();
             MoveToLoadPoint(m_FirstRoomName, Game.MainPlayer.transform);
         }
         
@@ -81,14 +81,14 @@ namespace Platformer.Management {
             for (int i = 0; i < json.Levels.Length; i++) {
                 Room room = new GameObject(json.Levels[i].Identifier, typeof(Room)).GetComponent<Room>();
                 room.transform.SetParent(transform);
-                room.PreLoad(i, json);
+                room.Preload(i, json);
                 rooms.Add(room);
             }
             return rooms;
         }
 
         // Loads the map layouts for all the given levels.
-        public void PreLoad() {
+        public void Preload() {
             // Load the custom tile mappings.
             CustomTileMappings.CreateGroundTileMapping();
             CustomTileMappings.CreateWaterTileMapping();
@@ -137,6 +137,7 @@ namespace Platformer.Management {
                 room.GenerateEntities(entityData, controlData, m_EntityManager.All);
                 room.Settings(controlData);
                 m_CurrentRoom = room;
+                Game.Visuals.Camera.SetTarget(m_CurrentRoom.worldCenter);
             }
         }
 

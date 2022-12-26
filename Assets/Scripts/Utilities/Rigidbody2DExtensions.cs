@@ -77,7 +77,12 @@ namespace UnityExtensions {
 
         // Checks if this body is rising.
         public static bool Rising(this Rigidbody2D rb) {
-            return rb.velocity.y > 0f;
+            return rb.velocity.y > PhysicsSettings.MovementPrecision;
+        }
+
+        // Checks if this body is rising.
+        public static bool Falling(this Rigidbody2D rb) {
+            return rb.velocity.y < -PhysicsSettings.MovementPrecision;
         }
 
     }

@@ -53,11 +53,11 @@ namespace Platformer.Management {
         // Runs once on instantiation.
         void Awake() {
             Instance = this;
-            m_LevelManager.OnGameLoad();
+            m_Player.gameObject.SetActive(false);
             m_PhysicsManager.OnGameLoad();
             m_AudioManager.OnGameLoad();
             m_VisualManager.OnGameLoad();
-            m_Player.gameObject.SetActive(false);
+            m_LevelManager.OnGameLoad();
             Pause();
         }
 

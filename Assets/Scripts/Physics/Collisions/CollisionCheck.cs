@@ -9,6 +9,7 @@ namespace Platformer.Physics {
     ///<summary>
     /// A set of functions that define simple collision checks.
     ///<summary>
+    [System.Serializable]
     public class CollisionCheck {
 
         // The collision precision for things to be considered touching.
@@ -25,6 +26,12 @@ namespace Platformer.Physics {
                 }
             }
             return false;
+        }
+
+        // Finds all object of the given class within a specified radius (null if none exist).
+        public bool Touching(Vector3 position, float radius, LayerMask layers) {
+            Collider2D[] colliders = UnityEngine.Physics2D.OverlapCircleAll(position, radius, layers);
+            return colliders.Length != 0;
         }
 
         // Finds the closest object of the given class within a specified radius (null if none exist).
@@ -61,7 +68,7 @@ namespace Platformer.Physics {
         public TMonoBehaviour LineOfSight<TMonoBehaviour>(Vector3 position, Vector2 direction, LayerMask layers, float distance = -1f) where TMonoBehaviour : MonoBehaviour {
             distance = distance == -1f ? Mathf.Infinity : distance;
             RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position + (Vector3)direction * CollisionPrecision, direction, distance, layers);
-            TMonoBehaviour behaviour = hit.collider.GetComponent<TMonoBehaviour>();
+            TMonoBehaviour behaviour = hit.collider?.GetComponent<TMonoBehaviour>();
             if (behaviour != null) {
                 return behaviour;
             }

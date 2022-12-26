@@ -29,16 +29,16 @@ namespace Platformer.Objects.Blocks {
         /* --- Members --- */
 
         // Whether the functionality of this block is currently active.
-        [SerializeField]
+        [SerializeField, ReadOnly]
         protected bool m_Active = false;
         public bool Active => m_Active;
 
         // Whether this block is currently being touched.
-        [SerializeField] 
+        [SerializeField, ReadOnly] 
         protected bool m_Touched = false;
         
         // The origin around which this is centered.
-        [SerializeField] 
+        [SerializeField, ReadOnly] 
         protected Vector3 m_Origin = Vector3.zero;
 
         // The sound that plays when this block is activated.
@@ -84,11 +84,15 @@ namespace Platformer.Objects.Blocks {
                 OnDeactivation();
             }
 
-            if (Active) {
+            if (m_Active) {
                 WhileActive();
             }
             else {
                 WhileInactive();
+            }
+
+            if (m_Touched) {
+                WhileTouched();
             }
         }
 
@@ -140,6 +144,10 @@ namespace Platformer.Objects.Blocks {
         }
 
         protected virtual void WhileInactive() {
+            
+        }
+
+        protected virtual void WhileTouched() {
             
         }
 

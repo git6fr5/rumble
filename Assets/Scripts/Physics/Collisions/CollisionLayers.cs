@@ -33,5 +33,10 @@ namespace Platformer.Physics {
         private LayerMask m_Orb;
         public LayerMask Orb => m_Orb;
 
+        [SerializeField] 
+        private LayerMask m_Opaque;
+        public LayerMask Opaque => m_Opaque;
+
+
     }
 }

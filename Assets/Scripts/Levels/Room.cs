@@ -92,7 +92,7 @@ namespace Platformer.Levels {
 
         #endregion
 
-        public void PreLoad(int jsonID, LdtkJson  json) {
+        public void Preload(int jsonID, LdtkJson  json) {
             transform.localPosition = Vector3.zero;
             ReadJSONData(json, jsonID);
             CreateBoundaryBox();
@@ -125,14 +125,14 @@ namespace Platformer.Levels {
 
         public void CreateBoundaryBox() {
             gameObject.AddComponent<BoxCollider2D>();
-            box.isTrigger = true;
             box.size = new Vector2((float)(width - BOUNDARYBOX_SHAVE), (float)(height - BOUNDARYBOX_SHAVE));
             box.offset = worldCenter;
+            box.isTrigger = true;
         }
 
         public void GenerateEntities(List<LDtkTileData> entityData, List<LDtkTileData> controlData, List<Entity> entityReferences) {
             entities.RemoveAll(entity => entity == null);
-            entities = Entity.Generate(entities, entityData, entityReferences, transform, this.worldPosition);
+            entities = Entity.Generate(entities, entityData, entityReferences, transform, worldPosition);
             entities = Entity.SetControls(entities, controlData);
         }
 
@@ -156,11 +156,18 @@ namespace Platformer.Levels {
         }
 
         void OnTriggerEnter2D(Collider2D collider) {
-            Game.Level.Load(this);
+            if (collider == Game.MainPlayer.Collider) {
+                Game.Level.Load(this);
+            }
+            // if (collider.GetComponent<CharacterController>() != null) {
+            //     Game.Level.Load(this);
+            // }
         }
 
         void OnTriggerExit2D(Collider2D collider) {
-            Game.Level.Unload(this);
+            if (collider == Game.MainPlayer.Collider) {
+                Game.Level.Unload(this);
+            }
         }
 
         public static Vector2 GetCenter(int width, int height, Vector2Int gridOrigin) {

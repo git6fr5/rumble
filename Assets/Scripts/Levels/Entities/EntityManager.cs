@@ -56,6 +56,17 @@ namespace Platformer.Levels.Entities {
                 if (entityList[i].VectorID == vectorID) {
                     return entityList[i];
                 }
+                else {
+                    RotatableEntity rotatableEntity = entityList[i].GetComponent<RotatableEntity>();
+                    if (rotatableEntity?.Rotations != null) {
+                        for (int j = 0; j < rotatableEntity.Rotations.Count; j++) {
+                            if (rotatableEntity.Rotations[j].VectorID == vectorID) {
+                                rotatableEntity.SetCurrentVectorID(vectorID);
+                                return entityList[i];
+                            }
+                        }
+                    }
+                }
             }
             return null;
         }

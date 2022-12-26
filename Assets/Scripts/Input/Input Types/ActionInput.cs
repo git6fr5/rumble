@@ -15,14 +15,22 @@ namespace Platformer.Input {
         #region Variables
 
         // Buffers to allow leeway when inputs are pressed and released.
-        public static float PressBuffer = 0.05f;
-        [SerializeField, ReadOnly] private float m_PressedTicks;
-        public static float ReleaseBuffer = 0.075f;
-        [SerializeField, ReadOnly] private float m_ReleasedTicks;
+        public const float PRESS_BUFFER = 0.06f;
+
+        public const float RELEASE_BUFFER = 0.08f;
+
+        [SerializeField, ReadOnly] 
+        private float m_PressedTicks;
+        
+        [SerializeField, ReadOnly] 
+        private float m_ReleasedTicks;
 
         // Swaps the state of this action input.
-        [SerializeField, ReadOnly] private bool m_Held;
-        [SerializeField, ReadOnly] private float m_HeldTicks;
+        [SerializeField, ReadOnly] 
+        private bool m_Held;
+        
+        [SerializeField, ReadOnly] 
+        private float m_HeldTicks;
         
         // The useable information from this action's state.
         public bool Pressed => m_PressedTicks > 0f;
@@ -34,8 +42,8 @@ namespace Platformer.Input {
         // Updates this action input.
         public void OnUpdate(bool press, bool release, float dt) {
             Swap(ref m_Held, ref m_HeldTicks, press, release, dt);
-            Buffer(ref m_PressedTicks, PressBuffer, press, dt);
-            Buffer(ref m_ReleasedTicks, ReleaseBuffer, release, dt);
+            Buffer(ref m_PressedTicks, PRESS_BUFFER, press, dt);
+            Buffer(ref m_ReleasedTicks, RELEASE_BUFFER, release, dt);
         }
 
         // Swaps the state of a boolean given two seperate booleans.

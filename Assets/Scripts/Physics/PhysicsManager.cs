@@ -19,8 +19,8 @@ namespace Platformer.Management {
         public TimeController Time => m_TimeController;
 
         // Exposes simple collision functionality.
-        [HideInInspector]
-        private CollisionCheck m_CollisionCheck;
+        [SerializeField]
+        private CollisionCheck m_CollisionCheck = new CollisionCheck();
         public CollisionCheck Collisions => m_CollisionCheck;
 
         // Collision.

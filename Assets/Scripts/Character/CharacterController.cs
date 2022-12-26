@@ -40,21 +40,26 @@ namespace Platformer.Character {
         private CircleCollider2D m_Collider => GetComponent<CircleCollider2D>();
         public CircleCollider2D Collider => m_Collider;
 
+        // The component used to animate this character.
+        [SerializeField]
+        private CharacterAnimator m_Animator;
+        public CharacterAnimator Animator => m_Animator;
+
         /* --- Members --- */
 
         // Checks whether the character is on the ground.
         [SerializeField, ReadOnly] 
-        private bool m_OnGround;
+        private bool m_OnGround = false;
         public bool OnGround => m_OnGround;
         
         // Checks whether the character is facing a wall.
         [SerializeField, ReadOnly] 
-        private bool m_FacingWall;
+        private bool m_FacingWall = false;
         public bool FacingWall => m_FacingWall;
         
         // Checks what direction the controller is facing.
         [SerializeField, ReadOnly] 
-        private float m_FacingDirection;
+        private float m_FacingDirection = 1f;
         public float FacingDirection => m_FacingDirection;
 
         // Whether the direction that this is facing is locked.
@@ -63,8 +68,13 @@ namespace Platformer.Character {
 
         // Checks whether the character is rising.
         [SerializeField, ReadOnly] 
-        private bool m_Rising;
+        private bool m_Rising = false;
         public bool Rising => m_Rising;
+
+        // Checks whether the character is falling.
+        [SerializeField, ReadOnly] 
+        private bool m_Falling = false;
+        public bool Falling => m_Falling;
 
         // Checks whether this character is currently disabled.
         [SerializeField, ReadOnly] 
@@ -119,7 +129,13 @@ namespace Platformer.Character {
 
         #endregion
 
-        public void Die() {
+        void Start() {
+            m_DefaultAction.Enable(this, true);
+            EnableAllAbilityActions();
+            DisableAllAbilityActions();
+        }
+
+        public void Reset() {
 
             // The visual feedback played when dying.
             Game.Physics.Time.RunHitStop(16);
@@ -156,6 +172,8 @@ namespace Platformer.Character {
         }
 
         void Update() {
+            if (m_DisableTimer.Active) { return; }
+
             m_DefaultAction.InputUpdate(this);
             m_DashAction.InputUpdate(this);
             m_HopAction.InputUpdate(this);
@@ -168,7 +186,9 @@ namespace Platformer.Character {
             m_DisableTimer.TickDown(Time.fixedDeltaTime);
 
             m_Rising = m_Body.Rising();
-            m_FacingDirection = m_DirectionLocked ? m_FacingDirection : m_Input.Direction.Horizontal;
+            m_Falling = m_Body.Falling();
+            // m_DirectionLocked = m_DisableTimer.Active;
+            m_FacingDirection = m_DirectionLocked ? m_FacingDirection : m_Input.Direction.Horizontal != 0f ? m_Input.Direction.Horizontal : m_FacingDirection;
             m_OnGround = Game.Physics.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.down, Game.Physics.CollisionLayers.Ground);
             m_FacingWall = Game.Physics.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.right * m_FacingDirection,  Game.Physics.CollisionLayers.Ground);
 
@@ -178,6 +198,14 @@ namespace Platformer.Character {
             m_GhostAction.PhysicsUpdate(this, Time.fixedDeltaTime);
             m_ShadowAcction.PhysicsUpdate(this, Time.fixedDeltaTime);
             m_StickyAction.PhysicsUpdate(this, Time.fixedDeltaTime);
+        }
+
+        public void EnableAllAbilityActions() {
+            m_DashAction.Enable(this, true);
+            m_HopAction.Enable(this, true);
+            m_GhostAction.Enable(this, true);
+            m_ShadowAcction.Enable(this, true);
+            m_StickyAction.Enable(this, true);
         }
 
         public void DisableAllAbilityActions() {
