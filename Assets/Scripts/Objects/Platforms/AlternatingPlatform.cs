@@ -12,15 +12,13 @@ using Platformer.Objects.Platforms;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using IAlternator = Platformer.Objects.Alternator.IAlternator;
 
 namespace Platformer.Objects.Platforms {
 
     ///<summary>
     ///
     ///<summary>
-    [RequireComponent(typeof(Platformer.Objects.Alternator))]
-    public class AlternatingPlatform : PlatformObject, IAlternator {
+    public class AlternatingPlatform : PlatformObject {
 
         #region Enumerations.
 

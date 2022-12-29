@@ -10,8 +10,8 @@
 	},
 	"jsonVersion": "1.1.3",
 	"appBuildId": 458364,
-	"nextUid": 44,
-	"identifierStyle": "Capitalize",
+	"nextUid": 46,
+	"identifierStyle": "Uppercase",
 	"worldLayout": "Free",
 	"worldGridWidth": 256,
 	"worldGridHeight": 256,
@@ -30,13 +30,13 @@
 	"pngFilePattern": null,
 	"backupOnSave": false,
 	"backupLimit": 10,
-	"levelNamePattern": "Level_%idx",
+	"levelNamePattern": "Concepts_%idx",
 	"tutorialDesc": null,
 	"flags": ["IgnoreBackupSuggest"],
 	"defs": { "layers": [
 		{
 			"__type": "Tiles",
-			"identifier": "Controls",
+			"identifier": "CONTROLS",
 			"type": "Tiles",
 			"uid": 1,
 			"gridSize": 16,
@@ -63,7 +63,7 @@
 		},
 		{
 			"__type": "Tiles",
-			"identifier": "Entities",
+			"identifier": "ENTITIES",
 			"type": "Tiles",
 			"uid": 5,
 			"gridSize": 16,
@@ -90,7 +90,7 @@
 		},
 		{
 			"__type": "Tiles",
-			"identifier": "Ground",
+			"identifier": "GROUND",
 			"type": "Tiles",
 			"uid": 6,
 			"gridSize": 16,
@@ -119,7 +119,7 @@
 		{
 			"__cWid": 4,
 			"__cHei": 5,
-			"identifier": "Controls",
+			"identifier": "CONTROLS",
 			"uid": 4,
 			"relPath": "References/reference_ldtk_controls.png",
 			"embedAtlas": null,
@@ -141,7 +141,7 @@
 		{
 			"__cWid": 7,
 			"__cHei": 8,
-			"identifier": "Entities",
+			"identifier": "ENTITIES",
 			"uid": 3,
 			"relPath": "References/reference_ldtk_entities.png",
 			"embedAtlas": null,
@@ -163,7 +163,7 @@
 		{
 			"__cWid": 5,
 			"__cHei": 1,
-			"identifier": "Ground",
+			"identifier": "GROUND",
 			"uid": 2,
 			"relPath": "References/reference_ldtk_ground.png",
 			"embedAtlas": null,
@@ -182,7 +182,7 @@
 	], "enums": [], "externalEnums": [], "levelFields": [] },
 	"levels": [
 		{
-			"identifier": "Level_0",
+			"identifier": "CONCEPTS_0",
 			"iid": "074123e0-02f0-11ed-9fda-45661de91f98",
 			"uid": 0,
 			"worldX": -640,
@@ -203,7 +203,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -246,7 +246,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -377,7 +377,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -843,7 +843,7 @@
 			"__neighbours": [{ "levelIid": "c4aab5f0-7820-11ed-854f-754217cba623", "levelUid": 43, "dir": "e" }]
 		},
 		{
-			"identifier": "Level_1",
+			"identifier": "CONCEPTS_1",
 			"iid": "0023cbd0-02f0-11ed-bcb5-c152adcdf13e",
 			"uid": 8,
 			"worldX": -640,
@@ -864,7 +864,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -901,7 +901,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -994,7 +994,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -1360,7 +1360,7 @@
 			"__neighbours": [ { "levelIid": "5c2b5470-02f0-11ed-8a04-af6ca1cd8221", "levelUid": 12, "dir": "e" }, { "levelIid": "216f5480-02f0-11ed-99fe-fd7330314d1e", "levelUid": 42, "dir": "n" } ]
 		},
 		{
-			"identifier": "Level_2",
+			"identifier": "CONCEPTS_2",
 			"iid": "5c2b5470-02f0-11ed-8a04-af6ca1cd8221",
 			"uid": 12,
 			"worldX": 0,
@@ -1381,7 +1381,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -1432,7 +1432,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -1509,7 +1509,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -1965,7 +1965,7 @@
 			"__neighbours": [ { "levelIid": "0023cbd0-02f0-11ed-bcb5-c152adcdf13e", "levelUid": 8, "dir": "w" }, { "levelIid": "5f27f8e0-02f0-11ed-99fe-d120b17399ba", "levelUid": 36, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_3",
+			"identifier": "CONCEPTS_3",
 			"iid": "903d4160-02f0-11ed-8a04-91d0a07aac40",
 			"uid": 13,
 			"worldX": 735,
@@ -1986,7 +1986,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -2015,7 +2015,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -2047,7 +2047,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -2416,7 +2416,7 @@
 			"__neighbours": [{ "levelIid": "fc5b6870-02f0-11ed-8a04-dfac3f916777", "levelUid": 14, "dir": "e" }]
 		},
 		{
-			"identifier": "Level_4",
+			"identifier": "CONCEPTS_4",
 			"iid": "fc5b6870-02f0-11ed-8a04-dfac3f916777",
 			"uid": 14,
 			"worldX": 1375,
@@ -2437,7 +2437,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -2467,7 +2467,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -2536,7 +2536,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -2914,7 +2914,7 @@
 			"__neighbours": [ { "levelIid": "903d4160-02f0-11ed-8a04-91d0a07aac40", "levelUid": 13, "dir": "w" }, { "levelIid": "9e3ca450-02f0-11ed-8a04-9dc3f5f1cfe8", "levelUid": 15, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_5",
+			"identifier": "CONCEPTS_5",
 			"iid": "9e3ca450-02f0-11ed-8a04-9dc3f5f1cfe8",
 			"uid": 15,
 			"worldX": 2015,
@@ -2935,7 +2935,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -2963,7 +2963,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -3035,7 +3035,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -3383,7 +3383,7 @@
 			"__neighbours": [ { "levelIid": "fc5b6870-02f0-11ed-8a04-dfac3f916777", "levelUid": 14, "dir": "w" }, { "levelIid": "9d25e7b0-02f0-11ed-8a04-3fdd08929a61", "levelUid": 16, "dir": "s" } ]
 		},
 		{
-			"identifier": "Level_6",
+			"identifier": "CONCEPTS_6",
 			"iid": "9d25e7b0-02f0-11ed-8a04-3fdd08929a61",
 			"uid": 16,
 			"worldX": 2015,
@@ -3404,7 +3404,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -3429,7 +3429,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -3517,7 +3517,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -3935,7 +3935,7 @@
 			"__neighbours": [ { "levelIid": "9e3ca450-02f0-11ed-8a04-9dc3f5f1cfe8", "levelUid": 15, "dir": "n" }, { "levelIid": "b5c38c80-02f0-11ed-8fbb-033151a177ba", "levelUid": 17, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_7",
+			"identifier": "CONCEPTS_7",
 			"iid": "b5c38c80-02f0-11ed-8fbb-033151a177ba",
 			"uid": 17,
 			"worldX": 2655,
@@ -3956,7 +3956,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -3981,7 +3981,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -4046,7 +4046,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -4401,7 +4401,7 @@
 			"__neighbours": [{ "levelIid": "9d25e7b0-02f0-11ed-8a04-3fdd08929a61", "levelUid": 16, "dir": "w" }]
 		},
 		{
-			"identifier": "Level_8",
+			"identifier": "CONCEPTS_8",
 			"iid": "892b1de0-02f0-11ed-8fbb-a78196ca0195",
 			"uid": 18,
 			"worldX": 3200,
@@ -4422,7 +4422,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -4447,7 +4447,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -4512,7 +4512,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -4822,7 +4822,7 @@
 			"__neighbours": [{ "levelIid": "de0f0070-02f0-11ed-8fbb-998d2d7fa24d", "levelUid": 19, "dir": "e" }]
 		},
 		{
-			"identifier": "Level_9",
+			"identifier": "CONCEPTS_9",
 			"iid": "de0f0070-02f0-11ed-8fbb-998d2d7fa24d",
 			"uid": 19,
 			"worldX": 3840,
@@ -4843,7 +4843,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -4868,7 +4868,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -4924,7 +4924,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -5389,7 +5389,7 @@
 			"__neighbours": [ { "levelIid": "892b1de0-02f0-11ed-8fbb-a78196ca0195", "levelUid": 18, "dir": "w" }, { "levelIid": "df74f910-02f0-11ed-8fbb-55321e7861ab", "levelUid": 20, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_10",
+			"identifier": "CONCEPTS_10",
 			"iid": "df74f910-02f0-11ed-8fbb-55321e7861ab",
 			"uid": 20,
 			"worldX": 4480,
@@ -5410,7 +5410,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -5439,7 +5439,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -5554,7 +5554,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -5876,7 +5876,7 @@
 			"__neighbours": [ { "levelIid": "de0f0070-02f0-11ed-8fbb-998d2d7fa24d", "levelUid": 19, "dir": "w" }, { "levelIid": "7e052dd0-02f0-11ed-8fbb-4f56f39ac9cb", "levelUid": 21, "dir": "s" } ]
 		},
 		{
-			"identifier": "Level_11",
+			"identifier": "CONCEPTS_11",
 			"iid": "7e052dd0-02f0-11ed-8fbb-4f56f39ac9cb",
 			"uid": 21,
 			"worldX": 4480,
@@ -5897,7 +5897,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -5925,7 +5925,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -6021,7 +6021,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -6481,7 +6481,7 @@
 			"__neighbours": [ { "levelIid": "df74f910-02f0-11ed-8fbb-55321e7861ab", "levelUid": 20, "dir": "n" }, { "levelIid": "196127b0-02f0-11ed-8fbb-9d5974492ec6", "levelUid": 22, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_12",
+			"identifier": "CONCEPTS_12",
 			"iid": "196127b0-02f0-11ed-8fbb-9d5974492ec6",
 			"uid": 22,
 			"worldX": 5120,
@@ -6502,7 +6502,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -6527,7 +6527,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -6619,7 +6619,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -7046,7 +7046,7 @@
 			"__neighbours": [ { "levelIid": "7e052dd0-02f0-11ed-8fbb-4f56f39ac9cb", "levelUid": 21, "dir": "w" }, { "levelIid": "20efaa10-02f0-11ed-8fbb-7f589549edb9", "levelUid": 25, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_13",
+			"identifier": "CONCEPTS_13",
 			"iid": "20efaa10-02f0-11ed-8fbb-7f589549edb9",
 			"uid": 25,
 			"worldX": 5760,
@@ -7067,7 +7067,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -7092,7 +7092,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -7231,7 +7231,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -7697,7 +7697,7 @@
 			"__neighbours": [ { "levelIid": "196127b0-02f0-11ed-8fbb-9d5974492ec6", "levelUid": 22, "dir": "w" }, { "levelIid": "21d54f20-02f0-11ed-8fbb-e74516c0ba65", "levelUid": 26, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_14",
+			"identifier": "CONCEPTS_14",
 			"iid": "21d54f20-02f0-11ed-8fbb-e74516c0ba65",
 			"uid": 26,
 			"worldX": 6400,
@@ -7718,7 +7718,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -7750,7 +7750,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -7840,7 +7840,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -8249,7 +8249,7 @@
 			"__neighbours": [ { "levelIid": "20efaa10-02f0-11ed-8fbb-7f589549edb9", "levelUid": 25, "dir": "w" }, { "levelIid": "5c4afa10-02f0-11ed-8fbb-31e09a822eb7", "levelUid": 27, "dir": "s" } ]
 		},
 		{
-			"identifier": "Level_15",
+			"identifier": "CONCEPTS_15",
 			"iid": "5c4afa10-02f0-11ed-8fbb-31e09a822eb7",
 			"uid": 27,
 			"worldX": 6400,
@@ -8270,7 +8270,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -8299,7 +8299,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -8394,7 +8394,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -8788,7 +8788,7 @@
 			"__neighbours": [ { "levelIid": "21d54f20-02f0-11ed-8fbb-e74516c0ba65", "levelUid": 26, "dir": "n" }, { "levelIid": "5d74ad00-02f0-11ed-8fbb-c70d25cac82f", "levelUid": 28, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_16",
+			"identifier": "CONCEPTS_16",
 			"iid": "5d74ad00-02f0-11ed-8fbb-c70d25cac82f",
 			"uid": 28,
 			"worldX": 7040,
@@ -8809,7 +8809,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -8834,7 +8834,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -8936,7 +8936,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -9405,7 +9405,7 @@
 			"__neighbours": [ { "levelIid": "5c4afa10-02f0-11ed-8fbb-31e09a822eb7", "levelUid": 27, "dir": "w" }, { "levelIid": "daa92360-02f0-11ed-b4b3-b3165a459634", "levelUid": 31, "dir": "e" } ]
 		},
 		{
-			"identifier": "Level_17",
+			"identifier": "CONCEPTS_17",
 			"iid": "daa92360-02f0-11ed-b4b3-b3165a459634",
 			"uid": 31,
 			"worldX": 7680,
@@ -9426,7 +9426,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -9451,7 +9451,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -9476,7 +9476,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -9872,7 +9872,7 @@
 			"__neighbours": [{ "levelIid": "5d74ad00-02f0-11ed-8fbb-c70d25cac82f", "levelUid": 28, "dir": "w" }]
 		},
 		{
-			"identifier": "Level_18",
+			"identifier": "CONCEPTS_18",
 			"iid": "0bb3c940-02f0-11ed-b3c4-3bf03f32c0b2",
 			"uid": 32,
 			"worldX": 1920,
@@ -9893,7 +9893,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -9918,7 +9918,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -10035,7 +10035,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -10440,7 +10440,7 @@
 			]
 		},
 		{
-			"identifier": "Level_19",
+			"identifier": "CONCEPTS_19",
 			"iid": "6dcc6560-02f0-11ed-b3c4-2fe0c6ce8cc5",
 			"uid": 33,
 			"worldX": 2560,
@@ -10461,7 +10461,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -10491,7 +10491,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -10589,7 +10589,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -10854,7 +10854,7 @@
 			"__neighbours": [ { "levelIid": "fbca3920-02f0-11ed-99fe-f3dd6763db4c", "levelUid": 38, "dir": "w" }, { "levelIid": "ce2c66d0-02f0-11ed-99fe-81ec91c657d9", "levelUid": 41, "dir": "n" } ]
 		},
 		{
-			"identifier": "Level_20",
+			"identifier": "CONCEPTS_20",
 			"iid": "54ffb8d0-02f0-11ed-99fe-d93309d54f78",
 			"uid": 34,
 			"worldX": 640,
@@ -10875,7 +10875,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -10908,7 +10908,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -10973,7 +10973,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -11249,11 +11249,12 @@
 			"__neighbours": [
 				{ "levelIid": "5d315900-02f0-11ed-99fe-612805372217", "levelUid": 35, "dir": "n" },
 				{ "levelIid": "6606ae40-02f0-11ed-99fe-f541f561b5ac", "levelUid": 39, "dir": "e" },
-				{ "levelIid": "c4aab5f0-7820-11ed-854f-754217cba623", "levelUid": 43, "dir": "w" }
+				{ "levelIid": "c4aab5f0-7820-11ed-854f-754217cba623", "levelUid": 43, "dir": "w" },
+				{ "levelIid": "f8422360-7820-11ed-87d2-39a4d4449255", "levelUid": 44, "dir": "s" }
 			]
 		},
 		{
-			"identifier": "Level_21",
+			"identifier": "CONCEPTS_21",
 			"iid": "5d315900-02f0-11ed-99fe-612805372217",
 			"uid": 35,
 			"worldX": 640,
@@ -11274,7 +11275,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -11299,7 +11300,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -11351,7 +11352,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -11564,12 +11565,11 @@
 			"__neighbours": [
 				{ "levelIid": "54ffb8d0-02f0-11ed-99fe-d93309d54f78", "levelUid": 34, "dir": "s" },
 				{ "levelIid": "5f27f8e0-02f0-11ed-99fe-d120b17399ba", "levelUid": 36, "dir": "n" },
-				{ "levelIid": "f586ddf0-02f0-11ed-99fe-83b436701e5d", "levelUid": 40, "dir": "e" },
-				{ "levelIid": "c4aab5f0-7820-11ed-854f-754217cba623", "levelUid": 43, "dir": "w" }
+				{ "levelIid": "f586ddf0-02f0-11ed-99fe-83b436701e5d", "levelUid": 40, "dir": "e" }
 			]
 		},
 		{
-			"identifier": "Level_22",
+			"identifier": "CONCEPTS_22",
 			"iid": "5f27f8e0-02f0-11ed-99fe-d120b17399ba",
 			"uid": 36,
 			"worldX": 640,
@@ -11590,7 +11590,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -11615,7 +11615,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -11640,7 +11640,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -11857,7 +11857,7 @@
 			]
 		},
 		{
-			"identifier": "Level_23",
+			"identifier": "CONCEPTS_23",
 			"iid": "604ffe20-02f0-11ed-99fe-4f67b737301e",
 			"uid": 37,
 			"worldX": 640,
@@ -11878,7 +11878,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -11903,7 +11903,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -11928,7 +11928,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -12129,7 +12129,7 @@
 			"__neighbours": [{ "levelIid": "5f27f8e0-02f0-11ed-99fe-d120b17399ba", "levelUid": 36, "dir": "s" }]
 		},
 		{
-			"identifier": "Level_24",
+			"identifier": "CONCEPTS_24",
 			"iid": "fbca3920-02f0-11ed-99fe-f3dd6763db4c",
 			"uid": 38,
 			"worldX": 1920,
@@ -12150,7 +12150,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -12226,7 +12226,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -12401,7 +12401,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -12556,7 +12556,7 @@
 			]
 		},
 		{
-			"identifier": "Level_25",
+			"identifier": "CONCEPTS_25",
 			"iid": "6606ae40-02f0-11ed-99fe-f541f561b5ac",
 			"uid": 39,
 			"worldX": 1280,
@@ -12577,7 +12577,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -12624,7 +12624,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -12787,7 +12787,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -13226,7 +13226,7 @@
 			]
 		},
 		{
-			"identifier": "Level_26",
+			"identifier": "CONCEPTS_26",
 			"iid": "f586ddf0-02f0-11ed-99fe-83b436701e5d",
 			"uid": 40,
 			"worldX": 1280,
@@ -13247,7 +13247,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -13278,7 +13278,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -13524,7 +13524,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -13556,7 +13556,7 @@
 			]
 		},
 		{
-			"identifier": "Level_27",
+			"identifier": "CONCEPTS_27",
 			"iid": "ce2c66d0-02f0-11ed-99fe-81ec91c657d9",
 			"uid": 41,
 			"worldX": 2560,
@@ -13577,7 +13577,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -13622,7 +13622,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -13730,7 +13730,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -14100,7 +14100,7 @@
 			"__neighbours": [ { "levelIid": "0bb3c940-02f0-11ed-b3c4-3bf03f32c0b2", "levelUid": 32, "dir": "w" }, { "levelIid": "6dcc6560-02f0-11ed-b3c4-2fe0c6ce8cc5", "levelUid": 33, "dir": "s" } ]
 		},
 		{
-			"identifier": "Level_28",
+			"identifier": "CONCEPTS_28",
 			"iid": "216f5480-02f0-11ed-99fe-fd7330314d1e",
 			"uid": 42,
 			"worldX": -640,
@@ -14121,7 +14121,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -14146,7 +14146,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -14174,7 +14174,7 @@
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -14439,11 +14439,11 @@
 			"__neighbours": [{ "levelIid": "0023cbd0-02f0-11ed-bcb5-c152adcdf13e", "levelUid": 8, "dir": "s" }]
 		},
 		{
-			"identifier": "Level_29",
+			"identifier": "CONCEPTS_29",
 			"iid": "c4aab5f0-7820-11ed-854f-754217cba623",
 			"uid": 43,
 			"worldX": 0,
-			"worldY": -416,
+			"worldY": -368,
 			"worldDepth": 0,
 			"pxWid": 640,
 			"pxHei": 368,
@@ -14460,7 +14460,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "Controls",
+					"__identifier": "CONTROLS",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -14482,23 +14482,24 @@
 					"seed": 1186642,
 					"overrideTilesetUid": null,
 					"gridTiles": [
-						{ "px": [80,16], "src": [16,16], "f": 0, "t": 5, "d": [45] },
-						{ "px": [432,16], "src": [16,16], "f": 0, "t": 5, "d": [67] },
-						{ "px": [448,16], "src": [16,16], "f": 0, "t": 5, "d": [68] },
-						{ "px": [464,16], "src": [16,16], "f": 0, "t": 5, "d": [69] },
-						{ "px": [480,16], "src": [16,16], "f": 0, "t": 5, "d": [70] },
-						{ "px": [496,16], "src": [16,16], "f": 0, "t": 5, "d": [71] },
-						{ "px": [512,16], "src": [16,16], "f": 0, "t": 5, "d": [72] },
-						{ "px": [528,16], "src": [16,16], "f": 0, "t": 5, "d": [73] },
-						{ "px": [544,16], "src": [16,16], "f": 0, "t": 5, "d": [74] },
-						{ "px": [560,16], "src": [16,16], "f": 0, "t": 5, "d": [75] },
-						{ "px": [576,16], "src": [16,16], "f": 0, "t": 5, "d": [76] },
-						{ "px": [592,16], "src": [16,16], "f": 0, "t": 5, "d": [77] },
-						{ "px": [16,48], "src": [16,16], "f": 0, "t": 5, "d": [121] },
+						{ "px": [256,0], "src": [16,0], "f": 0, "t": 1, "d": [16] },
+						{ "px": [272,0], "src": [16,0], "f": 0, "t": 1, "d": [17] },
+						{ "px": [288,0], "src": [16,0], "f": 0, "t": 1, "d": [18] },
+						{ "px": [304,0], "src": [16,0], "f": 0, "t": 1, "d": [19] },
+						{ "px": [320,0], "src": [16,0], "f": 0, "t": 1, "d": [20] },
+						{ "px": [336,0], "src": [16,0], "f": 0, "t": 1, "d": [21] },
+						{ "px": [352,0], "src": [16,0], "f": 0, "t": 1, "d": [22] },
+						{ "px": [80,16], "src": [16,0], "f": 0, "t": 1, "d": [45] },
+						{ "px": [560,16], "src": [16,0], "f": 0, "t": 1, "d": [75] },
+						{ "px": [576,16], "src": [16,0], "f": 0, "t": 1, "d": [76] },
+						{ "px": [592,16], "src": [16,0], "f": 0, "t": 1, "d": [77] },
+						{ "px": [16,48], "src": [16,0], "f": 0, "t": 1, "d": [121] },
 						{ "px": [256,64], "src": [16,16], "f": 0, "t": 5, "d": [176] },
 						{ "px": [352,64], "src": [16,16], "f": 0, "t": 5, "d": [182] },
 						{ "px": [256,112], "src": [16,16], "f": 0, "t": 5, "d": [296] },
 						{ "px": [368,112], "src": [16,16], "f": 0, "t": 5, "d": [303] },
+						{ "px": [448,112], "src": [16,16], "f": 0, "t": 5, "d": [308] },
+						{ "px": [560,112], "src": [16,0], "f": 0, "t": 1, "d": [315] },
 						{ "px": [80,144], "src": [32,16], "f": 0, "t": 6, "d": [365] },
 						{ "px": [192,144], "src": [16,16], "f": 0, "t": 5, "d": [372] },
 						{ "px": [352,144], "src": [16,0], "f": 0, "t": 1, "d": [382] },
@@ -14512,12 +14513,33 @@
 						{ "px": [240,272], "src": [16,16], "f": 0, "t": 5, "d": [695] },
 						{ "px": [352,272], "src": [16,16], "f": 0, "t": 5, "d": [702] },
 						{ "px": [512,272], "src": [16,0], "f": 0, "t": 1, "d": [712] },
-						{ "px": [240,336], "src": [16,16], "f": 0, "t": 5, "d": [855] }
+						{ "px": [336,320], "src": [16,0], "f": 0, "t": 1, "d": [821] },
+						{ "px": [432,320], "src": [16,0], "f": 0, "t": 1, "d": [827] },
+						{ "px": [528,320], "src": [16,0], "f": 0, "t": 1, "d": [833] },
+						{ "px": [240,336], "src": [16,0], "f": 0, "t": 1, "d": [855] },
+						{ "px": [256,352], "src": [16,0], "f": 0, "t": 1, "d": [896] },
+						{ "px": [272,352], "src": [16,0], "f": 0, "t": 1, "d": [897] },
+						{ "px": [288,352], "src": [16,0], "f": 0, "t": 1, "d": [898] },
+						{ "px": [304,352], "src": [16,0], "f": 0, "t": 1, "d": [899] },
+						{ "px": [320,352], "src": [16,0], "f": 0, "t": 1, "d": [900] },
+						{ "px": [336,352], "src": [16,0], "f": 0, "t": 1, "d": [901] },
+						{ "px": [352,352], "src": [16,0], "f": 0, "t": 1, "d": [902] },
+						{ "px": [368,352], "src": [16,0], "f": 0, "t": 1, "d": [903] },
+						{ "px": [384,352], "src": [16,0], "f": 0, "t": 1, "d": [904] },
+						{ "px": [400,352], "src": [16,0], "f": 0, "t": 1, "d": [905] },
+						{ "px": [416,352], "src": [16,0], "f": 0, "t": 1, "d": [906] },
+						{ "px": [432,352], "src": [16,0], "f": 0, "t": 1, "d": [907] },
+						{ "px": [448,352], "src": [16,0], "f": 0, "t": 1, "d": [908] },
+						{ "px": [464,352], "src": [16,0], "f": 0, "t": 1, "d": [909] },
+						{ "px": [480,352], "src": [16,0], "f": 0, "t": 1, "d": [910] },
+						{ "px": [496,352], "src": [16,0], "f": 0, "t": 1, "d": [911] },
+						{ "px": [512,352], "src": [16,0], "f": 0, "t": 1, "d": [912] },
+						{ "px": [528,352], "src": [16,0], "f": 0, "t": 1, "d": [913] }
 					],
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Entities",
+					"__identifier": "ENTITIES",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -14539,25 +14561,29 @@
 					"seed": 9992278,
 					"overrideTilesetUid": null,
 					"gridTiles": [
+						{ "px": [256,0], "src": [16,64], "f": 0, "t": 29, "d": [16] },
+						{ "px": [272,0], "src": [16,64], "f": 0, "t": 29, "d": [17] },
+						{ "px": [288,0], "src": [16,64], "f": 0, "t": 29, "d": [18] },
+						{ "px": [304,0], "src": [16,64], "f": 0, "t": 29, "d": [19] },
+						{ "px": [320,0], "src": [16,64], "f": 0, "t": 29, "d": [20] },
+						{ "px": [336,0], "src": [16,64], "f": 0, "t": 29, "d": [21] },
+						{ "px": [352,0], "src": [16,64], "f": 0, "t": 29, "d": [22] },
 						{ "px": [80,16], "src": [16,32], "f": 0, "t": 15, "d": [45] },
-						{ "px": [432,16], "src": [64,32], "f": 0, "t": 18, "d": [67] },
-						{ "px": [448,16], "src": [64,32], "f": 0, "t": 18, "d": [68] },
-						{ "px": [464,16], "src": [64,32], "f": 0, "t": 18, "d": [69] },
-						{ "px": [480,16], "src": [64,32], "f": 0, "t": 18, "d": [70] },
-						{ "px": [496,16], "src": [64,32], "f": 0, "t": 18, "d": [71] },
-						{ "px": [512,16], "src": [64,32], "f": 0, "t": 18, "d": [72] },
-						{ "px": [528,16], "src": [64,32], "f": 0, "t": 18, "d": [73] },
-						{ "px": [544,16], "src": [64,32], "f": 0, "t": 18, "d": [74] },
 						{ "px": [560,16], "src": [64,32], "f": 0, "t": 18, "d": [75] },
 						{ "px": [576,16], "src": [64,32], "f": 0, "t": 18, "d": [76] },
 						{ "px": [592,16], "src": [64,32], "f": 0, "t": 18, "d": [77] },
+						{ "px": [272,32], "src": [80,48], "f": 0, "t": 26, "d": [97] },
+						{ "px": [400,32], "src": [80,48], "f": 0, "t": 26, "d": [105] },
 						{ "px": [16,48], "src": [0,48], "f": 0, "t": 21, "d": [121] },
+						{ "px": [496,48], "src": [80,48], "f": 0, "t": 26, "d": [151] },
 						{ "px": [256,64], "src": [80,16], "f": 0, "t": 12, "d": [176] },
 						{ "px": [272,64], "src": [80,16], "f": 0, "t": 12, "d": [177] },
 						{ "px": [288,64], "src": [80,16], "f": 0, "t": 12, "d": [178] },
 						{ "px": [352,64], "src": [96,16], "f": 0, "t": 13, "d": [182] },
 						{ "px": [368,64], "src": [96,16], "f": 0, "t": 13, "d": [183] },
 						{ "px": [384,64], "src": [96,16], "f": 0, "t": 13, "d": [184] },
+						{ "px": [96,96], "src": [80,48], "f": 0, "t": 26, "d": [246] },
+						{ "px": [208,96], "src": [80,48], "f": 0, "t": 26, "d": [253] },
 						{ "px": [256,112], "src": [96,16], "f": 0, "t": 13, "d": [296] },
 						{ "px": [272,112], "src": [96,16], "f": 0, "t": 13, "d": [297] },
 						{ "px": [288,112], "src": [96,16], "f": 0, "t": 13, "d": [298] },
@@ -14565,6 +14591,7 @@
 						{ "px": [368,112], "src": [80,16], "f": 0, "t": 12, "d": [303] },
 						{ "px": [384,112], "src": [80,16], "f": 0, "t": 12, "d": [304] },
 						{ "px": [400,112], "src": [80,16], "f": 0, "t": 12, "d": [305] },
+						{ "px": [448,112], "src": [16,112], "f": 0, "t": 50, "d": [308] },
 						{ "px": [80,144], "src": [64,16], "f": 0, "t": 11, "d": [365] },
 						{ "px": [96,144], "src": [64,16], "f": 0, "t": 11, "d": [366] },
 						{ "px": [112,144], "src": [64,16], "f": 0, "t": 11, "d": [367] },
@@ -14575,6 +14602,7 @@
 						{ "px": [240,144], "src": [64,16], "f": 0, "t": 11, "d": [375] },
 						{ "px": [608,144], "src": [16,48], "f": 0, "t": 22, "d": [398] },
 						{ "px": [32,176], "src": [0,0], "f": 0, "t": 0, "d": [442] },
+						{ "px": [160,176], "src": [80,48], "f": 0, "t": 26, "d": [450] },
 						{ "px": [448,208], "src": [48,16], "f": 0, "t": 10, "d": [548] },
 						{ "px": [464,208], "src": [48,16], "f": 0, "t": 10, "d": [549] },
 						{ "px": [480,208], "src": [48,16], "f": 0, "t": 10, "d": [550] },
@@ -14600,12 +14628,33 @@
 						{ "px": [416,272], "src": [16,16], "f": 0, "t": 8, "d": [706] },
 						{ "px": [96,288], "src": [16,0], "f": 0, "t": 1, "d": [726] },
 						{ "px": [560,288], "src": [96,0], "f": 0, "t": 6, "d": [755] },
-						{ "px": [240,336], "src": [0,32], "f": 0, "t": 14, "d": [855] }
+						{ "px": [336,320], "src": [0,112], "f": 0, "t": 49, "d": [821] },
+						{ "px": [432,320], "src": [0,112], "f": 0, "t": 49, "d": [827] },
+						{ "px": [528,320], "src": [0,112], "f": 0, "t": 49, "d": [833] },
+						{ "px": [240,336], "src": [0,32], "f": 0, "t": 14, "d": [855] },
+						{ "px": [256,352], "src": [0,64], "f": 0, "t": 28, "d": [896] },
+						{ "px": [272,352], "src": [0,64], "f": 0, "t": 28, "d": [897] },
+						{ "px": [288,352], "src": [0,64], "f": 0, "t": 28, "d": [898] },
+						{ "px": [304,352], "src": [0,64], "f": 0, "t": 28, "d": [899] },
+						{ "px": [320,352], "src": [0,64], "f": 0, "t": 28, "d": [900] },
+						{ "px": [336,352], "src": [0,64], "f": 0, "t": 28, "d": [901] },
+						{ "px": [352,352], "src": [0,64], "f": 0, "t": 28, "d": [902] },
+						{ "px": [368,352], "src": [0,64], "f": 0, "t": 28, "d": [903] },
+						{ "px": [384,352], "src": [0,64], "f": 0, "t": 28, "d": [904] },
+						{ "px": [400,352], "src": [0,64], "f": 0, "t": 28, "d": [905] },
+						{ "px": [416,352], "src": [0,64], "f": 0, "t": 28, "d": [906] },
+						{ "px": [432,352], "src": [0,64], "f": 0, "t": 28, "d": [907] },
+						{ "px": [448,352], "src": [0,64], "f": 0, "t": 28, "d": [908] },
+						{ "px": [464,352], "src": [0,64], "f": 0, "t": 28, "d": [909] },
+						{ "px": [480,352], "src": [0,64], "f": 0, "t": 28, "d": [910] },
+						{ "px": [496,352], "src": [0,64], "f": 0, "t": 28, "d": [911] },
+						{ "px": [512,352], "src": [0,64], "f": 0, "t": 28, "d": [912] },
+						{ "px": [528,352], "src": [0,64], "f": 0, "t": 28, "d": [913] }
 					],
 					"entityInstances": []
 				},
 				{
-					"__identifier": "Ground",
+					"__identifier": "GROUND",
 					"__type": "Tiles",
 					"__cWid": 40,
 					"__cHei": 23,
@@ -14773,8 +14822,413 @@
 			"__neighbours": [
 				{ "levelIid": "074123e0-02f0-11ed-9fda-45661de91f98", "levelUid": 0, "dir": "w" },
 				{ "levelIid": "54ffb8d0-02f0-11ed-99fe-d93309d54f78", "levelUid": 34, "dir": "e" },
-				{ "levelIid": "5d315900-02f0-11ed-99fe-612805372217", "levelUid": 35, "dir": "e" }
+				{ "levelIid": "f95a9840-7820-11ed-87d2-0b742c7d626f", "levelUid": 45, "dir": "s" }
 			]
+		},
+		{
+			"identifier": "CONCEPTS_30",
+			"iid": "f8422360-7820-11ed-87d2-39a4d4449255",
+			"uid": 44,
+			"worldX": 640,
+			"worldY": 0,
+			"worldDepth": 0,
+			"pxWid": 640,
+			"pxHei": 368,
+			"__bgColor": "#696A79",
+			"bgColor": null,
+			"useAutoIdentifier": true,
+			"bgRelPath": null,
+			"bgPos": null,
+			"bgPivotX": 0.5,
+			"bgPivotY": 0.5,
+			"__smartColor": "#ADADB5",
+			"__bgPos": null,
+			"externalRelPath": null,
+			"fieldInstances": [],
+			"layerInstances": [
+				{
+					"__identifier": "CONTROLS",
+					"__type": "Tiles",
+					"__cWid": 40,
+					"__cHei": 23,
+					"__gridSize": 16,
+					"__opacity": 0.75,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 4,
+					"__tilesetRelPath": "References/reference_ldtk_controls.png",
+					"iid": "f8424a70-7820-11ed-87d2-e74929a55e7b",
+					"levelId": 44,
+					"layerDefUid": 1,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 983865,
+					"overrideTilesetUid": null,
+					"gridTiles": [{ "px": [240,336], "src": [16,0], "f": 0, "t": 1, "d": [855] }],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "ENTITIES",
+					"__type": "Tiles",
+					"__cWid": 40,
+					"__cHei": 23,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 3,
+					"__tilesetRelPath": "References/reference_ldtk_entities.png",
+					"iid": "f8424a71-7820-11ed-87d2-933e39def921",
+					"levelId": 44,
+					"layerDefUid": 5,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 2838267,
+					"overrideTilesetUid": null,
+					"gridTiles": [
+						{ "px": [560,272], "src": [96,0], "f": 0, "t": 6, "d": [715] },
+						{ "px": [240,336], "src": [0,32], "f": 0, "t": 14, "d": [855] }
+					],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "GROUND",
+					"__type": "Tiles",
+					"__cWid": 40,
+					"__cHei": 23,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 2,
+					"__tilesetRelPath": "References/reference_ldtk_ground.png",
+					"iid": "f8424a72-7820-11ed-87d2-9bce6a452b67",
+					"levelId": 44,
+					"layerDefUid": 6,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 9858425,
+					"overrideTilesetUid": null,
+					"gridTiles": [
+						{ "px": [0,0], "src": [0,0], "f": 0, "t": 0, "d": [0] },
+						{ "px": [16,0], "src": [0,0], "f": 0, "t": 0, "d": [1] },
+						{ "px": [32,0], "src": [0,0], "f": 0, "t": 0, "d": [2] },
+						{ "px": [48,0], "src": [0,0], "f": 0, "t": 0, "d": [3] },
+						{ "px": [64,0], "src": [0,0], "f": 0, "t": 0, "d": [4] },
+						{ "px": [80,0], "src": [0,0], "f": 0, "t": 0, "d": [5] },
+						{ "px": [96,0], "src": [0,0], "f": 0, "t": 0, "d": [6] },
+						{ "px": [112,0], "src": [0,0], "f": 0, "t": 0, "d": [7] },
+						{ "px": [128,0], "src": [0,0], "f": 0, "t": 0, "d": [8] },
+						{ "px": [144,0], "src": [0,0], "f": 0, "t": 0, "d": [9] },
+						{ "px": [160,0], "src": [0,0], "f": 0, "t": 0, "d": [10] },
+						{ "px": [176,0], "src": [0,0], "f": 0, "t": 0, "d": [11] },
+						{ "px": [192,0], "src": [0,0], "f": 0, "t": 0, "d": [12] },
+						{ "px": [208,0], "src": [0,0], "f": 0, "t": 0, "d": [13] },
+						{ "px": [224,0], "src": [0,0], "f": 0, "t": 0, "d": [14] },
+						{ "px": [240,0], "src": [0,0], "f": 0, "t": 0, "d": [15] },
+						{ "px": [256,0], "src": [0,0], "f": 0, "t": 0, "d": [16] },
+						{ "px": [272,0], "src": [0,0], "f": 0, "t": 0, "d": [17] },
+						{ "px": [288,0], "src": [0,0], "f": 0, "t": 0, "d": [18] },
+						{ "px": [304,0], "src": [0,0], "f": 0, "t": 0, "d": [19] },
+						{ "px": [320,0], "src": [0,0], "f": 0, "t": 0, "d": [20] },
+						{ "px": [336,0], "src": [0,0], "f": 0, "t": 0, "d": [21] },
+						{ "px": [352,0], "src": [0,0], "f": 0, "t": 0, "d": [22] },
+						{ "px": [368,0], "src": [0,0], "f": 0, "t": 0, "d": [23] },
+						{ "px": [384,0], "src": [0,0], "f": 0, "t": 0, "d": [24] },
+						{ "px": [400,0], "src": [0,0], "f": 0, "t": 0, "d": [25] },
+						{ "px": [416,0], "src": [0,0], "f": 0, "t": 0, "d": [26] },
+						{ "px": [432,0], "src": [0,0], "f": 0, "t": 0, "d": [27] },
+						{ "px": [448,0], "src": [0,0], "f": 0, "t": 0, "d": [28] },
+						{ "px": [464,0], "src": [0,0], "f": 0, "t": 0, "d": [29] },
+						{ "px": [480,0], "src": [0,0], "f": 0, "t": 0, "d": [30] },
+						{ "px": [496,0], "src": [0,0], "f": 0, "t": 0, "d": [31] },
+						{ "px": [512,0], "src": [0,0], "f": 0, "t": 0, "d": [32] },
+						{ "px": [528,0], "src": [0,0], "f": 0, "t": 0, "d": [33] },
+						{ "px": [544,0], "src": [0,0], "f": 0, "t": 0, "d": [34] },
+						{ "px": [560,0], "src": [0,0], "f": 0, "t": 0, "d": [35] },
+						{ "px": [576,0], "src": [0,0], "f": 0, "t": 0, "d": [36] },
+						{ "px": [592,0], "src": [0,0], "f": 0, "t": 0, "d": [37] },
+						{ "px": [608,0], "src": [0,0], "f": 0, "t": 0, "d": [38] },
+						{ "px": [624,0], "src": [0,0], "f": 0, "t": 0, "d": [39] },
+						{ "px": [624,16], "src": [0,0], "f": 0, "t": 0, "d": [79] },
+						{ "px": [624,32], "src": [0,0], "f": 0, "t": 0, "d": [119] },
+						{ "px": [624,48], "src": [0,0], "f": 0, "t": 0, "d": [159] },
+						{ "px": [624,64], "src": [0,0], "f": 0, "t": 0, "d": [199] },
+						{ "px": [624,80], "src": [0,0], "f": 0, "t": 0, "d": [239] },
+						{ "px": [624,96], "src": [0,0], "f": 0, "t": 0, "d": [279] },
+						{ "px": [624,112], "src": [0,0], "f": 0, "t": 0, "d": [319] },
+						{ "px": [624,128], "src": [0,0], "f": 0, "t": 0, "d": [359] },
+						{ "px": [624,144], "src": [0,0], "f": 0, "t": 0, "d": [399] },
+						{ "px": [624,160], "src": [0,0], "f": 0, "t": 0, "d": [439] },
+						{ "px": [624,176], "src": [0,0], "f": 0, "t": 0, "d": [479] },
+						{ "px": [624,192], "src": [0,0], "f": 0, "t": 0, "d": [519] },
+						{ "px": [624,208], "src": [0,0], "f": 0, "t": 0, "d": [559] },
+						{ "px": [624,224], "src": [0,0], "f": 0, "t": 0, "d": [599] },
+						{ "px": [624,240], "src": [0,0], "f": 0, "t": 0, "d": [639] },
+						{ "px": [624,256], "src": [0,0], "f": 0, "t": 0, "d": [679] },
+						{ "px": [624,272], "src": [0,0], "f": 0, "t": 0, "d": [719] },
+						{ "px": [624,288], "src": [0,0], "f": 0, "t": 0, "d": [759] },
+						{ "px": [624,304], "src": [0,0], "f": 0, "t": 0, "d": [799] },
+						{ "px": [624,320], "src": [0,0], "f": 0, "t": 0, "d": [839] },
+						{ "px": [624,336], "src": [0,0], "f": 0, "t": 0, "d": [879] },
+						{ "px": [0,352], "src": [0,0], "f": 0, "t": 0, "d": [880] },
+						{ "px": [16,352], "src": [0,0], "f": 0, "t": 0, "d": [881] },
+						{ "px": [32,352], "src": [0,0], "f": 0, "t": 0, "d": [882] },
+						{ "px": [48,352], "src": [0,0], "f": 0, "t": 0, "d": [883] },
+						{ "px": [64,352], "src": [0,0], "f": 0, "t": 0, "d": [884] },
+						{ "px": [80,352], "src": [0,0], "f": 0, "t": 0, "d": [885] },
+						{ "px": [96,352], "src": [0,0], "f": 0, "t": 0, "d": [886] },
+						{ "px": [112,352], "src": [0,0], "f": 0, "t": 0, "d": [887] },
+						{ "px": [128,352], "src": [0,0], "f": 0, "t": 0, "d": [888] },
+						{ "px": [144,352], "src": [0,0], "f": 0, "t": 0, "d": [889] },
+						{ "px": [160,352], "src": [0,0], "f": 0, "t": 0, "d": [890] },
+						{ "px": [176,352], "src": [0,0], "f": 0, "t": 0, "d": [891] },
+						{ "px": [192,352], "src": [0,0], "f": 0, "t": 0, "d": [892] },
+						{ "px": [208,352], "src": [0,0], "f": 0, "t": 0, "d": [893] },
+						{ "px": [224,352], "src": [0,0], "f": 0, "t": 0, "d": [894] },
+						{ "px": [240,352], "src": [0,0], "f": 0, "t": 0, "d": [895] },
+						{ "px": [256,352], "src": [0,0], "f": 0, "t": 0, "d": [896] },
+						{ "px": [272,352], "src": [0,0], "f": 0, "t": 0, "d": [897] },
+						{ "px": [288,352], "src": [0,0], "f": 0, "t": 0, "d": [898] },
+						{ "px": [304,352], "src": [0,0], "f": 0, "t": 0, "d": [899] },
+						{ "px": [320,352], "src": [0,0], "f": 0, "t": 0, "d": [900] },
+						{ "px": [336,352], "src": [0,0], "f": 0, "t": 0, "d": [901] },
+						{ "px": [352,352], "src": [0,0], "f": 0, "t": 0, "d": [902] },
+						{ "px": [368,352], "src": [0,0], "f": 0, "t": 0, "d": [903] },
+						{ "px": [384,352], "src": [0,0], "f": 0, "t": 0, "d": [904] },
+						{ "px": [400,352], "src": [0,0], "f": 0, "t": 0, "d": [905] },
+						{ "px": [416,352], "src": [0,0], "f": 0, "t": 0, "d": [906] },
+						{ "px": [432,352], "src": [0,0], "f": 0, "t": 0, "d": [907] },
+						{ "px": [448,352], "src": [0,0], "f": 0, "t": 0, "d": [908] },
+						{ "px": [464,352], "src": [0,0], "f": 0, "t": 0, "d": [909] },
+						{ "px": [480,352], "src": [0,0], "f": 0, "t": 0, "d": [910] },
+						{ "px": [496,352], "src": [0,0], "f": 0, "t": 0, "d": [911] },
+						{ "px": [512,352], "src": [0,0], "f": 0, "t": 0, "d": [912] },
+						{ "px": [528,352], "src": [0,0], "f": 0, "t": 0, "d": [913] },
+						{ "px": [544,352], "src": [0,0], "f": 0, "t": 0, "d": [914] },
+						{ "px": [560,352], "src": [0,0], "f": 0, "t": 0, "d": [915] },
+						{ "px": [576,352], "src": [0,0], "f": 0, "t": 0, "d": [916] },
+						{ "px": [592,352], "src": [0,0], "f": 0, "t": 0, "d": [917] },
+						{ "px": [608,352], "src": [0,0], "f": 0, "t": 0, "d": [918] },
+						{ "px": [624,352], "src": [0,0], "f": 0, "t": 0, "d": [919] }
+					],
+					"entityInstances": []
+				}
+			],
+			"__neighbours": [ { "levelIid": "54ffb8d0-02f0-11ed-99fe-d93309d54f78", "levelUid": 34, "dir": "n" }, { "levelIid": "f95a9840-7820-11ed-87d2-0b742c7d626f", "levelUid": 45, "dir": "w" } ]
+		},
+		{
+			"identifier": "CONCEPTS_31",
+			"iid": "f95a9840-7820-11ed-87d2-0b742c7d626f",
+			"uid": 45,
+			"worldX": 0,
+			"worldY": 0,
+			"worldDepth": 0,
+			"pxWid": 640,
+			"pxHei": 368,
+			"__bgColor": "#696A79",
+			"bgColor": null,
+			"useAutoIdentifier": true,
+			"bgRelPath": null,
+			"bgPos": null,
+			"bgPivotX": 0.5,
+			"bgPivotY": 0.5,
+			"__smartColor": "#ADADB5",
+			"__bgPos": null,
+			"externalRelPath": null,
+			"fieldInstances": [],
+			"layerInstances": [
+				{
+					"__identifier": "CONTROLS",
+					"__type": "Tiles",
+					"__cWid": 40,
+					"__cHei": 23,
+					"__gridSize": 16,
+					"__opacity": 0.75,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 4,
+					"__tilesetRelPath": "References/reference_ldtk_controls.png",
+					"iid": "f95a9841-7820-11ed-87d2-731fd340e75b",
+					"levelId": 45,
+					"layerDefUid": 1,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 5772163,
+					"overrideTilesetUid": null,
+					"gridTiles": [{ "px": [96,288], "src": [0,0], "f": 0, "t": 0, "d": [726] }],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "ENTITIES",
+					"__type": "Tiles",
+					"__cWid": 40,
+					"__cHei": 23,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 3,
+					"__tilesetRelPath": "References/reference_ldtk_entities.png",
+					"iid": "f95a9842-7820-11ed-87d2-41779c90a219",
+					"levelId": 45,
+					"layerDefUid": 5,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 9636115,
+					"overrideTilesetUid": null,
+					"gridTiles": [{ "px": [240,288], "src": [80,48], "f": 0, "t": 26, "d": [735] }],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "GROUND",
+					"__type": "Tiles",
+					"__cWid": 40,
+					"__cHei": 23,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 2,
+					"__tilesetRelPath": "References/reference_ldtk_ground.png",
+					"iid": "f95a9843-7820-11ed-87d2-6bcacf79acfc",
+					"levelId": 45,
+					"layerDefUid": 6,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 9697017,
+					"overrideTilesetUid": null,
+					"gridTiles": [
+						{ "px": [0,0], "src": [0,0], "f": 0, "t": 0, "d": [0] },
+						{ "px": [16,0], "src": [0,0], "f": 0, "t": 0, "d": [1] },
+						{ "px": [32,0], "src": [0,0], "f": 0, "t": 0, "d": [2] },
+						{ "px": [48,0], "src": [0,0], "f": 0, "t": 0, "d": [3] },
+						{ "px": [64,0], "src": [0,0], "f": 0, "t": 0, "d": [4] },
+						{ "px": [80,0], "src": [0,0], "f": 0, "t": 0, "d": [5] },
+						{ "px": [96,0], "src": [0,0], "f": 0, "t": 0, "d": [6] },
+						{ "px": [112,0], "src": [0,0], "f": 0, "t": 0, "d": [7] },
+						{ "px": [128,0], "src": [0,0], "f": 0, "t": 0, "d": [8] },
+						{ "px": [144,0], "src": [0,0], "f": 0, "t": 0, "d": [9] },
+						{ "px": [160,0], "src": [0,0], "f": 0, "t": 0, "d": [10] },
+						{ "px": [176,0], "src": [0,0], "f": 0, "t": 0, "d": [11] },
+						{ "px": [192,0], "src": [0,0], "f": 0, "t": 0, "d": [12] },
+						{ "px": [208,0], "src": [0,0], "f": 0, "t": 0, "d": [13] },
+						{ "px": [224,0], "src": [0,0], "f": 0, "t": 0, "d": [14] },
+						{ "px": [240,0], "src": [0,0], "f": 0, "t": 0, "d": [15] },
+						{ "px": [256,0], "src": [0,0], "f": 0, "t": 0, "d": [16] },
+						{ "px": [272,0], "src": [0,0], "f": 0, "t": 0, "d": [17] },
+						{ "px": [288,0], "src": [0,0], "f": 0, "t": 0, "d": [18] },
+						{ "px": [304,0], "src": [0,0], "f": 0, "t": 0, "d": [19] },
+						{ "px": [320,0], "src": [0,0], "f": 0, "t": 0, "d": [20] },
+						{ "px": [336,0], "src": [0,0], "f": 0, "t": 0, "d": [21] },
+						{ "px": [352,0], "src": [0,0], "f": 0, "t": 0, "d": [22] },
+						{ "px": [368,0], "src": [0,0], "f": 0, "t": 0, "d": [23] },
+						{ "px": [384,0], "src": [0,0], "f": 0, "t": 0, "d": [24] },
+						{ "px": [400,0], "src": [0,0], "f": 0, "t": 0, "d": [25] },
+						{ "px": [416,0], "src": [0,0], "f": 0, "t": 0, "d": [26] },
+						{ "px": [432,0], "src": [0,0], "f": 0, "t": 0, "d": [27] },
+						{ "px": [448,0], "src": [0,0], "f": 0, "t": 0, "d": [28] },
+						{ "px": [464,0], "src": [0,0], "f": 0, "t": 0, "d": [29] },
+						{ "px": [480,0], "src": [0,0], "f": 0, "t": 0, "d": [30] },
+						{ "px": [496,0], "src": [0,0], "f": 0, "t": 0, "d": [31] },
+						{ "px": [512,0], "src": [0,0], "f": 0, "t": 0, "d": [32] },
+						{ "px": [528,0], "src": [0,0], "f": 0, "t": 0, "d": [33] },
+						{ "px": [544,0], "src": [0,0], "f": 0, "t": 0, "d": [34] },
+						{ "px": [560,0], "src": [0,0], "f": 0, "t": 0, "d": [35] },
+						{ "px": [576,0], "src": [0,0], "f": 0, "t": 0, "d": [36] },
+						{ "px": [592,0], "src": [0,0], "f": 0, "t": 0, "d": [37] },
+						{ "px": [608,0], "src": [0,0], "f": 0, "t": 0, "d": [38] },
+						{ "px": [624,0], "src": [0,0], "f": 0, "t": 0, "d": [39] },
+						{ "px": [0,16], "src": [0,0], "f": 0, "t": 0, "d": [40] },
+						{ "px": [0,32], "src": [0,0], "f": 0, "t": 0, "d": [80] },
+						{ "px": [0,48], "src": [0,0], "f": 0, "t": 0, "d": [120] },
+						{ "px": [0,64], "src": [0,0], "f": 0, "t": 0, "d": [160] },
+						{ "px": [0,80], "src": [0,0], "f": 0, "t": 0, "d": [200] },
+						{ "px": [0,96], "src": [0,0], "f": 0, "t": 0, "d": [240] },
+						{ "px": [0,112], "src": [0,0], "f": 0, "t": 0, "d": [280] },
+						{ "px": [0,128], "src": [0,0], "f": 0, "t": 0, "d": [320] },
+						{ "px": [0,144], "src": [0,0], "f": 0, "t": 0, "d": [360] },
+						{ "px": [0,160], "src": [0,0], "f": 0, "t": 0, "d": [400] },
+						{ "px": [0,176], "src": [0,0], "f": 0, "t": 0, "d": [440] },
+						{ "px": [0,192], "src": [0,0], "f": 0, "t": 0, "d": [480] },
+						{ "px": [0,208], "src": [0,0], "f": 0, "t": 0, "d": [520] },
+						{ "px": [0,224], "src": [0,0], "f": 0, "t": 0, "d": [560] },
+						{ "px": [0,240], "src": [0,0], "f": 0, "t": 0, "d": [600] },
+						{ "px": [0,256], "src": [0,0], "f": 0, "t": 0, "d": [640] },
+						{ "px": [0,272], "src": [0,0], "f": 0, "t": 0, "d": [680] },
+						{ "px": [0,288], "src": [0,0], "f": 0, "t": 0, "d": [720] },
+						{ "px": [0,304], "src": [0,0], "f": 0, "t": 0, "d": [760] },
+						{ "px": [0,320], "src": [0,0], "f": 0, "t": 0, "d": [800] },
+						{ "px": [0,336], "src": [0,0], "f": 0, "t": 0, "d": [840] },
+						{ "px": [0,352], "src": [0,0], "f": 0, "t": 0, "d": [880] },
+						{ "px": [16,352], "src": [0,0], "f": 0, "t": 0, "d": [881] },
+						{ "px": [32,352], "src": [0,0], "f": 0, "t": 0, "d": [882] },
+						{ "px": [48,352], "src": [0,0], "f": 0, "t": 0, "d": [883] },
+						{ "px": [64,352], "src": [0,0], "f": 0, "t": 0, "d": [884] },
+						{ "px": [80,352], "src": [0,0], "f": 0, "t": 0, "d": [885] },
+						{ "px": [96,352], "src": [0,0], "f": 0, "t": 0, "d": [886] },
+						{ "px": [112,352], "src": [0,0], "f": 0, "t": 0, "d": [887] },
+						{ "px": [128,352], "src": [0,0], "f": 0, "t": 0, "d": [888] },
+						{ "px": [144,352], "src": [0,0], "f": 0, "t": 0, "d": [889] },
+						{ "px": [160,352], "src": [0,0], "f": 0, "t": 0, "d": [890] },
+						{ "px": [176,352], "src": [0,0], "f": 0, "t": 0, "d": [891] },
+						{ "px": [192,352], "src": [0,0], "f": 0, "t": 0, "d": [892] },
+						{ "px": [208,352], "src": [0,0], "f": 0, "t": 0, "d": [893] },
+						{ "px": [224,352], "src": [0,0], "f": 0, "t": 0, "d": [894] },
+						{ "px": [240,352], "src": [0,0], "f": 0, "t": 0, "d": [895] },
+						{ "px": [256,352], "src": [0,0], "f": 0, "t": 0, "d": [896] },
+						{ "px": [272,352], "src": [0,0], "f": 0, "t": 0, "d": [897] },
+						{ "px": [288,352], "src": [0,0], "f": 0, "t": 0, "d": [898] },
+						{ "px": [304,352], "src": [0,0], "f": 0, "t": 0, "d": [899] },
+						{ "px": [320,352], "src": [0,0], "f": 0, "t": 0, "d": [900] },
+						{ "px": [336,352], "src": [0,0], "f": 0, "t": 0, "d": [901] },
+						{ "px": [352,352], "src": [0,0], "f": 0, "t": 0, "d": [902] },
+						{ "px": [368,352], "src": [0,0], "f": 0, "t": 0, "d": [903] },
+						{ "px": [384,352], "src": [0,0], "f": 0, "t": 0, "d": [904] },
+						{ "px": [400,352], "src": [0,0], "f": 0, "t": 0, "d": [905] },
+						{ "px": [416,352], "src": [0,0], "f": 0, "t": 0, "d": [906] },
+						{ "px": [432,352], "src": [0,0], "f": 0, "t": 0, "d": [907] },
+						{ "px": [448,352], "src": [0,0], "f": 0, "t": 0, "d": [908] },
+						{ "px": [464,352], "src": [0,0], "f": 0, "t": 0, "d": [909] },
+						{ "px": [480,352], "src": [0,0], "f": 0, "t": 0, "d": [910] },
+						{ "px": [496,352], "src": [0,0], "f": 0, "t": 0, "d": [911] },
+						{ "px": [512,352], "src": [0,0], "f": 0, "t": 0, "d": [912] },
+						{ "px": [528,352], "src": [0,0], "f": 0, "t": 0, "d": [913] },
+						{ "px": [544,352], "src": [0,0], "f": 0, "t": 0, "d": [914] },
+						{ "px": [560,352], "src": [0,0], "f": 0, "t": 0, "d": [915] },
+						{ "px": [576,352], "src": [0,0], "f": 0, "t": 0, "d": [916] },
+						{ "px": [592,352], "src": [0,0], "f": 0, "t": 0, "d": [917] },
+						{ "px": [608,352], "src": [0,0], "f": 0, "t": 0, "d": [918] },
+						{ "px": [624,352], "src": [0,0], "f": 0, "t": 0, "d": [919] }
+					],
+					"entityInstances": []
+				}
+			],
+			"__neighbours": [ { "levelIid": "c4aab5f0-7820-11ed-854f-754217cba623", "levelUid": 43, "dir": "n" }, { "levelIid": "f8422360-7820-11ed-87d2-39a4d4449255", "levelUid": 44, "dir": "e" } ]
 		}
 	],
 	"worlds": []

@@ -18,19 +18,19 @@ namespace Platformer.Levels.LDtk {
 
         // Layer Names
         [SerializeField]
-        private string m_Control = "Controls";
+        private string m_Control = "CONTROLS";
         public string Control => m_Control;
 
         [SerializeField]
-        private string m_Entity = "Entities";
+        private string m_Entity = "ENTITIES";
         public string Entity => m_Entity;
 
         [SerializeField]
-        private string m_Water = "Water";
+        private string m_Water = "WATER";
         public string Water => m_Water;
 
         [SerializeField]
-        private string m_Ground = "Ground";
+        private string m_Ground = "GROUND";
         public string Ground => m_Ground;
         
     }

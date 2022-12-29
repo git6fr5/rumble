@@ -29,6 +29,11 @@ namespace UnityExtensions {
             
         }
 
+        // Moves an obstacle towards a target.
+        public static void Rotate(this Transform transform, float speed, float deltaTime) {
+            transform.eulerAngles += Vector3.forward * speed * deltaTime;
+        }
+
         // Drags a collection of transforms with the obstacle.
         public static void Drag(this List<Transform> transforms, Vector3 deltaPosition) {
             for (int i = 0; i < transforms.Count; i++) {

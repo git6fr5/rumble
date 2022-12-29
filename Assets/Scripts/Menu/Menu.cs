@@ -1,8 +1,9 @@
 /* --- Libraries --- */
+// System.
 using System.Collections;
 using System.Collections.Generic;
+// Unity.
 using UnityEngine;
-using Platformer.UI;
 
 namespace Platformer.UI {
 
@@ -24,6 +25,7 @@ namespace Platformer.UI {
         // The tab that is currently selected.
         [SerializeField, ReadOnly] 
         private Tab m_SelectedTab = null;
+        public Tab SelectedTab => m_SelectedTab;
 
         // The tab that is currently being indicated.
         [SerializeField] 
@@ -56,6 +58,7 @@ namespace Platformer.UI {
             if (select && m_HoverTab != null) {
                 m_HoverTab.Open();
             }
+
         }
 
         // Gets all the children that are tabs.

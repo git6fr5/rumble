@@ -17,7 +17,7 @@ namespace Platformer.Objects.Spikes {
     ///<summary>
     ///
     ///<summary>
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(BoxCollider2D))]
     public class FallingSpike : SpikeObject {
 
         #region Enumerations.

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LDtkUnity;
 using Platformer.Management;
 
 /* --- Definitions --- */
@@ -19,6 +20,9 @@ namespace Platformer.Management {
 
         // Singleton.
         public static GameManager Instance;
+
+        // Cached ldtk component.
+        public static LDtkComponentProject m_LDtkData;
 
         // Player.
         [SerializeField] private CharacterController m_Player;
@@ -57,7 +61,7 @@ namespace Platformer.Management {
             m_PhysicsManager.OnGameLoad();
             m_AudioManager.OnGameLoad();
             m_VisualManager.OnGameLoad();
-            m_LevelManager.OnGameLoad();
+            m_LevelManager.OnGameLoad(m_LDtkData);
             Pause();
         }
 
@@ -65,6 +69,11 @@ namespace Platformer.Management {
         void Start() {
             m_Player.gameObject.SetActive(true);
             Play();
+        }
+
+        public void SetLDtkData(LDtkComponentProject ldtkData) {
+            if (ldtkData == null) { return; }
+            m_LDtkData = ldtkData;
         }
 
         // Pause the game.

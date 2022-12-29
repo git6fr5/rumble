@@ -17,7 +17,7 @@ namespace Platformer.Objects.Spikes {
     ///<summary>
     ///
     ///<summary>
-    [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(Collider2D))]
     public class SpikeObject : MonoBehaviour {
 
         #region Variables
@@ -43,7 +43,7 @@ namespace Platformer.Objects.Spikes {
         
         protected SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
         
-        protected BoxCollider2D m_Hitbox => GetComponent<BoxCollider2D>();
+        protected Collider2D m_Hitbox => GetComponent<Collider2D>();
 
         /* --- Member --- */
 
@@ -83,7 +83,7 @@ namespace Platformer.Objects.Spikes {
         #region Methods.
 
         // Runs once before the first frame.
-        void Start() {
+        private void Start() {
             m_Origin = transform.position;
             m_Hitbox.isTrigger = true;
             Reset();

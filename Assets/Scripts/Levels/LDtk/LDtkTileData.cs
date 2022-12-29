@@ -32,6 +32,8 @@ namespace Platformer.Levels.LDtk {
 
         public static Vector2Int ControlStopID = new Vector2Int(1, 0);
 
+        public static Vector2Int ScoreOrbID = new Vector2Int(3, 5);
+
         /* --- Members --- */
         
         public Vector2Int vectorID { get; private set; } = new Vector2Int(0, 0);

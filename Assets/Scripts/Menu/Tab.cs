@@ -1,8 +1,10 @@
 /* --- Libraries --- */
+// System.
 using System.Collections;
 using System.Collections.Generic;
+// Unity.
 using UnityEngine;
-using Platformer.UI;
+using UnityEngine.UI;
 
 namespace Platformer.UI {
 
@@ -16,11 +18,13 @@ namespace Platformer.UI {
         // Has to be parented to a menu.
         private Menu m_Menu => transform.parent.GetComponent<Menu>();
 
+        // The text attached to the tab.
+        [SerializeField]
+        private Text m_Text;
+
         // The submenu that this opens up.
         [SerializeField]
         private GameObject m_Submenu = null;
-
-        // Whether the mouse is hovering over this tab.
 
         #endregion
 
@@ -49,6 +53,12 @@ namespace Platformer.UI {
             if (m_Submenu != null) {
                 m_Submenu.SetActive(false);
             }
+        }
+
+        public void SetText(string text) {
+            if (m_Text == null) { return; }
+            m_Text.text = text.ToUpper();
+            m_Text.ReduceUntilFitsHorizontally(m_Text.fontSize);
         }
 
         #endregion

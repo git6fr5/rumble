@@ -26,9 +26,13 @@ namespace Platformer.Objects.Orbs {
         #region Variables.
 
         // Whether this transform is following something.
-        [SerializeField] 
+        [SerializeField, ReadOnly] 
         private Transform m_Follow = null;
         public Transform Following => m_Follow;
+
+        // Tracks whether this has been collected or not.
+        [SerializeField, ReadOnly]
+        private bool m_Collected = false;
 
         // The effect that when this orb is collected.
         [SerializeField] 
@@ -82,13 +86,17 @@ namespace Platformer.Objects.Orbs {
 
             // Destroy the star once its been collected.
             // Game.Level.AddPoint(this);
-            Destroy(gameObject);
+            m_Hitbox.enabled = false;
+            m_SpriteRenderer.enabled = false;
+            m_Collected = true;
         }
 
         public override void Reset() {
-            m_Follow = null;
-            transform.position = m_Origin;
-            base.Reset();
+            if (!m_Collected) {
+                m_Follow = null;
+                transform.position = m_Origin;
+                base.Reset();
+            }
         }
         
         #endregion

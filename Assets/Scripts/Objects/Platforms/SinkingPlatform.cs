@@ -160,11 +160,11 @@ namespace Platformer.Objects.Platforms {
         private void WhileRising(float dt) {
             if (m_SinkDelayTimer.Active) { return; }
 
-            transform.Move(m_Path[0], m_SinkSpeed, Time.fixedDeltaTime, m_CollisionContainer);
+            transform.Move(m_Path[0], m_RiseSpeed, Time.fixedDeltaTime, m_CollisionContainer);
 
             float distance = (transform.position - m_Path[0]).magnitude;
             if (distance == 0f) {
-                Game.Audio.Sounds.PlaySound(m_OnReachedBottomSound, 0.15f);
+                Game.Audio.Sounds.PlaySound(m_OnReachedTopSound, 0.15f);
                 m_SinkState = SinkState.None;
             }
 

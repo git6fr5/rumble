@@ -42,6 +42,9 @@ namespace Platformer.Levels.Entities {
 
         protected float GetRotation() {
             RotationID rotationID = m_Rotations.Find(rotationID => rotationID.VectorID == m_VectorID);
+            if (rotationID == null) {
+                return 0f;
+            }
             return rotationID.Rotation;
         }
 

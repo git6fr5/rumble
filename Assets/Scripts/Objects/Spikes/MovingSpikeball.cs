@@ -17,9 +17,18 @@ namespace Platformer {
     ///<summary>
     ///
     ///<summary>
-    public class MovingSpikeball : MonoBehaviour {
+    [RequireComponent(typeof(CircleCollider2D))]
+    public class MovingSpikeball : Spikeball {
 
         #region Variables.
+
+        // The path that this platform follows.
+        [HideInInspector] 
+        protected Vector3[] m_Path = null;
+        
+        // The current position in the path that the path is following.
+        [SerializeField, ReadOnly] 
+        protected int m_PathIndex = 0;
 
         // The pause timer.
         [HideInInspector]
@@ -46,22 +55,23 @@ namespace Platformer {
         #region Methods.
 
         // Initalizes from the LDtk files.
-        public override void Init(int length, Vector3[] path) {
-            base.Init(length, path);
+        public override void Init(int offset, float rotation, Vector3[] path) {
+            base.Init(offset, rotation, path);
+            m_Path = path;
             m_PauseTimer.Start(m_PauseDuration);
         }
         
         // Runs once every frame.
         // Having to do this is a bit weird.
-        void Update() {
+        private void Update() {
             m_Origin = transform.position;
-            base.Update();
         }
 
         // Runs once every fixed interval.
-        private void FixedUpdate() {
-            transform.Move(m_Path[m_PathIndex], m_Speed, Time.fixedDeltaTime, m_CollisionContainer);
+        protected override void FixedUpdate() {
+            transform.Move(m_Path[m_PathIndex], m_Speed, Time.fixedDeltaTime);
             SetTarget(Time.fixedDeltaTime);
+            base.FixedUpdate();
         }
 
         // Sets the target for this platform.
