@@ -16,6 +16,10 @@ namespace Platformer.Visuals {
             //
         }
 
+        public void PlayEffect(ParticleSystem particleEffect) {
+            // particleEffect.gameObject.SetActive(true);
+        }
+
         public void PauseEffect(VisualEffect visualEffect) {
             //
         }

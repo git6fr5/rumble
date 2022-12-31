@@ -24,8 +24,21 @@ namespace Platformer.Input {
         // The vertical direction.
         public float Vertical => m_Vector.y;
 
+        // The last pressed input.
+        private Vector2 m_MostRecent = new Vector2(0f, 0f);
+        public Vector2 MostRecent => m_MostRecent.normalized;
+
         // Updates this directional input.
         public void OnUpdate(Vector2 vector) {
+            bool newX = vector.x != 0f && vector.x != m_Vector.x;
+            bool newY = vector.y != 0f && vector.y != m_Vector.y;
+            if (newX) {
+                m_MostRecent = new Vector2(vector.x, 0f);
+            }
+            else if (newY) {
+                m_MostRecent = new Vector2(0f, vector.y);
+            }
+            
             m_Vector = vector;
         }
 

@@ -46,6 +46,11 @@ namespace Platformer.Objects.Blocks {
             return Game.MainPlayer.Ghost.Enabled;
         }
 
+        protected override void OnActivation() {
+            base.OnActivation();
+            m_Body.ReleaseAll();
+        }
+
         protected override void OnDeactivation() {
             base.OnDeactivation();
             m_Body.Freeze();

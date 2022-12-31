@@ -91,7 +91,7 @@ namespace Platformer.UI {
         }
 
         // Sets the selected tab
-        public void SetSelectedTab(Tab tab) {
+        public virtual void SetSelectedTab(Tab tab) {
             if (m_SelectedTab != null) {
                 m_SelectedTab.Close();
             }

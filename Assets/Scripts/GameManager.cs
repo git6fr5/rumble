@@ -61,7 +61,7 @@ namespace Platformer.Management {
             m_PhysicsManager.OnGameLoad();
             m_AudioManager.OnGameLoad();
             m_VisualManager.OnGameLoad();
-            m_LevelManager.OnGameLoad(m_LDtkData);
+            m_LevelManager.OnGameLoad();
             Pause();
         }
 

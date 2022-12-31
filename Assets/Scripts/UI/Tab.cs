@@ -21,6 +21,7 @@ namespace Platformer.UI {
         // The text attached to the tab.
         [SerializeField]
         private Text m_Text;
+        public string Text => m_Text.text;
 
         // The submenu that this opens up.
         [SerializeField]

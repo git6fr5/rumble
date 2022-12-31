@@ -21,7 +21,7 @@ namespace Platformer.Visuals {
         private static bool m_SmoothCameraMovement = true;
 
         // The actual snap time.
-        public static float CameraSnapTime = m_SmoothCameraMovement ? m_CameraSnapTime : Time.deltaTime;
+        public static float CameraSnapTime => m_SmoothCameraMovement ? m_CameraSnapTime : Time.deltaTime;
 
         // The amount of camera shake.
         private static float m_CameraShakeStrength = 1f;

@@ -68,7 +68,7 @@ namespace Platformer.Character.Actions {
 
         // The amount of time before noticing we're falling.
         [SerializeField] 
-        protected float m_CoyoteBuffer = 0.08f;
+        protected float m_CoyoteBuffer = 0.12f;
 
         // The amount of hang time.
         [SerializeField] 

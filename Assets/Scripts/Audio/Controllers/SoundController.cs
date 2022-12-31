@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Platformer.Audio;
 
-/* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
-
 namespace Platformer.Audio {
 
     ///<summary>
@@ -52,7 +49,7 @@ namespace Platformer.Audio {
         private void GenerateSources(int count) {
             for (int i = 0; i < count; i++) {
                 AudioSource audioSource = new GameObject("Sound AudioSource " + m_Sources.Count.ToString(), typeof(AudioSource)).GetComponent<AudioSource>();
-                audioSource.transform.SetParent(Game.Audio.transform);
+                audioSource.transform.SetParent(transform);
                 audioSource.transform.localPosition = Vector3.zero;
                 m_Sources.Add(audioSource);
             }

@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Platformer.Audio;
 
-/* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
-
 namespace Platformer.Audio {
 
     ///<summary>
@@ -52,7 +49,7 @@ namespace Platformer.Audio {
         // Generates the audio source to play the music from.
         private AudioSource GenerateSource() {
             AudioSource audioSource = new GameObject("Ambience AudioSource", typeof(AudioSource)).GetComponent<AudioSource>();
-            audioSource.transform.SetParent(Game.Audio.transform);
+            audioSource.transform.SetParent(transform);
             audioSource.transform.localPosition = Vector3.zero;
             return audioSource;
         }
@@ -64,6 +61,10 @@ namespace Platformer.Audio {
             m_Source.loop = true;
             m_Source.pitch = 1f;
             m_Source.Play();
+        }
+
+        public void ResetVolume() {
+            m_Source.volume = AudioSettings.AmbienceVolume;
         }
 
         #endregion

@@ -14,6 +14,8 @@ using Platformer.Levels.Entities;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
+using SaveSystem = Platformer.Management.SaveSystem;
+using ScoreOrb = Platformer.Objects.Orbs.ScoreOrb;
 
 namespace Platformer.Management {
 
@@ -59,11 +61,19 @@ namespace Platformer.Management {
         // The JSON data corresponding to the given ldtk data.
         [HideInInspector]
         private LdtkJson m_JSON;
+
+        [HideInInspector]
+        private int m_Deaths = 0;
+
+        [HideInInspector]
+        private int m_Points = 0;
         
         #endregion
 
         // Initializes the world.
         public void OnGameLoad() {
+            m_LDtkData = LevelSettings.CurrentLevelData != null ? LevelSettings.CurrentLevelData : m_LDtkData;
+            m_FirstRoomName = LevelSettings.FirstRoomName != "" ? LevelSettings.FirstRoomName : m_FirstRoomName;
             // Load the sub-managers.
             m_TilemapManager.OnGameLoad();
             m_EntityManager.OnGameLoad();
@@ -148,9 +158,28 @@ namespace Platformer.Management {
             room.DestroyEntities();
         }
 
+        public void AddDeath() {
+            m_Deaths += 1;
+            SaveSystem.SaveLevelSettings();
+        }
+
+        public void AddPoint(ScoreOrb scoreOrb) {
+            m_Points += 1;
+        }
+
+        public void OnSaveAndQuit() {
+            LevelSettings.CurrentPoints = m_Points;
+            LevelSettings.CurrentDeaths = m_Deaths;
+            LevelSettings.CurrentTime = Game.Physics.Time.Ticks;
+        }
+
+        public void OnComplete() {
+            LevelSettings.CompletedPoints = m_Points;
+            LevelSettings.CompletedDeaths = m_Deaths;
+            LevelSettings.CompletedTime = Game.Physics.Time.Ticks;
+        }
+
     }
-
-
 
 }
     

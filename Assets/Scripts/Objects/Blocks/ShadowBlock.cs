@@ -26,23 +26,23 @@ namespace Platformer.Objects.Blocks {
         // The functionality for when a block is touched.
         protected override void OnTouched(CharacterController character, bool touched) {
             if (m_Active) {
-                
+                character.Shadow.TryStartShadowTravel(character, this);
             }
         }
 
-        // protected override void OnActivation() {
-        //     base.OnActivation();
-        //     m_Hitbox.enabled = true;
-        // }
+        protected override void OnActivation() {
+            base.OnActivation();
+            m_Hitbox.isTrigger = true;
+        }
 
-        // protected override void OnDeactivation() {
-        //     base.OnDeactivation();
-        //     m_Hitbox.enabled = false;
-        // }
+        protected override void OnDeactivation() {
+            base.OnDeactivation();
+            m_Hitbox.isTrigger = false;
+        }
 
         // Resets the block.
         public override void Reset() {
-            m_Hitbox.isTrigger = true;
+            m_Hitbox.isTrigger = false;
             base.Reset();
         }
 

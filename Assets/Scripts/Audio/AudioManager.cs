@@ -36,6 +36,11 @@ namespace Platformer.Management {
 
         }
 
+        public void ResetVolumes() {
+            m_MusicController.ResetVolume();
+            m_AmbienceController.ResetVolume();
+        }
+
         #endregion
 
     }

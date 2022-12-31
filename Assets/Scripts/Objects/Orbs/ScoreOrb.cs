@@ -85,7 +85,7 @@ namespace Platformer.Objects.Orbs {
             Game.Visuals.Particles.PlayEffect(m_CollectEffect);
 
             // Destroy the star once its been collected.
-            // Game.Level.AddPoint(this);
+            Game.Level.AddPoint(this);
             m_Hitbox.enabled = false;
             m_SpriteRenderer.enabled = false;
             m_Collected = true;

@@ -13,6 +13,7 @@ using Platformer.Character.Actions;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
+using SaveSystem = Platformer.Management.SaveSystem;
 using RespawnBlock = Platformer.Objects.Blocks.RespawnBlock;
 using ScoreOrb = Platformer.Objects.Orbs.ScoreOrb;
 
@@ -88,7 +89,7 @@ namespace Platformer.Character {
 
         // The effect thats played to show an impact for this character.
         [SerializeField] 
-        private VisualEffect m_ImpactEffect;
+        private ParticleSystem m_ImpactEffect;
         
         // The effect thats played to show this characters movement.
         [SerializeField] 
@@ -144,7 +145,7 @@ namespace Platformer.Character {
             Game.Audio.Sounds.PlaySound(m_OnDeathSound, 0.15f);
 
             // Noting the death in the stats.
-            // Game.Level.AddDeath();
+            Game.Level.AddDeath();
             Game.Level.Reset();
             
             // Resetting the character.

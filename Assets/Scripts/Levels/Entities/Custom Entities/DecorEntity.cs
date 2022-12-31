@@ -27,7 +27,10 @@ namespace Platformer.Levels.Entities {
             if (grass != null) {
                 grass.Init(offset, rotation, path);
             } 
+            Objects.Decor.Arrow arrow = GetComponent<Objects.Decor.Arrow>();
+            if (arrow != null) {
+                arrow.Init(offset, rotation, path);
+            } 
         }
-
     }
 }
