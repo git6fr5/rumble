@@ -45,6 +45,10 @@ namespace Platformer.Character.Actions {
         [SerializeField, ReadOnly] 
         public bool m_FallEnabled = true;
 
+        // Whether the character is using the default falling.
+        [SerializeField, ReadOnly] 
+        public bool m_DuckEnabled = true;
+
         // Forcefully clamp internal jumps, usually for prepping external jumps.
         [SerializeField, ReadOnly] 
         public bool m_ClampJump = false;
@@ -186,6 +190,9 @@ namespace Platformer.Character.Actions {
             if (m_FallEnabled) { 
                 WhileFalling(character, dt); 
             }
+            if (m_DuckEnabled) {
+                WhileDucking(character, dt);
+            }
             
         }
 
@@ -304,6 +311,19 @@ namespace Platformer.Character.Actions {
 
             // Clamp the fall speed at a given value.
             character.Body.ClampFallSpeed(MAX_FALL_SPEED);
+        }
+
+        // While ducking.
+        private void WhileDucking(CharacterController character, float dt) {
+
+            int characterLayer = LayerMask.NameToLayer("Characters");
+            if (character.Input.Direction.Vertical == -1f && character.gameObject.layer == characterLayer) {
+                character.gameObject.layer = LayerMask.NameToLayer("Ducking");
+            }
+            else if (character.Input.Direction.Vertical != -1f && character.gameObject.layer != characterLayer) {
+                character.gameObject.layer = characterLayer;
+            }
+
         }
 
         // Calculates the speed and m_Weight of the jump.
