@@ -72,8 +72,11 @@ namespace Platformer.Management {
 
         // Initializes the world.
         public void OnGameLoad() {
-            m_LDtkData = LevelSettings.CurrentLevelData != null ? LevelSettings.CurrentLevelData : m_LDtkData;
             m_FirstRoomName = LevelSettings.FirstRoomName != "" ? LevelSettings.FirstRoomName : m_FirstRoomName;
+            if (LevelSettings.CurrentLevelData == null) {
+                LevelSettings.CurrentLevelData = m_LDtkData;
+            }
+            m_LDtkData = LevelSettings.CurrentLevelData;
             // Load the sub-managers.
             m_TilemapManager.OnGameLoad();
             m_EntityManager.OnGameLoad();

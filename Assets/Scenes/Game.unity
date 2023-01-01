@@ -13336,8 +13336,8 @@ MonoBehaviour:
   m_TilemapManager: {fileID: 372664152}
   m_Rooms: []
   m_CurrentRoom: {fileID: 0}
-  m_FirstRoomName: CONCEPTS_31
-  m_LDtkData: {fileID: -3679377698815782927, guid: bae32954d56e03140b37454f0a42f5a7, type: 3}
+  m_FirstRoomName: START
+  m_LDtkData: {fileID: -8632743066739691909, guid: c0d2fea9c5ffe8f46a0b5de9eb13cd66, type: 3}
 --- !u!1 &1163695353
 GameObject:
   m_ObjectHideFlags: 0
@@ -15578,10 +15578,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.3615604
+    x: 0
     y: 0
-    width: 0.5940512
-    height: 0.612628
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -17055,6 +17055,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_MoveEnabled: 1
     m_FallEnabled: 1
+    m_ClampJump: 0
     m_Speed: 7.5
     m_Acceleration: 75
     m_Height: 3.5
@@ -17258,8 +17259,8 @@ MonoBehaviour:
   m_OnPressedDown: 0
   m_OnPressedSound: {fileID: 8300000, guid: 67b4229085924e646878483766915802, type: 3}
   m_BounceState: 0
-  m_JumpSpeed: 10
-  m_MoveSpeed: 7.5
+  m_SinkSpeed: 3
+  m_RiseSpeed: 6
   m_MaxTension: 0.7
   m_BounceSound: {fileID: 8300000, guid: cb2f8bb684d34a347887569a590dd7f5, type: 3}
 --- !u!114 &1952535728

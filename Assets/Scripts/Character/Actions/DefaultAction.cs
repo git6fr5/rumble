@@ -45,6 +45,10 @@ namespace Platformer.Character.Actions {
         [SerializeField, ReadOnly] 
         public bool m_FallEnabled = true;
 
+        // Forcefully clamp internal jumps, usually for prepping external jumps.
+        [SerializeField, ReadOnly] 
+        public bool m_ClampJump = false;
+
         // The default speed the character moves at.
         [SerializeField] 
         private float m_Speed = 7.5f;
@@ -127,6 +131,7 @@ namespace Platformer.Character.Actions {
 
             m_MoveEnabled = true;
             m_FallEnabled = true;
+            m_ClampJump = false;
 
             character.Animator.Push(m_IdleAnimation, CharacterAnimator.AnimationPriority.DefaultIdle);
             character.Animator.Remove(m_MovementAnimation);
@@ -186,6 +191,8 @@ namespace Platformer.Character.Actions {
 
         private void OnJump(CharacterController character) {
             // Refresh the jump settings.
+            if (m_ClampJump) { return; }
+
             RefreshJumpSettings(ref m_JumpSpeed, ref m_Weight, ref m_Sink, m_Height, m_RisingTime, m_FallingTime);
 
             // Jumping.
@@ -193,6 +200,26 @@ namespace Platformer.Character.Actions {
             // These two lines are the key!!!
             character.Body.ClampFallSpeed(0f); 
             character.Body.AddVelocity(Vector2.up * m_JumpSpeed);
+
+        }
+
+        public void ClampJump(bool clamp) {
+            m_ClampJump = clamp;
+        }
+
+        public void OnExternalJump(CharacterController character, float jumpSpeed) {
+            // Refresh the jump settings.
+            // RefreshJumpSettings(ref jumpSpeed, ref m_Weight, ref m_Sink, m_Height, m_RisingTime, m_FallingTime);
+
+            // Jumping.
+            character.Body.Move(Vector2.up * 2f * Game.Physics.Collisions.CollisionPrecision);
+            // These two lines are the key!!!
+            character.Body.ClampFallSpeed(0f); 
+            character.Body.SetVelocity(Vector2.up * jumpSpeed);
+
+            character.Input.Action0.ClearPressBuffer();
+            m_CoyoteTimer.Stop();
+            m_Refreshed = false;
 
         }
 
