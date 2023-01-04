@@ -73,6 +73,9 @@ namespace Platformer.Objects.Spitters {
         // Runs once before the first frame.
         private void Start() {
             m_Origin = transform.position;
+            if (!m_SpitTimer.Active) {
+                m_SpitTimer.Start(m_SpitInterval);
+            }
         }
 
         // Initalizes from the LDtk files.

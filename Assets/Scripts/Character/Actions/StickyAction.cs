@@ -43,6 +43,10 @@ namespace Platformer.Character.Actions {
         [SerializeField]
         private float m_WallJumpSpeed = 12f;
 
+        // The speed at which you can wiggle while wall jumping.
+        [SerializeField]
+        private float m_WallJumpWiggleSpeed = 5f;
+
         // Whether the character can currently climb a wall.
         [SerializeField, ReadOnly]
         private bool m_CanClimb = false;
@@ -68,6 +72,19 @@ namespace Platformer.Character.Actions {
         private Sprite[] m_WallJumpAnimation = null;
 
         #endregion
+
+        // When enabling/disabling this ability.
+        public override void Enable(CharacterController character, bool enable = true) {
+            base.Enable(character, enable);
+            if (m_ClimbTimer.Active || m_ActionPhase != ActionPhase.None) {
+                OnEndPostClimb(character);
+            }
+
+            if (!enable) {
+                character.Animator.Remove(m_ClimbAnimation);
+                character.Animator.Remove(m_WallJumpAnimation);
+            }
+        }
 
         // When this ability is activated.
         public override void InputUpdate(CharacterController character) {
@@ -168,7 +185,6 @@ namespace Platformer.Character.Actions {
             // Reset back to the default.
             m_ActionPhase = ActionPhase.None;
             character.Default.Enable(character, true);
-            character.Body.Stop();
             m_ClimbTimer.Stop();
 
             // Remove possible animations.
@@ -244,11 +260,8 @@ namespace Platformer.Character.Actions {
                 }
             }
 
-            Debug.Log("while wall jumping");
-
-            //m_WallJumpWiggleSpeed
             // Cache the target and current velocities.
-            float targetSpeed = character.Input.Direction.Vertical * 5f;
+            float targetSpeed = character.Input.Direction.Vertical * m_WallJumpWiggleSpeed;
             float currentSpeed = character.Body.velocity.y;
 
             // Calculate the change in velocity this frame.

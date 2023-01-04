@@ -7,7 +7,7 @@ using UnityEngine;
 // Platformer.
 using Platformer.Levels.LDtk;
 using Platformer.Levels.Entities;
-using Platformer.Objects;
+using Platformer.Decorations;
 
 namespace Platformer.Levels.Entities {
 
@@ -23,11 +23,11 @@ namespace Platformer.Levels.Entities {
             Vector3[] path = this.GetPath(index, controlData, 1);
             int offset = this.GetOffset(index, controlData);
             float rotation = this.GetRotation();
-            Objects.Decor.Grass grass = GetComponent<Objects.Decor.Grass>();
+            Grass grass = GetComponent<Grass>();
             if (grass != null) {
                 grass.Init(offset, rotation, path);
             } 
-            Objects.Decor.Arrow arrow = GetComponent<Objects.Decor.Arrow>();
+            Arrow arrow = GetComponent<Arrow>();
             if (arrow != null) {
                 arrow.Init(offset, rotation, path);
             } 

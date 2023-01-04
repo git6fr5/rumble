@@ -10,13 +10,13 @@ using UnityExtensions;
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
-namespace Platformer.Objects.Decor {
+namespace Platformer.Decorations {
 
     ///<summary>
     /// Decorates a level with grass.
     ///<summary>
     [RequireComponent(typeof(SpriteRenderer))]
-    public class Grass : MonoBehaviour {
+    public class Arrow : MonoBehaviour {
 
         #region Variables.
 
@@ -26,12 +26,14 @@ namespace Platformer.Objects.Decor {
         
         /* --- Members --- */
         
-        // The different types of grass available.
-        [SerializeField] 
-        private Sprite[] m_Variations;
-
         [SerializeField]
         private float m_Rotation;
+
+        // The period by which this animates.
+        public static float Period = 1f;
+
+        // The amplitude that this oscillates with.
+        public static float Amplitude = 0.1f;
 
         #endregion
 
@@ -41,18 +43,8 @@ namespace Platformer.Objects.Decor {
             transform.eulerAngles = Vector3.forward * rotation;
         }
 
-        // Runs once on instantiation.
-        void Start() {
-            // m_SpriteRenderer.sortingLayerName = Screen.RenderingLayers.Foreground;
-            // m_SpriteRenderer.color = Screen.ForegroundColorShift;
-            Pick();
-        }
-
-        // Picks a random grass sprite.
-        public void Pick() {
-            // TODO: Implement
-            int index = Random.Range(0, m_Variations.Length); // Utilities.RandomIndex(m_Variations.Length);
-            m_SpriteRenderer.sprite = m_Variations[index];
+        void Update() {
+            transform.localScale = (Mathf.Sin(Period * Game.Physics.Time.Ticks) * Amplitude + 1f - Amplitude) * new Vector3(1f, 1f, 1f);
         }
 
     }
