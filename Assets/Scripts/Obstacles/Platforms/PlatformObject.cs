@@ -169,7 +169,7 @@ namespace Platformer.Objects.Platforms {
         }
 
         // Edits the spline of an platform.
-        protected void EditSpline(Spline spline, float length) {
+        public static void EditSpline(Spline spline, float length) {
             spline.Clear();
             spline.InsertPointAt(0, new Vector3(-0.5f, 0f, 0f));
             spline.InsertPointAt(1, length * Vector3.right + new Vector3(-0.5f, 0f, 0f));
