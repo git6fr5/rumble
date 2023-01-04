@@ -64,6 +64,9 @@ namespace Platformer.Character.Actions {
         [SerializeField]
         private AudioClip m_HopSound = null;
 
+        // An index to the particle that is associated with the charge timer.
+        [SerializeField] 
+        private int m_CircleEffectIndex = -1;
 
         #endregion
 
@@ -166,6 +169,7 @@ namespace Platformer.Character.Actions {
 
             character.Animator.Push(m_ChargeHopAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
             Game.Audio.Sounds.PlaySound(m_ChargeHopSound, 0.15f);
+            m_CircleEffectIndex = Game.Visuals.Particles.PlayCircleEffect(m_ChargeDuration, character.transform, Vector3.zero);
 
         }
 
@@ -184,6 +188,7 @@ namespace Platformer.Character.Actions {
             // Game.Visuals.Particles.PlayEffect(m_HopEffect);
             Game.Audio.Sounds.PlaySound(m_HopSound, 0.15f);
             Game.Audio.Sounds.StopSound(m_ChargeHopSound);
+            Game.Visuals.Particles.StopEffect(m_CircleEffectIndex);
 
         }
 

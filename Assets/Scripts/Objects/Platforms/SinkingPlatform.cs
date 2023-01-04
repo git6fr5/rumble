@@ -37,7 +37,7 @@ namespace Platformer.Objects.Platforms {
 
         // The delay between being pressed and sinking.
         [SerializeField] 
-        private float m_SinkDelay = 0.12f;
+        private float m_SinkDelay = 0.06f;
         
         // Tracks the delay.
         [SerializeField, ReadOnly] 
@@ -45,11 +45,11 @@ namespace Platformer.Objects.Platforms {
 
         // The speed at which this platform sinks at.
         [SerializeField] 
-        private float m_SinkSpeed = 4.5f;
+        private float m_SinkSpeed = 8f;
         
         // The speed with which the platform rises at.
         [SerializeField] 
-        private float m_RiseSpeed = 2f;
+        private float m_RiseSpeed = 6f;
 
         // The sound that plays when this start sinks at.
         [SerializeField] 

@@ -21,7 +21,7 @@ namespace Platformer.Levels.Entities {
         // Take the control data and turn it into a period offset.
         public override void OnControl(int index, List<LDtkTileData> controlData) {
             Vector3[] path = this.GetPath(index, controlData, 1);
-            int offset = 0; // this.GetOffset(index, controlData);
+            int offset = this.GetOffset(index, controlData);
             float rotation = this.GetRotation();
             Objects.Decor.Grass grass = GetComponent<Objects.Decor.Grass>();
             if (grass != null) {

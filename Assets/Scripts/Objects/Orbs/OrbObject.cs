@@ -30,19 +30,19 @@ namespace Platformer.Objects.Orbs {
         private const float RESET_BLINK_DELAY = 0.7f;
 
         // The amount of times the orb blinks before it reappears.
-        private const float RESET_BLINK_COUNT = 3;
+        protected const float RESET_BLINK_COUNT = 3;
 
         // The opacity of the orb when it first blinks back into screen.
-        private const float RESET_BASE_OPACITY = 0.2f;
+        protected const float RESET_BASE_OPACITY = 0.2f;
 
         // The opacity increase of the orb per blink.
-        private const float RESET_OPACITY_PER_BLINK = 0.075f;
+        protected const float RESET_OPACITY_PER_BLINK = 0.075f;
 
         // The period with which this bobs.
-        private const float PERIOD = 3f;
+        protected const float PERIOD = 3f;
 
         // The ellipse with which an orb moves.
-        private static Vector2 ELLIPSE = new Vector2(0f, 2f/16f);
+        protected static Vector2 ELLIPSE = new Vector2(0f, 2f/16f);
 
         /* --- Components --- */
 
@@ -78,7 +78,7 @@ namespace Platformer.Objects.Orbs {
 
         // The sound that plays when this orb blinks.
         [SerializeField]
-        private AudioClip m_BlinkSound;
+        protected AudioClip m_BlinkSound;
 
         #endregion
 
@@ -114,6 +114,10 @@ namespace Platformer.Objects.Orbs {
         protected IEnumerator IEReset() {
             yield return new WaitForSeconds(RESET_BLINK_DELAY);
 
+            if (m_Hitbox.enabled && m_SpriteRenderer.enabled) {
+                yield return null;
+            }
+
             // Set up the colors.
             Color cacheColor = m_SpriteRenderer.color;
             Color tempColor = m_SpriteRenderer.color;
@@ -143,6 +147,7 @@ namespace Platformer.Objects.Orbs {
         
         }
 
+        // Resets the object to its default state.
         public virtual void Reset() {
             Game.Visuals.Particles.PlayEffect(m_RefreshEffect);
             Game.Audio.Sounds.PlaySound(m_RefreshSound, 0.15f);

@@ -34,6 +34,20 @@ namespace UnityExtensions {
             transform.eulerAngles += Vector3.forward * speed * deltaTime;
         }
 
+        // Moves an obstacle towards a target.
+        public static void RotateTowards(this Transform transform, float angle, float speed, float deltaTime) {
+            float amount = Mathf.Abs(angle - transform.eulerAngles.z);
+            float direction = Mathf.Sign(angle - transform.eulerAngles.z);
+            float deltaAngle = speed * deltaTime;
+
+            if (amount < deltaAngle) {
+                transform.eulerAngles += Vector3.forward * angle;
+            }
+            else {
+                transform.eulerAngles += Vector3.forward * direction * deltaAngle;
+            }
+        }
+
         // Drags a collection of transforms with the obstacle.
         public static void Drag(this List<Transform> transforms, Vector3 deltaPosition) {
             for (int i = 0; i < transforms.Count; i++) {

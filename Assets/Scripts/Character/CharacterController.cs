@@ -13,7 +13,6 @@ using Platformer.Character.Actions;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
-using SaveSystem = Platformer.Management.SaveSystem;
 using RespawnBlock = Platformer.Objects.Blocks.RespawnBlock;
 using ScoreOrb = Platformer.Objects.Orbs.ScoreOrb;
 
@@ -164,12 +163,21 @@ namespace Platformer.Character {
         }
 
         public void SetResetBlock(RespawnBlock block) {
+            // Game.Objects.Reset();
             m_RespawnBlock = block;
             ScoreOrb.CollectAllFollowing(transform);
         }
 
         public void Disable(float duration) {
             m_DisableTimer.Start(duration);
+        }
+
+        public void LockDirection(bool lockDirection, float direction = 0f) {
+            m_DirectionLocked = lockDirection;
+            if (direction == 0f) {
+                return;
+            }
+            m_FacingDirection = direction;
         }
 
         void Update() {

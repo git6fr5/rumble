@@ -48,7 +48,8 @@ namespace Platformer.Management {
 
         // The last loaded room.
         [SerializeField, ReadOnly]
-        public Room m_CurrentRoom = null;
+        private Room m_CurrentRoom = null;
+        public Room CurrentRoom => m_CurrentRoom;
 
         // The name of the first room to be loaded.
         [SerializeField] 
@@ -87,6 +88,8 @@ namespace Platformer.Management {
             Preload();
             MoveToLoadPoint(m_FirstRoomName, Game.MainPlayer.transform);
         }
+
+        /* --- start room manager --- */
         
         // Collects all the levels from the LDtk file.
         private static List<Room> Collect(LdtkJson json, Transform transform) {
@@ -99,6 +102,8 @@ namespace Platformer.Management {
             }
             return rooms;
         }
+
+        // This should go in tilemap manaager
 
         // Loads the map layouts for all the given levels.
         public void Preload() {
@@ -134,6 +139,7 @@ namespace Platformer.Management {
 
         // Resets the current room.
         public void Reset() {
+            // Should go somewhere saying custom.
             Platformer.Objects.Blocks.BlockObject.ResetAll();
             Platformer.Objects.Orbs.OrbObject.ResetAll();
             Game.Visuals.Camera.RecolorScreen(Game.Visuals.DefaultPalette);
@@ -159,7 +165,10 @@ namespace Platformer.Management {
                 m_CurrentRoom = null;
             }
             room.DestroyEntities();
+            Platformer.Objects.Spitters.Projectile.DeleteAll(); // Should go somewhere saying custom.
         }
+
+        /* --- end room manager --- */
 
         public void AddDeath() {
             m_Deaths += 1;

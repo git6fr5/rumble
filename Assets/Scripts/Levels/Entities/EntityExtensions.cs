@@ -29,6 +29,9 @@ namespace Platformer.Levels.Entities {
 
         // The logic of turning the ldtk data into a period offset.
         public static int GetOffset(this Entity entity, int index, List<LDtkTileData> controlData) {
+            if (controlData[index].vectorID.y != 1) {
+                return 0;
+            }
             return controlData[index].vectorID.x;
         }
 

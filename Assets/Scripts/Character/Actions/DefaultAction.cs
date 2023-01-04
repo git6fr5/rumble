@@ -166,7 +166,6 @@ namespace Platformer.Character.Actions {
                 m_CoyoteTimer.Stop();
                 m_Refreshed = false;
             }
-
             
         }
 
@@ -231,6 +230,7 @@ namespace Platformer.Character.Actions {
         }
 
         private void OnLand(CharacterController character) {
+            m_ClampJump = false;
             character.Animator.Remove(m_RisingAnimation);
             character.Animator.Remove(m_FallingAnimation);
         }

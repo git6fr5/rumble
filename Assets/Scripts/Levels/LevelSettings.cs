@@ -30,8 +30,6 @@ namespace Platformer.Levels {
             public float time;
 
             public LevelSettingsData() {
-                // levelName = GetLevelName(LevelSettings.CurrentLevelData);
-                // maxStars = GetStars(LevelSettings.CurrentLevelData);
                 levelName = LevelSettings.LevelName;
                 fileName = LevelSettings.FileName;
                 maxPoints = LevelSettings.MaxPoints;
