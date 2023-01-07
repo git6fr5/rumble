@@ -60,15 +60,15 @@ namespace Platformer.Objects.Spikes {
 
         // The effect that plays when this spike shatters.
         [SerializeField] 
-        private VisualEffect m_ShatterEffect;
+        private Sprite m_ShatterParticle;
         
         // The effect that plays when the spike shatters.
         [SerializeField] 
         private AudioClip m_ShatterSound;
         
-        // The effect that when this orb is reset.
+        // The effect that plays when this spike shatters.
         [SerializeField] 
-        private VisualEffect m_RefreshEffect;
+        private Sprite m_RefreshParticle;
         
         // The sound that plays when this orb is reset.
         [SerializeField] 
@@ -105,7 +105,7 @@ namespace Platformer.Objects.Spikes {
         }
 
         protected virtual void Shatter() {
-            Game.Visuals.Particles.PlayEffect(m_ShatterEffect);
+            Game.Visuals.Effects.PlayImpactEffect(m_ShatterParticle, 8, 0.6f, transform, Vector3.zero);
             Game.Audio.Sounds.PlaySound(m_ShatterSound, 0.15f);
             m_Hitbox.enabled = false;
             m_SpriteRenderer.enabled = false;
@@ -147,7 +147,7 @@ namespace Platformer.Objects.Spikes {
 
         
         public virtual void Reset() {
-            Game.Visuals.Particles.PlayEffect(m_RefreshEffect);
+            Game.Visuals.Effects.PlayImpactEffect(m_RefreshParticle, 8, 0.6f, transform, Vector3.zero);
             Game.Audio.Sounds.PlaySound(m_RefreshSound, 0.15f);
             m_Hitbox.enabled = true;
             m_SpriteRenderer.enabled = true;

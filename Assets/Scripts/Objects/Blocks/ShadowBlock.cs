@@ -19,8 +19,11 @@ namespace Platformer.Objects.Blocks {
     ///<summary>
     public class ShadowBlock : BlockObject {
 
+        [SerializeField]
+        private BoxCollider2D m_DisabledCollider = null;
+
         protected override bool CheckActivationCondition() {
-            return Game.MainPlayer.Shadow.Enabled;
+            return Game.MainPlayer.Shadow.Enabled && Game.MainPlayer.Shadow.ShadowModeActive;
         }
 
         // The functionality for when a block is touched.

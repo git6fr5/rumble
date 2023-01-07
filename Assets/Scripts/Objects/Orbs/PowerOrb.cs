@@ -11,7 +11,6 @@ using Platformer.Objects.Orbs;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using ColorPalette = Platformer.Visuals.ColorPalette;
 
 namespace Platformer.Objects.Orbs {
 
@@ -45,8 +44,8 @@ namespace Platformer.Objects.Orbs {
 
         // The palette for this particular orb.
         [SerializeField] 
-        protected ColorPalette m_Palette;
-        public ColorPalette Palette => m_Palette;
+        protected Texture2D m_Palette;
+        public Texture2D Palette => m_Palette;
 
         #endregion
 
@@ -91,7 +90,7 @@ namespace Platformer.Objects.Orbs {
         
         // Resets the orb.
         public override void Reset() {
-            m_Palette.SetSimple(m_SpriteRenderer.material);
+            // m_Palette.SetSimple(m_SpriteRenderer.material);
             base.Reset();
         }
 

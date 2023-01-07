@@ -84,7 +84,7 @@ namespace Platformer.Objects.Platforms {
         // Runs once before the first frame.
         void Start() {
             m_Origin = transform.position;
-            gameObject.layer = LayerMask.NameToLayer("Platform"); // Game.Physics.CollisionLayers.Platform;
+            gameObject.layer = LayerMask.NameToLayer("Objects"); // Game.Physics.CollisionLayers.Platform;
             m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.Foreground;
             m_PressedTimer.Stop();
         }

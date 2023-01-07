@@ -59,7 +59,7 @@ namespace Platformer.Objects.Spitters {
         }
 
         protected void Shatter() {
-            Game.Visuals.Particles.PlayEffect(m_ShatterEffect);
+            Game.Visuals.Effects.PlayEffect(m_ShatterEffect);
             Game.Audio.Sounds.PlaySound(m_ShatterSound, 0.15f);
             Destroy(gameObject);
         }

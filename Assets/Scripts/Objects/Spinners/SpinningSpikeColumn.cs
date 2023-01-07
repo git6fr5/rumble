@@ -82,7 +82,7 @@ namespace Platformer.Objects.Spinners {
         }
 
         protected virtual void Shatter() {
-            Game.Visuals.Particles.PlayEffect(m_ShatterEffect);
+            Game.Visuals.Effects.PlayEffect(m_ShatterEffect);
             Game.Audio.Sounds.PlaySound(m_ShatterSound, 0.15f);
             m_Hitbox.enabled = false;
             m_SpriteRenderer.enabled = false;
@@ -123,7 +123,7 @@ namespace Platformer.Objects.Spinners {
         }
         
         public virtual void Reset() {
-            Game.Visuals.Particles.PlayEffect(m_RefreshEffect);
+            Game.Visuals.Effects.PlayEffect(m_RefreshEffect);
             Game.Audio.Sounds.PlaySound(m_RefreshSound, 0.15f);
             m_Hitbox.enabled = true;
             m_SpriteRenderer.enabled = true;

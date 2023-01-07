@@ -29,6 +29,8 @@ namespace Platformer.Objects.Blocks {
 
         #region Variables.
 
+        public BoxCollider2D Hitbox => m_Hitbox;
+
         // The type of portal that this.
         [SerializeField]
         private PortalType m_PortalType = PortalType.A;
@@ -78,13 +80,39 @@ namespace Platformer.Objects.Blocks {
 
         // Teleports the character to the given block.
         public void Teleport(CharacterController character, PortalBlock portalBlock) {
-            Vector3 offset = (character.transform.position - transform.position).normalized;
-            if (character.Body.velocity.y < 0f) {
-                character.Body.velocity = new Vector2(character.Body.velocity.x, character.Default.JumpSpeed);
+            Vector3 offset = ((character.transform.position + (Vector3)character.Collider.offset) - transform.position);
+            
+            // The sum of the radius' of both the colliders.
+            // Which is the offset the teleport has to be so that
+            // they are not colliding after.
+            float radSum = character.Collider.radius + 0.1f;
+
+            // In order to check the direction that we need
+            // to move the player.
+            float y = Mathf.Abs(character.Body.velocity.y);
+            float x = Mathf.Abs(character.Body.velocity.x);
+
+            Vector3 position = portalBlock.transform.position + (Vector3)portalBlock.Hitbox.offset - (Vector3)character.Collider.offset;
+
+            if (y > x) {
+
+                radSum += m_Hitbox.size.y / 2f;
+                position += Vector3.up * radSum;
+
             }
-            offset.y = -Mathf.Abs(offset.y);
-            character.transform.position = portalBlock.transform.position - 0.75f * offset;
+            else {
+
+                float dir = Mathf.Sign(character.Body.velocity.x);
+                radSum += m_Hitbox.size.x / 2f;
+                position += Vector3.right * dir * radSum;
+
+            }
+
+            // Teleport the character.
+            character.Body.velocity = new Vector2(character.Body.velocity.x, character.Default.JumpSpeed);            
+            character.transform.position = position;
             Game.Physics.Time.RunHitStop(16);
+        
         }
 
         #endregion

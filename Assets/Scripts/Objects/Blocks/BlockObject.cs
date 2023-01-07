@@ -118,7 +118,7 @@ namespace Platformer.Objects.Blocks {
         protected virtual void OnTouched(CharacterController character, bool touched) {
             if (touched) { 
                 Game.Audio.Sounds.PlaySound(m_TouchedSound);
-                Game.Visuals.Particles.PlayEffect(m_TouchedEffect);
+                Game.Visuals.Effects.PlayEffect(m_TouchedEffect);
             }
         }
 
@@ -129,13 +129,13 @@ namespace Platformer.Objects.Blocks {
         // The functionality for when a block is activated.
         protected virtual void OnActivation() {
             Game.Audio.Sounds.PlaySound(m_ActivationSound, 0.15f);
-            Game.Visuals.Particles.PlayEffect(m_ActivationEffect);
+            Game.Visuals.Effects.PlayEffect(m_ActivationEffect);
         }
 
         // The functionality for when a block is deactivated.
         protected virtual void OnDeactivation() {
             Game.Audio.Sounds.PlaySound(m_DeactivationSound, 0.15f);
-            Game.Visuals.Particles.PlayEffect(m_DeactivationEffect);
+            Game.Visuals.Effects.PlayEffect(m_DeactivationEffect);
         }
 
         // Runs while the block is released.

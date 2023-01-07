@@ -81,6 +81,7 @@ namespace Platformer.Character.Actions {
 
             RefreshHopSettings(ref m_Speed, ref m_Weight, m_Height, m_RisingTime);
             m_ActionPhase = ActionPhase.None;
+            Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
             m_ChargeTimer.Stop();
 
             if (enable) {
@@ -169,7 +170,7 @@ namespace Platformer.Character.Actions {
 
             character.Animator.Push(m_ChargeHopAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
             Game.Audio.Sounds.PlaySound(m_ChargeHopSound, 0.15f);
-            m_CircleEffectIndex = Game.Visuals.Particles.PlayCircleEffect(m_ChargeDuration, character.transform, Vector3.zero);
+            m_CircleEffectIndex = Game.Visuals.Effects.PlayCircleEffect(m_ChargeDuration, character.transform, Vector3.zero);
 
         }
 
@@ -180,15 +181,16 @@ namespace Platformer.Character.Actions {
             character.Body.SetVelocity(m_Speed * Mathf.Sqrt(m_ChargeTimer.InverseRatio) * Vector2.up);
             character.Body.SetWeight(m_Weight);
 
-            m_ChargeTimer.Stop();
-            m_ActionPhase = ActionPhase.MidAction;
-
             character.Animator.Remove(m_ChargeHopAnimation);
             character.Animator.Push(m_HopAnimation, CharacterAnimator.AnimationPriority.ActionActive);
-            // Game.Visuals.Particles.PlayEffect(m_HopEffect);
+            
+            Game.Visuals.Effects.PlayImpactEffect(character.OnActionParticle, 16, 1f + 0.6f * m_ChargeTimer.InverseRatio, character.transform, Vector3.zero);
             Game.Audio.Sounds.PlaySound(m_HopSound, 0.15f);
             Game.Audio.Sounds.StopSound(m_ChargeHopSound);
-            Game.Visuals.Particles.StopEffect(m_CircleEffectIndex);
+            Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
+
+            m_ChargeTimer.Stop();
+            m_ActionPhase = ActionPhase.MidAction;
 
         }
 

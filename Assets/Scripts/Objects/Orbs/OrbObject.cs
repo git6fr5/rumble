@@ -106,8 +106,8 @@ namespace Platformer.Objects.Orbs {
         protected virtual void OnTouch(CharacterController character) {
             Game.Physics.Time.RunHitStop(8);
             Game.Audio.Sounds.PlaySound(m_TouchSound, 0.05f);
-            Game.Visuals.Particles.PlayEffect(m_TouchEffect);
-            // Game.Visuals.Particles.PlayEffect(character.ImpactEffect);
+            Game.Visuals.Effects.PlayEffect(m_TouchEffect);
+            // Game.Visuals.Effects.PlayEffect(character.ImpactEffect);
         }
 
         // Reset after a delay.
@@ -149,7 +149,7 @@ namespace Platformer.Objects.Orbs {
 
         // Resets the object to its default state.
         public virtual void Reset() {
-            Game.Visuals.Particles.PlayEffect(m_RefreshEffect);
+            Game.Visuals.Effects.PlayEffect(m_RefreshEffect);
             Game.Audio.Sounds.PlaySound(m_RefreshSound, 0.15f);
             m_Hitbox.enabled = true;
             m_SpriteRenderer.enabled = true;

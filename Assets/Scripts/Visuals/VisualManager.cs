@@ -20,13 +20,13 @@ namespace Platformer.Management {
 
         // Controls the particles in the game.
         [SerializeField]
-        private ParticleController m_ParticleController;
-        public ParticleController Particles => m_ParticleController;
+        private EffectController m_EffectController;
+        public EffectController Effects => m_EffectController;
 
         // The default color palette.
         [SerializeField]
-        private ColorPalette m_DefaultPalette;
-        public ColorPalette DefaultPalette => m_DefaultPalette;
+        private Texture2D m_DefaultPalette;
+        public Texture2D DefaultPalette => m_DefaultPalette;
 
         // The rendering layers in the game.
         [HideInInspector]

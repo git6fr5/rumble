@@ -305,6 +305,10 @@ namespace Platformer.Character.Actions {
                 }
 
             }
+            else {
+                character.Animator.Remove(m_RisingAnimation);
+                character.Animator.Remove(m_FallingAnimation);
+            }
 
             // Set the m_Weight.
             character.Body.SetWeight(weight);

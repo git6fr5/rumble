@@ -11,7 +11,6 @@ using Platformer.Objects.Orbs;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using ColorPalette = Platformer.Visuals.ColorPalette;
 
 namespace Platformer.Objects.Orbs {
 

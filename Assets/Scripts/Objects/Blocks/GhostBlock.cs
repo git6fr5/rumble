@@ -28,7 +28,7 @@ namespace Platformer.Objects.Blocks {
         public const float FRICTION = 0.01f;
 
         // The amount of drag the ghost block experiences while active.
-        public const float DRAG = 0.05f;
+        public const float DRAG = 0.1f;
 
         // The amount of mass the block has (for collisions).
         public const float MASS = 0.7f;
@@ -37,13 +37,17 @@ namespace Platformer.Objects.Blocks {
         
         // The rigidbody attached to this component.
         private Rigidbody2D m_Body => GetComponent<Rigidbody2D>();
+
+        /* --- Members --- */
+
+        private bool m_CorpseTouched = false;
         
         #endregion
 
         #region Methods.
 
         protected override bool CheckActivationCondition() {
-            return Game.MainPlayer.Ghost.Enabled;
+            return Game.MainPlayer.Ghost.Enabled && Game.MainPlayer.Ghost.GhostModeActive;
         }
 
         protected override void OnActivation() {
@@ -56,15 +60,29 @@ namespace Platformer.Objects.Blocks {
             m_Body.Freeze();
         }
 
+        // Runs once when something enters this area.
+        protected virtual void OnCollisionEnter2D(Collision2D collision) {
+            if (collision.gameObject.name == "Corpse") {
+                m_CorpseTouched = true;
+            }
+        }
+
+        // Runs once when something enters this area.
+        protected virtual void OnCollisionExit2D(Collision2D collision) {
+            if (collision.gameObject.name == "Corpse") {
+                m_CorpseTouched = false;
+            }
+        }
+
         // Runs while the block is released.
         protected override void WhileActive() {
-            if (m_Touched) {
+            if (m_CorpseTouched) {
                 m_Body.ReleaseXY();
+                m_Body.Slowdown(1f - FRICTION);
             }
             else {
                 m_Body.ReleaseAll();
             }
-            m_Body.Slowdown(1f - FRICTION);
         }
 
         // Resets the block.

@@ -71,12 +71,12 @@ namespace Platformer.Visuals {
         private Timer m_RecolorTimer = new Timer(0f, 0f);
 
         // The current palette that the screen is being colored by.
-        [SerializeField]
-        private ColorPalette m_CurrentPalette = new ColorPalette();
+        [SerializeField, ReadOnly]
+        private Texture2D m_CurrentPalette = null;
 
         // The material being used to color the screen.
         [SerializeField]
-        private Material m_ScreenMaterial = null;
+        private Material m_ColorSwapMaterial = null;
 
         // The animation curve for shaking the screen.
         [SerializeField]
@@ -138,16 +138,17 @@ namespace Platformer.Visuals {
         }
 
         // Recolors the screen.
-        public void RecolorScreen(ColorPalette colorPalette) {
-            colorPalette.SetBlend(m_ScreenMaterial, "A");
-            m_CurrentPalette.SetBlend(m_ScreenMaterial, "B");
-            m_CurrentPalette = colorPalette;
-            m_RecolorTimer.Start(RECOLOR_TIME);
+        public void RecolorScreen(Texture2D colorPalette) {
+            // Texture2D tex = m_ColorSwapMaterial.GetTexture("_TargetPalette");
+            m_ColorSwapMaterial.SetTexture("_TargetPalette", colorPalette);
+            // m_CurrentPalette.SetBlend(m_ColorSwapMaterial, "B");
+            // m_CurrentPalette = colorPalette;
+            // m_RecolorTimer.Start(RECOLOR_TIME);
         }
 
         // Gradually blends the two color palettes into the second color palette
         public void WhileColoringScreen() {
-            m_ScreenMaterial.SetFloat("_Radius", m_RecolorTimer.InverseRatio);
+            m_ColorSwapMaterial.SetFloat("_Radius", m_RecolorTimer.InverseRatio);
         }
 
         // Gets a random position within the screen bounds.

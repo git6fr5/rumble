@@ -129,7 +129,7 @@ namespace Platformer.Objects.Orbs {
             // The feedback on collecting a star.
             Game.Physics.Time.RunHitStop(8);
             Game.Audio.Sounds.PlaySound(m_UseSound, 0.05f);
-            Game.Visuals.Particles.PlayEffect(m_CollectEffect);
+            Game.Visuals.Effects.PlayEffect(m_CollectEffect);
 
             // Destroy the star once its been collected.
             Game.Level.AddPoint(this);

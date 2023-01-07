@@ -51,6 +51,7 @@ namespace Platformer.Character.Actions {
         // The timer that tracks how much has been charged.
         [SerializeField]
         private Timer m_ShadowTimer = new Timer(0f, 0f);
+        public bool ShadowModeActive => m_ShadowTimer.Active;
 
         // The animation that plays while in shadow mode.
         [SerializeField]
@@ -217,6 +218,25 @@ namespace Platformer.Character.Actions {
             // Reset the body.
             character.Body.ReleaseXY();
             character.Body.SetVelocity(character.Default.Speed * character.Input.Direction.Normal);
+
+            // Check to see if the character should die.
+            float radius = character.Collider.radius - COLLISION_LENIENCY;
+            bool touching = Game.Physics.Collisions.Touching(character.Body.position, radius, Game.Physics.CollisionLayers.Ground);
+            bool onScreen = Game.Visuals.Camera.IsWithinBounds(character.Body.position);
+
+            if (touching || !onScreen) {
+
+                // Move the character.
+                character.Body.position += (character.Collider.radius * 2f) * character.Input.Direction.MostRecent;
+
+                touching = Game.Physics.Collisions.Touching(character.Body.position, radius, Game.Physics.CollisionLayers.Ground);
+                onScreen = Game.Visuals.Camera.IsWithinBounds(character.Body.position);
+
+                if (touching || !onScreen) {
+                    character.Reset();
+                }
+                
+            }
             
             // Remove the animations.
             character.Animator.Remove(m_ShadowModeAnimation);

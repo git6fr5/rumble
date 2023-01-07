@@ -71,11 +71,17 @@ namespace Platformer.Character.Actions {
         [SerializeField]
         private Sprite[] m_WallJumpAnimation = null;
 
+        // An index to the particle that is associated with the charge timer.
+        [SerializeField] 
+        private int m_CircleEffectIndex = -1;
+
         #endregion
 
         // When enabling/disabling this ability.
         public override void Enable(CharacterController character, bool enable = true) {
             base.Enable(character, enable);
+            Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
+
             if (m_ClimbTimer.Active || m_ActionPhase != ActionPhase.None) {
                 OnEndPostClimb(character);
             }
@@ -166,6 +172,8 @@ namespace Platformer.Character.Actions {
 
             // Set the animation.
             character.Animator.Push(m_ClimbAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
+            m_CircleEffectIndex = Game.Visuals.Effects.PlayCircleEffect(m_ClimbDuration, character.transform, Vector3.zero);
+
             
         }
 
@@ -179,6 +187,8 @@ namespace Platformer.Character.Actions {
             // Remove the animation.
             character.Animator.Remove(m_ClimbAnimation);
             // character.Animator.Push(m_PostClimbAnimation);
+            Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
+
         }
 
         private void OnEndPostClimb(CharacterController character) {
@@ -208,6 +218,7 @@ namespace Platformer.Character.Actions {
 
             // Set the animation.
             character.Animator.Push(m_WallJumpAnimation, CharacterAnimator.AnimationPriority.ActionActive);
+            Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
 
         }
 

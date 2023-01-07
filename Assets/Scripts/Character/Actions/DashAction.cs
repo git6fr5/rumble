@@ -174,7 +174,7 @@ namespace Platformer.Character.Actions {
 
             character.Animator.Remove(m_PredashAnimation);
             character.Animator.Push(m_DashAnimation, CharacterAnimator.AnimationPriority.ActionActive);
-            // Game.Visuals.Particles.PlayEffect(m_DashEffect);
+            Game.Visuals.Effects.PlayImpactEffect(character.OnActionParticle, 16, 1.6f, character.transform, Vector3.zero);
 
         }
 

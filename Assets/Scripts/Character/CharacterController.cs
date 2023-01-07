@@ -80,20 +80,17 @@ namespace Platformer.Character {
         [SerializeField, ReadOnly] 
         private Timer m_DisableTimer = new Timer(0f, 0f);
         public bool Disabled => m_DisableTimer.Active;
+        private bool m_Dying = false;
 
         // The block that this character respawns at.
         [SerializeField, ReadOnly] 
         private RespawnBlock m_RespawnBlock;
         public RespawnBlock RespawnBlock => m_RespawnBlock;
 
-        // The effect thats played to show an impact for this character.
-        [SerializeField] 
-        private ParticleSystem m_ImpactEffect;
-        
-        // The effect thats played to show this characters movement.
-        [SerializeField] 
-        private VisualEffect m_TrailEffect;
-        
+        // The sprite that is used for the death impact effect.
+        [SerializeField]
+        private Sprite m_OnDeathParticle;
+
         // The sound thats played when the character dies.
         [SerializeField] 
         private AudioClip m_OnDeathSound;
@@ -101,6 +98,11 @@ namespace Platformer.Character {
         // The sound thats played when the character respawns.
         [SerializeField] 
         private AudioClip m_OnRespawnSound;
+
+        // The sprite that is used for the action impact effect.
+        [SerializeField]
+        private Sprite m_OnActionParticle;
+        public Sprite OnActionParticle => m_OnActionParticle;
         
         // Actions.
         [SerializeField] 
@@ -137,10 +139,13 @@ namespace Platformer.Character {
 
         public void Reset() {
 
+            if (m_Dying) {
+                return;
+            }
+            
             // The visual feedback played when dying.
             Game.Physics.Time.RunHitStop(16);
-            Game.Visuals.Particles.PlayEffect(m_ImpactEffect);
-            Game.Visuals.Particles.PauseEffect(m_TrailEffect);
+            Game.Visuals.Effects.PlayImpactEffect(m_OnDeathParticle,30, 5f, transform, Vector3.zero);
             Game.Audio.Sounds.PlaySound(m_OnDeathSound, 0.15f);
 
             // Noting the death in the stats.
@@ -151,6 +156,8 @@ namespace Platformer.Character {
             Disable(RespawnBlock.RESPAWN_DELAY);
             DisableAllAbilityActions();
             m_Body.Stop();
+            m_Dying = true;
+
             transform.position = m_RespawnBlock.RespawnPosition;
             StartCoroutine(IERespawn(RespawnBlock.RESPAWN_DELAY));
 
@@ -158,6 +165,7 @@ namespace Platformer.Character {
 
         private IEnumerator IERespawn(float delay) {
             yield return new WaitForSeconds(delay);
+            m_Dying = false;
             m_DefaultAction.Enable(this, true);
             Game.Audio.Sounds.PlaySound(m_OnRespawnSound, 0.15f);
         }

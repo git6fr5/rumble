@@ -7,7 +7,7 @@ using UnityEngine;
 // Platformer.
 using Platformer.Levels.LDtk;
 using Platformer.Levels.Entities;
-using Platformer.Decorations;
+using Platformer.Objects.Decorations;
 
 namespace Platformer.Levels.Entities {
 
@@ -30,7 +30,7 @@ namespace Platformer.Levels.Entities {
             Arrow arrow = GetComponent<Arrow>();
             if (arrow != null) {
                 arrow.Init(offset, rotation, path);
-            } 
+            }
         }
     }
 }
