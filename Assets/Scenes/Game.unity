@@ -4213,9 +4213,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1061955038}
   - component: {fileID: 1061955042}
-  - component: {fileID: 1061955041}
   - component: {fileID: 1061955040}
   - component: {fileID: 1061955043}
+  - component: {fileID: 1061955041}
   m_Layer: 0
   m_Name: Switch Orb
   m_TagString: Untagged
@@ -4267,7 +4267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Singular: 0
-  m_Unloadable: 0
+  m_Unloadable: 1
   m_VectorID: {x: 2, y: 12}
   m_GridPosition: {x: 0, y: 0}
   m_LoadOffset: {x: 0, y: 0}
@@ -5246,7 +5246,7 @@ MonoBehaviour:
   m_TilemapManager: {fileID: 372664152}
   m_Rooms: []
   m_CurrentRoom: {fileID: 0}
-  m_FirstRoomName: START
+  m_FirstRoomName: TIME_RUSH_1
   m_LDtkData: {fileID: 6156099845219045001, guid: 83735858897df8146a2739807b3d7e44, type: 3}
 --- !u!1 &1195209677
 GameObject:
@@ -8966,9 +8966,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1872386114}
   - component: {fileID: 1872386118}
-  - component: {fileID: 1872386117}
   - component: {fileID: 1872386116}
   - component: {fileID: 1872386119}
+  - component: {fileID: 1872386117}
   m_Layer: 0
   m_Name: Key Orb
   m_TagString: Untagged
