@@ -20,7 +20,7 @@ namespace Platformer.Objects.Blocks {
     public class ShadowBlock : BlockObject {
 
         [SerializeField]
-        private BoxCollider2D m_DisabledCollider = null;
+        protected BoxCollider2D m_DisabledCollider = null;
 
         protected override bool CheckActivationCondition() {
             return Game.MainPlayer.Shadow.Enabled && Game.MainPlayer.Shadow.ShadowModeActive;

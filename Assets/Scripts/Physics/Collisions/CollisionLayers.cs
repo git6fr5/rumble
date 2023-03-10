@@ -12,6 +12,8 @@ namespace Platformer.Physics {
     [System.Serializable]
     public class CollisionLayers {
 
+        #region Layer Masks
+
         // Collision Layers
         [SerializeField] 
         private LayerMask m_Ground;
@@ -33,10 +35,38 @@ namespace Platformer.Physics {
         private LayerMask m_Orb;
         public LayerMask Orb => m_Orb;
 
-        [SerializeField] 
+        [SerializeField]
         private LayerMask m_Opaque;
         public LayerMask Opaque => m_Opaque;
 
+        #endregion
+
+        #region Layer Names
+
+        public string DANGEROUS = "Dangerous";
+        
+        public string STATIC = "Ignore Color Swap";
+
+        public string PSEUDOGROUND = "Pseudoground";
+
+        public string CHARACTER = "Character";
+
+        // ---
+
+        public string PROJECTILE_COLLISION_LAYER => DANGEROUS;
+        
+        public string SPIKE_COLLISION_LAYER => DANGEROUS;
+        
+        public int ORB_COLLISION_LAYER => LayerMask.NameToLayer(STATIC);
+        
+        public string PLATFORM_COLLISION_LAYER => PSEUDOGROUND;
+        
+        public int BLOCK_COLLISION_LAYER => LayerMask.NameToLayer(PSEUDOGROUND);
+        
+        public string CHARACTER_COLLISION_LAYER => CHARACTER;
+
+        #endregion
 
     }
+
 }

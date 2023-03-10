@@ -2098,7 +2098,7 @@ GameObject:
   - component: {fileID: 967632873}
   - component: {fileID: 967632872}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3247,9 +3247,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0.049476687
-    y: -0.32075474
+    y: -0.30113637
     width: 1.2178876
-    height: 1.2624357
+    height: 1.3939395
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -3446,6 +3446,10 @@ MonoBehaviour:
   - {fileID: 669665718010283710, guid: 850670cce6ddc9d46a886e364dcb4834, type: 3}
   - {fileID: 7544708528708830218, guid: 49c84976c21a0844d9308b794d252195, type: 3}
   - {fileID: 3525729560454638885, guid: 44b592d8e6a255140b7a78c618f71a2e, type: 3}
+  - {fileID: 1150295448675936288, guid: 3b9badca86cca29458a677996140b342, type: 3}
+  - {fileID: 4576872735394294276, guid: 1ab08213d4315444d9c92a6810e54cbe, type: 3}
+  - {fileID: 2587229649173667, guid: d5e8c55db5428ef4ab8f6abc3888cd93, type: 3}
+  - {fileID: 6156099845219045001, guid: 83735858897df8146a2739807b3d7e44, type: 3}
   m_BaseTab: {fileID: 1029603419}
   m_LevelMenu: {fileID: 1129270806}
 --- !u!1 &1590845061

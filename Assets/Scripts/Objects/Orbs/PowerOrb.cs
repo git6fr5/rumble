@@ -90,7 +90,7 @@ namespace Platformer.Objects.Orbs {
         
         // Resets the orb.
         public override void Reset() {
-            // m_Palette.SetSimple(m_SpriteRenderer.material);
+            m_SpriteRenderer.material.SetTexture("_TargetPalette", m_Palette);
             base.Reset();
         }
 

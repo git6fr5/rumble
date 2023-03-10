@@ -19,18 +19,22 @@ namespace Platformer.Management {
     [DefaultExecutionOrder(-1000)]
     public class SaveSystem : MonoBehaviour {
         
+
+        
         public const string AUDIO_SETTINGS_PATH = "/audio_settings.json";
 
         public const string LEVEL_FILE_PATH = "/levels/";
 
+        // Runs once before instantiation.
         void Awake() {
             ReadAudioSettings();
         }
 
+        #region Audio Settings
+
         public static void SaveAudioSettings() {
             string audioSettingsJson = JsonUtility.ToJson(new AudioSettingsData());
             System.IO.File.WriteAllText(Application.persistentDataPath + AUDIO_SETTINGS_PATH, audioSettingsJson);
-            print("saving");
         }
 
         public static void ReadAudioSettings() {
@@ -38,6 +42,10 @@ namespace Platformer.Management {
             AudioSettingsData audioSettingsData = JsonUtility.FromJson<AudioSettingsData>(audioSettingsJson);
             audioSettingsData.Read();
         }
+
+        #endregion
+
+        #region Level Settings
 
         public static void CheckForLevelSettings() {
             if (!Directory.Exists(Application.persistentDataPath + LEVEL_FILE_PATH)) {
@@ -53,6 +61,13 @@ namespace Platformer.Management {
             }
         }
 
+        public static void ReadLevelSettings(string fileName) {
+            string levelPath = LEVEL_FILE_PATH + fileName + ".json";
+            string levelSettingsJson = System.IO.File.ReadAllLines(Application.persistentDataPath + levelPath)[0];
+            LevelSettingsData levelSettingsData = JsonUtility.FromJson<LevelSettingsData>(levelSettingsJson);
+            levelSettingsData.Read();
+        }
+
         public static void SaveLevelSettings() {
             LevelSettingsData levelSettingsData = new LevelSettingsData();
             string levelSettingsJson = JsonUtility.ToJson(levelSettingsData);
@@ -60,12 +75,7 @@ namespace Platformer.Management {
             System.IO.File.WriteAllText(Application.persistentDataPath + levelPath, levelSettingsJson);
         }
 
-        public static void ReadLevelSettings(string fileName) {
-            string levelPath = LEVEL_FILE_PATH + fileName + ".json";
-            string levelSettingsJson = System.IO.File.ReadAllLines(Application.persistentDataPath + levelPath)[0];
-            LevelSettingsData levelSettingsData = JsonUtility.FromJson<LevelSettingsData>(levelSettingsJson);
-            levelSettingsData.Read();
-        }
+        #endregion
 
     }
 

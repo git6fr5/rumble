@@ -86,6 +86,9 @@ namespace Platformer.Objects.Spikes {
         private void Start() {
             m_Origin = transform.position;
             m_Hitbox.isTrigger = true;
+            // gameObject.layer = LayerMask.NameToLayer("Objects");
+            m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.SPIKE_RENDERING_LAYER;
+            m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.SPIKE_RENDERING_ORDER;
             Reset();
         }
 

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: Render Color Swap
+  m_Name: 'Transparent Color Swap '
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: Render Color Swap
+    passTag: 'Transparent Color Swap '
     Event: 500
     filterSettings:
       RenderQueueType: 1
@@ -110,11 +110,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: Render Color Swap Opaques
+  m_Name: 'Opaque Color Swap '
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: Render Color Swap Opaques
+    passTag: 'Opaque Color Swap '
     Event: 300
     filterSettings:
       RenderQueueType: 0
@@ -149,11 +149,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: Render Ignore Color Swap
+  m_Name: Ignore Color Swap
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: Render Ignore Color Swap
+    passTag: Ignore Color Swap
     Event: 500
     filterSettings:
       RenderQueueType: 1

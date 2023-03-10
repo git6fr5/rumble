@@ -70,6 +70,7 @@ namespace Platformer.Objects.Blocks {
         // Runs once before the first frame.
         void Start() {
             m_Origin = transform.position;
+            gameObject.layer = LayerMask.NameToLayer("Objects");
             Reset();
         }
 
@@ -77,6 +78,7 @@ namespace Platformer.Objects.Blocks {
         void Update() {
             bool wasActive = m_Active;
             m_Active = CheckActivationCondition();
+            
             if (m_Active && !wasActive) {
                 OnActivation();
             }

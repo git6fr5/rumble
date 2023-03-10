@@ -85,6 +85,35 @@ namespace Platformer.Objects.Blocks {
             // The sum of the radius' of both the colliders.
             // Which is the offset the teleport has to be so that
             // they are not colliding after.
+            Vector3 radiusOffset = new Vector3(1f, 1f, 0f) * (character.Collider.radius + 0.1f);
+            Vector3 position = portalBlock.transform.position + (Vector3)portalBlock.Hitbox.offset - (Vector3)character.Collider.offset;
+
+            // In order to check the direction that we need
+            // to move the player.
+            float y = Mathf.Abs(character.Body.velocity.y);
+            float x = Mathf.Abs(character.Body.velocity.x);
+
+            float dir = Mathf.Sign(character.FacingDirection);
+            radiusOffset += Vector3.up * m_Hitbox.size.y;
+            radiusOffset.x *= dir;
+            radiusOffset += Vector3.right * dir * m_Hitbox.size.x / 2f;
+
+            position += radiusOffset;
+
+            // Teleport the character.
+            character.Body.velocity = new Vector2(character.FacingDirection * character.Default.Speed, character.Default.JumpSpeed);            
+            character.transform.position = position;
+            Game.Physics.Time.RunHitStop(16);
+        
+        }
+
+                // Teleports the character to the given block.
+        public void TeleportA(CharacterController character, PortalBlock portalBlock) {
+            Vector3 offset = ((character.transform.position + (Vector3)character.Collider.offset) - transform.position);
+            
+            // The sum of the radius' of both the colliders.
+            // Which is the offset the teleport has to be so that
+            // they are not colliding after.
             float radSum = character.Collider.radius + 0.1f;
 
             // In order to check the direction that we need

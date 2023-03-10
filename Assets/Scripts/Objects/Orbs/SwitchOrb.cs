@@ -23,7 +23,7 @@ namespace Platformer.Objects.Orbs {
 
         #region Variables.
 
-        /* --- Constants --- */
+        /* --- Members --- */
 
         // The amount of time before the orb naturally respawns.
         [SerializeField]
@@ -38,7 +38,6 @@ namespace Platformer.Objects.Orbs {
 
         private int ResetBlinkCount = 6;
 
-
         #endregion
 
         #region Methods.
@@ -51,45 +50,23 @@ namespace Platformer.Objects.Orbs {
             // Disable the orb for a bit.
             m_SpriteRenderer.enabled = false;
             m_Hitbox.enabled = false;
-            StartCoroutine(IESwitchReset());
+            StartCoroutine(IEReset());
 
         }
 
-        // Reset after a delay.
-        protected IEnumerator IESwitchReset() {
-            yield return new WaitForSeconds(ResetBlinkDelay);
+        // Returns the time that this object takes per blink.
+        protected override float GetBlinkTime() {
+            return (m_ResetDelay - ResetBlinkDelay) / (float)(2 * ResetBlinkCount);
+        }
 
-            if (m_Hitbox.enabled && m_SpriteRenderer.enabled) {
-                yield return null;
-            }
+        // Returns the time in between blinking and resetting fully.
+        protected override float GetPostBlinkTime() {
+            return (m_ResetDelay - ResetBlinkDelay) / (float)ResetBlinkCount;
+        }
 
-            // Set up the colors.
-            Color cacheColor = m_SpriteRenderer.color;
-            Color tempColor = m_SpriteRenderer.color;
-            tempColor.a = RESET_BASE_OPACITY;
-            
-            // Blink the orb a couple of times.
-            m_SpriteRenderer.color = tempColor; 
-            for (int i = 0; i < 2 * ResetBlinkCount; i++) {
-                tempColor.a += RESET_OPACITY_PER_BLINK;
-                m_SpriteRenderer.color = tempColor; 
-                m_SpriteRenderer.enabled = !m_SpriteRenderer.enabled;
-                Game.Audio.Sounds.PlaySound(m_BlinkSound, 0.05f);
-                yield return new WaitForSeconds((m_ResetDelay - ResetBlinkDelay) / (float)(2 * ResetBlinkCount));
-            }
-            
-            // Reset the orbs color.
-            m_SpriteRenderer.color = cacheColor;
-            m_SpriteRenderer.enabled = true;
-
-            // Wait one more blink just because it feels more correct.
-            yield return new WaitForSeconds((m_ResetDelay - ResetBlinkDelay) / (float)ResetBlinkCount);
-
-            // Make the orb collectible agains.
-            Reset();
-
-            yield return null;
-        
+        // Returns the time before the object starts blinking back.
+        protected override float GetPreBlinkTime() {
+            return ResetBlinkDelay;
         }
         
         // Resets the orb.

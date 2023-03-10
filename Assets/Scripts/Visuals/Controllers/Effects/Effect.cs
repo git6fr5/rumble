@@ -16,7 +16,7 @@ namespace Platformer.Visuals.Effects {
         #region Variables.
 
         // Whether this effect is paused.
-        private bool m_Paused = false;
+        protected bool m_Paused = false;
 
         #endregion
 

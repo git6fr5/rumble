@@ -29,15 +29,15 @@ namespace Platformer.Character {
         /* --- Components --- */
 
         // The input system attached to this body.
-        private InputSystem m_Input => GetComponent<InputSystem>();
+        private InputSystem m_Input = null;
         public InputSystem Input => m_Input;
 
         // The rigidbody attached to this controller.
-        private Rigidbody2D m_Body => GetComponent<Rigidbody2D>();
+        private Rigidbody2D m_Body = null;
         public Rigidbody2D Body => m_Body;
         
         // The main collider attached to this body.
-        private CircleCollider2D m_Collider => GetComponent<CircleCollider2D>();
+        private CircleCollider2D m_Collider = null;
         public CircleCollider2D Collider => m_Collider;
 
         // The component used to animate this character.
@@ -109,22 +109,31 @@ namespace Platformer.Character {
         private DefaultAction m_DefaultAction;
         public DefaultAction Default => m_DefaultAction;
 
+        // Used for reference for the power actions.
+        [HideInInspector]
+        private List<CharacterAction> m_PowerActions = new List<CharacterAction>();
+
+        // The dash action.
         [SerializeField] 
         private DashAction m_DashAction;
         public DashAction Dash => m_DashAction;
         
+        // The hop action.
         [SerializeField] 
         private HopAction m_HopAction;
         public HopAction Hop => m_HopAction;
         
+        // The ghost action.
         [SerializeField] 
         private GhostAction m_GhostAction;
         public GhostAction Ghost => m_GhostAction;
         
+        // The shadow action.
         [SerializeField] 
         private ShadowAction m_ShadowAcction;
         public ShadowAction Shadow => m_ShadowAcction;
         
+        // The sticky action.
         [SerializeField] 
         private StickyAction m_StickyAction;
         public StickyAction Sticky => m_StickyAction;
@@ -132,7 +141,19 @@ namespace Platformer.Character {
         #endregion
 
         void Start() {
+            m_Input = GetComponent<InputSystem>();
+            m_Body = GetComponent<Rigidbody2D>();
+            m_Collider = GetComponent<CircleCollider2D>();
+            
             m_DefaultAction.Enable(this, true);
+            m_PowerActions = new List<CharacterAction>() {
+                m_DashAction,
+                m_HopAction,
+                m_GhostAction, 
+                m_ShadowAcction,
+                m_StickyAction
+            };
+
             EnableAllAbilityActions();
             DisableAllAbilityActions();
         }
@@ -190,13 +211,12 @@ namespace Platformer.Character {
 
         void Update() {
             if (m_DisableTimer.Active) { return; }
-
+            
             m_DefaultAction.InputUpdate(this);
-            m_DashAction.InputUpdate(this);
-            m_HopAction.InputUpdate(this);
-            m_GhostAction.InputUpdate(this);
-            m_ShadowAcction.InputUpdate(this);
-            m_StickyAction.InputUpdate(this);
+            for (int i = 0; i < m_PowerActions.Count; i++) {
+                m_PowerActions[i].InputUpdate(this);
+            }
+        
         }
 
         void FixedUpdate() {
@@ -210,27 +230,22 @@ namespace Platformer.Character {
             m_FacingWall = Game.Physics.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.right * m_FacingDirection,  Game.Physics.CollisionLayers.Ground);
 
             m_DefaultAction.PhysicsUpdate(this, Time.fixedDeltaTime);
-            m_DashAction.PhysicsUpdate(this, Time.fixedDeltaTime);
-            m_HopAction.PhysicsUpdate(this, Time.fixedDeltaTime);
-            m_GhostAction.PhysicsUpdate(this, Time.fixedDeltaTime);
-            m_ShadowAcction.PhysicsUpdate(this, Time.fixedDeltaTime);
-            m_StickyAction.PhysicsUpdate(this, Time.fixedDeltaTime);
+            for (int i = 0; i < m_PowerActions.Count; i++) {
+                m_PowerActions[i].PhysicsUpdate(this, Time.fixedDeltaTime);
+            }
+
         }
 
         public void EnableAllAbilityActions() {
-            m_DashAction.Enable(this, true);
-            m_HopAction.Enable(this, true);
-            m_GhostAction.Enable(this, true);
-            m_ShadowAcction.Enable(this, true);
-            m_StickyAction.Enable(this, true);
+            for (int i = 0; i < m_PowerActions.Count; i++) {
+                m_PowerActions[i].Enable(this, true);
+            }
         }
 
         public void DisableAllAbilityActions() {
-            m_DashAction.Enable(this, false);
-            m_HopAction.Enable(this, false);
-            m_GhostAction.Enable(this, false);
-            m_ShadowAcction.Enable(this, false);
-            m_StickyAction.Enable(this, false);
+            for (int i = 0; i < m_PowerActions.Count; i++) {
+                m_PowerActions[i].Enable(this, false);
+            }
         }
 
     }

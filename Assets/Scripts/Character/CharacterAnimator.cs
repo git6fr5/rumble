@@ -54,10 +54,10 @@ namespace Platformer.Character {
         /* --- Components --- */
 
         // The character attached to the parent of this object.
-        private CharacterController m_Character => transform.parent.GetComponent<CharacterController>();
+        private CharacterController m_Character = null;
 
         // The sprite renderer attached to this object.
-        private SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();        
+        private SpriteRenderer m_SpriteRenderer = null;        
 
         /* --- Members --- */
 
@@ -87,6 +87,8 @@ namespace Platformer.Character {
 
         // Runs once before the first frame.
         void Start() {
+            m_Character = transform.parent.GetComponent<CharacterController>();
+            m_SpriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         void Update() {

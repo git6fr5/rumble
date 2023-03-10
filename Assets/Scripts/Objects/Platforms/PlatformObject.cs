@@ -32,16 +32,16 @@ namespace Platformer.Objects.Platforms {
         /* --- Components --- */
 
         // The box collider attached to this platform.
-        protected BoxCollider2D m_Hitbox => GetComponent<BoxCollider2D>();
+        protected BoxCollider2D m_Hitbox = null;
         
         // The sprite shape renderer attached to this platform.
-        protected SpriteShapeRenderer m_SpriteShapeRenderer => GetComponent<SpriteShapeRenderer>();
+        protected SpriteShapeRenderer m_SpriteShapeRenderer = null;
         
         // The sprite shape controller. attached to this platform.
-        protected SpriteShapeController m_SpriteShapeController => GetComponent<SpriteShapeController>();
+        protected SpriteShapeController m_SpriteShapeController = null;
 
         // The spline attached to the sprite shape.
-        protected Spline m_Spline => m_SpriteShapeController.spline;
+        protected Spline m_Spline = null;
 
         /* --- Members --- */
 
@@ -84,14 +84,19 @@ namespace Platformer.Objects.Platforms {
         // Runs once before the first frame.
         void Start() {
             m_Origin = transform.position;
-            gameObject.layer = LayerMask.NameToLayer("Objects"); // Game.Physics.CollisionLayers.Platform;
-            m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.Foreground;
+            gameObject.layer = LayerMask.NameToLayer("Objects");
+            m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.PLATFORM_RENDERING_LAYER;
+            m_SpriteShapeRenderer.sortingOrder = Game.Visuals.RenderingLayers.PLATFORM_RENDERING_ORDER;
             m_PressedTimer.Stop();
         }
 
         // Initalizes from the LDtk files.
         public virtual void Init(int length, Vector3[] path) {
             m_Path = path;
+            m_Hitbox = GetComponent<BoxCollider2D>();
+            m_SpriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
+            m_SpriteShapeController = GetComponent<SpriteShapeController>();
+            m_Spline = m_SpriteShapeController.spline;
             EditSpline(length);
             EditHitbox(length, PLATFORM_HEIGHT);
         }
@@ -162,8 +167,8 @@ namespace Platformer.Objects.Platforms {
         // Edits the spline of an platform.
         protected void EditSpline(float length) {
             m_Spline.Clear();
-            m_Spline.InsertPointAt(0, new Vector3(-0.5f, 0f, 0f));
-            m_Spline.InsertPointAt(1, length * Vector3.right + new Vector3(-0.5f, 0f, 0f));
+            m_Spline.InsertPointAt(0, Vector3.zero);
+            m_Spline.InsertPointAt(1, length * Vector3.right);
             m_Spline.SetTangentMode(0, ShapeTangentMode.Continuous);
             m_Spline.SetTangentMode(1, ShapeTangentMode.Continuous);
         }
@@ -171,8 +176,8 @@ namespace Platformer.Objects.Platforms {
         // Edits the spline of an platform.
         protected void EditSpline(Spline spline, float length) {
             spline.Clear();
-            spline.InsertPointAt(0, new Vector3(-0.5f, 0f, 0f));
-            spline.InsertPointAt(1, length * Vector3.right + new Vector3(-0.5f, 0f, 0f));
+            m_Spline.InsertPointAt(0, Vector3.zero);
+            m_Spline.InsertPointAt(1, length * Vector3.right);
             spline.SetTangentMode(0, ShapeTangentMode.Continuous);
             spline.SetTangentMode(1, ShapeTangentMode.Continuous);
         }
@@ -180,7 +185,7 @@ namespace Platformer.Objects.Platforms {
         // Edits the hitbox of the platform.
         protected void EditHitbox(float length, float height) {
             m_Hitbox.size = new Vector2(length, height);
-            m_Hitbox.offset = new Vector2(length - 1f, 1f - height) / 2f;
+            m_Hitbox.offset = new Vector2(length, 1f - height) / 2f;
         }
 
         #endregion

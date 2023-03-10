@@ -25,6 +25,13 @@ namespace Platformer.Objects.Orbs {
 
         #region Variables.
 
+        /* --- Constants --- */
+
+        // A factor to multiply the distance by to get the speed. 
+        private const float SPEED_FACTOR = 5f;
+
+        /* --- Members --- */
+
         // Whether this transform is following something.
         [SerializeField, ReadOnly] 
         private Transform m_Follow = null;
@@ -33,11 +40,9 @@ namespace Platformer.Objects.Orbs {
         // Tracks whether this has been collected or not.
         [SerializeField, ReadOnly]
         private bool m_Used = false;
-
         // The effect that when this orb is collected.
         [SerializeField] 
         private VisualEffect m_UseEffect;
-        
         // The sound that plays when this orb is collected.
         [SerializeField] 
         private AudioClip m_UseSound;
@@ -48,14 +53,19 @@ namespace Platformer.Objects.Orbs {
 
         // Runs once every fixed interval.
         protected override void FixedUpdate() {
+            // Only override the movement of the orb if it is following something.
             if (m_Follow == null) {
                 base.FixedUpdate();
             }
             else {
+                // Get the direction from the object being followed.
                 Vector3 direction = -(m_Follow.position - transform.position).normalized;
-                Vector3 followPosition = m_Follow.position + direction; // (m_Follow.position - transform.position).normalized * m_Index;
-                float mag = (followPosition - transform.position).magnitude;
-                transform.Move(followPosition, mag * 5f, Time.fixedDeltaTime);
+                // Get the position that we should go to, based on the object being followed 
+                // This is not simply the followed object's position, but slightly lagging behind. 
+                Vector3 followPosition = m_Follow.position + direction;
+                // Get the appropiate speed based on how far the followed object is 
+                float speed = (followPosition - transform.position).magnitude * SPEED_FACTOR;
+                transform.Move(followPosition, speed, Time.fixedDeltaTime);
             }
         }
 

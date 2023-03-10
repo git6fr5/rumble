@@ -67,7 +67,7 @@ namespace Platformer.Objects.Spinners {
         #region Methods.
 
         // Initalizes from the LDtk files.
-        public virtual void Init(float spin) {
+        public override void Init(float spin) {
             m_Hitbox.isTrigger = true;
             base.Init(spin);
         }
