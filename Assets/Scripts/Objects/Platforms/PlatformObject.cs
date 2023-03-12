@@ -83,16 +83,25 @@ namespace Platformer.Objects.Platforms {
 
         // Runs once before the first frame.
         void Start() {
+            // Set the position.
             m_Origin = transform.position;
+            // Set the layer.
             gameObject.layer = LayerMask.NameToLayer("Objects");
+            // Cache the components.
+            m_SpriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
+            m_SpriteShapeController = GetComponent<SpriteShapeController>();
+            m_Hitbox = GetComponent<BoxCollider2D>();
+            // Set the rendering settings.
             m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.PLATFORM_RENDERING_LAYER;
             m_SpriteShapeRenderer.sortingOrder = Game.Visuals.RenderingLayers.PLATFORM_RENDERING_ORDER;
+            // Reset the pressed timer.
             m_PressedTimer.Stop();
         }
 
         // Initalizes from the LDtk files.
         public virtual void Init(int length, Vector3[] path) {
             m_Path = path;
+            // Having to do this annoys me a little but oh well.
             m_Hitbox = GetComponent<BoxCollider2D>();
             m_SpriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
             m_SpriteShapeController = GetComponent<SpriteShapeController>();
@@ -174,10 +183,10 @@ namespace Platformer.Objects.Platforms {
         }
 
         // Edits the spline of an platform.
-        protected void EditSpline(Spline spline, float length) {
+        protected static void EditSpline(Spline spline, float length) {
             spline.Clear();
-            m_Spline.InsertPointAt(0, Vector3.zero);
-            m_Spline.InsertPointAt(1, length * Vector3.right);
+            spline.InsertPointAt(0, Vector3.zero);
+            spline.InsertPointAt(1, length * Vector3.right);
             spline.SetTangentMode(0, ShapeTangentMode.Continuous);
             spline.SetTangentMode(1, ShapeTangentMode.Continuous);
         }

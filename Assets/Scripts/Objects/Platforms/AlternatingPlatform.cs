@@ -32,6 +32,8 @@ namespace Platformer.Objects.Platforms {
 
         #endregion
 
+        #region Variables.
+
         /* --- Constants --- */
 
         // The period with which these alternate.
@@ -62,6 +64,8 @@ namespace Platformer.Objects.Platforms {
         // The sound that plays when changing.
         [SerializeField] 
         private AudioClip m_ChangeSound;
+
+        #endregion
 
         public override void Init(int length, Vector3[] path) {
             base.Init(length, path);
