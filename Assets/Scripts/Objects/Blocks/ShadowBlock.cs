@@ -22,14 +22,26 @@ namespace Platformer.Objects.Blocks {
         [SerializeField]
         protected BoxCollider2D m_DisabledCollider = null;
 
+        [SerializeField]
+        private TransformAnimation m_ActiveTouchAnimation;
+
+        [SerializeField]
+        private TransformAnimation m_InactiveTouchAnimation;
+
         protected override bool CheckActivationCondition() {
             return Game.MainPlayer.Shadow.Enabled && Game.MainPlayer.Shadow.ShadowModeActive;
         }
 
         // The functionality for when a block is touched.
         protected override void OnTouched(CharacterController character, bool touched) {
+            Debug.Log("Touched");
             if (m_Active) {
                 character.Shadow.TryStartShadowTravel(character, this);
+                m_Animator.PlayTransformAnimation(m_ActiveTouchAnimation);
+            }
+            else {
+                Debug.Log("Shadow Block Animation Playing");
+                m_Animator.PlayTransformAnimation(m_InactiveTouchAnimation);
             }
         }
 

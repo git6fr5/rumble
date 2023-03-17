@@ -29,6 +29,9 @@ namespace Platformer.Objects.Platforms {
         // The height of a platform.
         private const float PLATFORM_HEIGHT = 5f/16f;
 
+        // The outcropping width for the border of the platform.
+        protected const float BORDER_WIDTH = 4f/16f;
+
         /* --- Components --- */
 
         // The box collider attached to this platform.
@@ -175,25 +178,21 @@ namespace Platformer.Objects.Platforms {
 
         // Edits the spline of an platform.
         protected void EditSpline(float length) {
-            m_Spline.Clear();
-            m_Spline.InsertPointAt(0, Vector3.zero);
-            m_Spline.InsertPointAt(1, length * Vector3.right);
-            m_Spline.SetTangentMode(0, ShapeTangentMode.Continuous);
-            m_Spline.SetTangentMode(1, ShapeTangentMode.Continuous);
+            EditSpline(m_Spline, length);
         }
 
         // Edits the spline of an platform.
         protected static void EditSpline(Spline spline, float length) {
             spline.Clear();
-            spline.InsertPointAt(0, Vector3.zero);
-            spline.InsertPointAt(1, length * Vector3.right);
+            spline.InsertPointAt(0, -BORDER_WIDTH * Vector3.right);
+            spline.InsertPointAt(1, ((float)length + BORDER_WIDTH) * Vector3.right);
             spline.SetTangentMode(0, ShapeTangentMode.Continuous);
             spline.SetTangentMode(1, ShapeTangentMode.Continuous);
         }
 
         // Edits the hitbox of the platform.
         protected void EditHitbox(float length, float height) {
-            m_Hitbox.size = new Vector2(length, height);
+            m_Hitbox.size = new Vector2(length + 2f * (0.5f - BORDER_WIDTH), height);
             m_Hitbox.offset = new Vector2(length, 1f - height) / 2f;
         }
 

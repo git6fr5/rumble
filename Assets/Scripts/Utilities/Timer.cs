@@ -137,6 +137,14 @@ namespace UnityExtensions {
             return m_Value > m_MaxValue;
         }
 
+        public bool Loop(float dt) {
+            m_Value += dt;
+            if (m_Value > m_MaxValue) {
+                m_Value -= m_MaxValue;
+            }
+            return m_Value > m_MaxValue;
+        }
+
         #endregion
 
     }

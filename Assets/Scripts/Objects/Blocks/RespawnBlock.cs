@@ -42,6 +42,9 @@ namespace Platformer.Objects.Blocks {
         private float m_TotalActivatedTime = 0f;
         public float TotalTimeActive => m_TotalActivatedTime;
 
+        [SerializeField]
+        private TransformAnimation m_ActivationTransformAnimation;
+
         #endregion
 
         
@@ -53,6 +56,9 @@ namespace Platformer.Objects.Blocks {
             base.OnTouched(character, touched);
             if (touched) {
                 character.SetResetBlock(this);
+                if (m_Animator != null) {
+                    m_Animator.PlayTransformAnimation(m_ActivationTransformAnimation);
+                }
             }
         }
 

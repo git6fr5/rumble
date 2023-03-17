@@ -73,27 +73,27 @@ namespace Platformer.Objects.Blocks {
             if (touched) {
                 PortalBlock portalTarget = FindPortalTarget();
                 if (portalTarget != null) {
-                    Teleport(character, portalTarget);
+                    TeleportC(character, portalTarget);
                 }
             }
         }
 
         // Teleports the character to the given block.
-        public void Teleport(CharacterController character, PortalBlock portalBlock) {
+        public void TeleportC(CharacterController character, PortalBlock portalBlock) {
             Vector3 offset = ((character.transform.position + (Vector3)character.Collider.offset) - transform.position);
             
             // The sum of the radius' of both the colliders.
             // Which is the offset the teleport has to be so that
             // they are not colliding after.
             Vector3 radiusOffset = new Vector3(1f, 1f, 0f) * (character.Collider.radius + 0.1f);
+
+            // The position that the character should be moved at.
+            // Edited as we figure out more information.
             Vector3 position = portalBlock.transform.position + (Vector3)portalBlock.Hitbox.offset - (Vector3)character.Collider.offset;
 
             // In order to check the direction that we need
             // to move the player.
-            float y = Mathf.Abs(character.Body.velocity.y);
-            float x = Mathf.Abs(character.Body.velocity.x);
-
-            float dir = Mathf.Sign(character.FacingDirection);
+            float dir = Mathf.Sign(character.Input.Direction.Horizontal);
             radiusOffset += Vector3.up * m_Hitbox.size.y;
             radiusOffset.x *= dir;
             radiusOffset += Vector3.right * dir * m_Hitbox.size.x / 2f;
@@ -101,13 +101,23 @@ namespace Platformer.Objects.Blocks {
             position += radiusOffset;
 
             // Teleport the character.
-            character.Body.velocity = new Vector2(character.FacingDirection * character.Default.Speed, character.Default.JumpSpeed);            
-            character.transform.position = position;
-            Game.Physics.Time.RunHitStop(16);
+            Vector3 newVelocity = new Vector2(character.FacingDirection * character.Default.Speed, character.Default.JumpSpeed);
+            Vector3 newPosition = position;
+
+            character.gameObject.SetActive(false);
+
+            StartCoroutine(IETeleport(character, newVelocity, newPosition));
+
+            IEnumerator IETeleport(CharacterController character, Vector3 velocity, Vector3 position) {
+                yield return new WaitForSeconds(0.5f);
+                character.Body.velocity = velocity;      
+                character.transform.position = position;
+                Game.Physics.Time.RunHitStop(16);
+            }
         
         }
 
-                // Teleports the character to the given block.
+        // Teleports the character to the given block.
         public void TeleportA(CharacterController character, PortalBlock portalBlock) {
             Vector3 offset = ((character.transform.position + (Vector3)character.Collider.offset) - transform.position);
             

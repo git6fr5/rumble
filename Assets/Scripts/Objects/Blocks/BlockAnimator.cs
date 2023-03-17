@@ -70,6 +70,8 @@ namespace Platformer.Objects.Blocks {
         // A random frame duration using the min and max.
         private float RandomFrameDuration => Random.Range(m_MinFrameDuration, m_MaxFrameDuration);
 
+        private TransformAnimation m_TransformAnimation = null;
+
         #endregion
 
         #region Methods.
@@ -103,6 +105,28 @@ namespace Platformer.Objects.Blocks {
             bool finished = m_AnimationTimer.TickDown(Time.fixedDeltaTime);
             if (finished) {
                 OnFrameChange();
+            }
+
+            if (m_TransformAnimation != null) {
+
+                Debug.Log("hello");
+
+                transform.Animate(m_TransformAnimation, Time.fixedDeltaTime);
+                
+                if (m_TransformAnimation.AnimationTimer.Ratio >= 1f) {
+                    m_TransformAnimation = null;
+                    transform.localPosition = Vector3.zero;
+                    transform.localScale = new Vector3(1f, 1f, 1f);
+                    transform.localRotation = Quaternion.Euler(0f, 0f, 0f); 
+                }
+            }
+
+        }
+
+        public void PlayTransformAnimation(TransformAnimation animation) {
+            if (m_TransformAnimation != animation) {
+                m_TransformAnimation = animation;
+                m_TransformAnimation.AnimationTimer = new Timer(0f, animation.AnimationTimer.MaxValue);
             }
         }
 

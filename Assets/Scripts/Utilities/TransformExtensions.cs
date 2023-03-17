@@ -10,6 +10,24 @@ namespace UnityExtensions {
     ///<summary>
     public static class TransformExtensions {
 
+        public static void Animate(this Transform transform, TransformAnimation animation, float deltaTime) {
+
+            if (animation.Loop) {
+                animation.AnimationTimer.Loop(deltaTime);
+            }
+            else {
+                animation.AnimationTimer.TickUp(deltaTime);
+            }
+
+            // Position.
+            transform.localPosition = animation.Position;
+            // Scale.
+            transform.localScale = animation.Scale;
+            // Rotation.
+            transform.localRotation = animation.Rotation;
+
+        }
+
         // Moves an obstacle towards a target.
         public static void Move(this Transform transform, Vector3 destination, float speed, float deltaTime, List<Transform> transforms = null) {
             if (destination == transform.position) {

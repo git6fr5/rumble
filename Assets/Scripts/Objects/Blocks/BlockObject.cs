@@ -24,7 +24,11 @@ namespace Platformer.Objects.Blocks {
         /* --- Components --- */
         
         // The box collider attached to this component.
-        protected BoxCollider2D m_Hitbox => GetComponent<BoxCollider2D>();
+        protected BoxCollider2D m_Hitbox = null;
+
+        // The box collider attached to this component.
+        [SerializeField]
+        protected BlockAnimator m_Animator = null;
 
         /* --- Members --- */
 
@@ -71,6 +75,7 @@ namespace Platformer.Objects.Blocks {
         void Start() {
             m_Origin = transform.position;
             gameObject.layer = LayerMask.NameToLayer("Objects");
+            m_Hitbox = GetComponent<BoxCollider2D>();
             Reset();
         }
 
