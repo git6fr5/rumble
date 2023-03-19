@@ -104,11 +104,11 @@ namespace Platformer.Objects.Blocks {
             Vector3 newVelocity = new Vector2(character.FacingDirection * character.Default.Speed, character.Default.JumpSpeed);
             Vector3 newPosition = position;
 
-            character.gameObject.SetActive(false);
-
             StartCoroutine(IETeleport(character, newVelocity, newPosition));
 
             IEnumerator IETeleport(CharacterController character, Vector3 velocity, Vector3 position) {
+                character.gameObject.SetActive(false);
+
                 yield return new WaitForSeconds(0.5f);
                 character.Body.velocity = velocity;      
                 character.transform.position = position;
