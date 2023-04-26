@@ -25,21 +25,59 @@ namespace Platformer.Levels {
             public string levelName;
             public string fileName;
             public int maxPoints;
-            public int points;
-            public int deaths;
-            public float time;
+            
+            public int currentPoints;
+            public int currentDeaths;
+            public float currentTime;
+            
+            public int completePoints;
+            public int completeDeaths;
+            public float completeTime;
 
             public LevelSettingsData() {
                 levelName = LevelSettings.LevelName;
                 fileName = LevelSettings.FileName;
                 maxPoints = LevelSettings.MaxPoints;
-                points = LevelSettings.CurrentPoints;
-                deaths = LevelSettings.CurrentDeaths;
-                time = LevelSettings.CurrentTime;
+                
+                currentPoints = LevelSettings.CurrentPoints;
+                currentDeaths = LevelSettings.CurrentDeaths;
+                currentTime = LevelSettings.CurrentTime;
+
+                completePoints = LevelSettings.CompletedPoints;
+                completeDeaths = LevelSettings.CompletedDeaths;
+                completeTime = LevelSettings.CompletedTime;
+            }
+
+            public static LevelSettingsData NewFile() {
+                LevelSettingsData levelSettingsData = new LevelSettingsData();
+
+                levelSettingsData.currentPoints = 0;
+                levelSettingsData.currentDeaths = 0;
+                levelSettingsData.currentTime = 0f;
+
+                levelSettingsData.completePoints = -1;
+                levelSettingsData.completeDeaths = -1;
+                levelSettingsData.completeTime = -1f;
+
+                return levelSettingsData;
             }
 
             public void Read() {
                 Debug.Log(LevelSettings.LevelName);
+
+                LevelSettings.CurrentPoints = this.currentPoints;
+                LevelSettings.CurrentDeaths = this.currentDeaths;
+                LevelSettings.CurrentTime = this.currentTime;
+                
+                // Prime them to be read into.
+                LevelSettings.CompletedPoints = -1;
+                LevelSettings.CompletedDeaths = -1;
+                LevelSettings.CompletedTime = -1f;
+
+                LevelSettings.CompletedPoints = this.completePoints;
+                LevelSettings.CompletedDeaths = this.completeDeaths;
+                LevelSettings.CompletedTime = this.completeTime;
+
             }
 
         }
@@ -103,10 +141,10 @@ namespace Platformer.Levels {
         public static int CompletedDeaths {
             get { return m_CompletedDeaths; }
             set {
-                if (m_CompletedDeaths == -1) {
+                if (m_CompletedDeaths == -1 || value == -1) {
                     m_CompletedDeaths = value;
                 }
-                else if (value < m_CompletedDeaths) {
+                else if (value < m_CompletedDeaths ) {
                     m_CompletedDeaths = value;
                 }
             }
@@ -116,11 +154,11 @@ namespace Platformer.Levels {
         // The most amount of stars collected in a completed run.
         // This needs to be an array in order to properly track 
         // the actual stars position. Its not just a number.
-        private static float m_CompletedPoints = 0;
-        public static float CompletedPoints {
+        private static int m_CompletedPoints = 0;
+        public static int CompletedPoints {
             get { return m_CompletedPoints; }
             set {
-                if (m_CompletedPoints == -1f) {
+                if (m_CompletedPoints == -1 || value == -1) {
                     m_CompletedPoints = value;
                 }
                 else if (value > m_CompletedPoints) {
@@ -134,7 +172,7 @@ namespace Platformer.Levels {
         public static float CompletedTime {
             get { return m_CompletedTime; }
             set {
-                if (m_CompletedTime == -1f) {
+                if (m_CompletedTime == -1f || value == -1f) {
                     m_CompletedTime = value;
                 }
                 else if (value < m_CompletedTime) {

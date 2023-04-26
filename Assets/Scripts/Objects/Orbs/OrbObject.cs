@@ -18,7 +18,6 @@ namespace Platformer.Objects.Orbs {
     ///<summary>
     /// 
     ///<summary>
-    [RequireComponent(typeof(CircleCollider2D))]
     public class OrbObject : MonoBehaviour {
 
         #region Variables.
@@ -35,23 +34,23 @@ namespace Platformer.Objects.Orbs {
         protected const float RESET_BASE_OPACITY = 0.2f;
         // The opacity increase of the orb per blink.
         protected const float RESET_OPACITY_PER_BLINK = 0.075f;
-        // The period with which this bobs.
-        protected const float PERIOD = 3f;
-        // The ellipse with which an orb moves.
-        protected static Vector2 ELLIPSE = new Vector2(0f, 2f/16f);
 
         /* --- Components --- */
 
-        // The sprite renderer attached to this gameObject.
-        protected SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
+        // The sprite renderer displaying this gameObject.
+        [SerializeField]
+        protected SpriteRenderer m_SpriteRenderer;
+
         // The collider attached to this gameObject
-        protected CircleCollider2D m_Hitbox => GetComponent<CircleCollider2D>();
+        [SerializeField]
+        protected CircleCollider2D m_Hitbox;
+        public CircleCollider2D Hitbox => m_Hitbox;
+
+        /* --- Parameters --- */
+
         // Used to cache the origin of what this orb is centered around.
         [SerializeField, ReadOnly] 
         protected Vector3 m_Origin;
-        // Tracks the position of the orb in its floating cycle.
-        [HideInInspector] 
-        private Timer m_FloatTimer = new Timer(PERIOD, PERIOD);
 
         // The effect that plays when this orb is collected
         [SerializeField] 
@@ -91,13 +90,6 @@ namespace Platformer.Objects.Orbs {
             m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.ORB_RENDERING_ORDER;
             // Reset the orb to its default settings.
             Reset();
-        }
-
-        // Runs once every fixed interval.
-        protected virtual void FixedUpdate()  {
-            // Cycles the position of the orb in the given elliptical pattern.
-            m_FloatTimer.Cycle(Time.fixedDeltaTime);
-            transform.Cycle(m_FloatTimer.Value, m_FloatTimer.MaxValue, m_Origin, ELLIPSE);
         }
 
         // Runs everytime something enters this trigger area.

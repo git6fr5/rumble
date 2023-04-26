@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.9960785, b: 0, a: 0.2627451}
+  m_Color: {r: 0.2509804, g: 0.49019608, b: 0.2509804, a: 0.2627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9960785, g: 0, b: 0.98823535, a: 1}
+  m_Color: {r: 0.7176471, g: 0.7372549, b: 0.05882353, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -815,7 +815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.9960785, b: 0, a: 1}
+  m_Color: {r: 0.2509804, g: 0.49019608, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1907,7 +1907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9960785, g: 0, b: 0.98823535, a: 0.2627451}
+  m_Color: {r: 0.7176471, g: 0.7372549, b: 0.05882353, a: 0.2627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2138,7 +2138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.29411766, g: 0.1882353, b: 0.5254902, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3246,8 +3246,8 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.049476687
-    y: -0.30113637
+    x: -0.10846812
+    y: -0.1969697
     width: 1.2178876
     height: 1.3939395
   near clip plane: 0.3
@@ -3397,7 +3397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.9914956, a: 1}
+  m_Color: {r: 0.7176471, g: 0.7372549, b: 0.05882353, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3440,6 +3440,7 @@ MonoBehaviour:
   m_HoverTabIndicator: {fileID: 850979603}
   m_SelectedTabIndicator: {fileID: 148102728}
   m_LDtkData:
+  - {fileID: 8528933975328042487, guid: 8f85dbc797f5ef347bc90d9b9d84b798, type: 3}
   - {fileID: -8832719722589761047, guid: a5f1384b842ee3642a48db4794ae9eec, type: 3}
   - {fileID: -6492503624930617035, guid: e0f51fa4586e1dc4da6897e7c3bcf0cc, type: 3}
   - {fileID: 5794618081846196217, guid: f8bcaf6ab049156409e252e24ecdb377, type: 3}
@@ -4140,7 +4141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.2509804, g: 0.49019608, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

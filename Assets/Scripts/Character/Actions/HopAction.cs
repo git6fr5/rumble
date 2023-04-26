@@ -56,6 +56,10 @@ namespace Platformer.Character.Actions {
         [SerializeField]
         private Sprite[] m_HopAnimation = null;
 
+        // The sprites while hopping
+        [SerializeField]
+        private Sprite[] m_FallAnimation = null;
+
         // The sounds that plays when charging the hop.
         [SerializeField]
         private AudioClip m_ChargeHopSound = null;
@@ -97,6 +101,7 @@ namespace Platformer.Character.Actions {
             if (!enable) {
                 character.Animator.Remove(m_ChargeHopAnimation);
                 character.Animator.Remove(m_HopAnimation);
+                character.Animator.Remove(m_FallAnimation);
                 Game.Audio.Sounds.StopSound(m_ChargeHopSound);
             }
 
@@ -196,6 +201,7 @@ namespace Platformer.Character.Actions {
 
         private void OnStartFall(CharacterController character) {
             character.Default.Enable(character, true);
+            character.Animator.Push(m_FallAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
             character.Animator.Remove(m_HopAnimation);
         }
 
@@ -212,6 +218,8 @@ namespace Platformer.Character.Actions {
 
         private void WhileFalling(CharacterController character, float dt) {
             if (m_Refreshed) {
+                character.Animator.Remove(m_FallAnimation);
+                character.Default.OnExternalJump(character, character.Default.JumpSpeed * 0.75f);
                 m_ActionPhase = ActionPhase.None;
             }
         }

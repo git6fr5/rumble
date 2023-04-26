@@ -65,7 +65,7 @@ namespace Platformer.Visuals.Effects {
         public void Play(Sprite sprite, int count, float speed) {
             m_Count = count;
             m_Speed = speed;
-            m_Sprite = sprite;
+            m_Sprite = sprite != null ? sprite : m_Sprite;
             Play();
         }
 

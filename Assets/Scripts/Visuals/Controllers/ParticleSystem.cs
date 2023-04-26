@@ -67,6 +67,15 @@ namespace Platformer.Visuals {
             }
         }
 
+        // Moves the particle in a specific direction.
+        public static void MoveIndividually(this List<SpriteRenderer> particles, Dictionary<SpriteRenderer, Vector2> direction, float speed, float dt) {
+            particles.RemoveAll(particle => particle == null);
+            for (int i = 0; i < particles.Count; i++) {
+                Vector3 dx = direction[particles[i]] * speed * dt;
+                particles[i].transform.position += dx;
+            }
+        }
+
         public static void RadialMove(this List<SpriteRenderer> particles, Vector3 origin, float speed, float dt) {
             for (int i = 0; i < particles.Count; i++) {
                 Vector3 dx = (particles[i].transform.position - origin).normalized * speed * dt;

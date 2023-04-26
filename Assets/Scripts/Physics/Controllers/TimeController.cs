@@ -8,6 +8,9 @@ using UnityExtensions;
 // Platformer.
 using Platformer.Physics;
 
+/* --- Definitions --- */
+using Game = Platformer.Management.GameManager;
+
 namespace Platformer.Physics {
 
     ///<summary>
@@ -59,7 +62,12 @@ namespace Platformer.Physics {
                 UpdateHitStop();
             }
             else {
-                m_TimeScale = DEFAULT_TIMESCALE;
+                if (Game.Playing) {
+                    m_TimeScale = DEFAULT_TIMESCALE;
+                }
+                else {
+                    m_TimeScale = PAUSED_TIMESCALE;
+                }
             }
             Time.timeScale = m_TimeScale;
         }

@@ -6,15 +6,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityExtensions;
+using UnityEngine.SceneManagement;
 // Platformer.
 using Platformer.Input;
 using Platformer.Character;
 using Platformer.Character.Actions;
+using Platformer.Objects.Orbs;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
-using RespawnBlock = Platformer.Objects.Blocks.RespawnBlock;
-using ScoreOrb = Platformer.Objects.Orbs.ScoreOrb;
 
 namespace Platformer.Character {
 
@@ -84,8 +84,8 @@ namespace Platformer.Character {
 
         // The block that this character respawns at.
         [SerializeField, ReadOnly] 
-        private RespawnBlock m_RespawnBlock;
-        public RespawnBlock RespawnBlock => m_RespawnBlock;
+        private RespawnOrb m_RespawnOrb;
+        public RespawnOrb RespawnOrb => m_RespawnOrb;
 
         // The sprite that is used for the death impact effect.
         [SerializeField]
@@ -159,6 +159,9 @@ namespace Platformer.Character {
         }
 
         public void Reset() {
+            if (m_RespawnOrb == null) {
+                SceneManager.LoadScene("Game");
+            }
 
             if (m_Dying) {
                 return;
@@ -174,13 +177,13 @@ namespace Platformer.Character {
             Game.Level.Reset();
             
             // Resetting the character.
-            Disable(RespawnBlock.RESPAWN_DELAY);
+            Disable(RespawnOrb.RESPAWN_DELAY);
             DisableAllAbilityActions();
             m_Body.Stop();
             m_Dying = true;
 
-            transform.position = m_RespawnBlock.RespawnPosition;
-            StartCoroutine(IERespawn(RespawnBlock.RESPAWN_DELAY));
+            transform.position = m_RespawnOrb.RespawnPosition;
+            StartCoroutine(IERespawn(RespawnOrb.RESPAWN_DELAY));
 
         }
 
@@ -191,10 +194,13 @@ namespace Platformer.Character {
             Game.Audio.Sounds.PlaySound(m_OnRespawnSound, 0.15f);
         }
 
-        public void SetResetBlock(RespawnBlock block) {
+        public void SetRespawn(RespawnOrb orb) {
             // Game.Objects.Reset();
-            m_RespawnBlock = block;
-            ScoreOrb.CollectAllFollowing(transform);
+            if (m_RespawnOrb != null) {
+                m_RespawnOrb.Deactivate();
+            }
+            m_RespawnOrb = orb;
+            m_RespawnOrb.Activate();
         }
 
         public void Disable(float duration) {

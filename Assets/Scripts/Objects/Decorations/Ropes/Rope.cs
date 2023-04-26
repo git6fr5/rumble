@@ -19,7 +19,7 @@ namespace Platformer.Objects.Decorations {
         protected EdgeCollider2D edgeCollider;
 
         /* --- Static Variables --- */
-        [SerializeField] protected static float SegmentLength  = 4f/16f;
+        protected static float SegmentLength  = 6f/16f;
 
         /* --- Variables --- */
         [HideInInspector] protected int segmentCount; // The number of segments.

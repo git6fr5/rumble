@@ -36,15 +36,26 @@ namespace Platformer.Levels.Entities {
 
         #endregion
 
+        // Duplicate an entity.
+        protected override Entity Duplicate(Transform parent) {
+            Entity entity = base.Duplicate(parent);
+            entity.GetComponent<RotatableEntity>().SetRotation();
+            return entity;
+        }
+
         public void SetCurrentVectorID(Vector2Int vectorID) {
             m_VectorID = vectorID;
         }
 
+        public virtual void SetRotation() {}
+
         protected float GetRotation() {
             RotationID rotationID = m_Rotations.Find(rotationID => rotationID.VectorID == m_VectorID);
             if (rotationID == null) {
+                print("why?");
                 return 0f;
             }
+            print(rotationID.VectorID);
             return rotationID.Rotation;
         }
 

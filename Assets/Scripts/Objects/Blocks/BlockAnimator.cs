@@ -109,8 +109,6 @@ namespace Platformer.Objects.Blocks {
 
             if (m_TransformAnimation != null) {
 
-                Debug.Log("hello");
-
                 transform.Animate(m_TransformAnimation, Time.fixedDeltaTime);
                 
                 if (m_TransformAnimation.AnimationTimer.Ratio >= 1f) {

@@ -52,10 +52,10 @@ namespace Platformer.Objects.Orbs {
         #region Methods.
 
         // Runs once every fixed interval.
-        protected override void FixedUpdate() {
+        void FixedUpdate() {
             // Only override the movement of the orb if it is following something.
             if (m_Follow == null) {
-                base.FixedUpdate();
+                // base.FixedUpdate();
             }
             else {
                 // Get the direction from the object being followed.

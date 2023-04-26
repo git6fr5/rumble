@@ -10,12 +10,14 @@ using UnityExtensions;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using Spring = Platformer.Objects.Decorations.Spring;
 
 namespace Platformer.Objects.Platforms {
 
     ///<summary>
     ///
     ///<summary>
+    [DefaultExecutionOrder(1000)]
     [RequireComponent(typeof(BoxCollider2D)), RequireComponent(typeof(SpriteShapeController))]
     public class PlatformObject : MonoBehaviour {
 
@@ -80,6 +82,10 @@ namespace Platformer.Objects.Platforms {
         [SerializeField] 
         private AudioClip m_OnPressedSound;
 
+        //
+        [SerializeField] 
+        private Spring[] m_Springs = null;
+
         #endregion
 
         #region Methods.
@@ -111,6 +117,23 @@ namespace Platformer.Objects.Platforms {
             m_Spline = m_SpriteShapeController.spline;
             EditSpline(length);
             EditHitbox(length, PLATFORM_HEIGHT);
+
+
+            Invoke("ActivateSprings", 0.04f);
+
+        }
+
+        private void ActivateSprings() {
+
+            float distanceToGround = Game.Physics.Collisions.DistanceToFirst(transform.position + Vector3.down * 0.25f, Vector3.down, Game.Physics.CollisionLayers.Ground);
+            distanceToGround = Mathf.Min(distanceToGround, 20f);
+
+            Vector2 offset = Vector2.zero;
+            for (int i = 0; i < m_Springs.Length; i++) {
+                offset.x = m_Hitbox.offset.x + Random.Range(-0.5f, 0.5f);
+                m_Springs[i].Activate(offset, distanceToGround + 0.5f, Vector3.down);
+            }
+
         }
 
         // Runs once every frame.

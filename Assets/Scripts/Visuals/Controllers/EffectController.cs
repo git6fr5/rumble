@@ -28,10 +28,42 @@ namespace Platformer.Visuals {
         [SerializeField]
         private ImpactEffect m_BaseImpactEffect = null;
 
+        // Base impact effect that is used over this game.
+        [SerializeField]
+        private BubbleEffect m_BaseBubbleEffect = null;
+
+            // Base impact effect that is used over this game.
+        [SerializeField]
+        private SparkEffect m_BaseSparkEffect = null;
+
         // The effect dictionary that tracks all the effects being played in the game.
         public Dictionary<int, Effect> m_EffectDictionary = new Dictionary<int, Effect>();
 
         #endregion
+
+        public bool circle;
+        public bool impact;
+        public bool bubble;
+        public bool spark;
+
+        void Update() {
+            if (circle) {
+                PlayCircleEffect(0.2f, transform, Vector3.zero);
+                circle = false;
+            }
+            if (impact) {
+                PlayImpactEffect(null, 8, 0.15f, transform, Vector3.zero);
+                impact = false;
+            }
+            if (bubble) {
+                PlayBubbleEffect(null, -1, 0.75f, 5f, transform, Vector3.zero);
+                bubble = false;
+            }
+            if (spark) {
+                PlaySparkEffect(null, 8, 0.75f, 5f, false, transform, Vector3.zero);
+                spark = false;
+            }
+        }
 
         public void PlayEffect(VisualEffect visualEffect) {
             //
@@ -57,6 +89,24 @@ namespace Platformer.Visuals {
             impactEffect.transform.localPosition = localPosition;
             impactEffect.Play(sprite, count, speed);
             return AddEffectToDictionary(impactEffect);
+        }
+
+        // Plays an impact effect attached to something for a certain.
+        public int PlayBubbleEffect(Sprite sprite, int count, float speed, float rate, Transform parent, Vector3 localPosition) {
+            BubbleEffect bubbleEffect = Instantiate(m_BaseBubbleEffect.gameObject).GetComponent<BubbleEffect>();
+            bubbleEffect.transform.parent = parent;
+            bubbleEffect.transform.localPosition = localPosition;
+            bubbleEffect.Play(sprite, count, speed, rate);
+            return AddEffectToDictionary(bubbleEffect);
+        }
+
+        // Plays an impact effect attached to something for a certain.
+        public int PlaySparkEffect(Sprite sprite, int count, float speed, float rate, bool coagulate, Transform parent, Vector3 localPosition) {
+            SparkEffect sparkEffect = Instantiate(m_BaseSparkEffect.gameObject).GetComponent<SparkEffect>();
+            sparkEffect.transform.parent = parent;
+            sparkEffect.transform.localPosition = localPosition;
+            sparkEffect.Play(sprite, count, speed, rate, coagulate);
+            return AddEffectToDictionary(sparkEffect);
         }
 
         // Stops an effect that is in the effect dictionary.

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LDtkUnity;
 using Platformer.Management;
+using Platformer.UI;
 
 /* --- Definitions --- */
 using CharacterController = Platformer.Character.CharacterController;
@@ -48,6 +49,10 @@ namespace Platformer.Management {
         private VisualManager m_VisualManager;
         public static VisualManager Visuals => Instance.m_VisualManager;
 
+        [SerializeField]
+        private GameObject m_UI;
+        public static bool Playing => !Instance.m_UI.activeSelf;
+
         // Score.
         // [SerializeField] private ScoreTracker m_Score;
         // public static ScoreTracker Score => Instance.m_Score;
@@ -65,6 +70,19 @@ namespace Platformer.Management {
             Pause();
         }
 
+        void Update() {
+
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape)) {
+                if (m_UI.activeSelf) {
+                    Play();
+                }
+                else {
+                    Pause();
+                }
+            }
+
+        }
+
         // Runs once before the first frame.
         void Start() {
             m_Player.gameObject.SetActive(true);
@@ -78,11 +96,15 @@ namespace Platformer.Management {
 
         // Pause the game.
         public void Play() {
+            m_UI.SetActive(false);
             Instance.m_PhysicsManager.Time.Play();
         }
 
         // Pause the game.
         public void Pause() {
+            m_LevelManager.OnSaveAndQuit();
+            SaveSystem.SaveLevelSettings();
+            m_UI.SetActive(true);
             Instance.m_PhysicsManager.Time.Pause();
         }
 

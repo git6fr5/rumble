@@ -31,16 +31,16 @@ namespace Platformer.Character.Actions {
         private const float BASE_CORPSE_ROTATE_SPEED = 180f;
 
         // The maximum distance before applying pressure between the corpse and anchor.
-        private const float TETHER_DISTANCE = 8f;
+        private const float TETHER_DISTANCE = 12f;
 
         // The strength of the tether.
         private const float BASE_TETHER_STRENGTH = 0.8f;
 
         // The return of the ghost 's speed
-        private const float GHOST_RETURN_SPEED = 18f;
+        private const float GHOST_RETURN_SPEED = 25f;
 
         // The friction the ghost hand feels.
-        private const float FRICTION = 0.05f;
+        private const float FRICTION = 0.2f;
 
         /* --- Members --- */
 
@@ -77,7 +77,27 @@ namespace Platformer.Character.Actions {
         [SerializeField]
         private Sprite[] m_GhostModeAnimation = null;
 
+        //
+        private Quaternion m_CachedRotation;
+
         #endregion
+
+        // When enabling/disabling this ability.
+        public override void Enable(CharacterController character, bool enable = true) {
+            base.Enable(character, enable);
+
+            m_CachedRotation = Quaternion.identity;
+
+            if (!enable) {
+                if (m_GhostTimer.Active) {
+                OnGhostReachedAnchor(character);
+                }
+                m_ActionPhase = ActionPhase.None;
+                m_GhostTimer.Stop();
+                character.Animator.Remove(m_GhostModeAnimation);
+            }
+
+        }
 
         // When this ability is activated.
         public override void InputUpdate(CharacterController character) {
@@ -148,6 +168,8 @@ namespace Platformer.Character.Actions {
             m_GhostTimer.Start(m_GhostModeDuration);
             m_ActionPhase = ActionPhase.MidAction;
 
+            // m_CachedRotation = character.transform.localRotation;
+
             character.Body.Stop();
 
             if (m_Corpse == null) {
@@ -158,12 +180,14 @@ namespace Platformer.Character.Actions {
                 // rope.transform.parent = m_Corpse.transform;
             }
             m_Corpse.gameObject.SetActive(true);
-            if (character.Input.Direction.Normal == Vector2.zero) {
-                m_Corpse.transform.position = character.transform.position + (Vector3)character.Input.Direction.MostRecent * 1f;
-            }
-            else {
-                m_Corpse.transform.position = character.transform.position + (Vector3)character.Input.Direction.Normal * 1f;
-            }
+            // if (character.Input.Direction.Normal == Vector2.zero) {
+            //     m_Corpse.transform.position = character.transform.position + (Vector3)character.Input.Direction.MostRecent * 1f;
+            // }
+            // else {
+            //     m_Corpse.transform.position = character.transform.position + (Vector3)character.Input.Direction.Normal * 1f;
+            // }
+            m_Corpse.gameObject.layer = LayerMask.NameToLayer("Character Ghost");
+            m_Corpse.transform.position = character.transform.position;
             m_Corpse.GetComponent<BoxCollider2D>().size = new Vector3(0.5f, 0.5f);
             m_Corpse.GetComponent<BoxCollider2D>().isTrigger = false;
             m_Corpse.GetComponent<SpriteRenderer>().sprite = m_CorpseSprite;
@@ -185,13 +209,16 @@ namespace Platformer.Character.Actions {
 
             Vector3 directionToAnchor = (character.transform.position - m_Corpse.transform.position).normalized;            
             m_Corpse.velocity = directionToAnchor * GHOST_RETURN_SPEED;
+            
+            // character.transform.localRotation = m_CachedRotation;
 
             Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
 
         }
 
         private void OnGhostReachedAnchor(CharacterController character) {
-            character.transform.eulerAngles = Vector3.zero;
+            // character.transform.localRotation = m_CachedRotation;
+
             character.Default.Enable(character, true);
             character.Body.Stop();
             
@@ -212,8 +239,8 @@ namespace Platformer.Character.Actions {
                 m_Corpse.SetVelocity(m_GhostSpeed * m_Corpse.velocity.normalized);
             }
 
-            float rotationFactor = m_Corpse.velocity.magnitude / m_GhostSpeed;
-            character.transform.Rotate(BASE_CORPSE_ROTATE_SPEED * rotationFactor, dt);
+            // float rotationFactor = m_Corpse.velocity.magnitude / m_GhostSpeed;
+            // character.transform.Rotate(BASE_CORPSE_ROTATE_SPEED * rotationFactor, dt);
             character.Body.velocity *= 0.9f;
 
             float distanceToAnchor = (character.transform.position - m_Corpse.transform.position).magnitude;
@@ -238,6 +265,8 @@ namespace Platformer.Character.Actions {
 
         
         private void WhileEndingGhostMode(CharacterController character, float dt) {
+
+            // character.transform.localRotation = m_CachedRotation;
 
             Vector3 directionToAnchor = (character.transform.position - m_Corpse.transform.position).normalized;            
             m_Corpse.velocity = directionToAnchor * GHOST_RETURN_SPEED;

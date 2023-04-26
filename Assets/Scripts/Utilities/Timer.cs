@@ -41,6 +41,17 @@ namespace UnityExtensions {
             m_MaxValue = maxValue;
         }
 
+        public void Set(float value, bool loop = false, float maxValue = -1f) {
+            m_MaxValue = maxValue == -1f ? m_MaxValue : maxValue;
+            m_Value = value;
+            if (m_Value > m_MaxValue && loop) {
+                m_Value = m_Value % m_MaxValue;
+            }
+            else if (m_Value > m_MaxValue && !loop) {
+                m_Value = m_MaxValue;
+            }
+        }
+
         // Starts the timer to its max value.
         public void Start(float startValue = -1f) {
             m_MaxValue = startValue == -1f ? m_MaxValue : startValue;

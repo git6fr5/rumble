@@ -65,7 +65,7 @@ namespace Platformer.Levels.Entities {
         }
 
         // Duplicate an entity.
-        private Entity Duplicate(Transform parent) {
+        protected virtual Entity Duplicate(Transform parent) {
             Entity entity = Instantiate(gameObject, Vector3.zero, transform.localRotation, parent).GetComponent<Entity>();
             if (Singular) {
                 Destroy(gameObject);

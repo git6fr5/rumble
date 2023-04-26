@@ -39,6 +39,7 @@ namespace Platformer.Management {
 
         public void OnGameLoad() {
             // Application.targetFrameRate = VisualSettings.FrameRate;
+            // m_CameraController.ReshapeWindow();
             m_CameraController.RecolorScreen(m_DefaultPalette);
         }
 

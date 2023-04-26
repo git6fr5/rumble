@@ -36,7 +36,7 @@ namespace Platformer.Objects.Decorations {
         #endregion
 
         // Initalizes from the LDtk files.
-        public virtual void Init(int offset, float rotation, Vector3[] path) {
+        public virtual void SetRotation(float rotation) {
             m_Rotation = rotation;
             transform.eulerAngles = Vector3.forward * rotation;
         }

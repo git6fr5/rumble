@@ -75,6 +75,21 @@ namespace Platformer.Physics {
             return null;
         }
 
+        //
+        public float DistanceToFirst(Vector3 position, Vector2 direction, LayerMask layers, float distance = -1f) {
+            distance = distance == -1f ? Mathf.Infinity : distance;
+
+            RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position + (Vector3)direction * CollisionPrecision, direction, distance, layers);
+            
+            if (hit.collider != null) {
+                return hit.distance;
+            }
+            else {
+                return distance;
+            }
+
+        }
+
     }
 
 }

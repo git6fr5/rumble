@@ -59,6 +59,10 @@ namespace Platformer.Character.Actions {
         [SerializeField]
         private Sprite[] m_DashAnimation = null;
 
+        // The sprites this is currently animating through.
+        [SerializeField]
+        private Sprite[] m_PostdashAnimation = null;
+
         // The sounds that plays when dashing.
         [SerializeField]
         private AudioClip m_DashSound = null;
@@ -80,6 +84,7 @@ namespace Platformer.Character.Actions {
 
             if (!enable) {
                 character.Animator.Remove(m_PredashAnimation);
+                character.Animator.Remove(m_PostdashAnimation);
                 character.Animator.Remove(m_DashAnimation);
             }
 
@@ -181,11 +186,14 @@ namespace Platformer.Character.Actions {
         private void OnStartPostdash(CharacterController character) {
             if (character.Input.Direction.Horizontal == Mathf.Sign(m_CachedDirection.x)) {
                 character.Body.SetVelocity(m_CachedDirection * character.Default.Speed);
+                character.Animator.Push(m_PostdashAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
             }
             else {
                 character.Body.SetVelocity(Vector2.zero);
             }
+
             character.Default.Enable(character, true);
+
             character.Animator.Remove(m_DashAnimation);
 
             m_DashTimer.Start(m_PostdashDuration);
@@ -193,6 +201,7 @@ namespace Platformer.Character.Actions {
         }
 
         private void OnEndDash(CharacterController character) {
+            character.Animator.Remove(m_PostdashAnimation);
             m_ActionPhase = ActionPhase.None;
         }
 

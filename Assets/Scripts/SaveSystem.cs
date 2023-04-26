@@ -19,8 +19,6 @@ namespace Platformer.Management {
     [DefaultExecutionOrder(-1000)]
     public class SaveSystem : MonoBehaviour {
         
-
-        
         public const string AUDIO_SETTINGS_PATH = "/audio_settings.json";
 
         public const string LEVEL_FILE_PATH = "/levels/";
@@ -54,11 +52,9 @@ namespace Platformer.Management {
             LevelSettingsData levelSettingsData = new LevelSettingsData();
             string levelPath = LEVEL_FILE_PATH + levelSettingsData.fileName + ".json";
             if (!File.Exists(Application.persistentDataPath + levelPath)) {
-                SaveLevelSettings();   
+                CreateNewLevelSettingsFile();    
             }
-            else {
-                ReadLevelSettings(levelSettingsData.fileName);
-            }
+            ReadLevelSettings(levelSettingsData.fileName);
         }
 
         public static void ReadLevelSettings(string fileName) {
@@ -69,7 +65,16 @@ namespace Platformer.Management {
         }
 
         public static void SaveLevelSettings() {
+            Debug.Log("Saving");
             LevelSettingsData levelSettingsData = new LevelSettingsData();
+            string levelSettingsJson = JsonUtility.ToJson(levelSettingsData);
+            string levelPath = LEVEL_FILE_PATH + levelSettingsData.fileName + ".json";
+            System.IO.File.WriteAllText(Application.persistentDataPath + levelPath, levelSettingsJson);
+        }
+
+        public static void CreateNewLevelSettingsFile() {
+            Debug.Log("New File");
+            LevelSettingsData levelSettingsData = LevelSettingsData.NewFile();
             string levelSettingsJson = JsonUtility.ToJson(levelSettingsData);
             string levelPath = LEVEL_FILE_PATH + levelSettingsData.fileName + ".json";
             System.IO.File.WriteAllText(Application.persistentDataPath + levelPath, levelSettingsJson);

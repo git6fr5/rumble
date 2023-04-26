@@ -18,7 +18,6 @@ namespace Platformer.Objects.Orbs {
     ///
     ///<summary>
     [DefaultExecutionOrder(1000)]
-    [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(CircleCollider2D))]
     public class PowerOrb : OrbObject {
 
         #region Enumerations.

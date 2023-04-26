@@ -65,9 +65,11 @@ namespace Platformer.Management {
 
         [HideInInspector]
         private int m_Deaths = 0;
+        public int Deaths => m_Deaths;
 
         [HideInInspector]
         private int m_Points = 0;
+        public int Points => m_Points;
         
         #endregion
 
@@ -172,7 +174,6 @@ namespace Platformer.Management {
 
         public void AddDeath() {
             m_Deaths += 1;
-            SaveSystem.SaveLevelSettings();
         }
 
         public void AddPoint(ScoreOrb scoreOrb) {
@@ -186,6 +187,10 @@ namespace Platformer.Management {
         }
 
         public void OnComplete() {
+            LevelSettings.CurrentPoints = -1;
+            LevelSettings.CurrentDeaths = -1;
+            LevelSettings.CurrentTime = -1f;
+
             LevelSettings.CompletedPoints = m_Points;
             LevelSettings.CompletedDeaths = m_Deaths;
             LevelSettings.CompletedTime = Game.Physics.Time.Ticks;

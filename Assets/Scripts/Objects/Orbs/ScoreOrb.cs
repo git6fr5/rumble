@@ -20,7 +20,6 @@ namespace Platformer.Objects.Orbs {
     ///<summary>
     ///
     ///<summary>
-    [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(CircleCollider2D))]
     public class ScoreOrb : OrbObject {
 
         #region Variables.
@@ -47,13 +46,10 @@ namespace Platformer.Objects.Orbs {
         #region Methods.
 
         // Runs once every fixed interval.
-        protected override void FixedUpdate() {
-            if (m_Follow == null) {
-                base.FixedUpdate();
-            }
-            else {
+        void FixedUpdate() {
+            if (m_Follow != null) {
                 Vector3 direction = -(m_Follow.position - transform.position).normalized;
-                Vector3 followPosition = m_Follow.position + direction; // (m_Follow.position - transform.position).normalized * m_Index;
+                Vector3 followPosition = m_Follow.position + direction;
                 float mag = (followPosition - transform.position).magnitude;
                 transform.Move(followPosition, mag * 5f, Time.fixedDeltaTime);
             }

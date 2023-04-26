@@ -33,8 +33,26 @@ namespace Platformer.UI {
 
         public void SetSelectedLevel() {
             m_TitleText.text = LevelSettings.LevelName.ToUpper();
-            m_LevelStars.text = "STARS: " + LevelSettings.CompletedPoints.ToString() + "/" + LevelSettings.MaxPoints.ToString();
-            m_LevelTime.text = "BEST TIME: " + "00:00:00";
+            m_LevelStars.text = "STARS: " + GetPointsText() + "/" + LevelSettings.MaxPoints.ToString();
+            m_LevelTime.text = "BEST TIME: " + GetTimeText();
+        }
+
+        public string GetPointsText() {
+            if (LevelSettings.CompletedPoints < 0) {
+                return "0";
+            }
+            return LevelSettings.CompletedPoints.ToString();
+        }
+
+        public string GetTimeText() {
+            if (LevelSettings.CompletedTime < 0f) {
+                return "Incomplete.";
+            }
+
+            string fullTime = LevelSettings.CompletedTime.ToString();
+            string splitTime = fullTime.Split('.')[0];
+            return splitTime + " seconds";
+
         }
 
 

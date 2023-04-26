@@ -28,6 +28,19 @@ namespace UnityExtensions {
 
         }
 
+        public static void SetAnimation(this Transform transform, TransformAnimation animation, float time) {
+
+            animation.AnimationTimer.Set(time, false);
+
+            // Position.
+            transform.localPosition = animation.Position;
+            // Scale.
+            transform.localScale = animation.Scale;
+            // Rotation.
+            transform.localRotation = animation.Rotation;
+
+        }
+
         // Moves an obstacle towards a target.
         public static void Move(this Transform transform, Vector3 destination, float speed, float deltaTime, List<Transform> transforms = null) {
             if (destination == transform.position) {

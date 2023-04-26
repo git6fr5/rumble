@@ -29,6 +29,8 @@ namespace Platformer.Visuals {
 
         // The amount of time it takes to recolor the screen.
         public const float RECOLOR_TIME = 0.24f;
+        
+        public const float RECOLOR_FACTOR = 18f; 
 
         // The threshold above which a ramp stop starts ramping up.
         public const float RAMP_THRESHOLD = 0.5f;
@@ -139,16 +141,18 @@ namespace Platformer.Visuals {
 
         // Recolors the screen.
         public void RecolorScreen(Texture2D colorPalette) {
-            // Texture2D tex = m_ColorSwapMaterial.GetTexture("_TargetPalette");
+            Texture tex = m_ColorSwapMaterial.GetTexture("_TargetPalette");
+            m_ColorSwapMaterial.SetTexture("_TransitionPalette", tex);
             m_ColorSwapMaterial.SetTexture("_TargetPalette", colorPalette);
+            m_ColorSwapMaterial.SetFloat("_Radius", 0f);
             // m_CurrentPalette.SetBlend(m_ColorSwapMaterial, "B");
             // m_CurrentPalette = colorPalette;
-            // m_RecolorTimer.Start(RECOLOR_TIME);
+            m_RecolorTimer.Start(RECOLOR_TIME);
         }
 
         // Gradually blends the two color palettes into the second color palette
         public void WhileColoringScreen() {
-            m_ColorSwapMaterial.SetFloat("_Radius", m_RecolorTimer.InverseRatio);
+            m_ColorSwapMaterial.SetFloat("_Radius", RECOLOR_FACTOR * m_RecolorTimer.InverseRatio);
         }
 
         // Gets a random position within the screen bounds.

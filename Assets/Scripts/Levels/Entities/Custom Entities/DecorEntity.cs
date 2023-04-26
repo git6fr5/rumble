@@ -19,17 +19,19 @@ namespace Platformer.Levels.Entities {
     public class DecorEntity : RotatableEntity {
 
         // Take the control data and turn it into a period offset.
-        public override void OnControl(int index, List<LDtkTileData> controlData) {
-            Vector3[] path = this.GetPath(index, controlData, 1);
-            int offset = this.GetOffset(index, controlData);
+        public override void SetRotation() {
             float rotation = this.GetRotation();
+            DecorationController decor = GetComponent<DecorationController>();
+            if (decor != null) {
+                decor.SetRotation(rotation);
+            }
             Grass grass = GetComponent<Grass>();
             if (grass != null) {
-                grass.Init(offset, rotation, path);
+                grass.SetRotation(rotation);
             } 
             Arrow arrow = GetComponent<Arrow>();
             if (arrow != null) {
-                arrow.Init(offset, rotation, path);
+                arrow.SetRotation(rotation);
             }
         }
     }

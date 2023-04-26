@@ -25,13 +25,13 @@ namespace Platformer.Objects.Blocks {
         /* --- Constants --- */
 
         // The amount of friction the ghost block experiences while active.
-        public const float FRICTION = 0.01f;
+        public const float FRICTION = 0.2f;
 
         // The amount of drag the ghost block experiences while active.
-        public const float DRAG = 0.1f;
+        public const float DRAG = 0.2f;
 
         // The amount of mass the block has (for collisions).
-        public const float MASS = 0.7f;
+        public const float MASS = 0.9f;
 
         /* --- Components --- */
         
@@ -82,6 +82,7 @@ namespace Platformer.Objects.Blocks {
             }
             else {
                 m_Body.ReleaseAll();
+                m_Body.Slowdown(1f - FRICTION / 3f);
             }
         }
 
