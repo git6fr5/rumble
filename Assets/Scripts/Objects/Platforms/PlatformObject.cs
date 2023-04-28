@@ -18,7 +18,7 @@ namespace Platformer.Objects.Platforms {
     ///
     ///<summary>
     [DefaultExecutionOrder(1000)]
-    [RequireComponent(typeof(BoxCollider2D)), RequireComponent(typeof(SpriteShapeController))]
+    [RequireComponent(typeof(BoxCollider2D))]
     public class PlatformObject : MonoBehaviour {
 
         #region Variables.
@@ -32,7 +32,7 @@ namespace Platformer.Objects.Platforms {
         private const float PLATFORM_HEIGHT = 5f/16f;
 
         // The outcropping width for the border of the platform.
-        protected const float BORDER_WIDTH = 4f/16f;
+        protected const float OFFSET = 6f/16f;
 
         /* --- Components --- */
 
@@ -40,9 +40,11 @@ namespace Platformer.Objects.Platforms {
         protected BoxCollider2D m_Hitbox = null;
         
         // The sprite shape renderer attached to this platform.
+        [SerializeField]
         protected SpriteShapeRenderer m_SpriteShapeRenderer = null;
         
         // The sprite shape controller. attached to this platform.
+        [SerializeField]
         protected SpriteShapeController m_SpriteShapeController = null;
 
         // The spline attached to the sprite shape.
@@ -86,25 +88,32 @@ namespace Platformer.Objects.Platforms {
         [SerializeField] 
         private Spring[] m_Springs = null;
 
+        //
+        [SerializeField] 
+        SpriteShape m_PressedShape = null;
+        SpriteShape m_DefaultShape = null;
+
         #endregion
 
         #region Methods.
 
         // Runs once before the first frame.
         void Start() {
-            // Set the position.
-            m_Origin = transform.position;
-            // Set the layer.
-            gameObject.layer = LayerMask.NameToLayer("Objects");
-            // Cache the components.
-            m_SpriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
-            m_SpriteShapeController = GetComponent<SpriteShapeController>();
+            // Collision settings.
             m_Hitbox = GetComponent<BoxCollider2D>();
-            // Set the rendering settings.
-            m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.PLATFORM_RENDERING_LAYER;
-            m_SpriteShapeRenderer.sortingOrder = Game.Visuals.RenderingLayers.PLATFORM_RENDERING_ORDER;
-            // Reset the pressed timer.
+            gameObject.layer = LayerMask.NameToLayer("Objects");
+
+            // Rendering settings.
+            m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.Rendering.PlatformLayer;
+            m_SpriteShapeRenderer.sortingOrder = Game.Visuals.Rendering.PlatformOrder;
+            transform.position.z += Game.Visuals.Rendering.Saturation;
+
+            // Other.
+            m_Origin = transform.position;
+            m_DefaultShape = m_SpriteShapeController.spriteShape;
+            m_Spline = m_SpriteShapeController.spline;
             m_PressedTimer.Stop();
+
         }
 
         // Initalizes from the LDtk files.
@@ -112,12 +121,12 @@ namespace Platformer.Objects.Platforms {
             m_Path = path;
             // Having to do this annoys me a little but oh well.
             m_Hitbox = GetComponent<BoxCollider2D>();
-            m_SpriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
-            m_SpriteShapeController = GetComponent<SpriteShapeController>();
             m_Spline = m_SpriteShapeController.spline;
-            EditSpline(length);
-            EditHitbox(length, PLATFORM_HEIGHT);
 
+            // Cut two pixels off the right.
+            float _length = (float)length - 2f * (0.5f - OFFSET); 
+            EditSpline(_length);
+            EditHitbox(_length, PLATFORM_HEIGHT);
 
             Invoke("ActivateSprings", 0.04f);
 
@@ -150,6 +159,24 @@ namespace Platformer.Objects.Platforms {
 
             m_PressedTimer.TickDown(Time.deltaTime);
 
+            if (m_PressedDown && m_PressedShape != null) {
+                m_SpriteShapeController.spriteShape = m_PressedShape;
+            }
+            else if (!m_PressedDown && m_SpriteShapeController.spriteShape != m_DefaultShape) {
+                m_SpriteShapeController.spriteShape = m_DefaultShape;
+            }
+
+            AdjustPosition();
+
+        }
+
+        protected void AdjustPosition() {
+            if (!m_PressedDown) {
+                m_SpriteShapeController.transform.localPosition = new Vector3(0f, 1f/16f, 0f); 
+            }
+            else {
+                m_SpriteShapeController.transform.localPosition = new Vector3(0f, 0f, 0f); 
+            }
         }
 
         // Runs when something collides with this platform.
@@ -207,16 +234,16 @@ namespace Platformer.Objects.Platforms {
         // Edits the spline of an platform.
         protected static void EditSpline(Spline spline, float length) {
             spline.Clear();
-            spline.InsertPointAt(0, -BORDER_WIDTH * Vector3.right);
-            spline.InsertPointAt(1, ((float)length + BORDER_WIDTH) * Vector3.right);
+            spline.InsertPointAt(0, -OFFSET * Vector3.right);
+            spline.InsertPointAt(1, (-OFFSET + length) * Vector3.right);
             spline.SetTangentMode(0, ShapeTangentMode.Continuous);
             spline.SetTangentMode(1, ShapeTangentMode.Continuous);
         }
 
         // Edits the hitbox of the platform.
         protected void EditHitbox(float length, float height) {
-            m_Hitbox.size = new Vector2(length + 2f * (0.5f - BORDER_WIDTH), height);
-            m_Hitbox.offset = new Vector2(length, 1f - height) / 2f;
+            m_Hitbox.size = new Vector2(length, height);
+            m_Hitbox.offset = new Vector2(length - 2f * OFFSET, 1f - height) / 2f;
         }
 
         #endregion

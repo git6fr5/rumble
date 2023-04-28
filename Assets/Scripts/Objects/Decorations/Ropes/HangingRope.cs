@@ -15,19 +15,10 @@ namespace Platformer.Objects.Decorations {
     public class HangingRope : Rope {
 
         [SerializeField, Range(0f, 100f)] private float m_RopeLengthVariationPercent = 30f;
-        [SerializeField, Range(0f, 100f)] private float m_RopeEndWidthPercent = 30f;
-        [SerializeField, Range(0f, 100f)] private float m_RopeEndWidthVariationPercent = 30f;
 
         protected override void OnAwake() {
-            edgeCollider.isTrigger = true;
-
-            float endVar = Random.Range(-m_RopeEndWidthVariationPercent, m_RopeEndWidthVariationPercent);
-            float endWidthPerc = (m_RopeEndWidthPercent + endVar) / 100f;
-            lineRenderer.endWidth = ropeWidth * endWidthPerc;
-            edgeCollider.edgeRadius = ropeWidth;
-
+            m_EdgeCollider.isTrigger = true;
             transform.position += Vector3.right * Random.Range(-0.35f, 0.35f);
-
             ropeLength += ropeLength * Random.Range(-m_RopeLengthVariationPercent, m_RopeLengthVariationPercent) / 100f;
         }
 

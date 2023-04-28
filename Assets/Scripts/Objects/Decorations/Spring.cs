@@ -107,6 +107,12 @@ namespace Platformer.Objects.Decorations {
         }
 
         void FixedUpdate() {
+            if (m_Head == null) {
+                if (gameObject != null) { 
+                    Destroy(gameObject);
+                }
+                return;
+            }
             Compress();
         }
 

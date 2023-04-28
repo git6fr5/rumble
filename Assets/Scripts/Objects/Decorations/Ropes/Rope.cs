@@ -4,24 +4,28 @@ using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
+using UnityEngine.U2D;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 
 namespace Platformer.Objects.Decorations {
 
-    [RequireComponent(typeof(LineRenderer))]
+    /// <summary>
+    ///
+    /// <summary>
     [RequireComponent(typeof(EdgeCollider2D))]
     public class Rope : MonoBehaviour {
 
-        /* --- Components --- */
-        protected LineRenderer lineRenderer;
-        protected EdgeCollider2D edgeCollider;
+        //
+        public SpriteShapeController m_SpriteShape;
+        
+        //
+        protected EdgeCollider2D m_EdgeCollider;
 
-        /* --- Static Variables --- */
+        //
         protected static float SegmentLength  = 6f/16f;
 
-        /* --- Variables --- */
         [HideInInspector] protected int segmentCount; // The number of segments.
         [SerializeField] public Transform startpoint; // The width of the rope.
         [SerializeField] protected float weight = 1.5f;
@@ -36,13 +40,9 @@ namespace Platformer.Objects.Decorations {
         // Runs once on initialization.
         void Awake() {
             // Cache these references.
-            lineRenderer = GetComponent<LineRenderer>();
-            edgeCollider = GetComponent<EdgeCollider2D>();
+            m_EdgeCollider = GetComponent<EdgeCollider2D>();
             // Set up these components.
-            lineRenderer.useWorldSpace = false;
-            lineRenderer.startWidth = ropeWidth;
-            lineRenderer.endWidth = ropeWidth;
-            edgeCollider.edgeRadius = ropeWidth;
+            m_EdgeCollider.edgeRadius = ropeWidth;
             OnAwake();
             RopeSegments();
         }
@@ -74,13 +74,24 @@ namespace Platformer.Objects.Decorations {
             prevRopeSegments[0] = ropeSegments[0];
             velocities[0] = Vector2.zero;
 
+            m_SpriteShape.spline.Clear();
+            m_SpriteShape.spline.InsertPointAt(0, ropeSegments[0]);
+            m_SpriteShape.spline.SetTangentMode(0, ShapeTangentMode.Continuous);
+
+            m_EdgeCollider.points = new Vector2[segmentCount];
+
             for (int i = 1; i < segmentCount; i++) {
                 Vector2 offset = SegmentLength * Random.insideUnitCircle.normalized;
                 offset.y = -Mathf.Abs(offset.y);
                 ropeSegments[i] = ropeSegments[i - 1] + (Vector3)offset;
                 prevRopeSegments[i] = ropeSegments[i];
                 velocities[i] = new Vector2(0f, 0f);
+
+                m_SpriteShape.spline.InsertPointAt(i, ropeSegments[i]);
+                m_SpriteShape.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
+
             }
+
         }
 
         // Adds a jiggle whenever a body collides with this.
@@ -123,16 +134,13 @@ namespace Platformer.Objects.Decorations {
                 Constraints();
             }
 
-            lineRenderer.positionCount = segmentCount;
-            lineRenderer.SetPositions(ropeSegments);
-
             Vector2[] points = new Vector2[segmentCount];
             for (int i = 0; i < segmentCount; i++) {
+                m_SpriteShape.spline.SetPosition(i, ropeSegments[i]);
                 points[i] = (Vector2)ropeSegments[i];
             }
 
-            edgeCollider.points = points;
-            
+            m_EdgeCollider.points = points;
         }
 
         protected virtual void OnAwake() {

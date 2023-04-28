@@ -18,10 +18,8 @@ namespace Platformer.Objects.Decorations {
         // Runs once on initialization.
         protected override void OnAwake() {
             // Cache these references.
-            lineRenderer = GetComponent<LineRenderer>();
-            edgeCollider = GetComponent<EdgeCollider2D>();
-            edgeCollider.edgeRadius = ropeWidth / 2f;
-            edgeCollider.isTrigger = true;
+            m_EdgeCollider.edgeRadius = ropeWidth / 2f;
+            m_EdgeCollider.isTrigger = true;
         }
 
         protected override void Constraints() {

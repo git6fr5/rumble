@@ -29,7 +29,7 @@ namespace Platformer.Management {
         public Texture2D DefaultPalette => m_DefaultPalette;
 
         // The rendering layers in the game.
-        [HideInInspector]
+        [SerializeField]
         private RenderingLayers m_RenderingLayers = new RenderingLayers();
         public RenderingLayers RenderingLayers => m_RenderingLayers;
 

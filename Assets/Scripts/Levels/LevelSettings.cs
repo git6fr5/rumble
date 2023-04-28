@@ -97,7 +97,12 @@ namespace Platformer.Levels {
 
         // The start room name.
         private static string m_FirstRoomName = "";
-        public static string FirstRoomName => m_FirstRoomName;
+        public static string FirstRoomName {
+            get { return m_FirstRoomName; }
+            set { 
+                m_FirstRoomName = value; 
+            }
+        }
 
         // The 
         public static string MechanicsRoom = "MECHANICS";

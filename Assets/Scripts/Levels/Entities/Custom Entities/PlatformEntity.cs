@@ -22,8 +22,8 @@ namespace Platformer.Levels.Entities {
 
         // Take the control data and turn it into a length and path.
         public override void OnControl(int index, List<LDtkTileData> controlData) {
-            int length = this.GetLength<PlatformEntity>() + 1;
-            Vector3[] path = this.GetPath(index, controlData, length);
+            int length = this.GetLength<PlatformEntity>();
+            Vector3[] path = this.GetPath(index, controlData, length - 1);
             Objects.Platforms.PlatformObject platform = GetComponent<Objects.Platforms.PlatformObject>();
             if (platform != null) {
                 platform.Init(length, path);

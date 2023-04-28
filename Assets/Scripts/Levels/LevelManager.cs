@@ -78,6 +78,7 @@ namespace Platformer.Management {
             m_FirstRoomName = LevelSettings.FirstRoomName != "" ? LevelSettings.FirstRoomName : m_FirstRoomName;
             if (LevelSettings.CurrentLevelData == null) {
                 LevelSettings.CurrentLevelData = m_LDtkData;
+                LevelSettings.FirstRoomName = m_FirstRoomName;
             }
             m_LDtkData = LevelSettings.CurrentLevelData;
             // Load the sub-managers.

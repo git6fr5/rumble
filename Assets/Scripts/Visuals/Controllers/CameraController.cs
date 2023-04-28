@@ -30,7 +30,7 @@ namespace Platformer.Visuals {
         // The amount of time it takes to recolor the screen.
         public const float RECOLOR_TIME = 0.24f;
         
-        public const float RECOLOR_FACTOR = 18f; 
+        public const float RECOLOR_FACTOR = 1f; 
 
         // The threshold above which a ramp stop starts ramping up.
         public const float RAMP_THRESHOLD = 0.5f;
@@ -101,7 +101,10 @@ namespace Platformer.Visuals {
             }
             if (m_RecolorTimer.Active) {
                 WhileColoringScreen();
-                m_RecolorTimer.TickDown(Time.deltaTime);
+                bool finished = m_RecolorTimer.TickDown(Time.deltaTime);
+                if (finished) {
+                    m_ColorSwapMaterial.SetFloat("_Radius", RECOLOR_FACTOR);
+                }
             }
 
         }

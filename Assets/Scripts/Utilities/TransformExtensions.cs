@@ -42,12 +42,13 @@ namespace UnityExtensions {
         }
 
         // Moves an obstacle towards a target.
-        public static void Move(this Transform transform, Vector3 destination, float speed, float deltaTime, List<Transform> transforms = null) {
-            if (destination == transform.position) {
+        public static void Move(this Transform transform, Vector2 destination, float speed, float deltaTime, List<Transform> transforms = null) {
+            Vector2 pos = (Vector2)transform.position;
+            if (destination == pos) {
                 return;
             }
 
-            Vector3 displacement = destination - transform.position;
+            Vector2 displacement = destination - pos;
             Vector3 deltaPosition = displacement.normalized * speed * deltaTime;
             if (displacement.magnitude < deltaPosition.magnitude) {
                 deltaPosition = displacement;

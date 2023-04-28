@@ -8,6 +8,7 @@ namespace Platformer.Visuals {
     ///<summary>
     /// Stores a set of rendering layers for easy reference.
     ///<summary>
+    [System.Serializable]
     public class RenderingLayers {
 
         #region Rendering Layers

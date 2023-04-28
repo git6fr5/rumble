@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using LDtkUnity;
 using Platformer.Management;
 using Platformer.UI;
@@ -72,6 +73,10 @@ namespace Platformer.Management {
 
         void Update() {
 
+            if (UnityEngine.Input.GetKeyDown(KeyCode.R)) {
+                Restart();
+            }
+
             if (UnityEngine.Input.GetKeyDown(KeyCode.Escape)) {
                 if (m_UI.activeSelf) {
                     Play();
@@ -87,6 +92,10 @@ namespace Platformer.Management {
         void Start() {
             m_Player.gameObject.SetActive(true);
             Play();
+        }
+
+        public void Restart() {
+            SceneManager.LoadScene("Game");
         }
 
         public void SetLDtkData(LDtkComponentProject ldtkData) {

@@ -85,7 +85,7 @@ namespace Platformer.Objects.Platforms {
                     if (m_PressedDown) { OnStartCrumble(); }
                     break;
                 case CrumbleState.Crumbling:
-                    transform.Shake(m_Origin, Strength); // Should this be in while crumbling?
+                    m_SpriteShapeController.transform.Shake(m_Origin, Strength); // Should this be in while crumbling?
                     break;
                 default:
                     break;

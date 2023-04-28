@@ -63,7 +63,7 @@ namespace Platformer.Objects.Platforms {
 
         // Sets the target for this platform.
         private void SetTarget(float dt) {
-            float distance = (m_Path[m_PathIndex] - transform.position).magnitude;
+            float distance = ((Vector2)m_Path[m_PathIndex] - (Vector2)transform.position).magnitude;
             if (distance == 0f && m_PauseTimer.Value == m_PauseDuration) {
                 Game.Audio.Sounds.PlaySound(m_StopMovingSound);
             }

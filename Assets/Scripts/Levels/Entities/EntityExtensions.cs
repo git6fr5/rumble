@@ -62,6 +62,7 @@ namespace Platformer.Levels.Entities {
             for (int i = 0; i < garbage.Count; i++) {
                 MonoBehaviour.Destroy(garbage[i].gameObject);
             }
+            Debug.Log(length);
             return length;
         }
 
