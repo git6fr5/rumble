@@ -99,21 +99,19 @@ namespace Platformer.Objects.Platforms {
 
         // Runs once before the first frame.
         void Start() {
-            // Collision settings.
-            m_Hitbox = GetComponent<BoxCollider2D>();
-            gameObject.layer = LayerMask.NameToLayer("Objects");
-
-            // Rendering settings.
-            m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.Rendering.PlatformLayer;
-            m_SpriteShapeRenderer.sortingOrder = Game.Visuals.Rendering.PlatformOrder;
-            transform.position.z += Game.Visuals.Rendering.Saturation;
-
-            // Other.
+            // Set the position.
             m_Origin = transform.position;
-            m_DefaultShape = m_SpriteShapeController.spriteShape;
-            m_Spline = m_SpriteShapeController.spline;
+            // Set the layer.
+            gameObject.layer = LayerMask.NameToLayer("Objects");
+            // Cache the components.
+            m_SpriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
+            m_SpriteShapeController = GetComponent<SpriteShapeController>();
+            m_Hitbox = GetComponent<BoxCollider2D>();
+            // Set the rendering settings.
+            m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.PLATFORM_RENDERING_LAYER;
+            m_SpriteShapeRenderer.sortingOrder = Game.Visuals.RenderingLayers.PLATFORM_RENDERING_ORDER;
+            // Reset the pressed timer.
             m_PressedTimer.Stop();
-
         }
 
         // Initalizes from the LDtk files.
@@ -121,12 +119,11 @@ namespace Platformer.Objects.Platforms {
             m_Path = path;
             // Having to do this annoys me a little but oh well.
             m_Hitbox = GetComponent<BoxCollider2D>();
+            m_SpriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
+            m_SpriteShapeController = GetComponent<SpriteShapeController>();
             m_Spline = m_SpriteShapeController.spline;
-
-            // Cut two pixels off the right.
-            float _length = (float)length - 2f * (0.5f - OFFSET); 
-            EditSpline(_length);
-            EditHitbox(_length, PLATFORM_HEIGHT);
+            EditSpline(length);
+            EditHitbox(length, PLATFORM_HEIGHT);
 
             Invoke("ActivateSprings", 0.04f);
 

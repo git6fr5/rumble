@@ -8,7 +8,6 @@ namespace Platformer.Visuals {
     ///<summary>
     /// Stores a set of rendering layers for easy reference.
     ///<summary>
-    [System.Serializable]
     public class RenderingLayers {
 
         #region Rendering Layers
@@ -71,11 +70,11 @@ namespace Platformer.Visuals {
 
         // Character.
         public string TILE_RENDERING_LAYER => BACKGROUND;
-        public int TILE_RENDERING_ORDER => BACKGROUND_RENDERING_ORDER + 1;
+        public int TILE_RENDERING_ORDER => SKY_RENDERING_ORDER + 1;
 
         // Character.
-        public string BACKGROUND_RENDERING_LAYER => BACKGROUND;
-        public int BACKGROUND_RENDERING_ORDER = 0;
+        public string SKY_RENDERING_LAYER => BACKGROUND;
+        public int SKY_RENDERING_ORDER = 0;
 
 
     }
