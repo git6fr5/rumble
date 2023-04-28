@@ -25,7 +25,7 @@ namespace Platformer.Physics {
 
         [SerializeField] 
         private LayerMask m_Character;
-        public LayerMask Character => m_Character;
+        public LayerMask Characters => m_Character;
 
         [SerializeField]
         private LayerMask m_Solid; // For characters + ground

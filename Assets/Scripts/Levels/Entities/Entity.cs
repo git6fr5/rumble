@@ -10,6 +10,12 @@ using Platformer.Levels.Entities;
 
 namespace Platformer.Levels.Entities {
 
+    [System.Serializable]
+    public class RotationID {
+        public float Rotation;
+        public Vector2Int VectorID;
+    }
+
     interface IInitializable {
         void Initialize(Vector3 worldPosition, float depth);
     }
@@ -39,34 +45,41 @@ namespace Platformer.Levels.Entities {
         // The grid space coordinates this entity should be loaded at.
         [SerializeField, ReadOnly] 
         private Vector2Int m_GridPosition = new Vector2Int(0, 0);
-        public Vector2Int GridPosition => m_GridPosition;
-
-        // The grid space coordinates this entity should be loaded at.
-        [SerializeField, ReadOnly] 
-        private Vector2Int m_WorldPosition = new Vector3(0, 0);
-        public Vector2Int WorldPosition => m_WorldPosition;
+        public Vector2Int GridPosition {
+            get { return m_GridPosition; }
+            set {
+                m_GridPosition = value;
+            } 
+        }
 
         // The world space offset this entity should be loaded at.
         [SerializeField] 
         private Vector2 m_LoadOffset = new Vector2(0f, 0f);
         public Vector2 LoadOffset => m_LoadOffset;
+
+        [SerializeField]
+        private List<RotationID> m_Rotations = new List<RotationID>();
+        public List<RotationID> Rotations => m_Rotations;
         
         #endregion
         
         // Initialize this entity with the given settings.
-        public void Init(List<LDtkTileData> controlData, Vector2Int vectorID, Vector2Int gridPosition, Vector2Int origin) {
+        public void Init(List<LDtkTileData> controlData, Vector2Int roomOrigin) {
             // Cache the grid position of this entity.
-            m_Depth = transform.position.z;
-            m_GridPosition = gridPosition;
-            m_WorldPosition = Room.GridToWorldPosition(gridPosition, origin) + (Vector3)m_LoadOffset;            
+            float depth = transform.position.z;
+            Vector3 worldPosition = Room.GridToWorldPosition(m_GridPosition, roomOrigin) + (Vector3)m_LoadOffset;            
 
             // Check whether there is a control at this position.
             LDtkTileData controlTile = controlData.Find(control => control.gridPosition == gridPosition);
 
-            Initalize();
+            Initalize(worldPosition, depth);
             SetRotation();
-            SetLength();
-            SetPathing();
+
+            // Depends on raycasting.
+            SetLength(controlTile.index, controlData);
+            SetPathing(controlTile.index, controlData); // (has to come after length is set)
+            SetSpin(controlTile.index, controlData);
+            
             gameObject.SetActive(true);
             
         }
@@ -84,7 +97,7 @@ namespace Platformer.Levels.Entities {
         }
 
         // Generate a entities from a list.
-        public static List<Entity> Generate(List<Entity> entities, List<LDtkTileData> entityData,  List<LDtkTileData> controlData,List<Entity> entityReferences, Transform parent, Vector2Int origin) {
+        public static List<Entity> Generate(List<Entity> entities, List<LDtkTileData> entityData,  List<LDtkTileData> controlData,List<Entity> entityReferences, Transform parent, Vector2Int roomOrigin) {
 
             for (int i = 0; i < entityData.Count; i++) {
 
@@ -94,15 +107,15 @@ namespace Platformer.Levels.Entities {
                 // Get the reference entity.
                 Entity entity = EntityManager.GetEntityByVectorID(entityData[i].vectorID, entityReferences);
                 if (entity != null && !preloaded) {
-
                     // Swap the reference entity for a duplicated entity.
                     entity = entity.Duplicate(parent);
-                    // Initialize the entity.
-                    entity.Init(control, controlData, entityData, origin);
-                    
+                    entity.GridPosition = entityData[i].gridPosition;
                     entities.Add(entity);
-
                 }
+            }
+
+            for (int i = 0; i < entities.Count; i++) {
+                entity.Init(controlData, roomOrigin);
             }
 
             return entities;

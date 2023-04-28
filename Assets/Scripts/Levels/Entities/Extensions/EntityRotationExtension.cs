@@ -25,14 +25,14 @@ namespace Platformer.Levels.Entities {
                 return;
             }
             
-            float rotation = entity.GetRotation(Rotations);
+            float rotation = entity.GetRotation(entity.Rotations);
             rotatable.SetRotation(rotation);
 
         }
 
-        public static float GetRotation(this Entity entity, List<RotationID> rotations) {
+        public static float GetRotation(this Entity entity, List<LDtkTileData> rotationIDs) {
             // Get the current rotation ID and return its rotation.
-            RotationID rotationID = rotations.Find(rotationID => rotationID.VectorID == m_VectorID);
+            RotationID rotationID = rotationIDs.Find(rotationID => rotationID.VectorID == entity.VectorID);
             if (rotationID == null) {
                 return 0f;
             }

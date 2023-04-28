@@ -58,8 +58,8 @@ namespace Platformer.Objects.Orbs {
             m_Orb = orb;
 
             // Set the sprite order.
-            m_SpriteRenderer.sortingLayerName = Game.Visuals.Rendering.OrbLayer;
-            m_SpriteRenderer.sortingOrder = Game.Visuals.Rendering.OrbOrder;
+            m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.OrbLayer;
+            m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.OrbOrder;
 
             // Calculate these values.
             Sprite[] animation = new Sprite[4 * m_Animation.Length - 2];

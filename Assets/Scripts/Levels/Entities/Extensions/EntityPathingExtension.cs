@@ -14,7 +14,7 @@ using Game = Platformer.Management.GameManager;
 namespace Platformer.Levels.Entities {
 
     public interface IPathable {
-        void SetPath(PathingData length);
+        void SetPath(PathingData path);
     }
 
     public struct PathingData {
@@ -30,13 +30,13 @@ namespace Platformer.Levels.Entities {
                 return; 
             }
             
-            PathingData path = entity.GetPath(index, controlData, length - 1);
+            PathingData path = entity.GetPath(index, controlData);
             pathing.SetPath(path);
 
         }
 
         // The logic of turning the ldtk data into a path.
-        public static PathingData GetPath(this Entity entity, int index, List<LDtkTileData> controlData, int length = 0) {
+        public static PathingData GetPath(this Entity entity, int index, List<LDtkTileData> controlData) {
             Vector3 position = entity.transform.position;
 
             // Cache the direction of the path.

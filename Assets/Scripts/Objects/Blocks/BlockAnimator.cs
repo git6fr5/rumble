@@ -86,8 +86,8 @@ namespace Platformer.Objects.Blocks {
             m_AnimationTimer.Start(RandomFrameDuration);
 
             // Set the sprite order.
-            m_SpriteRenderer.sortingLayerName = Game.Visuals.Rendering.BlockLayer;
-            m_SpriteRenderer.sortingOrder = Game.Visuals.Rendering.BlockOrder;
+            m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.BlockLayer;
+            m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.BlockOrder;
 
             // Calculate these values.
             m_MaxFrameDuration = 1f / ((1f - m_FrameRateVariation) * m_BaseFrameRate);

@@ -19,32 +19,26 @@ namespace Platformer.Levels.Entities {
 
     public static class EntityElongateExtension {
 
-        #region Variables.
-
-        /* --- Constants --- */
-
         // The distance that we search right for another platform.
         public const float SEARCH_DISTANCE = 0.25f;
 
-        #endregion
-
-        public static void SetLength<TElongatable>(this Entity entity, int index, List<LDtkTileData> controlData) where TElongatable : IElongatable {
-            TElongatable elongatable = entity.GetComponent<TElongatable>();
+        public static void SetLength(this Entity entity, int index, List<LDtkTileData> controlData) {
+            IElongatable elongatable = entity.GetComponent<IElongatable>();
             if (elongatable == null) { 
                 return; 
             }
             
-            int length = entity.GetLength<TEl();
+            int length = entity.GetLength();
             elongatable.SetLength(length);
 
         }
 
         // The logic of turning the ldtk data into a length.
-        public static int GetLength<TElongatable>(this Entity entity) where TElongatable : IElongatable {
+        public static int GetLength<IElongatable>(this Entity entity) {
             Vector3 position = entity.transform.position;
             
             // To cache the entities we want to delete after.
-            List<TElongatable> garbage = new List<IElongatable>();
+            List<IElongatable> garbage = new List<IElongatable>();
 
             // Itterate right until we are no longer touching
             // a platform entity.
@@ -55,7 +49,7 @@ namespace Platformer.Levels.Entities {
                 continueSearch = false;
                 // Can I do this purely though LDtk?
                 Vector3 offset = ((length - 1f) + 0.5f) * Vector3.right;
-                TElongatable tEntity = Game.Physics.Collisions.LineOfSight<TElongate>(position + offset, Vector2.right, Game.Physics.CollisionLayers.Platform, SEARCH_DISTANCE); 
+                IElongatable tEntity = Game.Physics.Collisions.LineOfSight<IElongatable>(position + offset, Vector2.right, Game.Physics.CollisionLayers.Platform, SEARCH_DISTANCE); 
                 if (tEntity != null) {
                     continueSearch = true;
                     garbage.Add(tEntity);

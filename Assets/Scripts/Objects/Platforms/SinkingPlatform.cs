@@ -11,13 +11,15 @@ using Platformer.Objects.Platforms;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using IPathable = Platformer.Levels.Entities.IPathable;
+using PathingData = Platformer.Levels.Entities.PathingData;
 
 namespace Platformer.Objects.Platforms {
 
     ///<summary>
     ///
     ///<summary>
-    public class SinkingPlatform : PlatformObject {
+    public class SinkingPlatform : PlatformObject, IPathable {
 
         #region Enumerations.
 
