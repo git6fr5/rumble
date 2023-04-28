@@ -83,9 +83,11 @@ namespace Platformer.Levels.Entities {
                 bool preloaded = entities.Find(ent => ent.VectorID == entityData[i].vectorID && ent.GridPosition == entityData[i].gridPosition) != null;
                 Entity entity = EntityManager.GetEntityByVectorID(entityData[i].vectorID, entityReferences);
                 if (entity != null && !preloaded) {
+                    float cacheZ = entity.
                     entity = entity.Duplicate(parent);
                     entities.Add(entity);
                     Vector3 entityPosition = Room.GridToWorldPosition(entityData[i].gridPosition, origin);
+                    entityPosition.z = entity.transform.position.z;
                     entity.Init(entityData[i].gridPosition, entityPosition);
                 }
             }

@@ -82,7 +82,7 @@ namespace Platformer.Objects.Platforms {
             // What to do for each state.
             switch (m_CrumbleState) {
                 case CrumbleState.None:
-                    if (m_PressedDown) { OnStartCrumble(); }
+                    if (m_Pressed) { OnStartCrumble(); }
                     break;
                 case CrumbleState.Crumbling:
                     m_SpriteShapeController.transform.Shake(m_Origin, Strength); // Should this be in while crumbling?

@@ -14,56 +14,40 @@ namespace Platformer.Physics {
 
         #region Layer Masks
 
+        [SerializeField] 
+        private LayerMask m_Default;
+        public LayerMask Default => m_Default;
+
         // Collision Layers
         [SerializeField] 
-        private LayerMask m_Ground;
+        private LayerMask Ground;
         public LayerMask Ground => m_Ground;
 
         [SerializeField] 
-        private LayerMask m_Water;
-        public LayerMask Water => m_Water;
-
-        [SerializeField] 
-        private LayerMask m_Platform;
-        public LayerMask Platform => m_Platform;
-
-        [SerializeField] 
-        private LayerMask m_Characters;
-        public LayerMask Characters => m_Characters;
-
-        [SerializeField] 
-        private LayerMask m_Orb;
-        public LayerMask Orb => m_Orb;
+        private LayerMask m_Character;
+        public LayerMask Character => m_Character;
 
         [SerializeField]
-        private LayerMask m_Opaque;
-        public LayerMask Opaque => m_Opaque;
+        private LayerMask m_Solid;
+        public LayerMask Solid => m_Solid;
 
         #endregion
 
         #region Layer Names
 
-        public string DANGEROUS = "Dangerous";
-        
-        public string STATIC = "Ignore Color Swap";
+        // Anything that needs to be ground goes on ground
 
-        public string PSEUDOGROUND = "Pseudoground";
+        public static int DecorLayer => LayerMask.NameToLayer("Default");
+        
+        public static int OrbLayer => LayerMask.NameToLayer("Default");
 
-        public string CHARACTER = "Character";
+        public static int SpikeLayer => LayerMask.NameToLayer("Default");
+        
+        public static int ProjectileLayer => LayerMask.NameToLayer("Default");
 
-        // ---
-
-        public string PROJECTILE_COLLISION_LAYER => DANGEROUS;
+        public static int PlatformLayer => LayerMask.NameToLayer("Ground");
         
-        public string SPIKE_COLLISION_LAYER => DANGEROUS;
-        
-        public int ORB_COLLISION_LAYER => LayerMask.NameToLayer(STATIC);
-        
-        public string PLATFORM_COLLISION_LAYER => PSEUDOGROUND;
-        
-        public int BLOCK_COLLISION_LAYER => LayerMask.NameToLayer(PSEUDOGROUND);
-        
-        public string CHARACTER_COLLISION_LAYER => CHARACTER;
+        public static int BlockLayer => LayerMask.NameToLayer("Ground");
 
         #endregion
 

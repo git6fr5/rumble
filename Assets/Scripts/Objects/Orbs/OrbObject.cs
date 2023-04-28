@@ -26,25 +26,21 @@ namespace Platformer.Objects.Orbs {
 
         // The amount of time before the orb naturally respawns.
         private const float RESET_DELAY = 1.5f;
+
         // The amount of time before it starts blinking.
         private const float RESET_BLINK_DELAY = 0.7f;
+        
         // The amount of times the orb blinks before it reappears.
         protected const float RESET_BLINK_COUNT = 3;
-        // The opacity of the orb when it first blinks back into screen.
-        protected const float RESET_BASE_OPACITY = 0.2f;
-        // The opacity increase of the orb per blink.
-        protected const float RESET_OPACITY_PER_BLINK = 0.075f;
 
         /* --- Components --- */
+
+        // The collider attached to this gameObject
+        protected CircleCollider2D m_Hitbox = null;
 
         // The sprite renderer displaying this gameObject.
         [SerializeField]
         protected SpriteRenderer m_SpriteRenderer;
-
-        // The collider attached to this gameObject
-        [SerializeField]
-        protected CircleCollider2D m_Hitbox;
-        public CircleCollider2D Hitbox => m_Hitbox;
 
         /* --- Parameters --- */
 
@@ -52,18 +48,14 @@ namespace Platformer.Objects.Orbs {
         [SerializeField, ReadOnly] 
         protected Vector3 m_Origin;
 
-        // The effect that plays when this orb is collected
-        [SerializeField] 
-        private VisualEffect m_TouchEffect;
         // The sound that plays when this orb is collected.
         [SerializeField] 
         private AudioClip m_TouchSound;
-        // The effect that when this orb is reset.
-        [SerializeField] 
-        private VisualEffect m_RefreshEffect;
+
         // The sound that plays when this orb is reset.
         [SerializeField] 
         private AudioClip m_RefreshSound;
+
         // The sound that plays when this orb blinks.
         [SerializeField]
         protected AudioClip m_BlinkSound;
@@ -79,22 +71,22 @@ namespace Platformer.Objects.Orbs {
 
         // Runs once before the first frame.
         void Start() {
-            // Set the hitbox to a trigger.
-            m_Hitbox.isTrigger = true;
-            // Set the origin of this object.
+            // Cache the origin
             m_Origin = transform.position;
-            // Set the collision layer of an orb object. 
-            gameObject.layer = Game.Physics.CollisionLayers.ORB_COLLISION_LAYER;
-            // Set the rendering layer and order of an orb object.
-            m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.ORB_RENDERING_LAYER;
-            m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.ORB_RENDERING_ORDER;
-            // Reset the orb to its default settings.
-            Reset();
+
+            // Collision settings.
+            m_Hitbox = GetComponent<CircleCollider2D>();
+            m_Hitbox.isTrigger = true;
+            gameObject.layer = Game.Physics.CollisionLayers.OrbLayer;
+
+            // Rendering settings.
+            m_SpriteRenderer.sortingLayerName = Game.Visuals.Rendering.OrbLayer;
+            m_SpriteRenderer.sortingOrder = Game.Visuals.Rendering.OrbOrder;
+
         }
 
         // Runs everytime something enters this trigger area.
         void OnTriggerEnter2D(Collider2D collider) {
-            // Checks if a character has touched this trigger area and then runs the appropriate functionality.
             CharacterController character = collider.GetComponent<CharacterController>();
             if (character != null) {
                 OnTouch(character);
@@ -104,8 +96,6 @@ namespace Platformer.Objects.Orbs {
         protected virtual void OnTouch(CharacterController character) {
             Game.Physics.Time.RunHitStop(8);
             Game.Audio.Sounds.PlaySound(m_TouchSound, 0.05f);
-            Game.Visuals.Effects.PlayEffect(m_TouchEffect);
-            // Game.Visuals.Effects.PlayEffect(character.ImpactEffect);
         }
 
         // A coroutine to eventually reset this orb object.
@@ -113,36 +103,33 @@ namespace Platformer.Objects.Orbs {
             // Wait a little until this orb starts blinking back into existence.
             yield return new WaitForSeconds(PreBlinkTime);
             // Break if the orb has been prematurely reset.
-            if (m_Hitbox.enabled && m_SpriteRenderer.enabled) {
+            if (m_Hitbox.enabled) {
+                m_SpriteRenderer.enabled = true;
                 yield break;
             }
-            // Set up the colors.
-            Color cacheColor = m_SpriteRenderer.color;
-            Color tempColor = m_SpriteRenderer.color;
-            tempColor.a = RESET_BASE_OPACITY;
+
             // Blink the orb a couple of times.
-            m_SpriteRenderer.color = tempColor; 
             for (int i = 0; i < 2 * RESET_BLINK_COUNT; i++) {
-                tempColor.a += RESET_OPACITY_PER_BLINK;
-                m_SpriteRenderer.color = tempColor; 
                 m_SpriteRenderer.enabled = !m_SpriteRenderer.enabled;
                 Game.Audio.Sounds.PlaySound(m_BlinkSound, 0.05f);
+
+                if (m_Hitbox.enabled) {
+                    m_SpriteRenderer.enabled = true;
+                    yield break;
+                }
+
                 yield return new WaitForSeconds(BlinkTime);
             }
-            // Reset the orbs color.
-            m_SpriteRenderer.color = cacheColor;
-            m_SpriteRenderer.enabled = true;
+
             // Wait one more blink just because it feels more correct.
             yield return new WaitForSeconds(PostBlinkTime);
-            // Make the orb collectible agains.
             Reset();
 
         }
 
         // Resets the object to its default state.
-        public virtual void Reset() {
+        public virtual void Reset(bool vfx, bool sfx) {
             // Give the player feedback that this object has been reset.
-            Game.Visuals.Effects.PlayEffect(m_RefreshEffect);
             Game.Audio.Sounds.PlaySound(m_RefreshSound, 0.15f);
             // Reset the hitbox and rendering components of this object.
             m_Hitbox.enabled = true;

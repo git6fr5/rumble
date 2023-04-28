@@ -77,13 +77,13 @@ namespace Platformer.Objects.Platforms {
             // What to do for each state.
             switch (m_SinkState) {
                 case SinkState.None:
-                    if (m_PressedDown) { OnStartSinking(m_SinkDelay); }
+                    if (m_Pressed) { OnStartSinking(m_SinkDelay); }
                     break;
                 case SinkState.Sinking:
-                    if (!m_PressedDown) { OnStartRising(0f); }
+                    if (!m_Pressed) { OnStartRising(0f); }
                     break;
                 case SinkState.Rising:
-                    if (m_PressedDown) { OnStartSinking(0f); }
+                    if (m_Pressed) { OnStartSinking(0f); }
                     break;
                 default:
                     break;

@@ -79,13 +79,13 @@ namespace Platformer.Objects.Platforms {
             // What to do for each state.
             switch (m_TiltState) {
                 case TiltState.None:
-                    if (m_PressedDown) { OnStartTilting(m_TiltDelay); }
+                    if (m_Pressed) { OnStartTilting(m_TiltDelay); }
                     break;
                 case TiltState.Tilting:
-                    if (!m_PressedDown) { OnStartUntilting(0f); }
+                    if (!m_Pressed) { OnStartUntilting(0f); }
                     break;
                 case TiltState.Untilting:
-                    if (m_PressedDown) { OnStartTilting(0f); }
+                    if (m_Pressed) { OnStartTilting(0f); }
                     break;
                 default:
                     break;

@@ -29,6 +29,8 @@ namespace Platformer.Objects.Platforms {
 
         #endregion
 
+        #region Variables
+
         /* --- Constants --- */
 
         // The default bounce speed.
@@ -54,13 +56,22 @@ namespace Platformer.Objects.Platforms {
         // The max tension before releasing.
         [SerializeField] 
         private float m_MaxTension = 0.7f;
+        private Vector3 MaxTensionPosition => m_Origin + Vector3.down * m_MaxTension;
 
         // The sound that plays when this bounces.
         [SerializeField] 
         private AudioClip m_BounceSound = null;
 
-        // The max tension for the bounce platform.
-        Vector3 MaxTensionPosition => m_Origin + Vector3.down * m_MaxTension;
+        // If any springs are attached to this platform.
+        [SerializeField] 
+        private Spring[] m_Springs = null;
+
+        #endregion
+
+        public override void Init(int length, Vector3[] path) {
+            base.Init(length, path);
+            Invoke("ActivateSprings", 0.04f);
+        }
 
         // Runs once every frame.
         // Having to do this is a bit weird.
@@ -70,7 +81,7 @@ namespace Platformer.Objects.Platforms {
             // What to do for each state.
             switch (m_BounceState) {
                 case BounceState.None:
-                    if (m_PressedDown) { OnStartTensing(); }
+                    if (m_Pressed) { OnStartTensing(); }
                     break;
                 default:
                     break;
@@ -189,6 +200,21 @@ namespace Platformer.Objects.Platforms {
             }
             m_CollisionContainer = new List<Transform>();
         }
+
+        // Activate the springs attached to this bouncy platform.
+        public void ActivateSprings(Spring[] m_Springs) {
+
+            float distanceToGround = Game.Physics.Collisions.DistanceToFirst(transform.position + Vector3.down * 0.25f, Vector3.down, Game.Physics.CollisionLayers.Ground);
+            distanceToGround = Mathf.Min(distanceToGround, 20f);
+
+            Vector2 offset = Vector2.zero;
+            for (int i = 0; i < m_Springs.Length; i++) {
+                offset.x = m_Hitbox.offset.x + Random.Range(-0.5f, 0.5f);
+                m_Springs[i].Activate(offset, distanceToGround + 0.5f, Vector3.down);
+            }
+
+        }
+
 
     }
 }
