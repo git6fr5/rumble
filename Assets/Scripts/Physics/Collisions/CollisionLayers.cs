@@ -20,7 +20,7 @@ namespace Platformer.Physics {
 
         // Collision Layers
         [SerializeField] 
-        private LayerMask Ground;
+        private LayerMask m_Ground;
         public LayerMask Ground => m_Ground;
 
         [SerializeField] 
@@ -28,8 +28,12 @@ namespace Platformer.Physics {
         public LayerMask Character => m_Character;
 
         [SerializeField]
-        private LayerMask m_Solid;
+        private LayerMask m_Solid; // For characters + ground
         public LayerMask Solid => m_Solid;
+
+        [SerializeField]
+        private LayerMask m_IgnoreCharacter; // For anything that can touch the ground but not the character.
+        public LayerMask IgnoreCharacter => m_IgnoreCharacter;
 
         #endregion
 
@@ -37,17 +41,17 @@ namespace Platformer.Physics {
 
         // Anything that needs to be ground goes on ground
 
-        public static int DecorLayer => LayerMask.NameToLayer("Default");
+        public int DecorLayer => LayerMask.NameToLayer("Default");
         
-        public static int OrbLayer => LayerMask.NameToLayer("Default");
+        public int OrbLayer => LayerMask.NameToLayer("Default");
 
-        public static int SpikeLayer => LayerMask.NameToLayer("Default");
+        public int SpikeLayer => LayerMask.NameToLayer("Default");
         
-        public static int ProjectileLayer => LayerMask.NameToLayer("Default");
+        public int ProjectileLayer => LayerMask.NameToLayer("Default");
 
-        public static int PlatformLayer => LayerMask.NameToLayer("Ground");
+        public int PlatformLayer => LayerMask.NameToLayer("Ground");
         
-        public static int BlockLayer => LayerMask.NameToLayer("Ground");
+        public int BlockLayer => LayerMask.NameToLayer("Ground");
 
         #endregion
 

@@ -57,11 +57,10 @@ namespace Platformer.Levels.Entities {
                     return entityList[i];
                 }
                 else {
-                    RotatableEntity rotatableEntity = entityList[i].GetComponent<RotatableEntity>();
-                    if (rotatableEntity?.Rotations != null) {
-                        for (int j = 0; j < rotatableEntity.Rotations.Count; j++) {
-                            if (rotatableEntity.Rotations[j].VectorID == vectorID) {
-                                rotatableEntity.SetCurrentVectorID(vectorID);
+                    if (entityList[i].Rotations != null && entityList[i].Rotations.Count > 0) {
+                        for (int j = 0; j < entityList[i].Rotations.Count; j++) {
+                            if (entityList[i].Rotations[j].VectorID == vectorID) {
+                                entityList[i].SetCurrentVectorID(vectorID);
                                 return entityList[i];
                             }
                         }

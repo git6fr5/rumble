@@ -20,7 +20,6 @@ namespace Platformer.Objects.Orbs {
     public class OrbAnimator : MonoBehaviour {
 
         #region Components.
-
         
         /* --- Constants --- */
 
@@ -30,7 +29,8 @@ namespace Platformer.Objects.Orbs {
         /* --- Components --- */
 
         // The sprite renderer attached to this gameObject.
-        public SpriteRenderer m_SpriteRenderer = null;
+        [SerializeField]
+        private SpriteRenderer m_SpriteRenderer = null;
 
         /* --- Parameters --- */
 
@@ -53,8 +53,15 @@ namespace Platformer.Objects.Orbs {
 
         #endregion
 
-        void Start() {
+        public void Initialize(OrbObject orb) {
+            // Cache these components.
+            m_Orb = orb;
 
+            // Set the sprite order.
+            m_SpriteRenderer.sortingLayerName = Game.Visuals.Rendering.OrbLayer;
+            m_SpriteRenderer.sortingOrder = Game.Visuals.Rendering.OrbOrder;
+
+            // Calculate these values.
             Sprite[] animation = new Sprite[4 * m_Animation.Length - 2];
             int index = 0;
             for (int i = 0; i < m_Animation.Length; i++) {

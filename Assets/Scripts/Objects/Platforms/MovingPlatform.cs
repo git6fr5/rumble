@@ -11,15 +11,24 @@ using Platformer.Objects.Platforms;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using IPathable = Platformer.Levels.Entities.IPathable;
+using PathingData = Platformer.Levels.Entities.PathingData;
 
 namespace Platformer.Objects.Platforms {
 
     ///<summary>
     ///
     ///<summary>
-    public class MovingPlatform : PlatformObject {
+    public class MovingPlatform : PlatformObject, IPathable {
 
         #region Variables.
+
+        // The path that this platform follows.
+        protected Vector3[] m_Path = null;
+
+        // The current position in the path that the path is following.
+        [SerializeField, ReadOnly] 
+        protected int m_PathIndex;
 
         // The pause timer.
         [HideInInspector]
@@ -43,9 +52,19 @@ namespace Platformer.Objects.Platforms {
 
         #endregion
 
-        public override void Init(int length, Vector3[] path) {
-            base.Init(length, path);
+        public void SetPath(PathingData pathingData) {
+            // Convert the start and end nodes into world positions.
+            m_Path = new Vector3[2];
+
+            m_Path[0] = m_Origin;
+            if (pathingData.Direction.x != 0f) {
+                m_Path[1] = m_Origin + (distance - m_BaseLength) * (Vector3)Direction;
+            }
+            else {
+                m_Path[1] = m_Origin + distance * (Vector3)Direction;
+            }
             m_PauseTimer.Start(m_PauseDuration);
+
         }
         
         // Runs once every frame.

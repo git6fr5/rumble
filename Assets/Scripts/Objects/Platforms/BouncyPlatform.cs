@@ -11,6 +11,7 @@ using Platformer.Objects.Platforms;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using Spring = Platformer.Objects.Decorations.Spring;
 
 namespace Platformer.Objects.Platforms {
 
@@ -68,8 +69,7 @@ namespace Platformer.Objects.Platforms {
 
         #endregion
 
-        public override void Init(int length, Vector3[] path) {
-            base.Init(length, path);
+        void Start() {
             Invoke("ActivateSprings", 0.04f);
         }
 

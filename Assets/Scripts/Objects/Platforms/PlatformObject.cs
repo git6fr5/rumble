@@ -10,7 +10,8 @@ using UnityExtensions;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using Spring = Platformer.Objects.Decorations.Spring;
+using IInitializable = Platformer.Levels.Entities.IInitializable;
+using IElongatable = Platformer.Levels.Entities.IElongatable;
 
 namespace Platformer.Objects.Platforms {
 
@@ -19,7 +20,7 @@ namespace Platformer.Objects.Platforms {
     ///<summary>
     [DefaultExecutionOrder(1000)]
     [RequireComponent(typeof(BoxCollider2D))]
-    public class PlatformObject : MonoBehaviour {
+    public class PlatformObject : MonoBehaviour, IInitializable, IElongatable {
 
         #region Variables.
 
@@ -51,13 +52,10 @@ namespace Platformer.Objects.Platforms {
 
         // The position that this platform was spawned at.
         protected Vector3 m_Origin;
-        
-        // The path that this platform follows.
-        protected Vector3[] m_Path = null;
-        
-        // The current position in the path that the path is following.
-        [SerializeField, ReadOnly] 
-        protected int m_PathIndex;
+
+        [SerializeField, ReadOnly]
+        protected float m_Length = 0f;
+        public float AdjustedLength = m_Length - 2f * (0.5f - OFFSET); 
         
         // The objects that are attached to the platform.
         [SerializeField, ReadOnly] 
@@ -87,27 +85,38 @@ namespace Platformer.Objects.Platforms {
 
         #region Methods.
 
-        // Initalizes from the LDtk files.
-        public virtual void Init(int length, Vector3[] path) {
-            // Cache the origin and path.
-            m_Origin = transform.position;
-            m_Path = path;
-
-            // Calculate the necessary adjusment in length in order to cut two pixels off the right
-            float adjustedLength = (float)length - 2f * (0.5f - OFFSET); 
+        // Initialize the platform.
+        public void Initialize(Vector3 worldPosition, float depth) {
+            // Cache the origin.
+            transform.position = worldPosition;
+            m_Origin = worldPosition;
 
             // Collision settings.
             m_Hitbox = GetComponent<BoxCollider2D>();
             m_Hitbox.isTrigger = false;
-            gameObject.layer = Game.Physics.Collisions.PlatformLayer;
-            SetCollider(m_Hitbox, adjustedLength, transform.position.y, OFFSET);
+            gameObject.layer = Game.Physics.CollisionLayers.PlatformLayer;
 
             // Rendering settings.
             m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.Rendering.PlatformLayer;
             m_SpriteShapeRenderer.sortingOrder = Game.Visuals.Rendering.PlatformOrder;
             m_Spline = m_SpriteShapeController.spline;
             m_DefaultShape = m_SpriteShapeController.spriteShape;
-            SetSpline(m_Spline, adjustedLength, OFFSET);
+
+        }
+
+        // Set the controls from the LDtk files.
+        public virtual void SetLength(int length) {
+            m_BaseLength = (float)length;
+            
+            // Set the hitbox length.
+            m_Hitbox.size = new Vector2(AdjustedLength, PLATFORM_HEIGHT );
+            m_Hitbox.offset = new Vector2(AdjustedLength - 2f * OFFSET, 1f - PLATFORM_HEIGHT) / 2f;
+
+            m_Spline.Clear();
+            m_Spline.InsertPointAt(0, -OFFSET * Vector3.right);
+            m_Spline.InsertPointAt(1, (-OFFSET + AdjustedLength) * Vector3.right);
+            m_Spline.SetTangentMode(0, ShapeTangentMode.Continuous);
+            m_Spline.SetTangentMode(1, ShapeTangentMode.Continuous);
 
         }
 
@@ -134,6 +143,25 @@ namespace Platformer.Objects.Platforms {
             m_CachePressed = m_Pressed;
         }
 
+        
+        // Check if a character is standing on top of this.
+        public static bool CheckPressed(float platformHeight, List<Transform> collisionContainer) {
+            if (collisionContainer.Count == 0) { return false; }
+
+            for (int i = 0; i < collisionContainer.Count; i++) {
+                CharacterController character = collisionContainer[i].GetComponent<CharacterController>();
+                if (character != null) {
+                    float characterFeetHeight = character.Body.position.y + character.Collider.offset.y - character.Collider.radius;
+                    bool isAbove = characterFeetHeight > platformHeight;
+                    bool movingVertically = character.Falling || character.Rising;
+                    if (isAbove && !movingVertically) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         // Runs when something collides with this platform.
         private void OnCollisionEnter2D(Collision2D collision) {
             // Check if there is a character.
@@ -156,39 +184,6 @@ namespace Platformer.Objects.Platforms {
             if (m_CollisionContainer.Contains(character.transform)) {
                 m_CollisionContainer.Remove(character.transform);
             }
-        }
-
-        // Check if a character is standing on top of this.
-        public static bool CheckPressed(float platformHeight, List<Transform> collisionContainer) {
-            if (collisionContainer.Count == 0) { return false; }
-
-            for (int i = 0; i < collisionContainer.Count; i++) {
-                CharacterController character = collisionContainer[i].GetComponent<CharacterController>();
-                if (character != null) {
-                    float characterFeetHeight = character.Body.position.y + character.Collider.offset.y - character.Collider.radius;
-                    bool isAbove = characterFeetHeight > platformHeight;
-                    bool movingVertically = character.Falling || character.Rising;
-                    if (isAbove && !movingVertically) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        // Edits the spline of an platform.
-        public void SetSpline(Spline spline, float length, float offset) {
-            spline.Clear();
-            spline.InsertPointAt(0, -offset * Vector3.right);
-            spline.InsertPointAt(1, (-offset + length) * Vector3.right);
-            spline.SetTangentMode(0, ShapeTangentMode.Continuous);
-            spline.SetTangentMode(1, ShapeTangentMode.Continuous);
-        }
-
-        // Edits the collider of the platform.
-        public static void SetCollider(BoxCollider2D collider, float length, float height, float offset) {
-            collider.size = new Vector2(length, height);
-            collider.offset = new Vector2(length - 2f * offset, 1f - height) / 2f;
         }
 
         #endregion

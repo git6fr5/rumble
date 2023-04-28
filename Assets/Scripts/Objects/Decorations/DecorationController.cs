@@ -12,13 +12,14 @@ using Platformer.Objects.Platforms;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using IRotatable = Platformer.Levels.Entities.IRotatable;
 
 namespace Platformer.Objects.Decorations {
 
     ///<summary>
     ///
     ///<summary>
-    public class DecorationController : MonoBehaviour {
+    public class DecorationController : MonoBehaviour, IRotatable {
 
         #region Variables.
 

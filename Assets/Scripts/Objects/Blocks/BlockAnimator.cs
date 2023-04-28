@@ -25,6 +25,7 @@ namespace Platformer.Objects.Blocks {
         /* --- Components --- */
         
         // The sprite renderer attached to this component.
+        [SerializeField]
         private SpriteRenderer m_SpriteRenderer = null;
 
         // The block attached to the parent object.
@@ -77,20 +78,23 @@ namespace Platformer.Objects.Blocks {
         #region Methods.
 
         // Runs once before the first frame.
-        void Start() {
+        public void Initialize(BlockObject block) {
             // Cache these components.
-            m_SpriteRenderer = GetComponent<SpriteRenderer>();
-            m_Block = transform.parent.GetComponent<BlockObject>();
+            m_Block = block;
+            
             // Start the timer.
             m_AnimationTimer.Start(RandomFrameDuration);
+
             // Set the sprite order.
-            m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.BLOCK_RENDERING_LAYER;
-            m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.BLOCK_RENDERING_ORDER;
+            m_SpriteRenderer.sortingLayerName = Game.Visuals.Rendering.BlockLayer;
+            m_SpriteRenderer.sortingOrder = Game.Visuals.Rendering.BlockOrder;
+
             // Calculate these values.
             m_MaxFrameDuration = 1f / ((1f - m_FrameRateVariation) * m_BaseFrameRate);
             m_MinFrameDuration = 1f / ((1f + m_FrameRateVariation) * m_BaseFrameRate);
             m_CurrentSprites = m_InactiveSprites;
             m_CachedActive = false;
+            
         }
 
         // Runs once every fixed interval.

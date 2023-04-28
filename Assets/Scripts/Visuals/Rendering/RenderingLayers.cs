@@ -11,71 +11,34 @@ namespace Platformer.Visuals {
     [System.Serializable]
     public class RenderingLayers {
 
-        #region Rendering Layers
+        [Header("Platforms"), Space(2)]
+        public string PlatformLayer = "Midground";
+        public int PlatformOrder = 1;
 
-        public string BACKGROUND = "Background";
+        [Header("Characters"), Space(2)]
+        public string CharacterLayer = "Midground";
+        public int CharacterOrder = 0;
 
-        public string MIDGROUND = "Midground";
+        [Header("Blocks"), Space(2)]
+        public string BlockLayer = "Midground";
+        public int BlockOrder = 2;
 
-        public string FOREGROUND = "Foreground";
+        [Header("Spikes"), Space(2)]
+        public string SpikeLayer = "Midground";
+        public int SpikeOrder = 3;
 
-        public string UI = "UI";
+        [Header("Orbs"), Space(2)]
+        public string OrbLayer = "Midground";
+        public int OrbOrder = 4;
 
-        #endregion
 
-        // FOREGROUND
-
-        // Particles.
-        // Projectiles.
-        // Spikes.
-
-        // Projectiles over spikes.
-        public string PARTICLE_RENDERING_LAYER => FOREGROUND;
-        public int PARTICLE_RENDERING_ORDER => PROJECTILE_RENDERING_ORDER + 1;
-
-        // Projectiles over spikes.
-        public string PROJECTILE_RENDERING_LAYER => FOREGROUND;
-        public int PROJECTILE_RENDERING_ORDER => SPIKE_RENDERING_ORDER + 1;
-
-        // Spikes on the 0 of foreground.
-        public string SPIKE_RENDERING_LAYER => FOREGROUND;
-        public int SPIKE_RENDERING_ORDER = 0;
-
-        // MIDGROUND
-
-        // Orbs.
-        // Platforms.
-        // Blocks.
-        // Character.
-
-        // Orbs over platforms.
-        public string ORB_RENDERING_LAYER => MIDGROUND;
-        public int ORB_RENDERING_ORDER => PLATFORM_RENDERING_ORDER + 1;
-
-        // Platform over characters.
-        public string PLATFORM_RENDERING_LAYER => MIDGROUND;
-        public int PLATFORM_RENDERING_ORDER => BLOCK_RENDERING_ORDER + 1;
-
-        // Blocks over orbs.
-        public string BLOCK_RENDERING_LAYER => MIDGROUND;
-        public int BLOCK_RENDERING_ORDER => CHARACTER_RENDERING_ORDER + 1;
-
-        // Character.
-        public string CHARACTER_RENDERING_LAYER => MIDGROUND;
-        public int CHARACTER_RENDERING_ORDER = 0;
-
-        // BACKGROUND
+        [Header("Sky"), Space(2)]
+        public string SkyLayer = "Background";
+        public int SkyOrder = -100;
         
-        // Tileset.
-        // Background.
-
-        // Character.
-        public string TILE_RENDERING_LAYER => BACKGROUND;
-        public int TILE_RENDERING_ORDER => BACKGROUND_RENDERING_ORDER + 1;
-
-        // Character.
-        public string BACKGROUND_RENDERING_LAYER => BACKGROUND;
-        public int BACKGROUND_RENDERING_ORDER = 0;
+        [Header("Tiles"), Space(2)]
+        public string TileLayer = "Background";
+        public int TileOrder = 2;
 
 
     }

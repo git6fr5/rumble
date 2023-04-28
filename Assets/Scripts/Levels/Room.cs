@@ -132,8 +132,7 @@ namespace Platformer.Levels {
 
         public void GenerateEntities(List<LDtkTileData> entityData, List<LDtkTileData> controlData, List<Entity> entityReferences) {
             entities.RemoveAll(entity => entity == null);
-            entities = Entity.Generate(entities, entityData, entityReferences, transform, worldPosition);
-            entities = Entity.SetControls(entities, controlData);
+            entities = Entity.Generate(entities, entityData, controlData, entityReferences, transform, worldPosition);
         }
 
         public void DestroyEntities() {
@@ -150,18 +149,10 @@ namespace Platformer.Levels {
             }
         }
 
-        public void Settings(List<LDtkTileData> controlData) {
-            LDtkTileData lightingData = controlData.Find(data => data.vectorID.y == LDtkTileData.LIGHTING_CONTROLS);
-            LDtkTileData weatherData = controlData.Find(data => data.vectorID.y == LDtkTileData.WEATHER_CONTROLS);
-        }
-
         void OnTriggerEnter2D(Collider2D collider) {
             if (collider == Game.MainPlayer.Collider) {
                 Game.Level.Load(this);
             }
-            // if (collider.GetComponent<CharacterController>() != null) {
-            //     Game.Level.Load(this);
-            // }
         }
 
         void OnTriggerExit2D(Collider2D collider) {

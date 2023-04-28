@@ -70,9 +70,10 @@ namespace Platformer.Objects.Orbs {
         #endregion
 
         // Runs once before the first frame.
-        void Start() {
+        void Initialize(Vector3 worldPosition, float depth) {
             // Cache the origin
-            m_Origin = transform.position;
+            transform.position = worldPosition;
+            m_Origin = worldPosition;
 
             // Collision settings.
             m_Hitbox = GetComponent<CircleCollider2D>();
@@ -80,8 +81,9 @@ namespace Platformer.Objects.Orbs {
             gameObject.layer = Game.Physics.CollisionLayers.OrbLayer;
 
             // Rendering settings.
-            m_SpriteRenderer.sortingLayerName = Game.Visuals.Rendering.OrbLayer;
-            m_SpriteRenderer.sortingOrder = Game.Visuals.Rendering.OrbOrder;
+            if (m_Animator != null) {
+                m_Animator.Initalize(this);
+            }
 
         }
 
@@ -128,7 +130,7 @@ namespace Platformer.Objects.Orbs {
         }
 
         // Resets the object to its default state.
-        public virtual void Reset(bool vfx, bool sfx) {
+        public virtual void Reset() {
             // Give the player feedback that this object has been reset.
             Game.Audio.Sounds.PlaySound(m_RefreshSound, 0.15f);
             // Reset the hitbox and rendering components of this object.

@@ -155,9 +155,10 @@ namespace Platformer.Management {
                 List<LDtkTileData> entityData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Entity);
                 List<LDtkTileData> controlData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Control);
 
-                // Load the level.
+                // Generate the entities.
                 room.GenerateEntities(entityData, controlData, m_EntityManager.All);
-                room.Settings(controlData);
+
+                // Move the camera
                 m_CurrentRoom = room;
                 Game.Visuals.Camera.SetTarget(m_CurrentRoom.worldCenter);
             }

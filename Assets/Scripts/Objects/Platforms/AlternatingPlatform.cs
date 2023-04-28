@@ -67,9 +67,18 @@ namespace Platformer.Objects.Platforms {
 
         #endregion
 
-        public override void Init(int length, Vector3[] path) {
-            base.Init(length, path);
-            EditSpline(m_DisabledObject.GetComponent<SpriteShapeController>().spline, length);
+        // Set the controls from the LDtk files.
+        public override void SetLength(int length) {
+            base.SetLength(length);
+
+            Spline otherSpline = m_DisabledObject.GetComponent<SpriteShapeController>().spline;
+
+            otherSpline.Clear();
+            otherSpline.InsertPointAt(0, -OFFSET * Vector3.right);
+            otherSpline.InsertPointAt(1, (-OFFSET + AdjustedLength) * Vector3.right);
+            otherSpline.SetTangentMode(0, ShapeTangentMode.Continuous);
+            otherSpline.SetTangentMode(1, ShapeTangentMode.Continuous);
+
         }
 
         void FixedUpdate() {

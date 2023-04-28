@@ -9,6 +9,7 @@ using UnityExtensions;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using IRotatable = Platformer.Levels.Entities.IRotatable;
 
 namespace Platformer.Objects.Decorations {
 
@@ -16,7 +17,7 @@ namespace Platformer.Objects.Decorations {
     /// Decorates a level with grass.
     ///<summary>
     [RequireComponent(typeof(SpriteRenderer))]
-    public class Grass : MonoBehaviour {
+    public class Grass : MonoBehaviour, IRotatable {
 
         #region Variables.
 
@@ -36,7 +37,7 @@ namespace Platformer.Objects.Decorations {
         #endregion
 
         // Initalizes from the LDtk files.
-        public virtual void SetRotation(float rotation) {
+        public void SetRotation(float rotation) {
             m_Rotation = rotation;
             transform.eulerAngles = Vector3.forward * rotation;
         }

@@ -31,6 +31,13 @@ namespace Platformer.Objects.Platforms {
 
         #region Variables.
 
+        // The path that this platform follows.
+        protected Vector3[] m_Path = null;
+
+        // The current position in the path that the path is following.
+        [SerializeField, ReadOnly] 
+        protected int m_PathIndex;
+
         // Whether this platform is sinking or rising.
         [SerializeField]
         private SinkState m_SinkState = SinkState.None;
@@ -68,6 +75,21 @@ namespace Platformer.Objects.Platforms {
         private AudioClip m_OnReachedTopSound = null;
         
         #endregion
+
+        public void SetPath(PathingData pathingData) {
+            // Convert the start and end nodes into world positions.
+            m_Path = new Vector3[2];
+
+            m_Path[0] = Vector3.zero;
+            if (pathingData.Direction.x != 0f) {
+                m_Path[1] = (distance - m_BaseLength) * (Vector3)Direction;
+            }
+            else {
+                m_Path[1] = distance * (Vector3)Direction;
+            }
+            m_PauseTimer.Start(m_PauseDuration);
+
+        }
 
         // Runs once every frame.
         // Having to do this is a bit weird.
