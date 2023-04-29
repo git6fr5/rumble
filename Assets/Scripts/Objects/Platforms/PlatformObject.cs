@@ -99,18 +99,19 @@ namespace Platformer.Objects.Platforms {
 
         // Runs once before the first frame.
         void Start() {
-            // Set the position.
-            m_Origin = transform.position;
-            // Set the layer.
-            gameObject.layer = LayerMask.NameToLayer("Objects");
-            // Cache the components.
-            m_SpriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
-            m_SpriteShapeController = GetComponent<SpriteShapeController>();
+            // Collision settings.
             m_Hitbox = GetComponent<BoxCollider2D>();
-            // Set the rendering settings.
+            gameObject.layer = LayerMask.NameToLayer("Objects");
+
+            // Rendering settings.
             m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.PLATFORM_RENDERING_LAYER;
             m_SpriteShapeRenderer.sortingOrder = Game.Visuals.RenderingLayers.PLATFORM_RENDERING_ORDER;
-            // Reset the pressed timer.
+            // transform.position.z += Game.Visuals.Rendering.Saturation;
+
+            // Other.
+            m_Origin = transform.position;
+            m_DefaultShape = m_SpriteShapeController.spriteShape;
+            m_Spline = m_SpriteShapeController.spline;
             m_PressedTimer.Stop();
         }
 
@@ -119,11 +120,12 @@ namespace Platformer.Objects.Platforms {
             m_Path = path;
             // Having to do this annoys me a little but oh well.
             m_Hitbox = GetComponent<BoxCollider2D>();
-            m_SpriteShapeRenderer = GetComponent<SpriteShapeRenderer>();
-            m_SpriteShapeController = GetComponent<SpriteShapeController>();
             m_Spline = m_SpriteShapeController.spline;
-            EditSpline(length);
-            EditHitbox(length, PLATFORM_HEIGHT);
+
+            // Cut two pixels off the right.
+            float _length = (float)length - 2f * (0.5f - OFFSET); 
+            EditSpline(_length);
+            EditHitbox(_length, PLATFORM_HEIGHT);
 
             Invoke("ActivateSprings", 0.04f);
 

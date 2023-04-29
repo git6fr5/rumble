@@ -177,17 +177,17 @@ Shader "Custom/RadialSwapShader"
                         fixed4 target = tex2D(_TargetPalette, float2(x / _ColorCount, 0));
                         fixed4 transition = tex2D(_TransitionPalette, float2(x / _ColorCount, 0));
                         if (same(col, base)) {
-                            col = target * col.a; 
-                            // if (dist < _Radius * _Radius) { col = target * col.a; }
-                            // else { col = transition * col.a; }
+                            // col = target * col.a; 
+                            if (dist < _Radius * _Radius) { col = target * col.a; }
+                            else { col = transition * col.a; }
                             swapped = true;
                         }
                     }
                 }
                 
-                if (i.worldPos.z > 0) {
-                    col.rgb = adjustHSV(col.rgb, 1 + _SaturationRatioPerZ * (abs(i.worldPos.z) - 50), _ValueAddedPerZ * (abs(i.worldPos.z) - 50));
-                }
+                // if (i.worldPos.z > 0) {
+                //     col.rgb = adjustHSV(col.rgb, 1 + _SaturationRatioPerZ * (abs(i.worldPos.z) - 50), _ValueAddedPerZ * (abs(i.worldPos.z) - 50));
+                // }
 
                 return col * col.a;
 

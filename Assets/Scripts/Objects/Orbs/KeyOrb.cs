@@ -20,7 +20,6 @@ namespace Platformer.Objects.Orbs {
     ///<summary>
     ///
     ///<summary>
-    [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(CircleCollider2D))]
     public class KeyOrb : OrbObject {
 
         #region Variables.

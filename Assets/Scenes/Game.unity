@@ -1000,7 +1000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &100995723
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3756,7 +3756,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 1847678634}
-  m_Hitbox: {fileID: 338076188}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
@@ -4304,6 +4303,7 @@ GameObject:
   - component: {fileID: 365931331}
   - component: {fileID: 365931330}
   - component: {fileID: 365931329}
+  - component: {fileID: 365931332}
   m_Layer: 8
   m_Name: Portal Block C
   m_TagString: Untagged
@@ -4340,7 +4340,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 0}
-  m_Hitbox: {fileID: 0}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
@@ -4392,6 +4391,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!58 &365931332
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365931327}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &368659835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4936,7 +4951,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 0}
-  m_Hitbox: {fileID: 0}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 8300000, guid: cdb5cc63a743e584f8316e1f9e792b53, type: 3}
@@ -5882,7 +5896,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 0}
-  m_Hitbox: {fileID: 0}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 8300000, guid: cdb5cc63a743e584f8316e1f9e792b53, type: 3}
@@ -7138,6 +7151,7 @@ GameObject:
   - component: {fileID: 750748757}
   - component: {fileID: 750748759}
   - component: {fileID: 750748758}
+  - component: {fileID: 750748760}
   m_Layer: 0
   m_Name: Star Orb
   m_TagString: Untagged
@@ -7158,7 +7172,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 244004074}
-  - {fileID: 2123047703}
   m_Father: {fileID: 910259956}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7175,7 +7188,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 1990289518}
-  m_Hitbox: {fileID: 2123047704}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
@@ -7203,6 +7215,22 @@ MonoBehaviour:
   m_VectorID: {x: 5, y: 3}
   m_GridPosition: {x: 0, y: 0}
   m_LoadOffset: {x: 0, y: 0}
+--- !u!58 &750748760
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750748756}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &757140206
 GameObject:
   m_ObjectHideFlags: 0
@@ -10065,7 +10093,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 0}
-  m_Hitbox: {fileID: 0}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 8300000, guid: dd55e6e23d3e26743a505c06e8280cc0, type: 3}
@@ -11184,6 +11211,7 @@ GameObject:
   - component: {fileID: 1072037582}
   - component: {fileID: 1072037581}
   - component: {fileID: 1072037580}
+  - component: {fileID: 1072037583}
   m_Layer: 8
   m_Name: Portal Block D
   m_TagString: Untagged
@@ -11220,7 +11248,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 0}
-  m_Hitbox: {fileID: 0}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
@@ -11272,6 +11299,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!58 &1072037583
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072037578}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1079606839
 GameObject:
   m_ObjectHideFlags: 0
@@ -11319,9 +11362,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CachedActive: 0
   m_ActiveSprites:
-  - {fileID: 1533683116, guid: cd37345e8a2586b4d850a72e43101cd7, type: 3}
-  m_InactiveSprites:
   - {fileID: -1276956062, guid: cd37345e8a2586b4d850a72e43101cd7, type: 3}
+  m_InactiveSprites:
+  - {fileID: 1533683116, guid: cd37345e8a2586b4d850a72e43101cd7, type: 3}
   m_BaseFrameRate: 8
   m_FrameRateVariation: 0.25
 --- !u!212 &1079606842
@@ -11765,7 +11808,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 1482933287}
-  m_Hitbox: {fileID: 1118295766}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
@@ -12151,7 +12193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 832450552}
-  m_Hitbox: {fileID: 1139669474}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 8300000, guid: a39b11d9dd5f06f4bbde391441551257, type: 3}
@@ -13230,54 +13271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eef09f594b536f49a86fcb397a32d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1234885852
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1234885853}
-  - component: {fileID: 1234885854}
-  m_Layer: 0
-  m_Name: hand_key_collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1234885853
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234885852}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1634234332}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1234885854
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234885852}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1 &1237302860
 GameObject:
   m_ObjectHideFlags: 0
@@ -13500,9 +13493,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1237684516}
-  - component: {fileID: 1237684519}
   - component: {fileID: 1237684518}
   - component: {fileID: 1237684517}
+  - component: {fileID: 1237684519}
   m_Layer: 8
   m_Name: End Orb
   m_TagString: Untagged
@@ -13538,8 +13531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cab0f9841eaef54ea420f4c2fc02914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SpriteRenderer: {fileID: 0}
-  m_Hitbox: {fileID: 0}
+  m_SpriteRenderer: {fileID: 1578494000}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
@@ -13563,8 +13555,8 @@ MonoBehaviour:
   m_VectorID: {x: 2, y: 14}
   m_GridPosition: {x: 0, y: 0}
   m_LoadOffset: {x: 0, y: 0}
---- !u!61 &1237684519
-BoxCollider2D:
+--- !u!58 &1237684519
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -13573,22 +13565,12 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!1 &1238247983
 GameObject:
   m_ObjectHideFlags: 0
@@ -15671,54 +15653,6 @@ MonoBehaviour:
   m_VectorID: {x: 0, y: 1}
   m_GridPosition: {x: 0, y: 0}
   m_LoadOffset: {x: 0, y: 0}
---- !u!1 &1420605925
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1420605926}
-  - component: {fileID: 1420605927}
-  m_Layer: 0
-  m_Name: eye_key_collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1420605926
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420605925}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2026381746}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1420605927
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420605925}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1 &1429415067
 GameObject:
   m_ObjectHideFlags: 0
@@ -18147,7 +18081,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 1602616236}
-  m_Hitbox: {fileID: 1602616237}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
@@ -18569,8 +18502,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1634234332}
-  - component: {fileID: 1634234334}
+  - component: {fileID: 1634234336}
   - component: {fileID: 1634234333}
+  - component: {fileID: 1634234335}
   m_Layer: 0
   m_Name: Hand Key Orb
   m_TagString: Untagged
@@ -18591,7 +18525,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1486096594}
-  - {fileID: 1234885853}
   m_Father: {fileID: 910259956}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18612,7 +18545,23 @@ MonoBehaviour:
   m_VectorID: {x: 4, y: 12}
   m_GridPosition: {x: 0, y: 0}
   m_LoadOffset: {x: 0, y: 0}
---- !u!114 &1634234334
+--- !u!58 &1634234335
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634234331}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1634234336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18621,19 +18570,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1634234331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3cb8e29740c2314aba91bcdad3fdec5, type: 3}
+  m_Script: {fileID: 11500000, guid: b0b957a08c94508409d3077ef78f3671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 139468383}
-  m_Hitbox: {fileID: 1234885854}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
   m_RefreshEffect: {fileID: 0}
   m_RefreshSound: {fileID: 0}
   m_BlinkSound: {fileID: 0}
-  m_ResetDelay: 6
-  m_Collected: 0
+  m_Follow: {fileID: 0}
+  m_Used: 0
+  m_UseEffect: {fileID: 0}
+  m_UseSound: {fileID: 0}
 --- !u!1 &1636778347
 GameObject:
   m_ObjectHideFlags: 0
@@ -19548,9 +19498,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CachedActive: 0
   m_ActiveSprites:
-  - {fileID: 2002450522, guid: cd37345e8a2586b4d850a72e43101cd7, type: 3}
-  m_InactiveSprites:
   - {fileID: -1276956062, guid: cd37345e8a2586b4d850a72e43101cd7, type: 3}
+  m_InactiveSprites:
+  - {fileID: 2002450522, guid: cd37345e8a2586b4d850a72e43101cd7, type: 3}
   m_BaseFrameRate: 8
   m_FrameRateVariation: 0.25
 --- !u!212 &1662104780
@@ -22035,7 +21985,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 1981053525}
-  m_Hitbox: {fileID: 1898088781}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 8300000, guid: 46619afedca57584e8fb47588d07915e, type: 3}
@@ -22072,6 +22021,7 @@ GameObject:
   - component: {fileID: 1898808355}
   - component: {fileID: 1898808354}
   - component: {fileID: 1898808353}
+  - component: {fileID: 1898808356}
   m_Layer: 8
   m_Name: Portal Block B
   m_TagString: Untagged
@@ -22108,7 +22058,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 0}
-  m_Hitbox: {fileID: 0}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
@@ -22160,6 +22109,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!58 &1898808356
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898808351}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1913888241
 GameObject:
   m_ObjectHideFlags: 0
@@ -23269,7 +23234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 199525060}
-  m_Hitbox: {fileID: 2000879796}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
@@ -28363,6 +28327,7 @@ GameObject:
   - component: {fileID: 2026381746}
   - component: {fileID: 2026381748}
   - component: {fileID: 2026381747}
+  - component: {fileID: 2026381749}
   m_Layer: 0
   m_Name: Eye Key Orb
   m_TagString: Untagged
@@ -28383,7 +28348,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 902605574}
-  - {fileID: 1420605926}
   m_Father: {fileID: 910259956}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28417,7 +28381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpriteRenderer: {fileID: 655151348}
-  m_Hitbox: {fileID: 1420605927}
   m_Origin: {x: 0, y: 0, z: 0}
   m_TouchEffect: {fileID: 0}
   m_TouchSound: {fileID: 0}
@@ -28426,6 +28389,22 @@ MonoBehaviour:
   m_BlinkSound: {fileID: 0}
   m_ResetDelay: 6
   m_Collected: 0
+--- !u!58 &2026381749
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026381745}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &2027346424
 GameObject:
   m_ObjectHideFlags: 0
@@ -29238,54 +29217,6 @@ Transform:
   m_Father: {fileID: 1952535725}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2123047702
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2123047703}
-  - component: {fileID: 2123047704}
-  m_Layer: 0
-  m_Name: score_orb_collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2123047703
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123047702}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 750748757}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &2123047704
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123047702}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1 &2139283952
 GameObject:
   m_ObjectHideFlags: 0

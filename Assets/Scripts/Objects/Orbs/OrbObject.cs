@@ -18,6 +18,7 @@ namespace Platformer.Objects.Orbs {
     ///<summary>
     /// 
     ///<summary>
+    [RequireComponent(typeof(CircleCollider2D))]
     public class OrbObject : MonoBehaviour {
 
         #region Variables.
@@ -42,7 +43,6 @@ namespace Platformer.Objects.Orbs {
         protected SpriteRenderer m_SpriteRenderer;
 
         // The collider attached to this gameObject
-        [SerializeField]
         protected CircleCollider2D m_Hitbox;
         public CircleCollider2D Hitbox => m_Hitbox;
 
@@ -80,6 +80,7 @@ namespace Platformer.Objects.Orbs {
         // Runs once before the first frame.
         void Start() {
             // Set the hitbox to a trigger.
+            m_Hitbox = GetComponent<CircleCollider2D>();
             m_Hitbox.isTrigger = true;
             // Set the origin of this object.
             m_Origin = transform.position;
