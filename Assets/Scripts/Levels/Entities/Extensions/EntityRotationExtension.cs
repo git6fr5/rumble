@@ -30,7 +30,7 @@ namespace Platformer.Levels.Entities {
 
         }
 
-        public static float GetRotation(this Entity entity, List<LDtkTileData> rotationIDs) {
+        public static float GetRotation(this Entity entity, List<RotationID> rotationIDs) {
             // Get the current rotation ID and return its rotation.
             RotationID rotationID = rotationIDs.Find(rotationID => rotationID.VectorID == entity.VectorID);
             if (rotationID == null) {

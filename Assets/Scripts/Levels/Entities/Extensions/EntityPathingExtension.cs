@@ -18,20 +18,24 @@ namespace Platformer.Levels.Entities {
     }
 
     public struct PathingData {
-        Vector2 Direction;
-        float Distance;
+        public Vector2 Direction;
+        public float Distance;
+        public PathingData(Vector2 direction, float distance) {
+            Direction = direction;
+            Distance = distance;
+        }
     } 
 
     public static class EntityPathing {
 
         public static void SetPathing(this Entity entity, int index, List<LDtkTileData> controlData) {
-            TPathable pathing = entity.GetComponent<IPathable>();
-            if (pathing == null) { 
+            IPathable pathable = entity.GetComponent<IPathable>();
+            if (pathable == null) { 
                 return; 
             }
             
             PathingData path = entity.GetPath(index, controlData);
-            pathing.SetPath(path);
+            pathable.SetPath(path);
 
         }
 

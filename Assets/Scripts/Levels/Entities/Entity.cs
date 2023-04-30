@@ -8,6 +8,9 @@ using UnityEngine;
 using Platformer.Levels.LDtk;
 using Platformer.Levels.Entities;
 
+/* --- Definitions --- */
+using EntitySpinnableExtension = Platformer.Levels.Entities.EntitySpinnableExtensions;
+
 namespace Platformer.Levels.Entities {
 
     [System.Serializable]
@@ -70,25 +73,28 @@ namespace Platformer.Levels.Entities {
             Vector3 worldPosition = Room.GridToWorldPosition(m_GridPosition, roomOrigin) + (Vector3)m_LoadOffset;            
 
             // Check whether there is a control at this position.
-            LDtkTileData controlTile = controlData.Find(control => control.gridPosition == gridPosition);
+            LDtkTileData controlTile = controlData.Find(control => control.gridPosition == m_GridPosition);
 
-            Initalize(worldPosition, depth);
-            SetRotation();
+            IInitializable initializable = GetComponent<IInitializable>();
+            if (initializable != null) {
+                Initialize(worldPosition, depth);
+            }
 
+            this.SetRotation();
             // Depends on raycasting.
-            SetLength(controlTile.index, controlData);
-            SetPathing(controlTile.index, controlData); // (has to come after length is set)
-            SetSpin(controlTile.index, controlData);
+            this.SetLength(controlTile.index, controlData);
+            this.SetPathing(controlTile.index, controlData); // (has to come after length is set)
+            this.SetSpin(controlTile.index, controlData);
             
             gameObject.SetActive(true);
             
         }
 
-        public void Activate() {
-            IInitializable initializable = entity.GetComponent<IInitializable>();
+        public void Initialize(Vector3 worldPosition, float depth) {
+            IInitializable initializable = GetComponent<IInitializable>();
             if (initializable == null) { return; }
 
-            initializable.Activate(m_WorldPosition, m_Depth);
+            initializable.Initialize(worldPosition, depth);
 
         }
 
@@ -115,7 +121,7 @@ namespace Platformer.Levels.Entities {
             }
 
             for (int i = 0; i < entities.Count; i++) {
-                entity.Init(controlData, roomOrigin);
+                entities[i].Init(controlData, roomOrigin);
             }
 
             return entities;
@@ -123,7 +129,7 @@ namespace Platformer.Levels.Entities {
         }
 
         // Duplicate an entity.
-        protected virtual Entity Duplicate(Transform parent) {
+        protected Entity Duplicate(Transform parent) {
             Entity entity = Instantiate(gameObject, Vector3.zero, transform.localRotation, parent).GetComponent<Entity>();
             if (Singular) {
                 Destroy(gameObject);

@@ -30,16 +30,16 @@ namespace Platformer.Levels.Entities {
                 return;
             }
             
-            float spin = GetSpin(index, controlData);
+            int spin = entity.GetSpin(index, controlData);
             spinnable.SetSpin(spin);
 
         }
 
         // The logic of turning the ldtk data into a length.
-        public static int GetSpin(int index, List<LDtkTileData> controlData) {
+        public static int GetSpin(this Entity entity, int index, List<LDtkTileData> controlData) {
             if (controlData[index].vectorID.y != 2) { return 0; }
 
-            Vector3 position = transform.position;
+            Vector3 position = entity.transform.position;
             
             // Itterate right until we are no longer touching
             // a platform entity.
@@ -49,12 +49,12 @@ namespace Platformer.Levels.Entities {
                 // Can I do this purely though LDtk?
                 length += 1;
                 Vector3 offset = ((length - 1f) + 0.5f) * Vector3.right;
-                ISpinnable tEntity = Game.Physics.Collisions.LineOfSight<ISpinnable>(position + offset, Vector2.right, Game.Physics.CollisionLayers.Ground, SEARCH_DISTANCE); 
+                GameObject spinningObject = Game.Physics.Collisions.ILineOfSight<ISpinnable>(position + offset, Vector2.right, Game.Physics.CollisionLayers.Ground, SEARCH_DISTANCE); 
                 // Suree.... on the platform layer.
-                if (tEntity != null) {
-                    tEntity.transform.SetParent(transform);
+                if (spinningObject != null) {
+                    spinningObject.transform.SetParent(entity.transform);
                 }
-                continueSearch = tEntity != null ? true : false;
+                continueSearch = spinningObject != null ? true : false;
             }
 
             length = 0;
@@ -63,12 +63,12 @@ namespace Platformer.Levels.Entities {
                 // Can I do this purely though LDtk?
                 length += 1;
                 Vector3 offset = ((length - 1f) + 0.5f) * Vector3.left;
-                ISpinnable tEntity = Game.Physics.Collisions.LineOfSight<ISpinnable>(position + offset, Vector2.left, Game.Physics.CollisionLayers.Ground, SEARCH_DISTANCE); 
+                GameObject spinningObject = Game.Physics.Collisions.ILineOfSight<ISpinnable>(position + offset, Vector2.left, Game.Physics.CollisionLayers.Ground, SEARCH_DISTANCE); 
                 // Suree.... on the platform layer.
-                if (tEntity != null) {
-                    tEntity.transform.SetParent(transform);
+                if (spinningObject != null) {
+                    spinningObject.transform.SetParent(entity.transform);
                 }
-                continueSearch = tEntity != null ? true : false;
+                continueSearch = spinningObject != null ? true : false;
             }
 
             

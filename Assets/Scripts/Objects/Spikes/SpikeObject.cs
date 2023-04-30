@@ -11,6 +11,7 @@ using UnityExtensions;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using IRotatable = Platformer.Levels.Entities.IRotatable;
 
 namespace Platformer.Objects.Spikes {
 
@@ -18,7 +19,7 @@ namespace Platformer.Objects.Spikes {
     ///
     ///<summary>
     [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(Collider2D))]
-    public class SpikeObject : MonoBehaviour {
+    public class SpikeObject : MonoBehaviour, IRotatable {
 
         #region Variables
 
@@ -33,17 +34,13 @@ namespace Platformer.Objects.Spikes {
         // The amount of times the orb blinks before it reappears.
         private const float RESET_BLINK_COUNT = 3;
 
-        // The opacity of the orb when it first blinks back into screen.
-        private const float RESET_BASE_OPACITY = 0.2f;
-
-        // The opacity increase of the orb per blink.
-        private const float RESET_OPACITY_PER_BLINK = 0.075f;
-
         /* --- Components --- */
-        
-        protected SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
-        
-        protected Collider2D m_Hitbox => GetComponent<Collider2D>();
+
+        //        
+        protected Collider2D m_Hitbox = null;
+
+        //
+        protected SpriteRenderer m_SpriteRenderer = null;
 
         /* --- Member --- */
 
@@ -77,25 +74,39 @@ namespace Platformer.Objects.Spikes {
         // The sound that plays when this orb blinks.
         [SerializeField]
         private AudioClip m_BlinkSound;
+
+        // Gets the blink time for this object.
+        private float BlinkTime => GetBlinkTime();
+        // Gets the time in between blinking and resetting fully.
+        private float PreBlinkTime => GetPreBlinkTime(); 
+        // Gets the time in between blinking and resetting fully.
+        private float PostBlinkTime => GetPostBlinkTime(); 
         
         #endregion
 
         #region Methods.
 
-        // Runs once before the first frame.
-        private void Start() {
-            m_Origin = transform.position;
+        // Initialize the spike.
+        public void Initialize(Vector3 worldPosition, float depth) {
+            // Cache the origin.
+            transform.position = worldPosition;
+            m_Origin = worldPosition;
+
+            // Collision settings.
+            m_Hitbox = GetComponent<BoxCollider2D>();
             m_Hitbox.isTrigger = true;
-            // gameObject.layer = LayerMask.NameToLayer("Objects");
-            m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.SPIKE_RENDERING_LAYER;
-            m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.SPIKE_RENDERING_ORDER;
-            Reset();
+            gameObject.layer = Game.Physics.CollisionLayers.SpikeLayer;
+
+            // Rendering settings.
+            m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.SpikeLayer;
+            m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.SpikeOrder;
+
         }
 
         // Initalizes from the LDtk files.
-        public virtual void Init(int offset, float rotation, Vector3[] path) {
+        public void SetRotation(float rotation) {
             m_Rotation = rotation;
-            transform.eulerAngles = Rotation;
+            transform.eulerAngles = Vector3.forward * rotation;
         }
 
         // Runs whenever another collider enters into the trigger area.
@@ -115,46 +126,50 @@ namespace Platformer.Objects.Spikes {
             StartCoroutine(IEReset());
         }
 
-        // Reset after a delay.
+        // A coroutine to eventually reset this orb object.
         protected IEnumerator IEReset() {
-            yield return new WaitForSeconds(RESET_BLINK_DELAY);
+            // Wait a little until this orb starts blinking back into existence.
+            yield return new WaitForSeconds(PreBlinkTime);
+            // Break if the orb has been prematurely reset.
+            if (m_Hitbox.enabled) {
+                m_SpriteRenderer.enabled = true;
+                yield break;
+            }
 
-            // Set up the colors.
-            Color cacheColor = m_SpriteRenderer.color;
-            Color tempColor = m_SpriteRenderer.color;
-            tempColor.a = RESET_BASE_OPACITY;
-            
             // Blink the orb a couple of times.
-            m_SpriteRenderer.color = tempColor; 
             for (int i = 0; i < 2 * RESET_BLINK_COUNT; i++) {
-                tempColor.a += RESET_OPACITY_PER_BLINK;
-                m_SpriteRenderer.color = tempColor; 
                 m_SpriteRenderer.enabled = !m_SpriteRenderer.enabled;
                 Game.Audio.Sounds.PlaySound(m_BlinkSound, 0.05f);
-                yield return new WaitForSeconds((RESET_DELAY - RESET_BLINK_DELAY) / (float)(2 * RESET_BLINK_COUNT));
+
+                if (m_Hitbox.enabled) {
+                    m_SpriteRenderer.enabled = true;
+                    yield break;
+                }
+
+                yield return new WaitForSeconds(BlinkTime);
             }
-            
-            // Reset the orbs color.
-            m_SpriteRenderer.color = cacheColor;
-            m_SpriteRenderer.enabled = true;
 
             // Wait one more blink just because it feels more correct.
-            yield return new WaitForSeconds((RESET_DELAY - RESET_BLINK_DELAY) / (float)RESET_BLINK_COUNT);
-
-            // Make the orb collectible agains.
+            yield return new WaitForSeconds(PostBlinkTime);
             Reset();
 
-            yield return null;
-        
         }
 
-        
         public virtual void Reset() {
             Game.Visuals.Effects.PlayImpactEffect(m_RefreshParticle, 8, 0.6f, transform, Vector3.zero);
             Game.Audio.Sounds.PlaySound(m_RefreshSound, 0.15f);
             m_Hitbox.enabled = true;
             m_SpriteRenderer.enabled = true;
         }
+
+                // Returns the time that this object takes per blink.
+        protected virtual float GetBlinkTime() { return (RESET_DELAY - RESET_BLINK_DELAY) / (float)(2 * RESET_BLINK_COUNT); }
+
+        // Returns the time in between blinking and resetting fully.
+        protected virtual float GetPostBlinkTime() { return (RESET_DELAY - RESET_BLINK_DELAY) / (float)RESET_BLINK_COUNT; }
+
+        // Returns the time before the object starts blinking back.
+        protected virtual float GetPreBlinkTime() { return RESET_BLINK_DELAY; }
 
         #endregion
 

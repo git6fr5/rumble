@@ -135,7 +135,7 @@ namespace Platformer.Objects.Spikes {
         }
 
         private void WhileLooking() {
-            CharacterController character = Game.Physics.Collisions.LineOfSight<CharacterController>(transform.position, Vector3.down, Game.Physics.CollisionLayers.Opaque);
+            CharacterController character = Game.Physics.Collisions.LineOfSight<CharacterController>(transform.position, Vector3.down, Game.Physics.CollisionLayers.Solid);
             if (character != null) {
                 m_FallState = FallState.Crumbling;
                 m_CrumbleTimer.Start(m_CrumbleDuration);

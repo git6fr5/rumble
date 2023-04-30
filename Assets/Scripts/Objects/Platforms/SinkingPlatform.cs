@@ -82,14 +82,14 @@ namespace Platformer.Objects.Platforms {
             // Convert the start and end nodes into world positions.
             m_Path = new Vector3[2];
 
-            m_Path[0] = Vector3.zero;
+            m_Path[0] = m_Origin;
             if (pathingData.Direction.x != 0f) {
-                m_Path[1] = (distance - m_BaseLength) * (Vector3)Direction;
+                m_Path[1] = m_Origin + (pathingData.Distance - m_Length) * (Vector3)pathingData.Direction;
             }
             else {
-                m_Path[1] = distance * (Vector3)Direction;
+                m_Path[1] = m_Origin + pathingData.Distance * (Vector3)pathingData.Direction;
             }
-            m_PauseTimer.Start(m_PauseDuration);
+            m_SinkDelayTimer.Start(m_SinkDelay);
 
         }
 

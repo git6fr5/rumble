@@ -34,11 +34,11 @@ namespace Platformer.Levels.Entities {
         }
 
         // The logic of turning the ldtk data into a length.
-        public static int GetLength<IElongatable>(this Entity entity) {
+        public static int GetLength(this Entity entity) {
             Vector3 position = entity.transform.position;
             
             // To cache the entities we want to delete after.
-            List<IElongatable> garbage = new List<IElongatable>();
+            List<GameObject> garbage = new List<GameObject>();
 
             // Itterate right until we are no longer touching
             // a platform entity.
@@ -49,18 +49,17 @@ namespace Platformer.Levels.Entities {
                 continueSearch = false;
                 // Can I do this purely though LDtk?
                 Vector3 offset = ((length - 1f) + 0.5f) * Vector3.right;
-                IElongatable tEntity = Game.Physics.Collisions.LineOfSight<IElongatable>(position + offset, Vector2.right, Game.Physics.CollisionLayers.Platform, SEARCH_DISTANCE); 
-                if (tEntity != null) {
+                GameObject elongatableObject = Game.Physics.Collisions.ILineOfSight<IElongatable>(position + offset, Vector2.right, Game.Physics.CollisionLayers.Ground, SEARCH_DISTANCE); 
+                if (elongatableObject != null) {
                     continueSearch = true;
-                    garbage.Add(tEntity);
+                    garbage.Add(elongatableObject);
                 }
             }
 
             // Delete the garabage collected.
             for (int i = 0; i < garbage.Count; i++) {
-                MonoBehaviour.Destroy(garbage[i].gameObject);
+                MonoBehaviour.Destroy(garbage[i]);
             }
-            Debug.Log(length);
             return length;
         }
 

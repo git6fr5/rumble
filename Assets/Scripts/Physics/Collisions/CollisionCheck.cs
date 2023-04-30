@@ -75,6 +75,17 @@ namespace Platformer.Physics {
             return null;
         }
 
+        // Finds all object of the given class interseting the line (null if none exist).
+        public GameObject ILineOfSight<I>(Vector3 position, Vector2 direction, LayerMask layers, float distance = -1f) {
+            distance = distance == -1f ? Mathf.Infinity : distance;
+            RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position + (Vector3)direction * CollisionPrecision, direction, distance, layers);
+            bool hasInterface = hit.collider != null && hit.collider.GetComponent<I>() != null;
+            if (hasInterface) {
+                return hit.collider.gameObject;
+            }
+            return null;
+        }
+
         //
         public float DistanceToFirst(Vector3 position, Vector2 direction, LayerMask layers, float distance = -1f) {
             distance = distance == -1f ? Mathf.Infinity : distance;

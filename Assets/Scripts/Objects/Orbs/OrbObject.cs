@@ -12,13 +12,14 @@ using Platformer.Objects;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using IInitializable = Platformer.Levels.Entities.IInitializable;
 
 namespace Platformer.Objects.Orbs {
 
     ///<summary>
     /// 
     ///<summary>
-    public class OrbObject : MonoBehaviour {
+    public class OrbObject : MonoBehaviour, IInitializable {
 
         #region Variables.
 
@@ -41,6 +42,9 @@ namespace Platformer.Objects.Orbs {
         // The sprite renderer displaying this gameObject.
         [SerializeField]
         protected SpriteRenderer m_SpriteRenderer;
+
+        [SerializeField]
+        protected OrbAnimator m_Animator;
 
         /* --- Parameters --- */
 
@@ -70,7 +74,7 @@ namespace Platformer.Objects.Orbs {
         #endregion
 
         // Runs once before the first frame.
-        void Initialize(Vector3 worldPosition, float depth) {
+        public void Initialize(Vector3 worldPosition, float depth) {
             // Cache the origin
             transform.position = worldPosition;
             m_Origin = worldPosition;
@@ -82,7 +86,12 @@ namespace Platformer.Objects.Orbs {
 
             // Rendering settings.
             if (m_Animator != null) {
-                m_Animator.Initalize(this);
+                m_Animator.Initialize(this);
+            }
+            // Temporarily
+            else {
+                m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.OrbLayer;
+                m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.OrbOrder;
             }
 
         }

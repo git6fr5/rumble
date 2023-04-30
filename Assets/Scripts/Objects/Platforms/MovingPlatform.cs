@@ -58,10 +58,10 @@ namespace Platformer.Objects.Platforms {
 
             m_Path[0] = m_Origin;
             if (pathingData.Direction.x != 0f) {
-                m_Path[1] = m_Origin + (distance - m_BaseLength) * (Vector3)Direction;
+                m_Path[1] = m_Origin + (pathingData.Distance - m_Length) * (Vector3)pathingData.Direction;
             }
             else {
-                m_Path[1] = m_Origin + distance * (Vector3)Direction;
+                m_Path[1] = m_Origin + pathingData.Distance * (Vector3)pathingData.Direction;
             }
             m_PauseTimer.Start(m_PauseDuration);
 

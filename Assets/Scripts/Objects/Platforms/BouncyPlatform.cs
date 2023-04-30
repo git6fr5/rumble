@@ -202,7 +202,7 @@ namespace Platformer.Objects.Platforms {
         }
 
         // Activate the springs attached to this bouncy platform.
-        public void ActivateSprings(Spring[] m_Springs) {
+        public void ActivateSprings() {
 
             float distanceToGround = Game.Physics.Collisions.DistanceToFirst(transform.position + Vector3.down * 0.25f, Vector3.down, Game.Physics.CollisionLayers.Ground);
             distanceToGround = Mathf.Min(distanceToGround, 20f);

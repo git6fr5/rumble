@@ -55,7 +55,7 @@ namespace Platformer.Objects.Platforms {
 
         [SerializeField, ReadOnly]
         protected float m_Length = 0f;
-        public float AdjustedLength = m_Length - 2f * (0.5f - OFFSET); 
+        public float AdjustedLength => m_Length - 2f * (0.5f - OFFSET); 
         
         // The objects that are attached to the platform.
         [SerializeField, ReadOnly] 
@@ -97,8 +97,8 @@ namespace Platformer.Objects.Platforms {
             gameObject.layer = Game.Physics.CollisionLayers.PlatformLayer;
 
             // Rendering settings.
-            m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.Rendering.PlatformLayer;
-            m_SpriteShapeRenderer.sortingOrder = Game.Visuals.Rendering.PlatformOrder;
+            m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.PlatformLayer;
+            m_SpriteShapeRenderer.sortingOrder = Game.Visuals.RenderingLayers.PlatformOrder;
             m_Spline = m_SpriteShapeController.spline;
             m_DefaultShape = m_SpriteShapeController.spriteShape;
 
@@ -106,7 +106,7 @@ namespace Platformer.Objects.Platforms {
 
         // Set the controls from the LDtk files.
         public virtual void SetLength(int length) {
-            m_BaseLength = (float)length;
+            m_Length = (float)length;
             
             // Set the hitbox length.
             m_Hitbox.size = new Vector2(AdjustedLength, PLATFORM_HEIGHT );
@@ -122,7 +122,7 @@ namespace Platformer.Objects.Platforms {
 
         // Runs once every frame.
         protected virtual void Update() {
-            m_Pressed = CheckPressed();
+            m_Pressed = CheckPressed(transform.position.y, m_CollisionContainer);
 
             // If the platform was just pressed.
             if (m_Pressed && !m_CachePressed) {

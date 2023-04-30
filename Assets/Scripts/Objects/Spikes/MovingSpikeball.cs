@@ -11,6 +11,8 @@ using Platformer.Objects.Spikes;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using IPathable = Platformer.Levels.Entities.IPathable;
+using PathingData = Platformer.Levels.Entities.PathingData;
 
 namespace Platformer {
 
@@ -18,7 +20,7 @@ namespace Platformer {
     ///
     ///<summary>
     [RequireComponent(typeof(CircleCollider2D))]
-    public class MovingSpikeball : Spikeball {
+    public class MovingSpikeball : Spikeball, IPathable {
 
         #region Variables.
 
@@ -55,10 +57,14 @@ namespace Platformer {
         #region Methods.
 
         // Initalizes from the LDtk files.
-        public override void Init(int offset, float rotation, Vector3[] path) {
-            base.Init(offset, rotation, path);
-            m_Path = path;
+        public void SetPath(PathingData pathingData) {
+            // Convert the start and end nodes into world positions.
+            m_Path = new Vector3[2];
+
+            m_Path[0] = m_Origin;
+            m_Path[1] = m_Origin + pathingData.Distance * (Vector3)pathingData.Direction;
             m_PauseTimer.Start(m_PauseDuration);
+
         }
         
         // Runs once every frame.

@@ -55,7 +55,7 @@ namespace Platformer.Objects.Orbs {
 
         public void Initialize(OrbObject orb) {
             // Cache these components.
-            m_Orb = orb;
+            // m_Orb = orb;
 
             // Set the sprite order.
             m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.OrbLayer;
