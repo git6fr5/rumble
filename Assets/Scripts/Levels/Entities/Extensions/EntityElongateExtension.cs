@@ -15,26 +15,27 @@ namespace Platformer.Levels.Entities {
 
     public interface IElongatable {
         void SetLength(int length);
+        GameObject FindElongatableObject(Vector3 origin, Vector2 direction, float distance);
     }
 
     public static class EntityElongateExtension {
 
         // The distance that we search right for another platform.
-        public const float SEARCH_DISTANCE = 0.25f;
+        public const float SEARCH_DISTANCE = 50f;
 
-        public static void SetLength(this Entity entity, int index, List<LDtkTileData> controlData) {
+        public static void SetLength(this Entity entity) {
             IElongatable elongatable = entity.GetComponent<IElongatable>();
             if (elongatable == null) { 
                 return; 
             }
             
-            int length = entity.GetLength();
+            int length = entity.GetLength(elongatable);
             elongatable.SetLength(length);
 
         }
 
         // The logic of turning the ldtk data into a length.
-        public static int GetLength(this Entity entity) {
+        public static int GetLength(this Entity entity, IElongatable elongatable) {
             Vector3 position = entity.transform.position;
             
             // To cache the entities we want to delete after.
@@ -49,7 +50,7 @@ namespace Platformer.Levels.Entities {
                 continueSearch = false;
                 // Can I do this purely though LDtk?
                 Vector3 offset = ((length - 1f) + 0.5f) * Vector3.right;
-                GameObject elongatableObject = Game.Physics.Collisions.ILineOfSight<IElongatable>(position + offset, Vector2.right, Game.Physics.CollisionLayers.Ground, SEARCH_DISTANCE); 
+                GameObject elongatableObject = elongatable.FindElongatableObject(position + offset, Vector2.right, SEARCH_DISTANCE); 
                 if (elongatableObject != null) {
                     continueSearch = true;
                     garbage.Add(elongatableObject);

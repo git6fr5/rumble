@@ -169,7 +169,7 @@ namespace Platformer.Character {
             
             // The visual feedback played when dying.
             Game.Physics.Time.RunHitStop(16);
-            Game.Visuals.Effects.PlayImpactEffect(m_OnDeathParticle,30, 5f, transform, Vector3.zero);
+            // Game.Visuals.Effects.PlayImpactEffect(m_OnDeathParticle,30, 5f, transform, Vector3.zero);
             Game.Audio.Sounds.PlaySound(m_OnDeathSound, 0.15f);
 
             // Noting the death in the stats.

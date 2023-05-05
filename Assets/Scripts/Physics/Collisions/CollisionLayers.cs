@@ -43,11 +43,11 @@ namespace Platformer.Physics {
 
         public int DecorLayer => LayerMask.NameToLayer("Default");
         
-        public int OrbLayer => LayerMask.NameToLayer("Default");
+        public int OrbLayer => LayerMask.NameToLayer("Objects");
 
-        public int SpikeLayer => LayerMask.NameToLayer("Default");
+        public int SpikeLayer => LayerMask.NameToLayer("Objects");
         
-        public int ProjectileLayer => LayerMask.NameToLayer("Default");
+        public int ProjectileLayer => LayerMask.NameToLayer("Objects");
 
         public int PlatformLayer => LayerMask.NameToLayer("Ground");
         

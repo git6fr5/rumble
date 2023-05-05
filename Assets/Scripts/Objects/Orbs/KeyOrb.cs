@@ -136,7 +136,7 @@ namespace Platformer.Objects.Orbs {
             // The feedback on collecting a star.
             Game.Physics.Time.RunHitStop(8);
             Game.Audio.Sounds.PlaySound(m_UseSound, 0.05f);
-            Game.Visuals.Effects.PlayEffect(m_UseEffect);
+            // Game.Visuals.Effects.PlayEffect(m_UseEffect);
 
             // Destroy the star once its been collected.
             m_Hitbox.enabled = false;

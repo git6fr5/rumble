@@ -78,7 +78,7 @@ namespace Platformer.Objects.Orbs {
             }
 
             // The feedback on collecting a power orb.
-            Game.Visuals.Camera.RecolorScreen(m_Palette);
+            // Game.Visuals.Camera.RecolorScreen(m_Palette);
 
             // Disable the orb for a bit.
             m_SpriteRenderer.enabled = false;

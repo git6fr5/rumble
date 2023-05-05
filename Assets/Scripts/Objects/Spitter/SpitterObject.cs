@@ -113,7 +113,7 @@ namespace Platformer.Objects.Spitters {
         protected virtual void Spit() {
             Projectile projectile = m_SpitProjectile.CreateInstance();
             projectile.Fire(m_SpitSpeed, m_SpitDirection);
-            Game.Visuals.Effects.PlayEffect(m_SpitEffect);
+            // Game.Visuals.Effects.PlayEffect(m_SpitEffect);
             Game.Audio.Sounds.PlaySound(m_SpitSound, 0.15f);
         }
 

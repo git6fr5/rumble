@@ -119,7 +119,7 @@ namespace Platformer.Objects.Spikes {
         }
 
         protected virtual void Shatter() {
-            Game.Visuals.Effects.PlayImpactEffect(m_ShatterParticle, 8, 0.6f, transform, Vector3.zero);
+            // Game.Visuals.Effects.PlayImpactEffect(m_ShatterParticle, 8, 0.6f, transform, Vector3.zero);
             Game.Audio.Sounds.PlaySound(m_ShatterSound, 0.15f);
             m_Hitbox.enabled = false;
             m_SpriteRenderer.enabled = false;
@@ -156,7 +156,7 @@ namespace Platformer.Objects.Spikes {
         }
 
         public virtual void Reset() {
-            Game.Visuals.Effects.PlayImpactEffect(m_RefreshParticle, 8, 0.6f, transform, Vector3.zero);
+            // Game.Visuals.Effects.PlayImpactEffect(m_RefreshParticle, 8, 0.6f, transform, Vector3.zero);
             Game.Audio.Sounds.PlaySound(m_RefreshSound, 0.15f);
             m_Hitbox.enabled = true;
             m_SpriteRenderer.enabled = true;

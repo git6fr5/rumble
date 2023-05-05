@@ -83,13 +83,13 @@ namespace Platformer.Levels.Entities {
             this.SetRotation();
             // Depends on raycasting.
             if (controlTile != null) {
-                this.SetLength(controlTile.index, controlData);
                 this.SetPathing(controlTile.index, controlData); // (has to come after length is set)
                 this.SetSpin(controlTile.index, controlData);
                 this.SetOffset(controlTile.index, controlData);
             }
             
             gameObject.SetActive(true);
+            this.SetLength();
             
         }
 
@@ -122,7 +122,7 @@ namespace Platformer.Levels.Entities {
                     entities.Add(entity);
                 }
             }
-
+   
             for (int i = 0; i < entities.Count; i++) {
                 entities[i].Init(controlData, roomOrigin);
             }

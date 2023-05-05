@@ -13,6 +13,8 @@ using CharacterController = Platformer.Character.CharacterController;
 using IInitializable = Platformer.Levels.Entities.IInitializable;
 using IElongatable = Platformer.Levels.Entities.IElongatable;
 
+using Platformer.Levels.Entities;
+
 namespace Platformer.Objects.Platforms {
 
     ///<summary>
@@ -102,6 +104,10 @@ namespace Platformer.Objects.Platforms {
             m_Spline = m_SpriteShapeController.spline;
             m_DefaultShape = m_SpriteShapeController.spriteShape;
 
+        }
+
+        public virtual GameObject FindElongatableObject(Vector3 origin, Vector2 direction, float distance) {
+            return Game.Physics.Collisions.ILineOfSight<MonoBehaviour>(origin, direction, Game.Physics.CollisionLayers.Ground, distance); 
         }
 
         // Set the controls from the LDtk files.

@@ -70,8 +70,8 @@ namespace Platformer.Character.Actions {
         private Rigidbody2D m_Corpse;
 
         // An index to the particle that is associated with the ghost timer.
-        [SerializeField] 
-        private int m_CircleEffectIndex = -1;
+        // [SerializeField] 
+        // private int m_CircleEffectIndex = -1;
 
         // The animation that plays when the ghost is active.
         [SerializeField]
@@ -195,7 +195,7 @@ namespace Platformer.Character.Actions {
             m_Corpse.velocity = Vector2.zero;
             m_Corpse.ReleaseXY();
 
-            m_CircleEffectIndex = Game.Visuals.Effects.PlayCircleEffect(m_GhostModeDuration, character.transform, Vector3.zero);
+            // m_CircleEffectIndex = Game.Visuals.Effects.PlayCircleEffect(m_GhostModeDuration, character.transform, Vector3.zero);
             character.Animator.Push(m_GhostModeAnimation, CharacterAnimator.AnimationPriority.ActionActive);
         
         }
@@ -212,7 +212,7 @@ namespace Platformer.Character.Actions {
             
             // character.transform.localRotation = m_CachedRotation;
 
-            Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
+            // Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
 
         }
 

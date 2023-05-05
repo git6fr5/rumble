@@ -69,8 +69,8 @@ namespace Platformer.Character.Actions {
         private AudioClip m_HopSound = null;
 
         // An index to the particle that is associated with the charge timer.
-        [SerializeField] 
-        private int m_CircleEffectIndex = -1;
+        // [SerializeField] 
+        // private int m_CircleEffectIndex = -1;
 
         #endregion
 
@@ -85,7 +85,7 @@ namespace Platformer.Character.Actions {
 
             RefreshHopSettings(ref m_Speed, ref m_Weight, m_Height, m_RisingTime);
             m_ActionPhase = ActionPhase.None;
-            Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
+            // Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
             m_ChargeTimer.Stop();
 
             if (enable) {
@@ -175,7 +175,7 @@ namespace Platformer.Character.Actions {
 
             character.Animator.Push(m_ChargeHopAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
             Game.Audio.Sounds.PlaySound(m_ChargeHopSound, 0.15f);
-            m_CircleEffectIndex = Game.Visuals.Effects.PlayCircleEffect(m_ChargeDuration, character.transform, Vector3.zero);
+            // m_CircleEffectIndex = Game.Visuals.Effects.PlayCircleEffect(m_ChargeDuration, character.transform, Vector3.zero);
 
         }
 
@@ -189,10 +189,10 @@ namespace Platformer.Character.Actions {
             character.Animator.Remove(m_ChargeHopAnimation);
             character.Animator.Push(m_HopAnimation, CharacterAnimator.AnimationPriority.ActionActive);
             
-            Game.Visuals.Effects.PlayImpactEffect(character.OnActionParticle, 16, 1f + 0.6f * m_ChargeTimer.InverseRatio, character.transform, Vector3.zero);
+            // Game.Visuals.Effects.PlayImpactEffect(character.OnActionParticle, 16, 1f + 0.6f * m_ChargeTimer.InverseRatio, character.transform, Vector3.zero);
             Game.Audio.Sounds.PlaySound(m_HopSound, 0.15f);
             Game.Audio.Sounds.StopSound(m_ChargeHopSound);
-            Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
+            // Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
 
             m_ChargeTimer.Stop();
             m_ActionPhase = ActionPhase.MidAction;

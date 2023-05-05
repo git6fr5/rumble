@@ -145,7 +145,7 @@ namespace Platformer.Management {
             // Should go somewhere saying custom.
             Platformer.Objects.Blocks.BlockObject.ResetAll();
             Platformer.Objects.Orbs.OrbObject.ResetAll();
-            Game.Visuals.Camera.RecolorScreen(Game.Visuals.DefaultPalette);
+            // Game.Visuals.Camera.RecolorScreen(Game.Visuals.DefaultPalette);
         }
 
         // Loads the entities for 
