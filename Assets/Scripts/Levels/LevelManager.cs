@@ -153,6 +153,15 @@ namespace Platformer.Management {
             if (room.ldtkLevel != null) {
                 // Load the data.
                 List<LDtkTileData> entityData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Entity);
+                List<LDtkTileData> decorDataA = LDtkReader.GetLayerData(room.ldtkLevel, "DECOR_BKG_1");
+                List<LDtkTileData> decorDataB = LDtkReader.GetLayerData(room.ldtkLevel, "DECOR_BKG_2");
+                for (int i = 0; i < decorDataA.Count; i++) {
+                    entityData.Add(decorDataA[i]);
+                }
+                for (int i = 0; i < decorDataB.Count; i++) {
+                    entityData.Add(decorDataB[i]);
+                }
+
                 List<LDtkTileData> controlData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Control);
 
                 // Generate the entities.

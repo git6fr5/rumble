@@ -12,6 +12,7 @@ using Platformer.Objects.Platforms;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using IInitializable = Platformer.Levels.Entities.IInitializable;
 using IRotatable = Platformer.Levels.Entities.IRotatable;
 
 namespace Platformer.Objects.Decorations {
@@ -19,26 +20,42 @@ namespace Platformer.Objects.Decorations {
     ///<summary>
     ///
     ///<summary>
-    public class DecorationController : MonoBehaviour, IRotatable {
+    public class DecorationController : MonoBehaviour, IInitializable, IRotatable {
 
         #region Variables.
 
-        //
-        public DecorationPiece[] m_Pieces;
-
-        public DecorationPiece[] disconAnims;
-        public Timer[] timers;
-        public float[] approximateIntervalBetweenPlaying;
-        public bool[] disconState;
-
-
-        [SerializeField]
-        private float m_Interval = 1f;
+        // The pieces that need to be animated.
+        public DecorationPiece[] m_AnimatedPieces;
 
         [SerializeField]
         private float m_Rotation;
 
+        [SerializeField, ReadOnly]
+        private Vector3 m_Origin;
+
         #endregion
+
+        // Initializes this entity.
+        public void Initialize(Vector3 worldPosition, float depth) {
+            // Cache the origin
+            transform.localPosition = worldPosition;
+            m_Origin = worldPosition;
+
+            // Set the layer. Note the sprite renderers for this will have to be set manually.
+            gameObject.layer = Game.Physics.CollisionLayers.DecorLayer;
+
+            // Set the animations to the start.
+            for (int i = 0; i < m_AnimatedPieces.Length; i++) {
+                m_AnimatedPieces[i].Animation.AnimationTimer.Set(Random.Range(0f, 3f));
+            }
+
+            variations = GetComponentsInChildren<DecorationVariation>();
+            for (int i = 0; i < variations.Length; i++) {
+                variations[i].Vary();
+            }
+            revary = false;
+
+        }
 
         public void SetRotation(float rotation) {
             m_Rotation = rotation;
@@ -46,67 +63,26 @@ namespace Platformer.Objects.Decorations {
         }
 
         void Start() {
-            for (int i = 0; i < m_Pieces.Length; i++) {
-                // m_Pieces[i].Animation.Loop = false;
-                // m_Pieces[i].Animation.AnimationTimer.Set(Random.Range(0.02f, m_Interval));
-                // m_Piece
-                m_Pieces[i].Animation.AnimationTimer.Set(Random.Range(0f, 3f));
-            }
-
-            timers = new Timer[disconAnims.Length];
-            disconState = new bool[disconAnims.Length];
-            for (int i = 0; i < timers.Length; i++) {
-
-                disconAnims[i].Animation.Loop = false;
-                
-                disconState[i] = false;
-
-                timers[i] = new Timer(Random.Range(0f, approximateIntervalBetweenPlaying[i]), approximateIntervalBetweenPlaying[i]);
-            }
-
+            variations = GetComponentsInChildren<DecorationVariation>();
         }
 
-        // Runs once every fixed interval.
         void FixedUpdate() {
-
-            for (int i = 0; i < timers.Length; i++) {
-                if (disconState[i]) {
-                    
-                    disconAnims[i].spriteRenderer.transform.Animate(disconAnims[i].Animation, Time.fixedDeltaTime);
-
-                    if (disconAnims[i].Animation.AnimationTimer.Ratio == 1f) {
-                        disconAnims[i].Animation.AnimationTimer.Stop();
-                        disconState[i] = !disconState[i];
-                    }
-
-                }
-                else {
-
-                    bool finished = timers[i].TickDown(Time.fixedDeltaTime);
-                    if (finished) {
-                        timers[i].Start((approximateIntervalBetweenPlaying[i] * Random.Range(0.8f, 1.2f)));
-                        disconState[i] = !disconState[i];
-                    }
-
-                }
+            for (int i = 0; i < m_AnimatedPieces.Length; i++) {
+                m_AnimatedPieces[i].spriteRenderer.transform.Animate(m_AnimatedPieces[i].Animation, Time.fixedDeltaTime);
             }
 
-            
-
-            for (int i = 0; i < m_Pieces.Length; i++) {
-
-                m_Pieces[i].spriteRenderer.transform.Animate(m_Pieces[i].Animation, Time.fixedDeltaTime);
-
-                // if (m_Pieces[i].Animation.AnimationTimer.Ratio == 1f) {
-                //     // m_Pieces[i].Animation.AnimationTimer.Start(Random.Range(m_Interval * 0.8f, m_Interval * 1.2f));
-                //     // Because for some reason, it counts down, not up.
-                //     m_Pieces[i].Animation.AnimationTimer.Stop();
-                // }
-
+            if (revary) {
+                for (int i = 0; i < variations.Length; i++) {
+                    variations[i].Vary();
+                }
+                revary = false;
             }
 
         }
 
+        public DecorationVariation[] variations;
+
+        public bool revary = true;
 
     }
 

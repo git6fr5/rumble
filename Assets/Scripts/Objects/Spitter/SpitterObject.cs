@@ -11,20 +11,23 @@ using UnityExtensions;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using Projectile = Platformer.Objects.Spitters.Projectile;
+using IInitializable = Platformer.Levels.Entities.IInitializable;
+using IRotatable = Platformer.Levels.Entities.IRotatable;
+using IOffsetable = Platformer.Levels.Entities.IOffsetable;
 
 namespace Platformer.Objects.Spitters {
 
     ///<summary>
     ///
     ///<summary>
-    [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(Collider2D))]
-    public class SpitterObject : MonoBehaviour {
+    public class SpitterObject : MonoBehaviour, IInitializable, IRotatable, IOffsetable {
 
         #region Variables
 
         /* --- Components --- */
         
-        protected SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
+        [SerializeField]
+        protected SpriteRenderer m_SpriteRenderer = null;
 
         /* --- Member --- */
 
@@ -70,19 +73,32 @@ namespace Platformer.Objects.Spitters {
 
         #region Methods.
 
-        // Runs once before the first frame.
-        private void Start() {
-            m_Origin = transform.position;
-            if (!m_SpitTimer.Active) {
-                m_SpitTimer.Start(m_SpitInterval);
-            }
+         // Runs once before the first frame.
+        public void Initialize(Vector3 worldPosition, float depth) {
+            // Cache the origin
+            transform.position = worldPosition;
+            m_Origin = worldPosition;
+
+            // Collision settings.
+            // m_Hitbox = GetComponent<CircleCollider2D>();
+            // m_Hitbox.isTrigger = true;
+            gameObject.layer = Game.Physics.CollisionLayers.SpikeLayer;
+
+            // Temporarily
+            m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.SpikeLayer;
+            m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.SpikeOrder;
+
+            // Start the spit timer.
+            m_SpitTimer.Start(m_SpitInterval);
+
         }
 
-        // Initalizes from the LDtk files.
-        public virtual void Init(int offset, float rotation, Vector3[] path) {
+        public void SetRotation(float rotation) {
             m_Rotation = rotation;
-            transform.eulerAngles = Rotation;
-            offset += 1;
+            transform.eulerAngles = Vector3.forward * rotation;
+        }
+
+        public void SetOffset(int offset) {
             m_SpitTimer.Start((float)offset / 4f * m_SpitInterval);
         }
 

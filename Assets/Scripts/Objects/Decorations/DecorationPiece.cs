@@ -20,21 +20,20 @@ namespace Platformer.Objects.Decorations {
     ///<summary>
     public class DecorationPiece : MonoBehaviour {
 
-        #region Variables.
-
         // The idle transform movement.
         [SerializeField]
         private TransformAnimation m_IdleTransformMovement = null;
         public TransformAnimation Animation => m_IdleTransformMovement;
 
+        // The sprite renderer component attached to this.        
         private SpriteRenderer m_SpriteRenderer = null;
         public SpriteRenderer spriteRenderer => m_SpriteRenderer;
 
+        // Runs once on instantiation.
         void Awake() {
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        #endregion
 
     }
 
