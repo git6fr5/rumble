@@ -67,7 +67,7 @@ namespace Platformer.Levels.Entities {
         #endregion
         
         // Initialize this entity with the given settings.
-        public void Init(List<LDtkTileData> controlData, Vector2Int roomOrigin) {
+        public void Init(List<LDtkTileData> entityData, List<LDtkTileData> controlData, Vector2Int roomOrigin) {
             // Cache the grid position of this entity.
             float depth = transform.position.z;
             Vector3 worldPosition = Room.GridToWorldPosition(m_GridPosition, roomOrigin) + (Vector3)m_LoadOffset;            
@@ -81,6 +81,7 @@ namespace Platformer.Levels.Entities {
             }
 
             this.SetRotation();
+            this.SetLength(entityData);
             // Depends on raycasting.
             if (controlTile != null) {
                 this.SetPathing(controlTile.index, controlData); // (has to come after length is set)
@@ -89,7 +90,6 @@ namespace Platformer.Levels.Entities {
             }
             
             gameObject.SetActive(true);
-            this.SetLength();
             
         }
 
@@ -119,14 +119,13 @@ namespace Platformer.Levels.Entities {
                     // Swap the reference entity for a duplicated entity.
                     entity = entity.Duplicate(parent);
                     entity.GridPosition = entityData[i].gridPosition;
+
+                    entity.Init(entityData, controlData, roomOrigin);
                     entities.Add(entity);
+
                 }
             }
    
-            for (int i = 0; i < entities.Count; i++) {
-                entities[i].Init(controlData, roomOrigin);
-            }
-
             return entities;
 
         }

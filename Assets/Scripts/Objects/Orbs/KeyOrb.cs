@@ -53,20 +53,17 @@ namespace Platformer.Objects.Orbs {
 
         // Runs once every fixed interval.
         void FixedUpdate() {
-            // Only override the movement of the orb if it is following something.
-            if (m_Follow == null) {
-                // base.FixedUpdate();
-            }
-            else {
-                // Get the direction from the object being followed.
-                Vector3 direction = -(m_Follow.position - transform.position).normalized;
-                // Get the position that we should go to, based on the object being followed 
-                // This is not simply the followed object's position, but slightly lagging behind. 
-                Vector3 followPosition = m_Follow.position + direction;
-                // Get the appropiate speed based on how far the followed object is 
-                float speed = (followPosition - transform.position).magnitude * SPEED_FACTOR;
-                transform.Move(followPosition, speed, Time.fixedDeltaTime);
-            }
+            if (m_Follow == null) { return; }
+    
+            // Get the direction from the object being followed.
+            Vector3 direction = -(m_Follow.position - transform.position).normalized;
+            // Get the position that we should go to, based on the object being followed 
+            // This is not simply the followed object's position, but slightly lagging behind. 
+            Vector3 followPosition = m_Follow.position + direction;
+            // Get the appropiate speed based on how far the followed object is 
+            float speed = (followPosition - transform.position).magnitude * SPEED_FACTOR;
+            transform.Move(followPosition, speed, Time.fixedDeltaTime);
+    
         }
 
         // Sets this star to follow a controller.
@@ -91,6 +88,10 @@ namespace Platformer.Objects.Orbs {
 
             // The feedback on touching a star.
             base.OnTouch(character);
+        }
+
+        public void SetFollowing(Transform transform) {
+            m_Follow = transform;
         }
 
         public static KeyOrb FindKeyOrbFollowing(KeyOrb[] keyOrbs, Transform transform) {
@@ -125,10 +126,6 @@ namespace Platformer.Objects.Orbs {
 
             cachedKeyOrb.Use();
             return true;
-        }
-
-        public void SetFollowing(Transform transform) {
-            m_Follow = transform;
         }
 
         // Collects this orb.

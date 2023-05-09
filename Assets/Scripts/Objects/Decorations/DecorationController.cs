@@ -25,7 +25,9 @@ namespace Platformer.Objects.Decorations {
         #region Variables.
 
         // The pieces that need to be animated.
-        public DecorationPiece[] m_AnimatedPieces;
+        [SerializeField]
+        private DecorationPiece[] m_AnimatedPieces;
+        public DecorationPiece[] AnimatedPieces => m_AnimatedPieces;
 
         [SerializeField]
         private float m_Rotation;

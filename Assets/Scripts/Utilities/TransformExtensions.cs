@@ -10,6 +10,12 @@ namespace UnityExtensions {
     ///<summary>
     public static class TransformExtensions {
 
+        public static void Reset(this Transform transform) {
+            transform.localPosition = Vector3.zero;
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localRotation = Quaternion.Euler(0f, 0f, 0f); 
+        }
+
         public static void Animate(this Transform transform, TransformAnimation animation, float deltaTime) {
 
             if (animation.Loop) {
@@ -40,6 +46,22 @@ namespace UnityExtensions {
             transform.localRotation = animation.Rotation;
 
         }
+
+        // Interpolates between two transform animations.
+        public static void Blend(this Transform transform, TransformAnimation animA, TransformAnimation animB, float t, float blend) {
+
+            animA.AnimationTimer.Set(t, false);
+            animB.AnimationTimer.Set(t, false);
+
+            // Position.
+            transform.localPosition = (1f - blend) * animA.Position + blend * animB.Position;
+            // Scale.
+            transform.localScale = (1f - blend) * animA.Scale + blend * animB.Scale;
+            // Rotation.
+            transform.localRotation = Quaternion.Lerp(animA.Rotation, animB.Rotation, blend);
+
+        }
+
 
         // Moves an obstacle towards a target.
         public static void Move(this Transform transform, Vector2 destination, float speed, float deltaTime, List<Transform> transforms = null) {

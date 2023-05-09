@@ -46,19 +46,24 @@ namespace Platformer.Objects.Decorations {
 
         [SerializeField, ReadOnly]
         private float m_Ticks; 
+
+        [SerializeField]
+        private bool m_RandomStartPoint = true;
+
+        public float m_WaveLength = 1f;
         
         #endregion
 
         /* --- Unity --- */
         // Runs once on initialization.
         void Awake() {
-            m_Ticks = Random.Range(0f, m_Duration);
+            m_Ticks = m_RandomStartPoint ? Random.Range(0f, m_Duration) : 0f;
             m_Length = m_Length + Random.Range(-m_LengthVariation, m_LengthVariation);
 
             // Get the number of segments for a rope of this length.
             m_SpriteShape = GetComponent<SpriteShapeController>();
             m_SegmentCount = (int)Mathf.Ceil(m_Length / SEGMENT_LENGTH);
-            m_SegmentCount = (int)Mathf.Max(MIN_SEGMENTS, m_SegmentCount);
+            // m_SegmentCount = (int)Mathf.Max(MIN_SEGMENTS, m_SegmentCount);
 
             // Clear the spriteshape.
             m_SpriteShape.spline.Clear();
@@ -91,7 +96,7 @@ namespace Platformer.Objects.Decorations {
             Vector3 position;
             for (int i = 0; i < m_SegmentCount; i++) {
                 yValue = ((float)i/m_SegmentCount);
-                tValue = (m_Ticks/m_Duration + yValue) % 1;
+                tValue = (m_Ticks/m_Duration + m_WaveLength * yValue) % 1;
                 xValue = m_AnimationCurve.Evaluate(tValue);
                 position = GetAnimationScale(i) * Vector3.right * xValue + m_Length * Vector3.up * yValue;
                 m_SpriteShape.spline.SetPosition(i, position);

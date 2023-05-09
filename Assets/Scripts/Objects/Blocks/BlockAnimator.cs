@@ -117,9 +117,7 @@ namespace Platformer.Objects.Blocks {
                 
                 if (m_TransformAnimation.AnimationTimer.Ratio >= 1f) {
                     m_TransformAnimation = null;
-                    transform.localPosition = Vector3.zero;
-                    transform.localScale = new Vector3(1f, 1f, 1f);
-                    transform.localRotation = Quaternion.Euler(0f, 0f, 0f); 
+                    transform.Reset();
                 }
             }
 

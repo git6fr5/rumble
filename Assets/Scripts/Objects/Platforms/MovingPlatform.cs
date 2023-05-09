@@ -13,6 +13,7 @@ using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 using IPathable = Platformer.Levels.Entities.IPathable;
 using PathingData = Platformer.Levels.Entities.PathingData;
+using Leg = Platformer.Objects.Decorations.DecorationController;
 
 namespace Platformer.Objects.Platforms {
 
@@ -50,7 +51,57 @@ namespace Platformer.Objects.Platforms {
         [SerializeField]
         private AudioClip m_StopMovingSound = null;
 
+        //
+        [SerializeField]
+        private AudioClip m_MovingRightAnimation = null;
+
+        //
+        [SerializeField]
+        private AudioClip m_MovingLeftAnimation = null;
+
+        // Th
+        [SerializeField]
+        public TransformAnimation m_IdleAnimation;
+
+        // The sound that plays when the platform stops moving.
+        [SerializeField]
+        private AudioClip m_StopMovingSound = null;
+
         #endregion
+
+        public const float LEG_SPACING = 1f;
+        public Leg leg;
+        public List<Leg> legs = new List<Leg>();
+
+        public TransformAnimation m_MovingLegAnimation;
+        public TransformAnimation m_IdleAnimation;
+
+        public override void SetLength(int length) {
+            base.SetLength(length);
+
+            if (length <= 2) {
+                leg.transform.localPosition += (length - 1f) * new Vector3(0.5f, 0.2f, 0f);
+                leg.gameObject.SetActive(true);
+                legs.Add(leg);
+                return;
+            }
+
+            float d = spacing;
+            float a = AdjustedLength - 0.5f - spacing;
+            legs = new List<Decorations.DecorationController>();
+            while (d < a) {
+                
+                GameObject newLeg = Instantiate(leg.gameObject);
+                newLeg.transform.SetParent(transform);
+                newLeg.transform.localPosition = Vector3.right * d + Vector3.up * leg.transform.localPosition.y;
+                newLeg.SetActive(true);
+                d += spacing;
+
+                legs.Add(newLeg.GetComponent<Decorations.DecorationController>());
+
+            }
+
+        }
 
         public void SetPath(PathingData pathingData) {
             // Convert the start and end nodes into world positions.
@@ -85,6 +136,8 @@ namespace Platformer.Objects.Platforms {
             float distance = ((Vector2)m_Path[m_PathIndex] - (Vector2)transform.position).magnitude;
             if (distance == 0f && m_PauseTimer.Value == m_PauseDuration) {
                 Game.Audio.Sounds.PlaySound(m_StopMovingSound);
+
+                StopLegAnimation();
             }
 
             bool finished = m_PauseTimer.TickDownIf(dt, distance == 0f);
@@ -94,9 +147,58 @@ namespace Platformer.Objects.Platforms {
 
                 m_PathIndex = (m_PathIndex + 1) % m_Path.Length;
                 m_PauseTimer.Start(m_PauseDuration);
+
+                SetLegAnimation();   
+            }
+
+        }
+
+        public void StopLegAnimation() {
+            foreach (Decorations.DecorationController leg in legs) {
+                leg.enabled = false;
+                for (int i = 0; i < leg.AnimatedPieces.Length; i++) {
+                    leg.AnimatedPieces[i].transform.Reset();
+                }   
+            } 
+        }
+
+        public void SetLegAnimation() {
+            Vector3 direction = m_Path[m_PathIndex] - transform.position;
+            float rotationScale = direction.x > 0 ? 1f : -1f;
+            float scaleScale = -1f * rotationScale;
+            float posScale = rotationScale;
+
+            for (int n = 0; n < legs.Count; n++) {
+
+                Decorations.DecorationController leg = legs[n];
+
+                leg.enabled = true;
+                for (int i = 0; i < leg.AnimatedPieces.Length; i++) {
+                    
+                    leg.AnimatedPieces[i].Animation.RotationScale = Mathf.Abs(leg.AnimatedPieces[i].Animation.RotationScale) * rotationScale;
+                    leg.AnimatedPieces[i].Animation.ScaleScale = Mathf.Abs(leg.AnimatedPieces[i].Animation.ScaleScale) * scaleScale;
+                    
+                    float _posScale = i % 2 == 0 ? posScale : -posScale; 
+                    leg.AnimatedPieces[i].Animation.PositionScale = Mathf.Abs(leg.AnimatedPieces[i].Animation.PositionScale) * _posScale;
+                    
+                    float maxVal = leg.AnimatedPieces[i].Animation.AnimationTimer.MaxValue;
+                    
+                    float incMax = 0.5f * maxVal; // 2f / 3f;
+                    float baseVal = i % 2 == 0 ? maxVal / 2f : 0f;
+                    float incVal = ((float)n / legs.Count) * incMax;
+                    if (direction.x > 0f) {
+
+                        baseVal = maxVal / 2f - baseVal;
+                        incVal = incMax - incVal;
+                    }
+                    
+                    leg.AnimatedPieces[i].Animation.AnimationTimer.Set(baseVal + incVal);
+                }   
             }
         }
         
     }
+
+    
 
 }

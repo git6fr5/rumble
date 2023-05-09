@@ -122,7 +122,7 @@ namespace Platformer.Objects.Platforms {
             }
             
             transform.position = m_Origin;
-            m_SpriteShapeRenderer.enabled = enable;
+            // m_SpriteShapeRenderer.enabled = enable;
             m_Hitbox.enabled = enable;
             m_DisabledObject.SetActive(!enable);
         }

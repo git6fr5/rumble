@@ -36,7 +36,8 @@ namespace Platformer.Character {
             // Action Active
             ActionPreActive,
             ActionActive,
-            ActionPostActive
+            ActionPostActive,
+            Count,
         }
 
         #endregion
@@ -46,7 +47,7 @@ namespace Platformer.Character {
         /* --- Constants --- */
 
         // The frame rate that the animation plays at.
-        public const float FRAME_RATE = 8;
+        public const float FRAME_RATE = 6;
 
         // The factor by which this stretches.
         public const float STRETCH_FACTOR = 3f/2f;
@@ -64,7 +65,7 @@ namespace Platformer.Character {
         // Okay. Lets see if this works.
         [HideInInspector]
         private Dictionary<AnimationPriority, Sprite[]> m_Spritesheet = new Dictionary<AnimationPriority, Sprite[]>();
-
+        // private Sprite[][] m_Spritesheet;
         // The sprites this is currently animating through.
         [SerializeField]
         private Sprite[] m_CurrentAnimation = null;
@@ -89,11 +90,12 @@ namespace Platformer.Character {
         void Start() {
             m_Character = transform.parent.GetComponent<CharacterController>();
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
+            // m_Spritesheet = new Sprite[(int)AnimationPriority.Count][];
         }
 
         void Update() {
             Animate(Time.deltaTime);
-            Scale(Time.deltaTime);
+            // Scale(Time.deltaTime);
             Rotate();
         }
 
@@ -111,11 +113,20 @@ namespace Platformer.Character {
         }
 
         public Sprite[] GetHighestPriorityAnimation() {
+            // for (int i = m_Spritesheet.Length - 1; i >= 0; i--) {
+            //     if (m_Spritesheet[i] != null) {
+            //         return m_Spritesheet[i];
+            //     }
+            // }
+            // return null;
             return m_Spritesheet[m_Spritesheet.Keys.Max()];
         }
 
         public void Push(Sprite[] animation, AnimationPriority priority) {
             if (animation == null || animation.Length == 0) { return; }
+
+            // m_Spritesheet[(int)priority] = animation;
+
             if (m_Spritesheet.ContainsKey(priority)) {
                 m_Spritesheet[priority] = animation;
             }
@@ -126,6 +137,14 @@ namespace Platformer.Character {
 
         public void Remove(Sprite[] animation) {
             if (animation == null) { return; }
+
+            // for (int i = 0; i < m_Spritesheet.Length; i++) {
+            //     if (m_Spritesheet[i] == animation) {
+            //         print("Remmoving");
+            //         m_Spritesheet[i] = null;
+            //     }
+            // }
+
             List<KeyValuePair<AnimationPriority, Sprite[]>> kvp = m_Spritesheet.Where(kv => kv.Value == animation).ToList();
             foreach(KeyValuePair<AnimationPriority, Sprite[]> kv in kvp) {
                 m_Spritesheet.Remove(kv.Key);

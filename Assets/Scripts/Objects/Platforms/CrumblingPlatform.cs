@@ -85,7 +85,7 @@ namespace Platformer.Objects.Platforms {
                     if (m_Pressed) { OnStartCrumble(); }
                     break;
                 case CrumbleState.Crumbling:
-                    m_SpriteShapeController.transform.Shake(m_Origin, Strength); // Should this be in while crumbling?
+                    // m_SpriteShapeController.transform.Shake(m_Origin, Strength); // Should this be in while crumbling?
                     break;
                 default:
                     break;
@@ -133,16 +133,20 @@ namespace Platformer.Objects.Platforms {
 
         private void OnCrumble() {
             m_Hitbox.enabled = false;
-            m_SpriteShapeRenderer.enabled = false;
+            // m_SpriteShapeRenderer.enabled = false;
             m_CrumbleState = CrumbleState.Reforming;
             
             m_CrumbleTimer.Start(m_ReformDuration);
             Game.Audio.Sounds.PlaySound(m_OnCrumbleSound, 0.15f);
+
+            m_Animator.gameObject.SetActive(false);
+
         }
 
         private void OnReform() {
             m_Hitbox.enabled = true;
-            m_SpriteShapeRenderer.enabled = true;
+            // m_SpriteShapeRenderer.enabled = true;
+            m_Animator.gameObject.SetActive(true);
             m_CrumbleState = CrumbleState.None;
 
             Game.Audio.Sounds.PlaySound(m_OnReformSound, 0.15f);
@@ -150,6 +154,13 @@ namespace Platformer.Objects.Platforms {
 
         private void WhileCrumbling(float dt) {
             Game.Audio.Sounds.PlaySound(m_WhileCrumblingSound, Mathf.Sqrt(m_CrumbleTimer.InverseRatio) * 1f);
+            // if (m_CrumbleTimer.Ratio < 1f / 3f) {
+            //     m_Animator.SetStage(m_CrumbleVisualState[2]);
+            // }
+            // else if (m_CrumbleTimer.Ratio < 2f / 3f) {
+            //     m_Animator.SetStage(m_CrumbleVisualState[1]);
+            // }
+
         }
 
         private void WhileReforming(float dt) {

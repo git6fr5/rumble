@@ -15,53 +15,39 @@ namespace Platformer.Levels.Entities {
 
     public interface IElongatable {
         void SetLength(int length);
-        GameObject FindElongatableObject(Vector3 origin, Vector2 direction, float distance);
     }
 
     public static class EntityElongateExtension {
 
-        // The distance that we search right for another platform.
-        public const float SEARCH_DISTANCE = 50f;
-
-        public static void SetLength(this Entity entity) {
+        public static void SetLength(this Entity entity, List<LDtkTileData> entityData) {
             IElongatable elongatable = entity.GetComponent<IElongatable>();
             if (elongatable == null) { 
                 return; 
             }
             
-            int length = entity.GetLength(elongatable);
+            int length = entity.GetLength(entityData);
             elongatable.SetLength(length);
 
         }
 
-        // The logic of turning the ldtk data into a length.
-        public static int GetLength(this Entity entity, IElongatable elongatable) {
-            Vector3 position = entity.transform.position;
-            
-            // To cache the entities we want to delete after.
-            List<GameObject> garbage = new List<GameObject>();
+        public static int GetLength(this Entity entity, List<LDtkTileData> entityData) {
 
-            // Itterate right until we are no longer touching
-            // a platform entity.
+            LDtkTileData left = entityData.Find(tile => tile.gridPosition == entity.GridPosition + Vector2Int.left && tile.vectorID == entity.VectorID);
+            if (left != null) {
+                return -1;
+            }
+
             int length = 0;
-            bool continueSearch = true;
-            while (continueSearch && length < 50) {
+            while (length < 50) {
                 length += 1;
-                continueSearch = false;
-                // Can I do this purely though LDtk?
-                Vector3 offset = ((length - 1f) + 0.5f) * Vector3.right;
-                GameObject elongatableObject = elongatable.FindElongatableObject(position + offset, Vector2.right, SEARCH_DISTANCE); 
-                if (elongatableObject != null) {
-                    continueSearch = true;
-                    garbage.Add(elongatableObject);
+                LDtkTileData right = entityData.Find(tile => tile.gridPosition == entity.GridPosition + length * Vector2Int.right && tile.vectorID == entity.VectorID);
+                if (right == null) {
+                    break;
                 }
             }
 
-            // Delete the garabage collected.
-            for (int i = 0; i < garbage.Count; i++) {
-                MonoBehaviour.Destroy(garbage[i]);
-            }
             return length;
+
         }
 
     }

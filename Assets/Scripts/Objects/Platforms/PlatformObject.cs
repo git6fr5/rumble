@@ -13,8 +13,6 @@ using CharacterController = Platformer.Character.CharacterController;
 using IInitializable = Platformer.Levels.Entities.IInitializable;
 using IElongatable = Platformer.Levels.Entities.IElongatable;
 
-using Platformer.Levels.Entities;
-
 namespace Platformer.Objects.Platforms {
 
     ///<summary>
@@ -39,16 +37,9 @@ namespace Platformer.Objects.Platforms {
         // The box collider attached to this platform.
         protected BoxCollider2D m_Hitbox = null;
         
-        // The sprite shape renderer attached to this platform.
+        // The animator that renders this platform.
         [SerializeField]
-        protected SpriteShapeRenderer m_SpriteShapeRenderer = null;
-        
-        // The sprite shape controller. attached to this platform.
-        [SerializeField]
-        protected SpriteShapeController m_SpriteShapeController = null;
-
-        // The spline attached to the sprite shape.
-        protected Spline m_Spline = null;
+        protected PlatformAnimator m_Animator = null;
 
         /* --- Parameters --- */
 
@@ -75,14 +66,6 @@ namespace Platformer.Objects.Platforms {
         [SerializeField] 
         private AudioClip m_OnPressedSound;
 
-        // The alternate shape of the platform when it is pressed, if there is one.
-        [SerializeField] 
-        protected SpriteShape m_PressedShape = null;
-        
-        // The default shape of the platform, to be cached.
-        [SerializeField, ReadOnly]
-        protected SpriteShape m_DefaultShape = null;
-
         #endregion
 
         #region Methods.
@@ -99,30 +82,31 @@ namespace Platformer.Objects.Platforms {
             gameObject.layer = Game.Physics.CollisionLayers.PlatformLayer;
 
             // Rendering settings.
-            m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.PlatformLayer;
-            m_SpriteShapeRenderer.sortingOrder = Game.Visuals.RenderingLayers.PlatformOrder;
-            m_Spline = m_SpriteShapeController.spline;
-            m_DefaultShape = m_SpriteShapeController.spriteShape;
+            m_Animator.Initialize(this);
 
-        }
-
-        public virtual GameObject FindElongatableObject(Vector3 origin, Vector2 direction, float distance) {
-            return Game.Physics.Collisions.ILineOfSight<MonoBehaviour>(origin, direction, Game.Physics.CollisionLayers.Ground, distance); 
         }
 
         // Set the controls from the LDtk files.
         public virtual void SetLength(int length) {
             m_Length = (float)length;
-            
-            // Set the hitbox length.
-            m_Hitbox.size = new Vector2(AdjustedLength, PLATFORM_HEIGHT );
-            m_Hitbox.offset = new Vector2(AdjustedLength - 2f * OFFSET, 1f - PLATFORM_HEIGHT) / 2f;
+            print(length);
 
-            m_Spline.Clear();
-            m_Spline.InsertPointAt(0, -OFFSET * Vector3.right);
-            m_Spline.InsertPointAt(1, (-OFFSET + AdjustedLength) * Vector3.right);
-            m_Spline.SetTangentMode(0, ShapeTangentMode.Continuous);
-            m_Spline.SetTangentMode(1, ShapeTangentMode.Continuous);
+            // In the special case that the length of this is 0 or less.
+            if (length <= 0 && gameObject != null) {
+                Destroy(gameObject);
+                return;
+            }
+            else if (length == 1) {
+                m_Hitbox.size = new Vector2(1f, PLATFORM_HEIGHT);
+                m_Hitbox.offset = new Vector2(0.5f, 0.8f - PLATFORM_HEIGHT) / 2f;
+            }
+            else {
+                m_Hitbox.size = new Vector2(AdjustedLength - 0.5f, PLATFORM_HEIGHT);
+                m_Hitbox.offset = new Vector2(AdjustedLength - 2f * OFFSET, 0.8f - PLATFORM_HEIGHT) / 2f;
+            }        
+
+            // Set the renderer.
+            m_Animator.SetLength(length, AdjustedLength, OFFSET);
 
         }
 
@@ -133,17 +117,11 @@ namespace Platformer.Objects.Platforms {
             // If the platform was just pressed.
             if (m_Pressed && !m_CachePressed) {
                 Game.Audio.Sounds.PlaySound(m_OnPressedSound, 0.15f);
-                m_SpriteShapeController.transform.localPosition = new Vector3(0f, 0f, 0f); 
-                if (m_PressedShape != null) {
-                    m_SpriteShapeController.spriteShape = m_PressedShape;
-                }
+                m_Animator.OnPressed();
             }
             // If the platform was just released.
             else if (m_CachePressed && !m_Pressed) {
-                m_SpriteShapeController.transform.localPosition = new Vector3(0f, 1f/16f, 0f); 
-                if (m_SpriteShapeController.spriteShape != m_DefaultShape) {
-                    m_SpriteShapeController.spriteShape = m_DefaultShape;
-                }
+                m_Animator.OnReleased();
             }
 
             m_CachePressed = m_Pressed;
