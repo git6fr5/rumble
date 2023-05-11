@@ -96,22 +96,24 @@ namespace Platformer.Objects.Platforms {
         }
 
         // Set the controls from the LDtk files.
-        public void SetLength(int baseLength, float adjustedLength, float offset) {
-            if (baseLength == 1) {
+        public void SetLength(int length) {
+            if (length == 2) {
 
                 m_SpriteRenderers = new SpriteRenderer[1];
                 m_SpriteRenderers[0] = new GameObject("sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
                 m_SpriteRenderers[0].sprite = m_VisualPacket.Single;
                 m_SpriteRenderers[0].transform.SetParent(transform);
-                m_SpriteRenderers[0].transform.localPosition = Vector3.zero;
+
+                m_SpriteRenderers[0].transform.localScale = new Vector3(0.9f, 1f, 1f);
+                m_SpriteRenderers[0].transform.localPosition = 0.5f * Vector3.right;
 
                 Destroy(m_SpriteShapeRenderer.gameObject);
                 m_SpriteShapeRenderer = null;
                 m_SpriteShapeController = null;
-
                 return;
+
             }
-            else if (baseLength == 2) {
+            else if (length == 1) {
 
                 m_SpriteRenderers = new SpriteRenderer[2];
                 m_SpriteRenderers[0] = new GameObject("left_sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
@@ -122,8 +124,8 @@ namespace Platformer.Objects.Platforms {
                 m_SpriteRenderers[0].transform.SetParent(transform);
                 m_SpriteRenderers[1].transform.SetParent(transform);
 
-                m_SpriteRenderers[0].transform.localPosition = Vector3.zero;
-                m_SpriteRenderers[1].transform.localPosition = Vector3.right;
+                m_SpriteRenderers[0].transform.localPosition = 10f/16f * Vector3.left;
+                m_SpriteRenderers[1].transform.localPosition = 10f/16f * Vector3.right;
 
                 Destroy(m_SpriteShapeRenderer.gameObject);
                 m_SpriteShapeRenderer = null;
@@ -132,16 +134,20 @@ namespace Platformer.Objects.Platforms {
                 return;
             }
 
+            // float spriteLength = (baseLength - 2f) + (2f * capLength);
+            // m_SpriteShapeController.transform.localScale = new Vector3((float)baseLength / spriteLength, 1f, 1f);
+            // m_SpriteShapeController.transform.localPosition += 0.8f * Vector3.left; //  * (float)baseLength / spriteLength / 2f;
+
             m_SpriteShapeController.spriteShape = m_VisualPacket.Default;
             
             m_Spline.Clear();
-            m_Spline.InsertPointAt(0, (-offset + 1) * Vector3.right);
-            m_Spline.InsertPointAt(1, ((-offset-1) + adjustedLength) * Vector3.right);
+            m_Spline.InsertPointAt(0, Vector3.zero);
+            m_Spline.InsertPointAt(1, (length - 1f) * Vector3.right);
             m_Spline.SetTangentMode(0, ShapeTangentMode.Continuous);
             m_Spline.SetTangentMode(1, ShapeTangentMode.Continuous);
         }
 
-        public void Set(PlatformVisualPacket visualPacket) {
+        public void SetVisuals(PlatformVisualPacket visualPacket) {
             if (m_SpriteShapeRenderer != null) {
                 m_SpriteShapeController.spriteShape = visualPacket.Default;
                 return;

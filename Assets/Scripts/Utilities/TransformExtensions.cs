@@ -48,10 +48,7 @@ namespace UnityExtensions {
         }
 
         // Interpolates between two transform animations.
-        public static void Blend(this Transform transform, TransformAnimation animA, TransformAnimation animB, float t, float blend) {
-
-            animA.AnimationTimer.Set(t, false);
-            animB.AnimationTimer.Set(t, false);
+        public static void Blend(this Transform transform, TransformAnimation animA, TransformAnimation animB, float blend) {
 
             // Position.
             transform.localPosition = (1f - blend) * animA.Position + blend * animB.Position;

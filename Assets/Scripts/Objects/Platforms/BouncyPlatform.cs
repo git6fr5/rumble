@@ -12,6 +12,7 @@ using Platformer.Objects.Platforms;
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 using Spring = Platformer.Objects.Decorations.Spring;
+using Jelly = Platformer.Objects.Decorations.Jelly;
 
 namespace Platformer.Objects.Platforms {
 
@@ -67,10 +68,23 @@ namespace Platformer.Objects.Platforms {
         [SerializeField] 
         private Spring[] m_Springs = null;
 
+        [SerializeField]
+        private Jelly m_Jelly;
+
         #endregion
 
         void Start() {
             Invoke("ActivateSprings", 0.04f);
+        }
+
+        // Set the controls from the LDtk files.
+        public override void SetLength(int length) {
+            base.SetLength(length);
+
+            if (length <= 0) {
+                return;
+            }
+            m_Jelly.Load(transform.position + Vector3.up * 0.75f + Vector3.left * 0.5f, Vector3.right, Vector3.down, HitboxLength - 1f + 0.5f, 1f);
         }
 
         // Runs once every frame.
@@ -209,7 +223,7 @@ namespace Platformer.Objects.Platforms {
 
             Vector2 offset = Vector2.zero;
             for (int i = 0; i < m_Springs.Length; i++) {
-                offset.x = m_Hitbox.offset.x + Random.Range(-0.5f, 0.5f);
+                offset.x = m_Hitbox.offset.x; // + Random.Range(-0.5f, 0.5f);
                 m_Springs[i].Activate(offset, distanceToGround + 0.5f, Vector3.down);
             }
 

@@ -23,7 +23,10 @@ namespace Platformer.Objects.Decorations {
         // The idle transform movement.
         [SerializeField]
         private TransformAnimation m_IdleTransformMovement = null;
-        public TransformAnimation Animation => m_IdleTransformMovement;
+        public TransformAnimation Animation {
+            get { return m_IdleTransformMovement; }
+            set { m_IdleTransformMovement = value; }
+        }
 
         // The sprite renderer component attached to this.        
         private SpriteRenderer m_SpriteRenderer = null;

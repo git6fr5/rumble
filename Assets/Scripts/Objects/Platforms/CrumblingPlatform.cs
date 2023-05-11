@@ -21,10 +21,20 @@ namespace Platformer.Objects.Platforms {
 
         #region Enumerations.
 
+        // A macro overview of the state.
         public enum CrumbleState {
             None,
             Crumbling,
             Reforming
+        }
+
+        // Looking at increments while crumbling.
+        public enum Crumbliness {
+            FullyCrumbled,
+            VeryCrumbly,
+            SlightlyCrumbly,
+            NotCrumbling,
+            Count
         }
 
         #endregion
@@ -34,6 +44,10 @@ namespace Platformer.Objects.Platforms {
         // Whether this platform is crumbling.
         [SerializeField] 
         private CrumbleState m_CrumbleState = CrumbleState.None;
+
+        // Whether this platform is crumbling.
+        [SerializeField] 
+        private Crumbliness m_Crumbliness = Crumbliness.NotCrumbling;
         
         // The duration this is crumbling for.
         [SerializeField] 
@@ -55,8 +69,8 @@ namespace Platformer.Objects.Platforms {
         private float Strength => m_ShakeStrength * m_CrumbleTimer.InverseRatio;
 
         // The sound this plays while crumbling
-        [SerializeField] 
-        private AudioClip m_WhileCrumblingSound = null;
+        // [SerializeField] 
+        // private AudioClip m_WhileCrumblingSound = null;
         
         // The sound this plays on crumbling.
         [SerializeField] 
@@ -69,6 +83,9 @@ namespace Platformer.Objects.Platforms {
         // The sound this plays on reforming.
         [SerializeField] 
         private AudioClip m_OnReformSound = null;
+
+        [SerializeField]
+        private PlatformVisualPacket[] m_CrumblinessVisuals;
 
         #endregion
 
@@ -153,14 +170,25 @@ namespace Platformer.Objects.Platforms {
         }
 
         private void WhileCrumbling(float dt) {
-            Game.Audio.Sounds.PlaySound(m_WhileCrumblingSound, Mathf.Sqrt(m_CrumbleTimer.InverseRatio) * 1f);
-            // if (m_CrumbleTimer.Ratio < 1f / 3f) {
-            //     m_Animator.SetStage(m_CrumbleVisualState[2]);
-            // }
-            // else if (m_CrumbleTimer.Ratio < 2f / 3f) {
-            //     m_Animator.SetStage(m_CrumbleVisualState[1]);
+            // Game.Audio.Sounds.PlaySound(m_WhileCrumblingSound, Mathf.Sqrt(m_CrumbleTimer.InverseRatio) * 1f);
+
+            // float denom = (float)Crumbliness.Count;
+            // // float ratio = 1f;
+            // for (int i = (int)Crumbliness.Count - 1; i >= 0; i--) {
+            //     if (m_CrumbleTimer.InverseRatio < (float)i /  denom && m_Crumbliness != (Crumbliness)i) {
+            //         if (m_CrumblinessVisuals != null && m_CrumblinessVisuals.Length > i && m_CrumblinessVisuals[i] != null) {
+            //             m_Crumbliness == 
+            //             m_Animator.SetVisuals(m_CrumblinessVisuals[i]);
+            //             break;
+            //         }
+            //     }
             // }
 
+            // if (m_CrumbleTimer.Ratio < 1f / 3f && m_Crumbliness != Crumbliness.VeryCrumbly) {
+            // }
+            // else if (m_CrumbleTimer.Ratio < 1f / 3f && m_Crumbliness != Crumbliness.SlightlyCrumbly) {
+            //     m_Animator.SetVisuals(m_SlightlyCrumbledVisualState, m_Length);
+            // }
         }
 
         private void WhileReforming(float dt) {

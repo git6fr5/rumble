@@ -9,11 +9,16 @@ using Platformer.Objects.Decorations;
 
 namespace Platformer.Objects.Decorations {
 
-    [RequireComponent(typeof(LineRenderer))]
     [RequireComponent(typeof(EdgeCollider2D))]
     public class BridgeRope : Rope {
 
         [SerializeField] public Transform endpoint;
+
+        public void Set(float length, Vector3 startpoint, Vector3 endpoint) {
+            this.ropeLength = length;
+            this.startpoint.position = startpoint;
+            this.endpoint.position = endpoint;
+        }
 
         // Runs once on initialization.
         protected override void OnAwake() {

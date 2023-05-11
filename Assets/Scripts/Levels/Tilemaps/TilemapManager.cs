@@ -35,7 +35,7 @@ namespace Platformer.Levels.Tilemaps {
 
         // The tiles for the ground map.
         [field: SerializeField] 
-        public GroundTile groundTile { get; private set; }
+        public RuleTile groundTile { get; private set; }
 
         // The tiles for the ground mask.
         [field: SerializeField] 

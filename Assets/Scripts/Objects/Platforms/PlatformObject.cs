@@ -27,10 +27,11 @@ namespace Platformer.Objects.Platforms {
         /* --- Constants --- */
 
         // The height of a platform.
-        private const float PLATFORM_HEIGHT = 5f/16f;
+        public const float PLATFORM_HEIGHT = 5f/16f;
 
         // In order to properly center the platform.
-        protected const float OFFSET = 6f/16f;
+        protected const float COLLIDER_OUTSET = 3.5f/16f;
+        protected const float SPRITE_CAP_LENGTH = 12f/16f;
 
         /* --- Components --- */
 
@@ -48,7 +49,8 @@ namespace Platformer.Objects.Platforms {
 
         [SerializeField, ReadOnly]
         protected float m_Length = 0f;
-        public float AdjustedLength => m_Length - 2f * (0.5f - OFFSET); 
+        // public float AdjustedLength => m_Length - 2f * (0.5f - COLLIDER_OFFSET); 
+        public float HitboxLength => m_Length + 2f * COLLIDER_OUTSET; 
         
         // The objects that are attached to the platform.
         [SerializeField, ReadOnly] 
@@ -96,17 +98,12 @@ namespace Platformer.Objects.Platforms {
                 Destroy(gameObject);
                 return;
             }
-            else if (length == 1) {
-                m_Hitbox.size = new Vector2(1f, PLATFORM_HEIGHT);
-                m_Hitbox.offset = new Vector2(0.5f, 0.8f - PLATFORM_HEIGHT) / 2f;
-            }
-            else {
-                m_Hitbox.size = new Vector2(AdjustedLength - 0.5f, PLATFORM_HEIGHT);
-                m_Hitbox.offset = new Vector2(AdjustedLength - 2f * OFFSET, 0.8f - PLATFORM_HEIGHT) / 2f;
-            }        
+                
+            m_Hitbox.size = new Vector2(HitboxLength, PLATFORM_HEIGHT);
+            m_Hitbox.offset = new Vector2(m_Length-1f, 0.8f - PLATFORM_HEIGHT) / 2f;
 
             // Set the renderer.
-            m_Animator.SetLength(length, AdjustedLength, OFFSET);
+            m_Animator.SetLength(length);
 
         }
 

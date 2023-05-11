@@ -24,7 +24,7 @@ namespace Platformer.Objects.Decorations {
 
         /* --- Constants --- */
 
-        private const float VARIATION = 0.2f;
+        private const float VARIATION = 0.1f;
 
         /* --- Components --- */
 
@@ -82,17 +82,25 @@ namespace Platformer.Objects.Decorations {
             // Create the points.
             int i = 1;
             float y = 0f;
+            float PRECISION = 1f;
             while (y < distance) {
 
+                y += PRECISION; // Random.Range(1.5f * VARIATION, 3f * VARIATION);
                 m_EndPosition = m_StartPosition + direction * y + tangent * Random.Range(-VARIATION, VARIATION);
                 spline.InsertPointAt(i, m_EndPosition);
                 spline.SetTangentMode(i, ShapeTangentMode.Continuous);
 
                 i += 1;
-                y += Random.Range(1.5f * VARIATION, 3f * VARIATION);
 
                 m_RelativePositions.Add(m_EndPosition);
 
+            }
+
+            for (int j = 1; j < m_RelativePositions.Count-1; j++) {
+                Vector3 dir = (m_RelativePositions[j+1] - m_RelativePositions[j-1]) / 4f;
+                dir = Quaternion.Euler(0f, 0f, Random.Range(-60f, 60f)) * dir;
+                spline.SetRightTangent(j, dir);
+                spline.SetLeftTangent(j, -dir);
             }
 
             for (int j = 0; j < m_RelativePositions.Count; j++) {
@@ -125,6 +133,7 @@ namespace Platformer.Objects.Decorations {
             for (int i = 0; i < count; i++) {
                 Vector3 compressedPos = new Vector3(m_RelativePositions[i].x, compression * m_RelativePositions[i].y, m_RelativePositions[i].z); 
                 spline.SetPosition(i, compressedPos + m_EndPosition);
+                spline.SetTangentMode(i, ShapeTangentMode.Continuous);
             }
 
         }

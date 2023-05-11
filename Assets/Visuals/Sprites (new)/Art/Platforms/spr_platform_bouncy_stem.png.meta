@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4937fd45766dd14488efcf7d8431a764
+guid: 67c9919af8957494fb9195ad53a2308b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 200
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 256, y: 0, z: 217, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -152,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_platform_crumble_0
+      name: spr_platform_bouncy_stem_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 102
         y: 0
-        width: 200
-        height: 200
+        width: 79
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,71 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7e8d112d3ff6834287a271d95b3edf6
-      internalID: -154120643
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_platform_crumble_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 600
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 200, y: 0, z: 200, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c746ef248fb1818428d6dbe7ce86c729
-      internalID: -1932008318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_platform_crumble_2
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 200
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21392f765643ac140a4029b69dc7575f
-      internalID: 605020254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_platform_crumble_3
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 200
-        height: 200
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b1ffc882de4f12144a1f228b955bb57d
-      internalID: -1939870193
+      spriteID: fca51157c5b65c24f9e94caf9c24b7aa
+      internalID: 1582624661
       vertices: []
       indices: 
       edges: []
@@ -239,17 +176,14 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_platform_crumble_3: -1939870193
-      spr_platform_crumble_0: -154120643
-      spr_platform_crumble_1: -1932008318
-      spr_platform_crumble_2: 605020254
+      spr_platform_bouncy_stem_0: 1582624661
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

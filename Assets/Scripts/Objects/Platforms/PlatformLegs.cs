@@ -23,7 +23,13 @@ namespace Platformer.Objects.Platforms {
 
         public const float SPACING = 1f;
 
-        public const float INSET = 0.5f;
+        public const float INSET = 0f;
+
+        [SerializeField]
+        private float m_BlendValue = 0f;
+
+        [SerializeField]
+        private float m_BlendFactor = 1f;
 
         [SerializeField]
         private Leg m_BaseLeg;
@@ -31,17 +37,27 @@ namespace Platformer.Objects.Platforms {
         [SerializeField, ReadOnly]
         private List<Leg> m_Legs = new List<Leg>();
 
-        //
-        [SerializeField]
-        private AudioClip m_MovingRightAnimation = null;
+        [SerializeField, ReadOnly]
+        private float m_Direction = 1f;
 
         //
         [SerializeField]
-        private AudioClip m_MovingLeftAnimation = null;
+        private TransformAnimation m_FrontLegAnimation = null;
+        public TransformAnimation FrontLegAnim => m_FrontLegAnimation;
 
         //
         [SerializeField]
-        public TransformAnimation m_IdleAnimation;
+        private TransformAnimation m_BackLegAnimation = null;
+        public TransformAnimation BackLegAnim => m_BackLegAnimation;
+
+        //
+        [SerializeField]
+        private TransformAnimation m_IdleAnimation = null;
+        public TransformAnimation IdleAnimation => m_IdleAnimation;
+
+        // The animation being changed to.
+        private TransformAnimation m_TargetFrontLegAnimation;
+        private TransformAnimation m_TargetBackLegAnimation;
 
         #endregion
 
@@ -49,29 +65,52 @@ namespace Platformer.Objects.Platforms {
             if (m_BlendValue < 1f) {
                 Blend(Time.fixedDeltaTime);
             }
-            else {
-                Animate(Time.fixedDeltaTime);
-            }
         }
 
         void Blend(float dt) {
-            m_BlendValue += dt;
+            m_BlendValue += m_BlendFactor * dt;
 
-            foreach (Leg leg in legs) {
+            float maxVal = 0f;
+            float incMax = 0f;
+            float baseVal = 0f;
+            float incVal = 0f;
+
+            for (int n = 0; n < m_Legs.Count; n++) {
+
+                Leg leg = m_Legs[n];
                 for (int i = 0; i < leg.AnimatedPieces.Length; i++) {
-                    leg.AnimatedPieces[i].transform.Blend(leg.AnimatedPieces[i].Animation, m_TargetAnimation, leg.AnimatedPieces[i].AnimationTimer.Value, m_BlendValue);
-                }
-            } 
 
-            float timeCache = 0f;
+                    GetValues(leg, ref maxVal, ref baseVal, ref incMax, ref incVal, i, n);
+
+                    if (i % 2 == 0) {
+                        m_TargetFrontLegAnimation.AnimationTimer.Set(baseVal + incVal);
+                        leg.AnimatedPieces[i].transform.Blend(leg.AnimatedPieces[i].Animation, m_TargetFrontLegAnimation, m_BlendValue);
+                    }
+                    else {
+                        m_TargetBackLegAnimation.AnimationTimer.Set((maxVal - baseVal) + incVal);
+                        leg.AnimatedPieces[i].transform.Blend(leg.AnimatedPieces[i].Animation, m_TargetBackLegAnimation, m_BlendValue);
+                    }
+                }
+
+            }
+
             if (m_BlendValue >= 1f) {
-                foreach (Leg leg in m_Legs) {
+
+                for (int n = 0; n < m_Legs.Count; n++) {
+                    Leg leg = m_Legs[n];
                     leg.enabled = true;
 
                     for (int i = 0; i < leg.AnimatedPieces.Length; i++) {
-                        timeCache = leg.AnimatedPieces[i].Animation.AnimationTimer.Value; 
-                        leg.AnimatedPieces[i].Animation = m_TargetAnimation;
-                        leg.AnimatedPieces[i].Animation.AnimationTimer.Set(timeCache);
+
+                        GetValues(leg, ref maxVal, ref baseVal, ref incMax, ref incVal, i, n);
+
+                        if (i % 2 == 0) {
+                            leg.AnimatedPieces[i].Animation.Set(m_TargetFrontLegAnimation, baseVal + incVal, maxVal * 2f);
+                        }
+                        else {
+                            leg.AnimatedPieces[i].Animation.Set(m_TargetBackLegAnimation, (maxVal - baseVal) + incVal, maxVal * 2f);
+                        }
+                    
                     }
                 }
 
@@ -83,34 +122,60 @@ namespace Platformer.Objects.Platforms {
             m_Legs = new List<Leg>();
             
             // Special case when the platform is too short for proper construction.
-            if (gridLength <= 2) {
-                m_BaseLeg.transform.localPosition += (gridLength - 1f) * new Vector3(0.5f, 0.2f, 0f);
+            if (gridLength <= 1) {
+                m_BaseLeg.transform.localPosition += (gridLength - 1f) * new Vector3(0.5f, 0f, 0f);
                 m_BaseLeg.gameObject.SetActive(true);
                 m_Legs.Add(m_BaseLeg);
             }
             else {
 
-                float distanceTraversed = SPACING;
+                float distanceTraversed = 0f;
                 float totalDistance = actualLength - INSET - SPACING;
-            
+
+                float maxVal = 0f;
+                float incMax = 0f;
+                float baseVal = 0f;
+                float incVal = 0f;
+                int n = 0;
+
                 while (distanceTraversed < totalDistance) {
                     // Instantiate and edit the new legs.
-                    GameObject newLeg = Instantiate(m_BaseLeg.gameObject);
+                    Leg newLeg = Instantiate(m_BaseLeg.gameObject).GetComponent<Leg>();
                     newLeg.transform.SetParent(transform);
                     newLeg.transform.localPosition = Vector3.right * distanceTraversed + Vector3.up * m_BaseLeg.transform.localPosition.y;
-                    newLeg.SetActive(true);
+                    newLeg.gameObject.SetActive(true);
+
+
+                    for (int i = 0; i < newLeg.AnimatedPieces.Length; i++) {
+                        
+                        GetValues(newLeg, ref maxVal, ref baseVal, ref incMax, ref incVal, i, n);
+                        
+                        if (i % 2 == 0) {
+                            newLeg.AnimatedPieces[i].Animation.Set(m_FrontLegAnimation, baseVal + incVal, maxVal * 2f);
+                        }
+                        else {
+                            newLeg.AnimatedPieces[i].Animation.Set(m_BackLegAnimation, (maxVal - baseVal) + incVal, maxVal * 2f);
+                        }
+
+                    }
+
                     // Add the leg to the list of legs.
-                    m_Legs.Add(newLeg.GetComponent<Decorations.DecorationController>());
+                    m_Legs.Add(newLeg);
+
                     // Increment the distance.
                     distanceTraversed += SPACING;
+                    n += 1;
+
                 }
 
             }
             
         }
 
-        public void SetLegAnimation(TransformAnimation animation) {
-            TransformAnimation targetAnimation = animation;
+        public void SetLegAnimation(TransformAnimation frontLegAnimatoin, TransformAnimation backLegAnimation) {
+            m_TargetFrontLegAnimation = frontLegAnimatoin;
+            m_TargetBackLegAnimation = backLegAnimation;
+            
             m_BlendValue = 0f;
             
             foreach (Leg leg in m_Legs) {
@@ -119,41 +184,32 @@ namespace Platformer.Objects.Platforms {
             
         }
 
-        public void SetLegAnimation() {
-            Vector3 direction = m_Path[m_PathIndex] - transform.position;
-            float rotationScale = direction.x > 0 ? 1f : -1f;
+        // Transform animation is a class and so is passed by referenced and therefore i can just do this.
+        public void SetAnimationDirection(TransformAnimation animation, float direction, float invertPosition) {
+            m_Direction = direction;
+
+            float rotationScale = direction > 0 ? 1f : -1f;
             float scaleScale = -1f * rotationScale;
-            float posScale = rotationScale;
+            float posScale = invertPosition * rotationScale;
 
-            for (int n = 0; n < m_Legs.Count; n++) {
+            animation.RotationScale = Mathf.Abs(animation.RotationScale) * rotationScale;
+            animation.ScaleScale = Mathf.Abs(animation.ScaleScale) * scaleScale;
+            animation.PositionScale = Mathf.Abs(animation.PositionScale) * posScale;
+                    
+        }
 
-                Decorations.DecorationController leg = m_Legs[n];
-
-                leg.enabled = true;
-                for (int i = 0; i < leg.AnimatedPieces.Length; i++) {
-                    
-                    leg.AnimatedPieces[i].Animation.RotationScale = Mathf.Abs(leg.AnimatedPieces[i].Animation.RotationScale) * rotationScale;
-                    leg.AnimatedPieces[i].Animation.ScaleScale = Mathf.Abs(leg.AnimatedPieces[i].Animation.ScaleScale) * scaleScale;
-                    
-                    float _posScale = i % 2 == 0 ? posScale : -posScale; 
-                    leg.AnimatedPieces[i].Animation.PositionScale = Mathf.Abs(leg.AnimatedPieces[i].Animation.PositionScale) * _posScale;
-                    
-                    float maxVal = leg.AnimatedPieces[i].Animation.AnimationTimer.MaxValue;
-                    
-                    float incMax = 0.5f * maxVal; // 2f / 3f;
-                    float baseVal = i % 2 == 0 ? maxVal / 2f : 0f;
-                    float incVal = ((float)n / m_Legs.Count) * incMax;
-                    if (direction.x > 0f) {
-
-                        baseVal = maxVal / 2f - baseVal;
-                        incVal = incMax - incVal;
-                    }
-                    
-                    leg.AnimatedPieces[i].Animation.AnimationTimer.Set(baseVal + incVal);
-                }   
+        public void GetValues(Leg leg, ref float maxVal, ref float baseVal, ref float incMax, ref float incVal, int i, int n) {
+            maxVal = leg.AnimatedPieces[i].Animation.AnimationTimer.MaxValue / 2f;
+            if (maxVal != 0f) {
+                incMax = maxVal; // 2f / 3f;
+                baseVal = i % 2 == 0 ? maxVal : 0f;
+                int count = m_Legs.Count > 2 ? m_Legs.Count - 1 : 2;
+                incVal = ((((float)n / (count - 1))) % 1) * incMax;
+                if (m_Direction < 0f) {
+                    incVal = incMax - incVal;
+                }
             }
         }
-        
     }
 
     
