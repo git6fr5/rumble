@@ -21,9 +21,9 @@ namespace Platformer.Objects.Platforms {
 
         #region Variables.
 
-        public const float SPACING = 1f;
+        public float SPACING = 1f;
 
-        public const float INSET = 0f;
+        public float INSET = 1f;
 
         [SerializeField]
         private float m_BlendValue = 0f;
@@ -129,8 +129,8 @@ namespace Platformer.Objects.Platforms {
             }
             else {
 
-                float distanceTraversed = 0f;
-                float totalDistance = actualLength - INSET - SPACING;
+                float distanceTraversed = INSET - 0.5f;
+                float totalDistance = actualLength - INSET;
 
                 float maxVal = 0f;
                 float incMax = 0f;
@@ -169,8 +169,22 @@ namespace Platformer.Objects.Platforms {
                 }
 
             }
+
+            if (m_Legs.Count > 1) {
+                m_Legs[0].transform.localPosition += END_LEG_OFFSET;
+                m_Legs[m_Legs.Count - 1].transform.localPosition += END_LEG_OFFSET;
+                if (m_Legs.Count > 2) {
+                    for (int i = 1; i < m_Legs.Count-1; i++) {
+                        m_Legs[i].transform.localPosition += i % 2 == 0 ? EVEN_LEG_OFFSET : ODD_LEG_OFFSET;
+                    }
+                }
+            }
             
         }
+
+        public Vector3 END_LEG_OFFSET;
+        public Vector3 ODD_LEG_OFFSET;
+        public Vector3 EVEN_LEG_OFFSET;
 
         public void SetLegAnimation(TransformAnimation frontLegAnimatoin, TransformAnimation backLegAnimation) {
             m_TargetFrontLegAnimation = frontLegAnimatoin;
@@ -202,7 +216,7 @@ namespace Platformer.Objects.Platforms {
             maxVal = leg.AnimatedPieces[i].Animation.AnimationTimer.MaxValue / 2f;
             if (maxVal != 0f) {
                 incMax = maxVal; // 2f / 3f;
-                baseVal = i % 2 == 0 ? maxVal : 0f;
+                baseVal = i % 2 == 0 ? maxVal : maxVal / 2f;
                 int count = m_Legs.Count > 2 ? m_Legs.Count - 1 : 2;
                 incVal = ((((float)n / (count - 1))) % 1) * incMax;
                 if (m_Direction < 0f) {

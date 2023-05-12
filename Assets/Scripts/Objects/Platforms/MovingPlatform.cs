@@ -58,7 +58,7 @@ namespace Platformer.Objects.Platforms {
 
         public override void SetLength(int length) {
             base.SetLength(length);
-            m_Legs.CreateLegs(length, HitboxLength);
+            m_Legs.CreateLegs(length, m_Length);
         }
 
         public void SetPath(PathingData pathingData) {

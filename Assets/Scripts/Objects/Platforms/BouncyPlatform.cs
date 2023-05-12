@@ -84,7 +84,12 @@ namespace Platformer.Objects.Platforms {
             if (length <= 0) {
                 return;
             }
-            m_Jelly.Load(transform.position + Vector3.up * 0.75f + Vector3.left * 0.5f, Vector3.right, Vector3.down, HitboxLength - 1f + 0.5f, 1f);
+            else if (length == 1) {
+                m_Jelly.Load(transform.position + Vector3.up * 0.75f + Vector3.left * 0.4f, Vector3.right, Vector3.down, 0.8f, 1f);
+            }
+            else {
+                m_Jelly.Load(transform.position + Vector3.up * 0.75f + Vector3.left * 0.1f, Vector3.right, Vector3.down, HitboxLength - 0.7f, 1f);
+            }
         }
 
         // Runs once every frame.

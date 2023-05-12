@@ -45,6 +45,7 @@ namespace Platformer.Objects.Platforms {
 
         [SerializeField]
         private PlatformVisualPacket m_VisualPacket;
+        public PlatformVisualPacket defaultPacket => m_VisualPacket;
 
         // The sprite shape controller. attached to this platform.
         [SerializeField]
@@ -97,15 +98,15 @@ namespace Platformer.Objects.Platforms {
 
         // Set the controls from the LDtk files.
         public void SetLength(int length) {
-            if (length == 2) {
+            if (length == 1) {
 
                 m_SpriteRenderers = new SpriteRenderer[1];
                 m_SpriteRenderers[0] = new GameObject("sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
                 m_SpriteRenderers[0].sprite = m_VisualPacket.Single;
                 m_SpriteRenderers[0].transform.SetParent(transform);
 
-                m_SpriteRenderers[0].transform.localScale = new Vector3(0.9f, 1f, 1f);
-                m_SpriteRenderers[0].transform.localPosition = 0.5f * Vector3.right;
+                // m_SpriteRenderers[0].transform.localScale = new Vector3(0.9f, 1f, 1f);
+                m_SpriteRenderers[0].transform.localPosition = Vector3.zero;
 
                 Destroy(m_SpriteShapeRenderer.gameObject);
                 m_SpriteShapeRenderer = null;
@@ -113,7 +114,7 @@ namespace Platformer.Objects.Platforms {
                 return;
 
             }
-            else if (length == 1) {
+            else if (length == 2) {
 
                 m_SpriteRenderers = new SpriteRenderer[2];
                 m_SpriteRenderers[0] = new GameObject("left_sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
@@ -124,8 +125,8 @@ namespace Platformer.Objects.Platforms {
                 m_SpriteRenderers[0].transform.SetParent(transform);
                 m_SpriteRenderers[1].transform.SetParent(transform);
 
-                m_SpriteRenderers[0].transform.localPosition = 10f/16f * Vector3.left;
-                m_SpriteRenderers[1].transform.localPosition = 10f/16f * Vector3.right;
+                m_SpriteRenderers[0].transform.localPosition = Vector3.zero;
+                m_SpriteRenderers[1].transform.localPosition = Vector3.right;
 
                 Destroy(m_SpriteShapeRenderer.gameObject);
                 m_SpriteShapeRenderer = null;
@@ -140,9 +141,10 @@ namespace Platformer.Objects.Platforms {
 
             m_SpriteShapeController.spriteShape = m_VisualPacket.Default;
             
+            length -= 2;
             m_Spline.Clear();
-            m_Spline.InsertPointAt(0, Vector3.zero);
-            m_Spline.InsertPointAt(1, (length - 1f) * Vector3.right);
+            m_Spline.InsertPointAt(0, 0.5f * Vector3.right);
+            m_Spline.InsertPointAt(1, (length + 0.5f) * Vector3.right);
             m_Spline.SetTangentMode(0, ShapeTangentMode.Continuous);
             m_Spline.SetTangentMode(1, ShapeTangentMode.Continuous);
         }

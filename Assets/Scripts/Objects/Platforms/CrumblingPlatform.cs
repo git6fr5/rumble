@@ -30,10 +30,10 @@ namespace Platformer.Objects.Platforms {
 
         // Looking at increments while crumbling.
         public enum Crumbliness {
-            FullyCrumbled,
-            VeryCrumbly,
-            SlightlyCrumbly,
             NotCrumbling,
+            SlightlyCrumbly,
+            VeryCrumbly,
+            FullyCrumbled,
             Count
         }
 
@@ -102,7 +102,7 @@ namespace Platformer.Objects.Platforms {
                     if (m_Pressed) { OnStartCrumble(); }
                     break;
                 case CrumbleState.Crumbling:
-                    // m_SpriteShapeController.transform.Shake(m_Origin, Strength); // Should this be in while crumbling?
+                    m_Animator.transform.Shake(m_Origin, Strength); // Should this be in while crumbling?
                     break;
                 default:
                     break;
@@ -165,33 +165,67 @@ namespace Platformer.Objects.Platforms {
             // m_SpriteShapeRenderer.enabled = true;
             m_Animator.gameObject.SetActive(true);
             m_CrumbleState = CrumbleState.None;
+            m_Animator.SetVisuals(m_Animator.defaultPacket);
 
             Game.Audio.Sounds.PlaySound(m_OnReformSound, 0.15f);
+            m_Crumbliness = Crumbliness.NotCrumbling;
+
         }
 
         private void WhileCrumbling(float dt) {
             // Game.Audio.Sounds.PlaySound(m_WhileCrumblingSound, Mathf.Sqrt(m_CrumbleTimer.InverseRatio) * 1f);
 
-            // float denom = (float)Crumbliness.Count;
-            // // float ratio = 1f;
+            float denom = (float)Crumbliness.Count;
+            // float ratio = 1f;
             // for (int i = (int)Crumbliness.Count - 1; i >= 0; i--) {
             //     if (m_CrumbleTimer.InverseRatio < (float)i /  denom && m_Crumbliness != (Crumbliness)i) {
             //         if (m_CrumblinessVisuals != null && m_CrumblinessVisuals.Length > i && m_CrumblinessVisuals[i] != null) {
-            //             m_Crumbliness == 
+            //             m_Crumbliness = (Crumbliness)i;
             //             m_Animator.SetVisuals(m_CrumblinessVisuals[i]);
             //             break;
             //         }
             //     }
             // }
+            print(m_CrumbleTimer.InverseRatio);
 
             // if (m_CrumbleTimer.Ratio < 1f / 3f && m_Crumbliness != Crumbliness.VeryCrumbly) {
             // }
             // else if (m_CrumbleTimer.Ratio < 1f / 3f && m_Crumbliness != Crumbliness.SlightlyCrumbly) {
             //     m_Animator.SetVisuals(m_SlightlyCrumbledVisualState, m_Length);
             // }
+
+            int index = (int)m_Crumbliness;
+            float ratio = m_CrumbleTimer.InverseRatio;
+            float threshold = (float)index / (denom - 1);
+
+            if (ratio > threshold) {
+                index = index + 1;
+                m_Crumbliness = (Crumbliness)(index);
+                if (m_CrumblinessVisuals != null && m_CrumblinessVisuals.Length > index && m_CrumblinessVisuals[index] != null) {
+                    m_Animator.SetVisuals(m_CrumblinessVisuals[index]);
+                }
+                m_Animator.OnPressed();
+            }
+
         }
 
         private void WhileReforming(float dt) {
+            // float denom = (float)Crumbliness.Count;
+
+            // int index = (int)m_Crumbliness;
+            // float ratio = m_CrumbleTimer.Ratio <;
+            // float threshold = (float)index / denom;
+
+            // if (ratio < threshold) {
+            //     index = index - 1;
+            //     m_Crumbliness = (Crumbliness)(index);
+            //     if (m_CrumblinessVisuals != null && m_CrumblinessVisuals.Length > index && m_CrumblinessVisuals[index] != null) {
+            //         m_Animator.SetVisuals(m_CrumblinessVisuals[index]);
+            //     }
+            //     m_Animator.OnPressed();
+            // }
+
+            // print(m_CrumbleTimer.InverseRatio);
 
         }
 
