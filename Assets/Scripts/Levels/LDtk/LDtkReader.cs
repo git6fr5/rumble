@@ -14,19 +14,25 @@ namespace Platformer.Levels.LDtk {
     ///<summary>
     ///
     ///<summary>
-    public class LDtkReader : MonoBehaviour {
+    public class LDtkReader {
 
         // Grid Size
         public static int GridSize = 16;
 
-        public static List<LDtkTileData> GetLayerData(LDtkUnity.Level ldtkLevel, string layerName) {
+        // Grid Size
+        public static int GroundGridSize = 16;
+
+        // Tile Size
+        public static int TileSize = 16;
+
+        public static List<LDtkTileData> GetLayerData(LDtkUnity.Level ldtkLevel, string layerName, int gridSize) {
             List<LDtkTileData> layerData = new List<LDtkTileData>();
 
             LDtkUnity.LayerInstance layer = GetLayerInstance(ldtkLevel, layerName);
             if (layer != null) { 
                 for (int index = 0; index < layer.GridTiles.Length; index++) {
                     LDtkUnity.TileInstance tile = layer.GridTiles[index];
-                    LDtkTileData tileData = new LDtkTileData(GetVectorID(tile), GetGridPosition(tile), index);
+                    LDtkTileData tileData = new LDtkTileData(GetVectorID(tile), GetGridPosition(tile, gridSize), index, gridSize);
                     layerData.Add(tileData);
                 }
             }
@@ -44,14 +50,14 @@ namespace Platformer.Levels.LDtk {
         }
 
         private static Vector2Int GetVectorID(LDtkUnity.TileInstance tile) {
-            return new Vector2Int((int)(tile.Src[0]), (int)(tile.Src[1])) / GridSize;
+            return new Vector2Int((int)(tile.Src[0]), (int)(tile.Src[1])) / TileSize;
         }
 
-        private static Vector2Int GetGridPosition(LDtkUnity.TileInstance tile) {
-            return tile.UnityPx / GridSize;
+        private static Vector2Int GetGridPosition(LDtkUnity.TileInstance tile, int gridSize) {
+            return tile.UnityPx / gridSize;
         }
 
-        protected Vector2Int? GetTileID(List<LDtkTileData> data, Vector2Int gridPosition) {
+        protected static Vector2Int? GetTileID(List<LDtkTileData> data, Vector2Int gridPosition) {
             LDtkTileData tileData = data.Find(tileData => tileData != null && tileData.gridPosition == gridPosition);
             return (Vector2Int?)tileData?.vectorID;
         }

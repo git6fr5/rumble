@@ -250,6 +250,9 @@ MonoBehaviour:
   m_contactDirection: {x: 0, y: -1, z: 0}
   m_damping: 0.02
   m_depth: 2
+  m_jelly_down_offset: 0.65
+  m_max_vel: 1
+  accFactor: 50
 --- !u!4 &1040272826
 Transform:
   m_ObjectHideFlags: 0

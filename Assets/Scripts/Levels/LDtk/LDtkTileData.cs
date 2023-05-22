@@ -42,12 +42,15 @@ namespace Platformer.Levels.LDtk {
 
         public int index { get; private set; } = 0;
 
+        public int gridSize { get; private set; } = 0;
+
         #endregion
 
-        public LDtkTileData(Vector2Int vectorID, Vector2Int gridPosition, int index = 0) {
+        public LDtkTileData(Vector2Int vectorID, Vector2Int gridPosition, int index, int gridSize) {
             this.vectorID = vectorID;
             this.gridPosition = gridPosition;
             this.index = index;
+            this.gridSize = gridSize;
         }
 
     }

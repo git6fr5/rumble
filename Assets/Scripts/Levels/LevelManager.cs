@@ -32,6 +32,11 @@ namespace Platformer.Management {
         public EntityManager m_EntityManager;
         public EntityManager Entities => m_EntityManager;
 
+        // Handles all the entity functionality.
+        [SerializeField] 
+        public EntityManager m_DecorationManager;
+        public EntityManager Decor => m_DecorationManager;
+
         // Handles all the tilemap functionality.
         [SerializeField] 
         public TilemapManager m_TilemapManager;
@@ -84,6 +89,7 @@ namespace Platformer.Management {
             // Load the sub-managers.
             m_TilemapManager.OnGameLoad();
             m_EntityManager.OnGameLoad();
+            m_DecorationManager.OnGameLoad();
             // Read and collect the data.
             m_JSON = m_LDtkData.FromJson();
             m_Rooms = Collect(m_JSON, transform);
@@ -116,7 +122,7 @@ namespace Platformer.Management {
 
             // Itterate through and load all the level data.
             for (int i = 0; i < m_Rooms.Count; i++) {
-                List<LDtkTileData> tileData = LDtkReader.GetLayerData(m_Rooms[i].ldtkLevel, m_LDtkLayers.Ground);
+                List<LDtkTileData> tileData = LDtkReader.GetLayerData(m_Rooms[i].ldtkLevel, m_LDtkLayers.Ground, 16);
                 m_TilemapManager.GenerateMap(m_Rooms[i], tileData);
             }
 
@@ -131,7 +137,7 @@ namespace Platformer.Management {
         public void MoveToLoadPoint(string roomName, Transform playerTransform) {
             Room room = m_Rooms.Find(level => level.roomName == roomName);
             if (room.loadPositions != null && room.loadPositions.Count > 0) {
-                Vector3 position = Room.GridToWorldPosition(room.loadPositions[0], room.worldPosition);
+                Vector3 position = Room.GridToWorldPosition(room.loadPositions[0], room.worldPosition, 16);
                 playerTransform.position = position;
                 Rigidbody2D body = playerTransform.GetComponent<Rigidbody2D>();
                 if (body != null) {
@@ -152,20 +158,17 @@ namespace Platformer.Management {
         public void Load(Room room) {
             if (room.ldtkLevel != null) {
                 // Load the data.
-                List<LDtkTileData> entityData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Entity);
-                List<LDtkTileData> decorDataA = LDtkReader.GetLayerData(room.ldtkLevel, "DECOR_BKG_1");
-                List<LDtkTileData> decorDataB = LDtkReader.GetLayerData(room.ldtkLevel, "DECOR_BKG_2");
-                for (int i = 0; i < decorDataA.Count; i++) {
-                    entityData.Add(decorDataA[i]);
-                }
-                for (int i = 0; i < decorDataB.Count; i++) {
-                    entityData.Add(decorDataB[i]);
-                }
-
-                List<LDtkTileData> controlData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Control);
+                List<LDtkTileData> entityData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Entity, 16);
+                List<LDtkTileData> controlData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Control, 16);
 
                 // Generate the entities.
                 room.GenerateEntities(entityData, controlData, m_EntityManager.All);
+
+                // Generate the decorations.
+                List<LDtkTileData> decorData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Decorations, 8);
+                print(decorData.Count);
+                controlData = new List<LDtkTileData>();
+                room.GenerateEntities(decorData, controlData, m_DecorationManager.All);
 
                 // Move the camera
                 m_CurrentRoom = room;

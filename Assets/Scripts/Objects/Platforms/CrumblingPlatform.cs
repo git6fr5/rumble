@@ -102,7 +102,7 @@ namespace Platformer.Objects.Platforms {
                     if (m_Pressed) { OnStartCrumble(); }
                     break;
                 case CrumbleState.Crumbling:
-                    m_Animator.transform.Shake(m_Origin, Strength); // Should this be in while crumbling?
+                    // m_Animator.transform.Shake(m_Origin, Strength); // Should this be in while crumbling?
                     break;
                 default:
                     break;
@@ -170,6 +170,8 @@ namespace Platformer.Objects.Platforms {
             Game.Audio.Sounds.PlaySound(m_OnReformSound, 0.15f);
             m_Crumbliness = Crumbliness.NotCrumbling;
 
+            m_Animator.SetMaterialValue("_Crumbliness", 0.86f);
+
         }
 
         private void WhileCrumbling(float dt) {
@@ -188,6 +190,7 @@ namespace Platformer.Objects.Platforms {
             // }
             print(m_CrumbleTimer.InverseRatio);
 
+
             // if (m_CrumbleTimer.Ratio < 1f / 3f && m_Crumbliness != Crumbliness.VeryCrumbly) {
             // }
             // else if (m_CrumbleTimer.Ratio < 1f / 3f && m_Crumbliness != Crumbliness.SlightlyCrumbly) {
@@ -197,6 +200,8 @@ namespace Platformer.Objects.Platforms {
             int index = (int)m_Crumbliness;
             float ratio = m_CrumbleTimer.InverseRatio;
             float threshold = (float)index / (denom - 1);
+            
+            
 
             if (ratio > threshold) {
                 index = index + 1;
@@ -204,10 +209,14 @@ namespace Platformer.Objects.Platforms {
                 if (m_CrumblinessVisuals != null && m_CrumblinessVisuals.Length > index && m_CrumblinessVisuals[index] != null) {
                     m_Animator.SetVisuals(m_CrumblinessVisuals[index]);
                 }
+                m_Animator.SetMaterialValue("_Crumbliness", C_RANGE * ratio + C_BASE);
                 m_Animator.OnPressed();
             }
 
         }
+
+        public const float C_RANGE = 0.4f;
+        public const float C_BASE = 0.86f;
 
         private void WhileReforming(float dt) {
             // float denom = (float)Crumbliness.Count;
@@ -226,6 +235,29 @@ namespace Platformer.Objects.Platforms {
             // }
 
             // print(m_CrumbleTimer.InverseRatio);
+
+            float ratio = m_CrumbleTimer.InverseRatio;
+            int index = (int)m_Crumbliness;
+
+            float threshold = 0.92f;
+
+            if (ratio > threshold && m_Crumbliness != Crumbliness.NotCrumbling) {
+                m_Hitbox.enabled = true;
+                m_Crumbliness = Crumbliness.NotCrumbling;
+
+                m_Animator.gameObject.SetActive(true);
+                m_Animator.SetVisuals(m_Animator.defaultPacket);
+
+            }
+
+            if (ratio > threshold) {
+
+                float x = (ratio - threshold) / (1f - threshold);
+
+                m_Animator.SetMaterialValue("_Crumbliness", -C_RANGE * x + C_BASE + C_RANGE);
+
+            }
+
 
         }
 

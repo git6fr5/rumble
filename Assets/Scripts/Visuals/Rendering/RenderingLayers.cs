@@ -37,8 +37,14 @@ namespace Platformer.Visuals {
         public int SkyOrder = -100;
         
         [Header("Tiles"), Space(2)]
-        public string TileLayer = "Background";
-        public int TileOrder = 2;
+        public string TileLayer = "Foreground";
+        [HideInInspector]
+        public int TileOrder = 3;
+
+        [Header("Tiles"), Space(2)]
+        public string DecorLayer = "Background";
+        [HideInInspector]
+        public int DecorOrder = 2;
 
 
     }

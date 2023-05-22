@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
+using UnityEngine.U2D;
+using UnityEngine.Rendering.Universal;
 using UnityExtensions;
 // Platformer.
 using Platformer.Objects.Orbs;
@@ -12,6 +14,7 @@ using Platformer.Objects.Orbs;
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 using Plant = Platformer.Objects.Decorations.Plant;
+using AnimationController = Platformer.Visuals.Animation.AnimationController;
 
 namespace Platformer.Objects.Orbs {
 
@@ -43,8 +46,14 @@ namespace Platformer.Objects.Orbs {
         private float m_TotalActivatedTime = 0f;
         public float TotalTimeActive => m_TotalActivatedTime;
 
+        // [SerializeField]
+        // private Plant m_Plant;
+
         [SerializeField]
-        private Plant m_Plant;
+        private AnimationController m_Animation;
+
+        [SerializeField]
+        private Light2D m_Light;
 
         private bool m_Active = false;
 
@@ -66,18 +75,24 @@ namespace Platformer.Objects.Orbs {
 
         public void Activate() {
             m_Active = true;
-            if (m_Plant != null) {
-                m_Plant.Grow(true);
+            
+            if (m_Light != null) {
+                m_Light.enabled = true;
             }
 
-            m_FirstActivationTime = Game.Physics.Time.Ticks < m_FirstActivationTime ? Game.Physics.Time.Ticks : m_FirstActivationTime;
+
+            if (m_TotalActivatedTime == 0f) {
+                m_FirstActivationTime = Game.Physics.Time.Ticks; // Game.Physics.Time.Ticks < m_FirstActivationTime ? Game.Physics.Time.Ticks : m_FirstActivationTime;
+                m_Animation.Play(true);
+            }
             
         }
 
         public void Deactivate() {
-            if (m_Plant != null) {
-                m_Plant.Grow(false);
+            if (m_Light != null) {
+                m_Light.enabled = false;
             }
+
             m_Active = false;
         }
 

@@ -30,7 +30,7 @@ namespace Platformer.Objects.Platforms {
         public const float PLATFORM_HEIGHT = 5f/16f;
 
         // In order to properly center the platform.
-        protected const float COLLIDER_INSET = 1f/16f;
+        protected const float COLLIDER_INSET = 2f/16f;
 
         /* --- Components --- */
 

@@ -26,8 +26,8 @@ namespace Platformer.Levels.LDtk {
         public string Entity => m_Entity;
 
         [SerializeField]
-        private string m_Water = "WATER";
-        public string Water => m_Water;
+        private string m_Decorations = "DECOR";
+        public string Decorations => m_Decorations;
 
         [SerializeField]
         private string m_Ground = "GROUND";

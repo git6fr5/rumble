@@ -71,6 +71,7 @@ namespace Platformer.Objects.Platforms {
                 m_Spline = m_SpriteShapeController.spline;
                 m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.PlatformLayer;
                 m_SpriteShapeRenderer.sortingOrder = Game.Visuals.RenderingLayers.PlatformOrder;
+                // m_SpriteShapeRenderer.enabled = false;
             }
             if (m_SpriteRenderers != null && m_SpriteRenderers.Length > 0) {
                 for (int i = 0; i < m_SpriteRenderers.Length; i++) {
@@ -105,6 +106,8 @@ namespace Platformer.Objects.Platforms {
                 m_SpriteRenderers[0].sprite = m_VisualPacket.Single;
                 m_SpriteRenderers[0].transform.SetParent(transform);
 
+                m_SpriteRenderers[0].sharedMaterial = m_SpriteShapeRenderer.sharedMaterial;
+
                 // m_SpriteRenderers[0].transform.localScale = new Vector3(0.9f, 1f, 1f);
                 m_SpriteRenderers[0].transform.localPosition = Vector3.zero;
 
@@ -121,6 +124,9 @@ namespace Platformer.Objects.Platforms {
                 m_SpriteRenderers[0].sprite = m_VisualPacket.Left;
                 m_SpriteRenderers[1] = new GameObject("right_sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
                 m_SpriteRenderers[1].sprite = m_VisualPacket.Right;
+
+                m_SpriteRenderers[0].sharedMaterial = m_SpriteShapeRenderer.sharedMaterial;
+                m_SpriteRenderers[1].sharedMaterial = m_SpriteShapeRenderer.sharedMaterial;
 
                 m_SpriteRenderers[0].transform.SetParent(transform);
                 m_SpriteRenderers[1].transform.SetParent(transform);
@@ -163,6 +169,31 @@ namespace Platformer.Objects.Platforms {
                 else if (m_SpriteRenderers.Length == 2) {
                     m_SpriteRenderers[0].sprite = visualPacket.Left;
                     m_SpriteRenderers[1].sprite = visualPacket.Right;
+                }
+
+            }
+
+        }
+
+        public void SetMaterialValue(string var, float val) {
+
+            if (m_SpriteShapeRenderer != null) {
+                for (int i = 0; i < m_SpriteShapeRenderer.materials.Length; i++) {
+                    if (m_SpriteShapeRenderer.materials[i] != null) {
+                        m_SpriteShapeRenderer.materials[i].SetFloat(var, val);
+                    }
+                }
+                return;
+            }
+
+            if (m_SpriteRenderers != null) {
+
+                if (m_SpriteRenderers.Length == 1) {
+                    m_SpriteRenderers[0].material.SetFloat(var, val);
+                }
+                else if (m_SpriteRenderers.Length == 2) {
+                    m_SpriteRenderers[0].material.SetFloat(var, val);
+                    m_SpriteRenderers[1].sharedMaterial = m_SpriteRenderers[0].material;
                 }
 
             }

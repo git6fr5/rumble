@@ -97,7 +97,7 @@ namespace Platformer.Levels {
             ReadJSONData(json, jsonID);
             CreateBoundaryBox();
 
-            List<LDtkTileData> controlData = LDtkReader.GetLayerData(json.Levels[jsonID], Game.Level.LDtkLayers.Control);
+            List<LDtkTileData> controlData = LDtkReader.GetLayerData(json.Levels[jsonID], Game.Level.LDtkLayers.Control, 16);
             GetLoadPoints(controlData);
         }
 
@@ -164,15 +164,18 @@ namespace Platformer.Levels {
         public static Vector2 GetCenter(int width, int height, Vector2Int gridOrigin) {
             Vector2Int origin = new Vector2Int(width / 2, height / 2);
             Vector2 offset = new Vector2( width % 2 == 0 ? 0.5f : 0f, height % 2 == 1 ? 0f : -0.5f);
-            return (Vector2)GridToWorldPosition(origin, gridOrigin) - offset;
+            // Assuming a grid size of 16.
+            return (Vector2)GridToWorldPosition(origin, gridOrigin, 16) - offset;
         }
 
-        public Vector3 GridToWorldPosition(Vector2Int gridPosition) {
-            return GridToWorldPosition(gridPosition, this.worldPosition);
+        public Vector3 GridToWorldPosition(Vector2Int gridPosition, int gridSize) {
+            return GridToWorldPosition(gridPosition, this.worldPosition, gridSize);
         }
         
-        public static Vector3 GridToWorldPosition(Vector2Int gridPosition, Vector2Int gridOrigin) {
-            return new Vector3((gridPosition.x + gridOrigin.x) + 0.5f, - (gridPosition.y + gridOrigin.y) + 0.5f, 0f);
+        public static Vector3 GridToWorldPosition(Vector2Int gridPosition, Vector2Int gridOrigin, int gridSize) {
+            float ratio = (float)gridSize / (float)LDtkReader.GridSize;
+
+            return new Vector3((ratio * gridPosition.x + gridOrigin.x) + 0.5f, - (ratio * gridPosition.y + gridOrigin.y) + 0.5f, 0f);
         }
 
         public Vector3Int GridToTilePosition(Vector2Int gridPosition) {

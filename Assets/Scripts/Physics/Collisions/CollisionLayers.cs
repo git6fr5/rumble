@@ -53,6 +53,8 @@ namespace Platformer.Physics {
         
         public int BlockLayer => LayerMask.NameToLayer("Ground");
 
+        public int TileLayer => LayerMask.NameToLayer("Ground");
+
         #endregion
 
     }

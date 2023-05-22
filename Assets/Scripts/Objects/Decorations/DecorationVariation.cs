@@ -34,8 +34,8 @@ namespace Platformer.Objects.Decorations {
         [SerializeField]
         private BoundingBox m_PositionVariation;
 
-        [SerializeField, Range(0f, 1f)]
-        private float m_ActivePercent = 1f;
+        // [SerializeField, Range(0f, 1f)]
+        // private float m_ActivePercent = 1f;
 
         [SerializeField, ReadOnly]
         private Vector3 m_Origin;
@@ -43,15 +43,16 @@ namespace Platformer.Objects.Decorations {
         // Runs once on instantiation.
         void Start() {
             m_Origin = transform.localPosition;
+            Vary();
         }
 
         public void Vary() {
-            gameObject.SetActive(Random.Range(0f, 1f) < m_ActivePercent);
-            if (!gameObject.activeSelf) { return; }
+            // gameObject.SetActive(Random.Range(0f, 1f) < m_ActivePercent);
+            // if (!gameObject.activeSelf) { return; }
 
             transform.localPosition = m_Origin + new Vector3(Random.Range(-m_PositionVariation.MinX, m_PositionVariation.MaxX), Random.Range(-m_PositionVariation.MinY, m_PositionVariation.MaxY),0f);
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
-            if (m_SpriteRenderer != null) { Pick(); }
+            if (m_SpriteRenderer != null && m_Variations.Length > 0) { Pick(); }
         }
 
         public void Pick() {

@@ -8,9 +8,6 @@ using UnityEngine;
 using Platformer.Levels.LDtk;
 using Platformer.Levels.Entities;
 
-/* --- Definitions --- */
-using EntitySpinnableExtension = Platformer.Levels.Entities.EntitySpinnableExtensions;
-
 namespace Platformer.Levels.Entities {
 
     [System.Serializable]
@@ -55,6 +52,15 @@ namespace Platformer.Levels.Entities {
             } 
         }
 
+        [SerializeField]
+        private int m_GridSize = 16;
+        public int GridSize {
+            get { return m_GridSize; }
+            set {
+                m_GridSize = value;
+            }
+        }
+
         // The world space offset this entity should be loaded at.
         [SerializeField] 
         private Vector2 m_LoadOffset = new Vector2(0f, 0f);
@@ -70,7 +76,7 @@ namespace Platformer.Levels.Entities {
         public void Init(List<LDtkTileData> entityData, List<LDtkTileData> controlData, Vector2Int roomOrigin) {
             // Cache the grid position of this entity.
             float depth = transform.position.z;
-            Vector3 worldPosition = Room.GridToWorldPosition(m_GridPosition, roomOrigin) + (Vector3)m_LoadOffset;            
+            Vector3 worldPosition = Room.GridToWorldPosition(m_GridPosition, roomOrigin, m_GridSize) + (Vector3)m_LoadOffset;            
 
             // Check whether there is a control at this position.
             LDtkTileData controlTile = controlData.Find(control => control.gridPosition == m_GridPosition);
@@ -119,7 +125,7 @@ namespace Platformer.Levels.Entities {
                     // Swap the reference entity for a duplicated entity.
                     entity = entity.Duplicate(parent);
                     entity.GridPosition = entityData[i].gridPosition;
-
+                    entity.GridSize = entityData[i].gridSize;
                     entity.Init(entityData, controlData, roomOrigin);
                     entities.Add(entity);
 

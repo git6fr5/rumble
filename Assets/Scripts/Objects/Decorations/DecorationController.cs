@@ -46,16 +46,23 @@ namespace Platformer.Objects.Decorations {
             // Set the layer. Note the sprite renderers for this will have to be set manually.
             gameObject.layer = Game.Physics.CollisionLayers.DecorLayer;
 
-            // Set the animations to the start.
-            for (int i = 0; i < m_AnimatedPieces.Length; i++) {
-                m_AnimatedPieces[i].Animation.AnimationTimer.Set(Random.Range(0f, 3f));
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+            for (int i = 0; i < renderers.Length; i++) {
+                renderers[i].sortingLayerName = Game.Visuals.RenderingLayers.DecorLayer;
+                renderers[i].sortingOrder = Game.Visuals.RenderingLayers.DecorOrder;
             }
 
-            variations = GetComponentsInChildren<DecorationVariation>();
-            for (int i = 0; i < variations.Length; i++) {
-                variations[i].Vary();
-            }
-            revary = false;
+
+            // Set the animations to the start.
+            // for (int i = 0; i < m_AnimatedPieces.Length; i++) {
+            //     m_AnimatedPieces[i].Animation.AnimationTimer.Set(Random.Range(0f, 3f));
+            // }
+
+            // variations = GetComponentsInChildren<DecorationVariation>();
+            // for (int i = 0; i < variations.Length; i++) {
+            //     variations[i].Vary();
+            // }
+            // revary = false;
 
         }
 
@@ -65,20 +72,20 @@ namespace Platformer.Objects.Decorations {
         }
 
         void Start() {
-            variations = GetComponentsInChildren<DecorationVariation>();
+            // variations = GetComponentsInChildren<DecorationVariation>();
         }
 
         void FixedUpdate() {
-            for (int i = 0; i < m_AnimatedPieces.Length; i++) {
-                m_AnimatedPieces[i].spriteRenderer.transform.Animate(m_AnimatedPieces[i].Animation, Time.fixedDeltaTime);
-            }
+            // for (int i = 0; i < m_AnimatedPieces.Length; i++) {
+            //     m_AnimatedPieces[i].spriteRenderer.transform.Animate(m_AnimatedPieces[i].Animation, Time.fixedDeltaTime);
+            // }
 
-            if (revary) {
-                for (int i = 0; i < variations.Length; i++) {
-                    variations[i].Vary();
-                }
-                revary = false;
-            }
+            // if (revary) {
+            //     for (int i = 0; i < variations.Length; i++) {
+            //         variations[i].Vary();
+            //     }
+            //     revary = false;
+            // }
 
         }
 

@@ -10,6 +10,9 @@ using UnityEngine.U2D;
 using Platformer.Levels.LDtk;
 using Platformer.Levels.Tilemaps;
 
+//
+using Game = Platformer.Management.GameManager;
+
 namespace Platformer.Levels.Tilemaps {
 
     /// <summary>
@@ -72,7 +75,11 @@ namespace Platformer.Levels.Tilemaps {
 
             groundMap.transform.SetParent(transform);
             groundMap.transform.localPosition = Vector3.zero;
-            groundMap.gameObject.layer = LayerMask.NameToLayer("Ground");
+            groundMap.gameObject.layer = Game.Physics.CollisionLayers.TileLayer;
+            groundMap.GetComponent<TilemapRenderer>().sortingLayerName = Game.Visuals.RenderingLayers.TileLayer;
+            groundMap.GetComponent<TilemapRenderer>().sortingOrder = Game.Visuals.RenderingLayers.TileOrder;
+            // LayerMask.NameToLayer("Ground");
+
 
         }
 
