@@ -43,7 +43,7 @@ namespace Platformer.Management {
         public TilemapManager Tilemaps => m_TilemapManager;
 
         // The JSON data corresponding to the given ldtk data.
-        [HideInInspector]
+        [SerializeField]
         private LDtkLayers m_LDtkLayers = new LDtkLayers();
         public LDtkLayers LDtkLayers => m_LDtkLayers;
 
@@ -165,10 +165,12 @@ namespace Platformer.Management {
                 room.GenerateEntities(entityData, controlData, m_EntityManager.All);
 
                 // Generate the decorations.
-                List<LDtkTileData> decorData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Decorations, 8);
-                print(decorData.Count);
+                List<LDtkTileData> decorData = new List<LDtkTileData>();
                 controlData = new List<LDtkTileData>();
-                room.GenerateEntities(decorData, controlData, m_DecorationManager.All);
+                for (int i = 0; i < m_LDtkLayers.Decorations.Length; i++) {
+                    decorData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Decorations[i], 8);
+                    room.GenerateEntities(decorData, controlData, m_DecorationManager.All);
+                }
 
                 // Move the camera
                 m_CurrentRoom = room;

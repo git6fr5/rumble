@@ -35,7 +35,7 @@ namespace Platformer.Objects.Decorations {
         [SerializeField] public float ropeWidth; // The width of the rope.
         [SerializeField] protected Vector3[] ropeSegments; // The current positions of the segments.
         [SerializeField] protected Vector3[] prevRopeSegments; // The previous positions of the segments.
-        [SerializeField] protected Vector3[] velocities; // The previous positions of the segments.
+        [SerializeField] protected Vector3[] jiggle; // The previous positions of the segments.
 
         /* --- Unity --- */
         // Runs once on initialization.
@@ -88,11 +88,11 @@ namespace Platformer.Objects.Decorations {
             // Initialize the rope segments.
             ropeSegments = new Vector3[segmentCount];
             prevRopeSegments = new Vector3[segmentCount];
-            velocities = new Vector3[segmentCount];
+            jiggle = new Vector3[segmentCount];
             
             ropeSegments[0] = Vector3.zero;
             prevRopeSegments[0] = ropeSegments[0];
-            velocities[0] = Vector2.zero;
+            jiggle[0] = Vector2.zero;
 
             m_SpriteShape.spline.Clear();
             m_SpriteShape.spline.InsertPointAt(0, ropeSegments[0]);
@@ -105,7 +105,7 @@ namespace Platformer.Objects.Decorations {
                 offset.y = -Mathf.Abs(offset.y);
                 ropeSegments[i] = ropeSegments[i - 1] + (Vector3)offset;
                 prevRopeSegments[i] = ropeSegments[i];
-                velocities[i] = new Vector2(0f, 0f);
+                jiggle[i] = new Vector2(0f, 0f);
 
                 m_SpriteShape.spline.InsertPointAt(i, ropeSegments[i]);
                 m_SpriteShape.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
@@ -133,7 +133,7 @@ namespace Platformer.Objects.Decorations {
 
             }
             // Add a jiggle to this segment.
-            velocities[index] = body.velocity; // body.gravityScale /  
+            jiggle[index] = body.velocity; // body.gravityScale /  
         }
 
         void Simulation() {
@@ -143,11 +143,11 @@ namespace Platformer.Objects.Decorations {
                 prevRopeSegments[i] = ropeSegments[i];
                 ropeSegments[i] += velocity * 0.975f;
                 ropeSegments[i] += forceGravity * Time.fixedDeltaTime;
-                ropeSegments[i] += velocities[i] * Time.fixedDeltaTime;
+                ropeSegments[i] += jiggle[i] * Time.fixedDeltaTime;
             }
 
-            for (int i = 0; i < velocities.Length; i++) {
-                velocities[i] *= 0.65f;
+            for (int i = 0; i < jiggle.Length; i++) {
+                jiggle[i] *= 0.65f;
             }
 
             for (int i = 0; i < stiffness; i++) {

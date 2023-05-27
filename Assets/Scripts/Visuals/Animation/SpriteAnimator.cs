@@ -28,6 +28,7 @@ namespace Platformer.Visuals.Animation {
         public Gradient colorGradient;
 
         [Header("Rendering Order")]
+        public string layerOverride;
         public int orderOffset;
 
         public void Tick(float dt) {
@@ -61,20 +62,22 @@ namespace Platformer.Visuals.Animation {
         private SpriteRenderer m_SpriteRenderer;
 
         // Runs once on instantiation.
-        void Awake() {
+        void Start() {
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
-            m_SpriteRenderer.sortingLayerName = Game.Visuals.RenderingLayers.DecorLayer;
+            m_SpriteRenderer.sortingLayerName = m_Animation.layerOverride != "" ? m_Animation.layerOverride : m_SpriteRenderer.sortingLayerName;
             m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.DecorOrder + m_Animation.orderOffset;
         }
 
         void FixedUpdate() {
             if (!m_Animate) { return; }
+            Animate(Time.fixedDeltaTime);
+        }
 
-            m_Animation.Tick(Time.fixedDeltaTime);
+        public void Animate(float dt) {
+            m_Animation.Tick(dt);
             m_SpriteRenderer.sprite = m_Animation.GetFrame();
             m_SpriteRenderer.color = m_Animation.GetColor();
         }
-
     }
 
 }

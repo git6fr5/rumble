@@ -14,6 +14,7 @@ namespace Platformer.Levels.LDtk {
     /// <summary>
     /// Stores a reference to the ldtk layers for easy reference.
     /// <summary>
+    [System.Serializable]
     public class LDtkLayers {
 
         // Layer Names
@@ -26,8 +27,8 @@ namespace Platformer.Levels.LDtk {
         public string Entity => m_Entity;
 
         [SerializeField]
-        private string m_Decorations = "DECOR";
-        public string Decorations => m_Decorations;
+        private string[] m_Decorations;
+        public string[] Decorations => m_Decorations;
 
         [SerializeField]
         private string m_Ground = "GROUND";

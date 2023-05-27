@@ -77,13 +77,16 @@ namespace Platformer.Visuals.Animation {
         private Light2D m_Light;
 
         // Runs once on instantiation.
-        void Awake() {
+        void Start() {
             m_Light = GetComponent<Light2D>();
         }
 
         void FixedUpdate() {
             if (!m_Animate) { return; }
+            Animate(Time.fixedDeltaTime);
+        }
 
+        public void Animate(float dt) {
             m_Animation.Tick(Time.fixedDeltaTime);
             m_Light.color = m_Animation.GetColor();
             m_Light.intensity = m_Animation.GetIntensity();

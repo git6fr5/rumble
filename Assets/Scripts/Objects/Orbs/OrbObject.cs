@@ -74,7 +74,7 @@ namespace Platformer.Objects.Orbs {
         #endregion
 
         // Runs once before the first frame.
-        public void Initialize(Vector3 worldPosition, float depth) {
+        public virtual void Initialize(Vector3 worldPosition, float depth) {
             // Cache the origin
             transform.position = worldPosition;
             m_Origin = worldPosition;

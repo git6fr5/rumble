@@ -13,8 +13,6 @@ using Platformer.Objects.Orbs;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using Plant = Platformer.Objects.Decorations.Plant;
-using AnimationController = Platformer.Visuals.Animation.AnimationController;
 
 namespace Platformer.Objects.Orbs {
 
@@ -50,22 +48,24 @@ namespace Platformer.Objects.Orbs {
         // private Plant m_Plant;
 
         [SerializeField]
-        private AnimationController m_Animation;
-
-        [SerializeField]
-        private Light2D m_Light;
+        private StatueAnimator m_StatueAnimator;
 
         private bool m_Active = false;
 
         #endregion
 
-        void Start() {
+        // Runs once before the first frame.
+        public override void Initialize(Vector3 worldPosition, float depth) {
+            base.Initialize(worldPosition, depth);
+            m_StatueAnimator.Initialize();
+        
             if (Game.MainPlayer.RespawnOrb == this) {
                 Activate();
             }
             else {
                 Deactivate();
             }
+        
         }
 
         protected override void OnTouch(CharacterController character) {
@@ -76,23 +76,21 @@ namespace Platformer.Objects.Orbs {
         public void Activate() {
             m_Active = true;
             
-            if (m_Light != null) {
-                m_Light.enabled = true;
-            }
-
-
+            // if (m_Light != null) {
+            //     m_Light.enabled = true;
+            // }
+            m_StatueAnimator.Activate(true);
             if (m_TotalActivatedTime == 0f) {
                 m_FirstActivationTime = Game.Physics.Time.Ticks; // Game.Physics.Time.Ticks < m_FirstActivationTime ? Game.Physics.Time.Ticks : m_FirstActivationTime;
-                m_Animation.Play(true);
             }
             
         }
 
         public void Deactivate() {
-            if (m_Light != null) {
-                m_Light.enabled = false;
-            }
-
+            // if (m_Light != null) {
+            //     m_Light.enabled = false;
+            // }
+            m_StatueAnimator.Activate(false);
             m_Active = false;
         }
 

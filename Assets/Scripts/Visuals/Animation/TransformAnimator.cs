@@ -73,12 +73,14 @@ namespace Platformer.Visuals.Animation {
 
         void FixedUpdate() {
             if (!m_Animate) { return; }
+            Animate(Time.fixedDeltaTime);
+        }
 
-            m_Animation.Tick(Time.fixedDeltaTime);
+        public void Animate(float dt) {
+            m_Animation.Tick(dt);
             transform.localPosition = m_Animation.GetPosition();
             transform.localRotation = m_Animation.GetRotation();
-            transform.localScale = m_Animation.GetStretch(); 
-
+            transform.localScale = m_Animation.GetStretch();
         }
     }
 
