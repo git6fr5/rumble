@@ -35,7 +35,7 @@ namespace Platformer.Visuals {
         /* --- Components --- */
 
         private Camera m_Camera = null;
-        public Camera camera => m_Camera;
+        public Camera mainCam => m_Camera;
 
         /* --- Parameters --- */
 

@@ -66,11 +66,11 @@ namespace Platformer.Levels.Tilemaps {
             // m_GroundMap.GetComponent<TilemapRenderer>().sortingLayerName = Screen.RenderingLayers.Foreground;
             // m_GroundMap.color = Screen.ForegroundColorShift;
 
-            groundMap.gameObject.AddComponent<Rigidbody2D>();
-            groundMap.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-            groundMap.gameObject.AddComponent<CompositeCollider2D>();
-            groundMap.gameObject.GetComponent<CompositeCollider2D>().geometryType = CompositeCollider2D.GeometryType.Polygons;
-            groundMap.GetComponent<TilemapCollider2D>().usedByComposite = true;
+            // groundMap.gameObject.AddComponent<Rigidbody2D>();
+            // groundMap.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            // groundMap.gameObject.AddComponent<CompositeCollider2D>();
+            // groundMap.gameObject.GetComponent<CompositeCollider2D>().geometryType = CompositeCollider2D.GeometryType.Polygons;
+            // groundMap.GetComponent<TilemapCollider2D>().usedByComposite = true;
             // GroundMap.gameObject.AddComponent<ShadowCaster2DTileMap>();
 
             groundMap.transform.SetParent(transform);
@@ -111,6 +111,10 @@ namespace Platformer.Levels.Tilemaps {
             waterMap.transform.SetParent(transform);
             waterMap.transform.localPosition = Vector3.zero;
             waterMap.gameObject.layer = LayerMask.NameToLayer("Water");
+        }
+
+        public void Fill(List<Room> rooms) {
+            
         }
 
         public void GenerateMap(Room room, List<LDtkTileData> tileData) {

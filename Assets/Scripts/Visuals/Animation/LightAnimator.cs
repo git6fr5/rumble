@@ -10,7 +10,7 @@ using UnityEngine.Rendering.Universal;
 namespace Platformer.Visuals.Animation {
 
     [System.Serializable]
-    public struct LightAnimation {
+    public class LightAnimation {
         
         [Header("Animation Parameters")]
         public float ticks;
@@ -87,11 +87,19 @@ namespace Platformer.Visuals.Animation {
         }
 
         public void Animate(float dt) {
-            m_Animation.Tick(Time.fixedDeltaTime);
+            m_Animation.Tick(dt);
             m_Light.color = m_Animation.GetColor();
             m_Light.intensity = m_Animation.GetIntensity();
             m_Light.pointLightInnerRadius = m_Animation.GetInnerRadius(); 
             m_Light.pointLightOuterRadius = m_Animation.GetOuterRadius();
+        }
+
+        public static void Animate(Light2D light, LightAnimation animation, float dt) {
+            animation.Tick(dt);
+            light.color = animation.GetColor();
+            light.intensity = animation.GetIntensity();
+            light.pointLightInnerRadius = animation.GetInnerRadius(); 
+            light.pointLightOuterRadius = animation.GetOuterRadius();
         }
 
     }

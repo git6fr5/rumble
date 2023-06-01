@@ -82,6 +82,14 @@ namespace Platformer.Visuals.Animation {
             transform.localRotation = m_Animation.GetRotation();
             transform.localScale = m_Animation.GetStretch();
         }
+
+        public static void Animate(Transform transform, TransformAnimation animation, float dt) {
+            animation.Tick(dt);
+            transform.localPosition = animation.GetPosition();
+            transform.localRotation = animation.GetRotation();
+            transform.localScale = animation.GetStretch();
+        }
+
     }
 
 }

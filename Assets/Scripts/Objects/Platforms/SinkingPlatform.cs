@@ -13,7 +13,6 @@ using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 using IPathable = Platformer.Levels.Entities.IPathable;
 using PathingData = Platformer.Levels.Entities.PathingData;
-using Leg = Platformer.Objects.Decorations.DecorationController;
 
 namespace Platformer.Objects.Platforms {
 
@@ -36,9 +35,6 @@ namespace Platformer.Objects.Platforms {
 
         // The path that this platform follows.
         protected Vector3[] m_Path = null;
-
-        [SerializeField]
-        private PlatformLegs m_Legs = null;
 
         // The current position in the path that the path is following.
         [SerializeField, ReadOnly] 
@@ -84,7 +80,7 @@ namespace Platformer.Objects.Platforms {
 
         public override void SetLength(int length) {
             base.SetLength(length);
-            m_Legs.CreateLegs(length, HitboxLength);
+            // m_Legs.CreateLegs(length, HitboxLength);
         }
 
         public void SetPath(PathingData pathingData) {
@@ -165,10 +161,10 @@ namespace Platformer.Objects.Platforms {
             if (delay == 0f) {
                 Game.Audio.Sounds.PlaySound(m_OnStartSinkingSound, 0.15f);
 
-                float direction = (m_Path[1] - m_Path[0]).x;
-                m_Legs.SetAnimationDirection(m_Legs.FrontLegAnim, direction, 1f);
-                m_Legs.SetAnimationDirection(m_Legs.BackLegAnim, direction, -1f);
-                m_Legs.SetLegAnimation(m_Legs.FrontLegAnim, m_Legs.BackLegAnim);
+                // float direction = (m_Path[1] - m_Path[0]).x;
+                // m_Legs.SetAnimationDirection(m_Legs.FrontLegAnim, direction, 1f);
+                // m_Legs.SetAnimationDirection(m_Legs.BackLegAnim, direction, -1f);
+                // m_Legs.SetLegAnimation(m_Legs.FrontLegAnim, m_Legs.BackLegAnim);
 
             }
             
@@ -181,10 +177,10 @@ namespace Platformer.Objects.Platforms {
             if (delay == 0f) {
                 Game.Audio.Sounds.PlaySound(m_OnStartRisingSound, 0.15f);
 
-                float direction = (m_Path[0] - m_Path[1]).x;
-                m_Legs.SetAnimationDirection(m_Legs.FrontLegAnim, direction, 1f);
-                m_Legs.SetAnimationDirection(m_Legs.BackLegAnim, direction, -1f);
-                m_Legs.SetLegAnimation(m_Legs.FrontLegAnim, m_Legs.BackLegAnim);
+                // float direction = (m_Path[0] - m_Path[1]).x;
+                // m_Legs.SetAnimationDirection(m_Legs.FrontLegAnim, direction, 1f);
+                // m_Legs.SetAnimationDirection(m_Legs.BackLegAnim, direction, -1f);
+                // m_Legs.SetLegAnimation(m_Legs.FrontLegAnim, m_Legs.BackLegAnim);
 
             }
 
@@ -198,8 +194,7 @@ namespace Platformer.Objects.Platforms {
             float distance = (transform.position - m_Path[1]).magnitude;
             if (distance == 0f) {
                 Game.Audio.Sounds.PlaySound(m_OnReachedBottomSound, 0.15f);
-                m_Legs.SetLegAnimation(m_Legs.IdleAnimation, m_Legs.IdleAnimation);   
-
+                // m_Legs.SetLegAnimation(m_Legs.IdleAnimation, m_Legs.IdleAnimation);   
             }
 
         }
@@ -212,7 +207,7 @@ namespace Platformer.Objects.Platforms {
             float distance = (transform.position - m_Path[0]).magnitude;
             if (distance == 0f) {
                 Game.Audio.Sounds.PlaySound(m_OnReachedTopSound, 0.15f);
-                m_Legs.SetLegAnimation(m_Legs.IdleAnimation, m_Legs.IdleAnimation);   
+                // m_Legs.SetLegAnimation(m_Legs.IdleAnimation, m_Legs.IdleAnimation);   
                 // Reset the sink state.
                 m_SinkState = SinkState.None;
             }

@@ -73,7 +73,7 @@ namespace Platformer.Levels.Entities {
         #endregion
         
         // Initialize this entity with the given settings.
-        public void Init(List<LDtkTileData> entityData, List<LDtkTileData> controlData, Vector2Int roomOrigin) {
+        public void Init(List<LDtkTileData> entityData, List<LDtkTileData> controlData, Vector2Int roomOrigin, string layerName) {
             // Cache the grid position of this entity.
             float depth = transform.position.z;
             Vector3 worldPosition = Room.GridToWorldPosition(m_GridPosition, roomOrigin, m_GridSize) + (Vector3)m_LoadOffset;            
@@ -88,6 +88,7 @@ namespace Platformer.Levels.Entities {
 
             this.SetRotation();
             this.SetLength(entityData);
+            this.SetRendering(layerName);
             // Depends on raycasting.
             if (controlTile != null) {
                 this.SetPathing(controlTile.index, controlData); // (has to come after length is set)
@@ -112,7 +113,7 @@ namespace Platformer.Levels.Entities {
         }
 
         // Generate a entities from a list.
-        public static List<Entity> Generate(List<Entity> entities, List<LDtkTileData> entityData,  List<LDtkTileData> controlData,List<Entity> entityReferences, Transform parent, Vector2Int roomOrigin) {
+        public static List<Entity> Generate(List<Entity> entities, List<LDtkTileData> entityData,  List<LDtkTileData> controlData,List<Entity> entityReferences, Transform parent, Vector2Int roomOrigin, string layerName) {
 
             for (int i = 0; i < entityData.Count; i++) {
 
@@ -126,7 +127,7 @@ namespace Platformer.Levels.Entities {
                     entity = entity.Duplicate(parent);
                     entity.GridPosition = entityData[i].gridPosition;
                     entity.GridSize = entityData[i].gridSize;
-                    entity.Init(entityData, controlData, roomOrigin);
+                    entity.Init(entityData, controlData, roomOrigin, layerName);
                     entities.Add(entity);
 
                 }

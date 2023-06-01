@@ -74,10 +74,10 @@ namespace Platformer {
         }
 
         // Runs once every fixed interval.
-        protected override void FixedUpdate() {
+        protected void FixedUpdate() {
             transform.Move(m_Path[m_PathIndex], m_Speed, Time.fixedDeltaTime);
             SetTarget(Time.fixedDeltaTime);
-            base.FixedUpdate();
+            // base.FixedUpdate();
         }
 
         // Sets the target for this platform.

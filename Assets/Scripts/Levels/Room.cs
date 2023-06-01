@@ -97,7 +97,7 @@ namespace Platformer.Levels {
             ReadJSONData(json, jsonID);
             CreateBoundaryBox();
 
-            List<LDtkTileData> controlData = LDtkReader.GetLayerData(json.Levels[jsonID], Game.Level.LDtkLayers.Control, 16);
+            List<LDtkTileData> controlData = LDtkReader.GetLayerData(json.Levels[jsonID], Game.Level.LDtkLayers.Control);
             GetLoadPoints(controlData);
         }
 
@@ -130,9 +130,9 @@ namespace Platformer.Levels {
             box.isTrigger = true;
         }
 
-        public void GenerateEntities(List<LDtkTileData> entityData, List<LDtkTileData> controlData, List<Entity> entityReferences) {
+        public void GenerateEntities(List<LDtkTileData> entityData, List<LDtkTileData> controlData, List<Entity> entityReferences, string layerName) {
             entities.RemoveAll(entity => entity == null);
-            entities = Entity.Generate(entities, entityData, controlData, entityReferences, transform, worldPosition);
+            entities = Entity.Generate(entities, entityData, controlData, entityReferences, transform, worldPosition, layerName);
         }
 
         public void DestroyEntities() {

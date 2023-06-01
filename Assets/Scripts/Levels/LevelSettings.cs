@@ -134,7 +134,7 @@ namespace Platformer.Levels {
 
             for (int n = 0; n < json.Levels.Length; n++) {
                 if (json.Levels[n].Identifier != LevelSettings.MechanicsRoom) {
-                    List<LDtkTileData> entityData = LDtkReader.GetLayerData(json.Levels[n], "ENTITIES", 16); // Fuck me.
+                    List<LDtkTileData> entityData = LDtkReader.GetLayerData(json.Levels[n], "ENTITIES"); // Fuck me.
                     total += entityData.FindAll(entity => entity.vectorID == LDtkTileData.ScoreOrbID).Count;
                 }
             }

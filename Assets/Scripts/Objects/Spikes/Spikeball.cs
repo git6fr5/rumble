@@ -21,11 +21,11 @@ namespace Platformer.Objects.Spikes {
     public class Spikeball : SpikeObject {
 
         // The speed with which this rotates.
-        private const float ROTATION_SPEED = 90f;
+        // private const float ROTATION_SPEED = 90f;
 
-        protected virtual void FixedUpdate() {
-            transform.Rotate(ROTATION_SPEED, Time.fixedDeltaTime);
-        }
+        // protected virtual void FixedUpdate() {
+        //     transform.Rotate(ROTATION_SPEED, Time.fixedDeltaTime);
+        // }
 
     }
 

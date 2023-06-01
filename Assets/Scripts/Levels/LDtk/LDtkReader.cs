@@ -25,14 +25,14 @@ namespace Platformer.Levels.LDtk {
         // Tile Size
         public static int TileSize = 16;
 
-        public static List<LDtkTileData> GetLayerData(LDtkUnity.Level ldtkLevel, string layerName, int gridSize) {
+        public static List<LDtkTileData> GetLayerData(LDtkUnity.Level ldtkLevel, string layerName) {
             List<LDtkTileData> layerData = new List<LDtkTileData>();
 
             LDtkUnity.LayerInstance layer = GetLayerInstance(ldtkLevel, layerName);
             if (layer != null) { 
                 for (int index = 0; index < layer.GridTiles.Length; index++) {
                     LDtkUnity.TileInstance tile = layer.GridTiles[index];
-                    LDtkTileData tileData = new LDtkTileData(GetVectorID(tile), GetGridPosition(tile, gridSize), index, gridSize);
+                    LDtkTileData tileData = new LDtkTileData(GetVectorID(tile), GetGridPosition(tile, (int)layer.GridSize), index, (int)layer.GridSize);
                     layerData.Add(tileData);
                 }
             }

@@ -47,9 +47,6 @@ namespace Platformer.Objects.Decorations {
         }
 
         public void Vary() {
-            // gameObject.SetActive(Random.Range(0f, 1f) < m_ActivePercent);
-            // if (!gameObject.activeSelf) { return; }
-
             transform.localPosition = m_Origin + new Vector3(Random.Range(-m_PositionVariation.MinX, m_PositionVariation.MaxX), Random.Range(-m_PositionVariation.MinY, m_PositionVariation.MaxY),0f);
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
             if (m_SpriteRenderer != null && m_Variations.Length > 0) { Pick(); }

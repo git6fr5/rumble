@@ -41,10 +41,15 @@ namespace Platformer.Visuals {
         [HideInInspector]
         public int TileOrder = 3;
 
-        [Header("Tiles"), Space(2)]
-        public string DecorLayer = "Background";
-        [HideInInspector]
-        public int DecorOrder = 2;
+        [Header("Decor"), Space(2)]
+        public string ForegroundDecor = "Foreground";
+        public Color ForegroundColor;
+        
+        [Header("Decor"), Space(2)]
+        public string BackgroundDecor = "Background";
+        // [HideInInspector]
+        // public int DecorOrder = 2;
+        
 
 
     }

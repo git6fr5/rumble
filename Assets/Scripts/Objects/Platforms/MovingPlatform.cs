@@ -13,7 +13,6 @@ using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 using IPathable = Platformer.Levels.Entities.IPathable;
 using PathingData = Platformer.Levels.Entities.PathingData;
-using Leg = Platformer.Objects.Decorations.DecorationController;
 
 namespace Platformer.Objects.Platforms {
 
@@ -27,9 +26,6 @@ namespace Platformer.Objects.Platforms {
         // The path that this platform follows.
         protected Vector3[] m_Path = null;
         
-        [SerializeField]
-        private PlatformLegs m_Legs = null;
-
         // The current position in the path that the path is following.
         [SerializeField, ReadOnly] 
         protected int m_PathIndex;
@@ -58,7 +54,7 @@ namespace Platformer.Objects.Platforms {
 
         public override void SetLength(int length) {
             base.SetLength(length);
-            m_Legs.CreateLegs(length, m_Length);
+            // m_Legs.CreateLegs(length, m_Length);
         }
 
         public void SetPath(PathingData pathingData) {
@@ -94,7 +90,7 @@ namespace Platformer.Objects.Platforms {
             float distance = ((Vector2)m_Path[m_PathIndex] - (Vector2)transform.position).magnitude;
             if (distance == 0f && m_PauseTimer.Value == m_PauseDuration) {
                 Game.Audio.Sounds.PlaySound(m_StopMovingSound);
-                m_Legs.SetLegAnimation(m_Legs.IdleAnimation, m_Legs.IdleAnimation);   
+                // m_Legs.SetLegAnimation(m_Legs.IdleAnimation, m_Legs.IdleAnimation);   
             }
 
             bool finished = m_PauseTimer.TickDownIf(dt, distance == 0f);
@@ -105,10 +101,10 @@ namespace Platformer.Objects.Platforms {
                 m_PathIndex = (m_PathIndex + 1) % m_Path.Length;
                 m_PauseTimer.Start(m_PauseDuration);
                 
-                float direction = ((Vector2)m_Path[m_PathIndex] - (Vector2)transform.position).x;
-                m_Legs.SetAnimationDirection(m_Legs.FrontLegAnim, direction, 1f);
-                m_Legs.SetAnimationDirection(m_Legs.BackLegAnim, direction, -1f);
-                m_Legs.SetLegAnimation(m_Legs.FrontLegAnim, m_Legs.BackLegAnim);
+                // float direction = ((Vector2)m_Path[m_PathIndex] - (Vector2)transform.position).x;
+                // m_Legs.SetAnimationDirection(m_Legs.FrontLegAnim, direction, 1f);
+                // m_Legs.SetAnimationDirection(m_Legs.BackLegAnim, direction, -1f);
+                // m_Legs.SetLegAnimation(m_Legs.FrontLegAnim, m_Legs.BackLegAnim);
             }
 
         }

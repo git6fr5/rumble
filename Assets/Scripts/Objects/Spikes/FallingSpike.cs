@@ -41,7 +41,7 @@ namespace Platformer.Objects.Spikes {
         /* --- Components --- */
 
         // The body attached to this gameObject 
-        private Rigidbody2D m_Body => GetComponent<Rigidbody2D>();
+        private Rigidbody2D m_Body;
 
         /* --- Members --- */
 
@@ -65,6 +65,15 @@ namespace Platformer.Objects.Spikes {
         // public Sparkle m_Sparkle;
         
         #endregion
+
+        // Initialize the spike.
+        public override void Initialize(Vector3 worldPosition, float depth) {
+            base.Initialize(worldPosition, depth);
+            m_Body = GetComponent<Rigidbody2D>();
+            m_Body.Stop();
+            m_Body.Freeze();
+            m_FallState = FallState.Looking;
+        }
         
         // Runs once every frame.
         private void Update() {
@@ -110,9 +119,8 @@ namespace Platformer.Objects.Spikes {
                 Shatter();
             }
             else if (m_FallState == FallState.Falling) {
-                bool hitGround = collider.gameObject.layer == LayerMask.NameToLayer("Ground");
-                bool hitPlatform = collider.gameObject.layer == LayerMask.NameToLayer("Platform");
-                if (hitGround || hitPlatform) {
+                bool hitGround = collider.gameObject.layer == Game.Physics.CollisionLayers.PlatformLayer;
+                if (hitGround) {
                     Shatter();
                 }
             }
@@ -135,7 +143,7 @@ namespace Platformer.Objects.Spikes {
         }
 
         private void WhileLooking() {
-            CharacterController character = Game.Physics.Collisions.LineOfSight<CharacterController>(transform.position, Vector3.down, Game.Physics.CollisionLayers.Solid);
+            CharacterController character = Game.Physics.Collisions.LineOfSight<CharacterController>(transform.position + Vector3.down, Vector3.down, Game.Physics.CollisionLayers.Solid);
             if (character != null) {
                 m_FallState = FallState.Crumbling;
                 m_CrumbleTimer.Start(m_CrumbleDuration);

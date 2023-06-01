@@ -13,7 +13,7 @@ using Game = Platformer.Management.GameManager;
 namespace Platformer.Visuals.Animation {
 
     [System.Serializable]
-    public struct SpriteAnimation {
+    public class SpriteAnimation {
         
         [Header("Animation Parameters")]
         public Sprite[] sprites;
@@ -28,7 +28,6 @@ namespace Platformer.Visuals.Animation {
         public Gradient colorGradient;
 
         [Header("Rendering Order")]
-        public string layerOverride;
         public int orderOffset;
 
         public void Tick(float dt) {
@@ -64,8 +63,7 @@ namespace Platformer.Visuals.Animation {
         // Runs once on instantiation.
         void Start() {
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
-            m_SpriteRenderer.sortingLayerName = m_Animation.layerOverride != "" ? m_Animation.layerOverride : m_SpriteRenderer.sortingLayerName;
-            m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.DecorOrder + m_Animation.orderOffset;
+            m_SpriteRenderer.sortingOrder += m_Animation.orderOffset;
         }
 
         void FixedUpdate() {
@@ -77,6 +75,12 @@ namespace Platformer.Visuals.Animation {
             m_Animation.Tick(dt);
             m_SpriteRenderer.sprite = m_Animation.GetFrame();
             m_SpriteRenderer.color = m_Animation.GetColor();
+        }
+
+        public static void Animate(SpriteRenderer spriteRenderer, SpriteAnimation animation, float dt) {
+            animation.Tick(dt);
+            spriteRenderer.sprite = animation.GetFrame();
+            spriteRenderer.color = animation.GetColor();
         }
     }
 

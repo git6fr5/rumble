@@ -121,8 +121,9 @@ namespace Platformer.Management {
             CustomTileMappings.CreateWaterTileMapping();
 
             // Itterate through and load all the level data.
+            // m_TilemapManager.Fill(m_Rooms);
             for (int i = 0; i < m_Rooms.Count; i++) {
-                List<LDtkTileData> tileData = LDtkReader.GetLayerData(m_Rooms[i].ldtkLevel, m_LDtkLayers.Ground, 16);
+                List<LDtkTileData> tileData = LDtkReader.GetLayerData(m_Rooms[i].ldtkLevel, m_LDtkLayers.Ground);
                 m_TilemapManager.GenerateMap(m_Rooms[i], tileData);
             }
 
@@ -158,18 +159,18 @@ namespace Platformer.Management {
         public void Load(Room room) {
             if (room.ldtkLevel != null) {
                 // Load the data.
-                List<LDtkTileData> entityData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Entity, 16);
-                List<LDtkTileData> controlData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Control, 16);
+                List<LDtkTileData> entityData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Entity);
+                List<LDtkTileData> controlData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Control);
 
                 // Generate the entities.
-                room.GenerateEntities(entityData, controlData, m_EntityManager.All);
+                room.GenerateEntities(entityData, controlData, m_EntityManager.All, m_LDtkLayers.Entity);
 
                 // Generate the decorations.
                 List<LDtkTileData> decorData = new List<LDtkTileData>();
                 controlData = new List<LDtkTileData>();
                 for (int i = 0; i < m_LDtkLayers.Decorations.Length; i++) {
-                    decorData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Decorations[i], 8);
-                    room.GenerateEntities(decorData, controlData, m_DecorationManager.All);
+                    decorData = LDtkReader.GetLayerData(room.ldtkLevel, m_LDtkLayers.Decorations[i]);
+                    room.GenerateEntities(decorData, controlData, m_DecorationManager.All, m_LDtkLayers.Decorations[i]);
                 }
 
                 // Move the camera

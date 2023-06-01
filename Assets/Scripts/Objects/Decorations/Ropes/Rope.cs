@@ -61,8 +61,8 @@ namespace Platformer.Objects.Decorations {
             gameObject.layer = Game.Physics.CollisionLayers.DecorLayer;
 
             // Rendering settings.
-            m_SpriteShape.GetComponent<SpriteShapeRenderer>().sortingLayerName = Game.Visuals.RenderingLayers.DecorLayer;
-            m_SpriteShape.GetComponent<SpriteShapeRenderer>().sortingOrder = Game.Visuals.RenderingLayers.DecorOrder;
+            // m_SpriteShape.GetComponent<SpriteShapeRenderer>().sortingLayerName = Game.Visuals.RenderingLayers.DecorLayer;
+            // m_SpriteShape.GetComponent<SpriteShapeRenderer>().sortingOrder = Game.Visuals.RenderingLayers.DecorOrder;
 
 
         }
