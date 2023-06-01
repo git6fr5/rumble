@@ -1786,6 +1786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!114 &132484221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1957,6 +1958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!1 &185341031
 GameObject:
   m_ObjectHideFlags: 0
@@ -3912,6 +3914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!114 &351062570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6589,6 +6592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!1 &757140206
 GameObject:
   m_ObjectHideFlags: 0
@@ -6928,6 +6932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!114 &798743907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8628,6 +8633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!114 &930402872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8897,7 +8903,8 @@ MonoBehaviour:
     TileLayer: Foreground
     TileOrder: 2
     ForegroundDecor: Foreground
-    ForegroundColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    ForegroundScalePer100: 0.35
+    ForegroundShadePer100: 0.8
     BackgroundDecor: Background
 --- !u!1 &968081030
 GameObject:
@@ -9519,6 +9526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!1 &1036541999
 GameObject:
   m_ObjectHideFlags: 0
@@ -11920,6 +11928,8 @@ MonoBehaviour:
     m_Decorations:
     - FOREGROUND_200
     - FOREGROUND_100
+    - FOREGROUND_95
+    - FOREGROUND_5
     - FOREGROUND_0
     - BACKGROUND_0
     m_Ground: GROUND
@@ -12245,6 +12255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!1 &1204744945
 GameObject:
   m_ObjectHideFlags: 0
@@ -19203,6 +19214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!114 &1653033625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21237,6 +21249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!1 &1823139164
 GameObject:
   m_ObjectHideFlags: 0
@@ -25409,6 +25422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rotation: 0
   m_Origin: {x: 0, y: 0, z: 0}
+  m_Rescale: 1
 --- !u!114 &2127842400
 MonoBehaviour:
   m_ObjectHideFlags: 0

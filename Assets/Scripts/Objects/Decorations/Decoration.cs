@@ -28,9 +28,8 @@ namespace Platformer.Objects.Decorations {
         [SerializeField, ReadOnly]
         private Vector3 m_Origin;
 
-        private const float m_ForegroundScalePer100 = 0.7f;
-        
-        private const float m_ForegroundShadePer100 = 0.4f;
+        [SerializeField]
+        private bool m_Rescale = true;
 
         // Initializes this entity.
         public void Initialize(Vector3 worldPosition, float depth) {
@@ -53,9 +52,13 @@ namespace Platformer.Objects.Decorations {
             
             if (data[0].Contains("FOREGROUND")) {
                 
-                float shadeVal = m_ForegroundShadePer100 * (1f + (float)order / 100f);
+                float shadeVal = Game.Visuals.RenderingLayers.ForegroundShadePer100 * (1f + (float)order / 100f);
                 Color shade = new Color(1f, 1f, 1f, 1f) - new Color(shadeVal, shadeVal, shadeVal, 0f);
-                transform.localScale *= (1f + m_ForegroundScalePer100 * (1f + (float)order / 100f));
+
+                if (m_Rescale) {
+                    transform.localScale *= (1f + Game.Visuals.RenderingLayers.ForegroundScalePer100 * (1f + (float)order / 100f));
+                }
+
                 for (int i = 0; i < renderers.Length; i++) {
                     renderers[i].sortingLayerName = Game.Visuals.RenderingLayers.ForegroundDecor;
                     if (renderers[i].GetComponent<SpriteRenderer>() != null) {

@@ -43,7 +43,12 @@ namespace Platformer.Visuals {
 
         [Header("Decor"), Space(2)]
         public string ForegroundDecor = "Foreground";
-        public Color ForegroundColor;
+
+        [SerializeField]
+        public float ForegroundScalePer100 = 0.35f;
+        
+        [SerializeField]
+        public float ForegroundShadePer100 = 0.8f;
         
         [Header("Decor"), Space(2)]
         public string BackgroundDecor = "Background";
