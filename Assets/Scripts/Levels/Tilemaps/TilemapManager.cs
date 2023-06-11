@@ -117,21 +117,34 @@ namespace Platformer.Levels.Tilemaps {
             
         }
 
+        [System.Serializable]
+        public class LDtkTileEntity {
+            public TileBase tile;
+            public Vector2Int vectorID;
+        }
+
+        public List<LDtkTileEntity> tiles = new List<LDtkTileEntity>();
+
         public void GenerateMap(Room room, List<LDtkTileData> tileData) {
 
-            List<LDtkTileData> groundData = tileData.FindAll(data => data.vectorID == LDtkTileData.GROUND_ID);
+            // List<LDtkTileData> groundData = tileData.FindAll(data => data.vectorID == LDtkTileData.GROUND_ID);
+
             for (int i = 0; i < tileData.Count; i++) {
-                Vector3Int tilePosition = room.GridToTilePosition(tileData[i].gridPosition);
-                this.groundMap.SetTile(tilePosition, this.groundTile);
-                this.groundMaskMap.SetTile(tilePosition, this.maskTile);
+                TileBase _tile = tiles.Find(tileEnt => tileEnt.vectorID == tileData[i].vectorID)?.tile;
+                if (_tile != null) {
+                    Vector3Int tilePosition = room.GridToTilePosition(tileData[i].gridPosition);
+                    this.groundMap.SetTile(tilePosition, _tile);
+                    // this.groundMaskMap.SetTile(tilePosition, this.maskTile);
+                }
+
             }
 
-            for (int i = 0; i < room.height; i++) {
-                for (int j = 0; j < room.width; j++) {
-                    Vector3Int tilePosition = new Vector3Int(room.worldPosition.x + j, room.worldPosition.y - i, 0);
-                    this.backgroundMap.SetTile(tilePosition, this.backgroundTile);
-                }
-            }
+            // for (int i = 0; i < room.height; i++) {
+            //     for (int j = 0; j < room.width; j++) {
+            //         Vector3Int tilePosition = new Vector3Int(room.worldPosition.x + j, room.worldPosition.y - i, 0);
+            //         this.backgroundMap.SetTile(tilePosition, this.backgroundTile);
+            //     }
+            // }
                        
             // List<LDtkTileData> waterData = tileData.FindAll(data => data.vectorID == LDtkTileData.WATER_ID);
             // for (int i = 0; i < tileData.Count; i++) {

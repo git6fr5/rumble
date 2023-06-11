@@ -158,9 +158,9 @@ TextureImporter:
         x: 0
         y: 0
         width: 512
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.48832867, y: 0.11484593}
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -179,9 +179,9 @@ TextureImporter:
         x: 512
         y: 0
         width: 512
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.46790385, y: 0.13089402}
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,69 +189,6 @@ TextureImporter:
       bones: []
       spriteID: 7bb4e172535cf1f449aa4677c4fc3fc0
       internalID: -371265146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_rocks_carved_2
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 512
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.5116713, y: 0.11484593}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f4886ea40f2f3e49813f3c8a4afa0fb
-      internalID: 2113540533
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_rocks_carved_3
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 0
-        width: 512
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.47957516, y: 0.1279762}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0c97be58a1e22ec43b58483555d41d0a
-      internalID: -407500296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_rocks_carved_4
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 0
-        width: 512
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.49416447, y: 0.14256535}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e736d9072acec7646a5e7bd94ebe7a82
-      internalID: 2105769166
       vertices: []
       indices: 
       edges: []
@@ -267,11 +204,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_rocks_carved_2: 2113540533
       spr_rocks_carved_1: -371265146
-      spr_rocks_carved_3: -407500296
       spr_rocks_carved_0: 1028918579
-      spr_rocks_carved_4: 2105769166
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
