@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hatch
-  m_Shader: {fileID: -6465566751694194690, guid: c1cca1f4ac3f1be488cc63b16dd715a9, type: 3}
+  m_Name: mat_fg_gradient_200
+  m_Shader: {fileID: -6465566751694194690, guid: 72d83feb5bd9fac43ba5d4a3ca81d14b, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -20,12 +20,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Hatch:
-        m_Texture: {fileID: 2800000, guid: 97ad115ce445a5b42adbdc6e6458a86c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 575222de56178eb499916b5418e4efed, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -42,10 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FadeSpeed: 0
-    - _HatchOpacity: -0.09
-    - _HatchScale: 2
-    - _Hatchiness: 1.2
-    - _Jumbliness: 1.55
-    m_Colors: []
+    - _Blend: 0.2
+    - _FadePercent: 0.2
+    - _Grade: 1
+    - _Outline: 1
+    - _Saturation: 0.7
+    m_Colors:
+    - _BackColor: {r: 0, g: 0.1515644, b: 1, a: 0}
+    - _Color: {r: 0.13843165, g: 0.018500218, b: 0.11953845, a: 1}
+    - _ForeColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

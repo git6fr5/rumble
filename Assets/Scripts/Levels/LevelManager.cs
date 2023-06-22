@@ -128,9 +128,9 @@ namespace Platformer.Management {
             }
 
             // Refresh all the maps once after all the data has been loaded.
-            m_TilemapManager.waterMap.RefreshAllTiles();
             m_TilemapManager.groundMap.RefreshAllTiles();
-            m_TilemapManager.groundMaskMap.RefreshAllTiles();
+            // m_TilemapManager.waterMap.RefreshAllTiles();
+            // m_TilemapManager.groundMaskMap.RefreshAllTiles();
             // Level.GroundMap.GetComponent<ShadowCaster2DTileMap>().Generate(0.5f);
 
         }

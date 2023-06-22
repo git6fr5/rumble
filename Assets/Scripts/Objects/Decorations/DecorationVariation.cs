@@ -34,6 +34,9 @@ namespace Platformer.Objects.Decorations {
         [SerializeField]
         private BoundingBox m_PositionVariation;
 
+        [SerializeField]
+        private float m_RotationVariation;
+
         // [SerializeField, Range(0f, 1f)]
         // private float m_ActivePercent = 1f;
 
@@ -48,6 +51,8 @@ namespace Platformer.Objects.Decorations {
 
         public void Vary() {
             transform.localPosition = m_Origin + new Vector3(Random.Range(-m_PositionVariation.MinX, m_PositionVariation.MaxX), Random.Range(-m_PositionVariation.MinY, m_PositionVariation.MaxY),0f);
+            transform.localRotation = Quaternion.Euler(0f, 0f, Random.Range(-m_RotationVariation, m_RotationVariation));
+
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
             if (m_SpriteRenderer != null && m_Variations.Length > 0) { Pick(); }
         }

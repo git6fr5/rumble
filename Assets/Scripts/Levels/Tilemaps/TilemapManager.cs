@@ -55,10 +55,10 @@ namespace Platformer.Levels.Tilemaps {
         #endregion
 
         public void OnGameLoad() {
-            InitializeBackgroundLayer();
+            // InitializeBackgroundLayer();
             InitializeGroundLayer();
-            InitializeGroundMaskLayer();
-            InitializeWaterLayer();
+            // InitializeGroundMaskLayer();
+            // InitializeWaterLayer();
         }
 
         public void InitializeGroundLayer() {
@@ -78,6 +78,9 @@ namespace Platformer.Levels.Tilemaps {
             groundMap.gameObject.layer = Game.Physics.CollisionLayers.TileLayer;
             groundMap.GetComponent<TilemapRenderer>().sortingLayerName = Game.Visuals.RenderingLayers.TileLayer;
             groundMap.GetComponent<TilemapRenderer>().sortingOrder = Game.Visuals.RenderingLayers.TileOrder;
+
+            // groundMap.GetComponent<TilemapCollider2D>().SetColliderType(UnityEngine.Tilemaps.Tile.ColliderType.Grid);
+
             // LayerMask.NameToLayer("Ground");
 
 
@@ -133,6 +136,7 @@ namespace Platformer.Levels.Tilemaps {
                 TileBase _tile = tiles.Find(tileEnt => tileEnt.vectorID == tileData[i].vectorID)?.tile;
                 if (_tile != null) {
                     Vector3Int tilePosition = room.GridToTilePosition(tileData[i].gridPosition);
+                    this.groundMap.SetColliderType(tilePosition, UnityEngine.Tilemaps.Tile.ColliderType.Grid);
                     this.groundMap.SetTile(tilePosition, _tile);
                     // this.groundMaskMap.SetTile(tilePosition, this.maskTile);
                 }

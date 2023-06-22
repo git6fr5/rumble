@@ -31,6 +31,15 @@ namespace Platformer.Objects.Decorations {
         [SerializeField]
         private bool m_Rescale = true;
 
+        [SerializeField]
+        private SpriteRenderer[] m_StaticDecorations;
+
+        [SerializeField]
+        private Renderer[] m_StaticRenderers;
+
+        // [SerializeField]
+        // private SpriteRenderer[] m_FoliageDecorations;
+
         // Initializes this entity.
         public void Initialize(Vector3 worldPosition, float depth) {
             // Cache the origin
@@ -42,43 +51,35 @@ namespace Platformer.Objects.Decorations {
 
         }
 
-        public void SetRendering(string renderingLayer) {
+        public void SetRendering(string layerID) {
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
-            string[] data = renderingLayer.Split("_");
+            Platformer.Visuals.RenderingLayers.DecorationData data = Game.Visuals.RenderingLayers.DecorData.Find(data => data.id == layerID);
 
-            int order;
-            bool parsed = int.TryParse(data[1], out order);
-            order = parsed ? order : 0;
-            
-            if (data[0].Contains("FOREGROUND")) {
-                
-                float shadeVal = Game.Visuals.RenderingLayers.ForegroundShadePer100 * (1f + (float)order / 100f);
-                Color shade = new Color(1f, 1f, 1f, 1f) - new Color(shadeVal, shadeVal, shadeVal, 0f);
-
-                if (m_Rescale) {
-                    transform.localScale *= (1f + Game.Visuals.RenderingLayers.ForegroundScalePer100 * (1f + (float)order / 100f));
-                }
-
-                for (int i = 0; i < renderers.Length; i++) {
-                    renderers[i].sortingLayerName = Game.Visuals.RenderingLayers.ForegroundDecor;
-                    if (renderers[i].GetComponent<SpriteRenderer>() != null) {
-                        renderers[i].GetComponent<SpriteRenderer>().color = shade;
-                    }
-                    if (renderers[i].GetComponent<SpriteShapeRenderer>() != null) {
-                        renderers[i].GetComponent<SpriteShapeRenderer>().color = shade;
-                    }
-                }
+            if (data == null) {
+                return;
             }
-            else {
-                for (int i = 0; i < renderers.Length; i++) {
-                    renderers[i].sortingLayerName = Game.Visuals.RenderingLayers.BackgroundDecor;
-                }
+
+            if (m_Rescale) {
+                transform.localScale *= data.scale;
             }
 
             for (int i = 0; i < renderers.Length; i++) {
-                renderers[i].sortingOrder = order;
+                renderers[i].sortingLayerName = data.renderingLayer;
+                renderers[i].sortingOrder += data.order;
             }
 
+            for (int i = 0; i < m_StaticDecorations.Length; i++) {
+                if (data.material != null) {
+                    m_StaticDecorations[i].sharedMaterial = data.material;
+                }
+            }
+
+            for (int i = 0; i < m_StaticRenderers.Length; i++) {
+                if (data.material != null) {
+                    m_StaticRenderers[i].sharedMaterial = data.material;
+                }
+            }
+            
         }
 
         public void SetRotation(float rotation) {
