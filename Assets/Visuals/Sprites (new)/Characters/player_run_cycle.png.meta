@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bae50968d52fd8741a20f8e54ae7ed8e
+guid: a030854f7db359344a169a594a424505
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,8 +43,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 0
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 200
@@ -152,190 +152,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bush_tileset_0
+      name: player_run_cycle_0
       rect:
         serializedVersion: 2
-        x: 400
-        y: 400
-        width: 200
-        height: 200
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2803155356525648800230080e04cad
-      internalID: 793355069
+      spriteID: 379b053cabca0f1459d10750fd2ff7af
+      internalID: 1085534387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bush_tileset_1
+      name: player_run_cycle_1
       rect:
         serializedVersion: 2
-        x: 400
-        y: 600
-        width: 200
-        height: 400
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 200}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 99fb6b78282c2404287c021ca4e8fe82
-      internalID: -370313841
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bush_tileset_2
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 400
-        width: 400
-        height: 200
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
-      border: {x: 0, y: 0, z: 200, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fe845a9ac0ac1a40a6cb51c310fda07
-      internalID: 673271744
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bush_tileset_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 400
-        width: 400
-        height: 200
-      alignment: 9
-      pivot: {x: 0.75, y: 0.5}
-      border: {x: 200, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2bd036f8aff10fc418bc88aa297966c4
-      internalID: 1479582959
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bush_tileset_4
-      rect:
-        serializedVersion: 2
-        x: 400
+        x: 256
         y: 0
-        width: 200
-        height: 400
-      alignment: 9
-      pivot: {x: 0.5, y: 0.75}
-      border: {x: 0, y: 200, z: 0, w: 0}
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17d162305a9961c4ba13e0e26eee30ab
-      internalID: 235687057
+      spriteID: dbb26a500e6a6aa4cb66744dd22aed5b
+      internalID: -1790268056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bush_tileset_5
+      name: player_run_cycle_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 600
-        width: 400
-        height: 400
-      alignment: 9
-      pivot: {x: 0.75, y: 0.25}
-      border: {x: 200, y: 0, z: 0, w: 200}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f14ffecd042b97244aad3324c0a9536f
-      internalID: 1515641723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bush_tileset_6
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 600
-        width: 400
-        height: 400
-      alignment: 9
-      pivot: {x: 0.25, y: 0.25}
-      border: {x: 0, y: 0, z: 200, w: 200}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a181af7230a731f40825faec9cd108c8
-      internalID: 285915184
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bush_tileset_7
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 512
         y: 0
-        width: 400
-        height: 400
-      alignment: 9
-      pivot: {x: 0.75, y: 0.75}
-      border: {x: 200, y: 200, z: 0, w: 0}
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33e8e0251a155cd4eb60cbbf3c067c49
-      internalID: 49339971
+      spriteID: 8a9adcdfe88798d4398fbfa7e1e2de90
+      internalID: 1198564007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bush_tileset_8
+      name: player_run_cycle_3
       rect:
         serializedVersion: 2
-        x: 600
+        x: 768
         y: 0
-        width: 400
-        height: 400
-      alignment: 9
-      pivot: {x: 0.25, y: 0.75}
-      border: {x: 0, y: 200, z: 200, w: 0}
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25c09950948d2ef4ca3d89511de44011
-      internalID: 698890110
+      spriteID: 8c500f41053e4d2449a49466cc092135
+      internalID: -1648906800
       vertices: []
       indices: 
       edges: []
@@ -351,15 +246,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bush_tileset_5: 1515641723
-      bush_tileset_6: 285915184
-      bush_tileset_7: 49339971
-      bush_tileset_8: 698890110
-      bush_tileset_2: 673271744
-      bush_tileset_3: 1479582959
-      bush_tileset_4: 235687057
-      bush_tileset_1: -370313841
-      bush_tileset_0: 793355069
+      player_run_cycle_1: -1790268056
+      player_run_cycle_0: 1085534387
+      player_run_cycle_2: 1198564007
+      player_run_cycle_3: -1648906800
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

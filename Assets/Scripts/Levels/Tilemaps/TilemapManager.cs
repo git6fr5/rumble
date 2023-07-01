@@ -135,8 +135,9 @@ namespace Platformer.Levels.Tilemaps {
             for (int i = 0; i < tileData.Count; i++) {
 
                 TileBase maskTile = maskTiles.Find(tileEnt => tileEnt.vectorID == tileData[i].vectorID)?.tile;
+                print(tileData[i].vectorID);
                 
-                if (maskTile != null) {
+                if (groundTile != null) {
                     Vector3Int tilePosition = room.GridToTilePosition(tileData[i].gridPosition);
 
                     this.groundMap.SetColliderType(tilePosition, UnityEngine.Tilemaps.Tile.ColliderType.Grid);
@@ -146,6 +147,8 @@ namespace Platformer.Levels.Tilemaps {
                 }
 
             }
+
+            this.groundMaskMap.RefreshAllTiles();
 
             // for (int i = 0; i < room.height; i++) {
             //     for (int j = 0; j < room.width; j++) {
