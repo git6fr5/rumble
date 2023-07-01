@@ -42,7 +42,7 @@ namespace Platformer.Levels.Tilemaps {
 
         // The tiles for the ground mask.
         [field: SerializeField] 
-        public GroundTile maskTile { get; private set; }
+        public RuleTile maskTile { get; private set; }
 
         // The tiles for the ground water.
         [field: SerializeField] 
@@ -57,7 +57,7 @@ namespace Platformer.Levels.Tilemaps {
         public void OnGameLoad() {
             // InitializeBackgroundLayer();
             InitializeGroundLayer();
-            // InitializeGroundMaskLayer();
+            InitializeGroundMaskLayer();
             // InitializeWaterLayer();
         }
 
@@ -88,7 +88,7 @@ namespace Platformer.Levels.Tilemaps {
 
         public void InitializeGroundMaskLayer() {
             groundMaskMap = new GameObject("Ground Mask", typeof(Tilemap), typeof(TilemapRenderer)).GetComponent<Tilemap>();
-            // m_GroundMapMask.GetComponent<TilemapRenderer>().sortingLayerName = Screen.RenderingLayers.Midground;
+            groundMaskMap.GetComponent<TilemapRenderer>().sortingLayerName = "Foreground";
             groundMaskMap.GetComponent<TilemapRenderer>().sortingOrder = 10000;
             // GroundMapMask.color = new Color(0.8f, 0.8f, 0.8f, 1f);
 
@@ -126,19 +126,23 @@ namespace Platformer.Levels.Tilemaps {
             public Vector2Int vectorID;
         }
 
-        public List<LDtkTileEntity> tiles = new List<LDtkTileEntity>();
+        public List<LDtkTileEntity> maskTiles = new List<LDtkTileEntity>();
 
         public void GenerateMap(Room room, List<LDtkTileData> tileData) {
 
             // List<LDtkTileData> groundData = tileData.FindAll(data => data.vectorID == LDtkTileData.GROUND_ID);
 
             for (int i = 0; i < tileData.Count; i++) {
-                TileBase _tile = tiles.Find(tileEnt => tileEnt.vectorID == tileData[i].vectorID)?.tile;
-                if (_tile != null) {
+
+                TileBase maskTile = maskTiles.Find(tileEnt => tileEnt.vectorID == tileData[i].vectorID)?.tile;
+                
+                if (maskTile != null) {
                     Vector3Int tilePosition = room.GridToTilePosition(tileData[i].gridPosition);
+
                     this.groundMap.SetColliderType(tilePosition, UnityEngine.Tilemaps.Tile.ColliderType.Grid);
-                    this.groundMap.SetTile(tilePosition, _tile);
-                    // this.groundMaskMap.SetTile(tilePosition, this.maskTile);
+                    this.groundMap.SetTile(tilePosition, this.groundTile);
+                    this.groundMaskMap.SetTile(tilePosition, maskTile);
+
                 }
 
             }
