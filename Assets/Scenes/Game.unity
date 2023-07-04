@@ -1227,7 +1227,6 @@ GameObject:
   m_Component:
   - component: {fileID: 244643460}
   - component: {fileID: 244643462}
-  - component: {fileID: 244643461}
   m_Layer: 0
   m_Name: Rain
   m_TagString: Untagged
@@ -1250,18 +1249,6 @@ Transform:
   m_Father: {fileID: 637948113}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &244643461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 244643459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2899b9e0d186eb942890008004506e42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &244643462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2365,8 +2352,6 @@ GameObject:
   m_Component:
   - component: {fileID: 454019136}
   - component: {fileID: 454019140}
-  - component: {fileID: 454019141}
-  - component: {fileID: 454019142}
   m_Layer: 3
   m_Name: Firefly
   m_TagString: Untagged
@@ -2406,30 +2391,6 @@ MonoBehaviour:
   m_VectorID: {x: 4, y: 5}
   m_GridPosition: {x: 0, y: 0}
   m_LoadOffset: {x: 0, y: 0}
---- !u!114 &454019141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454019135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c313130453f6a584287946b79c2d54aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &454019142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454019135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70f171769e2fa55488808266dfd528ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &468276708
 GameObject:
   m_ObjectHideFlags: 0
@@ -6238,8 +6199,8 @@ MonoBehaviour:
   m_TilemapManager: {fileID: 372664152}
   m_Rooms: []
   m_CurrentRoom: {fileID: 0}
-  m_FirstRoomName: CONCEPTS_33
-  m_LDtkData: {fileID: -3679377698815782927, guid: bae32954d56e03140b37454f0a42f5a7, type: 3}
+  m_FirstRoomName: START
+  m_LDtkData: {fileID: -8832719722589761047, guid: a5f1384b842ee3642a48db4794ae9eec, type: 3}
 --- !u!1 &1163695353
 GameObject:
   m_ObjectHideFlags: 0
@@ -9326,9 +9287,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.07135417
+    x: 0.07175295
     y: 0
-    width: 0.8577899
+    width: 0.85613865
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -10259,7 +10220,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1722277856}
   - component: {fileID: 1722277858}
-  - component: {fileID: 1722277857}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
@@ -10282,18 +10242,6 @@ Transform:
   m_Father: {fileID: 637948113}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1722277857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722277855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 578dafe258b61434bbd6aac7b7bfdf74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1722277858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11437,9 +11385,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1925198639}
-  - component: {fileID: 1925198640}
-  - component: {fileID: 1925198641}
-  - component: {fileID: 1925198643}
   - component: {fileID: 1925198642}
   m_Layer: 0
   m_Name: Smoke
@@ -11463,30 +11408,6 @@ Transform:
   m_Father: {fileID: 637948113}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1925198640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925198638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73a8904b69aeb4841b1b260f679485a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1925198641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925198638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73a8904b69aeb4841b1b260f679485a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1925198642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11504,18 +11425,6 @@ MonoBehaviour:
   m_VectorID: {x: 6, y: 4}
   m_GridPosition: {x: 0, y: 0}
   m_LoadOffset: {x: 0, y: 0}
---- !u!114 &1925198643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925198638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73a8904b69aeb4841b1b260f679485a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1942039664
 GameObject:
   m_ObjectHideFlags: 0
@@ -11526,7 +11435,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1942039665}
   - component: {fileID: 1942039667}
-  - component: {fileID: 1942039666}
   m_Layer: 0
   m_Name: Creepy
   m_TagString: Untagged
@@ -11549,18 +11457,6 @@ Transform:
   m_Father: {fileID: 637948113}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1942039666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1942039664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5dd8631bd735ca49a4ac409f316c73d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1942039667
 MonoBehaviour:
   m_ObjectHideFlags: 0
