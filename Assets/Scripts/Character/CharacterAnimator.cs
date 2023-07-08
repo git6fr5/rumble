@@ -47,10 +47,10 @@ namespace Platformer.Character {
         /* --- Constants --- */
 
         // The frame rate that the animation plays at.
-        public const float FRAME_RATE = 6;
+        public const float FRAME_RATE = 12;
 
         // The factor by which this stretches.
-        public const float STRETCH_FACTOR = 3f/2f;
+        public const float STRETCH_FACTOR = 2.5f/2f;
 
         /* --- Components --- */
 
@@ -95,7 +95,7 @@ namespace Platformer.Character {
 
         void Update() {
             Animate(Time.deltaTime);
-            // Scale(Time.deltaTime);
+            Scale(Time.deltaTime);
             Rotate();
         }
 

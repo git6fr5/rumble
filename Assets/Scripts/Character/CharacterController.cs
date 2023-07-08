@@ -69,12 +69,12 @@ namespace Platformer.Character {
         // Checks whether the character is rising.
         [SerializeField, ReadOnly] 
         private bool m_Rising = false;
-        public bool Rising => m_Rising;
+        public bool Rising => !m_OnGround && m_Rising;
 
         // Checks whether the character is falling.
         [SerializeField, ReadOnly] 
         private bool m_Falling = false;
-        public bool Falling => m_Falling;
+        public bool Falling => !m_OnGround && m_Falling;
 
         // Checks whether this character is currently disabled.
         [SerializeField, ReadOnly] 

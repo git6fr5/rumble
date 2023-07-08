@@ -13848,17 +13848,17 @@ MonoBehaviour:
     - id: BACKGROUND_000
       renderingLayer: Background
       material: {fileID: 2100000, guid: 144f9ae9f1349a84e85dcf12dbd59330, type: 2}
-      scale: 2
+      scale: 1.5
       order: 0
     - id: BACKGROUND_100
       renderingLayer: Background
       material: {fileID: 2100000, guid: 25930c23556964e49b1a223e254a9326, type: 2}
-      scale: 1.5
+      scale: 1
       order: -100
     - id: BACKGROUND_200
       renderingLayer: Background
       material: {fileID: 2100000, guid: a93415bd639bf1341ba99864a963b5c5, type: 2}
-      scale: 1
+      scale: 0.75
       order: -200
     - id: FOREGROUND_200
       renderingLayer: Foreground
@@ -18255,7 +18255,7 @@ MonoBehaviour:
   m_Rooms: []
   m_CurrentRoom: {fileID: 0}
   m_FirstRoomName: START
-  m_LDtkData: {fileID: -8832719722589761047, guid: a5f1384b842ee3642a48db4794ae9eec, type: 3}
+  m_LDtkData: {fileID: -8832719722589761047, guid: 07d078b3413d2dc47b00387ffac2054d, type: 3}
 --- !u!1 &1157144913
 GameObject:
   m_ObjectHideFlags: 0

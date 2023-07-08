@@ -219,7 +219,7 @@ namespace Platformer.Character.Actions {
         private void WhileFalling(CharacterController character, float dt) {
             if (m_Refreshed) {
                 character.Animator.Remove(m_FallAnimation);
-                character.Default.OnExternalJump(character, character.Default.JumpSpeed * 0.75f);
+                // character.Default.OnExternalJump(character, character.Default.JumpSpeed * 0.75f);
                 m_ActionPhase = ActionPhase.None;
             }
         }
