@@ -43,30 +43,16 @@ namespace Platformer.Visuals {
 
         [Header("Decor"), Space(2)]
         public string ForegroundDecor = "Foreground";
-
-        [SerializeField]
-        public float ForegroundScalePer100 = 0.35f;
-
-        [SerializeField]
-        public float BackgroundScalePer100 = 0.35f;
-        
-        [SerializeField]
-        public float ForegroundShadePer100 = 0.8f;
         
         [Header("Decor"), Space(2)]
         public string BackgroundDecor = "Background";
+        
+        [SerializeField]
+        private Environment[] m_Environments;
 
-        [System.Serializable]
-        public class DecorationData {
-            public string id;
-            public string renderingLayer;
-            public Material material;
-            public float scale = 1f;
-            public int order = 0; 
-        }
-
-        public List<DecorationData> DecorData;
-
+        [SerializeField]
+        private int m_EnvironmentIndex = 0;
+        public Environment CurrentEnvironmnet => m_Environments[m_EnvironmentIndex];
 
     }
 

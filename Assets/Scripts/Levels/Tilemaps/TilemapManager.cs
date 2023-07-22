@@ -89,7 +89,7 @@ namespace Platformer.Levels.Tilemaps {
         public void InitializeGroundMaskLayer() {
             groundMaskMap = new GameObject("Ground Mask", typeof(Tilemap), typeof(TilemapRenderer)).GetComponent<Tilemap>();
             groundMaskMap.GetComponent<TilemapRenderer>().sortingLayerName = "Foreground";
-            groundMaskMap.GetComponent<TilemapRenderer>().sortingOrder = 10000;
+            groundMaskMap.GetComponent<TilemapRenderer>().sortingOrder = 10; // 10000;
             // GroundMapMask.color = new Color(0.8f, 0.8f, 0.8f, 1f);
 
             groundMaskMap.transform.SetParent(transform);

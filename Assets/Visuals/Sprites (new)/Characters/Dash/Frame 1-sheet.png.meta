@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5a948a4a10a0a224689e3971780b847d
+guid: c8e8e242d05793942ad1f7aa97bb1e48
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,8 +43,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 0
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 200
@@ -152,64 +152,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_rocks_carved_tall_0
+      name: Frame 1-sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bd9cc8d80da64847bae55c98e0204c3
+      internalID: -2146598340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 1-sheet_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23b18183b913934488dfb95aebf45365
+      internalID: -269996049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 1-sheet_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df64bfeb5c312c64b9d2794172ea4563
+      internalID: -405281364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 1-sheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a2a6f8ab6a784740978a98762d1882d
+      internalID: -1528779750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 1-sheet_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9ab5af930aee2a4d8c2b3ca74320406
+      internalID: -585288431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 1-sheet_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0d8d832c23135941a1b4086e31607bb
+      internalID: 1016135861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 1-sheet_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24414062}
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f12c50f7372ca24e8bc24a54c74ce6e
-      internalID: 1241302605
+      spriteID: d2b0d5c440f3b5f47ac9887f9ebcf1fe
+      internalID: 70427423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_rocks_carved_tall_1
+      name: Frame 1-sheet_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e72110aa06782a4a9502b7e2ed677eb
+      internalID: 144519316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frame 1-sheet_8
       rect:
         serializedVersion: 2
         x: 512
         y: 0
-        width: 512
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24414062}
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f3ba75b4658b044f8f4f3392b62427b
-      internalID: -535118966
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spr_rocks_carved_tall_2
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 512
-        height: 1024
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24414062}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ee2a5bacc1d78e647a6224701254ea04
-      internalID: 1348422976
+      spriteID: f879999879153994baf57d884c7d4f66
+      internalID: -1695892121
       vertices: []
       indices: 
       edges: []
@@ -225,9 +351,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      spr_rocks_carved_tall_0: 1241302605
-      spr_rocks_carved_tall_1: -535118966
-      spr_rocks_carved_tall_2: 1348422976
+      Frame 1-sheet_1: -269996049
+      Frame 1-sheet_3: -1528779750
+      Frame 1-sheet_0: -2146598340
+      Frame 1-sheet_2: -405281364
+      Frame 1-sheet_5: 1016135861
+      Frame 1-sheet_8: -1695892121
+      Frame 1-sheet_4: -585288431
+      Frame 1-sheet_6: 70427423
+      Frame 1-sheet_7: 144519316
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

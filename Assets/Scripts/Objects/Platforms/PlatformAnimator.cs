@@ -14,13 +14,11 @@ using CharacterController = Platformer.Character.CharacterController;
 namespace Platformer.Objects.Platforms {
 
     [System.Serializable]
-    public class PlatformVisualPacket {
-
+    public class PlatformSpriteData {
         public SpriteShape Default;
-        public Sprite Single;
         public Sprite Left;
         public Sprite Right;
-
+        public Sprite Single;
     }
 
     ///<summary>
@@ -44,8 +42,8 @@ namespace Platformer.Objects.Platforms {
         protected SpriteShapeController m_SpriteShapeController = null;
 
         [SerializeField]
-        private PlatformVisualPacket m_VisualPacket;
-        public PlatformVisualPacket defaultPacket => m_VisualPacket;
+        private PlatformSpriteData m_SpriteData;
+        public PlatformSpriteData SpriteData => m_SpriteData;
 
         // The sprite shape controller. attached to this platform.
         [SerializeField]
@@ -54,9 +52,10 @@ namespace Platformer.Objects.Platforms {
         // The spline attached to the sprite shape.
         protected Spline m_Spline = null;
 
-        //
+        // The current animation being played.
         protected TransformAnimation m_CurrentAnimation;
 
+        // The animation that plays when the platform is being pressed.
         [SerializeField]
         private TransformAnimation m_OnPressedAnimation;
 
@@ -100,75 +99,77 @@ namespace Platformer.Objects.Platforms {
         // Set the controls from the LDtk files.
         public void SetLength(int length) {
             if (length == 1) {
-
-                m_SpriteRenderers = new SpriteRenderer[1];
-                m_SpriteRenderers[0] = new GameObject("sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
-                m_SpriteRenderers[0].sprite = m_VisualPacket.Single;
-                m_SpriteRenderers[0].transform.SetParent(transform);
-
-                m_SpriteRenderers[0].sharedMaterial = m_SpriteShapeRenderer.sharedMaterial;
-
-                // m_SpriteRenderers[0].transform.localScale = new Vector3(0.9f, 1f, 1f);
-                m_SpriteRenderers[0].transform.localPosition = Vector3.zero;
-
-                Destroy(m_SpriteShapeRenderer.gameObject);
-                m_SpriteShapeRenderer = null;
-                m_SpriteShapeController = null;
+                SetUnitPlatformSprites();
                 return;
 
             }
             else if (length == 2) {
-
-                m_SpriteRenderers = new SpriteRenderer[2];
-                m_SpriteRenderers[0] = new GameObject("left_sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
-                m_SpriteRenderers[0].sprite = m_VisualPacket.Left;
-                m_SpriteRenderers[1] = new GameObject("right_sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
-                m_SpriteRenderers[1].sprite = m_VisualPacket.Right;
-
-                m_SpriteRenderers[0].sharedMaterial = m_SpriteShapeRenderer.sharedMaterial;
-                m_SpriteRenderers[1].sharedMaterial = m_SpriteShapeRenderer.sharedMaterial;
-
-                m_SpriteRenderers[0].transform.SetParent(transform);
-                m_SpriteRenderers[1].transform.SetParent(transform);
-
-                m_SpriteRenderers[0].transform.localPosition = Vector3.zero;
-                m_SpriteRenderers[1].transform.localPosition = Vector3.right;
-
-                Destroy(m_SpriteShapeRenderer.gameObject);
-                m_SpriteShapeRenderer = null;
-                m_SpriteShapeController = null;
-
+                SetDoublePlatformSprites();
                 return;
             }
-
-            // float spriteLength = (baseLength - 2f) + (2f * capLength);
-            // m_SpriteShapeController.transform.localScale = new Vector3((float)baseLength / spriteLength, 1f, 1f);
-            // m_SpriteShapeController.transform.localPosition += 0.8f * Vector3.left; //  * (float)baseLength / spriteLength / 2f;
-
-            m_SpriteShapeController.spriteShape = m_VisualPacket.Default;
+            else {
+                m_SpriteShapeController.spriteShape = m_SpriteData.Default;
+                length -= 2;
+                m_Spline.Clear();
+                m_Spline.InsertPointAt(0, 0.5f * Vector3.right);
+                m_Spline.InsertPointAt(1, (length + 0.5f) * Vector3.right);
+                m_Spline.SetTangentMode(0, ShapeTangentMode.Continuous);
+                m_Spline.SetTangentMode(1, ShapeTangentMode.Continuous);
+            }
             
-            length -= 2;
-            m_Spline.Clear();
-            m_Spline.InsertPointAt(0, 0.5f * Vector3.right);
-            m_Spline.InsertPointAt(1, (length + 0.5f) * Vector3.right);
-            m_Spline.SetTangentMode(0, ShapeTangentMode.Continuous);
-            m_Spline.SetTangentMode(1, ShapeTangentMode.Continuous);
         }
 
-        public void SetVisuals(PlatformVisualPacket visualPacket) {
+        private void SetDoublePlatformSprites() {
+            m_SpriteRenderers = new SpriteRenderer[2];
+            m_SpriteRenderers[0] = new GameObject("left_sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
+            m_SpriteRenderers[0].sprite = m_SpriteData.Left;
+            m_SpriteRenderers[1] = new GameObject("right_sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
+            m_SpriteRenderers[1].sprite = m_SpriteData.Right;
+
+            m_SpriteRenderers[0].sharedMaterial = m_SpriteShapeRenderer.sharedMaterial;
+            m_SpriteRenderers[1].sharedMaterial = m_SpriteShapeRenderer.sharedMaterial;
+
+            m_SpriteRenderers[0].transform.SetParent(transform);
+            m_SpriteRenderers[1].transform.SetParent(transform);
+
+            m_SpriteRenderers[0].transform.localPosition = Vector3.zero;
+            m_SpriteRenderers[1].transform.localPosition = Vector3.right;
+
+            Destroy(m_SpriteShapeRenderer.gameObject);
+            m_SpriteShapeRenderer = null;
+            m_SpriteShapeController = null;
+        }
+
+        private void SetUnitPlatformSprites() {
+            m_SpriteRenderers = new SpriteRenderer[1];
+            m_SpriteRenderers[0] = new GameObject("sprite_renderer", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
+            m_SpriteRenderers[0].sprite = m_SpriteData.Single;
+            m_SpriteRenderers[0].transform.SetParent(transform);
+
+            m_SpriteRenderers[0].sharedMaterial = m_SpriteShapeRenderer.sharedMaterial;
+
+            // m_SpriteRenderers[0].transform.localScale = new Vector3(0.9f, 1f, 1f);
+            m_SpriteRenderers[0].transform.localPosition = Vector3.zero;
+
+            Destroy(m_SpriteShapeRenderer.gameObject);
+            m_SpriteShapeRenderer = null;
+            m_SpriteShapeController = null;
+        }
+
+        public void SetSprite(PlatformSpriteData spriteData) {
             if (m_SpriteShapeRenderer != null) {
-                m_SpriteShapeController.spriteShape = visualPacket.Default;
+                m_SpriteShapeController.spriteShape = spriteData.Default;
                 return;
             }
 
             if (m_SpriteRenderers != null) {
 
                 if (m_SpriteRenderers.Length == 1) {
-                    m_SpriteRenderers[0].sprite = visualPacket.Single;
+                    m_SpriteRenderers[0].sprite = spriteData.Single;
                 }
                 else if (m_SpriteRenderers.Length == 2) {
-                    m_SpriteRenderers[0].sprite = visualPacket.Left;
-                    m_SpriteRenderers[1].sprite = visualPacket.Right;
+                    m_SpriteRenderers[0].sprite = spriteData.Left;
+                    m_SpriteRenderers[1].sprite = spriteData.Right;
                 }
 
             }
