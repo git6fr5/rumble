@@ -11,6 +11,9 @@ using Platformer.Objects.Spikes;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
+using SpriteAnimator = Platformer.Visuals.Animation.SpriteAnimator;
+using SpriteAnimation = Platformer.Visuals.Animation.SpriteAnimation;
+using TrailAnimator = Platformer.Visuals.Animation.TrailAnimator;
 
 namespace Platformer.Objects.Spikes {
 
@@ -62,6 +65,19 @@ namespace Platformer.Objects.Spikes {
         private float m_ShakeStrength;
         private float Strength => m_ShakeStrength * m_CrumbleTimer.InverseRatio;
 
+        [SerializeField]
+        private SpriteAnimator m_Animator;
+
+        [SerializeField]
+        private SpriteAnimation m_LookingAnimation;
+
+        [SerializeField]
+        private SpriteAnimation m_FallingAnimation;
+
+        [SerializeField]
+        private TrailAnimator[] m_Trails;
+        // public GameObject m_TrailObject;       
+
         // public Sparkle m_Sparkle;
         
         #endregion
@@ -73,6 +89,15 @@ namespace Platformer.Objects.Spikes {
             m_Body.Stop();
             m_Body.Freeze();
             m_FallState = FallState.Looking;
+
+            m_Animator.SetAnimation(m_LookingAnimation);
+            m_Animator.SetFrameRate(4);
+
+            for (int i = 0; i < m_Trails.Length; i++) {
+                m_Trails[i].enabled = false;
+            }
+            // m_TrailObject.SetActive(false);
+
         }
         
         // Runs once every frame.
@@ -132,6 +157,14 @@ namespace Platformer.Objects.Spikes {
             m_Body.ReleaseXY();
             m_Body.SetWeight(WEIGHT);
             m_FallState = FallState.Falling;
+
+            for (int i = 0; i < m_Trails.Length; i++) {
+                m_Trails[i].enabled = true;
+            }
+            // m_TrailObject.SetActive(true);
+
+            m_Animator.SetFrameRate(16);
+            m_Animator.Play();
         }
 
         protected override void Shatter() {
@@ -140,6 +173,14 @@ namespace Platformer.Objects.Spikes {
             m_Body.Stop();
             m_Body.Freeze();
             m_FallState = FallState.Reforming;
+
+            for (int i = 0; i < m_Trails.Length; i++) {
+                m_Trails[i].enabled = false;
+            }
+            // m_TrailObject.SetActive(true);
+
+            m_Animator.SetFrameRate(12);
+
         }
 
         private void WhileLooking() {
@@ -147,6 +188,10 @@ namespace Platformer.Objects.Spikes {
             if (character != null) {
                 m_FallState = FallState.Crumbling;
                 m_CrumbleTimer.Start(m_CrumbleDuration);
+
+                m_Animator.SetAnimation(m_FallingAnimation);
+                m_Animator.SetFrameRate(12);
+
             }
         }
 
@@ -155,6 +200,10 @@ namespace Platformer.Objects.Spikes {
             m_Body.Stop();
             m_Body.Freeze();
             m_FallState = FallState.Looking;
+
+            m_Animator.SetAnimation(m_LookingAnimation);
+            m_Animator.SetFrameRate(4);
+            // m_Animator.Stop();
         }
 
     }

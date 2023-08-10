@@ -60,9 +60,12 @@ namespace Platformer.Visuals.Animation {
         // The light attacted to this.
         private SpriteRenderer m_SpriteRenderer;
 
+        private int initialOffset;
+
         // Runs once on instantiation.
         void Start() {
             m_SpriteRenderer = GetComponent<SpriteRenderer>();
+            initialOffset = m_SpriteRenderer.sortingOrder;
             m_SpriteRenderer.sortingOrder += m_Animation.orderOffset;
         }
 
@@ -82,6 +85,31 @@ namespace Platformer.Visuals.Animation {
             spriteRenderer.sprite = animation.GetFrame();
             spriteRenderer.color = animation.GetColor();
         }
+
+        public void SetAnimation(SpriteAnimation animation) {
+            m_Animation = animation;
+            m_Animation.ticks = Random.Range(0f, 3f);
+            if (m_SpriteRenderer != null && m_Animation != null && m_Animation.sprites.Length > 0) {
+                m_SpriteRenderer.sortingOrder = initialOffset + m_Animation.orderOffset;
+                Animate(0f);
+            }        
+        }
+
+        public void SetFrameRate(float fps) {
+            m_Animation.fps = fps;
+        }
+
+        public void Play() {
+            m_Animate = true;
+        }
+
+        public void Stop() {
+            m_Animate = false;
+            if (m_SpriteRenderer != null && m_Animation != null && m_Animation.sprites.Length > 0) {
+                m_SpriteRenderer.sprite = m_Animation.sprites[0];
+            }
+        }
+
     }
 
 }

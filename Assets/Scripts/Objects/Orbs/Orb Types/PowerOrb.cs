@@ -46,6 +46,9 @@ namespace Platformer.Objects.Orbs {
         protected Texture2D m_Palette;
         public Texture2D Palette => m_Palette;
 
+        [SerializeField]
+        private Color m_LightColor;
+
         #endregion
 
         #region Methods.
@@ -83,6 +86,10 @@ namespace Platformer.Objects.Orbs {
             // Disable the orb for a bit.
             m_SpriteRenderer.enabled = false;
             m_Hitbox.enabled = false;
+
+            // Game.Visuals.Lights.Foreground.color = m_LightColor;
+            // Game.Visuals.Lights.Background.color = m_LightColor;
+
             StartCoroutine(IEReset());
 
         }

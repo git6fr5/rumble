@@ -33,6 +33,10 @@ namespace Platformer.Management {
         private RenderingLayers m_RenderingLayers = new RenderingLayers();
         public RenderingLayers RenderingLayers => m_RenderingLayers;
 
+        [SerializeField]
+        private LightController m_LightController;
+        public LightController Lights => m_LightController;
+
         #endregion
 
         #region Methods.
