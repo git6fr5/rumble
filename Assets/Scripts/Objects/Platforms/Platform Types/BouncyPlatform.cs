@@ -66,11 +66,6 @@ namespace Platformer.Objects.Platforms {
 
         #endregion
 
-        // Set the controls from the LDtk files.
-        public override void SetLength(int length) {
-            base.SetLength(length);
-        }
-
         // Runs once every frame.
         // Having to do this is a bit weird.
         protected override void Update() {

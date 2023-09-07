@@ -34,7 +34,7 @@ namespace Platformer.Objects.Orbs {
 
         public void EndLevel() {
             Game.Level.OnComplete();
-            SaveSystem.SaveLevelSettings();
+            // SaveSystem.SaveLevelSettings();
             SceneManager.LoadScene(MENU_SCENE_NAME);
         }
 

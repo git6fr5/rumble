@@ -12,14 +12,13 @@ using Platformer.Objects;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using IInitializable = Platformer.Levels.Entities.IInitializable;
 
 namespace Platformer.Objects.Orbs {
 
     ///<summary>
     /// 
     ///<summary>
-    public class OrbObject : MonoBehaviour, IInitializable {
+    public class OrbObject : MonoBehaviour {
 
         #region Variables.
 
@@ -45,6 +44,12 @@ namespace Platformer.Objects.Orbs {
 
         [SerializeField]
         protected OrbAnimator m_Animator;
+
+        [SerializeField]
+        private VisualEffect m_BurstParticle;
+
+        [SerializeField]
+        private VisualEffect m_EmissionParticle;
 
         /* --- Parameters --- */
 
@@ -74,10 +79,9 @@ namespace Platformer.Objects.Orbs {
         #endregion
 
         // Runs once before the first frame.
-        public virtual void Initialize(Vector3 worldPosition, float depth) {
+        void Awake() {
             // Cache the origin
-            transform.position = worldPosition;
-            m_Origin = worldPosition;
+            m_Origin = transform.position;
 
             // Collision settings.
             m_Hitbox = GetComponent<CircleCollider2D>();
@@ -94,6 +98,8 @@ namespace Platformer.Objects.Orbs {
                 m_SpriteRenderer.sortingOrder = Game.Visuals.RenderingLayers.OrbOrder;
             }
 
+            m_EmissionParticle.Play();
+
         }
 
         // Runs everytime something enters this trigger area.
@@ -105,8 +111,10 @@ namespace Platformer.Objects.Orbs {
         }
 
         protected virtual void OnTouch(CharacterController character) {
+            m_BurstParticle.Play();
             Game.Physics.Time.RunHitStop(8);
             Game.Audio.Sounds.PlaySound(m_TouchSound, 0.05f);
+            m_EmissionParticle.Stop();
         }
 
         // A coroutine to eventually reset this orb object.
@@ -142,10 +150,11 @@ namespace Platformer.Objects.Orbs {
         public virtual void Reset() {
             // Give the player feedback that this object has been reset.
             Game.Audio.Sounds.PlaySound(m_RefreshSound, 0.15f);
+            m_EmissionParticle.Play();
+
             // Reset the hitbox and rendering components of this object.
             m_Hitbox.enabled = true;
             m_SpriteRenderer.enabled = true;
-
         }
 
         // Reset all the objects of the given type, that are currently active in the scene.

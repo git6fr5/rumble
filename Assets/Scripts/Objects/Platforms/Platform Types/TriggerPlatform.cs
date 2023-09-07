@@ -11,8 +11,6 @@ using Platformer.Objects.Platforms;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using IPathable = Platformer.Levels.Entities.IPathable;
-using PathingData = Platformer.Levels.Entities.PathingData;
 
 namespace Platformer.Objects.Platforms {
 
@@ -20,7 +18,7 @@ namespace Platformer.Objects.Platforms {
     ///
     ///<summary>
     // TODO: Add legs, and eyes.
-    public class TriggerPlatform : PlatformObject, IPathable {
+    public class TriggerPlatform : PlatformObject {
 
         #region Enumerations.
 
@@ -78,25 +76,6 @@ namespace Platformer.Objects.Platforms {
         private AudioClip m_OnReachedStartSound = null;
         
         #endregion
-
-        public override void SetLength(int length) {
-            base.SetLength(length);
-        }
-
-        public void SetPath(PathingData pathingData) {
-            // Convert the start and end nodes into world positions.
-            m_Path = new Vector3[2];
-
-            m_Path[0] = m_Origin;
-            if (pathingData.Direction.x != 0f) {
-                m_Path[1] = m_Origin + (pathingData.Distance - m_Length) * (Vector3)pathingData.Direction;
-            }
-            else {
-                m_Path[1] = m_Origin + pathingData.Distance * (Vector3)pathingData.Direction;
-            }
-            m_TriggerDelayTimer.Start(m_TriggerDelay);
-
-        }
 
         // Runs once every frame.
         protected override void Update() {

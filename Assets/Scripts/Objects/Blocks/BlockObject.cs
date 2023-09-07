@@ -10,7 +10,6 @@ using UnityExtensions;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using IInitializable = Platformer.Levels.Entities.IInitializable;
 
 namespace Platformer.Objects.Blocks {
 
@@ -18,7 +17,7 @@ namespace Platformer.Objects.Blocks {
     /// 
     ///<summary>
     [RequireComponent(typeof(BoxCollider2D))]
-    public class BlockObject : MonoBehaviour, IInitializable {
+    public class BlockObject : MonoBehaviour {
 
         #region Variables.
 
@@ -73,10 +72,9 @@ namespace Platformer.Objects.Blocks {
         #endregion
 
         // Initialize the bloc.
-        public void Initialize(Vector3 worldPosition, float depth) {
+        public void Awake() {
             // Cache the origin.
-            transform.position = worldPosition;
-            m_Origin = worldPosition;
+            m_Origin = transform.position;
             
             // Collision settings.
             m_Hitbox = GetComponent<BoxCollider2D>();

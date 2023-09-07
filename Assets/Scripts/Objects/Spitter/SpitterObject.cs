@@ -11,16 +11,13 @@ using UnityExtensions;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using Projectile = Platformer.Objects.Spitters.Projectile;
-using IInitializable = Platformer.Levels.Entities.IInitializable;
-using IRotatable = Platformer.Levels.Entities.IRotatable;
-using IOffsetable = Platformer.Levels.Entities.IOffsetable;
 
 namespace Platformer.Objects.Spitters {
 
     ///<summary>
     ///
     ///<summary>
-    public class SpitterObject : MonoBehaviour, IInitializable, IRotatable, IOffsetable {
+    public class SpitterObject : MonoBehaviour {
 
         #region Variables
 
@@ -31,19 +28,12 @@ namespace Platformer.Objects.Spitters {
 
         /* --- Member --- */
 
-        // The euler angles rotation of this spike.
-        public Vector3 Rotation => new Vector3(0f, 0f, m_Rotation);
-        
-        // The z value rotation of the object.
-        [SerializeField] 
-        protected float m_Rotation = 0f;
-        
         // The base position of the object.
         [SerializeField, ReadOnly] 
         protected Vector3 m_Origin = new Vector3(0f, 0f, 0f);
 
         // The direction that this object spits in.
-        protected Vector2 m_SpitDirection => Quaternion.Euler(0f, 0f, m_Rotation) * Vector2.down;
+        protected Vector2 SpitDirection => Quaternion.Euler(0f, 0f, transform.eulerAngles.z) * Vector2.right;
 
         // The timer with which this spits things.
         [SerializeField]
@@ -74,10 +64,9 @@ namespace Platformer.Objects.Spitters {
         #region Methods.
 
          // Runs once before the first frame.
-        public void Initialize(Vector3 worldPosition, float depth) {
+        void Awake() {
             // Cache the origin
-            transform.position = worldPosition;
-            m_Origin = worldPosition;
+            m_Origin = transform.position;
 
             // Collision settings.
             // m_Hitbox = GetComponent<CircleCollider2D>();
@@ -93,15 +82,6 @@ namespace Platformer.Objects.Spitters {
 
         }
 
-        public void SetRotation(float rotation) {
-            m_Rotation = rotation;
-            transform.eulerAngles = Vector3.forward * rotation;
-        }
-
-        public void SetOffset(int offset) {
-            m_SpitTimer.Start((float)offset / 4f * m_SpitInterval);
-        }
-
         private void FixedUpdate() {
             bool finished = m_SpitTimer.TickDown(Time.fixedDeltaTime);
             if (finished) {
@@ -112,7 +92,7 @@ namespace Platformer.Objects.Spitters {
 
         protected virtual void Spit() {
             Projectile projectile = m_SpitProjectile.CreateInstance();
-            projectile.Fire(m_SpitSpeed, m_SpitDirection);
+            projectile.Fire(m_SpitSpeed, SpitDirection);
             // Game.Visuals.Effects.PlayEffect(m_SpitEffect);
             Game.Audio.Sounds.PlaySound(m_SpitSound, 0.15f);
         }

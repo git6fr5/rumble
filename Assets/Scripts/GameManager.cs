@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using LDtkUnity;
 using Platformer.Management;
-using Platformer.UI;
 
 /* --- Definitions --- */
 using CharacterController = Platformer.Character.CharacterController;
@@ -51,8 +50,8 @@ namespace Platformer.Management {
         public static VisualManager Visuals => Instance.m_VisualManager;
 
         [SerializeField]
-        private GameObject m_UI;
-        public static bool Playing => !Instance.m_UI.activeSelf;
+        private bool m_Playing = true;
+        public static bool Playing => Instance.m_Playing;
 
         // Score.
         // [SerializeField] private ScoreTracker m_Score;
@@ -68,52 +67,14 @@ namespace Platformer.Management {
             m_AudioManager.OnGameLoad();
             m_VisualManager.OnGameLoad();
             m_LevelManager.OnGameLoad();
-            Pause();
-        }
-
-        void Update() {
-
-            if (UnityEngine.Input.GetKeyDown(KeyCode.R)) {
-                Restart();
-            }
-
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape)) {
-                if (m_UI.activeSelf) {
-                    Play();
-                }
-                else {
-                    Pause();
-                }
-            }
-
-        }
-
-        // Runs once before the first frame.
-        void Start() {
             m_Player.gameObject.SetActive(true);
-            Play();
-        }
-
-        public void Restart() {
-            SceneManager.LoadScene("Game");
-        }
-
-        public void SetLDtkData(LDtkComponentProject ldtkData) {
-            if (ldtkData == null) { return; }
-            m_LDtkData = ldtkData;
-        }
-
-        // Pause the game.
-        public void Play() {
-            m_UI.SetActive(false);
-            Instance.m_PhysicsManager.Time.Play();
         }
 
         // Pause the game.
         public void Pause() {
             m_LevelManager.OnSaveAndQuit();
-            SaveSystem.SaveLevelSettings();
-            m_UI.SetActive(true);
+            // SaveSystem.SaveLevelSettings();
+            // m_UI.SetActive(true);
             Instance.m_PhysicsManager.Time.Pause();
         }
 

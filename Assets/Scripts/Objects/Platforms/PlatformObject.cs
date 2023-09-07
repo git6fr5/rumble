@@ -10,8 +10,6 @@ using UnityExtensions;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using IInitializable = Platformer.Levels.Entities.IInitializable;
-using IElongatable = Platformer.Levels.Entities.IElongatable;
 
 namespace Platformer.Objects.Platforms {
 
@@ -20,7 +18,7 @@ namespace Platformer.Objects.Platforms {
     ///<summary>
     [DefaultExecutionOrder(1000)]
     [RequireComponent(typeof(BoxCollider2D))]
-    public class PlatformObject : MonoBehaviour, IInitializable, IElongatable {
+    public class PlatformObject : MonoBehaviour {
 
         #region Variables.
 
@@ -72,10 +70,9 @@ namespace Platformer.Objects.Platforms {
         #region Methods.
 
         // Initialize the platform.
-        public void Initialize(Vector3 worldPosition, float depth) {
+        public void Start() {
             // Cache the origin.
-            transform.position = worldPosition;
-            m_Origin = worldPosition;
+            m_Origin = transform.position;
 
             // Collision settings.
             m_Hitbox = GetComponent<BoxCollider2D>();
@@ -84,25 +81,6 @@ namespace Platformer.Objects.Platforms {
 
             // Rendering settings.
             m_Animator.Initialize(this);
-
-        }
-
-        // Set the controls from the LDtk files.
-        public virtual void SetLength(int length) {
-            m_Length = (float)length;
-            print(length);
-
-            // In the special case that the length of this is 0 or less.
-            if (length <= 0 && gameObject != null) {
-                Destroy(gameObject);
-                return;
-            }
-            
-            m_Hitbox.size = new Vector2(HitboxLength, PLATFORM_HEIGHT);
-            m_Hitbox.offset = new Vector2(m_Length-1f, 0.5f - PLATFORM_HEIGHT) / 2f;
-
-            // Set the renderer.
-            m_Animator.SetLength(length);
 
         }
 

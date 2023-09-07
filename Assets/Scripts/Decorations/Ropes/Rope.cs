@@ -8,7 +8,6 @@ using UnityEngine.U2D;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
-using IInitializable = Platformer.Levels.Entities.IInitializable;
 
 namespace Platformer.Objects.Decorations {
 
@@ -16,7 +15,7 @@ namespace Platformer.Objects.Decorations {
     ///
     /// <summary>
     [RequireComponent(typeof(EdgeCollider2D))]
-    public class Rope : MonoBehaviour, IInitializable {
+    public class Rope : MonoBehaviour {
 
         //
         public SpriteShapeController m_SpriteShape;
@@ -42,29 +41,11 @@ namespace Platformer.Objects.Decorations {
         void Awake() {
             // Cache these references.
             m_EdgeCollider = GetComponent<EdgeCollider2D>();
-            // Set up these components.
+            m_EdgeCollider.isTrigger = false;
             m_EdgeCollider.edgeRadius = ropeWidth;
+            gameObject.layer = Game.Physics.CollisionLayers.DecorLayer;
             OnAwake();
             RopeSegments();
-        }
-
-                // Initialize the platform.
-        public void Initialize(Vector3 worldPosition, float depth) {
-            // Cache the origin.
-            transform.position = worldPosition;
-            // m_Origin = worldPosition;
-
-            // Collision settings.
-            // m_Hitbox = GetComponent<BoxCollider2D>();
-            m_EdgeCollider = GetComponent<EdgeCollider2D>();
-            m_EdgeCollider.isTrigger = false;
-            gameObject.layer = Game.Physics.CollisionLayers.DecorLayer;
-
-            // Rendering settings.
-            // m_SpriteShape.GetComponent<SpriteShapeRenderer>().sortingLayerName = Game.Visuals.RenderingLayers.DecorLayer;
-            // m_SpriteShape.GetComponent<SpriteShapeRenderer>().sortingOrder = Game.Visuals.RenderingLayers.DecorOrder;
-
-
         }
 
         // Runs once every set time interval.

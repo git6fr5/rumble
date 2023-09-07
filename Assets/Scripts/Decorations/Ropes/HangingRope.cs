@@ -18,8 +18,6 @@ namespace Platformer.Objects.Decorations {
 
         protected override void OnAwake() {
             m_EdgeCollider.isTrigger = true;
-            transform.position += Vector3.right * Random.Range(-0.35f, 0.35f);
-            ropeLength += ropeLength * Random.Range(-m_RopeLengthVariationPercent, m_RopeLengthVariationPercent) / 100f;
         }
 
         protected override void Constraints() {

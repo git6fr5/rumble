@@ -5,6 +5,7 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.VFX;
 using UnityEngine.Rendering.Universal;
 using UnityExtensions;
 // Platformer.
@@ -50,13 +51,15 @@ namespace Platformer.Objects.Orbs {
         [SerializeField]
         private StatueAnimator m_StatueAnimator;
 
+        [SerializeField]
+        private VisualEffect[] m_EmissionParticles;
+
         private bool m_Active = false;
 
         #endregion
 
         // Runs once before the first frame.
-        public override void Initialize(Vector3 worldPosition, float depth) {
-            base.Initialize(worldPosition, depth);
+        void Start() {
             m_StatueAnimator.Initialize();
         
             if (Game.MainPlayer.RespawnOrb == this) {
@@ -74,11 +77,11 @@ namespace Platformer.Objects.Orbs {
         }
 
         public void Activate() {
+            for (int i = 0; i < m_EmissionParticles.Length; i++) {
+                m_EmissionParticles[i].Play();
+            }
             m_Active = true;
             
-            // if (m_Light != null) {
-            //     m_Light.enabled = true;
-            // }
             m_StatueAnimator.Activate(true);
             if (m_TotalActivatedTime == 0f) {
                 m_FirstActivationTime = Game.Physics.Time.Ticks; // Game.Physics.Time.Ticks < m_FirstActivationTime ? Game.Physics.Time.Ticks : m_FirstActivationTime;
@@ -87,9 +90,9 @@ namespace Platformer.Objects.Orbs {
         }
 
         public void Deactivate() {
-            // if (m_Light != null) {
-            //     m_Light.enabled = false;
-            // }
+            for (int i = 0; i < m_EmissionParticles.Length; i++) {
+                m_EmissionParticles[i].Stop();
+            }
             m_StatueAnimator.Activate(false);
             m_Active = false;
         }

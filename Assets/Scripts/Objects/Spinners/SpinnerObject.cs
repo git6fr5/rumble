@@ -46,7 +46,7 @@ namespace Platformer.Objects.Spinners {
         #region Methods.
 
         // Runs once before the first frame.
-        private void Start() {
+        void Awake() {
             m_Origin = transform.position;
         }
 

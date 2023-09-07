@@ -18,16 +18,6 @@ namespace Platformer.Management {
         private CameraController m_CameraController;
         public CameraController Camera => m_CameraController;
 
-        // Controls the particles in the game.
-        [SerializeField]
-        private EffectController m_EffectController;
-        public EffectController Effects => m_EffectController;
-
-        // The default color palette.
-        [SerializeField]
-        private Texture2D m_DefaultPalette;
-        public Texture2D DefaultPalette => m_DefaultPalette;
-
         // The rendering layers in the game.
         [SerializeField]
         private RenderingLayers m_RenderingLayers = new RenderingLayers();

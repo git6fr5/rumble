@@ -83,8 +83,7 @@ namespace Platformer.Objects.Spikes {
         #endregion
 
         // Initialize the spike.
-        public override void Initialize(Vector3 worldPosition, float depth) {
-            base.Initialize(worldPosition, depth);
+        void Start() {
             m_Body = GetComponent<Rigidbody2D>();
             m_Body.Stop();
             m_Body.Freeze();
@@ -96,7 +95,6 @@ namespace Platformer.Objects.Spikes {
             for (int i = 0; i < m_Trails.Length; i++) {
                 m_Trails[i].enabled = false;
             }
-            // m_TrailObject.SetActive(false);
 
         }
         

@@ -47,13 +47,6 @@ namespace Platformer.Visuals {
         [Header("Decor"), Space(2)]
         public string BackgroundDecor = "Background";
         
-        [SerializeField]
-        private Environment[] m_Environments;
-
-        [SerializeField]
-        private int m_EnvironmentIndex = 0;
-        public Environment CurrentEnvironmnet => m_Environments[m_EnvironmentIndex];
-
     }
 
 }

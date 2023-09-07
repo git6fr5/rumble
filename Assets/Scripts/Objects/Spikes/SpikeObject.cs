@@ -11,8 +11,6 @@ using UnityExtensions;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using IInitializable = Platformer.Levels.Entities.IInitializable;
-using IRotatable = Platformer.Levels.Entities.IRotatable;
 
 namespace Platformer.Objects.Spikes {
 
@@ -20,7 +18,7 @@ namespace Platformer.Objects.Spikes {
     ///
     ///<summary>
     [RequireComponent(typeof(Collider2D))]
-    public class SpikeObject : MonoBehaviour, IInitializable, IRotatable {
+    public class SpikeObject : MonoBehaviour {
 
         #region Variables
 
@@ -89,10 +87,9 @@ namespace Platformer.Objects.Spikes {
         #region Methods.
 
         // Initialize the spike.
-        public virtual void Initialize(Vector3 worldPosition, float depth) {
+        void Awake() {
             // Cache the origin.
-            transform.position = worldPosition;
-            m_Origin = worldPosition;
+            m_Origin = transform.position;
 
             // Collision settings.
             m_Hitbox = GetComponent<Collider2D>();

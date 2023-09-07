@@ -67,20 +67,6 @@ namespace Platformer.Objects.Platforms {
 
         #endregion
 
-        // Set the controls from the LDtk files.
-        public override void SetLength(int length) {
-            base.SetLength(length);
-
-            Spline otherSpline = m_DisabledObject.GetComponent<SpriteShapeController>().spline;
-
-            // otherSpline.Clear();
-            // otherSpline.InsertPointAt(0, -COLLIDER_OFFSET * Vector3.right);
-            // otherSpline.InsertPointAt(1, (-COLLIDER_OFFSET + AdjustedLength) * Vector3.right);
-            // otherSpline.SetTangentMode(0, ShapeTangentMode.Continuous);
-            // otherSpline.SetTangentMode(1, ShapeTangentMode.Continuous);
-
-        }
-
         void FixedUpdate() {
             
             float t = Game.Physics.Time.Ticks % PERIOD;
