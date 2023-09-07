@@ -123,12 +123,17 @@ namespace Platformer.Management {
             // Itterate through and load all the level data.
             // m_TilemapManager.Fill(m_Rooms);
             for (int i = 0; i < m_Rooms.Count; i++) {
-                List<LDtkTileData> tileData = LDtkReader.GetLayerData(m_Rooms[i].ldtkLevel, m_LDtkLayers.Ground);
-                m_TilemapManager.GenerateMap(m_Rooms[i], tileData);
+                List<LDtkTileData> tileData0 = LDtkReader.GetLayerData(m_Rooms[i].ldtkLevel, m_LDtkLayers.Ground0);
+                m_TilemapManager.GenerateMap(m_Rooms[i], m_TilemapManager.ground0, tileData0);
+                List<LDtkTileData> tileData1 = LDtkReader.GetLayerData(m_Rooms[i].ldtkLevel, m_LDtkLayers.Ground1);
+                m_TilemapManager.GenerateMap(m_Rooms[i], m_TilemapManager.ground1, tileData1);
+                List<LDtkTileData> tileData2 = LDtkReader.GetLayerData(m_Rooms[i].ldtkLevel, m_LDtkLayers.Ground2);
+                m_TilemapManager.GenerateMap(m_Rooms[i], m_TilemapManager.ground2, tileData2);
             }
 
             // Refresh all the maps once after all the data has been loaded.
-            m_TilemapManager.groundMap.RefreshAllTiles();
+            m_TilemapManager.ground0.RefreshAllTiles();
+            m_TilemapManager.ground1.RefreshAllTiles();
             // m_TilemapManager.waterMap.RefreshAllTiles();
             // m_TilemapManager.groundMaskMap.RefreshAllTiles();
             // Level.GroundMap.GetComponent<ShadowCaster2DTileMap>().Generate(0.5f);

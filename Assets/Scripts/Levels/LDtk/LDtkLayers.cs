@@ -30,9 +30,12 @@ namespace Platformer.Levels.LDtk {
         private string[] m_Decorations;
         public string[] Decorations => m_Decorations;
 
-        [SerializeField]
-        private string m_Ground = "GROUND";
-        public string Ground => m_Ground;
+        private string m_Ground0 = "TILES_0";
+        public string Ground0 => m_Ground0;
+        private string m_Ground1 = "TILES_1";
+        public string Ground1 => m_Ground1;
+        private string m_Ground2 = "TILES_2";
+        public string Ground2 => m_Ground2;
         
     }
 

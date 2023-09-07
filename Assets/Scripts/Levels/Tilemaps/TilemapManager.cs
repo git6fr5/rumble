@@ -25,10 +25,15 @@ namespace Platformer.Levels.Tilemaps {
         #region Variables
 
         // The ground map.
-        public Tilemap groundMap { get; private set; }
+        public Tilemap groundCollision { get; private set; }
 
         // The ground map mask.
-        public Tilemap groundMaskMap { get; private set; }
+        public Tilemap ground0 { get; private set; }
+        public Tilemap ground1 { get; private set; }
+        public Tilemap ground2 { get; private set; }
+
+        // The ground map mask.
+        public Tilemap groundEdge { get; private set; }
 
         // The water map.
         public Tilemap waterMap { get; private set; }
@@ -56,44 +61,34 @@ namespace Platformer.Levels.Tilemaps {
 
         public void OnGameLoad() {
             // InitializeBackgroundLayer();
-            InitializeGroundLayer();
-            InitializeGroundMaskLayer();
+            InitializeGroundLayers();
+            // InitializeGroundMaskLayer();
             // InitializeWaterLayer();
         }
 
-        public void InitializeGroundLayer() {
-            groundMap = new GameObject("Ground", typeof(Tilemap), typeof(TilemapRenderer), typeof(TilemapCollider2D)).GetComponent<Tilemap>();
-            // m_GroundMap.GetComponent<TilemapRenderer>().sortingLayerName = Screen.RenderingLayers.Foreground;
-            // m_GroundMap.color = Screen.ForegroundColorShift;
+        public void InitializeGroundLayers() {
+            groundCollision = new GameObject("Ground", typeof(Tilemap), typeof(TilemapRenderer), typeof(TilemapCollider2D)).GetComponent<Tilemap>();
 
-            // groundMap.gameObject.AddComponent<Rigidbody2D>();
-            // groundMap.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-            // groundMap.gameObject.AddComponent<CompositeCollider2D>();
-            // groundMap.gameObject.GetComponent<CompositeCollider2D>().geometryType = CompositeCollider2D.GeometryType.Polygons;
-            // groundMap.GetComponent<TilemapCollider2D>().usedByComposite = true;
-            // GroundMap.gameObject.AddComponent<ShadowCaster2DTileMap>();
+            groundCollision.transform.SetParent(transform);
+            groundCollision.transform.localPosition = Vector3.zero;
+            groundCollision.gameObject.layer = Game.Physics.CollisionLayers.TileLayer;
+            groundCollision.GetComponent<TilemapRenderer>().sortingLayerName = Game.Visuals.RenderingLayers.TileLayer;
+            groundCollision.GetComponent<TilemapRenderer>().sortingOrder = Game.Visuals.RenderingLayers.TileOrder;
 
-            groundMap.transform.SetParent(transform);
-            groundMap.transform.localPosition = Vector3.zero;
-            groundMap.gameObject.layer = Game.Physics.CollisionLayers.TileLayer;
-            groundMap.GetComponent<TilemapRenderer>().sortingLayerName = Game.Visuals.RenderingLayers.TileLayer;
-            groundMap.GetComponent<TilemapRenderer>().sortingOrder = Game.Visuals.RenderingLayers.TileOrder;
-
-            // groundMap.GetComponent<TilemapCollider2D>().SetColliderType(UnityEngine.Tilemaps.Tile.ColliderType.Grid);
-
-            // LayerMask.NameToLayer("Ground");
-
+            ground0 = InitializeGroundLayer(10);
+            ground1 = InitializeGroundLayer(20);
+            ground2 = InitializeGroundLayer(30);
+            groundEdge = InitializeGroundLayer(40);
 
         }
 
-        public void InitializeGroundMaskLayer() {
-            groundMaskMap = new GameObject("Ground Mask", typeof(Tilemap), typeof(TilemapRenderer)).GetComponent<Tilemap>();
-            groundMaskMap.GetComponent<TilemapRenderer>().sortingLayerName = "Foreground";
-            groundMaskMap.GetComponent<TilemapRenderer>().sortingOrder = 10; // 10000;
-            // GroundMapMask.color = new Color(0.8f, 0.8f, 0.8f, 1f);
-
-            groundMaskMap.transform.SetParent(transform);
-            groundMaskMap.transform.localPosition = Vector3.zero;
+        public Tilemap InitializeGroundLayer(int order) {
+            Tilemap map = new GameObject("Ground Mask", typeof(Tilemap), typeof(TilemapRenderer)).GetComponent<Tilemap>();
+            map.GetComponent<TilemapRenderer>().sortingLayerName = "Foreground";
+            map.GetComponent<TilemapRenderer>().sortingOrder = order; // 10000;
+            map.transform.SetParent(transform);
+            map.transform.localPosition = Vector3.zero;
+            return map;
         }
 
         public void InitializeBackgroundLayer() {
@@ -128,40 +123,29 @@ namespace Platformer.Levels.Tilemaps {
 
         public List<LDtkTileEntity> maskTiles = new List<LDtkTileEntity>();
 
-        public void GenerateMap(Room room, List<LDtkTileData> tileData) {
+        public void GenerateMap(Room room, Tilemap map, List<LDtkTileData> tileData) {
 
             // List<LDtkTileData> groundData = tileData.FindAll(data => data.vectorID == LDtkTileData.GROUND_ID);
 
             for (int i = 0; i < tileData.Count; i++) {
 
                 TileBase maskTile = maskTiles.Find(tileEnt => tileEnt.vectorID == tileData[i].vectorID)?.tile;
-                print(tileData[i].vectorID);
+                // print(tileData[i].vectorID);
                 
                 if (groundTile != null) {
+
                     Vector3Int tilePosition = room.GridToTilePosition(tileData[i].gridPosition);
 
-                    this.groundMap.SetColliderType(tilePosition, UnityEngine.Tilemaps.Tile.ColliderType.Grid);
-                    this.groundMap.SetTile(tilePosition, this.groundTile);
-                    this.groundMaskMap.SetTile(tilePosition, maskTile);
+                    this.groundCollision.SetColliderType(tilePosition, UnityEngine.Tilemaps.Tile.ColliderType.Grid);
+                    this.groundCollision.SetTile(tilePosition, this.groundTile);
+                    map.SetTile(tilePosition, maskTile);
 
                 }
 
             }
 
-            this.groundMaskMap.RefreshAllTiles();
+            map.RefreshAllTiles();
 
-            // for (int i = 0; i < room.height; i++) {
-            //     for (int j = 0; j < room.width; j++) {
-            //         Vector3Int tilePosition = new Vector3Int(room.worldPosition.x + j, room.worldPosition.y - i, 0);
-            //         this.backgroundMap.SetTile(tilePosition, this.backgroundTile);
-            //     }
-            // }
-                       
-            // List<LDtkTileData> waterData = tileData.FindAll(data => data.vectorID == LDtkTileData.WATER_ID);
-            // for (int i = 0; i < tileData.Count; i++) {
-            //     Vector3Int tilePosition = room.GridToTilePosition(tileData[i].gridPosition);
-            //     this.waterMap.SetTile(tilePosition, this.waterTile);
-            // } 
         }
 
     }
