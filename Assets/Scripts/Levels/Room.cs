@@ -39,15 +39,21 @@ namespace Platformer.Levels {
         private State m_State = State.Unloaded;  
         public State state => m_State;
 
+        void Awake() {
+            GetComponent<Collider2D>().isTrigger = true;
+        }
+
         void OnTriggerEnter2D(Collider2D collider) {
             if (collider == Game.MainPlayer.Collider) {
                 Game.Level.Load(this);
+                Game.Visuals.Camera.AddTarget(transform);
             }
         }
 
         void OnTriggerExit2D(Collider2D collider) {
             if (collider == Game.MainPlayer.Collider) {
                 Game.Level.Unload(this);
+                Game.Visuals.Camera.RemoveTarget(transform);
             }
         }
 

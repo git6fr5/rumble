@@ -9,6 +9,7 @@ using UnityEngine.U2D;
 using UnityExtensions;
 
 /* --- Definitions --- */
+using Obstacle = Platformer.Obstacle;
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
@@ -18,7 +19,7 @@ namespace Platformer.Objects.Spikes {
     ///
     ///<summary>
     [RequireComponent(typeof(Collider2D))]
-    public class SpikeObject : MonoBehaviour {
+    public class SpikeObject : Obstacle {
 
         #region Variables
 
@@ -55,17 +56,9 @@ namespace Platformer.Objects.Spikes {
         [SerializeField, ReadOnly] 
         protected Vector3 m_Origin = new Vector3(0f, 0f, 0f);
 
-        // The effect that plays when this spike shatters.
-        [SerializeField] 
-        private Sprite m_ShatterParticle;
-        
         // The effect that plays when the spike shatters.
         [SerializeField] 
         private AudioClip m_ShatterSound;
-        
-        // The effect that plays when this spike shatters.
-        [SerializeField] 
-        private Sprite m_RefreshParticle;
         
         // The sound that plays when this orb is reset.
         [SerializeField] 
@@ -93,6 +86,7 @@ namespace Platformer.Objects.Spikes {
 
             // Collision settings.
             m_Hitbox = GetComponent<Collider2D>();
+            AddCollider(m_Hitbox);
             m_Hitbox.isTrigger = true;
             gameObject.layer = Game.Physics.CollisionLayers.SpikeLayer;
 

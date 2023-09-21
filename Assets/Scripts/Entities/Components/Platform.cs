@@ -8,33 +8,32 @@ using UnityEngine.U2D;
 using UnityExtensions;
 
 /* --- Definitions --- */
-using Obstacle = Platformer.Obstacle;
+using Entity = Platformer.Entities.Entity;
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
-namespace Platformer.Objects.Platforms {
+namespace Platformer.Entities.Components {
 
     ///<summary>
     ///
     ///<summary>
     [DefaultExecutionOrder(1000)]
-    public class PlatformObject : Obstacle {
+    [RequireComponent(typeof(Entity))]
+    public class Platform : MonoBehaviour {
 
         #region Variables.
 
         /* --- Components --- */
 
         // The box collider attached to this platform.
-        protected BoxCollider2D m_Hitbox = null;
-        
-        // The animator that renders this platform.
-        [SerializeField]
-        protected PlatformAnimator m_Animator = null;
+        protected Entity m_Entity = null;
+        public Entity entity => m_Entity;
 
         /* --- Parameters --- */
 
         // The position that this platform was spawned at.
         protected Vector3 m_Origin;
+        public Vector3 Origin => m_Origin;
 
         // Whether this platform is being pressed down.
         [SerializeField, ReadOnly]
@@ -49,9 +48,20 @@ namespace Platformer.Objects.Platforms {
         [SerializeField] 
         private AudioClip m_OnPressedSound;
 
+        // The animation that plays when the platform is being pressed.
+        [SerializeField]
+        private TransformAnimation m_OnPressedAnimation;
+        // The current animation being played.
+        protected TransformAnimation m_CurrentAnimation;
+
         #endregion
 
         #region Methods.
+
+        // Used to cache references.
+        void Awake() {
+            m_Entity = GetComponent<Entity>();
+        }
 
         // Initialize the platform.
         public void Start() {
@@ -59,32 +69,41 @@ namespace Platformer.Objects.Platforms {
             m_Origin = transform.position;
 
             // Collision settings.
-            // m_Hitbox = GetComponent<BoxCollider2D>();
-            // m_Hitbox.isTrigger = false;
             gameObject.layer = Game.Physics.CollisionLayers.PlatformLayer;
 
-            // Rendering settings.
-            m_Animator.Initialize(this);
+            // Release the platform as the default state.
+            m_CurrentAnimation = null;
+            m_Entity.Renderer.transform.Reset();
+            OnReleased();
 
         }
 
         // Runs once every frame.
-        protected virtual void Update() {
-            m_Pressed = CheckPressed(transform.position.y, m_CollisionContainer);
+        void Update() {
+            m_Pressed = CheckPressed(transform.position.y, m_Entity.CollisionContainer);
 
             // If the platform was just pressed.
             if (m_Pressed && !m_CachePressed) {
                 Game.Audio.Sounds.PlaySound(m_OnPressedSound, 0.15f);
-                m_Animator.OnPressed();
+                OnPressed();
             }
             // If the platform was just released.
             else if (m_CachePressed && !m_Pressed) {
-                m_Animator.OnReleased();
+                OnReleased();
             }
 
             m_CachePressed = m_Pressed;
         }
 
+        void FixedUpdate() {
+            if (m_CurrentAnimation != null) {
+                m_Entity.Renderer.transform.Animate(m_CurrentAnimation, Time.fixedDeltaTime);
+                if (m_CurrentAnimation.AnimationTimer.Ratio >= 1f) {
+                    m_CurrentAnimation = null;
+                    m_Entity.Renderer.transform.Reset();
+                }
+            }
+        }
         
         // Check if a character is standing on top of this.
         public static bool CheckPressed(float platformHeight, List<Transform> collisionContainer) {
@@ -102,6 +121,17 @@ namespace Platformer.Objects.Platforms {
                 }
             }
             return false;
+        }
+
+        // If the platform was just pressed.
+        public void OnPressed() {
+            m_CurrentAnimation = m_OnPressedAnimation;
+            m_CurrentAnimation.AnimationTimer.Set(0f);
+        }
+
+        // If the platform was just released.
+        public void OnReleased() {
+            // m_SpriteShapeController.transform.localPosition = new Vector3(0f, RELEASED_OFFSET, 0f); 
         }
 
         #endregion

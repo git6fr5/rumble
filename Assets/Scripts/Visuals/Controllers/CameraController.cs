@@ -39,12 +39,15 @@ namespace Platformer.Visuals {
 
         /* --- Parameters --- */
 
+        [SerializeField]
+        private Transform m_PlayerTransform;
+
         // The position that this camera is meant to be at.
-        [SerializeField, ReadOnly]
-        private Vector2 m_TargetPosition = new Vector2(0f, 0f);
+        [SerializeField]
+        private List<Transform> m_Targets = new List<Transform>();
 
         // The speed with which the camera moves.
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private float m_MoveSpeed = 0f;
 
         // The timer for the camera shake.
@@ -68,26 +71,52 @@ namespace Platformer.Visuals {
         }
 
         // Runs once per frame.
-        private void Update() {
-            MoveToTarget();
+        void Update() {
             if (m_ShakeTimer.Active) {
                 WhileShakingCamera();
                 m_ShakeTimer.TickDown(Time.deltaTime);
             }
         }
 
-        // Sets the target position of the camera.
-        public void SetTarget(Vector2 targetPosition) {
-            m_TargetPosition = targetPosition;
+        void FixedUpdate() {
+            MoveToTarget(Time.fixedDeltaTime);
+        }
 
-            float distance = (targetPosition - (Vector2)transform.position).magnitude;
-            m_MoveSpeed = distance / VisualSettings.CameraSnapTime;
+        // Sets the target position of the camera.
+        public void AddTarget(Transform target) {
+            if (!m_Targets.Contains(target)) {
+                m_Targets.Add(target);
+            }
+        }
+
+        // Sets the target position of the camera.
+        public void RemoveTarget(Transform target) {
+            if (m_Targets.Contains(target)) {
+                m_Targets.Remove(target);
+            }
         }
         
         // Moves the camera to the target position.
-        public void MoveToTarget() {
-            Vector3 targetPosition = (Vector3)m_TargetPosition + CameraPlane;
-            transform.Move(targetPosition, m_MoveSpeed, Time.deltaTime);
+        public void MoveToTarget(float dt) {
+            Vector2 aggregatedTargets = new Vector2(0f, 0f);
+            if (m_Targets.Count == 0) {
+                aggregatedTargets = m_PlayerTransform.position;
+            }
+            else {
+                GetTarget(out aggregatedTargets);
+            }
+            
+            Vector3 targetPosition = (Vector3)aggregatedTargets + CameraPlane;
+            transform.Move(targetPosition, m_MoveSpeed, dt);
+        
+        }
+
+        void GetTarget(out Vector2 target) {
+            target = new Vector2(0f, 0f);
+            for (int i = 0; i < m_Targets.Count; i++) {
+                target += (Vector2)m_Targets[i].position;
+            }
+            target /= m_Targets.Count;
         }
 
         // Starts the camera shaking.
@@ -109,6 +138,29 @@ namespace Platformer.Visuals {
 
         public bool IsWithinBounds(Vector2 position) {
             return true;
+        }
+
+        void DrawGizmos() {
+            if (m_Targets.Count == 0) {
+                return;
+            }
+
+            Vector2 aggregatedTargets = new Vector2(0f, 0f); 
+            for (int i = 0; i < m_Targets.Count; i++) {
+
+                Vector2 v = (Vector2)(m_PlayerTransform.position - m_Targets[i].position);
+                Vector2 vMax = m_Targets[i].GetComponent<BoxCollider2D>().size;
+
+                float xRatio = Mathf.Abs(v.x / vMax.x); float yRatio = Mathf.Abs(v.y / vMax.y);
+                
+                Vector2 vRatio = new Vector2(m_Targets[i].position.x * xRatio, m_Targets[i].position.y * yRatio);
+                aggregatedTargets += vRatio;
+
+            }
+
+            Vector3 targetPosition = (Vector3)aggregatedTargets;
+            Gizmos.DrawWireSphere(targetPosition, 3f);
+        
         }
 
         #endregion

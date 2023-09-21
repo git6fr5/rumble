@@ -41,16 +41,9 @@ namespace Platformer.Objects.Platforms {
         [SerializeField]
         protected SpriteShapeController m_SpriteShapeController = null;
 
-        [SerializeField]
-        private PlatformSpriteData m_SpriteData;
-        public PlatformSpriteData SpriteData => m_SpriteData;
-
-        // The sprite shape controller. attached to this platform.
-        [SerializeField]
-        protected SpriteRenderer[] m_SpriteRenderers;
-
         // The spline attached to the sprite shape.
         protected Spline m_Spline = null;
+        public Spline spline => m_SpriteShapeController.spline;
 
         // The current animation being played.
         protected TransformAnimation m_CurrentAnimation;
@@ -68,15 +61,9 @@ namespace Platformer.Objects.Platforms {
             // Cache components.
             if (m_SpriteShapeRenderer != null) {
                 m_Spline = m_SpriteShapeController.spline;
-                m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.PlatformLayer;
-                m_SpriteShapeRenderer.sortingOrder = Game.Visuals.RenderingLayers.PlatformOrder;
+                // m_SpriteShapeRenderer.sortingLayerName = Game.Visuals.RenderingLayers.PlatformLayer;
+                // m_SpriteShapeRenderer.sortingOrder = Game.Visuals.RenderingLayers.PlatformOrder;
                 // m_SpriteShapeRenderer.enabled = false;
-            }
-            if (m_SpriteRenderers != null && m_SpriteRenderers.Length > 0) {
-                for (int i = 0; i < m_SpriteRenderers.Length; i++) {
-                    m_SpriteRenderers[i].sortingLayerName = Game.Visuals.RenderingLayers.PlatformLayer;
-                    m_SpriteRenderers[i].sortingOrder = Game.Visuals.RenderingLayers.PlatformOrder;
-                }
             }
 
             // Release the platform as the default state.
@@ -105,18 +92,6 @@ namespace Platformer.Objects.Platforms {
                     }
                 }
                 return;
-            }
-
-            if (m_SpriteRenderers != null) {
-
-                if (m_SpriteRenderers.Length == 1) {
-                    m_SpriteRenderers[0].material.SetFloat(var, val);
-                }
-                else if (m_SpriteRenderers.Length == 2) {
-                    m_SpriteRenderers[0].material.SetFloat(var, val);
-                    m_SpriteRenderers[1].sharedMaterial = m_SpriteRenderers[0].material;
-                }
-
             }
 
         }

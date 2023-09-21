@@ -11,6 +11,14 @@ namespace Platformer.Visuals {
     [System.Serializable]
     public class RenderingLayers {
 
+        [SerializeField]
+        private Material m_CrumblyMaterial;
+        public Material CrumblyMat => m_CrumblyMaterial;
+
+        [SerializeField]
+        private Material m_AlternatingMaterial;
+        public Material AltMat => m_AlternatingMaterial;
+
         [Header("Platforms"), Space(2)]
         public string PlatformLayer = "Midground";
         public int PlatformOrder = 1;
