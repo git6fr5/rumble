@@ -11,6 +11,7 @@ using Platformer.Visuals;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
+using Room = Platformer.Levels.Room;
 
 namespace Platformer.Visuals {
 
@@ -44,7 +45,7 @@ namespace Platformer.Visuals {
 
         // The position that this camera is meant to be at.
         [SerializeField]
-        private List<Transform> m_Targets = new List<Transform>();
+        private List<Room> m_Targets = new List<Room>();
 
         // The speed with which the camera moves.
         [SerializeField]
@@ -83,14 +84,14 @@ namespace Platformer.Visuals {
         }
 
         // Sets the target position of the camera.
-        public void AddTarget(Transform target) {
+        public void AddTarget(Room target) {
             if (!m_Targets.Contains(target)) {
                 m_Targets.Add(target);
             }
         }
 
         // Sets the target position of the camera.
-        public void RemoveTarget(Transform target) {
+        public void RemoveTarget(Room target) {
             if (m_Targets.Contains(target)) {
                 m_Targets.Remove(target);
             }
@@ -114,7 +115,7 @@ namespace Platformer.Visuals {
         void GetTarget(out Vector2 target) {
             target = new Vector2(0f, 0f);
             for (int i = 0; i < m_Targets.Count; i++) {
-                target += (Vector2)m_Targets[i].position;
+                target += (Vector2)m_Targets[i].Position;
             }
             target /= m_Targets.Count;
         }
@@ -141,25 +142,25 @@ namespace Platformer.Visuals {
         }
 
         void DrawGizmos() {
-            if (m_Targets.Count == 0) {
-                return;
-            }
+            // if (m_Targets.Count == 0) {
+            //     return;
+            // }
 
-            Vector2 aggregatedTargets = new Vector2(0f, 0f); 
-            for (int i = 0; i < m_Targets.Count; i++) {
+            // Vector2 aggregatedTargets = new Vector2(0f, 0f); 
+            // for (int i = 0; i < m_Targets.Count; i++) {
 
-                Vector2 v = (Vector2)(m_PlayerTransform.position - m_Targets[i].position);
-                Vector2 vMax = m_Targets[i].GetComponent<BoxCollider2D>().size;
+            //     Vector2 v = (Vector2)(m_PlayerTransform.position - m_Targets[i].Position);
+            //     Vector2 vMax = m_Targets[i].GetComponent<BoxCollider2D>().size;
 
-                float xRatio = Mathf.Abs(v.x / vMax.x); float yRatio = Mathf.Abs(v.y / vMax.y);
+            //     float xRatio = Mathf.Abs(v.x / vMax.x); float yRatio = Mathf.Abs(v.y / vMax.y);
                 
-                Vector2 vRatio = new Vector2(m_Targets[i].position.x * xRatio, m_Targets[i].position.y * yRatio);
-                aggregatedTargets += vRatio;
+            //     Vector2 vRatio = new Vector2(m_Targets[i].Position.x * xRatio, m_Targets[i].Position.y * yRatio);
+            //     aggregatedTargets += vRatio;
 
-            }
+            // }
 
-            Vector3 targetPosition = (Vector3)aggregatedTargets;
-            Gizmos.DrawWireSphere(targetPosition, 3f);
+            // Vector3 targetPosition = (Vector3)aggregatedTargets;
+            // Gizmos.DrawWireSphere(targetPosition, 3f);
         
         }
 
