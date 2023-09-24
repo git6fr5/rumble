@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityExtensions;
 
+/* --- Definitions --- */
+using CharacterController = Platformer.Character.CharacterController;
+
 namespace Platformer.Visuals.Animation {
 
     [System.Serializable]
@@ -14,6 +17,7 @@ namespace Platformer.Visuals.Animation {
         [Header("Animation Parameters")]
         public float ticks;
         public float duration;
+        public bool loop;
         private float t => ticks / duration;
 
         [Header("Position")]
@@ -33,11 +37,18 @@ namespace Platformer.Visuals.Animation {
         public float rotationScale;
         public AnimationCurve rotationCurve;
 
-        public void Tick(float dt) {
+        public bool Tick(float dt) {
             ticks += Time.fixedDeltaTime;
             if (ticks > duration) {
-                ticks -= duration;
+                if (loop) {
+                    ticks -= duration;
+                }
+                else {
+                    ticks = 0f;
+                    return false;
+                }
             }
+            return true;
         }
 
         public void Set(float t) {
@@ -71,13 +82,17 @@ namespace Platformer.Visuals.Animation {
         [SerializeField]
         private bool m_Animate = true;
 
+        public void Play(CharacterController character) {
+            m_Animate = true;
+        }
+
         void FixedUpdate() {
             if (!m_Animate) { return; }
             Animate(Time.fixedDeltaTime);
         }
 
         public void Animate(float dt) {
-            m_Animation.Tick(dt);
+            m_Animate = m_Animation.Tick(dt);
             transform.localPosition = m_Animation.GetPosition();
             transform.localRotation = m_Animation.GetRotation();
             transform.localScale = m_Animation.GetStretch();
