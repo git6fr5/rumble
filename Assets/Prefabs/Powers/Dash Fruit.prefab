@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2106304517582612424}
   - component: {fileID: 2106304517582612431}
   - component: {fileID: 2106304517582612429}
-  - component: {fileID: 5817781383244739398}
+  - component: {fileID: 8784647743442127538}
   - component: {fileID: 8883544437578853683}
+  - component: {fileID: 2061905194639609309}
   m_Layer: 0
   m_Name: Dash Fruit
   m_TagString: Untagged
@@ -66,10 +67,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fae666e3f8af54da566338084c5248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Origin: {x: 0, y: 0, z: 0}
   m_Colliders:
   - {fileID: 2106304517582612431}
   m_Renderer: {fileID: 3600940583916435708}
---- !u!114 &5817781383244739398
+--- !u!114 &8784647743442127538
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,18 +80,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2106304517582612427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18be0d1e543847a41b34d9e191d1301a, type: 3}
+  m_Script: {fileID: 11500000, guid: 03e979c3cd91e2e418388ccdb8ee045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BurstParticle: {fileID: 2106304518566733584}
-  m_EmissionParticle: {fileID: 2106304517386842207}
-  m_OnTouchEvent:
+  m_HitStopFrames: 4
+  m_OnTouchedSound: {fileID: 8300000, guid: 46619afedca57584e8fb47588d07915e, type: 3}
+  m_OnTouchEffect: {fileID: 2106304518566733584}
+  m_OnTouchGroundEffect: {fileID: 0}
+  m_TouchEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8883544437578853683}
-        m_TargetAssemblyTypeName: Platformer.Entities.Components.Power, Assembly-CSharp
-        m_MethodName: GivePower
-        m_Mode: 0
+      - m_Target: {fileID: 2061905194639609309}
+        m_TargetAssemblyTypeName: Platformer.Entities.Utility.Reset, Assembly-CSharp
+        m_MethodName: Refresh
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -98,10 +102,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_ResetDelay: 1.5
-  m_TouchSound: {fileID: 8300000, guid: 46619afedca57584e8fb47588d07915e, type: 3}
-  m_RefreshSound: {fileID: 0}
-  m_BlinkSound: {fileID: 0}
+      - m_Target: {fileID: 8883544437578853683}
+        m_TargetAssemblyTypeName: Platformer.Entities.Components.Power, Assembly-CSharp
+        m_MethodName: SwapPower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_TouchGroundEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8883544437578853683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +130,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Type: 1
+--- !u!114 &2061905194639609309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106304517582612427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53683cc7b8c89c14988edd4d9d577bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BurstParticle: {fileID: 2106304518566733584}
+  m_EmissionParticle: {fileID: 2106304517386842207}
+  m_ResetDelay: 1.5
+  m_OnResetSound: {fileID: 0}
+  m_OnBlinkSound: {fileID: 0}
 --- !u!1001 &526104862842430768
 PrefabInstance:
   m_ObjectHideFlags: 0

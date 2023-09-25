@@ -5,40 +5,37 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.VFX;
-using UnityExtensions;
 // Platformer.
 using Platformer.Entities;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
-using SpriteAnimator = Platformer.Visuals.Animation.SpriteAnimator;
-using SpriteAnimation = Platformer.Visuals.Animation.SpriteAnimation;
-using TrailAnimator = Platformer.Visuals.Animation.TrailAnimator;
 
 namespace Platformer.Entities.Utility {
 
-    [System.Serializable]
-    public class SightEvent : UnityEvent<CharacterController> { }
+    [DefaultExecutionOrder(1000), RequireComponent(typeof(Entity))]
+    public class OnSight : MonoBehaviour {
 
-    ///<summary>
-    ///
-    ///<summary>
-    [RequireComponent(typeof(Entity))]
-    public class SightTrigger : MonoBehaviour {
+        [HideInInspector]
+        private Entity m_Entity;
 
         [SerializeField]
-        private SightEvent m_OnSightEvent;
+        private UnityEvent m_SightEvent;
 
         [SerializeField]
         private Vector3 m_Direction = new Vector3(0f, -1f, 0f);
         
+        // Runs once before the first frame.
+        void Awake() {
+            m_Entity = GetComponent<Entity>();
+        }
+
         // Runs once every frame.
         private void Update() {
             CharacterController character = Game.Physics.Collisions.LineOfSight<CharacterController>(transform.position + m_Direction, m_Direction, Game.Physics.CollisionLayers.Solid);
             if (character != null) {
-                m_OnSightEvent.Invoke(character);
+                m_SightEvent.Invoke();
             }
         }
 

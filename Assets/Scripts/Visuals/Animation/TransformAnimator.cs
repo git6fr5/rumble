@@ -6,9 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityExtensions;
 
-/* --- Definitions --- */
-using CharacterController = Platformer.Character.CharacterController;
-
 namespace Platformer.Visuals.Animation {
 
     [System.Serializable]
@@ -82,7 +79,7 @@ namespace Platformer.Visuals.Animation {
         [SerializeField]
         private bool m_Animate = true;
 
-        public void Play(CharacterController character) {
+        public void Play() {
             m_Animate = true;
         }
 

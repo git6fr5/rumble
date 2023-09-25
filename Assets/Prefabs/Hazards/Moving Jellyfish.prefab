@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6963764116287662980}
   - component: {fileID: 6963764116287662984}
   - component: {fileID: 6963764116287662989}
-  - component: {fileID: 6963764116287662990}
+  - component: {fileID: 9115374872758888061}
   - component: {fileID: 6963764116287662991}
   - component: {fileID: 1330695276325944908}
   m_Layer: 9
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 6963764116287662984}
   m_Renderer: {fileID: 6963764114615686365}
---- !u!114 &6963764116287662990
+--- !u!114 &9115374872758888061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,18 +82,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6963764116287662981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18be0d1e543847a41b34d9e191d1301a, type: 3}
+  m_Script: {fileID: 11500000, guid: 03e979c3cd91e2e418388ccdb8ee045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BurstParticle: {fileID: 7390853382910367095}
-  m_EmissionParticle: {fileID: 6041773139847800566}
-  m_OnTouchEvent:
+  m_HitStopFrames: 8
+  m_OnTouchedSound: {fileID: 8300000, guid: 7a419ce5a5cbe60449999042795d4d43, type: 3}
+  m_OnTouchEffect: {fileID: 7390853382910367095}
+  m_TouchEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6963764116287662991}
         m_TargetAssemblyTypeName: Platformer.Entities.Components.Hazard, Assembly-CSharp
         m_MethodName: Kill
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -102,10 +103,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_ResetDelay: 1.5
-  m_TouchSound: {fileID: 8300000, guid: 7a419ce5a5cbe60449999042795d4d43, type: 3}
-  m_RefreshSound: {fileID: 8300000, guid: 2b5688495c4d85345b7747a5bf115088, type: 3}
-  m_BlinkSound: {fileID: 0}
 --- !u!114 &6963764116287662991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,11 +467,6 @@ PrefabInstance:
 --- !u!4 &6041773139847800560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1406023726716686726, guid: b54170921058a79488c93cb2e2a32ce6, type: 3}
-  m_PrefabInstance: {fileID: 4637444868940494710}
-  m_PrefabAsset: {fileID: 0}
---- !u!2083052967 &6041773139847800566 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 1406023726716686720, guid: b54170921058a79488c93cb2e2a32ce6, type: 3}
   m_PrefabInstance: {fileID: 4637444868940494710}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8606749654685046912

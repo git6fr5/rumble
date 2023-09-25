@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8611092738165268254}
   - component: {fileID: 8611092738165268242}
   - component: {fileID: 8611092738165268247}
-  - component: {fileID: 8611092738165268244}
+  - component: {fileID: 2561549586322677256}
   - component: {fileID: 8611092738165268245}
   m_Layer: 9
   m_Name: Jellyfish
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 8611092738165268242}
   m_Renderer: {fileID: 8611092737858379847}
---- !u!114 &8611092738165268244
+--- !u!114 &2561549586322677256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,18 +79,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 8611092738165268255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18be0d1e543847a41b34d9e191d1301a, type: 3}
+  m_Script: {fileID: 11500000, guid: 03e979c3cd91e2e418388ccdb8ee045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BurstParticle: {fileID: 8193569824033776109}
-  m_EmissionParticle: {fileID: 4970932756720030316}
-  m_OnTouchEvent:
+  m_HitStopFrames: 8
+  m_OnTouchedSound: {fileID: 8300000, guid: 7a419ce5a5cbe60449999042795d4d43, type: 3}
+  m_OnTouchEffect: {fileID: 8193569824033776109}
+  m_TouchEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8611092738165268245}
         m_TargetAssemblyTypeName: Platformer.Entities.Components.Hazard, Assembly-CSharp
         m_MethodName: Kill
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -99,10 +100,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_ResetDelay: 1.5
-  m_TouchSound: {fileID: 8300000, guid: 7a419ce5a5cbe60449999042795d4d43, type: 3}
-  m_RefreshSound: {fileID: 8300000, guid: 2b5688495c4d85345b7747a5bf115088, type: 3}
-  m_BlinkSound: {fileID: 0}
 --- !u!114 &8611092738165268245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,11 +373,6 @@ PrefabInstance:
 --- !u!4 &4970932756720030314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1406023726716686726, guid: b54170921058a79488c93cb2e2a32ce6, type: 3}
-  m_PrefabInstance: {fileID: 6304896679348700140}
-  m_PrefabAsset: {fileID: 0}
---- !u!2083052967 &4970932756720030316 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 1406023726716686720, guid: b54170921058a79488c93cb2e2a32ce6, type: 3}
   m_PrefabInstance: {fileID: 6304896679348700140}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7765165695163753421

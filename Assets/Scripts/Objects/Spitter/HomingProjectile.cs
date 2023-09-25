@@ -12,7 +12,7 @@ using UnityExtensions;
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
-namespace Platformer.Objects.Spitters {
+namespace Platformer.Entities.Utility {
 
     ///<summary>
     ///

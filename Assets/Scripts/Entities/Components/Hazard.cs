@@ -24,8 +24,9 @@ namespace Platformer.Entities.Components {
         #region Methods.
 
         // Collects this orb.
-        public void Kill(CharacterController character) {
+        public void Kill() {
             Debug.Log("Player killed");
+            CharacterController character = Game.MainPlayer;
             character.Reset();
         }
         

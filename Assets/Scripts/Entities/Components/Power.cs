@@ -47,7 +47,8 @@ namespace Platformer.Entities.Components {
         #region Methods.
 
         // Collects this orb.
-        public void GivePower(CharacterController character) {
+        public void SwapPower() {
+            CharacterController character = Game.MainPlayer;
 
             // Swap the power based on the type of orb.
             character.DisableAllAbilityActions();

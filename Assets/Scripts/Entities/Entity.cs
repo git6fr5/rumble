@@ -20,6 +20,18 @@ namespace Platformer.Entities {
     ///<summary>
     public class Entity : MonoBehaviour {
 
+        [SerializeField, ReadOnly]
+        private Vector3 m_Origin;
+        public Vector3 Origin => m_Origin;
+
+        private void Awake() {
+            m_Origin = transform.position;
+        }
+
+        public void ResetPosition() {
+            transform.position = m_Origin;
+        }
+
         #region Collision
 
         [SerializeField]

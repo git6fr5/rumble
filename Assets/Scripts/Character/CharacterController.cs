@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 using Platformer.Input;
 using Platformer.Character;
 using Platformer.Character.Actions;
-using Platformer.Objects.Orbs;
+using Platformer.Entities.Components;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
@@ -84,8 +84,8 @@ namespace Platformer.Character {
 
         // The block that this character respawns at.
         [SerializeField, ReadOnly] 
-        private RespawnOrb m_RespawnOrb;
-        public RespawnOrb RespawnOrb => m_RespawnOrb;
+        private Respawn m_Respawn;
+        public Respawn CurrentRespawn => m_Respawn;
 
         // The sprite that is used for the death impact effect.
         [SerializeField]
@@ -159,7 +159,7 @@ namespace Platformer.Character {
         }
 
         public void Reset() {
-            if (m_RespawnOrb == null) {
+            if (m_Respawn == null) {
                 SceneManager.LoadScene("Game");
             }
 
@@ -177,13 +177,13 @@ namespace Platformer.Character {
             Game.Level.Reset();
             
             // Resetting the character.
-            Disable(RespawnOrb.RESPAWN_DELAY);
+            Disable(Respawn.RESPAWN_DELAY);
             DisableAllAbilityActions();
             m_Body.Stop();
             m_Dying = true;
 
-            transform.position = m_RespawnOrb.RespawnPosition;
-            StartCoroutine(IERespawn(RespawnOrb.RESPAWN_DELAY));
+            transform.position = m_Respawn.RespawnPosition;
+            StartCoroutine(IERespawn(Respawn.RESPAWN_DELAY));
 
         }
 
@@ -194,13 +194,14 @@ namespace Platformer.Character {
             Game.Audio.Sounds.PlaySound(m_OnRespawnSound, 0.15f);
         }
 
-        public void SetRespawn(RespawnOrb orb) {
+        public void SetRespawn(Respawn respawn) {
             // Game.Objects.Reset();
-            if (m_RespawnOrb != null) {
-                m_RespawnOrb.Deactivate();
+            print("respawning");
+            if (m_Respawn != null) {
+                m_Respawn.Deactivate();
             }
-            m_RespawnOrb = orb;
-            m_RespawnOrb.Activate();
+            m_Respawn = respawn;
+            m_Respawn.Activate();
         }
 
         public void Disable(float duration) {

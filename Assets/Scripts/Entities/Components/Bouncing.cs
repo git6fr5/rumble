@@ -19,7 +19,7 @@ namespace Platformer.Entities.Components {
     ///<summary>
     // TODO: Add the Jelly.
     // TODO: Add the Springs.
-    [RequireComponent(typeof(Platform))]
+    [RequireComponent(typeof(Entity))]
     public class Bouncing : MonoBehaviour {
 
         #region Enumerations.
@@ -45,7 +45,7 @@ namespace Platformer.Entities.Components {
         /* --- Members --- */
 
         // The threshold between which 
-        private Platform m_Platform;
+        private Entity m_Entity;
 
         // Whether this is bouncing or releasing.
         [SerializeField] 
@@ -62,7 +62,7 @@ namespace Platformer.Entities.Components {
         // The max tension before releasing.
         [SerializeField] 
         private float m_MaxTension = 0.7f;
-        private Vector3 MaxTensionPosition => m_Platform.Origin + Vector3.down * m_MaxTension;
+        private Vector3 MaxTensionPosition => m_Entity.Origin + Vector3.down * m_MaxTension;
 
         // The sound that plays when this bounces.
         [SerializeField] 
@@ -71,22 +71,7 @@ namespace Platformer.Entities.Components {
         #endregion
         
         void Awake() {
-            m_Platform = GetComponent<Platform>();
-        }
-
-        // Runs once every frame.
-        // Having to do this is a bit weird.
-        void Update() {
-
-            // What to do for each state.
-            switch (m_BounceState) {
-                case BounceState.None:
-                    if (m_Platform.Pressed) { OnStartTensing(); }
-                    break;
-                default:
-                    break;
-            }
-
+            m_Entity = GetComponent<Entity>();
         }
 
         void FixedUpdate() {
@@ -105,17 +90,19 @@ namespace Platformer.Entities.Components {
 
         }
 
-        private void OnStartTensing() {
-            m_BounceState = BounceState.Tensing;
+        public void OnStartTensing() {
+            if (m_BounceState != BounceState.Tensing) {
+                m_BounceState = BounceState.Tensing;
+            }
         }
 
         private void WhileTensing(float dt) {
-            transform.Move(MaxTensionPosition, m_SinkSpeed, dt, m_Platform.entity.CollisionContainer);
+            transform.Move(MaxTensionPosition, m_SinkSpeed, dt, m_Entity.CollisionContainer);
             
             float distance = (transform.position - MaxTensionPosition).magnitude;
             
             // float distance = (m_Origin - MaxTensionPosition).magnitude / m_SinkSpeed;
-            if (distance < (m_Platform.Origin - MaxTensionPosition).magnitude / 2f) {
+            if (distance < (m_Entity.Origin - MaxTensionPosition).magnitude / 2f) {
                 PreemptiveClamp();
             }
 
@@ -127,13 +114,13 @@ namespace Platformer.Entities.Components {
         }
 
         private void WhileReleasing(float dt) {
-            transform.Move(m_Platform.Origin, m_RiseSpeed, dt, m_Platform.entity.CollisionContainer);
+            transform.Move(m_Entity.Origin, m_RiseSpeed, dt, m_Entity.CollisionContainer);
 
             // Bounce a character that did not pre-emptively bounce if it
             // PRESSES jump while the platform is releasing.
             CheckBounce();
 
-            float distance = (transform.position - m_Platform.Origin).magnitude;
+            float distance = (transform.position - m_Entity.Origin).magnitude;
             if (distance < Game.Physics.Collisions.CollisionPrecision) {
                 m_BounceState = BounceState.None;
                 MissedBounce();
@@ -143,8 +130,8 @@ namespace Platformer.Entities.Components {
 
         // Clamps the characters jump after the platform has gone down a certain distance.
         private void PreemptiveClamp() {
-            for (int i = 0; i < m_Platform.entity.CollisionContainer.Count; i++) {
-                CharacterController character = m_Platform.entity.CollisionContainer[i].GetComponent<CharacterController>();
+            for (int i = 0; i < m_Entity.CollisionContainer.Count; i++) {
+                CharacterController character = m_Entity.CollisionContainer[i].GetComponent<CharacterController>();
                 if (character != null) {
                     character.Default.ClampJump(true);
                     if (character.Input.Action0.Released) {
@@ -158,8 +145,8 @@ namespace Platformer.Entities.Components {
         // If the character has pressed the jump key/ is holding the jump key while the
         // bouncy platform has preemptively clamped the character.
         private void CheckPreemptiveBounce() {
-            for (int i = 0; i < m_Platform.entity.CollisionContainer.Count; i++) {
-                CharacterController character = m_Platform.entity.CollisionContainer[i].GetComponent<CharacterController>();
+            for (int i = 0; i < m_Entity.CollisionContainer.Count; i++) {
+                CharacterController character = m_Entity.CollisionContainer[i].GetComponent<CharacterController>();
                 if (character != null) {
                     if (character.Input.Action0.Held) {
                         print("pre-emptive bounce");
@@ -175,9 +162,9 @@ namespace Platformer.Entities.Components {
         // PRESSES jump while the platform is releasing.
         private void CheckBounce() {
             print("checking bounce");
-            print(m_Platform.entity.CollisionContainer.Count);
-            for (int i = 0; i < m_Platform.entity.CollisionContainer.Count; i++) {
-                CharacterController character = m_Platform.entity.CollisionContainer[i].GetComponent<CharacterController>();
+            print(m_Entity.CollisionContainer.Count);
+            for (int i = 0; i < m_Entity.CollisionContainer.Count; i++) {
+                CharacterController character = m_Entity.CollisionContainer[i].GetComponent<CharacterController>();
                 if (character != null) {
                     if (character.Input.Action0.Held) {
                         print("releasing bounce");
@@ -190,15 +177,15 @@ namespace Platformer.Entities.Components {
 
         // For characters that missed a bounce.
         private void MissedBounce() {
-            for (int i = 0; i < m_Platform.entity.CollisionContainer.Count; i++) {
-                CharacterController character = m_Platform.entity.CollisionContainer[i].GetComponent<CharacterController>();
+            for (int i = 0; i < m_Entity.CollisionContainer.Count; i++) {
+                CharacterController character = m_Entity.CollisionContainer[i].GetComponent<CharacterController>();
                 if (character != null) {
                     print("missed bounce");
                     character.Default.OnExternalJump(character, MISSED_BOUNCE_SPEED);
                     character.Default.ClampJump(false);
                 }
             }
-            m_Platform.entity.ForceClearContainer();
+            m_Entity.ForceClearContainer();
         }
 
     }

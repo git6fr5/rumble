@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7589825892442153391}
   - component: {fileID: 7589825892442153390}
   - component: {fileID: 4444398108890938192}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Regular Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fae666e3f8af54da566338084c5248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Origin: {x: 0, y: 0, z: 0}
   m_Colliders: []
   m_Renderer: {fileID: 7589825892975962040}
 --- !u!114 &7589825892442153390
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_OffsetHeight: 0.1
   m_Inset: 0.125
   m_EdgeRadius: 0.15
-  m_ExtrusionFactor: 1.2
+  m_ExtrusionFactor: 1.5
   m_Depth: 10
   debugCollider: 0
 --- !u!114 &4444398108890938192

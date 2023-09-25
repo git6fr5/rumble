@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 69833312048615782}
   - component: {fileID: 69833312048615787}
-  - component: {fileID: 69833312048615784}
+  - component: {fileID: 6270168730054871778}
   - component: {fileID: 69833312048615785}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Regular Platform (Single)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 69833312048615785}
   m_Renderer: {fileID: 69833310066636803}
---- !u!114 &69833312048615784
+--- !u!114 &6270168730054871778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,87 +59,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 69833312048615783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ee275e90eb737a4a819761e657f642e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6501d385131800946b7fe506b49ec738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Pressed: 0
   m_CachePressed: 0
   m_OnPressedSound: {fileID: 8300000, guid: 67b4229085924e646878483766915802, type: 3}
-  m_OnPressedAnimation:
-    AnimationTimer:
-      m_Value: 0
-      m_MaxValue: 0.2
-    Loop: 0
-    PositionScale: 0.05
-    ScaleScale: 0
-    RotationScale: 0
-    ScaleOffset: 1
-    m_PositionCurveX:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_PositionCurveY:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: -4
-        outSlope: -4
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.25
-        value: -1
-        inSlope: -0.8149588
-        outSlope: -0.8149588
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.74365234
-        value: 0.16999674
-        inSlope: 0.85346663
-        outSlope: 0.85346663
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: -0.6631492
-        outSlope: -0.6631492
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ScaleCurveX:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ScaleCurveY:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_RotationCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+  m_OnReleasedSound: {fileID: 0}
+  m_PressEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5803534229803925130}
+        m_TargetAssemblyTypeName: Platformer.Visuals.Animation.TransformAnimator,
+          Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_ReleaseEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &69833312048615785
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -233,3 +178,14 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2374096889591471222, guid: 6c1198b3280e637409c1f3b47ceb765b, type: 3}
   m_PrefabInstance: {fileID: 2308769412803945589}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5803534229803925130 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8106530105968237311, guid: 6c1198b3280e637409c1f3b47ceb765b, type: 3}
+  m_PrefabInstance: {fileID: 2308769412803945589}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1b786ed91312a4192f0f50716a0d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

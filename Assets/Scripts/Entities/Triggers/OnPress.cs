@@ -13,12 +13,6 @@ using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Triggers {
 
-    [System.Serializable]
-    public class PressEvent : UnityEvent<CharacterController> { }
-
-    [System.Serializable]
-    public class ReleaseEvent : UnityEvent<CharacterController> { }
-
     [DefaultExecutionOrder(1000), RequireComponent(typeof(Entity))]
     public class OnPress : MonoBehaviour {
 
@@ -43,14 +37,15 @@ namespace Platformer.Entities.Triggers {
         private AudioClip m_OnReleasedSound;
 
         [SerializeField]
-        private PressEvent m_PressEvent;
+        private UnityEvent m_PressEvent;
 
         [SerializeField]
-        private ReleaseEvent m_ReleaseEvent;
+        private UnityEvent m_ReleaseEvent;
 
         // Runs once on instantiation.
         void Awake() {
             m_Entity = GetComponent<Entity>();
+            m_Entity.SetAsTrigger(false);
         }
 
         // Runs once every frame.
@@ -59,11 +54,11 @@ namespace Platformer.Entities.Triggers {
 
             if (m_Pressed && !m_CachePressed) {
                 Game.Audio.Sounds.PlaySound(m_OnPressedSound, 0.15f);
-                m_PressEvent.Invoke(null);
+                m_PressEvent.Invoke();
             }
             else if (m_CachePressed && !m_Pressed) {
                 Game.Audio.Sounds.PlaySound(m_OnReleasedSound, 0.15f);
-                m_ReleaseEvent.Invoke(null);
+                m_ReleaseEvent.Invoke();
             }
 
             m_CachePressed = m_Pressed;

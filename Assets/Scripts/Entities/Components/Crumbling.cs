@@ -11,6 +11,7 @@ using Platformer;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
+using Entity = Platformer.Entities.Entity;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {
@@ -18,7 +19,7 @@ namespace Platformer.Entities.Components {
     ///<summary>
     ///
     ///<summary>
-    [RequireComponent(typeof(Platform))]
+    [RequireComponent(typeof(Entity))]
     public class Crumbling : MonoBehaviour {
 
         public const float THRESHOLD = 0.8f;
@@ -37,7 +38,7 @@ namespace Platformer.Entities.Components {
         #region Variables.
 
         // The threshold between which 
-        private Platform m_Platform;
+        private Entity m_Entity;
 
         // Whether this platform is crumbling.
         [SerializeField] 
@@ -78,27 +79,11 @@ namespace Platformer.Entities.Components {
         #region Methods.
 
         void Awake() {
-            m_Platform = GetComponent<Platform>();
+            m_Entity = GetComponent<Entity>();
         }
 
         void Start() {
-            m_Platform.entity.SetMaterial(Game.Visuals.RenderingLayers.CrumblyMat);
-        }
-
-        // Runs once every frame.
-        void Update() {
-            
-            // What to do for each state.
-            switch (m_CrumbleState) {
-                case CrumbleState.None:
-                    if (m_Platform.Pressed) { OnStartCrumble(); }
-                    break;
-                case CrumbleState.Crumbling:
-                    break;
-                default:
-                    break;
-            }
-
+            m_Entity.SetMaterial(Game.Visuals.RenderingLayers.CrumblyMat);
         }
 
         // Runs once every fixed interval.
@@ -134,21 +119,23 @@ namespace Platformer.Entities.Components {
 
         }
 
-        private void OnStartCrumble() {
+        public void OnStartCrumble() {
+            if (m_CrumbleState != CrumbleState.None) { return; }
+
             m_CrumbleTimer.Start(m_CrumbleDuration);
             m_CrumbleState = CrumbleState.Crumbling;
         }
 
         private void OnCrumble() {
             m_CrumbleState = CrumbleState.Reforming;
-            m_Platform.entity.EnableColliders(false);
+            m_Entity.EnableColliders(false);
             m_CrumbleTimer.Start(m_ReformDuration);
             Game.Audio.Sounds.PlaySound(m_OnCrumbleSound, 0.15f);
         }
 
         private void OnReform() {
             m_CrumbleState = CrumbleState.None;
-            m_Platform.entity.EnableColliders(true);
+            m_Entity.EnableColliders(true);
             Game.Audio.Sounds.PlaySound(m_OnReformSound, 0.15f);
             // m_Platform.entity.SetMaterialValue("_DissolveAmount", val);
         }
@@ -159,7 +146,7 @@ namespace Platformer.Entities.Components {
             // Game.Audio.Sounds.PlaySound(m_WhileCrumblingSound, Mathf.Sqrt(m_CrumbleTimer.InverseRatio) * 1f);
             float x = (m_CrumbleTimer.InverseRatio - THRESHOLD) / (1f - THRESHOLD);
             float val = m_CrumbleScale * m_CrumbleCurve.Evaluate(x);
-            m_Platform.entity.SetMaterialValue("_DissolveAmount", val);
+            m_Entity.SetMaterialValue("_DissolveAmount", val);
         }
 
         private void WhileReforming(float dt) {
@@ -167,7 +154,7 @@ namespace Platformer.Entities.Components {
             
             float x = (m_CrumbleTimer.InverseRatio - THRESHOLD) / (1f - THRESHOLD);
             float val = m_CrumbleScale * m_ReformCurve.Evaluate(x);
-            m_Platform.entity.SetMaterialValue("_DissolveAmount", val);
+            m_Entity.SetMaterialValue("_DissolveAmount", val);
         }
 
         #endregion

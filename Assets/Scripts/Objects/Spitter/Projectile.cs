@@ -12,28 +12,24 @@ using UnityExtensions;
 using Game = Platformer.Management.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
-namespace Platformer.Objects.Spitters {
+namespace Platformer.Entities.Utility {
 
     ///<summary>
     ///
     ///<summary>
-    [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(Collider2D)), RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Collider2D)), RequireComponent(typeof(Rigidbody2D))]
     public class Projectile : MonoBehaviour {
 
-        protected Rigidbody2D m_Body => GetComponent<Rigidbody2D>();
-
-        // The effect that plays when this spike shatters.
-        [SerializeField] 
-        private VisualEffect m_ShatterEffect;
-        
-        // The effect that plays when the spike shatters.
-        [SerializeField] 
-        private AudioClip m_ShatterSound;
+        protected Rigidbody2D m_Body;
 
         public Projectile CreateInstance() {
             Projectile projectile = Instantiate(gameObject).GetComponent<Projectile>();
             projectile.transform.position = transform.position;
             return projectile;
+        }
+
+        void Awake() {
+            m_Body = GetComponent<Rigidbody2D>();
         }
 
         public virtual void Fire(float speed, Vector2 direction) {
@@ -42,28 +38,7 @@ namespace Platformer.Objects.Spitters {
             m_Body.SetVelocity(speed * direction);
         }
 
-        // Runs when another collider enters the trigger area.
-        protected void OnTriggerEnter2D(Collider2D collider) {
-            CharacterController character = collider.GetComponent<CharacterController>();
-            if (character != null) {
-                character.Reset();
-                Shatter();
-            }
-            else {
-                bool hitGround = collider.gameObject.layer == LayerMask.NameToLayer("Ground");
-                bool hitPlatform = collider.gameObject.layer == LayerMask.NameToLayer("Platform");
-                if (hitGround || hitPlatform) {
-                    Shatter();
-                }
-            }
-        }
-
-        protected void Shatter() {
-            m_ShatterEffect.transform.parent = null;
-            m_ShatterEffect.gameObject.SetActive(true);
-            Destroy(m_ShatterEffect.gameObject, 5f);
-
-            Game.Audio.Sounds.PlaySound(m_ShatterSound, 0.15f);
+        public void DeleteSelf() {
             Destroy(gameObject);
         }
 
