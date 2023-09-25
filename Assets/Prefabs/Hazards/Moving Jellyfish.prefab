@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fae666e3f8af54da566338084c5248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Origin: {x: 0, y: 0, z: 0}
   m_Colliders:
   - {fileID: 6963764116287662984}
   m_Renderer: {fileID: 6963764114615686365}
@@ -88,6 +89,7 @@ MonoBehaviour:
   m_HitStopFrames: 8
   m_OnTouchedSound: {fileID: 8300000, guid: 7a419ce5a5cbe60449999042795d4d43, type: 3}
   m_OnTouchEffect: {fileID: 7390853382910367095}
+  m_OnTouchGroundEffect: {fileID: 0}
   m_TouchEvent:
     m_PersistentCalls:
       m_Calls:
@@ -103,6 +105,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_TouchGroundEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DisableGroundTouching: 1
 --- !u!114 &6963764116287662991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +151,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7289003611217213817, guid: 3a68e87668abcbb4cba06efcb18b3042, type: 3}
       propertyPath: m_Name
-      value: hazard_renderer
+      value: hazard renderer
       objectReference: {fileID: 0}
     - target: {fileID: 7289003611217213822, guid: 3a68e87668abcbb4cba06efcb18b3042, type: 3}
       propertyPath: m_RootOrder

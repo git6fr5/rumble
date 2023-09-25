@@ -2295,7 +2295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &349281716
 Transform:
   m_ObjectHideFlags: 0
@@ -5793,7 +5793,7 @@ Transform:
   - {fileID: 1965461701}
   - {fileID: 894524123}
   m_Father: {fileID: 1118295763}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &883543209
 MonoBehaviour:
@@ -5841,7 +5841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &894524123
 Transform:
   m_ObjectHideFlags: 0
@@ -6754,7 +6754,7 @@ Transform:
   - {fileID: 1010907383}
   - {fileID: 1550810808}
   m_Father: {fileID: 1118295763}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1013889964
 MonoBehaviour:
@@ -7896,6 +7896,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1118295763}
   - component: {fileID: 1118295766}
+  - component: {fileID: 1118295769}
+  - component: {fileID: 1118295768}
+  - component: {fileID: 1118295767}
   m_Layer: 6
   m_Name: Checkpoint Orb
   m_TagString: Untagged
@@ -7915,8 +7918,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 883543208}
   - {fileID: 1013889963}
+  - {fileID: 883543208}
   m_Father: {fileID: 753622194}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7936,6 +7939,85 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.35}
   serializedVersion: 2
   m_Radius: 2
+--- !u!114 &1118295767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118295762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67350550d6d72dc4c91068b19fcc08a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstActivationTime: Infinity
+  m_TotalActivatedTime: 0
+  m_EmissionParticle: {fileID: 0}
+  m_Active: 0
+--- !u!114 &1118295768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118295762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e979c3cd91e2e418388ccdb8ee045b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HitStopFrames: 4
+  m_OnTouchedSound: {fileID: 0}
+  m_OnTouchEffect: {fileID: 1833771856}
+  m_OnTouchGroundEffect: {fileID: 0}
+  m_TouchEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 883543209}
+        m_TargetAssemblyTypeName: Platformer.Objects.Orbs.StatueAnimator, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1118295767}
+        m_TargetAssemblyTypeName: Platformer.Entities.Components.Respawn, Assembly-CSharp
+        m_MethodName: SetRespawnPoint
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  m_TouchGroundEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DisableGroundTouching: 1
+--- !u!114 &1118295769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118295762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fae666e3f8af54da566338084c5248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Origin: {x: 0, y: 0, z: 0}
+  m_Colliders:
+  - {fileID: 1118295766}
+  m_Renderer: {fileID: 1528102623}
 --- !u!1 &1125225765
 GameObject:
   m_ObjectHideFlags: 0
@@ -15040,8 +15122,8 @@ VisualEffect:
   m_GameObject: {fileID: 1833771853}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: d8c7820e211b9c44aa04e387d233ecb2, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -16702,7 +16784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1965461701
 Transform:
   m_ObjectHideFlags: 0

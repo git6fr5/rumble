@@ -82,7 +82,7 @@ namespace Platformer.Entities.Components {
 
         private void OnSpit() {
             Projectile projectile = m_SpitProjectile.CreateInstance();
-            projectile.Fire(m_SpitSpeed, Quaternion.Euler(0f, 0f, m_SpitAngle) * Vector2.right);
+            projectile.Fire(m_SpitSpeed, Quaternion.Euler(0f, 0f, transform.eulerAngles.z + m_SpitAngle) * Vector2.right);
             Game.Audio.Sounds.PlaySound(m_SpitSound, 0.15f);
 
             m_SpitState = SpitState.None;
@@ -94,7 +94,7 @@ namespace Platformer.Entities.Components {
             if (!debugSpitter) { return; }
 
             Gizmos.color = Color.red;
-            Vector2 v = m_SpitSpeed / 10f * (Quaternion.Euler(0f, 0f, m_SpitAngle) * Vector2.right);
+            Vector2 v = m_SpitSpeed / 10f * (Quaternion.Euler(0f, 0f, transform.eulerAngles.z + m_SpitAngle) * Vector2.right);
             Gizmos.DrawLine(m_SpitProjectile.transform.position, m_SpitProjectile.transform.position + (Vector3)v); 
 
         }
