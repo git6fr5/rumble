@@ -49,8 +49,8 @@ namespace Platformer.Management {
 
         // Resets the current room.
         public void Reset() {
-            Platformer.Objects.Blocks.BlockObject.ResetAll();
-            Platformer.Objects.Orbs.OrbObject.ResetAll();
+            // Platformer.Objects.Blocks.BlockObject.ResetAll();
+            // Platformer.Objects.Orbs.OrbObject.ResetAll();
         }
 
         // Loads the entities for 

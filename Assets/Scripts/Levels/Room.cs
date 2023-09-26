@@ -21,7 +21,7 @@ namespace Platformer.Levels {
     /// <summary>
     ///
     /// <summary>
-    [RequireComponent(typeof(BoxCollider2D))]
+    [ExecuteInEditMode, RequireComponent(typeof(BoxCollider2D))]
     public class Room : MonoBehaviour {
 
         #region Enumerations.
@@ -52,6 +52,15 @@ namespace Platformer.Levels {
             m_Position = (Vector2)transform.position;
             m_Box = GetComponent<BoxCollider2D>();
             m_Box.isTrigger = true;
+        }
+
+        public bool snapToThis = false;
+        void Update() {
+            if (!Application.isPlaying && snapToThis) {
+                Vector3 targetPosition = (Vector3)transform.position + Platformer.Visuals.CameraController.CameraPlane;
+                Camera.main.transform.position = targetPosition;
+                snapToThis = false;
+            }
         }
 
         void OnTriggerEnter2D(Collider2D collider) {

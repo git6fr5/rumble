@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityExtensions;
-// Platformer.
-using Platformer.Objects.Orbs;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;

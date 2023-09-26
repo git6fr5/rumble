@@ -5,8 +5,6 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityExtensions;
-// Platformer.
-using Platformer.Objects.Spikes;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;

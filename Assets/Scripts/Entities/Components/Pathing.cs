@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityExtensions;
-// Platformer.
-using Platformer.Objects.Platforms;
 
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
