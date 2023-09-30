@@ -33,7 +33,13 @@ namespace Platformer.Character.Actions {
         protected const float COYOTE_FRICTION = 0.5f;
 
         // The maximum speed with which this character can fall.
-        private float MAX_FALL_SPEED = 25f;
+        public const float FAST_FALL_SPEED_THRESHOLD = 7f;
+
+        // The maximum speed with which this character can fall.
+        public const float FAST_FALL_DIST_THRESHOLD = 3f;
+
+        // The maximum speed with which this character can fall.
+        private const float MAX_FALL_SPEED = 25f;
 
         /* --- Member Variables --- */
 
@@ -124,6 +130,10 @@ namespace Platformer.Character.Actions {
         [SerializeField]
         private Sprite[] m_FallingAnimation = null;
 
+        // The animation for the character when falling fast.
+        [SerializeField]
+        private Sprite[] m_FallingFastAnimation = null;
+
         #endregion
 
         // When enabling/disabling this ability.
@@ -207,6 +217,8 @@ namespace Platformer.Character.Actions {
             character.Body.ClampFallSpeed(0f); 
             character.Body.AddVelocity(Vector2.up * m_JumpSpeed);
 
+            character.Animator.SimpleBurst.Play();
+
         }
 
         public void ClampJump(bool clamp) {
@@ -233,6 +245,9 @@ namespace Platformer.Character.Actions {
             m_ClampJump = false;
             character.Animator.Remove(m_RisingAnimation);
             character.Animator.Remove(m_FallingAnimation);
+
+            character.Animator.SimpleBurst.Play();
+
         }
 
         // Process the physics of this action.
@@ -300,7 +315,15 @@ namespace Platformer.Character.Actions {
                         weight *= COYOTE_FRICTION;
                     }
 
-                    character.Animator.Push(m_FallingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpFalling);
+                    Vector2 footPosition = character.Body.position + character.Collider.offset + Vector2.down * (character.Collider.radius + 0.1f);
+                    float dist = Game.Physics.Collisions.DistanceToFirst(footPosition, Vector3.down, Game.Physics.CollisionLayers.Solid);
+
+                    if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
+                        character.Animator.Push(m_FallingFastAnimation, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
+                    }
+                    else {
+                        character.Animator.Push(m_FallingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpFalling);
+                    }
 
                 }
 
@@ -308,6 +331,7 @@ namespace Platformer.Character.Actions {
             else {
                 character.Animator.Remove(m_RisingAnimation);
                 character.Animator.Remove(m_FallingAnimation);
+                character.Animator.Remove(m_FallingFastAnimation);
             }
 
             // Set the m_Weight.

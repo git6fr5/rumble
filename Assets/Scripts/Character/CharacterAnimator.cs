@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 // Unity.
 using UnityEngine;
+using UnityEngine.VFX;
 // Platformer.
 using Platformer.Character;
 
@@ -81,6 +82,17 @@ namespace Platformer.Character {
         // The amount this character was stretched last frame.
         [SerializeField, ReadOnly]
         private Vector2 m_CachedStretch = new Vector2(0f, 0f);
+
+        [SerializeField]
+        private VisualEffect m_SimpleBurst;
+        public VisualEffect SimpleBurst => m_SimpleBurst;
+
+        [SerializeField]
+        private VisualEffect m_ColoredBurst;
+        public void ColoredBurst(Color color) {
+            m_ColoredBurst.SetVector4("_Color", color);
+            m_ColoredBurst.Play();
+        }
 
         #endregion
 

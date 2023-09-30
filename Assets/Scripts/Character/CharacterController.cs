@@ -94,6 +94,9 @@ namespace Platformer.Character {
         // The sound thats played when the character dies.
         [SerializeField] 
         private AudioClip m_OnDeathSound;
+
+        [SerializeField, ColorUsage(true, true)]
+        private Color m_DeathColor;
         
         // The sound thats played when the character respawns.
         [SerializeField] 
@@ -140,10 +143,13 @@ namespace Platformer.Character {
 
         #endregion
 
-        void Start() {
+        void Awake() {
             m_Input = GetComponent<InputSystem>();
             m_Body = GetComponent<Rigidbody2D>();
             m_Collider = GetComponent<CircleCollider2D>();
+        }
+
+        void Start() {
             
             m_DefaultAction.Enable(this, true);
             m_PowerActions = new List<CharacterAction>() {
@@ -167,6 +173,7 @@ namespace Platformer.Character {
                 return;
             }
             
+            // m_Animator.ColoredBurst(m_DeathColor);
             // The visual feedback played when dying.
             Game.Physics.Time.RunHitStop(16);
             // Game.Visuals.Effects.PlayImpactEffect(m_OnDeathParticle,30, 5f, transform, Vector3.zero);

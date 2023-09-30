@@ -217,9 +217,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1906712974298202659, guid: 97e9cec49ffe93c45a1de6cff8a33c2e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1906712974298202685, guid: 97e9cec49ffe93c45a1de6cff8a33c2e, type: 3}
       propertyPath: m_Name
       value: burst_vfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906712974298202685, guid: 97e9cec49ffe93c45a1de6cff8a33c2e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97e9cec49ffe93c45a1de6cff8a33c2e, type: 3}
