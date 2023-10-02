@@ -40,7 +40,6 @@ namespace Platformer.Visuals {
 
         /* --- Parameters --- */
 
-        [SerializeField]
         private Transform m_PlayerTransform;
 
         // The position that this camera is meant to be at.
@@ -69,6 +68,10 @@ namespace Platformer.Visuals {
 
         void Awake() {
             m_Camera = GetComponent<Camera>();
+        }
+
+        void Start() {
+            m_PlayerTransform = Game.MainPlayer.transform;
         }
 
         // Runs once per frame.
