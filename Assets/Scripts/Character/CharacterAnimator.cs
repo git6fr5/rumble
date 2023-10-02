@@ -109,6 +109,7 @@ namespace Platformer.Character {
             Animate(Time.deltaTime);
             Scale(Time.deltaTime);
             Rotate();
+            Warp();
         }
 
         // Animates the flipbook by setting the animation, frame, and playing any effects.
@@ -163,7 +164,7 @@ namespace Platformer.Character {
             }
         }
 
-        protected virtual void Rotate() {
+        void Rotate() {
             float currentAngle = transform.eulerAngles.y;
             float angle = m_Character.FacingDirection < 0f ? 180f : m_Character.FacingDirection > 0f ? 0f : currentAngle;
             if (transform.eulerAngles.y != angle) {
@@ -171,7 +172,7 @@ namespace Platformer.Character {
             }
         }
 
-        protected virtual void Scale(float dt) {
+        void Scale(float dt) {
             transform.localScale = new Vector3(1f, 1f, 1f);
             Vector2 stretch = Vector2.zero;
             if (m_Character.Rising || m_Character.Falling) {
@@ -181,6 +182,25 @@ namespace Platformer.Character {
                 transform.localScale += (Vector3)(stretch + m_CachedStretch);
             }
             m_CachedStretch = stretch;
+        }
+
+        void Warp() {
+            if (m_Character.OnGround) {
+                m_SpriteRenderer.material.SetFloat("_WarpIntensity", 0f); 
+                return;
+            }
+
+            float warpBase = m_Character.Body.velocity.y;
+            if (warpBase < 0.5) {
+                warpBase /= Platformer.Character.Actions.DefaultAction.MAX_FALL_SPEED;
+                warpBase *= 4f;
+            }
+            else if (warpBase > 0.5) {
+                warpBase /= m_Character.Default.JumpSpeed * 1.5f;
+                warpBase *= 2f;
+            }
+            m_SpriteRenderer.material.SetFloat("_WarpIntensity", warpBase);            
+
         }
 
         #endregion

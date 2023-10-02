@@ -27,10 +27,10 @@ namespace Platformer.Character.Actions {
         /* --- Constant Variables --- */
 
         // The factor that slows down rising if not holding the input.
-        protected const float RISE_FRICTION = 0.1f;
+        public const float RISE_FRICTION = 0.1f;
 
         // The friction applied to a body that is still under coyote time.
-        protected const float COYOTE_FRICTION = 0.5f;
+        public const float COYOTE_FRICTION = 0.5f;
 
         // The maximum speed with which this character can fall.
         public const float FAST_FALL_SPEED_THRESHOLD = 7f;
@@ -39,7 +39,7 @@ namespace Platformer.Character.Actions {
         public const float FAST_FALL_DIST_THRESHOLD = 3f;
 
         // The maximum speed with which this character can fall.
-        private const float MAX_FALL_SPEED = 25f;
+        public const float MAX_FALL_SPEED = 25f;
 
         /* --- Member Variables --- */
 

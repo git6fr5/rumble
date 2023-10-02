@@ -142,7 +142,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7023531789876515523}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.75
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.3
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: f966e5bd000000009306aefe7362d624ff6b50fd490db3f8b50d8c5e
@@ -599,6 +599,7 @@ MonoBehaviour:
   m_Respawn: {fileID: 0}
   m_OnDeathParticle: {fileID: 21300000, guid: d9d0378a31bfc894391fb53f71ff4ed9, type: 3}
   m_OnDeathSound: {fileID: 8300000, guid: 932db81d51addfe4db2b633978d11004, type: 3}
+  m_DeathColor: {r: 0, g: 0, b: 0, a: 0}
   m_OnRespawnSound: {fileID: 8300000, guid: 1a9aeaa000b7ecb4f864fa8b8f1e99ab, type: 3}
   m_OnActionParticle: {fileID: 21300000, guid: d9d0378a31bfc894391fb53f71ff4ed9, type: 3}
   m_DefaultAction:
