@@ -68,8 +68,12 @@ namespace Platformer.Character.Actions {
         private AudioClip m_DashSound = null;
 
         // The effect that plays when dashing.
-        // [SerializeField]
-        // private ParticleSystem m_DashEffect;
+        [SerializeField]
+        private VisualEffect m_StartBoomEffect;
+
+        // The effect that plays when dashing.
+        [SerializeField]
+        private VisualEffect m_EndBoomEffect;
 
         #endregion
 
@@ -179,6 +183,8 @@ namespace Platformer.Character.Actions {
 
             character.Animator.Remove(m_PredashAnimation);
             character.Animator.Push(m_DashAnimation, CharacterAnimator.AnimationPriority.ActionActive);
+            m_StartBoomEffect.Play();
+
             // Game.Visuals.Effects.PlayImpactEffect(character.OnActionParticle, 16, 1.6f, character.transform, Vector3.zero);
 
         }
@@ -195,6 +201,7 @@ namespace Platformer.Character.Actions {
             character.Default.Enable(character, true);
 
             character.Animator.Remove(m_DashAnimation);
+            m_EndBoomEffect.Play();
 
             m_DashTimer.Start(m_PostdashDuration);
             m_ActionPhase = ActionPhase.PostAction;
