@@ -117,6 +117,8 @@ namespace Platformer.Character.Actions {
             // Whether the power has been reset by touching ground after using it.
             m_Refreshed = character.OnGround && !m_DashTimer.Active ? true : m_Refreshed;
 
+            if (m_Refreshed) { m_DashCount = m_MaxDashCount; }
+
             // Tick down the dash timer.
             bool finished = m_DashTimer.TickDown(dt);
 
@@ -175,6 +177,8 @@ namespace Platformer.Character.Actions {
 
         private void OnStartDash(CharacterController character) {
             m_CachedDirection = new Vector2(character.FacingDirection, 0f);
+            m_CachedDirection = character.Input.Direction.Normal;
+
             character.Body.SetVelocity(m_CachedDirection * DashSpeed);
             // Game.MainPlayer.ExplodeDust.Activate();
 
@@ -183,6 +187,10 @@ namespace Platformer.Character.Actions {
 
             character.Animator.Remove(m_PredashAnimation);
             character.Animator.Push(m_DashAnimation, CharacterAnimator.AnimationPriority.ActionActive);
+
+
+            float angle = Vector2.SignedAngle(Vector2.right, m_CachedDirection);
+            m_StartBoomEffect.transform.eulerAngles = Vector3.forward * angle;
             m_StartBoomEffect.Play();
 
             // Game.Visuals.Effects.PlayImpactEffect(character.OnActionParticle, 16, 1.6f, character.transform, Vector3.zero);
@@ -207,9 +215,20 @@ namespace Platformer.Character.Actions {
             m_ActionPhase = ActionPhase.PostAction;
         }
 
+        [SerializeField]
+        private int m_MaxDashCount = 3;
+        private int m_DashCount = 0;
+
         private void OnEndDash(CharacterController character) {
             character.Animator.Remove(m_PostdashAnimation);
+            
             m_ActionPhase = ActionPhase.None;
+
+            if (m_DashCount > 0 && character.Input.Action1.Held && character.Input.Direction.Normal != Vector2.zero) {
+                OnStartPredash(character);
+                m_DashCount -= 1;
+            }
+
         }
 
         private void WhilePredashing(CharacterController character, float dt) {
@@ -217,9 +236,14 @@ namespace Platformer.Character.Actions {
         }
 
         private void WhileDashing(CharacterController character, float dt) {
-            if (Mathf.Abs(character.Body.velocity.x) < DashSpeed / 2f || Mathf.Abs(character.Body.velocity.y) > 0.2f) {
+            // if (Mathf.Abs(character.Body.velocity.x) < DashSpeed / 2f || Mathf.Abs(character.Body.velocity.y) > 0.2f) {
+            //     OnStartPostdash(character);
+            // }
+        
+            if (character.Body.velocity.sqrMagnitude < DashSpeed * DashSpeed / 4f) {
                 OnStartPostdash(character);
             }
+
         }
 
         private void WhilePostdashing(CharacterController character, float dt) {
