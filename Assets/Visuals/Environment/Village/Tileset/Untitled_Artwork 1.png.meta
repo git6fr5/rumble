@@ -100,17 +100,65 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_Artwork 1_2
+      name: bush_tileset_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 585
-        width: 415
-        height: 415
+        x: 400
+        y: 400
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,113 +166,176 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 534309df3565a3547af0033da1fcdfd8
-      internalID: 119951913
+      spriteID: e2803155356525648800230080e04cad
+      internalID: 793355069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Untitled_Artwork 1_14
+      name: bush_tileset_1
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 600
+        width: 200
+        height: 400
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 200}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99fb6b78282c2404287c021ca4e8fe82
+      internalID: -370313841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_tileset_2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 400
+        width: 400
+        height: 200
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
+      border: {x: 0, y: 0, z: 200, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fe845a9ac0ac1a40a6cb51c310fda07
+      internalID: 673271744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_tileset_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 400
+        height: 200
+      alignment: 9
+      pivot: {x: 0.75, y: 0.5}
+      border: {x: 200, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bd036f8aff10fc418bc88aa297966c4
+      internalID: 1479582959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_tileset_4
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 400
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 200, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17d162305a9961c4ba13e0e26eee30ab
+      internalID: 235687057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_tileset_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 400
+        height: 400
+      alignment: 9
+      pivot: {x: 0.75, y: 0.25}
+      border: {x: 200, y: 0, z: 0, w: 200}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f14ffecd042b97244aad3324c0a9536f
+      internalID: 1515641723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_tileset_6
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 600
+        width: 400
+        height: 400
+      alignment: 9
+      pivot: {x: 0.25, y: 0.25}
+      border: {x: 0, y: 0, z: 200, w: 200}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a181af7230a731f40825faec9cd108c8
+      internalID: 285915184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bush_tileset_7
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 415
-        height: 418
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 400
+        height: 400
+      alignment: 9
+      pivot: {x: 0.75, y: 0.75}
+      border: {x: 200, y: 200, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f34ec9c586de7e4bad24afe280bc1af
-      internalID: 5246624
+      spriteID: 33e8e0251a155cd4eb60cbbf3c067c49
+      internalID: 49339971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Untitled_Artwork 1_0
+      name: bush_tileset_8
       rect:
         serializedVersion: 2
-        x: 417
+        x: 600
         y: 0
-        width: 167
-        height: 1000
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 400
+        height: 400
+      alignment: 9
+      pivot: {x: 0.25, y: 0.75}
+      border: {x: 0, y: 200, z: 200, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78f809a59b67d2d41b6d92fa7838091a
-      internalID: -878240430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Untitled_Artwork 1_5
-      rect:
-        serializedVersion: 2
-        x: 583
-        y: 584
-        width: 417
-        height: 416
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed7f6e074c9f25441979c17cf1eecfef
-      internalID: -1199479357
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Untitled_Artwork 1_17
-      rect:
-        serializedVersion: 2
-        x: 583
-        y: 0
-        width: 416
-        height: 418
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dae39196bba3ace4886a35915ebb0b0b
-      internalID: 605177554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Untitled_Artwork 1_18
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 418
-        width: 1000
-        height: 167
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b478b4f51851d1040a0af41ba3c295cf
-      internalID: -1677867908
+      spriteID: 25c09950948d2ef4ca3d89511de44011
+      internalID: 698890110
       vertices: []
       indices: 
       edges: []
@@ -240,26 +351,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Untitled_Artwork 1_11: 231075622
-      Untitled_Artwork 1_6: -824918695
-      Untitled_Artwork 1_9: 1493581946
-      Untitled_Artwork 1_15: -319045628
-      Untitled_Artwork 1_10: 1713296483
-      Untitled_Artwork 1_0: -878240430
-      Untitled_Artwork 1_18: -1677867908
-      Untitled_Artwork 1_5: -1199479357
-      Untitled_Artwork 1_13: -1127896868
-      Untitled_Artwork 1_12: -1610603396
-      Untitled_Artwork 1_16: -266862717
-      Untitled_Artwork 1_4: -718096741
-      Untitled_Artwork 1_17: 605177554
-      Untitled_Artwork 1_8: 802096243
-      Untitled_Artwork 1_2: 119951913
-      Untitled_Artwork 1_7: 1973113025
-      Untitled_Artwork 1_14: 5246624
-      Untitled_Artwork 1_1: 802621287
-      Untitled_Artwork 1_3: 514192275
-      Untitled_Artwork 1_19: 96341919
+      bush_tileset_5: 1515641723
+      bush_tileset_6: 285915184
+      bush_tileset_7: 49339971
+      bush_tileset_8: 698890110
+      bush_tileset_2: 673271744
+      bush_tileset_3: 1479582959
+      bush_tileset_4: 235687057
+      bush_tileset_1: -370313841
+      bush_tileset_0: 793355069
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
