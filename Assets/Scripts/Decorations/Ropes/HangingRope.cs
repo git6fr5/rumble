@@ -5,9 +5,9 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 // Platformer.
-using Platformer.Objects.Decorations;
+using Platformer.Decorations;
 
-namespace Platformer.Objects.Decorations {
+namespace Platformer.Decorations {
 
     ///<summary>
     ///

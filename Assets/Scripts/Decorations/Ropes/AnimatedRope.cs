@@ -9,7 +9,7 @@ using UnityEngine.U2D;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 
-namespace Platformer.Objects.Decorations {
+namespace Platformer.Decorations {
 
     [RequireComponent(typeof(SpriteShapeController))]
     public class AnimatedRope : MonoBehaviour {
@@ -36,7 +36,9 @@ namespace Platformer.Objects.Decorations {
         private AnimationCurve m_AnimationCurve;
 
         [SerializeField]
-        private float m_Duration; 
+        private float m_Duration;
+        public float GetDuration() { return m_Duration; }
+        public void SetDuration(float value) { m_Duration = value; }
 
         // The spriteshape controller attached to this object.
         private SpriteShapeController m_SpriteShape;

@@ -9,7 +9,7 @@ using UnityEngine.U2D;
 /* --- Definitions --- */
 using Game = Platformer.Management.GameManager;
 
-namespace Platformer.Objects.Decorations {
+namespace Platformer.Decorations {
 
     /// <summary>
     ///
