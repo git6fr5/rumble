@@ -77,7 +77,7 @@ namespace Platformer.Entities.Components {
         void Start() {
             m_Entity.SetMaterial(Game.Visuals.RenderingLayers.AltMat);
             
-            float t = Game.Physics.Time.Ticks % PERIOD;
+            float t = Time.fixedTime;
             bool enableA = t < PERIOD / 2f;
             switch (m_AlternatingType) {
                 case AlternatingType.A:
@@ -96,7 +96,7 @@ namespace Platformer.Entities.Components {
 
         void FixedUpdate() {
             
-            float t = Game.Physics.Time.Ticks % PERIOD;
+            float t = Time.fixedTime % PERIOD;
             bool enableA = t < PERIOD / 2f;
             bool change = (Game.Physics.Time.Ticks % (PERIOD / 2f)) > PERIOD / 2f - PRE_CHANGE_DURATION;
 
@@ -139,7 +139,7 @@ namespace Platformer.Entities.Components {
 
         private void WhileChanging(bool enable) {
 
-            float t = (Game.Physics.Time.Ticks % (PERIOD / 2f)) - (PERIOD / 2f - PRE_CHANGE_DURATION);
+            float t = (Time.fixedTime % (PERIOD / 2f)) - (PERIOD / 2f - PRE_CHANGE_DURATION);
             float x = t / PRE_CHANGE_DURATION;
             
             // If we're enabled, then the change is towards disabled

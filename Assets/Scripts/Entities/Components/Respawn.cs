@@ -37,6 +37,9 @@ namespace Platformer.Entities.Components {
         public float TotalTimeActive => m_TotalActivatedTime;
 
         [SerializeField]
+        private SpriteRenderer m_PinkGlow;
+
+        [SerializeField]
         private VisualEffect m_EmissionParticle;
 
         [SerializeField, ReadOnly]
@@ -65,11 +68,15 @@ namespace Platformer.Entities.Components {
         }
 
         public void Activate() {
-            print("activating");
+               
             m_Active = true;
             if (m_EmissionParticle != null) {
                 m_EmissionParticle.Play();
             }
+            if (m_PinkGlow != null) {
+                m_PinkGlow.enabled = true;
+            }
+
             if (m_TotalActivatedTime == 0f) {
                 m_FirstActivationTime = Game.Physics.Time.Ticks;
             }
@@ -78,6 +85,11 @@ namespace Platformer.Entities.Components {
 
         public void Deactivate() {
             m_Active = false;
+
+            if (m_PinkGlow != null) {
+                m_PinkGlow.enabled = false;
+            }
+
             if (m_EmissionParticle != null) {
                 m_EmissionParticle.Stop();
             }        
