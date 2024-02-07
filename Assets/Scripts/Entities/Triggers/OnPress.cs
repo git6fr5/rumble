@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using Entity = Platformer.Entities.Entity;
 using CharacterController = Platformer.Character.CharacterController;
 
@@ -46,6 +46,7 @@ namespace Platformer.Entities.Triggers {
         void Awake() {
             m_Entity = GetComponent<Entity>();
             m_Entity.SetAsTrigger(false);
+            // StartCoroutine(Test());
         }
 
         // Runs once every frame.
@@ -63,6 +64,13 @@ namespace Platformer.Entities.Triggers {
 
             m_CachePressed = m_Pressed;
         }
+
+        // IEnumerator Test() {
+        //     while (true) {
+        //         m_PressEvent.Invoke();
+        //         yield return new WaitForSeconds(Random.Range(0.1f, 0.3f));
+        //     }
+        // }
 
         // Check if a character is standing on top of this.
         public static bool CheckPressed(float platformHeight, List<Transform> collisionContainer) {

@@ -11,7 +11,7 @@ using UnityEngine.VFX;
 using Platformer.Character;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 
 namespace Platformer.Character {
 

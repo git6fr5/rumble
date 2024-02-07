@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityExtensions;
+// Gobblefish.
+using Gobblefish;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using Projectile = Platformer.Entities.Utility.Projectile;
 
 namespace Platformer.Entities.Components {

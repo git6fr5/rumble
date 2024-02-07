@@ -11,7 +11,7 @@ using UnityExtensions;
 using Platformer.Entities;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using IReset = Platformer.Entities.Utility.IReset;
 using CharacterController = Platformer.Character.CharacterController;
 

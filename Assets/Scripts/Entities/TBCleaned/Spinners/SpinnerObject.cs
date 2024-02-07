@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityExtensions;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 
 namespace Platformer.Objects.Spinners {
 

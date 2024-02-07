@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Platformer.Physics;
+using Platformer;
 
-namespace Platformer.Management {
+namespace Platformer {
 
     ///<summary>
     /// Ties the physics functionality to the rest of the game.

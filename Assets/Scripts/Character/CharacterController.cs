@@ -8,13 +8,13 @@ using UnityEngine.VFX;
 using UnityExtensions;
 using UnityEngine.SceneManagement;
 // Platformer.
-using Platformer.Input;
+using Gobblefish.Input;
 using Platformer.Character;
 using Platformer.Character.Actions;
 using Platformer.Entities.Components;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 
 namespace Platformer.Character {
 
@@ -87,6 +87,10 @@ namespace Platformer.Character {
         private Respawn m_Respawn;
         public Respawn CurrentRespawn => m_Respawn;
 
+        [SerializeField, ReadOnly]
+        private Interactable m_Interactable;
+        public Interactable CurrentInteractable => m_Interactable;
+
         // The sprite that is used for the death impact effect.
         [SerializeField]
         private Sprite m_OnDeathParticle;
@@ -127,14 +131,14 @@ namespace Platformer.Character {
         public HopAction Hop => m_HopAction;
         
         // The ghost action.
-        [SerializeField] 
-        private GhostAction m_GhostAction;
-        public GhostAction Ghost => m_GhostAction;
+        // [SerializeField] 
+        // private GhostAction m_GhostAction;
+        // public GhostAction Ghost => m_GhostAction;
         
         // The shadow action.
-        [SerializeField] 
-        private ShadowAction m_ShadowAcction;
-        public ShadowAction Shadow => m_ShadowAcction;
+        // [SerializeField] 
+        // private ShadowAction m_ShadowAcction;
+        // public ShadowAction Shadow => m_ShadowAcction;
         
         // The sticky action.
         [SerializeField] 
@@ -155,8 +159,8 @@ namespace Platformer.Character {
             m_PowerActions = new List<CharacterAction>() {
                 m_DashAction,
                 m_HopAction,
-                m_GhostAction, 
-                m_ShadowAcction,
+                // m_GhostAction, 
+                // m_ShadowAcction,
                 m_StickyAction
             };
 
@@ -209,6 +213,11 @@ namespace Platformer.Character {
             }
             m_Respawn = respawn;
             m_Respawn.Activate();
+        }
+
+        
+        public void SetInteractable(Interactable interactable) {
+            m_Interactable = interactable;
         }
 
         public void Disable(float duration) {

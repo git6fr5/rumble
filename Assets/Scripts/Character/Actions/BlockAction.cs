@@ -7,12 +7,12 @@
 // using UnityEngine.VFX;
 // using UnityExtensions;
 // // Platformer.
-// using Platformer.Input;
+// using Gobblefish.Input;
 // using Platformer.Character;
 // using Platformer.Character.Actions;
 
 // /* --- Definitions --- */
-// using Game = Platformer.Management.GameManager;
+// using Game = Platformer.GameManager;
 
 // namespace Platformer.Character.Actions {
 

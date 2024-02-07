@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Platformer.Physics;
+using Platformer;
 
-namespace Platformer.Physics {
+namespace Platformer {
 
     ///<summary>
     /// A set of functions that define simple collision checks.

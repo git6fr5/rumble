@@ -1,91 +1,48 @@
-/* --- Libraries --- */
+// System.
 using System.Collections;
 using System.Collections.Generic;
+// Unity.
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using LDtkUnity;
-using Platformer.Management;
 
-/* --- Definitions --- */
-using CharacterController = Platformer.Character.CharacterController;
-
-namespace Platformer.Management {
+namespace Platformer {
 
     ///<summary>
     ///
     ///<summary>
     [DefaultExecutionOrder(-1000)]
-    public class GameManager : MonoBehaviour {
+    public class GameManager : Gobblefish.GameManager {
 
-        #region Variables
+        // This singleton.
+        public static GameManager PLATFORMER_INSTANCE;
 
-        // Singleton.
-        public static GameManager Instance;
-
-        // Cached ldtk component.
-        public static LDtkComponentProject m_LDtkData;
-
-        // Player.
-        [SerializeField] private CharacterController m_Player;
-        public static CharacterController MainPlayer => Instance.m_Player;
+        [SerializeField]
+        private Platformer.Character.CharacterController m_Player;
+        public static Platformer.Character.CharacterController MainPlayer => PLATFORMER_INSTANCE.m_Player;
 
         // Exposes functionality for the levels in the game.
         [SerializeField] 
-        private LevelManager m_LevelManager;
-        public static LevelManager Level => Instance.m_LevelManager;
+        private Platformer.Levels.LevelManager m_LevelManager;
+        public static Platformer.Levels.LevelManager Level => PLATFORMER_INSTANCE.m_LevelManager;
 
         // Exposes functionality for the physics in the game.
         [SerializeField] 
-        private PhysicsManager m_PhysicsManager;
-        public static PhysicsManager Physics => Instance.m_PhysicsManager;
-
-        // Exposes functionality for the audio in the game.
-        [SerializeField] 
-        private AudioManager m_AudioManager;
-        public static AudioManager Audio => Instance.m_AudioManager;
-
-        // Exposes functionality for the visuals in the game.
-        [SerializeField] 
-        private VisualManager m_VisualManager;
-        public static VisualManager Visuals => Instance.m_VisualManager;
+        private Platformer.PhysicsManager m_PhysicsManager;
+        public static Platformer.PhysicsManager Physics => PLATFORMER_INSTANCE.m_PhysicsManager;
 
         [SerializeField]
         private bool m_Playing = true;
-        public static bool Playing => Instance.m_Playing;
+        public static bool Playing => PLATFORMER_INSTANCE.m_Playing;
 
-        // Score.
-        // [SerializeField] private ScoreTracker m_Score;
-        // public static ScoreTracker Score => Instance.m_Score;
-
-        #endregion
-
-        // Runs once on instantiation.
-        void Awake() {
-            Instance = this;
-            m_Player.gameObject.SetActive(false);
-            m_PhysicsManager.OnGameLoad();
-            m_AudioManager.OnGameLoad();
-            m_VisualManager.OnGameLoad();
-            m_LevelManager.OnGameLoad();
-            m_Player.gameObject.SetActive(true);
+        protected override void Awake() {
+            PLATFORMER_INSTANCE = this;
+            base.Awake();
         }
 
         // Pause the game.
         public void Pause() {
             m_LevelManager.OnSaveAndQuit();
-            // SaveSystem.SaveLevelSettings();
-            // m_UI.SetActive(true);
-            Instance.m_PhysicsManager.Time.Pause();
-        }
-
-        // Validate an array.
-        public static bool Validate<T>(T[] array) {
-            return array != null && array.Length > 0;
-        }
-
-        // Validate a list.
-        public static bool Validate<T>(List<T> list) {
-            return list != null && list.Count > 0;
+            PLATFORMER_INSTANCE.m_PhysicsManager.Time.Pause();
         }
 
     }

@@ -10,7 +10,7 @@ using UnityExtensions;
 using Platformer.Entities;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {
@@ -75,7 +75,7 @@ namespace Platformer.Entities.Components {
         }
         
         void Start() {
-            m_Entity.SetMaterial(Game.Visuals.RenderingLayers.AltMat);
+            // m_Entity.SetMaterial(Game.Visuals.RenderingLayers.AltMat);
             
             float t = Game.Physics.Time.Ticks % PERIOD;
             bool enableA = t < PERIOD / 2f;

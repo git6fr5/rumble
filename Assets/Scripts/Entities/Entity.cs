@@ -10,7 +10,7 @@ using UnityExtensions;
 using Platformer.Entities;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities {
@@ -36,6 +36,9 @@ namespace Platformer.Entities {
 
         [SerializeField]
         private List<Collider2D> m_Colliders = new List<Collider2D>();
+        public List<Collider2D> Colliders => m_Colliders;
+        public Collider2D Collider => m_Colliders.Count > 0 ? m_Colliders[0] : null;
+        public CircleCollider2D CircleCollider => m_Colliders.Count > 0 ? m_Colliders[0].GetComponent<CircleCollider2D>() : null;
 
         // The objects that are attached to the platform.
         protected List<Transform> m_CollisionContainer = new List<Transform>();

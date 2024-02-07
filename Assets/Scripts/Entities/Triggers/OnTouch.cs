@@ -9,9 +9,11 @@ using UnityEngine.VFX;
 using UnityExtensions;
 // Platformer.
 using Platformer.Entities;
+// 
+using Gobblefish;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Triggers {
@@ -38,6 +40,9 @@ namespace Platformer.Entities.Triggers {
 
         [SerializeField]
         private UnityEvent m_TouchEvent;
+
+        [SerializeField]
+        private UnityEvent m_TouchExitEvent;
 
         [SerializeField]
         private UnityEvent m_TouchGroundEvent;
@@ -76,6 +81,13 @@ namespace Platformer.Entities.Triggers {
 
                     m_TouchGroundEvent.Invoke();
                 }
+            }
+        }
+
+        void OnTriggerExit2D(Collider2D collider) {
+            CharacterController character = collider.GetComponent<CharacterController>();
+            if (character != null) {
+                m_TouchExitEvent.Invoke();
             }
         }
 

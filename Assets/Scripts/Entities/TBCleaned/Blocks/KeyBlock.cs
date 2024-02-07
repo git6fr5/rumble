@@ -9,7 +9,7 @@
 // using Platformer.Objects.Blocks;
 
 // /* --- Definitions --- */
-// using Game = Platformer.Management.GameManager;
+// using Game = Platformer.GameManager;
 // using CharacterController = Platformer.Character.CharacterController;
 // using KeyOrb = Platformer.Objects.Orbs.KeyOrb;
 

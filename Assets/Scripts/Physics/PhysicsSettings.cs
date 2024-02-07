@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer.Physics {
+namespace Platformer {
 
     ///<summary>
     /// Defines the general physics settings for the game.

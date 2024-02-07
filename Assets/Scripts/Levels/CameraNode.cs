@@ -14,7 +14,7 @@
 // using Platformer.Levels;
 
 // /* --- Definitions --- */
-// using Game = Platformer.Management.GameManager;
+// using Game = Platformer.GameManager;
 
 // namespace Platformer.Levels {
 

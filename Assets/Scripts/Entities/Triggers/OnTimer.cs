@@ -9,7 +9,7 @@ using UnityEngine.VFX;
 using UnityExtensions;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 
 namespace Platformer.Entities.Triggers {
 

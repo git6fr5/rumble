@@ -14,7 +14,7 @@ using Platformer.Character;
 using Platformer.Levels;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 
 namespace Platformer.Levels {
 
@@ -57,7 +57,7 @@ namespace Platformer.Levels {
         public bool snapToThis = false;
         void Update() {
             if (!Application.isPlaying && snapToThis) {
-                Vector3 targetPosition = (Vector3)transform.position + Platformer.Visuals.CameraController.CameraPlane;
+                Vector3 targetPosition = (Vector3)transform.position + Vector3.forward * Gobblefish.Graphics.CameraMovement.CAMERA_PLANE_DISTANCE;
                 Camera.main.transform.position = targetPosition;
                 snapToThis = false;
             }
@@ -65,15 +65,13 @@ namespace Platformer.Levels {
 
         void OnTriggerEnter2D(Collider2D collider) {
             if (collider == Game.MainPlayer.Collider) {
-                Game.Level.Load(this);
-                Game.Visuals.Camera.AddTarget(this);
+                Camera.main.transform.parent.GetComponent<Gobblefish.Graphics.CameraMovement>().AddTarget(transform);
             }
         }
 
         void OnTriggerExit2D(Collider2D collider) {
             if (collider == Game.MainPlayer.Collider) {
-                Game.Level.Unload(this);
-                Game.Visuals.Camera.RemoveTarget(this);
+                Camera.main.transform.parent.GetComponent<Gobblefish.Graphics.CameraMovement>().RemoveTarget(transform);
             }
         }
 

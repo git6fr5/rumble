@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.U2D;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 
 namespace Platformer.Decorations {
 

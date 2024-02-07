@@ -7,12 +7,10 @@ using UnityEngine;
 using UnityExtensions;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using IReset = Platformer.Entities.Utility.IReset;
 using CharacterController = Platformer.Character.CharacterController;
-using SpriteAnimator = Platformer.Visuals.Animation.SpriteAnimator;
-using SpriteAnimation = Platformer.Visuals.Animation.SpriteAnimation;
-using TrailAnimator = Platformer.Visuals.Animation.TrailAnimator;
+// using TrailAnimator = Gobblefish.Animation.TrailAnimator;
 
 namespace Platformer.Entities.Components {
 
@@ -66,15 +64,6 @@ namespace Platformer.Entities.Components {
         [SerializeField] 
         private float m_ShakeStrength = 0.12f;
         private float Strength => m_ShakeStrength * m_FallDelayTimer.InverseRatio;
-
-        [SerializeField]
-        private SpriteAnimator m_SpriteAnimator;
-
-        [SerializeField]
-        private SpriteAnimation m_LookingAnimation;
-
-        [SerializeField]
-        private SpriteAnimation m_FallingAnimation;
 
         #endregion
 
@@ -131,28 +120,16 @@ namespace Platformer.Entities.Components {
             m_Body.SetWeight(WEIGHT);
             m_FallState = FallState.Falling;
 
-            // m_SpriteAnimator.SetFrameRate(16);
-            // m_SpriteAnimator.Play();
         }
 
-        private void WhileFalling() {
-            // if (!m_Entity.CollisionEnabled) {
-            //     m_Body.Stop();
-            //     m_Body.Freeze();
-            //     m_FallState = FallState.Stable;
-            // }
+        private void WhileFalling() { 
+
         }
 
         public void OnStartResetting() {
             print("is this being called");
-
-            // m_Entity.Reset();
             m_Body.Stop();
             m_Body.Freeze();
-
-            // m_SpriteAnimator.SetAnimation(m_LookingAnimation);
-            // m_SpriteAnimator.SetFrameRate(4);
-            // m_Animator.Stop();
         }
 
         public void OnFinishResetting() {

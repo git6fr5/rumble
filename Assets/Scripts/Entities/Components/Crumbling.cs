@@ -10,7 +10,7 @@ using UnityExtensions;
 using Platformer;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using Entity = Platformer.Entities.Entity;
 using CharacterController = Platformer.Character.CharacterController;
 
@@ -83,7 +83,7 @@ namespace Platformer.Entities.Components {
         }
 
         void Start() {
-            m_Entity.SetMaterial(Game.Visuals.RenderingLayers.CrumblyMat);
+            // m_Entity.SetMaterial(Game.Visuals.RenderingLayers.CrumblyMat);
         }
 
         // Runs once every fixed interval.

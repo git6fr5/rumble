@@ -7,12 +7,12 @@ using UnityEngine;
 using UnityEngine.VFX;
 using UnityExtensions;
 // Platformer.
-using Platformer.Input;
+using Gobblefish.Input;
 using Platformer.Character;
 using Platformer.Character.Actions;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 
 namespace Platformer.Character.Actions {
 
@@ -42,6 +42,9 @@ namespace Platformer.Character.Actions {
         public const float MAX_FALL_SPEED = 25f;
 
         /* --- Member Variables --- */
+
+        [SerializeField, ReadOnly]
+        private bool m_Interacting = false;
 
         // Whether the character is using the default movement.
         [SerializeField, ReadOnly] 
@@ -143,6 +146,7 @@ namespace Platformer.Character.Actions {
             m_CoyoteTimer = new Timer(0f, m_CoyoteBuffer);
             RefreshJumpSettings(ref m_JumpSpeed, ref m_Weight, ref m_Sink, m_Height, m_RisingTime, m_FallingTime);
 
+            m_Interacting = false;
             m_MoveEnabled = true;
             m_FallEnabled = true;
             m_ClampJump = false;
@@ -166,8 +170,25 @@ namespace Platformer.Character.Actions {
         public override void InputUpdate(CharacterController character) {
             if (!m_Enabled) { return; }
 
+            // Current.
+            if (character.CurrentInteractable == null) {
+                m_Interacting = false;
+            }
+
             // Jumping.
             if (character.Input.Action0.Pressed && m_Refreshed) {
+                // If interacting with an NPC.
+                if (character.CurrentInteractable != null) {
+                    if (!m_Interacting) {
+                        OnInteract(character);
+                    }
+                    else {
+                        WhileInteracting(character);
+                    }
+                    character.Input.Action0.ClearPressBuffer();
+                    return;
+                }
+
                 // The character should jump.
                 OnJump(character);
 
@@ -203,6 +224,16 @@ namespace Platformer.Character.Actions {
                 WhileDucking(character, dt);
             }
             
+        }
+
+        //
+        private void OnInteract(CharacterController character) {
+            m_Interacting = character.CurrentInteractable.StartInteraction();
+        }
+
+        //
+        private void WhileInteracting(CharacterController character) {
+            m_Interacting = character.CurrentInteractable.ContinueInteraction();
         }
 
         private void OnJump(CharacterController character) {

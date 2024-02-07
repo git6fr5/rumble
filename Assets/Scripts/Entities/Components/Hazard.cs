@@ -8,7 +8,7 @@ using UnityEngine.VFX;
 using UnityExtensions;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {
@@ -19,8 +19,6 @@ namespace Platformer.Entities.Components {
     [DefaultExecutionOrder(1000)]
     public class Hazard : MonoBehaviour {
 
-        #region Methods.
-
         // Collects this orb.
         public void Kill() {
             Debug.Log("Player killed");
@@ -28,7 +26,6 @@ namespace Platformer.Entities.Components {
             character.Reset();
         }
         
-        #endregion
-        
     }
+    
 }

@@ -8,7 +8,7 @@ using UnityEngine.VFX;
 using UnityExtensions;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {
@@ -19,8 +19,6 @@ namespace Platformer.Entities.Components {
     [DefaultExecutionOrder(1000)]
     public class Power : MonoBehaviour {
 
-        #region Enumerations.
-        
         public enum Type {
             None, 
             Dash, 
@@ -30,19 +28,9 @@ namespace Platformer.Entities.Components {
             Sticky
         }
 
-        #endregion
-
-        #region Variables.
-
-        /* --- Members --- */
-
         // The type of orb this is.
         [SerializeField] 
         protected Type m_Type;
-
-        #endregion
-
-        #region Methods.
 
         // Collects this orb.
         public void SwapPower() {
@@ -58,10 +46,10 @@ namespace Platformer.Entities.Components {
                     character.Hop.Enable(character, true);
                     break;
                 case Type.Ghost:
-                    character.Ghost.Enable(character, true);
+                    // character.Ghost.Enable(character, true);
                     break;
                 case Type.Shadow:
-                    character.Shadow.Enable(character, true);
+                    // character.Shadow.Enable(character, true);
                     break;
                 case Type.Sticky:
                     character.Sticky.Enable(character, true);
@@ -72,8 +60,6 @@ namespace Platformer.Entities.Components {
             }
 
         }
-        
-        #endregion
         
     }
 }

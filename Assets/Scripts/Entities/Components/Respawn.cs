@@ -8,7 +8,7 @@ using UnityEngine.VFX;
 using UnityExtensions;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using Entity = Platformer.Entities.Entity;
 using CharacterController = Platformer.Character.CharacterController;
 

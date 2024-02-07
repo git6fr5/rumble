@@ -4,16 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
-// LDtk.
-using LDtkUnity;
 // Platformer.
 using Platformer.Levels;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
-using SaveSystem = Platformer.Management.SaveSystem;
+using Game = Platformer.GameManager;
+// using SaveSystem = Platformer.Management.SaveSystem;
 
-namespace Platformer.Management {
+namespace Platformer.Levels {
 
     /// <summary>
     /// Loads all the levels in the world from the LDtk file.
@@ -54,12 +52,16 @@ namespace Platformer.Management {
         }
 
         // Loads the entities for 
-        public void Load(Room room) {
-            
+        public void Load(LevelSection section) {
+            for (int i = 0; i < section.Pieces.Length; i++) {
+                section.Pieces[i].SetActive(true);
+            }
         }
 
-        public void Unload(Room room) {
-            
+        public void Unload(LevelSection section) {
+            for (int i = 0; i < section.Pieces.Length; i++) {
+                section.Pieces[i].SetActive(false);
+            }
         }
 
         /* --- end room manager --- */

@@ -11,7 +11,7 @@ using UnityExtensions;
 using Platformer.Decorations;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 
 namespace Platformer.Decorations {
 

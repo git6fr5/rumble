@@ -8,7 +8,7 @@ using UnityEngine.U2D;
 using UnityExtensions;
 
 /* --- Definitions --- */
-using Game = Platformer.Management.GameManager;
+using Game = Platformer.GameManager;
 using PathingNode = Platformer.Entities.Utility.PathingNode;
 
 namespace Platformer.Entities.Components {

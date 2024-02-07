@@ -7,7 +7,7 @@ using UnityExtensions;
 using Platformer;
 using Platformer.Decorations;
 
-using TransformAnimator = Platformer.Visuals.Animation.TransformAnimator;
+using TransformAnimator = Gobblefish.Animation.TransformAnimator;
 
 namespace Platformer.Decorations {
 

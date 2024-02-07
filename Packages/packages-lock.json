@@ -9,6 +9,16 @@
       },
       "url": "https://package.openupm.com"
     },
+    "com.gobblefish.standards": {
+      "version": "https://github.com/Gobblefish/standard-assets.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "12.1.6",
+        "com.unity.2d.common": "6.0.3"
+      },
+      "hash": "ed2b686597fc07d303ebe8a0ec4306d25c7dc212"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.9",
       "depth": 0,

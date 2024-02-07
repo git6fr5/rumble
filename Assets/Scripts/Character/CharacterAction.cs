@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 using UnityExtensions;
 // Platformer.
-using Platformer.Input;
+using Gobblefish.Input;
 using Platformer.Character;
 
 namespace Platformer.Character.Actions {
