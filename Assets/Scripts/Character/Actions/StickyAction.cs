@@ -96,7 +96,7 @@ namespace Platformer.Character.Actions {
         public override void InputUpdate(CharacterController character) {
             if (!m_Enabled) { return; }
 
-            if (character.Input.Action1.Held && m_ActionPhase == ActionPhase.None && m_CanClimb) {
+            if (character.Input.Actions[1].Held && m_ActionPhase == ActionPhase.None && m_CanClimb) {
                 // The character should start dashing.
                 OnStartClimb(character);
 
@@ -105,12 +105,12 @@ namespace Platformer.Character.Actions {
             }
 
             // Jumping.
-            if (character.Input.Action0.Pressed && (m_ActionPhase == ActionPhase.PreAction || m_ActionPhase == ActionPhase.PostAction)) {
+            if (character.Input.Actions[0].Pressed && (m_ActionPhase == ActionPhase.PreAction || m_ActionPhase == ActionPhase.PostAction)) {
                 // The character should jump.
                 OnWallJump(character);
 
                 // Release the input and reset the refresh.
-                character.Input.Action0.ClearPressBuffer();
+                character.Input.Actions[0].ClearPressBuffer();
             }
         }
         
@@ -231,7 +231,7 @@ namespace Platformer.Character.Actions {
         private void WhileClimbing(CharacterController character, float dt) {
             // End the climb early if the character is not facing the wall.
             // Should the player have to hold the key to keep wall climbing.
-            if (!character.FacingWall || !character.Input.Action1.Held) {
+            if (!character.FacingWall || !character.Input.Actions[1].Held) {
                 OnEndClimb(character);
                 return;
             }
@@ -264,8 +264,8 @@ namespace Platformer.Character.Actions {
             else {
                 bool somethingSlowedUsDown = Mathf.Abs(character.Body.velocity.x) < WALLJUMP_SPEED_THRESHOLD * m_WallJumpSpeed;
                 bool turnedTheOtherDirection = character.FacingDirection != Mathf.Sign(character.Body.velocity.x);
-                // bool letGoJump = !character.Input.Action0.Held;
-                bool letGoAction = !character.Input.Action1.Held;
+                // bool letGoJump = !character.Input.Actions[0].Held;
+                bool letGoAction = !character.Input.Actions[1].Held;
                 if (somethingSlowedUsDown || letGoAction || turnedTheOtherDirection) {
                     OnEndWallJump(character);
                 }

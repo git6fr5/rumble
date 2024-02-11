@@ -88,22 +88,22 @@
 //             if (!m_Enabled) { return; }
 
 //             // Dashing.
-//             if (character.Input.Action1.Pressed && m_ActionPhase == ActionPhase.None && m_Refreshed) {
+//             if (character.Input.Actions[1].Pressed && m_ActionPhase == ActionPhase.None && m_Refreshed) {
 //                 // The character should start dashing.
 //                 OnStartShadowMode(character);
 
 //                 // Release the input and reset the refresh.
-//                 character.Input.Action1.ClearPressBuffer();
+//                 character.Input.Actions[1].ClearPressBuffer();
 //                 m_Refreshed = false;
 //             }
 
 //             // Dashing.
-//             if (character.Input.Action1.Released && m_ActionPhase == ActionPhase.PreAction) {
+//             if (character.Input.Actions[1].Released && m_ActionPhase == ActionPhase.PreAction) {
 //                 // The character should start dashing.
 //                 OnEndShadowMode(character);
 
 //                 // Release the input and reset the refresh.
-//                 character.Input.Action1.ClearReleaseBuffer();
+//                 character.Input.Actions[1].ClearReleaseBuffer();
 //                 m_Refreshed = false;
 //             }
             

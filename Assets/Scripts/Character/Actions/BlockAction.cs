@@ -95,12 +95,12 @@
 //             if (!m_Enabled) { return; }
 
 //             // Dashing.
-//             if (character.Input.Action1.Pressed && m_ActionPhase == ActionPhase.None && m_Refreshed) {
+//             if (character.Input.Actions[1].Pressed && m_ActionPhase == ActionPhase.None && m_Refreshed) {
 //                 // The character should start dashing.
 //                 OnStartPredash(character);
 
 //                 // Release the input and reset the refresh.
-//                 character.Input.Action1.ClearPressBuffer();
+//                 character.Input.Actions[1].ClearPressBuffer();
 //                 m_Refreshed = false;
 //             }
 

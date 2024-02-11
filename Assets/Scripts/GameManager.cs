@@ -45,6 +45,10 @@ namespace Platformer {
             PLATFORMER_INSTANCE.m_PhysicsManager.Time.Pause();
         }
 
+        public static void TestFunction() {
+            
+        }
+
     }
     
 }

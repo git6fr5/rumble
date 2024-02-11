@@ -28,14 +28,6 @@ namespace Platformer.Entities.Triggers {
         [SerializeField, ReadOnly]
         protected bool m_CachePressed = false;
 
-        // The sound to be played when this platform is pressed.
-        [SerializeField] 
-        private AudioClip m_OnPressedSound;
-
-        // The sound to be played when this platform is released.
-        [SerializeField] 
-        private AudioClip m_OnReleasedSound;
-
         [SerializeField]
         private UnityEvent m_PressEvent;
 
@@ -54,23 +46,14 @@ namespace Platformer.Entities.Triggers {
             m_Pressed = CheckPressed(transform.position.y, m_Entity.CollisionContainer);
 
             if (m_Pressed && !m_CachePressed) {
-                Game.Audio.Sounds.PlaySound(m_OnPressedSound, 0.15f);
                 m_PressEvent.Invoke();
             }
             else if (m_CachePressed && !m_Pressed) {
-                Game.Audio.Sounds.PlaySound(m_OnReleasedSound, 0.15f);
                 m_ReleaseEvent.Invoke();
             }
 
             m_CachePressed = m_Pressed;
         }
-
-        // IEnumerator Test() {
-        //     while (true) {
-        //         m_PressEvent.Invoke();
-        //         yield return new WaitForSeconds(Random.Range(0.1f, 0.3f));
-        //     }
-        // }
 
         // Check if a character is standing on top of this.
         public static bool CheckPressed(float platformHeight, List<Transform> collisionContainer) {

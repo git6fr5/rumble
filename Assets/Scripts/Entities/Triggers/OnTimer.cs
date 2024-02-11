@@ -19,14 +19,6 @@ namespace Platformer.Entities.Triggers {
         [SerializeField]
         private float m_Interval = 2f;
 
-        // The effect that plays when this spike shatters.
-        [SerializeField] 
-        private VisualEffect m_TimedEffect;
-        
-        // The effect that plays when the spike shatters.
-        [SerializeField] 
-        private AudioClip m_TimedSound;
-
         // The timer with which this spits things.
         [HideInInspector]
         private Timer m_Timer = new Timer(0f, 0f);

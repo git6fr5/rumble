@@ -668,24 +668,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf3a330cb4195944a59c05d0da13f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Action0:
-    m_PressedTicks: 0
+  m_Actions:
+  - m_PressedTicks: 0
     m_ReleasedTicks: 0
     m_Held: 0
     m_HeldTicks: 0
-  m_Action1:
-    m_PressedTicks: 0
+  - m_PressedTicks: 0
     m_ReleasedTicks: 0
     m_Held: 0
     m_HeldTicks: 0
-  m_Action2:
-    m_PressedTicks: 0
-    m_ReleasedTicks: 0
-    m_Held: 0
-    m_HeldTicks: 0
-  m_ActionKeybind0: 32
-  m_ActionKeybind1: 106
-  m_ActionKeybind2: 107
+  m_ActionKeybinds: 200000006a000000
 --- !u!114 &7023531790451818371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,6 +701,7 @@ MonoBehaviour:
     m_Value: 0
     m_MaxValue: 0
   m_Respawn: {fileID: 0}
+  m_Interactable: {fileID: 0}
   m_OnDeathParticle: {fileID: 21300000, guid: d9d0378a31bfc894391fb53f71ff4ed9, type: 3}
   m_OnDeathSound: {fileID: 8300000, guid: 932db81d51addfe4db2b633978d11004, type: 3}
   m_DeathColor: {r: 0, g: 0, b: 0, a: 0}
@@ -718,6 +711,7 @@ MonoBehaviour:
     m_ActionPhase: 0
     m_Refreshed: 0
     m_Enabled: 0
+    m_Interacting: 0
     m_MoveEnabled: 1
     m_FallEnabled: 1
     m_DuckEnabled: 1

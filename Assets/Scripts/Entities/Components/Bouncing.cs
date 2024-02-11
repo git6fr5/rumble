@@ -134,7 +134,7 @@ namespace Platformer.Entities.Components {
                 CharacterController character = m_Entity.CollisionContainer[i].GetComponent<CharacterController>();
                 if (character != null) {
                     character.Default.ClampJump(true);
-                    if (character.Input.Action0.Released) {
+                    if (character.Input.Actions[0].Released) {
                         character.Default.OnExternalJump(character, character.Default.JumpSpeed);
                         character.Default.ClampJump(false);
                     }
@@ -148,7 +148,7 @@ namespace Platformer.Entities.Components {
             for (int i = 0; i < m_Entity.CollisionContainer.Count; i++) {
                 CharacterController character = m_Entity.CollisionContainer[i].GetComponent<CharacterController>();
                 if (character != null) {
-                    if (character.Input.Action0.Held) {
+                    if (character.Input.Actions[0].Held) {
                         print("pre-emptive bounce");
                         character.Default.OnExternalJump(character, BOUNCE_SPEED);
                         character.Default.ClampJump(false);
@@ -166,7 +166,7 @@ namespace Platformer.Entities.Components {
             for (int i = 0; i < m_Entity.CollisionContainer.Count; i++) {
                 CharacterController character = m_Entity.CollisionContainer[i].GetComponent<CharacterController>();
                 if (character != null) {
-                    if (character.Input.Action0.Held) {
+                    if (character.Input.Actions[0].Held) {
                         print("releasing bounce");
                         character.Default.OnExternalJump(character, BOUNCE_SPEED);
                         character.Default.ClampJump(false);

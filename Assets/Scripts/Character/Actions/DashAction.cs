@@ -99,12 +99,12 @@ namespace Platformer.Character.Actions {
             if (!m_Enabled) { return; }
 
             // Dashing.
-            if (character.Input.Action1.Pressed && m_ActionPhase == ActionPhase.None && m_Refreshed) {
+            if (character.Input.Actions[1].Pressed && m_ActionPhase == ActionPhase.None && m_Refreshed) {
                 // The character should start dashing.
                 OnStartPredash(character);
 
                 // Release the input and reset the refresh.
-                character.Input.Action1.ClearPressBuffer();
+                character.Input.Actions[1].ClearPressBuffer();
                 m_Refreshed = false;
             }
 
@@ -224,7 +224,7 @@ namespace Platformer.Character.Actions {
             
             m_ActionPhase = ActionPhase.None;
 
-            if (m_DashCount > 0 && character.Input.Action1.Held && character.Input.Direction.Normal != Vector2.zero) {
+            if (m_DashCount > 0 && character.Input.Actions[1].Held && character.Input.Direction.Normal != Vector2.zero) {
                 OnStartPredash(character);
                 m_DashCount -= 1;
             }

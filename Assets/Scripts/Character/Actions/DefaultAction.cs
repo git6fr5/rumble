@@ -176,7 +176,7 @@ namespace Platformer.Character.Actions {
             }
 
             // Jumping.
-            if (character.Input.Action0.Pressed && m_Refreshed) {
+            if (character.Input.Actions[0].Pressed && m_Refreshed) {
                 // If interacting with an NPC.
                 if (character.CurrentInteractable != null) {
                     if (!m_Interacting) {
@@ -185,7 +185,7 @@ namespace Platformer.Character.Actions {
                     else {
                         WhileInteracting(character);
                     }
-                    character.Input.Action0.ClearPressBuffer();
+                    character.Input.Actions[0].ClearPressBuffer();
                     return;
                 }
 
@@ -193,7 +193,7 @@ namespace Platformer.Character.Actions {
                 OnJump(character);
 
                 // Release the input and reset the refresh.
-                character.Input.Action0.ClearPressBuffer();
+                character.Input.Actions[0].ClearPressBuffer();
                 m_CoyoteTimer.Stop();
                 m_Refreshed = false;
             }
@@ -266,7 +266,7 @@ namespace Platformer.Character.Actions {
             character.Body.ClampFallSpeed(0f); 
             character.Body.SetVelocity(Vector2.up * jumpSpeed);
 
-            character.Input.Action0.ClearPressBuffer();
+            character.Input.Actions[0].ClearPressBuffer();
             m_CoyoteTimer.Stop();
             m_Refreshed = false;
 
@@ -324,7 +324,7 @@ namespace Platformer.Character.Actions {
                     m_HangTimer.Start();
 
                     // If not holding jump, then rapidly slow the rising body.
-                    if (!character.Input.Action0.Held) {
+                    if (!character.Input.Actions[0].Held) {
                         character.Body.SetVelocity(new Vector2(character.Body.velocity.x, character.Body.velocity.y * (1f - RISE_FRICTION)));
                     }
 
