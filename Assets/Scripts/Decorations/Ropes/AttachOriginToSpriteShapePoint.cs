@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.U2D;
 using Platformer;
 
-namespace Platformer.Decorations {
+namespace Platformer.LevelEditing {
 
     ///<summary>
     ///

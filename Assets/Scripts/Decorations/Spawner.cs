@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityExtensions;
 
-namespace Platformer.Decorations {
+namespace Platformer.LevelEditing {
 
     ///<summary>
     ///

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7913614745172819391}
   - component: {fileID: 7913614745172819390}
+  - component: {fileID: 8199266726005962166}
   m_Layer: 0
   m_Name: Carved Rock 0
   m_TagString: Decoration
@@ -72,8 +73,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -22149485
   m_SortingLayer: 1
-  m_SortingOrder: -5
-  m_Sprite: {fileID: 1028918579, guid: 575222de56178eb499916b5418e4efed, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 1241302605, guid: 5a948a4a10a0a224689e3971780b847d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,3 +85,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8199266726005962166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7913614745172819388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15c53f63acd94228b7661aa2590481c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Options:
+  - {fileID: 1028918579, guid: 575222de56178eb499916b5418e4efed, type: 3}
+  - {fileID: -371265146, guid: 575222de56178eb499916b5418e4efed, type: 3}
+  - {fileID: 1241302605, guid: 5a948a4a10a0a224689e3971780b847d, type: 3}
+  - {fileID: -535118966, guid: 5a948a4a10a0a224689e3971780b847d, type: 3}
+  - {fileID: 1348422976, guid: 5a948a4a10a0a224689e3971780b847d, type: 3}
+  m_Next: 0
+  m_Prev: 0
+  m_OptionIndex: 2
+  m_FlipHorizontally: 0
+  m_FlipVertically: 0
+  m_Rotate45: 0
+  m_RotateBack45: 0
+  m_Rotate5: 0
+  m_RotateBack5: 0
+  m_PauseForReload: 0

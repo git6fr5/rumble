@@ -174,7 +174,7 @@
 
 //             if (m_Corpse == null) {
 //                 m_Corpse = new GameObject("Corpse", typeof(SpriteRenderer), typeof(Rigidbody2D), typeof(BoxCollider2D)).GetComponent<Rigidbody2D>();
-//                 // Platformer.Objects.Decorations.BridgeRope rope = new GameObject("Corpse", typeof(Platformer.Objects.Decorations.BridgeRope)).GetComponent<Platformer.Objects.Decorations.BridgeRope>();
+//                 // Platformer.Objects.LevelEditing.BridgeRope rope = new GameObject("Corpse", typeof(Platformer.Objects.LevelEditing.BridgeRope)).GetComponent<Platformer.Objects.LevelEditing.BridgeRope>();
 //                 // rope.endpoint = character.transform;
 //                 // rope.startpoint = m_Corpse.transform;
 //                 // rope.transform.parent = m_Corpse.transform;

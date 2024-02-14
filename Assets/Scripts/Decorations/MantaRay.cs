@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.U2D;
 using UnityExtensions;
 using Platformer;
-using Platformer.Decorations;
+using Platformer.LevelEditing;
 
 using TransformAnimator = Gobblefish.Animation.TransformAnimator;
 
-namespace Platformer.Decorations {
+namespace Platformer.LevelEditing {
 
     ///<summary>
     ///

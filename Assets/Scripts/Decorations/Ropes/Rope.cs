@@ -9,7 +9,7 @@ using UnityEngine.U2D;
 /* --- Definitions --- */
 using Game = Platformer.GameManager;
 
-namespace Platformer.Decorations {
+namespace Platformer.LevelEditing {
 
     /// <summary>
     ///

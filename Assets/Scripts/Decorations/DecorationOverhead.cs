@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-using Platformer.Decorations;
+using Platformer.LevelEditing;
 
-namespace Platformer.Decorations {
+namespace Platformer.LevelEditing {
 
     ///<summary>
     ///

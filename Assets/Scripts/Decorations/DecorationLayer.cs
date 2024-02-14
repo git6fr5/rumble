@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-using Platformer.Decorations;
+using Platformer.LevelEditing;
 
-namespace Platformer.Decorations {
+namespace Platformer.LevelEditing {
 
     ///<summary>
     ///
@@ -87,7 +87,7 @@ namespace Platformer.Decorations {
         void SetName() {
             string matName = m_Material != null ? m_Material.name : "default";
             string roomName = transform.parent != null ? transform.parent.gameObject.name : "N/A";
-            gameObject.name = m_SortingLayer + " " + m_SortingOrderOffset.ToString(); // " (" + matName + ")";
+            gameObject.name = roomName + " " + m_SortingLayer + " " + m_SortingOrderOffset.ToString(); // " (" + matName + ")";
         }
 
         void ParentAllNewObjects(Transform parent, string tag) {
@@ -102,7 +102,7 @@ namespace Platformer.Decorations {
 
         void EditDecoration(SpriteRenderer spriteRenderer, Material mat, string sortingLayer, int sortingOrder, Color color) {
             if (spriteRenderer != null) {
-                spriteRenderer.sharedMaterial = DecorationOverhead.GetMaterial(spriteRenderer, mat);
+                // spriteRenderer.sharedMaterial = DecorationOverhead.GetMaterial(spriteRenderer, mat);
                 spriteRenderer.sortingLayerName = sortingLayer;
                 spriteRenderer.sortingOrder = sortingOrder;
                 spriteRenderer.color = color;

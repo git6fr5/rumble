@@ -8,13 +8,13 @@ using UnityEngine;
 namespace Platformer.LevelEditing {
 
     [ExecuteInEditMode]
-    public class LevelLayer : MonoBehaviour {
+    public class EntityOverhead : MonoBehaviour {
 
         // The cached list of all objects under the current layer.
         private List<GameObject> m_AllObjects = new List<GameObject>();
 
         [SerializeField]
-        private Transform m_CurrentLayer = null;
+        private EntityLayer m_CurrentLayer = null;
 
         void Start() {
             if (!Application.isPlaying) {
@@ -24,17 +24,18 @@ namespace Platformer.LevelEditing {
 
         void Update() {
             if (!Application.isPlaying) {
-                ParentAllNewObjects(m_CurrentLayer, "Entity");
+                if (m_CurrentLayer == null) { return; }
+                ParentAllNewObjects(m_CurrentLayer.transform, "Entity");
             }
         }
 
         void ParentAllNewObjects(Transform parent, string tag) {
-            GameObject[] allObjects = GameObject.FindGameObjectsWithTag(tag);
-            List<GameObject> newObjects = GameObject.FindGameObjectsWithTag(tag).ToList();
+            // GameObject[] allObjects = GameObject.FindGameObjectsWithTag(tag);
+            List<GameObject> allObjects = GameObject.FindGameObjectsWithTag(tag).ToList();
 
-            for (int i = 0; i < allObjects.Length; i++) {
-                if (allObjects[i].transform.parent == null) {
-                    allObjects[i].transform.SetParent(transform);
+            for (int i = 0; i < allObjects.Count; i++) {
+                if (allObjects[i].transform.parent == null && !m_AllObjects.Contains(allObjects[i])) {
+                    allObjects[i].transform.SetParent(parent);
                 }
             }
         }

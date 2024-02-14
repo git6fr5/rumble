@@ -84,9 +84,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HitStopFrames: 8
-  m_OnTouchedSound: {fileID: 0}
-  m_OnTouchEffect: {fileID: 1477809269542102739}
-  m_OnTouchGroundEffect: {fileID: 3006054146776083270}
   m_TouchEvent:
     m_PersistentCalls:
       m_Calls:
@@ -102,6 +99,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_TouchExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
   m_TouchGroundEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -236,11 +236,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1906712974298202658, guid: 97e9cec49ffe93c45a1de6cff8a33c2e, type: 3}
   m_PrefabInstance: {fileID: 1077550989650322675}
   m_PrefabAsset: {fileID: 0}
---- !u!2083052967 &1477809269542102739 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 1906712974298202656, guid: 97e9cec49ffe93c45a1de6cff8a33c2e, type: 3}
-  m_PrefabInstance: {fileID: 1077550989650322675}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3517220660400543466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -365,11 +360,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1406023726716686726, guid: b54170921058a79488c93cb2e2a32ce6, type: 3}
   m_PrefabInstance: {fileID: 4194141463716936390}
   m_PrefabAsset: {fileID: 0}
---- !u!2083052967 &3006054146776083270 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 1406023726716686720, guid: b54170921058a79488c93cb2e2a32ce6, type: 3}
-  m_PrefabInstance: {fileID: 4194141463716936390}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9080749197765962005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -387,11 +377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1404282180524080155, guid: 1687940956fa3644aafeab30f033cff0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: 1404282180524080155, guid: 1687940956fa3644aafeab30f033cff0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.82
       objectReference: {fileID: 0}
     - target: {fileID: 1404282180524080155, guid: 1687940956fa3644aafeab30f033cff0, type: 3}
       propertyPath: m_LocalPosition.z

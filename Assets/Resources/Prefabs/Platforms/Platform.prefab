@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2796364907619265864}
     m_Modifications:
+    - target: {fileID: 3285098129372760693, guid: 4fc2e313f8e9f491392013659b27bc58, type: 3}
+      propertyPath: m_Sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: -1582928370, guid: 58d1df6bd9b099e48b8b0bd40a5bf993, type: 3}
     - target: {fileID: 5031580366440459772, guid: 4fc2e313f8e9f491392013659b27bc58, type: 3}
       propertyPath: m_Name
       value: Spriteshape Renderer
@@ -55,6 +59,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6222757984455169062, guid: 4fc2e313f8e9f491392013659b27bc58, type: 3}
+      propertyPath: m_SpriteShape
+      value: 
+      objectReference: {fileID: 11400000, guid: 72aa9791504b0a344a9dcf90fce28914, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fc2e313f8e9f491392013659b27bc58, type: 3}
 --- !u!1971053207 &3391594432048490025 stripped
@@ -131,6 +139,10 @@ PrefabInstance:
     - target: {fileID: 69833312048615783, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_Name
       value: Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 69833312048615783, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_TagString
+      value: Entity
       objectReference: {fileID: 0}
     - target: {fileID: 69833312048615787, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_Renderer

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 // Platformer.
-using Platformer.Decorations;
+using Platformer.LevelEditing;
 
-namespace Platformer.Decorations {
+namespace Platformer.LevelEditing {
 
     [RequireComponent(typeof(EdgeCollider2D))]
     public class BridgeRope : Rope {
