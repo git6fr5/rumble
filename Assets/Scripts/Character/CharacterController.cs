@@ -131,9 +131,9 @@ namespace Platformer.Character {
         public HopAction Hop => m_HopAction;
         
         // The ghost action.
-        // [SerializeField] 
-        // private GhostAction m_GhostAction;
-        // public GhostAction Ghost => m_GhostAction;
+        [SerializeField] 
+        private GhostAction m_GhostAction;
+        public GhostAction Ghost => m_GhostAction;
         
         // The shadow action.
         // [SerializeField] 
@@ -159,7 +159,7 @@ namespace Platformer.Character {
             m_PowerActions = new List<CharacterAction>() {
                 m_DashAction,
                 m_HopAction,
-                // m_GhostAction, 
+                m_GhostAction, 
                 // m_ShadowAcction,
                 m_StickyAction
             };
@@ -169,8 +169,8 @@ namespace Platformer.Character {
         }
 
         public void Reset() {
-            if (m_Respawn == null) {
-                SceneManager.LoadScene("Game");
+            if (m_Respawn == null && tag == "Player") {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
             if (m_Dying) {
@@ -184,8 +184,8 @@ namespace Platformer.Character {
             Game.Audio.Sounds.PlaySound(m_OnDeathSound, 0.15f);
 
             // Noting the death in the stats.
-            Game.Level.AddDeath();
-            Game.Level.Reset();
+            // Game.Level.AddDeath();
+            // Game.Level.Reset();
             
             // Resetting the character.
             Disable(Respawn.RESPAWN_DELAY);

@@ -156,7 +156,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    baseRotation: 0
+    baseRotation: {x: 0, y: 0, z: 0, w: 0}
     rotationScale: 0
     rotationCurve:
       serializedVersion: 2
@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 69833312048615787}
   - component: {fileID: 6270168730054871778}
   - component: {fileID: 69833312048615785}
+  - component: {fileID: 1017512289745830067}
   m_Layer: 6
   m_Name: Platform (Single)
   m_TagString: Entity
@@ -288,6 +289,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &1017512289745830067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69833312048615783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1ebfb9c74b04bca91977abfa340ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Singular: 0
+  m_Unloadable: 1
+  m_VectorID: {x: 0, y: 1}
+  m_GridPosition: {x: 0, y: 0}
+  m_GridSize: 16
+  m_Rotations: []
+  m_ControlComponents: []
 --- !u!1 &6124141124980003649
 GameObject:
   m_ObjectHideFlags: 0

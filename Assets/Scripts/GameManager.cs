@@ -41,7 +41,7 @@ namespace Platformer {
 
         // Pause the game.
         public void Pause() {
-            m_LevelManager.OnSaveAndQuit();
+            // m_LevelManager.OnSaveAndQuit();
             PLATFORMER_INSTANCE.m_PhysicsManager.Time.Pause();
         }
 

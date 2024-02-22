@@ -178,7 +178,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.5
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -727,9 +727,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9214379557076780109}
+  - component: {fileID: 6106756175647148038}
   - component: {fileID: 9214379557076780106}
   m_Layer: 0
-  m_Name: Volume
+  m_Name: Post Processor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -750,6 +751,19 @@ Transform:
   m_Father: {fileID: 9214379556488423180}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6106756175647148038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214379557076780108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a91462b2d9b741cfb6ca1bc8a31d851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Volume: {fileID: 9214379557076780106}
 --- !u!114 &9214379557076780106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,7 +889,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_AudioManager: {fileID: 9214379556738734646}
-  m_GraphicsManager: {fileID: 0}
+  m_GraphicsManager: {fileID: 76641280037750715}
   m_Player: {fileID: 0}
   m_LevelManager: {fileID: 0}
   m_PhysicsManager: {fileID: 3010054839219528053}
@@ -1061,6 +1075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9214379558187376266}
+  - component: {fileID: 76641280037750715}
   - component: {fileID: 7014558626826180042}
   m_Layer: 0
   m_Name: Visuals
@@ -1085,6 +1100,21 @@ Transform:
   m_Father: {fileID: 9214379557256880638}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &76641280037750715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214379558187376269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb6efeb78d2fd1d49b04cdf0073b6999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CamMovement: {fileID: 7014558626826180042}
+  m_CamShake: {fileID: 240936344814691463}
+  m_PostProcessor: {fileID: 6106756175647148038}
 --- !u!114 &7014558626826180042
 MonoBehaviour:
   m_ObjectHideFlags: 0

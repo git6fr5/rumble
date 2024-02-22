@@ -99,7 +99,7 @@ namespace Platformer.Entities.Components {
         private void WhileTensing(float dt) {
             transform.Move(MaxTensionPosition, m_SinkSpeed, dt, m_Entity.CollisionContainer);
             
-            float distance = (transform.position - MaxTensionPosition).magnitude;
+            float distance = (transform.localPosition - MaxTensionPosition).magnitude;
             
             // float distance = (m_Origin - MaxTensionPosition).magnitude / m_SinkSpeed;
             if (distance < (m_Entity.Origin - MaxTensionPosition).magnitude / 2f) {
@@ -120,7 +120,7 @@ namespace Platformer.Entities.Components {
             // PRESSES jump while the platform is releasing.
             CheckBounce();
 
-            float distance = (transform.position - m_Entity.Origin).magnitude;
+            float distance = (transform.localPosition - m_Entity.Origin).magnitude;
             if (distance < Game.Physics.Collisions.CollisionPrecision) {
                 m_BounceState = BounceState.None;
                 MissedBounce();

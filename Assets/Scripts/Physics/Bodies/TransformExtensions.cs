@@ -18,7 +18,7 @@ namespace UnityExtensions {
 
         // Moves an obstacle towards a target.
         public static void Move(this Transform transform, Vector2 destination, float speed, float deltaTime, List<Transform> transforms = null) {
-            Vector2 pos = (Vector2)transform.position;
+            Vector2 pos = (Vector2)transform.localPosition;
             if (destination == pos) {
                 return;
             }
@@ -27,9 +27,12 @@ namespace UnityExtensions {
             Vector3 deltaPosition = displacement.normalized * speed * deltaTime;
             if (displacement.magnitude < deltaPosition.magnitude) {
                 deltaPosition = displacement;
+                transform.localPosition = destination;
+            }
+            else {
+                transform.localPosition += deltaPosition;
             }
 
-            transform.position += deltaPosition;
             if (transforms != null) {
                 transforms.Drag(deltaPosition);
             }
@@ -58,7 +61,7 @@ namespace UnityExtensions {
         // Drags a collection of transforms with the obstacle.
         public static void Drag(this List<Transform> transforms, Vector3 deltaPosition) {
             for (int i = 0; i < transforms.Count; i++) {
-                transforms[i].position += deltaPosition;
+                transforms[i].localPosition += deltaPosition;
             }
         }
 

@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194599975967101403}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -71,9 +71,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingLayerID: 618029683
+  m_SortingLayer: 3
+  m_SortingOrder: 3
   m_Sprite: {fileID: 2128210797, guid: b52d2a6d2fa46ba4ebc826baddfb8cb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 5167519552099631879}
   - component: {fileID: 194599976624927682}
   - component: {fileID: 194599976624927685}
+  - component: {fileID: 2906076660938666276}
   m_Layer: 0
   m_Name: Spitting Flower
   m_TagString: Untagged
@@ -237,7 +238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194599976624927687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47.52, y: 5.77, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -274,8 +275,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Interval: 2
-  m_TimedEffect: {fileID: 0}
-  m_TimedSound: {fileID: 0}
   m_TimedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -322,10 +321,36 @@ MonoBehaviour:
     m_MaxValue: 0
   m_SpitDelay: 0.4
   m_SpitSpeed: 10
-  m_SpitProjectile: {fileID: 0}
+  m_SpitProjectile: {fileID: 1863113187342327081}
   m_SpitEffect: {fileID: 0}
   m_SpitSound: {fileID: 0}
   debugSpitter: 1
+--- !u!114 &2906076660938666276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194599976624927687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1ebfb9c74b04bca91977abfa340ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Singular: 0
+  m_Unloadable: 1
+  m_VectorID: {x: 1, y: 7}
+  m_GridPosition: {x: 0, y: 0}
+  m_GridSize: 16
+  m_Rotations:
+  - Rotation: 0
+    VectorID: {x: 1, y: 6}
+  - Rotation: 180
+    VectorID: {x: 2, y: 6}
+  - Rotation: -90
+    VectorID: {x: 5, y: 5}
+  - Rotation: 90
+    VectorID: {x: 5, y: 6}
 --- !u!1001 &4668044872263926144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -395,6 +420,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3b68254dbda64c10ae63b919450e3fc, type: 3}
+--- !u!114 &1863113187342327081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6418510756245052585, guid: e3b68254dbda64c10ae63b919450e3fc, type: 3}
+  m_PrefabInstance: {fileID: 4668044872263926144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee6b22cd74c0ca4b987b35c21b83594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1863113187342327082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6418510756245052586, guid: e3b68254dbda64c10ae63b919450e3fc, type: 3}

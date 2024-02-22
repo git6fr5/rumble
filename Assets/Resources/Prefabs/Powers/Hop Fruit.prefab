@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1261232352270405510, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_VectorID.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261232352270405510, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_VectorID.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2106304517582612424, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -58,10 +66,14 @@ PrefabInstance:
     - target: {fileID: 3600940583916435708, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1814348745, guid: ccc08ac1985250349926fbdeb900d71d, type: 3}
+      objectReference: {fileID: 1037324167, guid: f9af9a8172a634eeb84bda84b8675e37, type: 3}
     - target: {fileID: 5540784946163351741, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
       propertyPath: m_Snippets.Array.data[0].clip
       value: 
       objectReference: {fileID: 8300000, guid: a39b11d9dd5f06f4bbde391441551257, type: 3}
+    - target: {fileID: 8883544437578853683, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_Type
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}

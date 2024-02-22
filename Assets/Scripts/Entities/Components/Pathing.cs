@@ -18,7 +18,7 @@ namespace Platformer.Entities.Components {
     ///<summary>
     public class Pathing : MonoBehaviour {
 
-        private Entity m_Entity;
+        public Entity m_Entity;
 
         // The path that this platform follows.
         [SerializeField]
@@ -29,16 +29,16 @@ namespace Platformer.Entities.Components {
         protected int m_PathIndex;
 
         // The pause timer.
-        [HideInInspector]
+        [SerializeField]
         protected Timer m_PauseTimer = new Timer(0f, 0f);
 
         // The amount of time the platform pauses
         [SerializeField]
-        protected float m_PauseDuration = 0f;
+        protected float m_PauseDuration = 0.5f;
 
         // The speed with which the platform moves at.
         [SerializeField] 
-        protected float m_Speed = 4.5f;
+        protected float m_Speed = 3f;
 
         // The sound that plays when the platform starts moving.
         [SerializeField]
@@ -50,12 +50,14 @@ namespace Platformer.Entities.Components {
 
         // Used to cache references.
         void Awake() {
-            m_Entity = GetComponent<Entity>();
+            // if (m_Entity == null) {
+            //     m_Entity = GetComponent<Entity>();
+            // }
         }
 
         void Start() {
             for (int i = 0; i < m_Nodes.Length; i++) {
-                m_Nodes[i].transform.parent = null;
+                m_Nodes[i].transform.parent = transform.parent;
             }
         }
 
@@ -74,7 +76,7 @@ namespace Platformer.Entities.Components {
             }
 
             // At an end point.
-            bool finished = m_PauseTimer.TickDownIf(dt, distance == 0f);
+            bool finished = m_PauseTimer.TickDownIf(dt, distance < 0.01f);
             bool neverStarted = distance == 0f && m_PauseTimer.MaxValue == 0f;
             if (finished || neverStarted) {
                 Game.Audio.Sounds.PlaySound(m_StartMovingSound);
@@ -84,7 +86,7 @@ namespace Platformer.Entities.Components {
 
         }
 
-        public bool debugPath = false;
+        public bool debugPath = true;
         void OnDrawGizmos() {
             if (!debugPath) { return; }
             for (int i = 0; i < m_Nodes.Length; i++) {
@@ -97,6 +99,14 @@ namespace Platformer.Entities.Components {
             }
             Gizmos.DrawLine(m_Nodes[m_Nodes.Length - 1].transform.position, m_Nodes[0].transform.position);
 
+        }
+
+        public void SetEntity(Entity entity) {
+            m_Entity = entity;
+        }
+
+        public void SetPath(List<PathingNode> path) {
+            m_Nodes = path.ToArray();
         }
 
     }

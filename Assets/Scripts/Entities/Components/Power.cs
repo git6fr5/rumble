@@ -46,7 +46,7 @@ namespace Platformer.Entities.Components {
                     character.Hop.Enable(character, true);
                     break;
                 case Type.Ghost:
-                    // character.Ghost.Enable(character, true);
+                    character.Ghost.Enable(character, true);
                     break;
                 case Type.Shadow:
                     // character.Shadow.Enable(character, true);

@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 7638311234357158189}
   - component: {fileID: 9026948846908625529}
   - component: {fileID: 525901059311045490}
+  - component: {fileID: 5988058757609501563}
   m_Layer: 9
   m_Name: Falling Worm
   m_TagString: Untagged
@@ -276,19 +277,6 @@ MonoBehaviour:
       - m_Target: {fileID: 3770106392503223608}
         m_TargetAssemblyTypeName: Platformer.Entities.Components.Falling, Assembly-CSharp
         m_MethodName: StartFall
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5869780071063360631}
-        m_TargetAssemblyTypeName: Platformer.Visuals.Animation.TransformAnimator,
-          Assembly-CSharp
-        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -405,6 +393,24 @@ MonoBehaviour:
   m_ResetDelay: 2
   m_OnResetSound: {fileID: 0}
   m_OnBlinkSound: {fileID: 0}
+--- !u!114 &5988058757609501563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3770106392503223600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1ebfb9c74b04bca91977abfa340ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Singular: 0
+  m_Unloadable: 1
+  m_VectorID: {x: 4, y: 2}
+  m_GridPosition: {x: 0, y: 0}
+  m_GridSize: 16
+  m_Rotations: []
 --- !u!1 &5042003188544326599
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145217651162176354}
   m_Layer: 0
-  m_Name: trail
+  m_Name: Trail Visual Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -454,7 +460,7 @@ GameObject:
   - component: {fileID: 5869780071063360585}
   - component: {fileID: 5869780071063360584}
   m_Layer: 9
-  m_Name: hazard_renderer
+  m_Name: Sprite Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

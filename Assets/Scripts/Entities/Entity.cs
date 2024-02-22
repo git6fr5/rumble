@@ -25,11 +25,11 @@ namespace Platformer.Entities {
         public Vector3 Origin => m_Origin;
 
         private void Awake() {
-            m_Origin = transform.position;
+            m_Origin = transform.localPosition;
         }
 
         public void ResetPosition() {
-            transform.position = m_Origin;
+            transform.localPosition = m_Origin;
         }
 
         #region Collision

@@ -24,22 +24,6 @@ namespace Platformer.Levels {
     [ExecuteInEditMode, RequireComponent(typeof(BoxCollider2D))]
     public class CameraNode : MonoBehaviour {
 
-        #region Enumerations.
-
-        public enum State {
-            Loaded,
-            Unloaded
-        }
-
-        #endregion
-
-        /* --- Members --- */
-
-        // Whether this level is currently loaded.
-        [SerializeField, ReadOnly]
-        private State m_State = State.Unloaded;  
-        public State state => m_State;
-
         [HideInInspector]
         private BoxCollider2D m_Box;
         public BoxCollider2D Box => m_Box;

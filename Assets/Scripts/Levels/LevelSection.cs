@@ -11,7 +11,6 @@ using UnityEngine.U2D;
 using LDtkUnity;
 // Platformer.
 using Platformer.Character;
-using Platformer.Levels;
 
 /* --- Definitions --- */
 using Game = Platformer.GameManager;
@@ -21,7 +20,6 @@ namespace Platformer.Levels {
     /// <summary>
     ///
     /// <summary>
-    [RequireComponent(typeof(BoxCollider2D))]
     public class LevelSection : MonoBehaviour {
 
         #region Enumerations.
@@ -33,68 +31,149 @@ namespace Platformer.Levels {
 
         #endregion
 
+        #region Fields.
+
+        /* --- Constants --- */
+
+        // The slight shave off the boundary box for entering/exiting.
+        private const float BOUNDARYBOX_SHAVE = 3f; // 0.1f; // 0.775f;
+
+        /* --- Components --- */
+
+        // The trigger box for the level.
+        public CameraNode cameraNode;
+
         /* --- Members --- */
 
         // Whether this level is currently loaded.
         [SerializeField, ReadOnly]
-        private State m_State = State.Unloaded;  
-        public State state => m_State;
+        private State state = State.Unloaded;  
 
-        [HideInInspector]
-        private BoxCollider2D m_Box;
-        public BoxCollider2D Box => m_Box;
+        // The id of this level.
+        [field: SerializeField, ReadOnly]
+        public int id { get; private set; } = 0;
+        
+        // The name of this level.
+        [field: SerializeField, ReadOnly] 
+        public string roomName { get; private set; } = "";
 
-        [SerializeField]
-        private Vector2 m_Buffer;
+        // The actual ldtk data of the level. 
+        [field: SerializeField, ReadOnly] 
+        public LDtkUnity.Level ldtkLevel { get; private set; } = null;
 
-        [HideInInspector]
-        private Vector2 m_Position;
-        public Vector2 Position => m_Position;
+        // The dimensions of the level.
+        [SerializeField, ReadOnly] 
+        private Vector2Int dimensions;
 
-        private GameObject[] m_Pieces;
-        public GameObject[] Pieces => m_Pieces;
+        // The height of the level based on the dimensions
+        public int height => dimensions.y;
 
-        void Awake() {
-            m_Box = GetComponent<BoxCollider2D>();
-            m_Box.isTrigger = true;
-            m_Position = (Vector2)transform.position + m_Box.offset;
+        // The width of the level based on the dimensions
+        public int width => dimensions.x;
 
-            int i = 0;
-            m_Pieces = new GameObject[transform.childCount];
-            foreach (Transform child in transform) {
-                m_Pieces[i] = child.gameObject;
-                i += 1;
-            }
+        // The position of the bottom left corner of the level in the world.
+        [SerializeField, ReadOnly] 
+        public Vector2Int worldPosition;
+
+        // The position of the center of the level in the world.
+        public Vector2 worldCenter => GetCenter(this.width, this.height, this.worldPosition);
+
+        // The entities currently loaded into the level.
+        [field: SerializeField, ReadOnly] 
+        public List<LDtkEntity> entities { get; private set; } = new List<LDtkEntity>();
+
+        // The positions where the player can be loaded.
+        [field: SerializeField, ReadOnly] 
+        public List<Vector2Int> loadPositions { get; private set; } = new List<Vector2Int>();
+
+        #endregion
+
+        public void Preload(int jsonID, LdtkJson  json) {
+            transform.localPosition = Vector3.zero;
+            ReadJSONData(json, jsonID);
+            CreateCameraNode();
+
+            // List<LDtkTileData> controlData = LDtkReader.GetLayerData(json.Levels[jsonID], Game.Level.LDtkLayers.Control);
+            // GetLoadPoints(controlData);
+        }
+
+        void FixedUpdate() {
+            if (state != State.Loaded) { return; }
 
         }
 
-        void Start() {
-            Game.Level.Unload(this);
+        public void ReadJSONData(LdtkJson  json, int jsonID) {
+            id = jsonID;
+            ldtkLevel = json.Levels[jsonID];
+            roomName = json.Levels[jsonID].Identifier;
+            dimensions.y = (int)(json.Levels[jsonID].PxHei / json.DefaultGridSize);
+            dimensions.x = (int)(json.Levels[jsonID].PxWid / json.DefaultGridSize);
+            worldPosition.y = (int)(json.Levels[jsonID].WorldY / json.DefaultGridSize);
+            worldPosition.x = (int)(json.Levels[jsonID].WorldX / json.DefaultGridSize);
+        }
+
+        public void CreateCameraNode() {
+            if (cameraNode != null) { DestroyImmediate(cameraNode.gameObject); }
+
+            cameraNode = new GameObject(gameObject.name + " Camera Node", typeof(CameraNode)).GetComponent<CameraNode>();
+            cameraNode.transform.SetParent(transform);
+
+            BoxCollider2D box = cameraNode.gameObject.GetComponent<BoxCollider2D>();
+            box.size = new Vector2((float)(width - BOUNDARYBOX_SHAVE), (float)(height - BOUNDARYBOX_SHAVE));
+            // box.offset = worldCenter;
+            box.isTrigger = true;
+
+            cameraNode.transform.position = worldCenter; // transform.position;
+
+        }
+
+        public void GenerateEntities(LDtkEntityManager entityManager, LDtkLayers ldtkLayers) {
+            entities.RemoveAll(entity => entity == null);
+            entities = entityManager.Generate(this, ldtkLayers);
+        }
+
+        public void DestroyEntities() {
+            // entities = LDtkEntity.Destroy(entities);
+            for (int i = 0; i < entities.Count; i++) {
+                DestroyImmediate(entities[i].gameObject);
+            }
+            entities.RemoveAll(entity => entity == null);
         }
 
         void OnTriggerEnter2D(Collider2D collider) {
             if (collider == Game.MainPlayer.Collider) {
                 Game.Level.Load(this);
-                m_State = State.Loaded;
             }
         }
 
         void OnTriggerExit2D(Collider2D collider) {
             if (collider == Game.MainPlayer.Collider) {
                 Game.Level.Unload(this);
-                m_State = State.Unloaded;
             }
         }
 
-        public bool debug = true;
-        void OnDrawGizmos() {
-            if (!debug) {
-                return;
-            }
-            Gizmos.color = new Color(1, 0, 0, 0.2f);
-            BoxCollider2D box = GetComponent<BoxCollider2D>();
-            Gizmos.DrawCube(transform.position + (Vector3)box.offset, box.size + m_Buffer);
+        public static Vector2 GetCenter(int width, int height, Vector2Int gridOrigin) {
+            Vector2Int origin = new Vector2Int(width / 2, height / 2);
+            Vector2 offset = new Vector2( width % 2 == 0 ? 0.5f : 0f, height % 2 == 1 ? 0f : -0.5f);
+            // Assuming a grid size of 16.
+            return (Vector2)GridToWorldPosition(origin, gridOrigin, 16) - offset;
+        }
 
+        public Vector3 GridToWorldPosition(Vector2Int gridPosition, int gridSize) {
+            return GridToWorldPosition(gridPosition, this.worldPosition, gridSize);
+        }
+        
+        public static Vector3 GridToWorldPosition(Vector2Int gridPosition, Vector2Int gridOrigin, int gridSize) {
+            float ratio = (float)gridSize / (float)LDtkReader.GridSize;
+            return new Vector3((ratio * gridPosition.x + gridOrigin.x) + 0.5f, - (ratio * gridPosition.y + gridOrigin.y) + 0.5f, 0f);
+        }
+
+        public Vector3Int GridToTilePosition(Vector2Int gridPosition) {
+            return GridToTilePosition(gridPosition, this.worldPosition);
+        }
+
+        public static Vector3Int GridToTilePosition(Vector2Int gridPosition, Vector2Int gridOrigin) {
+            return new Vector3Int(gridPosition.x + gridOrigin.x, -(gridPosition.y + gridOrigin.y), 0);
         }
 
     }
