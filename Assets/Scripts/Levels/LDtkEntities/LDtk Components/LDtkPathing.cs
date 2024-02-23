@@ -125,7 +125,7 @@ namespace Platformer.Levels {
                             break;
                         }
                         else {
-                            gridDirection = GetGridDirection(pathTile, xOffset);
+                            gridDirection = GetGridDirection(control, xOffset);
                             ldtkPath.Add(currentPosition);
                         }
 
