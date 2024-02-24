@@ -171,6 +171,7 @@ namespace Platformer.Character {
         public void Reset() {
             if (m_Respawn == null && tag == "Player") {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                return;
             }
 
             if (m_Dying) {
