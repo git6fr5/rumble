@@ -10,6 +10,11 @@ namespace Platformer.Entities.Components {
 
     public class Elongatable : MonoBehaviour {
 
+        public enum SearchDirection {
+            Horizontal,
+            Vertical
+        }
+
         [System.Serializable]
         public class OverrideLength {
             public int length;
@@ -35,6 +40,15 @@ namespace Platformer.Entities.Components {
         [SerializeField]
         private float m_ColliderVerticalOffset;
 
+        // Offset.
+        [SerializeField]
+        private float m_ColliderHorizontalInset;
+
+        //
+        [SerializeField]
+        private SearchDirection m_SearchDirection;
+        public SearchDirection searchDirection => m_SearchDirection; 
+
         void Start() {
             m_BoxCollider = GetComponent<BoxCollider2D>();
         }
@@ -58,12 +72,16 @@ namespace Platformer.Entities.Components {
 
             m_SpriteShapeController.gameObject.SetActive(false);
             for (int i = 0; i < m_Overrides.Length; i++) {
-                m_Overrides[i].gameObject.SetActive(false);
+                if (m_Overrides[i].gameObject != null) {
+                    m_Overrides[i].gameObject.SetActive(false);
+                }
             }
 
             for (int i = 0; i < m_Overrides.Length; i++) {
                 if (length == m_Overrides[i].length) {
-                    m_Overrides[i].gameObject.SetActive(true);
+                    if (m_Overrides[i].gameObject != null) {
+                        m_Overrides[i].gameObject.SetActive(true);
+                    }
                     return false;
                 }
             }
@@ -85,8 +103,14 @@ namespace Platformer.Entities.Components {
             m_BoxCollider = GetComponent<BoxCollider2D>();
             if (m_BoxCollider == null) { return; }
 
-            m_BoxCollider.size = new Vector2(length - 0.3f, m_ColliderHeight);
+            m_BoxCollider.size = new Vector2(length - m_ColliderHorizontalInset, m_ColliderHeight);
             m_BoxCollider.offset = new Vector2((length - 1f) / 2f, m_ColliderVerticalOffset);
+
+            if (m_SearchDirection == SearchDirection.Vertical) {
+                m_BoxCollider.size = new Vector2(m_BoxCollider.size.y, m_BoxCollider.size.x);
+                m_BoxCollider.offset = new Vector2(m_BoxCollider.offset.y, -m_BoxCollider.offset.x);
+            }
+            
         }
 
     }

@@ -55,14 +55,14 @@ namespace Platformer.Levels {
         }
 
         void Update() {
-            if (!Application.isPlaying) {
+            // if (!Application.isPlaying) {
 
                 if (m_Reload) {
                     OnReload();
                     m_Reload = false;
                 }
 
-            }
+            // }
         }
 
         public void OnReload() {

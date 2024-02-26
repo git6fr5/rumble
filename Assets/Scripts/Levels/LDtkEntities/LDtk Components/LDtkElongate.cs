@@ -8,6 +8,7 @@ using UnityEngine.U2D;
 using Platformer.Levels;
 using Platformer.Entities.Components;
 using Platformer.Entities.Utility;
+using SearchDirection = Platformer.Entities.Components.Elongatable.SearchDirection;
 
 namespace Platformer.Levels {
 
@@ -16,23 +17,28 @@ namespace Platformer.Levels {
         public static void SetLength(this LDtkEntity entity, List<LDtkTileData> entityData) {
             Elongatable elongatable = entity.GetComponent<Elongatable>();
             if (elongatable != null) {
-                int length = GetLength(entity, entityData);
+                int length = GetLength(elongatable.searchDirection, entity, entityData);
                 elongatable.SetLength(length);
             }
         }
 
-        public static int GetLength(LDtkEntity entity, List<LDtkTileData> entityData) {
+        public static int GetLength(SearchDirection searchDirection, LDtkEntity entity, List<LDtkTileData> entityData) {
 
-            LDtkTileData left = entityData.Find(tile => tile.gridPosition == entity.GridPosition + Vector2Int.left && tile.vectorID == entity.VectorID);
-            if (left != null) {
+            Vector2Int search = Vector2Int.right;
+            if (searchDirection == SearchDirection.Vertical) {
+                search = Vector2Int.down;
+            }
+
+            LDtkTileData opposite = entityData.Find(tile => tile.gridPosition == entity.GridPosition - search && tile.vectorID == entity.VectorID);
+            if (opposite != null) {
                 return -1;
             }
 
             int length = 0;
             while (length < 50) {
                 length += 1;
-                LDtkTileData right = entityData.Find(tile => tile.gridPosition == entity.GridPosition + length * Vector2Int.right && tile.vectorID == entity.VectorID);
-                if (right == null) {
+                LDtkTileData found = entityData.Find(tile => tile.gridPosition == entity.GridPosition + length * search && tile.vectorID == entity.VectorID);
+                if (found == null) {
                     break;
                 }
             }
