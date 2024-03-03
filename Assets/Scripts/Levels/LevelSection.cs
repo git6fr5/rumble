@@ -36,7 +36,7 @@ namespace Platformer.Levels {
         /* --- Constants --- */
 
         // The slight shave off the boundary box for entering/exiting.
-        private const float BOUNDARYBOX_SHAVE = 3f; // 0.1f; // 0.775f;
+        private const float BOUNDARYBOX_SHAVE = 0.375f; // 0.1f; // 0.775f;
 
         /* --- Components --- */
 
@@ -119,7 +119,7 @@ namespace Platformer.Levels {
             cameraNode.transform.SetParent(transform);
 
             BoxCollider2D box = cameraNode.gameObject.GetComponent<BoxCollider2D>();
-            box.size = new Vector2((float)(width - BOUNDARYBOX_SHAVE), (float)(height - BOUNDARYBOX_SHAVE));
+            box.size = new Vector2((float)(width - 1.99f * BOUNDARYBOX_SHAVE), (float)(height - 1.99f * BOUNDARYBOX_SHAVE));
             // box.offset = worldCenter;
             box.isTrigger = true;
 

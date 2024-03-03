@@ -31,6 +31,9 @@ namespace Platformer.Entities.Components {
         // The sprite shape.
         [SerializeField]
         private SpriteShapeController m_SpriteShapeController;
+        
+        [SerializeField]
+        private SpriteShapeController[] m_SubShapes;
 
         // Height.
         [SerializeField]
@@ -88,11 +91,30 @@ namespace Platformer.Entities.Components {
 
             length -= 2;
             spline.Clear();
-            spline.InsertPointAt(0, 0.5f * Vector3.right);
-            spline.InsertPointAt(1, (length + 0.5f) * Vector3.right);
+
+            Quaternion q = transform.localRotation;
+
+            spline.InsertPointAt(0, q * (0.5f * Vector3.right));
+            spline.InsertPointAt(1, q * ((length + 0.5f) * Vector3.right));
             spline.SetTangentMode(0, ShapeTangentMode.Continuous);
             spline.SetTangentMode(1, ShapeTangentMode.Continuous);
             m_SpriteShapeController.gameObject.SetActive(true);
+
+            if (m_SubShapes != null && m_SubShapes.Length > 0) {
+
+                for (int i = 0; i < m_SubShapes.Length; i++) {
+
+                    Spline _spline = m_SubShapes[i].spline;
+
+                    _spline.Clear();
+                    _spline.InsertPointAt(0, q * (0.5f * Vector3.right));
+                    _spline.InsertPointAt(1, q * ((length + 0.5f) * Vector3.right));
+                    _spline.SetTangentMode(0, ShapeTangentMode.Continuous);
+                    _spline.SetTangentMode(1, ShapeTangentMode.Continuous);
+                    
+                }
+
+            }
 
             return true;
 
@@ -103,13 +125,22 @@ namespace Platformer.Entities.Components {
             m_BoxCollider = GetComponent<BoxCollider2D>();
             if (m_BoxCollider == null) { return; }
 
-            m_BoxCollider.size = new Vector2(length - m_ColliderHorizontalInset, m_ColliderHeight);
-            m_BoxCollider.offset = new Vector2((length - 1f) / 2f, m_ColliderVerticalOffset);
+            Quaternion q = transform.localRotation;
+
+            Vector2 size = new Vector2(length - m_ColliderHorizontalInset, m_ColliderHeight);
+            Vector2 offset = new Vector2((length - 1f) / 2f, m_ColliderVerticalOffset);
+
+            if (transform.eulerAngles.z == 180f) {
+                offset.x *= -1f;
+            }
 
             if (m_SearchDirection == SearchDirection.Vertical) {
-                m_BoxCollider.size = new Vector2(m_BoxCollider.size.y, m_BoxCollider.size.x);
-                m_BoxCollider.offset = new Vector2(m_BoxCollider.offset.y, -m_BoxCollider.offset.x);
+                size = new Vector2(size.y, size.x);
+                offset = new Vector2(offset.y, offset.x);
             }
+
+            m_BoxCollider.size = size;
+            m_BoxCollider.offset = offset;
             
         }
 

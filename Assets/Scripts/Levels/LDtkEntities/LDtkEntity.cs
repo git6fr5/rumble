@@ -66,6 +66,11 @@ namespace Platformer.Levels {
             if (rotationID != null) {
                 rotation = rotationID.Rotation;
             }
+
+            // if (rotation == 180f) {
+            //     transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
+            // }
+
             transform.eulerAngles = Vector3.forward * rotation;
         }
 

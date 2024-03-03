@@ -50,6 +50,9 @@ namespace Platformer.Levels {
         void OnTriggerEnter2D(Collider2D collider) {
             if (collider == Game.MainPlayer.Collider) {
                 Debug.Log(gameObject.name);
+                // Gobblefish.Graphics.CameraMovement cameraMovement = Camera.main.transform.parent.gameObject.GetComponent<Gobblefish.Graphics.CameraMovement>();
+                // cameraMovement.SetDefaultTarget(transform);
+                // cameraMovement.RemoveAll()
                 Camera.main.transform.parent.gameObject.GetComponent<Gobblefish.Graphics.CameraMovement>().AddTarget(transform);
             }
         }
