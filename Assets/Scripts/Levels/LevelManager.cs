@@ -54,6 +54,12 @@ namespace Platformer.Levels {
             }
         }
 
+        void Awake() {
+            if (!Application.isPlaying) {
+                OnReload();
+            }
+        }
+
         void Update() {
             // if (!Application.isPlaying) {
 

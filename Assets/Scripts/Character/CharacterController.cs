@@ -189,18 +189,23 @@ namespace Platformer.Character {
             // Game.Level.Reset();
             
             // Resetting the character.
-            Disable(Respawn.RESPAWN_DELAY);
+            m_Respawn.CreateCorpse(this);
+
+            Disable(Respawn.RESPAWN_DELAY * 2f);
             DisableAllAbilityActions();
             m_Body.Stop();
             m_Dying = true;
 
-            transform.position = m_Respawn.RespawnPosition;
+            // transform.position = m_Respawn.RespawnPosition;
             StartCoroutine(IERespawn(Respawn.RESPAWN_DELAY));
 
         }
 
         private IEnumerator IERespawn(float delay) {
             yield return new WaitForSeconds(delay);
+            m_Respawn.CreateNewShell(this);
+
+            // yield return new WaitForSeconds(delay);
             m_Dying = false;
             m_DefaultAction.Enable(this, true);
             Game.Audio.Sounds.PlaySound(m_OnRespawnSound, 0.15f);

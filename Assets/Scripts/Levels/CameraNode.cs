@@ -41,10 +41,14 @@ namespace Platformer.Levels {
         public bool snapToThis = false;
         void Update() {
             if (!Application.isPlaying && snapToThis) {
-                Vector3 targetPosition = (Vector3)transform.position + Vector3.forward * Gobblefish.Graphics.CameraMovement.CAMERA_PLANE_DISTANCE;
-                Camera.main.transform.position = targetPosition;
+                Snap();
                 snapToThis = false;
             }
+        }
+
+        public void Snap() {
+            Vector3 targetPosition = (Vector3)transform.position + Vector3.forward * Gobblefish.Graphics.CameraMovement.CAMERA_PLANE_DISTANCE;
+            Camera.main.transform.position = targetPosition;
         }
 
         void OnTriggerEnter2D(Collider2D collider) {

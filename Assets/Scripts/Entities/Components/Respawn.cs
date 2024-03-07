@@ -4,12 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.VFX;
 using UnityExtensions;
 
 /* --- Definitions --- */
 using Game = Platformer.GameManager;
 using Entity = Platformer.Entities.Entity;
+using Projectile = Platformer.Entities.Utility.Projectile;
+
+using Platformer.Character;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {
@@ -42,6 +46,12 @@ namespace Platformer.Entities.Components {
         [SerializeField, ReadOnly]
         private bool m_Active = false;
 
+        [SerializeField]
+        private Projectile m_CorpseProjectile;
+
+        [SerializeField]
+        private UnityEvent m_RespawnEvent;
+
         // Runs once before the first frame.
         void Start() {
             if (Game.MainPlayer.CurrentRespawn == this) {
@@ -64,6 +74,23 @@ namespace Platformer.Entities.Components {
             character.SetRespawn(this);
         }
 
+        public void CreateCorpse(CharacterController character) {
+
+            Projectile projectile = m_CorpseProjectile.CreateInstance();
+            projectile.transform.position = character.transform.position;
+            projectile.Fire(character.Body.velocity.magnitude, -character.Body.velocity.normalized, 50f);
+            // projectile.Fire(5, Quaternion.Euler(0f, 0f, transform.eulerAngles.z + m_SpitAngle) * Vector2.right);
+
+        }
+
+        public void CreateNewShell(CharacterController character) {
+            character.transform.position = transform.position;
+            character.Body.SetVelocity(8f * (transform.localRotation * Vector3.up));
+            character.Animator.Push(character.Default.FallingFastAnim, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
+
+            m_RespawnEvent.Invoke();
+        }
+
         public void Activate() {
             print("activating");
             m_Active = true;
@@ -84,4 +111,5 @@ namespace Platformer.Entities.Components {
         }
         
     }
+
 }

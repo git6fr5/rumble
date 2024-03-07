@@ -107,7 +107,7 @@ namespace Platformer.Character {
 
         void Update() {
             Animate(Time.deltaTime);
-            Scale(Time.deltaTime);
+            // Scale(Time.deltaTime);
             Rotate();
             Warp();
         }

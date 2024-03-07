@@ -136,6 +136,7 @@ namespace Platformer.Character.Actions {
         // The animation for the character when falling fast.
         [SerializeField]
         private Sprite[] m_FallingFastAnimation = null;
+        public Sprite[] FallingFastAnim => m_FallingFastAnimation;
 
         #endregion
 
