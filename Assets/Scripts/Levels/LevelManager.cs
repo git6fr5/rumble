@@ -35,6 +35,8 @@ namespace Platformer.Levels {
         // A reference to all the created levels.
         [SerializeField] 
         public List<LevelSection> m_Sections = new List<LevelSection>();
+        private LevelSection m_CurrentSection = null;
+        public LevelSection CurrentSection => m_CurrentSection;
 
         // The given LDtk file.
         [SerializeField] 
@@ -79,7 +81,9 @@ namespace Platformer.Levels {
             for (int i = 0; i < m_Sections.Count; i++) {
                 m_Sections[i].DestroyEntities();
                 m_Sections[i].GenerateEntities(m_LDtkEntityManager, m_LDtkLayers);
+                Unload(m_Sections[i]);
             }
+            
         }
 
         // Collects all the levels from the LDtk file.
@@ -100,15 +104,17 @@ namespace Platformer.Levels {
 
         // Loads the entities for
         public void Load(LevelSection section) {
-            // for (int i = 0; i < section.Pieces.Length; i++) {
-            //     section.Pieces[i].SetActive(true);
-            // }
+            print("loading");
+            m_CurrentSection = section;
+            for (int i = 0; i < section.entities.Count; i++) {
+                section.entities[i].gameObject.SetActive(true);
+            }
         }
 
         public void Unload(LevelSection section) {
-            // for (int i = 0; i < section.Pieces.Length; i++) {
-            //     section.Pieces[i].SetActive(false);
-            // }
+            for (int i = 0; i < section.entities.Count; i++) {
+                section.entities[i].gameObject.SetActive(false);
+            }
             // Platformer.Objects.Spitters.Projectile.DeleteAll(); // Should go somewhere saying custom.
         }
 

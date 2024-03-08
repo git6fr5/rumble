@@ -5,12 +5,12 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.VFX;
-using UnityExtensions;
 using UnityEngine.Rendering;
 // Gobblefish.
 using Gobblefish.Input;
 using Gobblefish.Extensions;
 // Platformer.
+using Platformer.Physics;
 using Platformer.Character;
 using Platformer.Character.Actions;
 
@@ -166,7 +166,14 @@ namespace Platformer.Character.Actions {
 
             // m_CachedRotation = character.transform.localRotation;
             BoundsInt bounds = Game.Graphics.MainCamera.GetBoundsInt(Game.Level.Maps.Grid);
-            Game.Level.Maps.ConvertToBlocks(bounds.Pad(2));
+            
+            List<Rigidbody2D> bodies = Game.Level.Maps.ConvertToBlocks(bounds.Pad(2));
+            Debug.Log(bodies.Count);
+            // for (int i = 0; i < bodies.Count; i++) {
+            //     bodies[i].velocity = 500f * Vector3.up; // Random.insideUnitCircle; // AddForce(
+            // }
+            // m_GhostedDict.Add(Game.Level.CurrentSection, bodies)
+
             Game.Graphics.PostProcessor.SetVolumeProfile(m_GhostVolumeProfile);
 
             character.Body.Stop();

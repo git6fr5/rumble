@@ -20,6 +20,7 @@ namespace Platformer.Levels {
     /// <summary>
     ///
     /// <summary>
+    [RequireComponent(typeof(BoxCollider2D))]
     public class LevelSection : MonoBehaviour {
 
         #region Enumerations.
@@ -124,12 +125,16 @@ namespace Platformer.Levels {
             box.isTrigger = true;
 
             cameraNode.transform.position = worldCenter; // transform.position;
+            GetComponent<BoxCollider2D>().isTrigger = true;
+            GetComponent<BoxCollider2D>().size = box.size * 1.05f;
+            GetComponent<BoxCollider2D>().offset = worldCenter;
 
         }
 
         public void GenerateEntities(LDtkEntityManager entityManager, LDtkLayers ldtkLayers) {
             entities.RemoveAll(entity => entity == null);
             entities = entityManager.Generate(this, ldtkLayers);
+            entities = entities.FindAll(entity => entity != null);
         }
 
         public void DestroyEntities() {

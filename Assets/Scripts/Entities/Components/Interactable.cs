@@ -5,7 +5,6 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.U2D;
-using UnityExtensions;
 using TMPro;
 // Platformer.
 using Platformer.Entities;

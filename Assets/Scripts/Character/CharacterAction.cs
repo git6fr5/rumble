@@ -5,7 +5,6 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.VFX;
-using UnityExtensions;
 // Platformer.
 using Gobblefish.Input;
 using Platformer.Character;

@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
-using UnityExtensions;
 
 /* --- Definitions --- */
 using Game = Platformer.GameManager;

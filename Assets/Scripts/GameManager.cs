@@ -27,8 +27,8 @@ namespace Platformer {
 
         // Exposes functionality for the physics in the game.
         [SerializeField] 
-        private Platformer.PhysicsManager m_PhysicsManager;
-        public static Platformer.PhysicsManager Physics => PLATFORMER_INSTANCE.m_PhysicsManager;
+        private Platformer.Physics.PhysicsManager m_PhysicsManager;
+        public static Platformer.Physics.PhysicsManager Physics => PLATFORMER_INSTANCE.m_PhysicsManager;
 
         [SerializeField]
         private bool m_Playing = true;
@@ -43,10 +43,6 @@ namespace Platformer {
         public void Pause() {
             // m_LevelManager.OnSaveAndQuit();
             PLATFORMER_INSTANCE.m_PhysicsManager.Time.Pause();
-        }
-
-        public static void TestFunction() {
-            
         }
 
     }

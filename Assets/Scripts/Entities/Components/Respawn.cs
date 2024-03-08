@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.VFX;
-using UnityExtensions;
+// Platformer.
+using Platformer.Physics;
+using Platformer.Character;
 
 /* --- Definitions --- */
 using Game = Platformer.GameManager;
 using Entity = Platformer.Entities.Entity;
 using Projectile = Platformer.Entities.Utility.Projectile;
-
-using Platformer.Character;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {

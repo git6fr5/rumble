@@ -14,7 +14,7 @@ namespace Platformer.LevelEditing {
     ///<summary>
     public class HangingRope : Rope {
 
-        [SerializeField, Range(0f, 100f)] private float m_RopeLengthVariationPercent = 30f;
+        [SerializeField, Range(0f, 100f)] protected float m_RopeLengthVariationPercent = 30f;
 
         protected override void OnAwake() {
             m_EdgeCollider.isTrigger = true;

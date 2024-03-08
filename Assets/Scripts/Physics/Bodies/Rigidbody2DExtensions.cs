@@ -6,7 +6,7 @@ using UnityEngine;
 /* --- Definitions --- */
 using PhysicsSettings = Platformer.PhysicsSettings;
 
-namespace UnityExtensions {
+namespace Platformer.Physics {
 
     ///<summary>
     /// Defines useful and easy to use extensions for the rigidbody.

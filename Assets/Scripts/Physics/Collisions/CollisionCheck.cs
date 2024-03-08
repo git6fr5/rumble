@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Platformer;
 
-namespace Platformer {
+namespace Platformer.Physics {
 
     ///<summary>
     /// A set of functions that define simple collision checks.

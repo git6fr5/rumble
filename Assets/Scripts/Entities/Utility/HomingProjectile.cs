@@ -5,9 +5,10 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.VFX;
-using UnityExtensions;
 // Gobblefish.
 using Gobblefish;
+// Platformer.
+using Platformer.Physics;
 
 /* --- Definitions --- */
 using Game = Platformer.GameManager;

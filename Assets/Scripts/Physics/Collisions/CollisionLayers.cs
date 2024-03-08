@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Platformer;
 
-namespace Platformer {
+namespace Platformer.Physics {
 
     ///<summary>
     /// Stores a set of collision layers for easy reference.

@@ -74,14 +74,14 @@ namespace Platformer.Levels {
             LDtkPath ldtkPath = new LDtkPath(pathTile.gridPosition);
 
             // Cache the direction of the path.
-            int speed = 0;
+            // int speed = 0;
             int xOffset = 0;
             if (pathTile.vectorID.x == 4) { 
                 return ldtkPath; 
             }
             if (pathTile.vectorID.x > 4) {
                 xOffset = 5;
-                speed = 1;
+                // speed = 1;
             }
 
             int controlColor = pathTile.vectorID.y;

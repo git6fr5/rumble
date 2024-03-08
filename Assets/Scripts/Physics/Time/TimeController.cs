@@ -4,14 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
-using UnityExtensions;
 // Platformer.
 using Platformer;
 
 /* --- Definitions --- */
 using Game = Platformer.GameManager;
 
-namespace Platformer {
+namespace Platformer.Physics {
 
     ///<summary>
     /// Controls the time of the game.

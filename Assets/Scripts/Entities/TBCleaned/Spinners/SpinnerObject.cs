@@ -1,72 +1,71 @@
-/* --- Libraries --- */
-// System.
-using System.Collections;
-using System.Collections.Generic;
-// Unity.
-using UnityEngine;
-using UnityExtensions;
+// /* --- Libraries --- */
+// // System.
+// using System.Collections;
+// using System.Collections.Generic;
+// // Unity.
+// using UnityEngine;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
+// /* --- Definitions --- */
+// using Game = Platformer.GameManager;
 
-namespace Platformer.Objects.Spinners {
+// namespace Platformer.Objects.Spinners {
 
-    ///<summary>
-    ///
-    ///<summary>
-    [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(Collider2D))]
-    public class SpinnerObject : MonoBehaviour {
+//     ///<summary>
+//     ///
+//     ///<summary>
+//     [RequireComponent(typeof(SpriteRenderer)), RequireComponent(typeof(Collider2D))]
+//     public class SpinnerObject : MonoBehaviour {
 
-        #region Variables
+//         #region Variables
 
-        /* --- Components --- */
+//         /* --- Components --- */
         
-        // The sprite renderer attached to this game object.
-        protected SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
+//         // The sprite renderer attached to this game object.
+//         protected SpriteRenderer m_SpriteRenderer => GetComponent<SpriteRenderer>();
 
-        // The sprite renderer attached to this game object.
-        protected Collider2D m_Hitbox => GetComponent<Collider2D>();
+//         // The sprite renderer attached to this game object.
+//         protected Collider2D m_Hitbox => GetComponent<Collider2D>();
 
-        /* --- Member --- */
+//         /* --- Member --- */
 
-        // The base position of the object.
-        [SerializeField, ReadOnly] 
-        protected Vector3 m_Origin = new Vector3(0f, 0f, 0f);
+//         // The base position of the object.
+//         [SerializeField, ReadOnly] 
+//         protected Vector3 m_Origin = new Vector3(0f, 0f, 0f);
 
-        // The z value rotation of the object.
-        [SerializeField] 
-        protected float m_Spin = 0f;
+//         // The z value rotation of the object.
+//         [SerializeField] 
+//         protected float m_Spin = 0f;
 
-        // The effect that plays when the spike shatters.
-        [SerializeField] 
-        private float m_SpinSpeed = 90f;
+//         // The effect that plays when the spike shatters.
+//         [SerializeField] 
+//         private float m_SpinSpeed = 90f;
         
-        #endregion
+//         #endregion
 
-        #region Methods.
+//         #region Methods.
 
-        // Runs once before the first frame.
-        void Awake() {
-            m_Origin = transform.position;
-        }
+//         // Runs once before the first frame.
+//         void Awake() {
+//             m_Origin = transform.position;
+//         }
 
-        // Initalizes from the LDtk files.
-        public virtual void Init(float spin) {
-            m_Spin = spin;
-            foreach (Transform child in transform) {
-                SpinnerObject spinObject = child.GetComponent<SpinnerObject>() ;
-                if (spinObject != null) {
-                    spinObject.Init(spin);
-                }
-            }
-        }
+//         // Initalizes from the LDtk files.
+//         public virtual void Init(float spin) {
+//             m_Spin = spin;
+//             foreach (Transform child in transform) {
+//                 SpinnerObject spinObject = child.GetComponent<SpinnerObject>() ;
+//                 if (spinObject != null) {
+//                     spinObject.Init(spin);
+//                 }
+//             }
+//         }
 
-        private void FixedUpdate() {
-            transform.Rotate(m_Spin * m_SpinSpeed, Time.fixedDeltaTime);
-        }
+//         private void FixedUpdate() {
+//             transform.Rotate(m_Spin * m_SpinSpeed, Time.fixedDeltaTime);
+//         }
 
-        #endregion
+//         #endregion
 
-    }
+//     }
 
-}
+// }

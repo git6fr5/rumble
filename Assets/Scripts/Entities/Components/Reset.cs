@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.VFX;
-using UnityExtensions;
 // Platformer.
 using Platformer.Entities;
 

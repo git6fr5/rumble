@@ -79,14 +79,17 @@ namespace Platformer.Levels {
             levelMap.RefreshAllTiles();
         }
 
-        public void ConvertToBlocks(BoundsInt bounds) {
+        public List<Rigidbody2D> ConvertToBlocks(BoundsInt bounds) {
 
+            List<Rigidbody2D> bodies = new List<Rigidbody2D>();
             for (int i = bounds.yMin; i <= bounds.yMax; i++) {
                 for (int j = bounds.xMin; j <= bounds.xMax; j++) {
                     Vector3Int position = new Vector3Int(j, i, 0);
                     Sprite sprite = m_LevelMap.GetSprite(position);
                     if (sprite != null) {
-                        CreateBlock(sprite, position);
+                        Rigidbody2D body = CreateBlock(sprite, position);
+                        print(body.gameObject.name);
+                        bodies.Add(body);
                     }
                 }
             }
@@ -99,9 +102,10 @@ namespace Platformer.Levels {
                 }
             }
 
+            return bodies;
         }
 
-        public void CreateBlock(Sprite sprite, Vector3Int position) {
+        public Rigidbody2D CreateBlock(Sprite sprite, Vector3Int position) {
             // Create the block.
             GameObject newObject = Instantiate(m_CollisionBlock);
             newObject.name = "Block " + position.ToString();
@@ -112,6 +116,7 @@ namespace Platformer.Levels {
             newObject.transform.FromMatrix(matrix);
             // Set the block active.
             newObject.SetActive(true);
+            return newObject.GetComponent<Rigidbody2D>();
         }
 
         
