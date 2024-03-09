@@ -4,11 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
-// Platformer.
-using Platformer;
-
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
 
 namespace Platformer.Physics {
 
@@ -59,9 +54,9 @@ namespace Platformer.Physics {
 
         // Runs once per frame.
         void Update() {
-            if (!Game.Playing) {
-                m_TimeScale = PAUSED_TIMESCALE;
-            }
+            // if (!Game.Playing) {
+            //     m_TimeScale = PAUSED_TIMESCALE;
+            // }
 
             if (m_RampStopTimer.Active) {
                 UpdateRampStop();

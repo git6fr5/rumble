@@ -9,7 +9,6 @@ using UnityEngine.U2D;
 using Platformer.Physics;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using Entity = Platformer.Entities.Entity;
 using CharacterController = Platformer.Character.CharacterController;
 
@@ -66,12 +65,12 @@ namespace Platformer.Entities.Components {
         private Timer m_CrumbleTimer = new Timer(0f, 0f);
 
         // The sound this plays on crumbling.
-        [SerializeField] 
-        private AudioClip m_OnCrumbleSound = null;
+        // [SerializeField] 
+        // private AudioClip m_OnCrumbleSound = null;
 
         // The sound this plays on reforming.
-        [SerializeField] 
-        private AudioClip m_OnReformSound = null;
+        // [SerializeField] 
+        // private AudioClip m_OnReformSound = null;
 
         #endregion
 
@@ -129,13 +128,13 @@ namespace Platformer.Entities.Components {
             m_CrumbleState = CrumbleState.Reforming;
             m_Entity.EnableColliders(false);
             m_CrumbleTimer.Start(m_ReformDuration);
-            Game.Audio.Sounds.PlaySound(m_OnCrumbleSound, 0.15f);
+            // Game.Audio.Sounds.PlaySound(m_OnCrumbleSound, 0.15f);
         }
 
         private void OnReform() {
             m_CrumbleState = CrumbleState.None;
             m_Entity.EnableColliders(true);
-            Game.Audio.Sounds.PlaySound(m_OnReformSound, 0.15f);
+            // Game.Audio.Sounds.PlaySound(m_OnReformSound, 0.15f);
             // m_Platform.entity.SetMaterialValue("_DissolveAmount", val);
         }
 

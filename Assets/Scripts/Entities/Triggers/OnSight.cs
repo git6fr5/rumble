@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 // Platformer.
+using Platformer.Physics;
 using Platformer.Entities;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Utility {
@@ -33,7 +33,7 @@ namespace Platformer.Entities.Utility {
 
         // Runs once every frame.
         private void Update() {
-            CharacterController character = Game.Physics.Collisions.LineOfSight<CharacterController>(transform.position + m_Direction, m_Direction, Game.Physics.CollisionLayers.Solid);
+            CharacterController character = PhysicsManager.Collisions.LineOfSight<CharacterController>(transform.position + m_Direction, m_Direction, PhysicsManager.CollisionLayers.Solid);
             if (character != null) {
                 m_SightEvent.Invoke();
             }

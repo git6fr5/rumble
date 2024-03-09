@@ -6,12 +6,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 // Gobblefish.
-using Gobblefish;
+using Gobblefish.Audio;
 // Platformer.
 using Platformer.Physics;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using Projectile = Platformer.Entities.Utility.Projectile;
 
 namespace Platformer.Entities.Components {
@@ -57,7 +56,7 @@ namespace Platformer.Entities.Components {
         
         // The effect that plays when the spike shatters.
         [SerializeField] 
-        private AudioClip m_SpitSound;
+        private AudioSnippet m_SpitSound;
         
         void FixedUpdate() {
             bool finished = m_SpitTimer.TickDown(Time.fixedDeltaTime);
@@ -89,7 +88,7 @@ namespace Platformer.Entities.Components {
             projectile.Fire(m_SpitSpeed, Quaternion.Euler(0f, 0f, SpitAngle) * Vector2.right, 100f);
             
             if (m_SpitSound != null) {
-                Game.Audio.Sounds.PlaySound(m_SpitSound, 0.15f);
+                m_SpitSound.Play(); // Game.Audio.Sounds.PlaySound(m_SpitSound, 0.15f);
             }
 
             m_SpitState = SpitState.None;

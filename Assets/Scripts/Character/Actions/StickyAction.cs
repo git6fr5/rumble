@@ -4,17 +4,10 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.VFX;
-// Gobblefish.
-using Gobblefish.Input;
 // Platformer.
 using Platformer.Physics;
-using Platformer.Character;
-using Platformer.Character.Actions;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
-
-namespace Platformer.Character.Actions {
+namespace Platformer.Character {
 
     ///<summary>
     /// An ability that near-instantly moves the character.

@@ -1,255 +1,98 @@
-/* --- Libraries --- */
-// System.
-using System.Collections;
-using System.Collections.Generic;
-// Unity.
-using UnityEngine;
-using UnityEngine.VFX;
-// Gobblefish.
-using Gobblefish.Input;
-// Platformer.
-using Platformer.Physics;
-using Platformer.Character;
-using Platformer.Character.Actions;
+// /* --- Libraries --- */
+// // System.
+// using System.Collections;
+// using System.Collections.Generic;
+// // Unity.
+// using UnityEngine;
+// using UnityEngine.VFX;
+// // Gobblefish.
+// using Gobblefish.Input;
+// // Platformer.
+// using Platformer.Physics;
+// using Platformer.Character;
+// using Platformer.Character;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
+// /* --- Definitions --- */
 
-namespace Platformer.Character.Actions {
+// namespace Platformer.Character {
 
-    ///<summary>
-    /// An ability that near-instantly moves the character.
-    ///<summary>
-    [System.Serializable]
-    public class MultiDashAction : CharacterAction {
+//     ///<summary>
+//     /// An ability that near-instantly moves the character.
+//     ///<summary>
+//     [System.Serializable]
+//     public class MultiDashAction : DashAction {
 
-        #region Variables.
+//         [SerializeField]
+//         private int m_MaxDashCount = 3;
+//         private int m_DashCount = 0;
 
-        // The duration between pressing and moving, gives a little anticapatory feel.
-        [SerializeField] 
-        private float m_PredashDuration = 0.16f;
+//         protected override void OnStartDash(CharacterController character) {
+//             m_CachedDirection = new Vector2(character.FacingDirection, 0f);
+//             m_CachedDirection = character.Input.Direction.Normal;
 
-        // The duration under which the character is actually dashing.
-        [SerializeField] 
-        private float m_DashDuration = 0.14f;
-        
-        // A little cooldown after the dash to avoid spam pressing it.
-        [SerializeField] 
-        private float m_PostdashDuration = 0.16f;
+//             character.Body.SetVelocity(m_CachedDirection * DashSpeed);
 
-        // Runs through the phases of the dash cycle.
-        [HideInInspector] 
-        private Timer m_DashTimer = new Timer(0f, 0f);
+//             m_DashTimer.Start(m_DashDuration);
+//             m_ActionPhase = ActionPhase.MidAction;
 
-        // The distance covered by a dash.
-        [SerializeField] 
-        private float m_DashDistance = 5f;
+//             character.Animator.Remove(m_PredashAnimation);
+//             character.Animator.Push(m_DashAnimation, CharacterAnimator.AnimationPriority.ActionActive);
 
-        // The speed of the actual dash.
-        private float DashSpeed => m_DashDistance / m_DashDuration;
+//             float angle = Vector2.SignedAngle(Vector2.right, m_CachedDirection);
+//             m_StartDashEffect.transform.eulerAngles = Vector3.forward * angle;
+//             m_StartDashEffect.Play();
+//             m_StartDashSound.Play();
 
-        // The direction the player was facing before the dash started.
-        [HideInInspector]
-        private Vector2 m_CachedDirection = new Vector2(0f, 0f);
+//         }
 
-        // The sprites this is currently animating through.
-        [SerializeField]
-        private Sprite[] m_PredashAnimation = null;
+//         protected override void OnStartPostdash(CharacterController character) {
+//             if (character.Input.Direction.Horizontal == Mathf.Sign(m_CachedDirection.x)) {
+//                 character.Body.SetVelocity(m_CachedDirection * character.Default.Speed);
+//                 character.Animator.Push(m_PostdashAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
+//             }
+//             else {
+//                 character.Body.SetVelocity(Vector2.zero);
+//             }
 
-        // The sprites this is currently animating through.
-        [SerializeField]
-        private Sprite[] m_DashAnimation = null;
+//             character.Default.Enable(character, true);
 
-        // The sprites this is currently animating through.
-        [SerializeField]
-        private Sprite[] m_PostdashAnimation = null;
+//             character.Animator.Remove(m_DashAnimation);
+//             m_EndDashEffect.Play();
 
-        // The sounds that plays when dashing.
-        [SerializeField]
-        private AudioClip m_DashSound = null;
+//             m_DashTimer.Start(m_PostdashDuration);
+//             m_ActionPhase = ActionPhase.PostAction;
+//         }
 
-        // The effect that plays when dashing.
-        [SerializeField]
-        private VisualEffect m_StartBoomEffect;
-
-        // The effect that plays when dashing.
-        [SerializeField]
-        private VisualEffect m_EndBoomEffect;
-
-        #endregion
-
-        // When enabling/disabling this ability.
-        public override void Enable(CharacterController character, bool enable = true) {
-            base.Enable(character, enable);
-            if (m_DashTimer.Active) {
-                OnStartPostdash(character);
-            }
-            m_ActionPhase = ActionPhase.None;
-            m_DashTimer.Stop();
-
-            if (!enable) {
-                character.Animator.Remove(m_PredashAnimation);
-                character.Animator.Remove(m_PostdashAnimation);
-                character.Animator.Remove(m_DashAnimation);
-            }
-
-        }
-
-        // When this ability is activated.
-        public override void InputUpdate(CharacterController character) {
-            if (!m_Enabled) { return; }
-
-            // Dashing.
-            if (character.Input.Actions[1].Pressed && m_ActionPhase == ActionPhase.None && m_Refreshed) {
-                // The character should start dashing.
-                OnStartPredash(character);
-
-                // Release the input and reset the refresh.
-                character.Input.Actions[1].ClearPressBuffer();
-                m_Refreshed = false;
-            }
-
-        }
-        
-        // Refreshes the settings for this ability every interval.
-        public override void PhysicsUpdate(CharacterController character, float dt){
-            if (!m_Enabled) { return; }
-
-            // Whether the power has been reset by touching ground after using it.
-            m_Refreshed = character.OnGround && !m_DashTimer.Active ? true : m_Refreshed;
-
-            if (m_Refreshed) { m_DashCount = m_MaxDashCount; }
-
-            // Tick down the dash timer.
-            bool finished = m_DashTimer.TickDown(dt);
-
-            // If swapping states.
-            if (finished) { 
-
-                switch (m_ActionPhase) {
-                    case ActionPhase.PreAction:
-                        OnStartDash(character);
-                        break;
-                    case ActionPhase.MidAction:
-                        OnStartPostdash(character);
-                        break;
-                    case ActionPhase.PostAction:
-                        OnEndDash(character);
-                        break;
-                    default:
-                        break;
-                }
-
-            }
+//         protected override void OnEndDash(CharacterController character) {
+//             character.Animator.Remove(m_PostdashAnimation);
             
-            // If in a phase.
-            switch (m_ActionPhase) {
-                case ActionPhase.PreAction:
-                    WhilePredashing(character, dt);
-                    break;
-                case ActionPhase.MidAction:
-                    WhileDashing(character, dt);
-                    break;
-                case ActionPhase.PostAction:
-                    WhilePostdashing(character, dt);
-                    break;
-                default:
-                    break;
-            }
+//             m_ActionPhase = ActionPhase.None;
 
-        }
+//             if (m_DashCount > 0 && character.Input.Actions[1].Held && character.Input.Direction.Normal != Vector2.zero) {
+//                 OnStartPredash(character);
+//                 m_DashCount -= 1;
+//             }
 
-        private void OnStartPredash(CharacterController character) {
-            // Disable other inputs.
-            character.Disable(m_PredashDuration + m_DashDuration);
-            character.Default.Enable(character, false);
+//         }
 
-            // Stop the body.
-            character.Body.Stop();
+//         private void WhilePredashing(CharacterController character, float dt) {
 
-            // Start the dash timer.
-            m_DashTimer.Start(m_PredashDuration);
-            m_ActionPhase = ActionPhase.PreAction;
+//         }
 
-            character.Animator.Push(m_PredashAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
-            Game.Audio.Sounds.PlaySound(m_DashSound, 0.15f);
-
-        }
-
-        private void OnStartDash(CharacterController character) {
-            m_CachedDirection = new Vector2(character.FacingDirection, 0f);
-            m_CachedDirection = character.Input.Direction.Normal;
-
-            character.Body.SetVelocity(m_CachedDirection * DashSpeed);
-            // Game.MainPlayer.ExplodeDust.Activate();
-
-            m_DashTimer.Start(m_DashDuration);
-            m_ActionPhase = ActionPhase.MidAction;
-
-            character.Animator.Remove(m_PredashAnimation);
-            character.Animator.Push(m_DashAnimation, CharacterAnimator.AnimationPriority.ActionActive);
-
-
-            float angle = Vector2.SignedAngle(Vector2.right, m_CachedDirection);
-            m_StartBoomEffect.transform.eulerAngles = Vector3.forward * angle;
-            m_StartBoomEffect.Play();
-
-            // Game.Visuals.Effects.PlayImpactEffect(character.OnActionParticle, 16, 1.6f, character.transform, Vector3.zero);
-
-        }
-
-        private void OnStartPostdash(CharacterController character) {
-            if (character.Input.Direction.Horizontal == Mathf.Sign(m_CachedDirection.x)) {
-                character.Body.SetVelocity(m_CachedDirection * character.Default.Speed);
-                character.Animator.Push(m_PostdashAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
-            }
-            else {
-                character.Body.SetVelocity(Vector2.zero);
-            }
-
-            character.Default.Enable(character, true);
-
-            character.Animator.Remove(m_DashAnimation);
-            m_EndBoomEffect.Play();
-
-            m_DashTimer.Start(m_PostdashDuration);
-            m_ActionPhase = ActionPhase.PostAction;
-        }
-
-        [SerializeField]
-        private int m_MaxDashCount = 3;
-        private int m_DashCount = 0;
-
-        private void OnEndDash(CharacterController character) {
-            character.Animator.Remove(m_PostdashAnimation);
-            
-            m_ActionPhase = ActionPhase.None;
-
-            if (m_DashCount > 0 && character.Input.Actions[1].Held && character.Input.Direction.Normal != Vector2.zero) {
-                OnStartPredash(character);
-                m_DashCount -= 1;
-            }
-
-        }
-
-        private void WhilePredashing(CharacterController character, float dt) {
-
-        }
-
-        private void WhileDashing(CharacterController character, float dt) {
-            // if (Mathf.Abs(character.Body.velocity.x) < DashSpeed / 2f || Mathf.Abs(character.Body.velocity.y) > 0.2f) {
-            //     OnStartPostdash(character);
-            // }
+//         private void WhileDashing(CharacterController character, float dt) {
+//             // if (Mathf.Abs(character.Body.velocity.x) < DashSpeed / 2f || Mathf.Abs(character.Body.velocity.y) > 0.2f) {
+//             //     OnStartPostdash(character);
+//             // }
         
-            if (character.Body.velocity.sqrMagnitude < DashSpeed * DashSpeed / 4f) {
-                OnStartPostdash(character);
-            }
+//             if (character.Body.velocity.sqrMagnitude < DashSpeed * DashSpeed / 4f) {
+//                 OnStartPostdash(character);
+//             }
 
-        }
+//         }
 
-        private void WhilePostdashing(CharacterController character, float dt) {
+//         private void WhilePostdashing(CharacterController character, float dt) {
 
-        }
+//         }
 
-    }
-}
+//     }
+// }

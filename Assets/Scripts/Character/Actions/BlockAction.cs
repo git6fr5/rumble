@@ -9,12 +9,11 @@
 // // Platformer.
 // using Gobblefish.Input;
 // using Platformer.Character;
-// using Platformer.Character.Actions;
+// using Platformer.Character;
 
 // /* --- Definitions --- */
-// using Game = Platformer.GameManager;
-
-// namespace Platformer.Character.Actions {
+// 
+// namespace Platformer.Character {
 
 //     ///<summary>
 //     /// An ability that near-instantly moves the character.
@@ -172,7 +171,7 @@
 //         private void OnStartDash(CharacterController character) {
 //             m_CachedDirection = new Vector2(character.FacingDirection, 0f);
 //             character.Body.SetVelocity(m_CachedDirection * DashSpeed);
-//             // Game.MainPlayer.ExplodeDust.Activate();
+//             // PlayerManager.Character.ExplodeDust.Activate();
 
 //             m_ShadowTimer.Start(m_DashDuration);
 //             m_ActionPhase = ActionPhase.MidAction;

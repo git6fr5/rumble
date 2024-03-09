@@ -1,13 +1,13 @@
-/* --- Libraries --- */
 // System.
 using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.VFX;
+// Platformer.
+using Platformer;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
+// Definitions.
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {
@@ -33,7 +33,7 @@ namespace Platformer.Entities.Components {
 
         // Collects this orb.
         public void SwapPower() {
-            CharacterController character = Game.MainPlayer;
+            CharacterController character = PlayerManager.Character;
 
             // Swap the power based on the type of orb.
             character.DisableAllAbilityActions();

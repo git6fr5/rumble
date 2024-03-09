@@ -5,9 +5,10 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.VFX;
+// Platformer.
+using Platformer;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
+// Definitions.
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {
@@ -21,7 +22,7 @@ namespace Platformer.Entities.Components {
         // Collects this orb.
         public void Kill() {
             Debug.Log("Player killed");
-            CharacterController character = Game.MainPlayer;
+            CharacterController character = PlayerManager.Character;
             character.Reset();
         }
         

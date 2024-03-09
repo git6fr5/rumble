@@ -8,7 +8,6 @@ using UnityEngine;
 using Platformer.Physics;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using IReset = Platformer.Entities.Utility.IReset;
 using CharacterController = Platformer.Character.CharacterController;
 // using TrailAnimator = Gobblefish.Animation.TrailAnimator;
@@ -112,7 +111,7 @@ namespace Platformer.Entities.Components {
 
         private void OnFall() {
             // m_TrailSparkle.enabled = true;
-            // transform.position = m_Origin + Game.Physics.Collisions.CollisionPrecision * Vector3.down;
+            // transform.position = m_Origin + PhysicsManager.Settings.collisionPrecision * Vector3.down;
             if (!m_Entity.CollisionEnabled) {
                 return;
             }

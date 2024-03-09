@@ -6,16 +6,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 // Gobblefish.
-using Gobblefish.Input;
+using Gobblefish.Audio;
 // Platformer.
 using Platformer.Physics;
-using Platformer.Character;
-using Platformer.Character.Actions;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
-
-namespace Platformer.Character.Actions {
+namespace Platformer.Character {
 
     ///<summary>
     /// An ability that near-instantly moves the character.
@@ -63,11 +58,15 @@ namespace Platformer.Character.Actions {
 
         // The sounds that plays when charging the hop.
         [SerializeField]
-        private AudioClip m_ChargeHopSound = null;
+        private AudioSnippet m_ChargeHopSound = null;
 
         // The sounds that plays when hopping.
         [SerializeField]
-        private AudioClip m_HopSound = null;
+        private AudioSnippet m_HopSound = null;
+
+        // The effect that plays when releasing the hop.
+        [SerializeField]
+        private VisualEffect m_OnReleaseHopEffect;
 
         // An index to the particle that is associated with the charge timer.
         // [SerializeField] 
@@ -103,7 +102,7 @@ namespace Platformer.Character.Actions {
                 character.Animator.Remove(m_ChargeHopAnimation);
                 character.Animator.Remove(m_HopAnimation);
                 character.Animator.Remove(m_FallAnimation);
-                Game.Audio.Sounds.StopSound(m_ChargeHopSound);
+                m_ChargeHopSound.Stop();
             }
 
         }
@@ -163,7 +162,7 @@ namespace Platformer.Character.Actions {
 
         private void OnStartCharge(CharacterController character) {
             // Disable other inputs.
-            // character.Disable(duration);
+            // character.Disable(duration); // lol, why did i do it like this?
             character.Default.Enable(character, false);
 
             // Stop the body.
@@ -175,7 +174,7 @@ namespace Platformer.Character.Actions {
             m_ActionPhase = ActionPhase.PreAction;
 
             character.Animator.Push(m_ChargeHopAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
-            Game.Audio.Sounds.PlaySound(m_ChargeHopSound, 0.15f);
+            m_ChargeHopSound.Play();
             // m_CircleEffectIndex = Game.Visuals.Effects.PlayCircleEffect(m_ChargeDuration, character.transform, Vector3.zero);
 
         }
@@ -183,16 +182,16 @@ namespace Platformer.Character.Actions {
         private void OnStartHop(CharacterController character) {
             character.Default.Enable(character, true, false);
 
-            character.Body.Move(Vector2.up * 2f * Game.Physics.Collisions.CollisionPrecision);
+            character.Body.Move(Vector2.up * 2f * PhysicsManager.Settings.collisionPrecision);
             character.Body.SetVelocity(m_Speed * Mathf.Sqrt(m_ChargeTimer.InverseRatio) * Vector2.up);
             character.Body.SetWeight(m_Weight);
 
             character.Animator.Remove(m_ChargeHopAnimation);
             character.Animator.Push(m_HopAnimation, CharacterAnimator.AnimationPriority.ActionActive);
             
-            // Game.Visuals.Effects.PlayImpactEffect(character.OnActionParticle, 16, 1f + 0.6f * m_ChargeTimer.InverseRatio, character.transform, Vector3.zero);
-            Game.Audio.Sounds.PlaySound(m_HopSound, 0.15f);
-            Game.Audio.Sounds.StopSound(m_ChargeHopSound);
+            m_OnReleaseHopEffect.Play();
+            m_HopSound.Play();
+            m_ChargeHopSound.Stop();
             // Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
 
             m_ChargeTimer.Stop();
@@ -220,7 +219,6 @@ namespace Platformer.Character.Actions {
         private void WhileFalling(CharacterController character, float dt) {
             if (m_Refreshed) {
                 character.Animator.Remove(m_FallAnimation);
-                // character.Default.OnExternalJump(character, character.Default.JumpSpeed * 0.75f);
                 m_ActionPhase = ActionPhase.None;
             }
         }

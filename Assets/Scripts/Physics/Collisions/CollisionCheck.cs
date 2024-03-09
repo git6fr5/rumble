@@ -12,15 +12,12 @@ namespace Platformer.Physics {
     [System.Serializable]
     public class CollisionCheck {
 
-        // The collision precision for things to be considered touching.
-        public float CollisionPrecision => PhysicsSettings.CollisionPrecision;
-
         // Checks whether anything within the circle is touching something on the given layer.
         public bool Touching(Vector3 center, float radius, Vector3 direction, LayerMask layer) {
             Vector3 normal = Quaternion.Euler(0f, 0f, 90f) * direction;
             for (int i = -1; i <= 1; i++) {
                 Vector3 offset = direction * radius + i * normal * radius / 1.5f;
-                Collider2D temp = Physics2D.OverlapCircle(center + offset, PhysicsSettings.CollisionPrecision, layer);
+                Collider2D temp = Physics2D.OverlapCircle(center + offset, PhysicsManager.Settings.collisionPrecision, layer);
                 if (temp != null) {
                     return true;
                 }
@@ -67,7 +64,7 @@ namespace Platformer.Physics {
         // Finds all object of the given class interseting the line (null if none exist).
         public TMonoBehaviour LineOfSight<TMonoBehaviour>(Vector3 position, Vector2 direction, LayerMask layers, float distance = -1f) where TMonoBehaviour : MonoBehaviour {
             distance = distance == -1f ? Mathf.Infinity : distance;
-            RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position + (Vector3)direction * CollisionPrecision, direction, distance, layers);
+            RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position + (Vector3)direction * PhysicsManager.Settings.collisionPrecision, direction, distance, layers);
             TMonoBehaviour behaviour = hit.collider?.GetComponent<TMonoBehaviour>();
             if (behaviour != null) {
                 return behaviour;
@@ -78,7 +75,7 @@ namespace Platformer.Physics {
         // Finds all object of the given class interseting the line (null if none exist).
         public GameObject ILineOfSight<I>(Vector3 position, Vector2 direction, LayerMask layers, float distance = -1f) {
             distance = distance == -1f ? Mathf.Infinity : distance;
-            RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position + (Vector3)direction * CollisionPrecision, direction, distance, layers);
+            RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position + (Vector3)direction * PhysicsManager.Settings.collisionPrecision, direction, distance, layers);
             Debug.Log(hit.collider);
             bool hasInterface = hit.collider != null && hit.collider.GetComponent<I>() != null;
             if (hasInterface) {
@@ -91,7 +88,7 @@ namespace Platformer.Physics {
         public float DistanceToFirst(Vector3 position, Vector2 direction, LayerMask layers, float distance = -1f) {
             distance = distance == -1f ? Mathf.Infinity : distance;
 
-            RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position + (Vector3)direction * CollisionPrecision, direction, distance, layers);
+            RaycastHit2D hit = UnityEngine.Physics2D.Raycast(position + (Vector3)direction * PhysicsManager.Settings.collisionPrecision, direction, distance, layers);
             
             if (hit.collider != null) {
                 return hit.distance;

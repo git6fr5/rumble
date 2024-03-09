@@ -8,7 +8,6 @@ using UnityEngine;
 using Platformer.Physics;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {
@@ -64,8 +63,8 @@ namespace Platformer.Entities.Components {
         private Vector3 MaxTensionPosition => m_Entity.Origin + Vector3.down * m_MaxTension;
 
         // The sound that plays when this bounces.
-        [SerializeField] 
-        private AudioClip m_BounceSound = null;
+        // [SerializeField] 
+        // private AudioClip m_BounceSound = null;
 
         #endregion
         
@@ -105,9 +104,9 @@ namespace Platformer.Entities.Components {
                 PreemptiveClamp();
             }
 
-            if (distance < Game.Physics.Collisions.CollisionPrecision) {
+            if (distance < PhysicsManager.Settings.collisionPrecision) {
                 CheckPreemptiveBounce();
-                Game.Audio.Sounds.PlaySound(m_BounceSound, 0.2f);
+                // Game.Audio.Sounds.PlaySound(m_BounceSound, 0.2f);
                 m_BounceState = BounceState.Releasing;
             }
         }
@@ -120,7 +119,7 @@ namespace Platformer.Entities.Components {
             CheckBounce();
 
             float distance = (transform.localPosition - m_Entity.Origin).magnitude;
-            if (distance < Game.Physics.Collisions.CollisionPrecision) {
+            if (distance < PhysicsManager.Settings.collisionPrecision) {
                 m_BounceState = BounceState.None;
                 MissedBounce();
             }

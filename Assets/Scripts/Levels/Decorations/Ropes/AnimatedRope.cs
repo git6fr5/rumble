@@ -6,9 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
-
 namespace Platformer.LevelEditing {
 
     [RequireComponent(typeof(SpriteShapeController))]

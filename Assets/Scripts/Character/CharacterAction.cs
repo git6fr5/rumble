@@ -9,7 +9,7 @@ using UnityEngine.VFX;
 using Gobblefish.Input;
 using Platformer.Character;
 
-namespace Platformer.Character.Actions {
+namespace Platformer.Character {
 
     ///<summary>
     /// An abstract class defining the functionality of a

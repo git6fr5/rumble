@@ -11,11 +11,7 @@ using Gobblefish.Input;
 // Platformer.
 using Platformer.Physics;
 using Platformer.Character;
-using Platformer.Character.Actions;
 using Platformer.Entities.Components;
-
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
 
 namespace Platformer.Character {
 
@@ -36,7 +32,7 @@ namespace Platformer.Character {
         // The rigidbody attached to this controller.
         private Rigidbody2D m_Body = null;
         public Rigidbody2D Body => m_Body;
-        
+
         // The main collider attached to this body.
         private CircleCollider2D m_Collider = null;
         public CircleCollider2D Collider => m_Collider;
@@ -49,17 +45,17 @@ namespace Platformer.Character {
         /* --- Members --- */
 
         // Checks whether the character is on the ground.
-        [SerializeField, ReadOnly] 
+        [SerializeField, ReadOnly]
         private bool m_OnGround = false;
         public bool OnGround => m_OnGround;
-        
+
         // Checks whether the character is facing a wall.
-        [SerializeField, ReadOnly] 
+        [SerializeField, ReadOnly]
         private bool m_FacingWall = false;
         public bool FacingWall => m_FacingWall;
-        
+
         // Checks what direction the controller is facing.
-        [SerializeField, ReadOnly] 
+        [SerializeField, ReadOnly]
         private float m_FacingDirection = 1f;
         public float FacingDirection => m_FacingDirection;
 
@@ -68,23 +64,23 @@ namespace Platformer.Character {
         private bool m_DirectionLocked = false;
 
         // Checks whether the character is rising.
-        [SerializeField, ReadOnly] 
+        [SerializeField, ReadOnly]
         private bool m_Rising = false;
         public bool Rising => !m_OnGround && m_Rising;
 
         // Checks whether the character is falling.
-        [SerializeField, ReadOnly] 
+        [SerializeField, ReadOnly]
         private bool m_Falling = false;
         public bool Falling => !m_OnGround && m_Falling;
 
         // Checks whether this character is currently disabled.
-        [SerializeField, ReadOnly] 
+        [SerializeField, ReadOnly]
         private Timer m_DisableTimer = new Timer(0f, 0f);
         public bool Disabled => m_DisableTimer.Active;
         private bool m_Dying = false;
 
         // The block that this character respawns at.
-        [SerializeField, ReadOnly] 
+        [SerializeField, ReadOnly]
         private Respawn m_Respawn;
         public Respawn CurrentRespawn => m_Respawn;
 
@@ -92,28 +88,8 @@ namespace Platformer.Character {
         private Interactable m_Interactable;
         public Interactable CurrentInteractable => m_Interactable;
 
-        // The sprite that is used for the death impact effect.
-        [SerializeField]
-        private Sprite m_OnDeathParticle;
-
-        // The sound thats played when the character dies.
-        [SerializeField] 
-        private AudioClip m_OnDeathSound;
-
-        [SerializeField, ColorUsage(true, true)]
-        private Color m_DeathColor;
-        
-        // The sound thats played when the character respawns.
-        [SerializeField] 
-        private AudioClip m_OnRespawnSound;
-
-        // The sprite that is used for the action impact effect.
-        [SerializeField]
-        private Sprite m_OnActionParticle;
-        public Sprite OnActionParticle => m_OnActionParticle;
-        
         // Actions.
-        [SerializeField] 
+        [SerializeField]
         private DefaultAction m_DefaultAction;
         public DefaultAction Default => m_DefaultAction;
 
@@ -122,45 +98,47 @@ namespace Platformer.Character {
         private List<CharacterAction> m_PowerActions = new List<CharacterAction>();
 
         // The dash action.
-        [SerializeField] 
+        [SerializeField]
         private DashAction m_DashAction;
         public DashAction Dash => m_DashAction;
-        
+
         // The hop action.
-        [SerializeField] 
+        [SerializeField]
         private HopAction m_HopAction;
         public HopAction Hop => m_HopAction;
-        
+
         // The ghost action.
-        [SerializeField] 
+        [SerializeField]
         private GhostAction m_GhostAction;
         public GhostAction Ghost => m_GhostAction;
-        
+
         // The shadow action.
-        // [SerializeField] 
+        // [SerializeField]
         // private ShadowAction m_ShadowAcction;
         // public ShadowAction Shadow => m_ShadowAcction;
-        
+
         // The sticky action.
-        [SerializeField] 
+        [SerializeField]
         private StickyAction m_StickyAction;
         public StickyAction Sticky => m_StickyAction;
 
         #endregion
 
+        // Runs once on instantiation.
         void Awake() {
             m_Input = GetComponent<InputSystem>();
             m_Body = GetComponent<Rigidbody2D>();
             m_Collider = GetComponent<CircleCollider2D>();
         }
 
+        // Runs once before the first frame.
         void Start() {
-            
+
             m_DefaultAction.Enable(this, true);
             m_PowerActions = new List<CharacterAction>() {
                 m_DashAction,
                 m_HopAction,
-                m_GhostAction, 
+                m_GhostAction,
                 // m_ShadowAcction,
                 m_StickyAction
             };
@@ -168,6 +146,7 @@ namespace Platformer.Character {
             EnableAllAbilityActions();
             DisableAllAbilityActions();
         }
+
 
         public void Reset() {
             if (m_Respawn == null && tag == "Player") {
@@ -178,17 +157,17 @@ namespace Platformer.Character {
             if (m_Dying) {
                 return;
             }
-            
-            // m_Animator.ColoredBurst(m_DeathColor);
+
+            // GraphicsManager.
             // The visual feedback played when dying.
-            Game.Physics.Time.RunHitStop(16);
-            // Game.Visuals.Effects.PlayImpactEffect(m_OnDeathParticle,30, 5f, transform, Vector3.zero);
-            Game.Audio.Sounds.PlaySound(m_OnDeathSound, 0.15f);
+            // PhysicsManager.Time.RunHitStop(16);
+            // GraphicsManager.Effects.PlayImpactEffect(m_OnDeathParticle,30, 5f, transform, Vector3.zero);
+            // AudioManager.Sounds.PlaySound(m_OnDeathSound, 0.15f);
 
             // Noting the death in the stats.
-            // Game.Level.AddDeath();
-            // Game.Level.Reset();
-            
+            // LevelManager.AddDeath();
+            // LevelManager.Reset();
+
             // Resetting the character.
             m_Respawn.CreateCorpse(this);
 
@@ -209,12 +188,10 @@ namespace Platformer.Character {
             // yield return new WaitForSeconds(delay);
             m_Dying = false;
             m_DefaultAction.Enable(this, true);
-            Game.Audio.Sounds.PlaySound(m_OnRespawnSound, 0.15f);
+            // Game.Audio.Sounds.PlaySound(m_OnRespawnSound, 0.15f);
         }
 
         public void SetRespawn(Respawn respawn) {
-            // Game.Objects.Reset();
-            print("respawning");
             if (m_Respawn != null) {
                 m_Respawn.Deactivate();
             }
@@ -222,7 +199,7 @@ namespace Platformer.Character {
             m_Respawn.Activate();
         }
 
-        
+
         public void SetInteractable(Interactable interactable) {
             m_Interactable = interactable;
         }
@@ -241,12 +218,12 @@ namespace Platformer.Character {
 
         void Update() {
             if (m_DisableTimer.Active) { return; }
-            
+
             m_DefaultAction.InputUpdate(this);
             for (int i = 0; i < m_PowerActions.Count; i++) {
                 m_PowerActions[i].InputUpdate(this);
             }
-        
+
         }
 
         void FixedUpdate() {
@@ -256,8 +233,8 @@ namespace Platformer.Character {
             m_Falling = m_Body.Falling();
             // m_DirectionLocked = m_DisableTimer.Active;
             m_FacingDirection = m_DirectionLocked ? m_FacingDirection : m_Input.Direction.Horizontal != 0f ? m_Input.Direction.Horizontal : m_FacingDirection;
-            m_OnGround = Game.Physics.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.down, Game.Physics.CollisionLayers.Ground);
-            m_FacingWall = Game.Physics.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.right * m_FacingDirection,  Game.Physics.CollisionLayers.Ground);
+            m_OnGround = PhysicsManager.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.down, PhysicsManager.CollisionLayers.Ground);
+            m_FacingWall = PhysicsManager.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.right * m_FacingDirection,  PhysicsManager.CollisionLayers.Ground);
 
             m_DefaultAction.PhysicsUpdate(this, Time.fixedDeltaTime);
             for (int i = 0; i < m_PowerActions.Count; i++) {

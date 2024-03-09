@@ -8,7 +8,6 @@ using UnityEngine;
 using Platformer.Physics;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using IReset = Platformer.Entities.Utility.IReset;
 using CharacterController = Platformer.Character.CharacterController;
 // using TrailAnimator = Gobblefish.Animation.TrailAnimator;
@@ -103,9 +102,9 @@ namespace Platformer.Entities.Components {
         private void OnFollow() {
             // Index.
             Following[] followingArray = (Following[])GameObject.FindObjectsOfType(typeof(Following));
-            Following following = FindFollowing(followingArray, Game.MainPlayer.transform);
+            Following following = FindFollowing(followingArray, PlayerManager.Character.transform);
             if (following == null) {
-                m_FollowTransform = Game.MainPlayer.transform;
+                m_FollowTransform = PlayerManager.Character.transform;
             }
             else {
                 Following cachedFollowing = following;

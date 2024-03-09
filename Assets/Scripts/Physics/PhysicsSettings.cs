@@ -1,26 +1,22 @@
-/* --- Libraries --- */
+// System.
 using System.Collections;
 using System.Collections.Generic;
+// Unity.
 using UnityEngine;
 
-namespace Platformer {
+namespace Platformer.Physics {
 
     ///<summary>
     /// Defines the general physics settings for the game.
     ///<summary>
-    public static class PhysicsSettings {
+    public sealed class PhysicsSettings : Gobblefish.Settings<PhysicsSettings> {
 
-        // Movement.
-        private static float m_MovementPrecision = 1f/32f;
-        public static float MovementPrecision => m_MovementPrecision;
+        public float movementPrecision = 1f/32f;
 
-        // Collision.
-        private static float m_CollisionPrecision = 1f/48f;
-        public static float CollisionPrecision => m_CollisionPrecision;
+        public float collisionPrecision = 1f/48f;
 
-        // Gravity
-        private static float m_GravityScale = 1f;
-        public static float GravityScale => m_GravityScale;
+        public float gravityScale = 1f;
 
     }
+    
 }

@@ -9,7 +9,6 @@ using UnityEngine.U2D;
 using Platformer.Entities;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities {

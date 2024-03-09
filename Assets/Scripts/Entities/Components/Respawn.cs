@@ -11,7 +11,6 @@ using Platformer.Physics;
 using Platformer.Character;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using Entity = Platformer.Entities.Entity;
 using Projectile = Platformer.Entities.Utility.Projectile;
 using CharacterController = Platformer.Character.CharacterController;
@@ -54,7 +53,7 @@ namespace Platformer.Entities.Components {
 
         // Runs once before the first frame.
         void Start() {
-            if (Game.MainPlayer.CurrentRespawn == this) {
+            if (PlayerManager.Character.CurrentRespawn == this) {
                 Activate();
             }
             else {
@@ -70,7 +69,7 @@ namespace Platformer.Entities.Components {
         }
 
         public void SetRespawnPoint() {
-            CharacterController character = Game.MainPlayer;
+            CharacterController character = PlayerManager.Character;
             character.SetRespawn(this);
         }
 
@@ -98,7 +97,7 @@ namespace Platformer.Entities.Components {
                 m_EmissionParticle.Play();
             }
             if (m_TotalActivatedTime == 0f) {
-                m_FirstActivationTime = Game.Physics.Time.Ticks;
+                m_FirstActivationTime = PhysicsManager.Time.Ticks;
             }
             
         }

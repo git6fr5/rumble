@@ -11,8 +11,7 @@
 // using Platformer.Character;
 
 // /* --- Definitions --- */
-// using Game = Platformer.GameManager;
-
+// 
 // namespace Platformer.Tests {
 
 //     ///<summary>
@@ -185,7 +184,7 @@
 
 //             float warpBase = m_Character.Body.velocity.y;
 //             if (warpBase < 0.5) {
-//                 warpBase /= Platformer.Character.Actions.DefaultAction.MAX_FALL_SPEED;
+//                 warpBase /= Platformer.Character.DefaultAction.MAX_FALL_SPEED;
 //                 warpBase *= 4f;
 //             }
 //             else if (warpBase > 0.5) {

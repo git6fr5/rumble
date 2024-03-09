@@ -7,15 +7,13 @@
 // using UnityEngine.VFX;
 // using UnityExtensions;
 // // Platformer.
-// using Gobblefish.Input;
 // using Platformer.Character;
-// using Platformer.Character.Actions;
+// using Platformer.Character;
 
 // /* --- Definitions --- */
-// using Game = Platformer.GameManager;
-// using ShadowBlock = Platformer.Objects.Blocks.ShadowBlock;
+// // using ShadowBlock = Platformer.Objects.Blocks.ShadowBlock;
 
-// namespace Platformer.Character.Actions {
+// namespace Platformer.Character {
 
 //     ///<summary>
 //     /// An ability that near-instantly moves the character.
@@ -221,7 +219,7 @@
 
 //             // Check to see if the character should die.
 //             float radius = character.Collider.radius - COLLISION_LENIENCY;
-//             bool touching = Game.Physics.Collisions.Touching(character.Body.position, radius, Game.Physics.CollisionLayers.Ground);
+//             bool touching = PhysicsManager.Collisions.Touching(character.Body.position, radius, PhysicsManager.CollisionLayers.Ground);
 //             bool onScreen = Game.Visuals.Camera.IsWithinBounds(character.Body.position);
 
 //             if (touching || !onScreen) {
@@ -229,7 +227,7 @@
 //                 // Move the character.
 //                 character.Body.position += (character.Collider.radius * 2f) * character.Input.Direction.MostRecent;
 
-//                 touching = Game.Physics.Collisions.Touching(character.Body.position, radius, Game.Physics.CollisionLayers.Ground);
+//                 touching = PhysicsManager.Collisions.Touching(character.Body.position, radius, PhysicsManager.CollisionLayers.Ground);
 //                 onScreen = Game.Visuals.Camera.IsWithinBounds(character.Body.position);
 
 //                 if (touching || !onScreen) {

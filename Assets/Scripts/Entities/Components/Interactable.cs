@@ -10,7 +10,6 @@ using TMPro;
 using Platformer.Entities;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {
@@ -152,7 +151,7 @@ namespace Platformer.Entities.Components {
                 FacePlayer();
             }
 
-            if (Game.MainPlayer.CurrentInteractable == this) {
+            if (PlayerManager.Character.CurrentInteractable == this) {
                 m_Dialogue.Update(Time.deltaTime);
                 m_Entity.Renderer.GetComponent<SpriteRenderer>().color = Color.blue; // transform.localScale = new Vector3(1f, 1f, 1f) * 2f;
             }
@@ -164,7 +163,7 @@ namespace Platformer.Entities.Components {
         private void FacePlayer() {
             if (m_FacePlayer) {
                 // Make this NPC face towards the player.
-                float direction = (Game.MainPlayer.transform.position.x - transform.position.x);
+                float direction = (PlayerManager.Character.transform.position.x - transform.position.x);
                 float angle = 0f;
                 if (direction < 0f) {
                     angle = 180f;
@@ -174,7 +173,7 @@ namespace Platformer.Entities.Components {
         }
 
         public void SetInteractable() {
-            CharacterController character = Game.MainPlayer;
+            CharacterController character = PlayerManager.Character;
             character.SetInteractable(this);
             m_Dialogue.Reset();
             if (m_Entity.CircleCollider != null) {
@@ -183,7 +182,7 @@ namespace Platformer.Entities.Components {
         }
 
         public void EndInteractable() {
-            CharacterController character = Game.MainPlayer;
+            CharacterController character = PlayerManager.Character;
             character.SetInteractable(null);
             m_Dialogue.Reset();
             if (m_Entity.CircleCollider != null) {

@@ -1,65 +1,42 @@
-// /* --- Libraries --- */
-// // System.
-// using System.Collections;
-// using System.Collections.Generic;
-// // Unity.
-// using UnityEngine;
-// using LDtkUnity;
+// System.
+using System.Collections;
+using System.Collections.Generic;
+// Unity.
+using UnityEngine;
 
-// /* --- Definitions --- */
-// using Game = Platformer.GameManager;
-// // using SaveSystem = Platformer.Management.SaveSystem;
+namespace Platformer {
 
-// namespace Platformer.Levels {
+    /// <summary>
+    /// Loads all the levels in the world from the LDtk file.
+    /// </summary>
+    public class PlayerManager : Gobblefish.Manager<PlayerManager, PlayerSettings> {
 
-//     /// <summary>
-//     /// Loads all the levels in the world from the LDtk file.
-//     /// </summary>
-//     public class PlayerManager: MonoBehaviour {
+        [SerializeField]
+        private Platformer.Character.CharacterController m_Character;
+        public static Platformer.Character.CharacterController Character => Instance.m_Character;
 
-//         [HideInInspector]
-//         private int m_Deaths = 0;
-//         public int Deaths => m_Deaths;
+        // Resets the current room.
+        public void Reset() {
+            // Platformer.Objects.Blocks.BlockObject.ResetAll();
+            // Platformer.Objects.Orbs.OrbObject.ResetAll();
+        }
 
-//         [HideInInspector]
-//         private int m_Points = 0;
-//         public int Points => m_Points;
+        public void AddDeath() {
+            Settings.deaths += 1;
+        }
 
-//         // Resets the current room.
-//         public void Reset() {
-//             // Platformer.Objects.Blocks.BlockObject.ResetAll();
-//             // Platformer.Objects.Orbs.OrbObject.ResetAll();
-//         }
+        public void AddPoint() {
+            Settings.points += 1;
+        }
 
-//         // Loads the entities for
-//         public void Load(LevelSection section) {
-//             // for (int i = 0; i < section.Pieces.Length; i++) {
-//             //     section.Pieces[i].SetActive(true);
-//             // }
-//         }
+        public void OnSaveAndQuit() {
 
-//         public void Unload(LevelSection section) {
-//             // for (int i = 0; i < section.Pieces.Length; i++) {
-//             //     section.Pieces[i].SetActive(false);
-//             // }
-//             // Platformer.Objects.Spitters.Projectile.DeleteAll(); // Should go somewhere saying custom.
-//         }
+        }
 
-//         public void AddDeath() {
-//             m_Deaths += 1;
-//         }
+        public void OnComplete() {
 
-//         public void AddPoint() {
-//             m_Points += 1;
-//         }
+        }
 
-//         public void OnSaveAndQuit() {
-//         }
+    }
 
-//         public void OnComplete() {
-
-//         }
-
-//     }
-
-// }
+}

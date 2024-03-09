@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using Entity = Platformer.Entities.Entity;
 using CharacterController = Platformer.Character.CharacterController;
 

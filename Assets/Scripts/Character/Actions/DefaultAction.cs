@@ -6,16 +6,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 // Gobblefish.
-using Gobblefish.Input;
+using Gobblefish.Audio;
 // Platformer.
 using Platformer.Physics;
-using Platformer.Character;
-using Platformer.Character.Actions;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
-
-namespace Platformer.Character.Actions {
+namespace Platformer.Character {
 
     ///<summary>
     /// The default ability for controlling the character.
@@ -139,6 +134,22 @@ namespace Platformer.Character.Actions {
         private Sprite[] m_FallingFastAnimation = null;
         public Sprite[] FallingFastAnim => m_FallingFastAnimation;
 
+        // The effect that plays when the player jumps.
+        [SerializeField]
+        private VisualEffect m_OnJumpEffect;
+
+        // The sound that plays when the player jumps.
+        [SerializeField]
+        private AudioSnippet m_OnJumpSound;
+
+        // The effect that plays when the player lands.
+        [SerializeField]
+        private VisualEffect m_OnLandEffect;
+
+        // The sound that plays when the player lands.
+        [SerializeField]
+        private AudioSnippet m_OnLandSound;
+
         #endregion
 
         // When enabling/disabling this ability.
@@ -245,12 +256,13 @@ namespace Platformer.Character.Actions {
             RefreshJumpSettings(ref m_JumpSpeed, ref m_Weight, ref m_Sink, m_Height, m_RisingTime, m_FallingTime);
 
             // Jumping.
-            character.Body.Move(Vector2.up * 2f * Game.Physics.Collisions.CollisionPrecision);
+            character.Body.Move(Vector2.up * 2f * PhysicsManager.Settings.collisionPrecision);
             // These two lines are the key!!!
             character.Body.ClampFallSpeed(0f); 
             character.Body.AddVelocity(Vector2.up * m_JumpSpeed);
 
-            character.Animator.SimpleBurst.Play();
+            m_OnJumpEffect.Play();
+            m_OnJumpSound.Play();
 
         }
 
@@ -263,7 +275,7 @@ namespace Platformer.Character.Actions {
             // RefreshJumpSettings(ref jumpSpeed, ref m_Weight, ref m_Sink, m_Height, m_RisingTime, m_FallingTime);
 
             // Jumping.
-            character.Body.Move(Vector2.up * 2f * Game.Physics.Collisions.CollisionPrecision);
+            character.Body.Move(Vector2.up * 2f * PhysicsManager.Settings.collisionPrecision);
             // These two lines are the key!!!
             character.Body.ClampFallSpeed(0f); 
             character.Body.SetVelocity(Vector2.up * jumpSpeed);
@@ -279,7 +291,8 @@ namespace Platformer.Character.Actions {
             character.Animator.Remove(m_RisingAnimation);
             character.Animator.Remove(m_FallingAnimation);
 
-            character.Animator.SimpleBurst.Play();
+            m_OnLandEffect.Play();
+            m_OnLandSound.Play();
 
         }
 
@@ -349,7 +362,7 @@ namespace Platformer.Character.Actions {
                     }
 
                     Vector2 footPosition = character.Body.position + character.Collider.offset + Vector2.down * (character.Collider.radius + 0.1f);
-                    float dist = Game.Physics.Collisions.DistanceToFirst(footPosition, Vector3.down, Game.Physics.CollisionLayers.Solid);
+                    float dist = PhysicsManager.Collisions.DistanceToFirst(footPosition, Vector3.down, PhysicsManager.CollisionLayers.Solid);
 
                     if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
                         character.Animator.Push(m_FallingFastAnimation, CharacterAnimator.AnimationPriority.ActionPassiveFalling);

@@ -1,27 +1,17 @@
-// TODO: Clean
-
-/* --- Libraries --- */
 // System.
 using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.U2D;
-using LDtkUnity;
-// Platformer.
-using Platformer.Character;
-using Platformer.Levels;
-
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
+// Gobblefish.
+using Gobblefish.Graphics;
 
 namespace Platformer.Levels {
 
     /// <summary>
     ///
     /// <summary>
-    [ExecuteInEditMode, RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(BoxCollider2D))]
     public class CameraNode : MonoBehaviour {
 
         [HideInInspector]
@@ -38,54 +28,37 @@ namespace Platformer.Levels {
             m_Box.isTrigger = true;
         }
 
-        public bool snapToThis = false;
-        void Update() {
-            if (!Application.isPlaying && snapToThis) {
-                Snap();
-                snapToThis = false;
-            }
-        }
-
         public void Snap() {
-            Vector3 targetPosition = (Vector3)transform.position + Vector3.forward * Gobblefish.Graphics.CameraMovement.CAMERA_PLANE_DISTANCE;
+            Vector3 targetPosition = (Vector3)transform.position + Vector3.forward * GraphicsManager.CamMovement.CameraPlaneDistance;
             Camera.main.transform.position = targetPosition;
         }
 
         void OnTriggerEnter2D(Collider2D collider) {
-            if (collider == Game.MainPlayer.Collider) {
+            if (collider == PlayerManager.Character.Collider) {
                 Debug.Log(gameObject.name);
-                // Gobblefish.Graphics.CameraMovement cameraMovement = Camera.main.transform.parent.gameObject.GetComponent<Gobblefish.Graphics.CameraMovement>();
+                GraphicsManager.CamMovement.AddTarget(transform);
                 // cameraMovement.SetDefaultTarget(transform);
                 // cameraMovement.RemoveAll()
-                Camera.main.transform.parent.gameObject.GetComponent<Gobblefish.Graphics.CameraMovement>().AddTarget(transform);
             }
         }
 
         void OnTriggerExit2D(Collider2D collider) {
-            if (collider == Game.MainPlayer.Collider) {
-                Camera.main.transform.parent.gameObject.GetComponent<Gobblefish.Graphics.CameraMovement>().RemoveTarget(transform);
+            if (collider == PlayerManager.Character.Collider) {
+                GraphicsManager.CamMovement.RemoveTarget(transform);
             }
         }
 
         public bool debug = true;
         void OnDrawGizmos() {
-            if (!debug) {
-                return;
-            }
+            if (!debug) { return; }
             Gizmos.color = new Color(1, 0, 0, 0.2f);
             BoxCollider2D box = GetComponent<BoxCollider2D>();
-
             Camera camera = Camera.main;
             float halfHeight = camera.orthographicSize;
             float halfWidth = camera.aspect * halfHeight;
-
-            // Camera.main
             Gizmos.DrawCube(transform.position + (Vector3)box.offset, box.size);
-            
             Gizmos.color = new Color(0, 1, 0, 0.2f);
             Gizmos.DrawCube(transform.position, new Vector3(halfWidth * 2f, halfHeight * 2f, 0f));
-
-
         }
 
     }

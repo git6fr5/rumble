@@ -1,6 +1,7 @@
-/* --- Libraries --- */
+// System.
 using System.Collections;
 using System.Collections.Generic;
+// Unity.
 using UnityEngine;
 
 namespace Platformer.Physics {
@@ -8,34 +9,22 @@ namespace Platformer.Physics {
     ///<summary>
     /// Ties the physics functionality to the rest of the game.
     ///<summary>
-    public class PhysicsManager : MonoBehaviour {
-
-        #region Fields.
+    public sealed class PhysicsManager : Gobblefish.Manager<PhysicsManager, PhysicsSettings> {
 
         // Controls the flow of time in the game.
         [SerializeField]
         private TimeController m_TimeController;
-        public TimeController Time => m_TimeController;
+        public static TimeController Time => Instance.m_TimeController;
 
         // Exposes simple collision functionality.
         [SerializeField]
         private CollisionCheck m_CollisionCheck = new CollisionCheck();
-        public CollisionCheck Collisions => m_CollisionCheck;
+        public static CollisionCheck Collisions => Instance.m_CollisionCheck;
 
         // Collision.
         [SerializeField]
         private CollisionLayers m_CollisionLayers = new CollisionLayers();
-        public CollisionLayers CollisionLayers => m_CollisionLayers;
-
-        #endregion
-
-        #region Methods.
-
-        public void OnGameLoad() {
-
-        }
-
-        #endregion
+        public static CollisionLayers CollisionLayers => Instance.m_CollisionLayers;
 
     }
 

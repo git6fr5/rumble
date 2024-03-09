@@ -1,4 +1,3 @@
-/* --- Libraries --- */
 // System.
 using System.Collections;
 using System.Collections.Generic;
@@ -7,18 +6,12 @@ using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.Rendering;
 // Gobblefish.
-using Gobblefish.Input;
+using Gobblefish.Graphics;
 using Gobblefish.Extensions;
 // Platformer.
 using Platformer.Physics;
-using Platformer.Character;
-using Platformer.Character.Actions;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
-// using ShadowBlock = Platformer.Objects.Blocks.GhostBlock;
-
-namespace Platformer.Character.Actions {
+namespace Platformer.Character {
 
     ///<summary>
     /// An ability that near-instantly moves the character.
@@ -165,16 +158,16 @@ namespace Platformer.Character.Actions {
             m_ActionPhase = ActionPhase.MidAction;
 
             // m_CachedRotation = character.transform.localRotation;
-            BoundsInt bounds = Game.Graphics.MainCamera.GetBoundsInt(Game.Level.Maps.Grid);
+            BoundsInt bounds = GraphicsManager.MainCamera.GetBoundsInt(LevelManager.Maps.Grid);
             
-            List<Rigidbody2D> bodies = Game.Level.Maps.ConvertToBlocks(bounds.Pad(2));
+            List<Rigidbody2D> bodies = LevelManager.Maps.ConvertToBlocks(bounds.Pad(2));
             Debug.Log(bodies.Count);
             // for (int i = 0; i < bodies.Count; i++) {
             //     bodies[i].velocity = 500f * Vector3.up; // Random.insideUnitCircle; // AddForce(
             // }
             // m_GhostedDict.Add(Game.Level.CurrentSection, bodies)
 
-            Game.Graphics.PostProcessor.SetVolumeProfile(m_GhostVolumeProfile);
+            GraphicsManager.PostProcessor.SetVolumeProfile(m_GhostVolumeProfile);
 
             character.Body.Stop();
 
@@ -218,7 +211,7 @@ namespace Platformer.Character.Actions {
             Vector3 directionToAnchor = (character.transform.position - m_Corpse.transform.position).normalized;            
             m_Corpse.velocity = directionToAnchor * GHOST_RETURN_SPEED;
 
-            Game.Graphics.PostProcessor.RemoveVolumeProfile(m_GhostVolumeProfile);
+            GraphicsManager.PostProcessor.RemoveVolumeProfile(m_GhostVolumeProfile);
             
             // character.transform.localRotation = m_CachedRotation;
             // Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
@@ -262,7 +255,7 @@ namespace Platformer.Character.Actions {
 
             if (direction == Vector2.zero) {
                 m_Corpse.Slowdown(1f - FRICTION);
-                if (m_Corpse.velocity.magnitude <= Game.Physics.Collisions.CollisionPrecision) {
+                if (m_Corpse.velocity.magnitude <= PhysicsManager.Settings.collisionPrecision) {
                     m_Corpse.velocity = Vector2.zero;
                 }
             }

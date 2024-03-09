@@ -1,10 +1,8 @@
-/* --- Libraries --- */
+// System.
 using System.Collections;
 using System.Collections.Generic;
+// Unity.
 using UnityEngine;
-
-/* --- Definitions --- */
-using PhysicsSettings = Platformer.PhysicsSettings;
 
 namespace Platformer.Physics {
 
@@ -71,18 +69,18 @@ namespace Platformer.Physics {
 
         // Clamps the rigidbodies gravity scale.
         public static void SetWeight(this Rigidbody2D rb, float g = 1f, float m = 1f) {
-            rb.gravityScale = PhysicsSettings.GravityScale * g;
+            rb.gravityScale = PhysicsManager.Settings.gravityScale * g;
             rb.mass = m;
         }
 
         // Checks if this body is rising.
         public static bool Rising(this Rigidbody2D rb) {
-            return rb.velocity.y > PhysicsSettings.MovementPrecision;
+            return rb.velocity.y > PhysicsManager.Settings.movementPrecision;
         }
 
         // Checks if this body is rising.
         public static bool Falling(this Rigidbody2D rb) {
-            return rb.velocity.y < -PhysicsSettings.MovementPrecision;
+            return rb.velocity.y < -PhysicsManager.Settings.movementPrecision;
         }
 
     }

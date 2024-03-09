@@ -7,7 +7,6 @@ using UnityEngine;
 using LDtkUnity;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 // using SaveSystem = Platformer.Management.SaveSystem;
 
 namespace Platformer.Levels {

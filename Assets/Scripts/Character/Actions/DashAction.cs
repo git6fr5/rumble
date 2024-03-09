@@ -1,4 +1,3 @@
-/* --- Libraries --- */
 // System.
 using System.Collections;
 using System.Collections.Generic;
@@ -6,16 +5,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 // Gobblefish.
-using Gobblefish.Input;
+using Gobblefish.Audio;
 // Platformer.
 using Platformer.Physics;
-using Platformer.Character;
-using Platformer.Character.Actions;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
-
-namespace Platformer.Character.Actions {
+namespace Platformer.Character {
 
     ///<summary>
     /// An ability that near-instantly moves the character.
@@ -27,54 +21,54 @@ namespace Platformer.Character.Actions {
 
         // The duration between pressing and moving, gives a little anticapatory feel.
         [SerializeField] 
-        private float m_PredashDuration = 0.16f;
+        protected float m_PredashDuration = 0.16f;
 
         // The duration under which the character is actually dashing.
         [SerializeField] 
-        private float m_DashDuration = 0.14f;
+        protected float m_DashDuration = 0.14f;
         
         // A little cooldown after the dash to avoid spam pressing it.
         [SerializeField] 
-        private float m_PostdashDuration = 0.16f;
+        protected float m_PostdashDuration = 0.16f;
 
         // Runs through the phases of the dash cycle.
         [HideInInspector] 
-        private Timer m_DashTimer = new Timer(0f, 0f);
+        protected Timer m_DashTimer = new Timer(0f, 0f);
 
         // The distance covered by a dash.
         [SerializeField] 
-        private float m_DashDistance = 5f;
+        protected float m_DashDistance = 5f;
 
         // The speed of the actual dash.
-        private float DashSpeed => m_DashDistance / m_DashDuration;
+        protected float DashSpeed => m_DashDistance / m_DashDuration;
 
         // The direction the player was facing before the dash started.
         [HideInInspector]
-        private Vector2 m_CachedDirection = new Vector2(0f, 0f);
+        protected Vector2 m_CachedDirection = new Vector2(0f, 0f);
 
         // The sprites this is currently animating through.
         [SerializeField]
-        private Sprite[] m_PredashAnimation = null;
+        protected Sprite[] m_PredashAnimation = null;
 
         // The sprites this is currently animating through.
         [SerializeField]
-        private Sprite[] m_DashAnimation = null;
+        protected Sprite[] m_DashAnimation = null;
 
         // The sprites this is currently animating through.
         [SerializeField]
-        private Sprite[] m_PostdashAnimation = null;
+        protected Sprite[] m_PostdashAnimation = null;
 
         // The sounds that plays when dashing.
         [SerializeField]
-        private AudioClip m_DashSound = null;
+        protected AudioSnippet m_StartDashSound;
 
         // The effect that plays when dashing.
         [SerializeField]
-        private VisualEffect m_StartBoomEffect;
+        protected VisualEffect m_StartDashEffect;
 
         // The effect that plays when dashing.
         [SerializeField]
-        private VisualEffect m_EndBoomEffect;
+        protected VisualEffect m_EndDashEffect;
 
         #endregion
 
@@ -157,7 +151,7 @@ namespace Platformer.Character.Actions {
 
         }
 
-        private void OnStartPredash(CharacterController character) {
+        protected void OnStartPredash(CharacterController character) {
             // Disable other inputs.
             character.Disable(m_PredashDuration + m_DashDuration);
             character.Default.Enable(character, false);
@@ -169,28 +163,32 @@ namespace Platformer.Character.Actions {
             m_DashTimer.Start(m_PredashDuration);
             m_ActionPhase = ActionPhase.PreAction;
 
+            // Set the animation.
             character.Animator.Push(m_PredashAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
-            Game.Audio.Sounds.PlaySound(m_DashSound, 0.15f);
 
         }
 
-        private void OnStartDash(CharacterController character) {
+        protected virtual void OnStartDash(CharacterController character) {
+            // Get the direction the character is facing.
             m_CachedDirection = new Vector2(character.FacingDirection, 0f);
             character.Body.SetVelocity(m_CachedDirection * DashSpeed);
-            // Game.MainPlayer.ExplodeDust.Activate();
 
+            // Start the dash timer.
             m_DashTimer.Start(m_DashDuration);
             m_ActionPhase = ActionPhase.MidAction;
 
+            // Replace the animation.
             character.Animator.Remove(m_PredashAnimation);
             character.Animator.Push(m_DashAnimation, CharacterAnimator.AnimationPriority.ActionActive);
-            m_StartBoomEffect.Play();
-
-            // Game.Visuals.Effects.PlayImpactEffect(character.OnActionParticle, 16, 1.6f, character.transform, Vector3.zero);
+            
+            // Play the sound and effect.
+            m_StartDashSound.Play();
+            m_StartDashEffect.Play();
 
         }
 
-        private void OnStartPostdash(CharacterController character) {
+        protected virtual void OnStartPostdash(CharacterController character) {
+            // Check how to handle the momentum when coming out of the dash.
             if (character.Input.Direction.Horizontal == Mathf.Sign(m_CachedDirection.x)) {
                 character.Body.SetVelocity(m_CachedDirection * character.Default.Speed);
                 character.Animator.Push(m_PostdashAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
@@ -199,16 +197,23 @@ namespace Platformer.Character.Actions {
                 character.Body.SetVelocity(Vector2.zero);
             }
 
+            // Re-enable control over the character.
             character.Default.Enable(character, true);
 
+            // Replace the animation.
             character.Animator.Remove(m_DashAnimation);
-            m_EndBoomEffect.Play();
+            character.Animator.Push(m_PostdashAnimation, CharacterAnimator.AnimationPriority.ActionPostActive);
 
+            // Play the sound and effect.
+            m_EndDashEffect.Play();
+
+            // Start the post-dash (dash cooldown) timer.
             m_DashTimer.Start(m_PostdashDuration);
             m_ActionPhase = ActionPhase.PostAction;
         }
 
-        private void OnEndDash(CharacterController character) {
+        // End the dash.
+        protected virtual void OnEndDash(CharacterController character) {
             character.Animator.Remove(m_PostdashAnimation);
             m_ActionPhase = ActionPhase.None;
         }

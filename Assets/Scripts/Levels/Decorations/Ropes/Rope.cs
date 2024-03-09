@@ -6,9 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
-
 namespace Platformer.LevelEditing {
 
     /// <summary>
@@ -43,7 +40,6 @@ namespace Platformer.LevelEditing {
             m_EdgeCollider = GetComponent<EdgeCollider2D>();
             m_EdgeCollider.isTrigger = false;
             m_EdgeCollider.edgeRadius = ropeWidth;
-            gameObject.layer = Game.Physics.CollisionLayers.DecorLayer;
             OnAwake();
             RopeSegments();
         }

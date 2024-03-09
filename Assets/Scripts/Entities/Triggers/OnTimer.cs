@@ -10,7 +10,6 @@ using UnityEngine.VFX;
 using Platformer.Physics;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 
 namespace Platformer.Entities.Triggers {
 

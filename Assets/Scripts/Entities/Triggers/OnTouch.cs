@@ -7,12 +7,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.VFX;
 // Platformer.
+using Platformer.Physics;
 using Platformer.Entities;
-// 
-using Gobblefish;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Triggers {
@@ -49,11 +47,11 @@ namespace Platformer.Entities.Triggers {
         void OnTriggerEnter2D(Collider2D collider) {
             CharacterController character = collider.GetComponent<CharacterController>();
             if (character != null) {
-                Game.Physics.Time.RunHitStop(m_HitStopFrames);
+                PhysicsManager.Time.RunHitStop(m_HitStopFrames);
                 m_TouchEvent.Invoke();
             }
             else if (!m_DisableGroundTouching) {
-                bool hitGround = collider.gameObject.layer == Game.Physics.CollisionLayers.PlatformLayer;
+                bool hitGround = collider.gameObject.layer == PhysicsManager.CollisionLayers.PlatformLayer;
                 if (hitGround) {
                     m_TouchGroundEvent.Invoke();
                 }

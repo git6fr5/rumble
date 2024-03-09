@@ -9,7 +9,6 @@ using UnityEngine.U2D;
 using Platformer.Physics;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using PathingNode = Platformer.Entities.Utility.PathingNode;
 
 namespace Platformer.Entities.Components {
@@ -73,14 +72,14 @@ namespace Platformer.Entities.Components {
             // Take a step.
             float distance = ((Vector2)m_Nodes[m_PathIndex].Position - (Vector2)transform.position).magnitude;
             if (distance == 0f && m_PauseTimer.Value == m_PauseDuration) {
-                Game.Audio.Sounds.PlaySound(m_StopMovingSound);
+                // Game.Audio.Sounds.PlaySound(m_StopMovingSound);
             }
 
             // At an end point.
             bool finished = m_PauseTimer.TickDownIf(dt, distance < 0.01f);
             bool neverStarted = distance == 0f && m_PauseTimer.MaxValue == 0f;
             if (finished || neverStarted) {
-                Game.Audio.Sounds.PlaySound(m_StartMovingSound);
+                // Game.Audio.Sounds.PlaySound(m_StartMovingSound);
                 m_PathIndex = (m_PathIndex + 1) % m_Nodes.Length;
                 m_PauseTimer.Start(m_PauseDuration);
             }

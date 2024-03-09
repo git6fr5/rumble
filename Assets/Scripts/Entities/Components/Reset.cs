@@ -10,7 +10,6 @@ using UnityEngine.VFX;
 using Platformer.Entities;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using IReset = Platformer.Entities.Utility.IReset;
 using CharacterController = Platformer.Character.CharacterController;
 
@@ -99,7 +98,7 @@ namespace Platformer.Entities.Utility {
             // Blink the orb a couple of times.
             for (int i = 0; i < 2 * RESET_BLINK_COUNT; i++) {
                 m_Entity.Renderer.enabled = !m_Entity.Renderer.enabled;
-                Game.Audio.Sounds.PlaySound(m_OnBlinkSound, 0.05f);
+                // Game.Audio.Sounds.PlaySound(m_OnBlinkSound, 0.05f);
 
                 if (m_Entity.CollisionEnabled) {
                     m_Entity.Renderer.enabled = true;
@@ -118,7 +117,7 @@ namespace Platformer.Entities.Utility {
         // Resets the object to its default state.
         public void HardReset() {
             // Give the player feedback that this object has been reset.
-            Game.Audio.Sounds.PlaySound(m_OnResetSound, 0.15f);
+            // Game.Audio.Sounds.PlaySound(m_OnResetSound, 0.15f);
 
             if (m_EmissionParticle != null) {
                 m_EmissionParticle.Play();

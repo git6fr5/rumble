@@ -4,15 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
+using UnityEngine.VFX;
 using UnityEngine.U2D;
+// Gobblefish.
+using Gobblefish.Audio;
 // Platformer.
-using Platformer.Entities;
+using Platformer.Physics;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
-using CharacterController = Platformer.Character.CharacterController;
-
-namespace Platformer.Entities.Components {
+namespace Platformer.Entities {
 
     ///<summary>
     ///
@@ -76,7 +75,7 @@ namespace Platformer.Entities.Components {
         void Start() {
             // m_Entity.SetMaterial(Game.Visuals.RenderingLayers.AltMat);
             
-            float t = Game.Physics.Time.Ticks % PERIOD;
+            float t = PhysicsManager.Time.Ticks % PERIOD;
             bool enableA = t < PERIOD / 2f;
             switch (m_AlternatingType) {
                 case AlternatingType.A:
@@ -95,9 +94,9 @@ namespace Platformer.Entities.Components {
 
         void FixedUpdate() {
             
-            float t = Game.Physics.Time.Ticks % PERIOD;
+            float t = PhysicsManager.Time.Ticks % PERIOD;
             bool enableA = t < PERIOD / 2f;
-            bool change = (Game.Physics.Time.Ticks % (PERIOD / 2f)) > PERIOD / 2f - PRE_CHANGE_DURATION;
+            bool change = (PhysicsManager.Time.Ticks % (PERIOD / 2f)) > PERIOD / 2f - PRE_CHANGE_DURATION;
 
             if (m_AlternatingState != AlternatingState.Changing && change) {
                 m_AlternatingState = AlternatingState.Changing;
@@ -138,7 +137,7 @@ namespace Platformer.Entities.Components {
 
         private void WhileChanging(bool enable) {
 
-            float t = (Game.Physics.Time.Ticks % (PERIOD / 2f)) - (PERIOD / 2f - PRE_CHANGE_DURATION);
+            float t = (PhysicsManager.Time.Ticks % (PERIOD / 2f)) - (PERIOD / 2f - PRE_CHANGE_DURATION);
             float x = t / PRE_CHANGE_DURATION;
             
             // If we're enabled, then the change is towards disabled
@@ -153,16 +152,15 @@ namespace Platformer.Entities.Components {
 
         private void OnPreChange() {
             // m_Entity.Renderer.transform.localPosition = -Vector3.down * PRE_CHANGE_OFFSET;
-
             if (m_Entity.CollisionEnabled) {
-                Game.Audio.Sounds.PlaySound(m_PreChangeSound, 0.05f);
+                m_PreChangeSound.Play(0.05f);
             }
         
         }
 
         private void OnChange(bool enable) {
             if (enable) {
-                Game.Audio.Sounds.PlaySound(m_ChangeSound, 0.03f);
+                m_ChangeSound.Play(0.03f);
             }
 
             m_Entity.EnableColliders(enable);

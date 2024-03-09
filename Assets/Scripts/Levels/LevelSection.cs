@@ -12,9 +12,6 @@ using LDtkUnity;
 // Platformer.
 using Platformer.Character;
 
-/* --- Definitions --- */
-using Game = Platformer.GameManager;
-
 namespace Platformer.Levels {
 
     /// <summary>
@@ -146,14 +143,14 @@ namespace Platformer.Levels {
         }
 
         void OnTriggerEnter2D(Collider2D collider) {
-            if (collider == Game.MainPlayer.Collider) {
-                Game.Level.Load(this);
+            if (collider == PlayerManager.Character.Collider) {
+                LevelManager.Load(this);
             }
         }
 
         void OnTriggerExit2D(Collider2D collider) {
-            if (collider == Game.MainPlayer.Collider) {
-                Game.Level.Unload(this);
+            if (collider == PlayerManager.Character.Collider) {
+                LevelManager.Unload(this);
             }
         }
 

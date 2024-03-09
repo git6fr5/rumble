@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /* --- Definitions --- */
-using Game = Platformer.GameManager;
 using IReset = Platformer.Entities.Utility.IReset;
 using CharacterController = Platformer.Character.CharacterController;
 // using TrailAnimator = Gobblefish.Animation.TrailAnimator;
