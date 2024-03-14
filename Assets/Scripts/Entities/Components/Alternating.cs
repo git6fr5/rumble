@@ -153,14 +153,14 @@ namespace Platformer.Entities {
         private void OnPreChange() {
             // m_Entity.Renderer.transform.localPosition = -Vector3.down * PRE_CHANGE_OFFSET;
             if (m_Entity.CollisionEnabled) {
-                m_PreChangeSound.Play(0.05f);
+                // m_PreChangeSound.Play(0.05f);
             }
         
         }
 
         private void OnChange(bool enable) {
             if (enable) {
-                m_ChangeSound.Play(0.03f);
+                // m_ChangeSound.Play(0.03f);
             }
 
             m_Entity.EnableColliders(enable);

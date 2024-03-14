@@ -134,21 +134,25 @@ namespace Platformer.Character {
         private Sprite[] m_FallingFastAnimation = null;
         public Sprite[] FallingFastAnim => m_FallingFastAnimation;
 
+        [SerializeField]
+        private VisualEffect m_TrailEffect;
+        public VisualEffect Trail => m_TrailEffect;
+
         // The effect that plays when the player jumps.
         [SerializeField]
-        private VisualEffect m_OnJumpEffect;
+        private VisualEffect m_JumpEffect;
 
         // The sound that plays when the player jumps.
         [SerializeField]
-        private AudioSnippet m_OnJumpSound;
+        private AudioSnippet m_JumpSound;
 
         // The effect that plays when the player lands.
         [SerializeField]
-        private VisualEffect m_OnLandEffect;
+        private VisualEffect m_LandEffect;
 
         // The sound that plays when the player lands.
         [SerializeField]
-        private AudioSnippet m_OnLandSound;
+        private AudioSnippet m_LandSound;
 
         #endregion
 
@@ -260,9 +264,8 @@ namespace Platformer.Character {
             // These two lines are the key!!!
             character.Body.ClampFallSpeed(0f); 
             character.Body.AddVelocity(Vector2.up * m_JumpSpeed);
-
-            m_OnJumpEffect.Play();
-            m_OnJumpSound.Play();
+            // The effect.
+            character.Animator.PlayAudioVisualEffect(m_JumpEffect, m_JumpSound);
 
         }
 
@@ -290,10 +293,8 @@ namespace Platformer.Character {
             m_ClampJump = false;
             character.Animator.Remove(m_RisingAnimation);
             character.Animator.Remove(m_FallingAnimation);
-
-            m_OnLandEffect.Play();
-            m_OnLandSound.Play();
-
+            character.Animator.PlayAudioVisualEffect(m_LandEffect, m_LandSound);
+            character.Default.Trail.Stop();
         }
 
         // Process the physics of this action.

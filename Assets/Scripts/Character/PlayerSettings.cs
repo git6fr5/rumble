@@ -9,9 +9,6 @@ namespace Platformer {
     [System.Serializable]
     public class PlayerSettings : Gobblefish.Settings<PlayerSettings> {
         
-        public int deaths = 0;
-        public int points = 0;
-        
     }
 
 }

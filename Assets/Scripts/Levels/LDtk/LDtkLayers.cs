@@ -7,7 +7,7 @@ using UnityEngine;
 // LDtk.
 using LDtkUnity;
 
-namespace Platformer.Levels {
+namespace Platformer.Levels.LDtk {
 
     /// <summary>
     /// Stores a reference to the ldtk layers for easy reference.

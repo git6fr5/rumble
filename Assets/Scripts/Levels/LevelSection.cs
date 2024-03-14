@@ -1,16 +1,12 @@
-// TODO: Clean
-
 /* --- Libraries --- */
 // System.
 using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.U2D;
+// LDtk.
 using LDtkUnity;
-// Platformer.
-using Platformer.Character;
+using Platformer.Levels.LDtk;
 
 namespace Platformer.Levels {
 
@@ -20,137 +16,103 @@ namespace Platformer.Levels {
     [RequireComponent(typeof(BoxCollider2D))]
     public class LevelSection : MonoBehaviour {
 
-        #region Enumerations.
-
         public enum State {
             Loaded,
             Unloaded
         }
 
-        #endregion
-
-        #region Fields.
-
-        /* --- Constants --- */
-
-        // The slight shave off the boundary box for entering/exiting.
-        private const float BOUNDARYBOX_SHAVE = 0.375f; // 0.1f; // 0.775f;
-
-        /* --- Components --- */
-
-        // The trigger box for the level.
-        public CameraNode cameraNode;
-
-        /* --- Members --- */
-
         // Whether this level is currently loaded.
-        [SerializeField, ReadOnly]
+        [SerializeField]
         private State state = State.Unloaded;  
 
+        // The trigger box for the camera.
+        [SerializeField]
+        private LevelSectionCamera m_CameraBox;
+
+        // The trigger box for the entities.
+        private BoxCollider2D m_TriggerBox;
+
         // The id of this level.
-        [field: SerializeField, ReadOnly]
-        public int id { get; private set; } = 0;
+        [SerializeField]
+        private int m_ID = 0;
+        private LDtkUnity.Level m_LDtkLevel = null;
+        public LDtkUnity.Level ldtkLevel => m_LDtkLevel;
         
-        // The name of this level.
-        [field: SerializeField, ReadOnly] 
-        public string roomName { get; private set; } = "";
-
-        // The actual ldtk data of the level. 
-        [field: SerializeField, ReadOnly] 
-        public LDtkUnity.Level ldtkLevel { get; private set; } = null;
-
         // The dimensions of the level.
-        [SerializeField, ReadOnly] 
-        private Vector2Int dimensions;
-
-        // The height of the level based on the dimensions
-        public int height => dimensions.y;
-
-        // The width of the level based on the dimensions
-        public int width => dimensions.x;
+        [SerializeField] 
+        private Vector2Int m_Dimensions;
+        public int Height => m_Dimensions.y;
+        public int Width => m_Dimensions.x;
 
         // The position of the bottom left corner of the level in the world.
-        [SerializeField, ReadOnly] 
-        public Vector2Int worldPosition;
-
-        // The position of the center of the level in the world.
-        public Vector2 worldCenter => GetCenter(this.width, this.height, this.worldPosition);
+        private Vector2Int m_WorldPosition;
+        public Vector2Int WorldPosition => m_WorldPosition;
+        public Vector2 WorldCenter => GetCenter(this.Width, this.Height, this.m_WorldPosition);
 
         // The entities currently loaded into the level.
-        [field: SerializeField, ReadOnly] 
-        public List<LDtkEntity> entities { get; private set; } = new List<LDtkEntity>();
+        private List<LDtkEntity> m_Entities = new List<LDtkEntity>();
 
-        // The positions where the player can be loaded.
-        [field: SerializeField, ReadOnly] 
-        public List<Vector2Int> loadPositions { get; private set; } = new List<Vector2Int>();
+        // Creates a new level section camera.
+        public static LevelSection New(int jsonID, LDtkUnity.LdtkJson json) {
+            LevelSection section = new GameObject(json.Levels[jsonID].Identifier, typeof(LevelSection)).GetComponent<LevelSection>();
+            section.Set(jsonID, json);
+            return section;
+        }
 
-        #endregion
-
-        public void Preload(int jsonID, LdtkJson  json) {
+        public void Set(int jsonID, LDtkUnity.LdtkJson json) {
             transform.localPosition = Vector3.zero;
-            ReadJSONData(json, jsonID);
-            CreateCameraNode();
 
-            // List<LDtkTileData> controlData = LDtkReader.GetLayerData(json.Levels[jsonID], Game.Level.LDtkLayers.Control);
-            // GetLoadPoints(controlData);
+            m_ID = jsonID;
+            m_LDtkLevel = json.Levels[jsonID];
+            m_Dimensions.y = (int)(m_LDtkLevel.PxHei / json.DefaultGridSize);
+            m_Dimensions.x = (int)(m_LDtkLevel.PxWid / json.DefaultGridSize);
+            m_WorldPosition.y = (int)(m_LDtkLevel.WorldY / json.DefaultGridSize);
+            m_WorldPosition.x = (int)(m_LDtkLevel.WorldX / json.DefaultGridSize);
+            
+            m_CameraBox = LevelSectionCamera.New(this);
+
+            m_TriggerBox = GetComponent<BoxCollider2D>();
+            m_TriggerBox.isTrigger = true;
+            m_TriggerBox.size = new Vector2((float)Width, (float)Height);
+            m_TriggerBox.offset = WorldCenter;
         }
 
-        void FixedUpdate() {
-            if (state != State.Loaded) { return; }
-
-        }
-
-        public void ReadJSONData(LdtkJson  json, int jsonID) {
-            id = jsonID;
-            ldtkLevel = json.Levels[jsonID];
-            roomName = json.Levels[jsonID].Identifier;
-            dimensions.y = (int)(json.Levels[jsonID].PxHei / json.DefaultGridSize);
-            dimensions.x = (int)(json.Levels[jsonID].PxWid / json.DefaultGridSize);
-            worldPosition.y = (int)(json.Levels[jsonID].WorldY / json.DefaultGridSize);
-            worldPosition.x = (int)(json.Levels[jsonID].WorldX / json.DefaultGridSize);
-        }
-
-        public void CreateCameraNode() {
-            if (cameraNode != null) { DestroyImmediate(cameraNode.gameObject); }
-
-            cameraNode = new GameObject(gameObject.name + " Camera Node", typeof(CameraNode)).GetComponent<CameraNode>();
-            cameraNode.transform.SetParent(transform);
-
-            BoxCollider2D box = cameraNode.gameObject.GetComponent<BoxCollider2D>();
-            box.size = new Vector2((float)(width - 1.99f * BOUNDARYBOX_SHAVE), (float)(height - 1.99f * BOUNDARYBOX_SHAVE));
-            // box.offset = worldCenter;
-            box.isTrigger = true;
-
-            cameraNode.transform.position = worldCenter; // transform.position;
-            GetComponent<BoxCollider2D>().isTrigger = true;
-            GetComponent<BoxCollider2D>().size = box.size * 1.05f;
-            GetComponent<BoxCollider2D>().offset = worldCenter;
-
-        }
-
-        public void GenerateEntities(LDtkEntityManager entityManager, LDtkLayers ldtkLayers) {
-            entities.RemoveAll(entity => entity == null);
-            entities = entityManager.Generate(this, ldtkLayers);
-            entities = entities.FindAll(entity => entity != null);
+        public void GenerateEntities(LDtk.LDtkEntityManager entityManager, LDtkLayers ldtkLayers) {
+            m_Entities.RemoveAll(entity => entity == null);
+            m_Entities = entityManager.Generate(this, ldtkLayers);
+            m_Entities = m_Entities.FindAll(entity => entity != null);
         }
 
         public void DestroyEntities() {
-            // entities = LDtkEntity.Destroy(entities);
-            for (int i = 0; i < entities.Count; i++) {
-                DestroyImmediate(entities[i].gameObject);
+            if (Application.isPlaying) {
+                // m_Entities = LDtkEntity.Destroy(m_Entities);
             }
-            entities.RemoveAll(entity => entity == null);
+            else {
+                for (int i = 0; i < m_Entities.Count; i++) {
+                    DestroyImmediate(m_Entities[i].gameObject);
+                }
+                m_Entities.RemoveAll(entity => entity == null);
+            }
         }
 
         void OnTriggerEnter2D(Collider2D collider) {
             if (collider == PlayerManager.Character.Collider) {
-                LevelManager.Load(this);
+                LevelManager.SetCurrentSection(this);
+                
+                m_Entities = m_Entities.FindAll(entity => entity != null);
+                for (int i = 0; i < m_Entities.Count; i++) {
+                    m_Entities[i].gameObject.SetActive(true);
+                }
             }
         }
 
         void OnTriggerExit2D(Collider2D collider) {
             if (collider == PlayerManager.Character.Collider) {
-                LevelManager.Unload(this);
+
+                // m_Entities = m_Entities.FindAll(entity => entity != null);
+                // for (int i = 0; i < m_Entities.Count; i++) {
+                //     m_Entities[i].gameObject.SetActive(false);
+                // }
             }
         }
 
@@ -162,16 +124,16 @@ namespace Platformer.Levels {
         }
 
         public Vector3 GridToWorldPosition(Vector2Int gridPosition, int gridSize) {
-            return GridToWorldPosition(gridPosition, this.worldPosition, gridSize);
+            return GridToWorldPosition(gridPosition, this.m_WorldPosition, gridSize);
         }
         
         public static Vector3 GridToWorldPosition(Vector2Int gridPosition, Vector2Int gridOrigin, int gridSize) {
-            float ratio = (float)gridSize / (float)LDtkReader.GridSize;
+            float ratio = (float)gridSize / (float)LDtkReader.GRID_SIZE;
             return new Vector3((ratio * gridPosition.x + gridOrigin.x) + 0.5f, - (ratio * gridPosition.y + gridOrigin.y) + 0.5f, 0f);
         }
 
         public Vector3Int GridToTilePosition(Vector2Int gridPosition) {
-            return GridToTilePosition(gridPosition, this.worldPosition);
+            return GridToTilePosition(gridPosition, this.m_WorldPosition);
         }
 
         public static Vector3Int GridToTilePosition(Vector2Int gridPosition, Vector2Int gridOrigin) {

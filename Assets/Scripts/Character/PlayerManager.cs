@@ -21,20 +21,9 @@ namespace Platformer {
             // Platformer.Objects.Orbs.OrbObject.ResetAll();
         }
 
-        public void AddDeath() {
-            Settings.deaths += 1;
-        }
-
-        public void AddPoint() {
-            Settings.points += 1;
-        }
-
-        public void OnSaveAndQuit() {
-
-        }
-
-        public void OnComplete() {
-
+        protected override void Awake() {
+            m_Settings = new PlayerSettings();
+            base.Awake();
         }
 
     }

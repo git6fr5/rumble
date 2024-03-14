@@ -20,6 +20,9 @@ namespace Platformer.Character {
 
         #region Variables.
 
+        // The increment with which to notify charge.
+        public const float CHARGE_INCREMENT = 0.1f;
+
         // The height to be covered by a fully charged jump.
         [SerializeField] 
         private float m_Height = 8f;
@@ -44,6 +47,10 @@ namespace Platformer.Character {
         [SerializeField]
         private Timer m_ChargeTimer = new Timer(0f, 0f);
 
+        // The tracks the increments of charge.
+        [SerializeField]
+        private Timer m_ChargeIncrementTimer = new Timer(0f, 0f);
+
         // The sprites while charging a hop.
         [SerializeField]
         private Sprite[] m_ChargeHopAnimation = null;
@@ -58,6 +65,10 @@ namespace Platformer.Character {
 
         // The sounds that plays when charging the hop.
         [SerializeField]
+        private VisualEffect m_ChargeHopEffect = null;
+
+        // The sounds that plays when charging the hop.
+        [SerializeField]
         private AudioSnippet m_ChargeHopSound = null;
 
         // The sounds that plays when hopping.
@@ -66,7 +77,7 @@ namespace Platformer.Character {
 
         // The effect that plays when releasing the hop.
         [SerializeField]
-        private VisualEffect m_OnReleaseHopEffect;
+        private VisualEffect m_OnReleaseHopEffect = null;
 
         // An index to the particle that is associated with the charge timer.
         // [SerializeField] 
@@ -174,7 +185,8 @@ namespace Platformer.Character {
             m_ActionPhase = ActionPhase.PreAction;
 
             character.Animator.Push(m_ChargeHopAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
-            m_ChargeHopSound.Play();
+            character.Animator.PlayAudioVisualEffect(m_ChargeHopEffect, m_ChargeHopSound);
+            m_ChargeIncrementTimer.Start(CHARGE_INCREMENT);
             // m_CircleEffectIndex = Game.Visuals.Effects.PlayCircleEffect(m_ChargeDuration, character.transform, Vector3.zero);
 
         }
@@ -193,6 +205,7 @@ namespace Platformer.Character {
             m_HopSound.Play();
             m_ChargeHopSound.Stop();
             // Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
+            character.Default.Trail.Play();
 
             m_ChargeTimer.Stop();
             m_ActionPhase = ActionPhase.MidAction;
@@ -207,6 +220,13 @@ namespace Platformer.Character {
 
         private void WhileCharging(CharacterController character, float dt) {
             character.Body.ClampRiseSpeed(0f);
+
+            bool chargeIncremented = m_ChargeIncrementTimer.TickDown(dt);
+            if (chargeIncremented && m_ChargeTimer.InverseRatio < 1f) {
+                character.Animator.PlayAudioVisualEffect(m_ChargeHopEffect, m_ChargeHopSound);
+                m_ChargeIncrementTimer.Start(CHARGE_INCREMENT);
+            }
+
         }
 
         private void WhileHopping(CharacterController character, float dt) {

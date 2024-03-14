@@ -7,7 +7,7 @@ using UnityEngine;
 // LDtk.
 using LDtkUnity;
 
-namespace Platformer.Levels {
+namespace Platformer.Levels.LDtk {
 
     ///<summary>
     /// A useful data structure for reading and matching LDtk data to game data.

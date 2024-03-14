@@ -8,9 +8,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.VFX;
 // Gobblefish.
-using Gobblefish.Extensions;
-// Platformer.
-using Platformer.Character;
+using Gobblefish;
+using Gobblefish.Audio;
 
 namespace Platformer.Character {
 
@@ -96,6 +95,15 @@ namespace Platformer.Character {
             m_CurrentFrame = (int)Mathf.Floor(m_Ticks * FRAME_RATE) % m_CurrentAnimation.Length;
             m_SpriteRenderer.sprite = m_CurrentAnimation[m_CurrentFrame];
 
+        }
+
+        public void PlayAudioVisualEffect(VisualEffect visualEffect, AudioSnippet audioSnippet) {
+            if (visualEffect != null) {
+                visualEffect.Play();
+            }
+            if (audioSnippet != null && audioSnippet.clip != null) {
+                audioSnippet.Play();
+            }
         }
 
         public Sprite[] GetHighestPriorityAnimation() {

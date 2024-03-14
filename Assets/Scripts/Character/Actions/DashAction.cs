@@ -58,15 +58,15 @@ namespace Platformer.Character {
         [SerializeField]
         protected Sprite[] m_PostdashAnimation = null;
 
-        // The sounds that plays when dashing.
-        [SerializeField]
-        protected AudioSnippet m_StartDashSound;
-
-        // The effect that plays when dashing.
+        // The visual effect that plays at the start of the dash.
         [SerializeField]
         protected VisualEffect m_StartDashEffect;
 
-        // The effect that plays when dashing.
+        // The visual effect that plays at the start of the dash.
+        [SerializeField]
+        protected AudioSnippet m_StartDashSound;
+
+        // The visual effect that plays at the start of the dash.
         [SerializeField]
         protected VisualEffect m_EndDashEffect;
 
@@ -180,11 +180,9 @@ namespace Platformer.Character {
             // Replace the animation.
             character.Animator.Remove(m_PredashAnimation);
             character.Animator.Push(m_DashAnimation, CharacterAnimator.AnimationPriority.ActionActive);
+            character.Animator.PlayAudioVisualEffect(m_StartDashEffect, m_StartDashSound);
+            character.Default.Trail.Play();
             
-            // Play the sound and effect.
-            m_StartDashSound.Play();
-            m_StartDashEffect.Play();
-
         }
 
         protected virtual void OnStartPostdash(CharacterController character) {
@@ -203,9 +201,7 @@ namespace Platformer.Character {
             // Replace the animation.
             character.Animator.Remove(m_DashAnimation);
             character.Animator.Push(m_PostdashAnimation, CharacterAnimator.AnimationPriority.ActionPostActive);
-
-            // Play the sound and effect.
-            m_EndDashEffect.Play();
+            character.Animator.PlayAudioVisualEffect(m_EndDashEffect, null);
 
             // Start the post-dash (dash cooldown) timer.
             m_DashTimer.Start(m_PostdashDuration);
@@ -216,6 +212,7 @@ namespace Platformer.Character {
         protected virtual void OnEndDash(CharacterController character) {
             character.Animator.Remove(m_PostdashAnimation);
             m_ActionPhase = ActionPhase.None;
+            character.Default.Trail.Stop();
         }
 
         private void WhilePredashing(CharacterController character, float dt) {

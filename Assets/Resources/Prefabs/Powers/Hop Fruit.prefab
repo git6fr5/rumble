@@ -67,6 +67,34 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1814348745, guid: ccc08ac1985250349926fbdeb900d71d, type: 3}
+    - target: {fileID: 4224600035145687196, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224600035145687196, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Name
+      value: Color
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224600035145687196, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224600035145687196, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224600035145687196, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224600035145687196, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224600035145687196, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5540784946163351741, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
       propertyPath: m_Snippets.Array.data[0].clip
       value: 

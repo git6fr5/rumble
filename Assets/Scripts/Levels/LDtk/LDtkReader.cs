@@ -7,21 +7,88 @@ using UnityEngine;
 // LDtk.
 using LDtkUnity;
 
-namespace Platformer.Levels {
+namespace Platformer.Levels.LDtk {
 
     ///<summary>
     ///
     ///<summary>
-    public class LDtkReader {
+    [ExecuteInEditMode]
+    public class LDtkReader : MonoBehaviour {
 
         // Grid Size
-        public static int GridSize = 16;
+        public const int GRID_SIZE = 16;
 
-        // Grid Size
-        public static int GroundGridSize = 16;
+        // Handles all the tilemap functionality.
+        [SerializeField] 
+        private LDtkEntityManager m_LDtkEntityManager;
 
-        // Tile Size
-        public static int TileSize = 16;
+        // Handles all the tilemap functionality.
+        [SerializeField] 
+        private LDtkTilemapManager m_LDtkTilemapManager;
+
+        // Handles all the tilemap functionality.
+        [SerializeField] 
+        private LevelManager m_LevelManager;
+
+        // The JSON data corresponding to the given ldtk data.
+        [SerializeField]
+        private LDtkLayers m_LDtkLayers = new LDtkLayers();
+
+        // The given LDtk file.
+        [SerializeField] 
+        private LDtkComponentProject m_LDtkData;
+
+        [Header("Controls")]
+        public bool m_Reload;
+
+        // The JSON data corresponding to the given ldtk data.
+        private LdtkJson m_JSON;
+
+        void OnEnable() {
+            m_Reload = false;
+            if (!Application.isPlaying) {
+                OnReload();
+            }
+        }
+
+        void Awake() {
+            if (!Application.isPlaying) {
+                OnReload();
+            }
+        }
+
+        void Update() {
+            if (m_Reload) {
+                OnReload();
+                m_Reload = false;
+            }
+        }
+
+        public void OnReload() {
+            m_JSON = m_LDtkData.FromJson();
+
+            List<LevelSection> sections = CollectSections(m_JSON);
+            m_LDtkTilemapManager.Refresh(sections, m_LDtkLayers.Ground);    
+
+            for (int i = 0; i < sections.Count; i++) {
+                sections[i].transform.parent = transform;
+                sections[i].DestroyEntities();
+                sections[i].GenerateEntities(m_LDtkEntityManager, m_LDtkLayers);
+            }
+
+            m_LevelManager.SetSections(sections);
+            
+        }
+
+        // Collects all the levels from the LDtk file.
+        private static List<LevelSection> CollectSections(LdtkJson json) {
+            List<LevelSection> sections = new List<LevelSection>();
+            for (int i = 0; i < json.Levels.Length; i++) {
+                LevelSection section = LevelSection.New(i, json);
+                sections.Add(section);
+            }
+            return sections;
+        }
 
         public static List<LDtkTileData> GetLayerData(LDtkUnity.Level ldtkLevel, string layerName) {
             List<LDtkTileData> layerData = new List<LDtkTileData>();
@@ -48,7 +115,7 @@ namespace Platformer.Levels {
         }
 
         private static Vector2Int GetVectorID(LDtkUnity.TileInstance tile) {
-            return new Vector2Int((int)(tile.Src[0]), (int)(tile.Src[1])) / TileSize;
+            return new Vector2Int((int)(tile.Src[0]), (int)(tile.Src[1])) / GRID_SIZE;
         }
 
         private static Vector2Int GetGridPosition(LDtkUnity.TileInstance tile, int gridSize) {

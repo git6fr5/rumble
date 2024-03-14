@@ -8,10 +8,6 @@ using UnityEngine.U2D;
 // Platformer.
 using Platformer.Physics;
 
-/* --- Definitions --- */
-using Entity = Platformer.Entities.Entity;
-using CharacterController = Platformer.Character.CharacterController;
-
 namespace Platformer.Entities.Components {
 
     ///<summary>

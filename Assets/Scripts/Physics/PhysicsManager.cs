@@ -26,6 +26,11 @@ namespace Platformer.Physics {
         private CollisionLayers m_CollisionLayers = new CollisionLayers();
         public static CollisionLayers CollisionLayers => Instance.m_CollisionLayers;
 
+        protected override void Awake() {
+            m_Settings = new PhysicsSettings();
+            base.Awake();
+        }
+
     }
 
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5746320982194807282}
   m_Layer: 0
   m_Name: End Orb
-  m_TagString: Untagged
+  m_TagString: Spawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 7888141037681017622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 30.41, y: -5.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3006054146776083264}
   - {fileID: 1477809269542102737}
@@ -54,7 +54,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &6073813217248642332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +122,10 @@ MonoBehaviour:
   m_TotalActivatedTime: 0
   m_EmissionParticle: {fileID: 0}
   m_Active: 0
+  m_CorpseProjectile: {fileID: 0}
+  m_RespawnEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1077550989650322675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -291,6 +295,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: goop_vfx
       objectReference: {fileID: 0}
+    - target: {fileID: 1762515235878713735, guid: f7c669a2597368749aa5e0fce3f0dafd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753116807796205945, guid: f7c669a2597368749aa5e0fce3f0dafd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753116808331050362, guid: f7c669a2597368749aa5e0fce3f0dafd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753116808992528809, guid: f7c669a2597368749aa5e0fce3f0dafd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753116809760160477, guid: f7c669a2597368749aa5e0fce3f0dafd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7c669a2597368749aa5e0fce3f0dafd, type: 3}
 --- !u!4 &3959999812760972253 stripped
@@ -305,6 +329,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7888141037681017617}
     m_Modifications:
+    - target: {fileID: 1406023726716686721, guid: b54170921058a79488c93cb2e2a32ce6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1406023726716686726, guid: b54170921058a79488c93cb2e2a32ce6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -353,6 +381,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: emission_vfx
       objectReference: {fileID: 0}
+    - target: {fileID: 1406023726716686727, guid: b54170921058a79488c93cb2e2a32ce6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b54170921058a79488c93cb2e2a32ce6, type: 3}
 --- !u!4 &3006054146776083264 stripped
@@ -377,11 +409,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1404282180524080155, guid: 1687940956fa3644aafeab30f033cff0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.06
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1404282180524080155, guid: 1687940956fa3644aafeab30f033cff0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.82
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1404282180524080155, guid: 1687940956fa3644aafeab30f033cff0, type: 3}
       propertyPath: m_LocalPosition.z
