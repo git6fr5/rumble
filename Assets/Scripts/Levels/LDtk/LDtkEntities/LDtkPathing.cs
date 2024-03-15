@@ -56,7 +56,7 @@ namespace Platformer.Levels.LDtk {
             for (int i = 0; i < ldtkPath.nodes.Count; i++) {
                 pathingNodes.Add(PathingNode.Create(pathing.transform, pathing.transform.position + ldtkPath.nodes[i]));
             }
-            pathing.SetPath(pathingNodes);
+            pathing.SetPath(pathingNodes, 4f);
         }
 
         public static Pathing AddPath(this LDtkEntity entity) {

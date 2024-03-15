@@ -393,7 +393,7 @@ namespace Platformer.Character {
 
             int characterLayer = LayerMask.NameToLayer("Characters");
             if (character.Input.Direction.Vertical == -1f && character.gameObject.layer == characterLayer) {
-                character.gameObject.layer = LayerMask.NameToLayer("Ducking");
+                character.gameObject.layer = LayerMask.NameToLayer("Ignore Character");
             }
             else if (character.Input.Direction.Vertical != -1f && character.gameObject.layer != characterLayer) {
                 character.gameObject.layer = characterLayer;

@@ -31,6 +31,7 @@ namespace Platformer.Entities.Components {
         // The sprite shape.
         [SerializeField]
         private SpriteShapeController m_SpriteShapeController;
+        public Spline spline => m_SpriteShapeController.spline;
         
         [SerializeField]
         private SpriteShapeController[] m_SubShapes;
@@ -47,6 +48,10 @@ namespace Platformer.Entities.Components {
         [SerializeField]
         private float m_ColliderHorizontalInset;
 
+        [SerializeField]
+        private int m_LengthUnits = 1;
+        public int LengthUnits => m_LengthUnits;
+
         //
         [SerializeField]
         private SearchDirection m_SearchDirection;
@@ -57,6 +62,8 @@ namespace Platformer.Entities.Components {
         }
 
         public void SetLength(int length) {
+            m_LengthUnits = length;
+
             if (length < 0) {
                 if (!Application.isPlaying) { DestroyImmediate(gameObject); }
                 else { Destroy(gameObject); }
@@ -67,7 +74,6 @@ namespace Platformer.Entities.Components {
         }
 
         public bool SetSpriteshapePoints(int length) {
-
             Spline spline = m_SpriteShapeController.spline;
 
             // In the special case that the length of this is 0 or less.

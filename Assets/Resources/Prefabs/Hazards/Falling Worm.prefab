@@ -556,6 +556,7 @@ MonoBehaviour:
     currentFrame: 0
     orderOffset: -100
   m_Animate: 1
+  m_RandomizeInitialTick: 0
 --- !u!114 &5869780071063360631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,7 +564,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5869780071063360627}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82edce4afd87e8745beb07957e998a98, type: 3}
   m_Name: 
@@ -689,7 +690,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5869780071063360627}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -858,6 +859,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   m_Animate: 1
+  m_RandomizeInitialTick: 0
 --- !u!1 &6576069884486875781
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,12 +98,12 @@ namespace Platformer.Character {
         }
 
         public void PlayAudioVisualEffect(VisualEffect visualEffect, AudioSnippet audioSnippet) {
-            if (visualEffect != null) {
-                visualEffect.Play();
-            }
-            if (audioSnippet != null && audioSnippet.clip != null) {
-                audioSnippet.Play();
-            }
+            // if (visualEffect != null) {
+            //     visualEffect.Play();
+            // }
+            // if (audioSnippet != null && audioSnippet.clip != null) {
+            //     audioSnippet.Play();
+            // }
         }
 
         public Sprite[] GetHighestPriorityAnimation() {

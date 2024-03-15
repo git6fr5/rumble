@@ -48,6 +48,9 @@ namespace Platformer.Entities.Components {
         [SerializeField]
         private AudioClip m_StopMovingSound = null;
 
+        // Incase this has an elongatable length.
+        public Elongatable m_Elongatable;
+
         // Used to cache references.
         void Awake() {
             // if (m_Entity == null) {
@@ -59,18 +62,37 @@ namespace Platformer.Entities.Components {
             for (int i = 0; i < m_Nodes.Length; i++) {
                 m_Nodes[i].transform.parent = transform.parent;
             }
+
+            Entity entity = GetComponentInChildren<Entity>();
+            if (entity != null) {
+                m_Elongatable = entity.GetComponent<Elongatable>();
+            }
+
         }
 
         // Runs once every fixed interval.
         private void FixedUpdate() {
-            transform.Move(m_Nodes[m_PathIndex].Position, m_Speed, Time.fixedDeltaTime, m_Entity.CollisionContainer);
+            transform.Move(currentTargetPos, m_Speed, Time.fixedDeltaTime, m_Entity.CollisionContainer);
             SetTarget(Time.fixedDeltaTime);
+        }
+
+        Vector3 currentTargetPos => GetTargetPosition();
+        private Vector3 GetTargetPosition() {
+            if (m_Elongatable != null && m_Elongatable.LengthUnits > 1) {
+                if (m_Elongatable.searchDirection == Elongatable.SearchDirection.Horizontal) {
+                    Vector3 direction = (m_Nodes[m_PathIndex].Position - transform.position).normalized;
+                    if (direction.x > 0f && m_PathIndex != 0) {
+                        return m_Nodes[m_PathIndex].Position - Mathf.Sign(direction.x) * Vector3.right * m_Elongatable.spline.GetPosition(1).x;
+                    }
+                }
+            }
+            return m_Nodes[m_PathIndex].Position;
         }
 
         // Sets the target for this platform.
         private void SetTarget(float dt) {
             // Take a step.
-            float distance = ((Vector2)m_Nodes[m_PathIndex].Position - (Vector2)transform.position).magnitude;
+            float distance = ((Vector2)currentTargetPos - (Vector2)transform.position).magnitude;
             if (distance == 0f && m_PauseTimer.Value == m_PauseDuration) {
                 // Game.Audio.Sounds.PlaySound(m_StopMovingSound);
             }
@@ -105,8 +127,9 @@ namespace Platformer.Entities.Components {
             m_Entity = entity;
         }
 
-        public void SetPath(List<PathingNode> path) {
+        public void SetPath(List<PathingNode> path, float speed = 3f) {
             m_Nodes = path.ToArray();
+            m_Speed = speed;
         }
 
     }
