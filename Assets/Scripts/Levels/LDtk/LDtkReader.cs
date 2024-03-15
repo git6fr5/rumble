@@ -13,6 +13,7 @@ namespace Platformer.Levels.LDtk {
     ///
     ///<summary>
     [ExecuteInEditMode]
+    [DefaultExecutionOrder(-10000)]
     public class LDtkReader : MonoBehaviour {
 
         // Grid Size
@@ -37,6 +38,7 @@ namespace Platformer.Levels.LDtk {
         // The given LDtk file.
         [SerializeField] 
         private LDtkComponentProject m_LDtkData;
+        public static LDtkComponentProject setData = null;
 
         [Header("Controls")]
         public bool m_Reload;
@@ -49,16 +51,19 @@ namespace Platformer.Levels.LDtk {
             if (!Application.isPlaying) {
                 OnReload();
             }
+            m_LDtkData = setData == null ? m_LDtkData : setData;
+            print(m_LDtkData == null);
+            OnReload();
         }
 
-        void Awake() {
-            if (!Application.isPlaying) {
-                OnReload();
-            }
-        }
+        // void Awake() {
+        //     print("hi");
+        //     m_LDtkData = setData == null ? m_LDtkData : setData;
+        //     OnReload();
+        // }
 
         void Update() {
-            if (m_Reload) {
+            if (m_Reload && !Application.isPlaying) {
                 OnReload();
                 m_Reload = false;
             }
@@ -66,8 +71,12 @@ namespace Platformer.Levels.LDtk {
 
         public void OnReload() {
             m_JSON = m_LDtkData.FromJson();
-
+            m_LDtkEntityManager.CollectReferences();
+            
             List<LevelSection> sections = CollectSections(m_JSON);
+            Debug.Log("Number of sections: " + sections.Count.ToString());
+            Debug.Log("Number of entity refs: " + m_LDtkEntityManager.All.Count);
+
             m_LDtkTilemapManager.Refresh(sections, m_LDtkLayers.Ground);    
 
             for (int i = 0; i < sections.Count; i++) {

@@ -779,15 +779,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -829,6 +829,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158405335}
   m_CullTransparentMesh: 1
+--- !u!1 &1773271948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1773271950}
+  - component: {fileID: 1773271949}
+  m_Layer: 0
+  m_Name: Play Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1773271949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773271948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d5543f34d14468d8c6c368b91c4e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 758449569}
+  levels: {fileID: 11400000, guid: 5902777eca1a740ebac54fc56a1f5b96, type: 2}
+--- !u!4 &1773271950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773271948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5872496, y: -3.4470847, z: 111.851295}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1779978642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,7 +2110,6 @@ GameObject:
   - component: {fileID: 2382262226429723264}
   - component: {fileID: 2382262226429723267}
   - component: {fileID: 2382262226429723278}
-  - component: {fileID: 2382262226429723279}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -2127,7 +2172,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2382262226429723279}
+      - m_Target: {fileID: 1773271949}
         m_TargetAssemblyTypeName: Platformer.Tests.PlayTest, Assembly-CSharp
         m_MethodName: OnPlay
         m_Mode: 1
@@ -2146,19 +2191,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_MouseOver: 0
---- !u!114 &2382262226429723279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2382262226429723268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d5543f34d14468d8c6c368b91c4e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputField: {fileID: 758449569}
 --- !u!222 &2382262227571341348
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5363,6 +5395,96 @@ MonoBehaviour:
         m_RotationOrder: 0
     normalizedStartTime: 0.5
     normalizedEndTime: 1
+  - name: InputField (TMP)
+    transform: {fileID: 758449568}
+    rectTransform: {fileID: 8795561189999607467}
+    transformAnimation:
+      duration: 1
+      loop: 0
+      basePosition: {x: 0, y: 235.5}
+      baseAnchor: {x: 0, y: 235.5}
+      posScale: {x: 0, y: -10}
+      horPosCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      vertPosCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.8333313
+          value: -0.017528076
+          inSlope: -2.6247716
+          outSlope: -2.6247716
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.197689
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      baseStretch: {x: 1, y: 1}
+      strectchScale: {x: 0, y: 0}
+      horStretchCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      vertStretchCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      baseRotation: {x: -0, y: -0, z: -0, w: 1}
+      rotationScale: 0
+      rotationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+    normalizedStartTime: 0.1
+    normalizedEndTime: 0.8
   m_Playing: 1
 --- !u!1 &8795561191108733725
 GameObject:
@@ -5451,7 +5573,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 1413383675
+  m_SortingLayerID: -122483383
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &8795561191243464213
@@ -5509,7 +5631,7 @@ RectTransform:
   - {fileID: 1779978643}
   - {fileID: 758449568}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

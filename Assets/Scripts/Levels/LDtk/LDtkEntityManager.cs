@@ -24,13 +24,11 @@ namespace Platformer.Levels.LDtk {
         // A list of all the entities.
         public List<LDtkEntity> All => m_References;
 
-        void Update() {
-            if (!Application.isPlaying) {
-                m_References = new List<LDtkEntity>();
-                for (int i = 0; i < m_LDtkEntities.Count; i++) {
-                    foreach (LDtkEntity ldtkEnt in m_LDtkEntities[i].collection) {
-                        m_References.Add(ldtkEnt);
-                    }
+        public void CollectReferences() {
+            m_References = new List<LDtkEntity>();
+            for (int i = 0; i < m_LDtkEntities.Count; i++) {
+                foreach (LDtkEntity ldtkEnt in m_LDtkEntities[i].collection) {
+                    m_References.Add(ldtkEnt);
                 }
             }
         }

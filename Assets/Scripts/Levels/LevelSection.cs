@@ -86,6 +86,10 @@ namespace Platformer.Levels {
         public void DestroyEntities() {
             if (Application.isPlaying) {
                 // m_Entities = LDtkEntity.Destroy(m_Entities);
+                for (int i = 0; i < m_Entities.Count; i++) {
+                    Destroy(m_Entities[i].gameObject);
+                }
+                m_Entities.RemoveAll(entity => entity == null);
             }
             else {
                 for (int i = 0; i < m_Entities.Count; i++) {
