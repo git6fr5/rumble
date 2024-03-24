@@ -193,6 +193,7 @@ Transform:
   m_Children:
   - {fileID: 1145217651162176354}
   - {fileID: 5869780071063360628}
+  - {fileID: 9197346426293417401}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -363,6 +364,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3717324478698318828}
+        m_TargetAssemblyTypeName: UnityEngine.VFX.VisualEffect, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_DisableGroundTouching: 0
 --- !u!114 &9026948846908625529
 MonoBehaviour:
@@ -388,8 +401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53683cc7b8c89c14988edd4d9d577bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BurstParticle: {fileID: 0}
-  m_EmissionParticle: {fileID: 0}
   m_ResetDelay: 2
   m_OnResetSound: {fileID: 0}
   m_OnBlinkSound: {fileID: 0}
@@ -1168,3 +1179,74 @@ MonoBehaviour:
   m_Width: 0.1
   m_FadeInterval: 0.3
   m_SegmentLength: 0.1
+--- !u!1001 &1255960736490212924
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3770106392503223603}
+    m_Modifications:
+    - target: {fileID: 2519912741900854736, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4838707112624689440, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_Name
+      value: Worm Hit Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+--- !u!2083052967 &3717324478698318828 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 2519912741900854736, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+  m_PrefabInstance: {fileID: 1255960736490212924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9197346426293417401 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
+  m_PrefabInstance: {fileID: 1255960736490212924}
+  m_PrefabAsset: {fileID: 0}

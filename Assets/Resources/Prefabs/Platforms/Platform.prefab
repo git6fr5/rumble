@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 69833310066636800}
   - component: {fileID: 69833310066636803}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Single
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2957100553942404015}
   - component: {fileID: 69833312048615785}
   - component: {fileID: 1017512289745830067}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -118,7 +118,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1033106101372144281}
-  - {fileID: 1481074059799631613}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -167,9 +166,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2175446245288362689}
+      - m_Target: {fileID: 11400000, guid: 564f384775ebc4558bec0ad342c46b62, type: 2}
         m_TargetAssemblyTypeName: Gobblefish.Audio.AudioSnippetCollection, Gobblefish.Runtime
-        m_MethodName: Play
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -204,6 +203,7 @@ MonoBehaviour:
   m_ColliderHeight: 0.3125
   m_ColliderVerticalOffset: 0.1
   m_ColliderHorizontalInset: 0.3
+  m_LengthUnits: 1
   m_SearchDirection: 0
 --- !u!61 &69833312048615785
 BoxCollider2D:
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 3170056685398023405}
   - component: {fileID: 5492281587404949929}
   - component: {fileID: 4031899501694130170}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9116178411632708997}
   - component: {fileID: 7935149747717996352}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5466592262439163694}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Double
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,55 +500,6 @@ Transform:
   m_Father: {fileID: 1033106101372144281}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6124141124980003649
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1481074059799631613}
-  - component: {fileID: 2175446245288362689}
-  m_Layer: 7
-  m_Name: Audio Snippet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1481074059799631613
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6124141124980003649}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 69833312048615782}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2175446245288362689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6124141124980003649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ff1bcf3ae7710244973163e4353aacd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Snippets:
-  - name: OnPressed
-    clip: {fileID: 8300000, guid: 67b4229085924e646878483766915802, type: 3}
-    volume: 0.15
-    priority: 0
 --- !u!1 &7434543428515451378
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1560311708450040286}
   - component: {fileID: 6975919904161349787}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,7 +594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1033106101372144281}
   - component: {fileID: 3499024929434957995}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Renderers
   m_TagString: Untagged
   m_Icon: {fileID: 0}

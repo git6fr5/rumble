@@ -13,6 +13,9 @@ namespace Platformer.Levels {
     /// </summary>
     public class LevelManager : Gobblefish.Manager<LevelManager, LevelSettings> {
 
+        [SerializeField]
+        private LevelDecorationCollection m_LevelDecorations;
+
         // A reference to all the created levels.
         [SerializeField] 
         public List<LevelSection> m_Sections = new List<LevelSection>();
