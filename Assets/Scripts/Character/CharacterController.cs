@@ -84,6 +84,10 @@ namespace Platformer.Character {
         private Respawn m_Respawn;
         public Respawn CurrentRespawn => m_Respawn;
 
+        // The death animation.
+        [SerializeField]
+        private Sprite[] m_DeathAnimation;
+
         [SerializeField, ReadOnly]
         private Interactable m_Interactable;
         public Interactable CurrentInteractable => m_Interactable;
@@ -161,6 +165,7 @@ namespace Platformer.Character {
             // GraphicsManager.
             // The visual feedback played when dying.
             // PhysicsManager.Time.RunHitStop(16);
+            m_Animator.Push(m_DeathAnimation, CharacterAnimator.AnimationPriority.ActionPostActive);
             // GraphicsManager.Effects.PlayImpactEffect(m_OnDeathParticle,30, 5f, transform, Vector3.zero);
             // AudioManager.Sounds.PlaySound(m_OnDeathSound, 0.15f);
 
@@ -189,6 +194,8 @@ namespace Platformer.Character {
             m_Dying = false;
             m_DefaultAction.Enable(this, true);
             // Game.Audio.Sounds.PlaySound(m_OnRespawnSound, 0.15f);
+            m_Animator.Remove(m_DeathAnimation);
+
         }
 
         public void SetRespawn(Respawn respawn) {

@@ -546,7 +546,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5540784946163351741}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Gobblefish.Audio.AudioSnippetCollection, Gobblefish.Runtime
         m_MethodName: Play
         m_Mode: 5
@@ -632,7 +632,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6971977829366320784}
-  - component: {fileID: 5540784946163351741}
   - component: {fileID: 4224600035145687196}
   - component: {fileID: 1439935991634002496}
   - component: {fileID: 3598040274084795164}
@@ -658,23 +657,6 @@ Transform:
   m_Father: {fileID: 2106304517582612424}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5540784946163351741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4990649442010183872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ff1bcf3ae7710244973163e4353aacd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Snippets:
-  - name: OnTouch
-    clip: {fileID: 8300000, guid: 46619afedca57584e8fb47588d07915e, type: 3}
-    volume: 0.05
-    priority: 0
 --- !u!2083052967 &4224600035145687196
 VisualEffect:
   m_ObjectHideFlags: 0

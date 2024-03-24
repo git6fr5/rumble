@@ -253,6 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7255690825360668497}
+  - component: {fileID: 4671593990898541726}
   m_Layer: 0
   m_Name: Bulb Plant
   m_TagString: Decoration
@@ -279,6 +280,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4671593990898541726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7255690825360668496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724fd0334631d416c9cd1bbe77dfbca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Options: []
+  m_Next: 0
+  m_Prev: 0
+  m_OptionIndex: 0
+  m_FlipHorizontally: 0
+  m_FlipVertically: 0
+  m_Rotate45: 0
+  m_RotateBack45: 0
+  m_Rotate5: 0
+  m_RotateBack5: 0
 --- !u!1 &7255690825760563776
 GameObject:
   m_ObjectHideFlags: 0

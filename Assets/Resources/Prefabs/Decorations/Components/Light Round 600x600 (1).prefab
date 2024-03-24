@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6379985663794954551}
   - component: {fileID: 6627382414222531692}
+  - component: {fileID: 6183620887353695288}
   m_Layer: 0
   m_Name: Light Round 600x600 (1)
-  m_TagString: Untagged
+  m_TagString: Decoration
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,3 +85,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6183620887353695288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3304971537153832431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724fd0334631d416c9cd1bbe77dfbca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Options: []
+  m_Next: 0
+  m_Prev: 0
+  m_OptionIndex: 0
+  m_FlipHorizontally: 0
+  m_FlipVertically: 0
+  m_Rotate45: 0
+  m_RotateBack45: 0
+  m_Rotate5: 0
+  m_RotateBack5: 0

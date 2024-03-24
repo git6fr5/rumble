@@ -370,7 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd27a5c2bf48f54d8f0c801f9d801d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AudioVisualEffectCollection: {fileID: 11400000, guid: 7875efb0264d5491d9e15e84cd77b1af, type: 2}
   m_CurrentAnimation: []
   m_CurrentFrame: 0
   m_Ticks: 0
@@ -683,6 +682,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf3a330cb4195944a59c05d0da13f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Settings:
+    directionKeybinds: 77000000610000007300000064000000
+    actionKeybinds: 200000006a0000006b000000
+  m_OnLoad:
+    m_PersistentCalls:
+      m_Calls: []
   m_Actions:
   - m_PressedTicks: 0
     m_ReleasedTicks: 0
@@ -692,7 +697,7 @@ MonoBehaviour:
     m_ReleasedTicks: 0
     m_Held: 0
     m_HeldTicks: 0
-  m_ActionKeybinds: 200000006a000000
+  m_DirectionActions: []
 --- !u!114 &7023531790451818371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,6 +721,18 @@ MonoBehaviour:
     m_Value: 0
     m_MaxValue: 0
   m_Respawn: {fileID: 0}
+  m_DeathAnimation:
+  - {fileID: 719057508, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
+  - {fileID: 986136967, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
+  - {fileID: 823479078, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
+  - {fileID: 642725885, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
+  - {fileID: 13387655, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
+  - {fileID: 307450520, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
+  - {fileID: 1982799448, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
+  - {fileID: 1475582317, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
+  - {fileID: -904902332, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
+  - {fileID: -966481775, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
+  - {fileID: 633427713, guid: 65b53e3141c844eb68e146ca72982752, type: 3}
   m_Interactable: {fileID: 0}
   m_DefaultAction:
     m_ActionPhase: 0
@@ -994,7 +1011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8053402170647488862, guid: 07a08f896d1254fce86f3d4cca550065, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8053402170647488862, guid: 07a08f896d1254fce86f3d4cca550065, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1065,7 +1082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 598794166068282620, guid: 29d39a065ad0842cdaf7dcf031e78d80, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 598794166068282620, guid: 29d39a065ad0842cdaf7dcf031e78d80, type: 3}
       propertyPath: m_LocalPosition.z

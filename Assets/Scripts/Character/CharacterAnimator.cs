@@ -51,8 +51,8 @@ namespace Platformer.Character {
         // The sprite renderer attached to this object.
         private SpriteRenderer m_SpriteRenderer = null;        
 
-        [SerializeField]
-        private AudioVisualEffectCollection m_AudioVisualEffectCollection;
+        // [SerializeField]
+        // private AudioVisualEffectCollection m_AudioVisualEffectCollection;
 
         // Okay. Lets see if this works.
         [HideInInspector]

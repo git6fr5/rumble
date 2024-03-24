@@ -41,13 +41,16 @@ namespace Platformer.Levels.LDtk {
         public static LDtkComponentProject setData = null;
 
         [Header("Controls")]
-        public bool m_Reload;
+        public bool m_Disable = false;
+        public bool m_Reload = false;
         public bool playerStarted = false;
 
         // The JSON data corresponding to the given ldtk data.
         private LdtkJson m_JSON;
 
         void OnEnable() {
+            if (m_Disable) { return; }
+            
             m_Reload = false;
             if (!Application.isPlaying) {
                 OnReload();
