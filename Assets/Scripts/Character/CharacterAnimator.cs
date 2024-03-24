@@ -51,6 +51,9 @@ namespace Platformer.Character {
         // The sprite renderer attached to this object.
         private SpriteRenderer m_SpriteRenderer = null;        
 
+        [SerializeField]
+        private AudioVisualEffectCollection m_AudioVisualEffectCollection;
+
         // Okay. Lets see if this works.
         [HideInInspector]
         private Dictionary<AnimationPriority, Sprite[]> m_Spritesheet = new Dictionary<AnimationPriority, Sprite[]>();
@@ -98,12 +101,22 @@ namespace Platformer.Character {
         }
 
         public void PlayAudioVisualEffect(VisualEffect visualEffect, AudioSnippet audioSnippet) {
+            if (visualEffect != null) {
+                visualEffect.Play();
+            }
+            if (audioSnippet != null && audioSnippet.clip != null) {
+                audioSnippet.Play();
+            }
+        }
+
+        public void PlayAudioVisualEffect(string name) {
             // if (visualEffect != null) {
             //     visualEffect.Play();
             // }
             // if (audioSnippet != null && audioSnippet.clip != null) {
             //     audioSnippet.Play();
             // }
+            // m_AudioVisualEffectCollection.Play(transform, name);
         }
 
         public Sprite[] GetHighestPriorityAnimation() {

@@ -31,11 +31,11 @@ namespace Platformer.Entities.Utility {
         // The amount of times the orb blinks before it reappears.
         protected const float RESET_BLINK_COUNT = 3;
 
-        [SerializeField]
-        private VisualEffect m_BurstParticle;
+        // [SerializeField]
+        // private VisualEffect m_BurstParticle;
 
-        [SerializeField]
-        private VisualEffect m_EmissionParticle;
+        // [SerializeField]
+        // private VisualEffect m_EmissionParticle;
 
         /* --- Parameters --- */
 
@@ -59,17 +59,17 @@ namespace Platformer.Entities.Utility {
         // Runs once before the first frame.
         void Awake() {
             m_Entity = GetComponent<Entity>();
-            if (m_EmissionParticle != null) {
-                m_EmissionParticle.Play();
-            }
+            // if (m_EmissionParticle != null) {
+            //     m_EmissionParticle.Play();
+            // }
         }
 
         public void Refresh() {
             if (m_ResetDelay > 0f) {
                 // Disable the orb for a bit.
-                if (m_EmissionParticle != null) {
-                    m_EmissionParticle.Stop();
-                }
+                // if (m_EmissionParticle != null) {
+                //     m_EmissionParticle.Stop();
+                // }
 
                 m_Entity.EnableColliders(false);
                 m_Entity.Renderer.enabled = false;
@@ -119,9 +119,9 @@ namespace Platformer.Entities.Utility {
             // Give the player feedback that this object has been reset.
             // Game.Audio.Sounds.PlaySound(m_OnResetSound, 0.15f);
 
-            if (m_EmissionParticle != null) {
-                m_EmissionParticle.Play();
-            }
+            // if (m_EmissionParticle != null) {
+            //     m_EmissionParticle.Play();
+            // }
             
             IReset[] resets = gameObject.GetComponents<IReset>();
             for (int i = 0; i < resets.Length; i++) {

@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Platformer.LevelEditing {
 
-    [ExecuteInEditMode]
     public class Decoration : MonoBehaviour {
 
     }

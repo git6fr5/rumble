@@ -76,14 +76,16 @@ namespace Platformer.Levels.LDtk {
                     entity.SetGridValues(entityData[i].gridPosition, entityData[i].gridSize);
 
                     //
-                    entity.gameObject.SetActive(true);
                     entity.SetRotation();
                     entity.SetPosition(section.WorldPosition);
                     entity.SetPath(pathData);
-                    entity.SetLength(entityData);
+                    entity.SetLength(entityData); // Can possible destroy this entity.
 
                     //
-                    entities.Add(entity);
+                    if (entity != null && entity.gameObject != null) {
+                        entities.Add(entity);
+                        entity.gameObject.SetActive(true);
+                    }
                 }
             }
    

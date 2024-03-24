@@ -22,7 +22,7 @@ namespace Platformer.Entities {
         private Vector3 m_Origin;
         public Vector3 Origin => m_Origin;
 
-        private void Awake() {
+        private void Start() {
             m_Origin = transform.localPosition;
         }
 

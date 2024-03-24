@@ -51,6 +51,7 @@ namespace Platformer.Levels {
 
         // The entities currently loaded into the level.
         private List<LDtkEntity> m_Entities = new List<LDtkEntity>();
+        public List<LDtkEntity> Entities => m_Entities;
 
         // Creates a new level section camera.
         public static LevelSection New(int jsonID, LDtkUnity.LdtkJson json) {

@@ -17,8 +17,6 @@ namespace Platformer.Tests {
         public LDtkLevels levels;
 
         public void OnPlay() {
-            Debug.Log(inputField.text);
-
             LDtkComponentProject project = levels.Get(inputField.text);
 
             if (project == null) {

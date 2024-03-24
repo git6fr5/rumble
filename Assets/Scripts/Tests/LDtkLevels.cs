@@ -19,7 +19,7 @@ namespace Platformer.Tests {
         public LDtkComponentProject Find(string name) {
             for (int i = 0; i < levels.Count; i++) {
                 LdtkJson json = levels[i].FromJson();
-                // Debug.Log(json.LevelNamePattern);
+                Debug.Log(json.LevelNamePattern);
                 if (json != null && name.ToLower() == json.LevelNamePattern.ToLower()) {
                     return levels[i];
                 }

@@ -42,6 +42,7 @@ namespace Platformer.Levels.LDtk {
 
         [Header("Controls")]
         public bool m_Reload;
+        public bool playerStarted = false;
 
         // The JSON data corresponding to the given ldtk data.
         private LdtkJson m_JSON;
@@ -53,6 +54,11 @@ namespace Platformer.Levels.LDtk {
             }
             m_LDtkData = setData == null ? m_LDtkData : setData;
             print(m_LDtkData == null);
+
+            // if (setData != null) {
+            //     PlayerManager playerManager = 
+            // }
+
             OnReload();
         }
 
@@ -67,12 +73,21 @@ namespace Platformer.Levels.LDtk {
                 OnReload();
                 m_Reload = false;
             }
+
+            if (setData != null && !playerStarted) {
+                print("trying");
+                LDtkEntity entity = m_LevelManager.Sections.Find(section => section.gameObject.name == "START").Entities.Find(entity => entity.GetComponent<Platformer.Entities.Components.Respawn>() != null);
+                if (entity != null) {
+                    Platformer.PlayerManager.Character.transform.position = entity.transform.position + Vector3.up * 0.5f;
+                    playerStarted = true;
+                }
+            }
         }
 
         public void OnReload() {
             m_JSON = m_LDtkData.FromJson();
             m_LDtkEntityManager.CollectReferences();
-            
+
             List<LevelSection> sections = CollectSections(m_JSON);
             Debug.Log("Number of sections: " + sections.Count.ToString());
             Debug.Log("Number of entity refs: " + m_LDtkEntityManager.All.Count);
@@ -85,8 +100,7 @@ namespace Platformer.Levels.LDtk {
                 sections[i].GenerateEntities(m_LDtkEntityManager, m_LDtkLayers);
             }
 
-            m_LevelManager.SetSections(sections);
-            
+            m_LevelManager.SetSections(sections);            
         }
 
         // Collects all the levels from the LDtk file.

@@ -16,7 +16,7 @@ namespace Platformer.Levels {
         // A reference to all the created levels.
         [SerializeField] 
         public List<LevelSection> m_Sections = new List<LevelSection>();
-        public List<LevelSection> Sections => new List<LevelSection>();
+        public List<LevelSection> Sections => m_Sections;
 
         // The current section.
         private LevelSection m_CurrentSection = null;

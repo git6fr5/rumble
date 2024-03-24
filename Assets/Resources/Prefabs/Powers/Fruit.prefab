@@ -602,8 +602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53683cc7b8c89c14988edd4d9d577bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BurstParticle: {fileID: 0}
-  m_EmissionParticle: {fileID: 0}
   m_ResetDelay: 1.5
   m_OnResetSound: {fileID: 0}
   m_OnBlinkSound: {fileID: 0}
@@ -686,8 +684,8 @@ VisualEffect:
   m_GameObject: {fileID: 4990649442010183872}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: f4dade38a52d4fb43a689c152622f129, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
