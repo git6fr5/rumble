@@ -25,12 +25,20 @@ namespace Platformer.Levels {
         private LevelSection m_CurrentSection = null;
         public LevelSection CurrentSection => m_CurrentSection;
 
+        public bool dont = false;
+
         protected override void Awake() {
             m_Settings = new LevelSettings();
             base.Awake();
+
+            // Decoration decor = m_LevelDecorations.GetNew("Demo");
+            
+
         }
 
         public void SetSections(List<LevelSection> sections) {
+            if (dont) { return; }
+
             for (int i = 0; i < m_Sections.Count; i++) {
                 if (m_Sections[i] != null && m_Sections[i].gameObject != null) {
                     DestroyImmediate(m_Sections[i].gameObject);
