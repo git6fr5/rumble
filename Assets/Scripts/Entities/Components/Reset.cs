@@ -54,6 +54,9 @@ namespace Platformer.Entities.Utility {
         [SerializeField]
         protected AudioClip m_OnBlinkSound;
 
+        [SerializeField]
+        private UnityEvent m_OnResetEvent = new UnityEvent();
+
         #endregion
 
         // Runs once before the first frame.
@@ -131,6 +134,8 @@ namespace Platformer.Entities.Utility {
             // Reset the hitbox and rendering components of this object.
             m_Entity.Renderer.enabled = true;
             m_Entity.EnableColliders(true);
+
+            m_OnResetEvent.Invoke();
         }
         
         // Returns the time that this object takes per blink.
