@@ -110,6 +110,8 @@ MonoBehaviour:
     currentFrame: 0
     orderOffset: 0
   m_Animate: 0
+  m_Loop: 0
+  m_TurnOffOnEnd: 1
   m_RandomizeInitialTick: 0
 --- !u!1 &3314605046120247842
 GameObject:
@@ -491,7 +493,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8016868252006097294}
         m_TargetAssemblyTypeName: Gobblefish.Animation.SpriteAnimator, Gobblefish.Runtime
-        m_MethodName: Play
+        m_MethodName: PlayFromStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -719,6 +721,8 @@ MonoBehaviour:
     currentFrame: 0
     orderOffset: -100
   m_Animate: 1
+  m_Loop: 1
+  m_TurnOffOnEnd: 0
   m_RandomizeInitialTick: 0
 --- !u!114 &5869780071063360631
 MonoBehaviour:
@@ -1326,7 +1330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_VisualEffects:
   - {fileID: 151488718481830740}
-  m_Ticks: 0.480697
+  m_Ticks: 0.7384378
   m_Duration: 1
 --- !u!1 &9078206392412591872
 GameObject:
@@ -1679,7 +1683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_VisualEffects:
   - {fileID: 3717324478698318828}
-  m_Ticks: 0.29674158
+  m_Ticks: 1.3575443
   m_Duration: 2
 --- !u!4 &9197346426293417401 stripped
 Transform:
