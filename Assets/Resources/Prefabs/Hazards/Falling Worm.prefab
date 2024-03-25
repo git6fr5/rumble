@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1542654504025805771
 Transform:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2616427833566085425}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3499093, y: -10.277625, z: 0.8472348}
+  m_LocalPosition: {x: 0, y: 0.265, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71,18 +71,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingLayerID: -22149485
+  m_SortingLayer: 1
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300000, guid: 8e0a03c5a2535c7468a80ef07b78f6e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.2, y: 1.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8016868252006097294
@@ -501,6 +501,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2616427833566085425}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_DisableGroundTouching: 0
 --- !u!114 &9026948846908625529
 MonoBehaviour:
@@ -529,6 +541,21 @@ MonoBehaviour:
   m_ResetDelay: 2
   m_OnResetSound: {fileID: 0}
   m_OnBlinkSound: {fileID: 0}
+  m_OnResetEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2616427833566085425}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5988058757609501563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,7 +1326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_VisualEffects:
   - {fileID: 151488718481830740}
-  m_Ticks: 0.8252952
+  m_Ticks: 0.480697
   m_Duration: 1
 --- !u!1 &9078206392412591872
 GameObject:
@@ -1464,7 +1491,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 528024652048835890, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2519912741900854736, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
       propertyPath: m_InitialEventNameOverriden
@@ -1580,7 +1607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4838707112624689440, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7984205368332598149, guid: 7c893d78fa7e44c71a81652fa97b306a, type: 3}
       propertyPath: m_RootOrder
@@ -1652,7 +1679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_VisualEffects:
   - {fileID: 3717324478698318828}
-  m_Ticks: 1.6335571
+  m_Ticks: 0.29674158
   m_Duration: 2
 --- !u!4 &9197346426293417401 stripped
 Transform:
