@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 4944349075619919807}
   - component: {fileID: 8589511230974395817}
   m_Layer: 0
-  m_Name: DeathPop
+  m_Name: OnTouch_Anim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8099426376791560799
 Transform:
   m_ObjectHideFlags: 0
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -22149485
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 84206745cd1f2fe4585d9ec9ac112aef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,14 +99,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Animation:
     sprites:
-    - {fileID: 21300000, guid: 84206745cd1f2fe4585d9ec9ac112aef, type: 3}
     - {fileID: 21300000, guid: 7c88fcbcad0ba664fac0ea19f74cf181, type: 3}
     - {fileID: 21300000, guid: 39f80fb13b0c2684690349af99c7adf9, type: 3}
     - {fileID: 21300000, guid: 7b8273a76ac777c4b8e40a51c6a129c5, type: 3}
     - {fileID: 21300000, guid: 7f83562042303ed45b18b1b64ae82c8c, type: 3}
     - {fileID: 21300000, guid: b95a3df45f963f145bad60f71330c00f, type: 3}
     ticks: 0
-    fps: 8
+    fps: 12
     currentFrame: 0
     orderOffset: 0
   m_Animate: 1
@@ -125,7 +124,7 @@ GameObject:
   - component: {fileID: 3172012327221631328}
   - component: {fileID: 8187610939924350812}
   m_Layer: 0
-  m_Name: Radioactive Visual Effect
+  m_Name: Radioactive_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -266,7 +265,7 @@ GameObject:
   - component: {fileID: 1653042750712046167}
   - component: {fileID: 4458744076374676806}
   m_Layer: 0
-  m_Name: OnTouch
+  m_Name: OnTouch_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -296,8 +295,8 @@ VisualEffect:
   m_GameObject: {fileID: 6446764654765365140}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: f4dade38a52d4fb43a689c152622f129, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -312,6 +311,12 @@ VisualEffect:
         m_Overridden: 1
       - m_Value: 1
         m_Name: Arc Ratio
+        m_Overridden: 1
+      - m_Value: 0.42
+        m_Name: Burst Delay
+        m_Overridden: 1
+      - m_Value: 0.5
+        m_Name: Spawn Radius
         m_Overridden: 1
     m_Vector2f:
       m_Array:
@@ -475,7 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_VisualEffects:
   - {fileID: 6040584180502544570}
-  m_Ticks: 0.030848484
+  m_Ticks: 0.3967117
   m_Duration: 2
 --- !u!1 &8611092737858379842
 GameObject:
@@ -910,6 +915,7 @@ GameObject:
   - component: {fileID: 2561549586322677256}
   - component: {fileID: 8611092738165268245}
   - component: {fileID: 3588003386251054248}
+  - component: {fileID: 1601727122755300331}
   m_Layer: 9
   m_Name: Jellyfish
   m_TagString: Untagged
@@ -924,7 +930,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8611092738165268255}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -980,7 +986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e979c3cd91e2e418388ccdb8ee045b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HitStopFrames: 8
+  m_HitStopFrames: 0
   m_TouchEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1010,7 +1016,19 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8589511230974395817}
         m_TargetAssemblyTypeName: Gobblefish.Animation.SpriteAnimator, Gobblefish.Runtime
-        m_MethodName: Play
+        m_MethodName: PlayFromStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1601727122755300331}
+        m_TargetAssemblyTypeName: Platformer.Entities.Utility.Reset, Assembly-CSharp
+        m_MethodName: Refresh
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1057,3 +1075,33 @@ MonoBehaviour:
   m_GridPosition: {x: 0, y: 0}
   m_GridSize: 16
   m_Rotations: []
+--- !u!114 &1601727122755300331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611092738165268255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53683cc7b8c89c14988edd4d9d577bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ResetDelay: 2
+  m_OnResetSound: {fileID: 0}
+  m_OnBlinkSound: {fileID: 0}
+  m_OnResetEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8589511230974395817}
+        m_TargetAssemblyTypeName: Gobblefish.Animation.SpriteAnimator, Gobblefish.Runtime
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
