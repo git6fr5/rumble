@@ -178,6 +178,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6464928314165092229}
     m_Modifications:
     - target: {fileID: 603972187176991049, guid: 335037fe1167bfa46b706b68a0f78f7b, type: 3}
+      propertyPath: m_LightVolumeIntensity
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 603972187176991049, guid: 335037fe1167bfa46b706b68a0f78f7b, type: 3}
       propertyPath: m_PointLightInnerAngle
       value: 174.22922
       objectReference: {fileID: 0}
