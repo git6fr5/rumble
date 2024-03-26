@@ -84,7 +84,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.75
-  m_Color: {r: 1, g: 0.9358799, b: 0.8537736, a: 1}
+  m_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -256,6 +256,8 @@ MonoBehaviour:
     currentFrame: 0
     orderOffset: 3
   m_Animate: 1
+  m_Loop: 1
+  m_TurnOffOnEnd: 0
   m_RandomizeInitialTick: 0
 --- !u!58 &967583384624372832
 CircleCollider2D:
@@ -683,6 +685,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf3a330cb4195944a59c05d0da13f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Settings:
+    directionKeybinds: 77000000610000007300000064000000
+    actionKeybinds: 200000006a0000006b000000
+  m_OnLoad:
+    m_PersistentCalls:
+      m_Calls: []
   m_Actions:
   - m_PressedTicks: 0
     m_ReleasedTicks: 0
@@ -692,7 +700,7 @@ MonoBehaviour:
     m_ReleasedTicks: 0
     m_Held: 0
     m_HeldTicks: 0
-  m_ActionKeybinds: 200000006a000000
+  m_DirectionActions: []
 --- !u!114 &7023531790451818371
 MonoBehaviour:
   m_ObjectHideFlags: 0
