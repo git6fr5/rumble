@@ -154,8 +154,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf3a330cb4195944a59c05d0da13f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Settings:
+    directionKeybinds: 77000000610000007300000064000000
+    actionKeybinds: 200000006a0000006b000000
+  m_OnLoad:
+    m_PersistentCalls:
+      m_Calls: []
   m_Actions: []
-  m_ActionKeybinds: 
+  m_DirectionActions: []
 --- !u!1 &8993834248633979870
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +537,7 @@ MonoBehaviour:
       m_Bits: 1
     m_Ground:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 192
     m_Character:
       serializedVersion: 2
       m_Bits: 264
@@ -540,7 +546,7 @@ MonoBehaviour:
       m_Bits: 200
     m_IgnoreCharacter:
       serializedVersion: 2
-      m_Bits: 2048
+      m_Bits: 2304
 --- !u!114 &9214379556535066437
 MonoBehaviour:
   m_ObjectHideFlags: 0
