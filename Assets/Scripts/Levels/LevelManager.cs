@@ -37,8 +37,6 @@ namespace Platformer.Levels {
         }
 
         public void SetSections(List<LevelSection> sections) {
-            if (dont) { return; }
-
             for (int i = 0; i < m_Sections.Count; i++) {
                 if (m_Sections[i] != null && m_Sections[i].gameObject != null) {
                     DestroyImmediate(m_Sections[i].gameObject);

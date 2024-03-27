@@ -70,7 +70,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1663044690641627147}
   - component: {fileID: 7588264501073741151}
-  - component: {fileID: 883743556839977972}
   m_Layer: 0
   m_Name: Hut 1 - Tarp-sheet
   m_TagString: Untagged
@@ -145,18 +144,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &883743556839977972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 712838987105845798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96a309bb8581e024390ae935ac190136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &958297104074474652
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +445,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8382733843204589822}
   - component: {fileID: 5897402225181295005}
-  - component: {fileID: 1050574037423676568}
   m_Layer: 0
   m_Name: Roof
   m_TagString: Untagged
@@ -533,18 +519,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1050574037423676568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2992983201895056887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96a309bb8581e024390ae935ac190136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3936095244877678990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1054,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9079996805350598326}
   - component: {fileID: 7541891976705649681}
-  - component: {fileID: 2607113656738301631}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -1155,18 +1128,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2607113656738301631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6736210527546808031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96a309bb8581e024390ae935ac190136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7152813972559952094
 GameObject:
   m_ObjectHideFlags: 0

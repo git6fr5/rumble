@@ -41,6 +41,7 @@ namespace Platformer.Levels.LDtk {
         public static LDtkComponentProject setData = null;
 
         [Header("Controls")]
+        public bool dont = false;
         public bool m_Reload;
         public bool playerStarted = false;
 
@@ -49,7 +50,7 @@ namespace Platformer.Levels.LDtk {
 
         void OnEnable() {
             m_Reload = false;
-            if (!Application.isPlaying) {
+            if (dont && !Application.isPlaying) {
                 OnReload();
             }
             m_LDtkData = setData == null ? m_LDtkData : setData;
@@ -58,6 +59,8 @@ namespace Platformer.Levels.LDtk {
             // if (setData != null) {
             //     PlayerManager playerManager = 
             // }
+            if (dont && setData == null) { return; }
+
 
             OnReload();
         }
