@@ -571,6 +571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9214379556738734647}
   - component: {fileID: 9214379556738734646}
+  - component: {fileID: 973301669281420858}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -617,6 +618,18 @@ MonoBehaviour:
   m_OnLoad:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &973301669281420858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214379556738734649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b7191d6a43847b593e07adc6cd7ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9214379556977919172
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,7 +952,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

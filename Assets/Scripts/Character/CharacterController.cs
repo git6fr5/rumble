@@ -8,6 +8,7 @@ using UnityEngine.VFX;
 using UnityEngine.SceneManagement;
 // Gobblefish.
 using Gobblefish.Input;
+using Gobblefish.Animation;
 // Platformer.
 using Platformer.Physics;
 using Platformer.Character;
@@ -78,6 +79,13 @@ namespace Platformer.Character {
         private Timer m_DisableTimer = new Timer(0f, 0f);
         public bool Disabled => m_DisableTimer.Active;
         private bool m_Dying = false;
+
+        [SerializeField]
+        private UnityEngine.VFX.VisualEffect m_DeathEffect;
+        [SerializeField]
+        private Gobblefish.Audio.AudioSnippet m_DeathSound;
+        [SerializeField]
+        private Gobblefish.Animation.SpriteAnimator m_DeathAnimation;
 
         // The block that this character respawns at.
         [SerializeField, ReadOnly]
@@ -160,9 +168,17 @@ namespace Platformer.Character {
 
             // GraphicsManager.
             // The visual feedback played when dying.
-            // PhysicsManager.Time.RunHitStop(16);
+            PhysicsManager.Time.RunHitStop(16);
             // GraphicsManager.Effects.PlayImpactEffect(m_OnDeathParticle,30, 5f, transform, Vector3.zero);
-            // AudioManager.Sounds.PlaySound(m_OnDeathSound, 0.15f);
+            // Audio.AudioManager.Sounds.PlaySound(m_OnDeathSnippet);
+            m_Animator.PlayAudioVisualEffect(m_DeathEffect, m_DeathSound);
+            m_Animator.gameObject.SetActive(false);
+            m_DeathAnimation.PlayFromStart();
+            m_DeathAnimation.transform.FromMatrix(m_Animator.transform.localToWorldMatrix);
+
+            // m_Animator.Push(m_DeathAnimation,  CharacterAnimator.AnimationPriority.ActionPostActive);
+            // transform.localPosition += Vector3.up * 0.5f;
+            // m_Animator.Push(m_DeathAnimation,  CharacterAnimator.AnimationPriority.ActionPostActive);
 
             // Noting the death in the stats.
             // LevelManager.AddDeath();
@@ -171,9 +187,15 @@ namespace Platformer.Character {
             // Resetting the character.
             m_Respawn.CreateCorpse(this);
 
-            Disable(Respawn.RESPAWN_DELAY * 2f);
+            float BUFFER = 0.2f;
+            Disable(Respawn.RESPAWN_DELAY + BUFFER);
             DisableAllAbilityActions();
             m_Body.Stop();
+            m_Body.SetWeight(0f);
+            m_Body.AddVelocity(Vector3.up * 2f);
+            // m_Body.ReleaseAll();
+            // m_Body.AddTorque(10f);
+
             m_Dying = true;
 
             // transform.position = m_Respawn.RespawnPosition;
@@ -182,10 +204,19 @@ namespace Platformer.Character {
         }
 
         private IEnumerator IERespawn(float delay) {
-            yield return new WaitForSeconds(delay);
+            float FLOAT_TIME = 4f/12f;
+            yield return new WaitForSeconds(FLOAT_TIME);
+            m_Body.SetVelocity(Vector3.zero);
+
+            yield return new WaitForSeconds(delay - FLOAT_TIME);
             m_Respawn.CreateNewShell(this);
+            m_Animator.gameObject.SetActive(true);
+            m_DeathAnimation.Stop();
+            
 
             // yield return new WaitForSeconds(delay);
+            m_Body.SetVelocity(Vector3.up * 1f);
+            m_Body.ReleaseXY();
             m_Dying = false;
             m_DefaultAction.Enable(this, true);
             // Game.Audio.Sounds.PlaySound(m_OnRespawnSound, 0.15f);
@@ -235,6 +266,8 @@ namespace Platformer.Character {
             m_FacingDirection = m_DirectionLocked ? m_FacingDirection : m_Input.Direction.Horizontal != 0f ? m_Input.Direction.Horizontal : m_FacingDirection;
             m_OnGround = PhysicsManager.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.down, PhysicsManager.CollisionLayers.Ground);
             m_FacingWall = PhysicsManager.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.right * m_FacingDirection,  PhysicsManager.CollisionLayers.Ground);
+
+            if (m_DisableTimer.Active) { return; }
 
             m_DefaultAction.PhysicsUpdate(this, Time.fixedDeltaTime);
             for (int i = 0; i < m_PowerActions.Count; i++) {

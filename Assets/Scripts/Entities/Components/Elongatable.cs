@@ -2,9 +2,11 @@
 // System.
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 // Unity.
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.Rendering.Universal;
 
 namespace Platformer.Entities.Components {
 
@@ -32,6 +34,12 @@ namespace Platformer.Entities.Components {
         [SerializeField]
         private SpriteShapeController m_SpriteShapeController;
         public Spline spline => m_SpriteShapeController.spline;
+
+        [SerializeField]
+        private Light2D m_Light;
+
+        [SerializeField]
+        private Transform[] m_TileAlongPath;
         
         [SerializeField]
         private SpriteShapeController[] m_SubShapes;
@@ -71,6 +79,8 @@ namespace Platformer.Entities.Components {
             }
             SetSpriteshapePoints(length);
             SetHitbox((float)length);
+            SetLightShape((float)length);
+            TileObjects(length);
         }
 
         public bool SetSpriteshapePoints(int length) {
@@ -148,6 +158,47 @@ namespace Platformer.Entities.Components {
             m_BoxCollider.size = size;
             m_BoxCollider.offset = offset;
             
+        }
+
+        public void SetLightShape(float length) {
+            if (m_Light == null) { return; }
+            // m_Light.
+            print(m_Light.shapePath);
+
+            List<Vector3> shapePath = new List<Vector3>(); //  new Vector3[4 + (int)length * 2]
+            int i = 0;
+            while (i < (int)length) {
+                shapePath.Add(new Vector3(i, -m_ColliderHeight / 2f, 0f));
+                i+=1;
+            }
+            while (i >= 0) {
+                shapePath.Add(new Vector3(i, m_ColliderHeight / 2f, 0f));
+                i-=1;
+            }
+
+            // m_Light.SetShapePath(shapePath);
+            SetShapePath(m_Light, shapePath.ToArray());
+            // m_Light.BroadcastMessage("UpdateMesh");
+        
+        }
+
+        void SetFieldValue<T>(object obj, string name, T val) {
+            var field = obj.GetType().GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            field?.SetValue(obj, val);
+        }
+        
+        void SetShapePath(Light2D light, Vector3[] path) {
+            SetFieldValue<Vector3[]>(light, "m_ShapePath",  path);
+        }
+
+        public void TileObjects(int length) {
+            // for (int i = 0; i < m_TileAlongPath.Length; i++) {
+            //     for (int j = 0; j < length; j++) {
+            //         Transform newTile = Instantiate(m_TileAlongPath[i].gameObject).transform;
+            //         newTile.transform.SetParent(m_TileAlongPath[i].parent); 
+            //         newTile.localPosition = m_TileAlongPath[i].localPosition + Vector3.right * j; 
+            //     }
+            // }
         }
 
     }

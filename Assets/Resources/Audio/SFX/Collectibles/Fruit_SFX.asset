@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff1bcf3ae7710244973163e4353aacd, type: 3}
+  m_Name: Fruit_SFX
+  m_EditorClassIdentifier: 
+  m_Snippets:
+  - name: Dash_OnTouch
+    clip: {fileID: 8300000, guid: 46619afedca57584e8fb47588d07915e, type: 3}
+    volume: 1
+    priority: 0
+  - name: Hop_OnTouch
+    clip: {fileID: 8300000, guid: a39b11d9dd5f06f4bbde391441551257, type: 3}
+    volume: 1
+    priority: 0
+  - name: Ghost_OnTouch
+    clip: {fileID: 8300000, guid: cdb5cc63a743e584f8316e1f9e792b53, type: 3}
+    volume: 1
+    priority: 0
+  - name: Shadow_OnTouch
+    clip: {fileID: 8300000, guid: dd55e6e23d3e26743a505c06e8280cc0, type: 3}
+    volume: 1
+    priority: 0

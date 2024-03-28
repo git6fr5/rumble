@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396219671565549158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.099999905, z: 0}
+  m_LocalPosition: {x: 0.19, y: 0.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,7 +41,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396219671565549158}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: a476daa479fbe1949b2ebbdab60dd928, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: f4dade38a52d4fb43a689c152622f129, type: 3}
   m_InitialEventName: 
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -71,10 +71,31 @@ VisualEffect:
       - m_Value: 0.1
         m_Name: PerlinRange
         m_Overridden: 1
+      - m_Value: 0
+        m_Name: Burst Count
+        m_Overridden: 1
+      - m_Value: 0.2
+        m_Name: Spawn Radius
+        m_Overridden: 1
+      - m_Value: 32
+        m_Name: Spawn Rate
+        m_Overridden: 1
     m_Vector2f:
       m_Array:
       - m_Value: {x: 3, y: 9}
         m_Name: Lifetime
+        m_Overridden: 1
+      - m_Value: {x: 1, y: 2}
+        m_Name: Directional Speed Distribution
+        m_Overridden: 1
+      - m_Value: {x: 0.7, y: 1}
+        m_Name: Size Distribution
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 0}
+        m_Name: Circular Speed Distribution
+        m_Overridden: 1
+      - m_Value: {x: 0.2, y: 2}
+        m_Name: Lifetime Distribution
         m_Overridden: 1
     m_Vector3f:
       m_Array:
@@ -87,8 +108,17 @@ VisualEffect:
       - m_Value: {x: 0.1, y: 0, z: 0}
         m_Name: Force
         m_Overridden: 1
+      - m_Value: {x: 0.5, y: 1, z: 0}
+        m_Name: Directional Velocity
+        m_Overridden: 1
+      - m_Value: {x: 0.5, y: 1, z: 1}
+        m_Name: Circle Transform_scale
+        m_Overridden: 1
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 1, y: 1, z: 1, w: 1}
+        m_Name: Color
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
@@ -102,9 +132,9 @@ VisualEffect:
           m_Curve:
           - serializedVersion: 3
             time: 0
-            value: 0.3
-            inSlope: 1.5759577
-            outSlope: 1.5759577
+            value: 1
+            inSlope: -1.3836967
+            outSlope: -1.3836967
             tangentMode: 34
             weightedMode: 0
             inWeight: 0
@@ -112,17 +142,17 @@ VisualEffect:
           - serializedVersion: 3
             time: 0.2365141
             value: 0.6727362
-            inSlope: 1.7888718
-            outSlope: 1.7888718
+            inSlope: -0.25280038
+            outSlope: -0.25280038
             tangentMode: 34
             weightedMode: 0
             inWeight: 0.33333334
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 0.4
-            value: 1
-            inSlope: 0.13005602
-            outSlope: 0.13005602
+            time: 0.5963043
+            value: 0.98866653
+            inSlope: -3.799897
+            outSlope: -3.799897
             tangentMode: 34
             weightedMode: 0
             inWeight: 0.33333334
@@ -136,19 +166,45 @@ VisualEffect:
             weightedMode: 0
             inWeight: 0
             outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 5
-            inSlope: 12.484715
-            outSlope: 12.484715
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
         m_Name: SizeOverLife
+        m_Overridden: 1
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.25
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: Velocity Curve
         m_Overridden: 1
     m_Gradient:
       m_Array:
@@ -182,6 +238,37 @@ VisualEffect:
           m_NumColorKeys: 2
           m_NumAlphaKeys: 3
         m_Name: Gradient
+        m_Overridden: 1
+      - m_Value:
+          serializedVersion: 2
+          key0: {r: 1, g: 1, b: 1, a: 0}
+          key1: {r: 0.5, g: 0.5, b: 0.5, a: 0.3254902}
+          key2: {r: 0, g: 0, b: 0, a: 0.34509805}
+          key3: {r: 0, g: 0, b: 0, a: 0.31764707}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 65535
+          ctime2: 0
+          ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 7132
+          atime2: 23901
+          atime3: 50308
+          atime4: 65535
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_NumColorKeys: 2
+          m_NumAlphaKeys: 5
+        m_Name: ColorOverLife
         m_Overridden: 1
     m_NamedObject:
       m_Array:
@@ -227,8 +314,8 @@ VFXRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 618029683
-  m_SortingLayer: 3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!1 &4122487947238069422
 GameObject:
@@ -290,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5157528628052550695}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.18999863, y: 0.4499998, z: 0}
+  m_LocalPosition: {x: 0.18, y: 0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -305,7 +392,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5157528628052550695}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 3344151b3a9797b4ab455696132877d6, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: f4dade38a52d4fb43a689c152622f129, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -323,6 +410,18 @@ VisualEffect:
       - m_Value: 0.2
         m_Name: Radius
         m_Overridden: 1
+      - m_Value: 0.21
+        m_Name: Spawn Radius
+        m_Overridden: 1
+      - m_Value: 8
+        m_Name: Spawn Rate
+        m_Overridden: 1
+      - m_Value: 0
+        m_Name: Burst Count
+        m_Overridden: 1
+      - m_Value: 0.7
+        m_Name: Arc Ratio
+        m_Overridden: 1
     m_Vector2f:
       m_Array:
       - m_Value: {x: 4, y: 6}
@@ -332,7 +431,10 @@ VisualEffect:
         m_Name: Size Distribution
         m_Overridden: 1
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0, y: 0, z: 90}
+        m_Name: Circle Transform_angles
+        m_Overridden: 1
     m_Vector4f:
       m_Array:
       - m_Value: {x: 1, y: 1, z: 1, w: 1}

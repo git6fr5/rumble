@@ -83,5 +83,9 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8784647743442127538, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_TouchEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
+      value: Dash_OnTouch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}

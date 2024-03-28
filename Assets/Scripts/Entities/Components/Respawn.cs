@@ -26,7 +26,7 @@ namespace Platformer.Entities.Components {
         public const float RESPAWN_HEIGHT = 1.5f;
 
         // The amount of time before something is respawned.
-        public const float RESPAWN_DELAY = 0.12f;
+        public const float RESPAWN_DELAY = 0.8f;
 
         // The position at which things are respawned for this block.
         public Vector3 RespawnPosition => transform.position + Vector3.up * RESPAWN_HEIGHT;

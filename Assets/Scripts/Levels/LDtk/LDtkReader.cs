@@ -50,9 +50,12 @@ namespace Platformer.Levels.LDtk {
 
         void OnEnable() {
             m_Reload = false;
-            if (dont && !Application.isPlaying) {
-                OnReload();
+            if (!dont) {
+                if (!Application.isPlaying) {
+                    OnReload();
+                }
             }
+            
             m_LDtkData = setData == null ? m_LDtkData : setData;
             print(m_LDtkData == null);
 
