@@ -41,7 +41,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8645927952096173952}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 4328d796420926f4faf2ce6f563ebc3b, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: 
   m_InitialEventNameOverriden: 1
   m_StartSeed: 0
@@ -65,10 +65,10 @@ VisualEffect:
       - m_Value: 0.3
         m_Name: Size
         m_Overridden: 1
-      - m_Value: 8
+      - m_Value: 0
         m_Name: Burst Count
         m_Overridden: 1
-      - m_Value: 0
+      - m_Value: 10
         m_Name: Spawn Rate
         m_Overridden: 1
       - m_Value: 2
