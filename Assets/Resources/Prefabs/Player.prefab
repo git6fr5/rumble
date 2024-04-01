@@ -936,12 +936,14 @@ MonoBehaviour:
     m_ActionPhase: 0
     m_Refreshed: 0
     m_Enabled: 1
-    m_PredashDuration: 0.16
+    m_PredashDuration: 0.1
     m_DashDuration: 0.14
     m_PostdashDuration: 0.04
     m_DashDistance: 5
     m_PredashAnimation:
-    - {fileID: 81523802, guid: d47f806600743498bb14335b503067e9, type: 3}
+    - {fileID: 702343705, guid: d47f806600743498bb14335b503067e9, type: 3}
+    - {fileID: 1773793930, guid: d47f806600743498bb14335b503067e9, type: 3}
+    - {fileID: -1937069248, guid: d47f806600743498bb14335b503067e9, type: 3}
     - {fileID: 1932805014, guid: d47f806600743498bb14335b503067e9, type: 3}
     m_DashAnimation:
     - {fileID: -1057458447, guid: d47f806600743498bb14335b503067e9, type: 3}
@@ -1885,7 +1887,7 @@ PrefabInstance:
     - target: {fileID: 822462985307076981, guid: 8b16f1bbd4af34bcaa76b83aaa1c1158, type: 3}
       propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
       value: 
-      objectReference: {fileID: 2800000, guid: 75ee29a400fe6604897149e4b19275c0, type: 3}
+      objectReference: {fileID: 2800000, guid: c8157c487117c7041b55c2ac85e296e3, type: 3}
     - target: {fileID: 1937457944559165659, guid: 8b16f1bbd4af34bcaa76b83aaa1c1158, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1932,7 +1934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2177423871850538541, guid: 8b16f1bbd4af34bcaa76b83aaa1c1158, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b16f1bbd4af34bcaa76b83aaa1c1158, type: 3}
