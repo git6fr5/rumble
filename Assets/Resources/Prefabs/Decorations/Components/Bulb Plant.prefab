@@ -49,8 +49,8 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
-  m_Color: {r: 0.9846568, g: 0, b: 1, a: 1}
-  m_Intensity: 0.6
+  m_Color: {r: 1, g: 0.4575472, b: 0.92656934, a: 1}
+  m_Intensity: 0.3
   m_LightVolumeIntensity: 0.12
   m_LightVolumeIntensityEnabled: 1
   m_ApplyToSortingLayers: f966e5bdff6b50fd9306aefe
@@ -454,6 +454,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7255690825360668497}
     m_Modifications:
+    - target: {fileID: 2674350603676234113, guid: dc151e556be82ce43a1c155a2b3b3b8e, type: 3}
+      propertyPath: m_Asset
+      value: 
+      objectReference: {fileID: 8926484042661614526, guid: f4dade38a52d4fb43a689c152622f129, type: 3}
+    - target: {fileID: 2674350603676234113, guid: dc151e556be82ce43a1c155a2b3b3b8e, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674350603676234113, guid: dc151e556be82ce43a1c155a2b3b3b8e, type: 3}
+      propertyPath: m_PropertySheet.m_Vector2f.m_Array.Array.data[0].m_Value.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674350603676234113, guid: dc151e556be82ce43a1c155a2b3b3b8e, type: 3}
+      propertyPath: m_PropertySheet.m_Vector2f.m_Array.Array.data[1].m_Value.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674350603676234113, guid: dc151e556be82ce43a1c155a2b3b3b8e, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
+      value: 
+      objectReference: {fileID: 2800000, guid: 28431771e7bfcfa4392cc2ef0bfb4101, type: 3}
     - target: {fileID: 3433841237336433824, guid: dc151e556be82ce43a1c155a2b3b3b8e, type: 3}
       propertyPath: m_Name
       value: Pink Bubbles Effect
@@ -505,6 +525,14 @@ PrefabInstance:
     - target: {fileID: 3433841237336433827, guid: dc151e556be82ce43a1c155a2b3b3b8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6453908006021749873, guid: dc151e556be82ce43a1c155a2b3b3b8e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6453908006021749873, guid: dc151e556be82ce43a1c155a2b3b3b8e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -45061121
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc151e556be82ce43a1c155a2b3b3b8e, type: 3}
