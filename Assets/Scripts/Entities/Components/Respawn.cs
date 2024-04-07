@@ -97,7 +97,6 @@ namespace Platformer.Entities.Components {
         }
 
         public void Activate() {
-            print("activating");
             if (!m_Active) {
                 m_ActivateEvent.Invoke();
             }
