@@ -13,7 +13,7 @@ namespace Gobblefish.Graphics {
 
         // The main camera of the game.
         private Camera m_Camera;
-        public Camera MainCamera => m_Camera;
+        public static Camera MainCamera => Instance.m_Camera;
 
         // The camera movement script.
         [SerializeField]

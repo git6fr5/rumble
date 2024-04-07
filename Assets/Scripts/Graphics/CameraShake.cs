@@ -14,6 +14,11 @@ namespace Gobblefish.Graphics {
     [RequireComponent(typeof(Camera))]
     public class CameraShake : MonoBehaviour {
 
+        // The distance of the plane that the camera sits on.
+        public const float CAMERA_PLANE_DISTANCE = -10f;
+        public float CameraPlaneDistance => CAMERA_PLANE_DISTANCE;
+        
+
         // The different states.
         public enum ShakeState {
             Stable,
@@ -52,12 +57,18 @@ namespace Gobblefish.Graphics {
             m_Ticks -= Time.fixedDeltaTime;
             if (m_Ticks <= 0f && m_ShakeState != ShakeState.Stable) {
                 m_ShakeState = ShakeState.Stable;
+                transform.localPosition = Vector3.zero + Vector3.forward * CAMERA_PLANE_DISTANCE;
             }
         }
 
         // Starts the camera shaking.
         public void ShakeCamera(float strength, float duration) {
-            m_ShakeStrength = Mathf.Max(m_ShakeStrength, strength);
+            if (m_ShakeState == ShakeState.Shaking) {
+                m_ShakeStrength = Mathf.Max(m_ShakeStrength, strength);
+            }
+            else {
+                m_ShakeStrength = strength;
+            }
             m_Ticks = duration;
             m_Duration = duration;
             m_ShakeState = ShakeState.Shaking;
@@ -66,7 +77,7 @@ namespace Gobblefish.Graphics {
         // The way the camera moves while it is shaking.
         public void WhileShaking() {
             float strength = GraphicsManager.Settings.camShake * m_ShakeStrength * m_ShakeCurve.Evaluate(1f - (m_Ticks / m_Duration));
-            transform.localPosition = strength * (Vector3)Random.insideUnitCircle.normalized;
+            transform.localPosition = strength * (Vector3)Random.insideUnitCircle.normalized + Vector3.forward * CAMERA_PLANE_DISTANCE;
         }
 
         // Gets a random position within the screen bounds.

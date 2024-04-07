@@ -84,9 +84,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 194599975967101400, guid: 67bce359151ada444aa957f938fa58fa, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1920643455, guid: 12c793e9dc1c528458a02243ae2589a1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 194599976624927682, guid: 67bce359151ada444aa957f938fa58fa, type: 3}
+      propertyPath: m_Interval
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 194599976624927684, guid: 67bce359151ada444aa957f938fa58fa, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -134,6 +138,10 @@ PrefabInstance:
     - target: {fileID: 194599976624927685, guid: 67bce359151ada444aa957f938fa58fa, type: 3}
       propertyPath: m_SpitSpeed
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 194599976624927685, guid: 67bce359151ada444aa957f938fa58fa, type: 3}
+      propertyPath: m_SpitTorque
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 194599976624927685, guid: 67bce359151ada444aa957f938fa58fa, type: 3}
       propertyPath: m_SpitProjectile

@@ -26,9 +26,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194599975967101403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 194599976624927684}
   m_RootOrder: 0
@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2a3cd1772e2324994ae63ce1b964ebe6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,10 +71,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 618029683
-  m_SortingLayer: 3
-  m_SortingOrder: 3
-  m_Sprite: {fileID: -2048802038, guid: 12c793e9dc1c528458a02243ae2589a1, type: 3}
+  m_SortingLayerID: -22149485
+  m_SortingLayer: 1
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 1898935481, guid: 29f40142678aaa343b91581b29845604, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
-    duration: 0.2
+    duration: 0.4
     loop: 0
     basePosition: {x: 0, y: 0}
     baseAnchor: {x: 0, y: 0}
@@ -132,17 +132,17 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0.25
         value: -1
-        inSlope: 0
-        outSlope: 0
+        inSlope: 0.1846304
+        outSlope: 0.1846304
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.75
-        value: 1
-        inSlope: 0
-        outSlope: 0
+        time: 0.75416565
+        value: 1.2028313
+        inSlope: -0.261796
+        outSlope: -0.261796
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -150,8 +150,8 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: -4
-        outSlope: -4
+        inSlope: -4.892853
+        outSlope: -4.892853
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -174,17 +174,17 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0.25
         value: -1
-        inSlope: 0
-        outSlope: 0
+        inSlope: 1.1337078
+        outSlope: 1.1337078
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.75
-        value: 1
-        inSlope: 0
-        outSlope: 0
+        time: 0.6130599
+        value: 1.2754471
+        inSlope: 1.4855882
+        outSlope: 1.4855882
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -192,8 +192,8 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: -4
-        outSlope: -4
+        inSlope: -3.2962391
+        outSlope: -3.2962391
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -210,6 +210,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   m_Animate: 1
+  m_RandomizeInitialTick: 0
 --- !u!1 &194599976624927687
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af4628a299e60e4db5d8201e100b4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Interval: 2
+  m_Interval: 1
   m_TimedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -320,10 +321,15 @@ MonoBehaviour:
     m_Value: 0
     m_MaxValue: 0
   m_SpitDelay: 0.4
-  m_SpitSpeed: 10
+  m_SpitSpeed: 5
+  m_SpitTorque: 100
   m_SpitProjectile: {fileID: 1863113187342327081}
   m_SpitEffect: {fileID: 0}
-  m_SpitSound: {fileID: 0}
+  m_SpitSound:
+    name: untitled
+    clip: {fileID: 0}
+    volume: 1
+    priority: 0
   debugSpitter: 1
 --- !u!114 &2906076660938666276
 MonoBehaviour:

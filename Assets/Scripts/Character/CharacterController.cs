@@ -107,8 +107,8 @@ namespace Platformer.Character {
 
         // The dash action.
         [SerializeField]
-        private DashAction m_DashAction;
-        public DashAction Dash => m_DashAction;
+        private ChargeDashAction m_DashAction;
+        public ChargeDashAction Dash => m_DashAction;
 
         // The hop action.
         [SerializeField]
@@ -175,6 +175,7 @@ namespace Platformer.Character {
             m_Animator.gameObject.SetActive(false);
             m_DeathAnimation.PlayFromStart();
             m_DeathAnimation.transform.FromMatrix(m_Animator.transform.localToWorldMatrix);
+            Gobblefish.Graphics.GraphicsManager.CamShake.ShakeCamera(0.1f, 0.2f);
 
             // m_Animator.Push(m_DeathAnimation,  CharacterAnimator.AnimationPriority.ActionPostActive);
             // transform.localPosition += Vector3.up * 0.5f;
@@ -212,7 +213,6 @@ namespace Platformer.Character {
             m_Respawn.CreateNewShell(this);
             m_Animator.gameObject.SetActive(true);
             m_DeathAnimation.Stop();
-            
 
             // yield return new WaitForSeconds(delay);
             m_Body.SetVelocity(Vector3.up * 1f);

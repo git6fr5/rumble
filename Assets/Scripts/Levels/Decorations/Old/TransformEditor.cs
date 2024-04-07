@@ -32,9 +32,9 @@ namespace Platformer.LevelEditing {
 
         void Update() {
             if (!Application.isPlaying) {
-                if (UnityEditor.Selection.activeTransform != null) {
-                    ControlLastAddedTransform(UnityEditor.Selection.activeTransform);
-                }
+                // if (UnityEditor.Selection.activeTransform != null) {
+                //     ControlLastAddedTransform(UnityEditor.Selection.activeTransform);
+                // }
             }
             
         }

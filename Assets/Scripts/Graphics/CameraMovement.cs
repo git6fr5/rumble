@@ -8,6 +8,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 namespace Gobblefish.Graphics {
 
+    using Platformer.Levels;
+
     ///<summary>
     /// Controls the position and quality of the camera.
     ///<summary>
@@ -26,7 +28,7 @@ namespace Gobblefish.Graphics {
 
         // The position that this camera is meant to be at.
         [SerializeField]
-        private List<Transform> m_Targets = new List<Transform>();
+        private List<LevelSectionCamera> m_Targets = new List<LevelSectionCamera>();
 
         // The speed with which the camera moves.
         [SerializeField]
@@ -34,6 +36,7 @@ namespace Gobblefish.Graphics {
 
         // Runs every fixed interval.
         void FixedUpdate() {
+            // if (GraphicsManager.Instance == null) { return; } 
             MoveToTarget(Time.fixedDeltaTime);
         }
 
@@ -42,14 +45,15 @@ namespace Gobblefish.Graphics {
         }
 
         // Sets the target position of the camera.
-        public void AddTarget(Transform target) {
+        public void AddTarget(LevelSectionCamera target) {
+            m_Targets = new List<LevelSectionCamera>();
             if (!m_Targets.Contains(target)) {
                 m_Targets.Add(target);
             }
         }
 
         // Sets the target position of the camera.
-        public void RemoveTarget(Transform target) {
+        public void RemoveTarget(LevelSectionCamera target) {
             if (m_Targets.Contains(target)) {
                 m_Targets.Remove(target);
             }
@@ -92,10 +96,12 @@ namespace Gobblefish.Graphics {
         void GetTarget(out Vector2 target) {
             target = new Vector2(0f, 0f);
             for (int i = 0; i < m_Targets.Count; i++) {
-                target += (Vector2)m_Targets[i].position;
+                target += m_Targets[i].GetPosition(m_DefaultTarget);
             }
             target /= m_Targets.Count;
         }
+
+        
 
     }
 

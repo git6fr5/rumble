@@ -145,14 +145,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2229159961795818547}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c6a2dd9a12a4c24a4af460b24b3bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_VisualEffects:
   - {fileID: 5285803250739997305}
-  m_Ticks: 0.110464305
+  m_Ticks: 0.15320455
   m_Duration: 1
 --- !u!1 &2616427833566085425
 GameObject:
@@ -180,9 +180,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2616427833566085425}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3770106392503223603}
   m_RootOrder: 5
@@ -228,7 +228,7 @@ SpriteRenderer:
   m_SortingLayerID: -22149485
   m_SortingLayer: 1
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 8e0a03c5a2535c7468a80ef07b78f6e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef2d21d369bf2f94ea7ef133822fb9a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -479,7 +479,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0, y: 0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -490,7 +490,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.8}
+  m_Size: {x: 0.4, y: 0.6}
   m_EdgeRadius: 0
 --- !u!50 &3770106392503223609
 Rigidbody2D:
@@ -568,6 +568,30 @@ MonoBehaviour:
           m_StringArgument: Worm_OnSight
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5869780071063360629}
+        m_TargetAssemblyTypeName: Gobblefish.Animation.SpriteAnimator, Gobblefish.Runtime
+        m_MethodName: SetFrameRate
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 8
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5869780071063360584}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Direction: {x: 0, y: -1, z: 0}
 --- !u!114 &3770106392503223608
 MonoBehaviour:
@@ -587,6 +611,7 @@ MonoBehaviour:
     m_Value: 0
     m_MaxValue: 0
   m_ShakeStrength: 0.12
+  m_FallRenderer: {fileID: 5869780071063360628}
 --- !u!114 &7638311234357158189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,6 +676,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5869780071063360629}
+        m_TargetAssemblyTypeName: Gobblefish.Animation.SpriteAnimator, Gobblefish.Runtime
+        m_MethodName: SetFrameRate
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 4
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_TouchExitEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -702,6 +739,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5869780071063360629}
+        m_TargetAssemblyTypeName: Gobblefish.Animation.SpriteAnimator, Gobblefish.Runtime
+        m_MethodName: SetFrameRate
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 4
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -759,6 +808,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Worm_OnReset
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5869780071063360629}
+        m_TargetAssemblyTypeName: Gobblefish.Animation.SpriteAnimator, Gobblefish.Runtime
+        m_MethodName: SetFrameRate
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 4
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5869780071063360584}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &5988058757609501563
 MonoBehaviour:
@@ -839,8 +912,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5869780071063360627}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3770106392503223603}
@@ -941,7 +1014,7 @@ MonoBehaviour:
     loop: 1
     basePosition: {x: 0, y: 0}
     baseAnchor: {x: 0, y: 0}
-    posScale: {x: 0, y: 0.2}
+    posScale: {x: 0, y: 0.1}
     horPosCurve:
       serializedVersion: 2
       m_Curve: []
@@ -1244,14 +1317,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5929160269274079004}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c6a2dd9a12a4c24a4af460b24b3bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_VisualEffects:
   - {fileID: 3717324478698318828}
-  m_Ticks: 1.2512484
+  m_Ticks: 1.1017135
   m_Duration: 2
 --- !u!1 &6576069884486875781
 GameObject:
@@ -1552,14 +1625,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8335384863527020938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c6a2dd9a12a4c24a4af460b24b3bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_VisualEffects:
   - {fileID: 151488718481830740}
-  m_Ticks: 0.110464305
+  m_Ticks: 0.6803625
   m_Duration: 1
 --- !u!1 &9078206392412591872
 GameObject:

@@ -65,6 +65,9 @@ namespace Platformer.Entities.Components {
         private float m_ShakeStrength = 0.12f;
         private float Strength => m_ShakeStrength * m_FallDelayTimer.InverseRatio;
 
+        [SerializeField]
+        private Transform m_FallRenderer;
+
         #endregion
 
         void Awake() {
@@ -91,13 +94,21 @@ namespace Platformer.Entities.Components {
                     case FallState.Crumbling:
                         OnFall();
                         break;
-                    case FallState.Falling:
-                        WhileFalling();
-                        break;
                     default:
                         break;
                 }
 
+            }
+
+            switch (m_FallState) {
+                case FallState.Crumbling:
+                    WhileCrumbling();
+                    break;
+                case FallState.Falling:
+                    WhileFalling();
+                    break;
+                default:
+                    break;
             }
 
         }
@@ -120,6 +131,10 @@ namespace Platformer.Entities.Components {
             m_Body.SetWeight(WEIGHT);
             m_FallState = FallState.Falling;
 
+        }
+
+        private void WhileCrumbling() {
+            m_FallRenderer.localPosition = Strength * (Vector3)Random.insideUnitCircle.normalized;
         }
 
         private void WhileFalling() { 
