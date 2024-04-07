@@ -51,6 +51,12 @@ namespace Platformer.Entities.Components {
         [SerializeField]
         private UnityEvent m_RespawnEvent;
 
+        [SerializeField]
+        private UnityEvent m_ActivateEvent;
+
+        [SerializeField]
+        private UnityEvent m_DeactivateEvent;
+
         // Runs once before the first frame.
         void Start() {
             if (PlayerManager.Character.CurrentRespawn == this) {
@@ -83,7 +89,7 @@ namespace Platformer.Entities.Components {
         }
 
         public void CreateNewShell(CharacterController character) {
-            character.transform.position = transform.position;
+            character.transform.position = transform.position + Vector3.up * 1.5f;
             character.Body.SetVelocity(8f * (transform.localRotation * Vector3.up));
             character.Animator.Push(character.Default.FallingFastAnim, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
 
@@ -92,6 +98,10 @@ namespace Platformer.Entities.Components {
 
         public void Activate() {
             print("activating");
+            if (!m_Active) {
+                m_ActivateEvent.Invoke();
+            }
+            
             m_Active = true;
             if (m_EmissionParticle != null) {
                 m_EmissionParticle.Play();
@@ -103,6 +113,10 @@ namespace Platformer.Entities.Components {
         }
 
         public void Deactivate() {
+            if (m_Active) {
+                m_DeactivateEvent.Invoke();
+            }
+
             m_Active = false;
             if (m_EmissionParticle != null) {
                 m_EmissionParticle.Stop();
