@@ -39,7 +39,7 @@ namespace Platformer.LevelEditing {
 
                 m_DecorationSection = new List<DecorationSection>();
                 if (m_LevelManager != null) {
-                    Reorganize();
+                    // Reorganize();
                 }
 
                 m_Reorganize = false;
