@@ -105,6 +105,9 @@ namespace Platformer.Character {
         [SerializeField]
         private List<CharacterAction> m_PowerActions = new List<CharacterAction>();
 
+        [SerializeField]
+        private Sprite m_DefaultBody;
+
         #endregion
 
         // Runs once on instantiation.
@@ -185,6 +188,8 @@ namespace Platformer.Character {
             m_Body.ReleaseXY();
             m_Dying = false;
             m_DefaultAction.Enable(this, true);
+
+            m_Animator.SetBody(m_DefaultBody);
             // Game.Audio.Sounds.PlaySound(m_OnRespawnSound, 0.15f);
         }
 

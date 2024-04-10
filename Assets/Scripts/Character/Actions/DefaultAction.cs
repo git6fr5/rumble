@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 // Gobblefish.
 using Gobblefish.Audio;
+using Gobblefish.Animation;
 // Platformer.
 using Platformer.Physics;
 
@@ -115,24 +116,24 @@ namespace Platformer.Character {
 
         // The animation for the character when idle.
         [SerializeField]
-        private Sprite[] m_IdleAnimation = null;
+        private SpriteAnimation m_IdleAnimation = null;
 
         // The animation for the character when moving.
         [SerializeField]
-        private Sprite[] m_MovementAnimation = null;
+        private SpriteAnimation m_MovementAnimation = null;
 
         // The animation for the character when rising.
         [SerializeField]
-        private Sprite[] m_RisingAnimation = null;
+        private SpriteAnimation m_RisingAnimation = null;
 
         // The animation for the character when falling.
         [SerializeField]
-        private Sprite[] m_FallingAnimation = null;
+        private SpriteAnimation m_FallingAnimation = null;
 
         // The animation for the character when falling fast.
         [SerializeField]
-        private Sprite[] m_FallingFastAnimation = null;
-        public Sprite[] FallingFastAnim => m_FallingFastAnimation;
+        private SpriteAnimation m_FallingFastAnimation = null;
+        public SpriteAnimation FallingFastAnim => m_FallingFastAnimation;
 
         [SerializeField]
         private VisualEffect m_TrailEffect;

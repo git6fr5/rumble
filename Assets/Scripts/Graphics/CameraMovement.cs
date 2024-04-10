@@ -34,6 +34,12 @@ namespace Gobblefish.Graphics {
         [SerializeField]
         private float m_MoveSpeed = 0f;
 
+        void Start() {
+            if (Application.isPlaying && Platformer.PlayerManager.Instance != null) {
+                m_DefaultTarget = Platformer.PlayerManager.Character.transform;
+            }
+        }
+
         // Runs every fixed interval.
         void FixedUpdate() {
             // if (GraphicsManager.Instance == null) { return; } 

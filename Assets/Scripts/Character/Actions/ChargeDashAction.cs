@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 // Gobblefish.
 using Gobblefish.Audio;
+using Gobblefish.Animation;
 // Platformer.
 using Platformer.Physics;
 
@@ -48,15 +49,15 @@ namespace Platformer.Character {
 
         // The sprites this is currently animating through.
         [SerializeField]
-        protected Sprite[] m_PredashAnimation = null;
+        protected SpriteAnimation m_PredashAnimation = null;
 
         // The sprites this is currently animating through.
         [SerializeField]
-        protected Sprite[] m_DashAnimation = null;
+        protected SpriteAnimation m_DashAnimation = null;
 
         // The sprites this is currently animating through.
         [SerializeField]
-        protected Sprite[] m_PostdashAnimation = null;
+        protected SpriteAnimation m_PostdashAnimation = null;
 
         // The visual effect that plays at the start of the dash.
         [SerializeField]
@@ -287,10 +288,16 @@ namespace Platformer.Character {
 
         }
 
+        private float predashAnimBaseFPS = 4f;
+        private float predashAnimMaxFPS = 16f;
+
         private void WhileDashing(CharacterController character, float dt) {
             if (Mathf.Abs(character.Body.velocity.x) < DashSpeed / 2f || Mathf.Abs(character.Body.velocity.y) > 0.2f) {
                 OnStartPostdash(character);
             }
+
+            m_PredashAnimation.fps = predashAnimBaseFPS + (predashAnimMaxFPS - predashAnimBaseFPS) * m_ChargeTimer.InverseRatio;
+            
         }
 
         private void WhilePostdashing(CharacterController character, float dt) {

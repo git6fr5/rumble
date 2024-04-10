@@ -4,6 +4,8 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.VFX;
+//
+using Gobblefish.Animation;
 // Platformer.
 using Platformer.Physics;
 
@@ -58,11 +60,11 @@ namespace Platformer.Character {
 
         // The animation that plays while climbing.
         [SerializeField]
-        private Sprite[] m_ClimbAnimation = null;
+        private SpriteAnimation m_ClimbAnimation = null;
 
         // The animation that plays while wall jumping.
         [SerializeField]
-        private Sprite[] m_WallJumpAnimation = null;
+        private SpriteAnimation m_WallJumpAnimation = null;
 
         // // An index to the particle that is associated with the charge timer.
         // [SerializeField] 

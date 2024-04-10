@@ -33,6 +33,9 @@ namespace Platformer.Entities.Components {
         [SerializeField] 
         protected Type m_Type;
 
+        [SerializeField]
+        private SpriteRenderer m_SpriteRenderer;
+
         // Collects this orb.
         public void SwapPower() {
             CharacterController character = PlayerManager.Character;
@@ -41,10 +44,10 @@ namespace Platformer.Entities.Components {
             character.DisableAllAbilityActions();
             switch (m_Type) {
                 case Type.Dash:
-                    character.GetPowerAction(typeof(ChargeDashAction).ToString()).Enable(character, true);
+                    character.GetPowerAction(typeof(ChargeDashAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
                     break;
                 case Type.Hop:
-                    character.GetPowerAction(typeof(HopAction).ToString()).Enable(character, true);
+                    character.GetPowerAction(typeof(HopAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
                     break;
                 // case Type.Ghost:
                 //     character.GetPowerAction<GhostAction>().Enable(character, true);
@@ -53,10 +56,10 @@ namespace Platformer.Entities.Components {
                 //     // character.Shadow.Enable(character, true);
                 //     break;
                 case Type.Sticky:
-                    character.GetPowerAction(typeof(StickyAction).ToString()).Enable(character, true);
+                    character.GetPowerAction(typeof(StickyAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
                     break;
                 case Type.Bouncy:
-                    character.GetPowerAction(typeof(BouncyAction).ToString()).Enable(character, true);
+                    // character.GetPowerAction(typeof(BouncyAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
                     break;
                 default:
                     character.Default.Enable(character, true);

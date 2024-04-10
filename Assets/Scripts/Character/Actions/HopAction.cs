@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 // Gobblefish.
 using Gobblefish.Audio;
+using Gobblefish.Animation;
 // Platformer.
 using Platformer.Physics;
 
@@ -50,15 +51,15 @@ namespace Platformer.Character {
 
         // The sprites while charging a hop.
         [SerializeField]
-        private Sprite[] m_ChargeHopAnimation = null;
+        private SpriteAnimation m_ChargeHopAnimation = null;
 
         // The sprites while hopping
         [SerializeField]
-        private Sprite[] m_HopAnimation = null;
+        private SpriteAnimation m_HopAnimation = null;
 
         // The sprites while hopping
         [SerializeField]
-        private Sprite[] m_FallAnimation = null;
+        private SpriteAnimation m_FallAnimation = null;
 
         // The sounds that plays when charging the hop.
         [SerializeField]

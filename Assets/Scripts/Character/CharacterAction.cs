@@ -65,6 +65,13 @@ namespace Platformer.Character {
             m_Refreshed = enable;
         }
 
+        public void EnablePower(CharacterController character, bool enable, Sprite sprite) {
+            Enable(character, enable);
+            if (sprite != null && enable) {
+                character.Animator.SetBody(sprite);
+            }
+        }
+
         #endregion
 
     }

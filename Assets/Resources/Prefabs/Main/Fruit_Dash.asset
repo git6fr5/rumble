@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c1258c606164ad581121042db8c0fb, type: 3}
+  m_Name: Fruit_Dash
+  m_EditorClassIdentifier: 
+  m_ActionPhase: 0
+  m_Refreshed: 1
+  m_Enabled: 1
+  m_PredashDuration: 0.16
+  m_DashDuration: 0.14
+  m_PostdashDuration: 0.16
+  m_DashDistance: 4
+  m_PredashAnimation:
+    currentFrame: 3
+    fps: 16
+    sprites:
+    - {fileID: -1686720619, guid: 31075fee4f9344615b8cda28ff8073c0, type: 3}
+    - {fileID: -806962235, guid: 31075fee4f9344615b8cda28ff8073c0, type: 3}
+    - {fileID: 183944991, guid: 31075fee4f9344615b8cda28ff8073c0, type: 3}
+    - {fileID: -1448107835, guid: 31075fee4f9344615b8cda28ff8073c0, type: 3}
+    ticks: 232.95294
+    orderOffset: 0
+  m_DashAnimation:
+    currentFrame: 0
+    fps: 8
+    sprites:
+    - {fileID: -595878824, guid: 31075fee4f9344615b8cda28ff8073c0, type: 3}
+    ticks: 57.561127
+    orderOffset: 0
+  m_PostdashAnimation:
+    currentFrame: 0
+    fps: 8
+    sprites:
+    - {fileID: -595878824, guid: 31075fee4f9344615b8cda28ff8073c0, type: 3}
+    ticks: 79.49867
+    orderOffset: 0
+  m_StartDashEffect: {fileID: 0}
+  m_StartDashSound:
+    name: untitled
+    clip: {fileID: 8300000, guid: 4ed20f11e44b9d143a7e8b38853f347e, type: 3}
+    volume: 1
+    priority: 0
+  m_EndDashEffect: {fileID: 0}
+  m_ChargeDuration: 0.5
+  m_ChargeTimer:
+    m_Value: 0
+    m_MaxValue: 0.5
+  m_ChargeIncrementTimer:
+    m_Value: 0.08
+    m_MaxValue: 0.1
+  m_ChargeDashEffect: {fileID: 0}
+  m_ChargeDashSound:
+    name: untitled
+    clip: {fileID: 8300000, guid: f4d5690ef871cc64395fe48487cd3c39, type: 3}
+    volume: 1
+    priority: 0

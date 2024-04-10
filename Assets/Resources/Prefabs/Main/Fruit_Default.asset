@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793c52789044fd545a9bf7fea8303381, type: 3}
+  m_Name: Fruit_Default
+  m_EditorClassIdentifier: 
+  m_ActionPhase: 0
+  m_Refreshed: 1
+  m_Enabled: 1
+  m_Interacting: 0
+  m_MoveEnabled: 1
+  m_FallEnabled: 1
+  m_DuckEnabled: 1
+  m_ClampJump: 0
+  m_Speed: 6
+  m_Acceleration: 60
+  m_Height: 2.5
+  m_RisingTime: 0.4
+  m_FallingTime: 0.3
+  m_CoyoteBuffer: 0.12
+  m_HangBuffer: 0.04
+  m_HangFactor: 0.24
+  m_JumpSpeed: 12.5
+  m_Weight: 3.1855247
+  m_Sink: 1.7777778
+  m_IdleAnimation:
+    currentFrame: 0
+    fps: 0
+    sprites:
+    - {fileID: 1289013869, guid: 7b8e4815b967b42829f30948d0f10f3e, type: 3}
+    - {fileID: -1161145486, guid: 7b8e4815b967b42829f30948d0f10f3e, type: 3}
+    ticks: 1604.523
+    orderOffset: 0
+  m_MovementAnimation:
+    currentFrame: 3
+    fps: 4
+    sprites:
+    - {fileID: 2031720420, guid: 11f09257751104ee982515cf453599e5, type: 3}
+    - {fileID: 697733350, guid: 11f09257751104ee982515cf453599e5, type: 3}
+    - {fileID: -485401836, guid: 11f09257751104ee982515cf453599e5, type: 3}
+    - {fileID: -1370490819, guid: 11f09257751104ee982515cf453599e5, type: 3}
+    ticks: 772.8316
+    orderOffset: 0
+  m_RisingAnimation:
+    currentFrame: 0
+    fps: 0
+    sprites:
+    - {fileID: 213755715, guid: 6518b094fdf4f4ce39039fe867387c95, type: 3}
+    - {fileID: -1307362472, guid: 6518b094fdf4f4ce39039fe867387c95, type: 3}
+    ticks: 930.4854
+    orderOffset: 0
+  m_FallingAnimation:
+    currentFrame: 0
+    fps: 0
+    sprites:
+    - {fileID: -473262215, guid: 638229cf91e6b41b191b698afc62004d, type: 3}
+    - {fileID: -2014508713, guid: 638229cf91e6b41b191b698afc62004d, type: 3}
+    ticks: 740.42
+    orderOffset: 0
+  m_FallingFastAnimation:
+    currentFrame: 0
+    fps: 0
+    sprites: []
+    ticks: 150.45532
+    orderOffset: 0
+  m_TrailEffect: {fileID: 0}
+  m_JumpEffect: {fileID: 0}
+  m_JumpSound:
+    name: untitled
+    clip: {fileID: 8300000, guid: de2a9f04b81f5e840bd7c663c756c970, type: 3}
+    volume: 1
+    priority: 0
+  m_LandEffect: {fileID: 0}
+  m_LandSound:
+    name: untitled
+    clip: {fileID: 8300000, guid: 1ce8cc21e5d13f1419aaed884a005654, type: 3}
+    volume: 1
+    priority: 0

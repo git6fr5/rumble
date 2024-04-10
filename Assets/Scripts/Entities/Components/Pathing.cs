@@ -68,9 +68,9 @@ namespace Platformer.Entities.Components {
                 if (child.GetComponent<Power>() != null) {
                     m_Speed /= 2f;
                 }
-                if (child.GetComponent<Reset>() != null) {
-                    reset = child.GetComponent<Reset>();
-                }
+                // if (child.GetComponent<Reset>() != null) {
+                //     reset = child.GetComponent<Reset>();
+                // }
             }
 
             for (int i = 0; i < m_Nodes.Length; i++) {
@@ -92,14 +92,14 @@ namespace Platformer.Entities.Components {
 
         Vector3 currentTargetPos => GetTargetPosition();
         private Vector3 GetTargetPosition() {
-            if (m_Elongatable != null && m_Elongatable.LengthUnits > 1) {
-                if (m_Elongatable.searchDirection == Elongatable.SearchDirection.Horizontal) {
-                    Vector3 direction = (m_Nodes[m_PathIndex].Position - transform.position).normalized;
-                    if (direction.x > 0f && m_PathIndex != 0) {
-                        return m_Nodes[m_PathIndex].Position - Mathf.Sign(direction.x) * Vector3.right * m_Elongatable.spline.GetPosition(1).x;
-                    }
-                }
-            }
+            // if (m_Elongatable != null && m_Elongatable.LengthUnits > 1) {
+            //     if (m_Elongatable.searchDirection == Elongatable.SearchDirection.Horizontal) {
+            //         Vector3 direction = (m_Nodes[m_PathIndex].Position - transform.position).normalized;
+            //         if (direction.x > 0f && m_PathIndex != 0) {
+            //             return m_Nodes[m_PathIndex].Position - Mathf.Sign(direction.x) * Vector3.right * m_Elongatable.spline.GetPosition(1).x;
+            //         }
+            //     }
+            // }
             return m_Nodes[m_PathIndex].Position;
         }
 

@@ -10,13 +10,14 @@ using UnityEngine.VFX;
 // Gobblefish.
 using Gobblefish;
 using Gobblefish.Audio;
+using Gobblefish.Animation;
 
 namespace Platformer.Character {
 
     ///<summary>
     /// Animates the character.
     ///<summary>
-    [RequireComponent(typeof(SpriteRenderer))]
+    // [RequireComponent(typeof(SpriteRenderer))]
     public class CharacterAnimator : MonoBehaviour {
 
         public enum AnimationPriority {
@@ -49,54 +50,77 @@ namespace Platformer.Character {
         private CharacterController m_Character = null;
 
         // The sprite renderer attached to this object.
-        private SpriteRenderer m_SpriteRenderer = null;        
+        [SerializeField]
+        private SpriteRenderer m_SpriteRenderer = null;
+
+        [SerializeField]
+        private SpriteRenderer m_Foreleg = null;
+
+        [SerializeField]
+        private SpriteRenderer m_Backleg = null;
+
+        [SerializeField]
+        private SpriteRenderer m_Body;        
 
         [SerializeField]
         private AudioVisualEffectCollection m_AudioVisualEffectCollection;
 
         // Okay. Lets see if this works.
         [HideInInspector]
-        private Dictionary<AnimationPriority, Sprite[]> m_Spritesheet = new Dictionary<AnimationPriority, Sprite[]>();
+        private SpriteAnimation[] m_Spritesheet;
 
         // The sprites this is currently animating through.
         [SerializeField]
-        private Sprite[] m_CurrentAnimation = null;
+        private SpriteAnimation m_CurrentAnimation = null;
 
-        // The sprite we are currently on.
-        [SerializeField, ReadOnly]
-        private int m_CurrentFrame = 0;
-
-        // The ticks until the next frame.
-        [SerializeField, ReadOnly]
-        private float m_Ticks = 0f;
+        [SerializeField]
+        private float m_Tiredness = 0f;
 
         // The amount this character was stretched last frame.
         [SerializeField, ReadOnly]
         private Vector2 m_CachedStretch = new Vector2(0f, 0f);
 
+        [SerializeField]
+        private Gobblefish.Animation.TransformAnimator m_TirednessAnimator;
+
         // Runs once before the first frame.
         void Start() {
             m_Character = transform.parent.GetComponent<CharacterController>();
-            m_SpriteRenderer = GetComponent<SpriteRenderer>();
+            // m_SpriteRenderer = GetComponent<SpriteRenderer>();
+            m_Spritesheet = new SpriteAnimation[(int)AnimationPriority.Count];
         }
 
         // Runs once every frame.
         void Update() {
-            // Scale(Time.deltaTime);
+            Scale(Time.deltaTime);
             Animate(Time.deltaTime);
             Rotate();
+            SetTiredness(Time.deltaTime);
         }
 
         // Animates the flipbook by setting the animation, frame, and playing any effects.
         private void Animate(float dt) {
             // Guard clause to protect from animating with no sprites.
-            Sprite[] previousAnimation = m_CurrentAnimation;
+            // SpriteAnimation previousAnimation = m_CurrentAnimation;
             m_CurrentAnimation = GetHighestPriorityAnimation();
-            if (!m_CurrentAnimation.Validate<Sprite>()) { return; }
 
-            m_Ticks = previousAnimation == m_CurrentAnimation ? m_Ticks + dt : 0f;
-            m_CurrentFrame = (int)Mathf.Floor(m_Ticks * FRAME_RATE) % m_CurrentAnimation.Length;
-            m_SpriteRenderer.sprite = m_CurrentAnimation[m_CurrentFrame];
+            // if (!m_CurrentAnimation.Validate<Sprite>()) { return; }
+
+            // m_Ticks = previousAnimation == m_CurrentAnimation ? m_Ticks + dt : 0f;
+            // m_CurrentFrame = (int)Mathf.Floor(m_Ticks * FRAME_RATE) % m_CurrentAnimation.Length;
+            m_CurrentAnimation.Tick(dt);
+
+            int halfNextFrame = m_CurrentAnimation.currentFrame;
+            if (m_CurrentAnimation.sprites.Length > 0) {
+                halfNextFrame += (int)Mathf.Ceil(m_CurrentAnimation.sprites.Length / 2f);
+                halfNextFrame = halfNextFrame % m_CurrentAnimation.sprites.Length;
+            }
+            else {
+                return;
+            }
+
+            m_Foreleg.sprite =  m_CurrentAnimation.GetFrame();
+            m_Backleg.sprite = m_CurrentAnimation.sprites[halfNextFrame];
 
         }
 
@@ -119,27 +143,31 @@ namespace Platformer.Character {
             // m_AudioVisualEffectCollection.Play(transform, name);
         }
 
-        public Sprite[] GetHighestPriorityAnimation() {
-            return m_Spritesheet[m_Spritesheet.Keys.Max()];
+        public void SetBody(Sprite sprite) {
+            m_Body.sprite = sprite;
         }
 
-        public void Push(Sprite[] animation, AnimationPriority priority) {
-            if (animation == null || animation.Length == 0) { return; }
-
-            if (m_Spritesheet.ContainsKey(priority)) {
-                m_Spritesheet[priority] = animation;
+        public SpriteAnimation GetHighestPriorityAnimation() {
+            for (int i = m_Spritesheet.Length - 1; i >= 0; i--) {
+                if (m_Spritesheet[i] != null) {
+                    return m_Spritesheet[i];
+                }
             }
-            else {
-                m_Spritesheet.Add(priority, animation);
-            }
+            return m_Spritesheet[0];
         }
 
-        public void Remove(Sprite[] animation) {
+        public void Push(SpriteAnimation animation, AnimationPriority priority) {
+            if (animation == null) { return; }
+            m_Spritesheet[(int)priority] = animation;
+        }
+
+        public void Remove(SpriteAnimation animation) {
             if (animation == null) { return; }
 
-            List<KeyValuePair<AnimationPriority, Sprite[]>> kvp = m_Spritesheet.Where(kv => kv.Value == animation).ToList();
-            foreach(KeyValuePair<AnimationPriority, Sprite[]> kv in kvp) {
-                m_Spritesheet.Remove(kv.Key);
+            for (int i = m_Spritesheet.Length - 1; i >= 0; i--) {
+                if (m_Spritesheet[i] == animation) {
+                    m_Spritesheet[i] = null;
+                }
             }
         }
 
@@ -161,6 +189,31 @@ namespace Platformer.Character {
                 transform.localScale += (Vector3)(stretch + m_CachedStretch);
             }
             m_CachedStretch = stretch;
+        }
+
+        const float BASE_TIREDNESS = 3f;
+        const float MAX_TIREDNESS = 2.8f;
+
+        const float MIN_MOVING_FACTOR = 1f;
+
+        const float PERCENT_TIREDNESS_GAINED_IN_A_SECOND = 0.15f;
+        const float PERCENT_TIREDNESS_LOST_IN_A_SECOND = 0.5f;
+
+        private void SetTiredness(float dt) {
+            if (m_Character.Body.velocity.sqrMagnitude > 0.2f) {
+                if (m_Tiredness < MIN_MOVING_FACTOR) {
+                    m_Tiredness = MIN_MOVING_FACTOR;
+                }
+                m_Tiredness += PERCENT_TIREDNESS_GAINED_IN_A_SECOND * dt;
+            }
+            else {
+                m_Tiredness -= PERCENT_TIREDNESS_LOST_IN_A_SECOND * dt;
+            }
+
+            m_Tiredness = m_Tiredness < 0f ? 0f : m_Tiredness > 1f ? 1f : m_Tiredness;
+
+            m_TirednessAnimator.SetDuration(BASE_TIREDNESS - MAX_TIREDNESS * m_Tiredness);
+
         }
 
     }
