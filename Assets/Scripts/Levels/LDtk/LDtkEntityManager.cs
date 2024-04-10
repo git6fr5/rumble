@@ -88,6 +88,8 @@ namespace Platformer.Levels.LDtk {
                     }
                 }
             }
+
+            Debug.Log(entities.Count);
    
             return entities;
 

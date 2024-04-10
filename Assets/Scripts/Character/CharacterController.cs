@@ -102,33 +102,8 @@ namespace Platformer.Character {
         public DefaultAction Default => m_DefaultAction;
 
         // Used for reference for the power actions.
-        [HideInInspector]
+        [SerializeField]
         private List<CharacterAction> m_PowerActions = new List<CharacterAction>();
-
-        // The dash action.
-        [SerializeField]
-        private ChargeDashAction m_DashAction;
-        public ChargeDashAction Dash => m_DashAction;
-
-        // The hop action.
-        [SerializeField]
-        private HopAction m_HopAction;
-        public HopAction Hop => m_HopAction;
-
-        // The ghost action.
-        [SerializeField]
-        private GhostAction m_GhostAction;
-        public GhostAction Ghost => m_GhostAction;
-
-        // The shadow action.
-        // [SerializeField]
-        // private ShadowAction m_ShadowAcction;
-        // public ShadowAction Shadow => m_ShadowAcction;
-
-        // The sticky action.
-        [SerializeField]
-        private StickyAction m_StickyAction;
-        public StickyAction Sticky => m_StickyAction;
 
         #endregion
 
@@ -141,16 +116,7 @@ namespace Platformer.Character {
 
         // Runs once before the first frame.
         void Start() {
-
             m_DefaultAction.Enable(this, true);
-            m_PowerActions = new List<CharacterAction>() {
-                m_DashAction,
-                m_HopAction,
-                m_GhostAction,
-                // m_ShadowAcction,
-                m_StickyAction
-            };
-
             EnableAllAbilityActions();
             DisableAllAbilityActions();
         }
@@ -274,6 +240,15 @@ namespace Platformer.Character {
                 m_PowerActions[i].PhysicsUpdate(this, Time.fixedDeltaTime);
             }
 
+        }
+
+        public CharacterAction GetPowerAction(string actionType) {
+            for (int i = 0; i < m_PowerActions.Count; i++) {
+                if (m_PowerActions[i].GetType().ToString() == actionType) {
+                    return m_PowerActions[i];
+                }
+            }
+            return null;
         }
 
         public void EnableAllAbilityActions() {

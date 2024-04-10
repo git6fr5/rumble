@@ -58,6 +58,11 @@ namespace Platformer.Physics {
         }
 
         // Clamps the rigidbodies fall speed.
+        public static void ClampSpeed(this Rigidbody2D rb, float s) {
+            rb.velocity = rb.velocity.sqrMagnitude > s ? rb.velocity.normalized * s : rb.velocity;
+        }
+
+        // Clamps the rigidbodies fall speed.
         public static void ClampFallSpeed(this Rigidbody2D rb, float s) {
             rb.velocity = rb.velocity.y < -s ? new Vector2(rb.velocity.x, -s) : rb.velocity;
         }

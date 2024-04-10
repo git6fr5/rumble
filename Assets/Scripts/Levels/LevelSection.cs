@@ -50,6 +50,7 @@ namespace Platformer.Levels {
         public Vector2 WorldCenter => GetCenter(this.Width, this.Height, this.m_WorldPosition);
 
         // The entities currently loaded into the level.
+        [SerializeField]
         private List<LDtkEntity> m_Entities = new List<LDtkEntity>();
         public List<LDtkEntity> Entities => m_Entities;
 
@@ -81,6 +82,7 @@ namespace Platformer.Levels {
         public void GenerateEntities(LDtk.LDtkEntityManager entityManager, LDtkLayers ldtkLayers) {
             m_Entities.RemoveAll(entity => entity == null);
             m_Entities = entityManager.Generate(this, ldtkLayers);
+            Debug.Log(m_Entities.Count);
             m_Entities = m_Entities.FindAll(entity => entity != null);
         }
 

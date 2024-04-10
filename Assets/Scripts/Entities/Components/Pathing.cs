@@ -10,6 +10,7 @@ using Platformer.Physics;
 
 /* --- Definitions --- */
 using PathingNode = Platformer.Entities.Utility.PathingNode;
+using Reset = Platformer.Entities.Utility.Reset;
 
 namespace Platformer.Entities.Components {
 
@@ -33,8 +34,9 @@ namespace Platformer.Entities.Components {
         protected Timer m_PauseTimer = new Timer(0f, 0f);
 
         // The amount of time the platform pauses
-        [SerializeField]
-        protected float m_PauseDuration = 0.5f;
+        // [SerializeField]
+        // protected float PauseDuration = 0.5f;
+        protected float PauseDuration => 1f / m_Speed;
 
         // The speed with which the platform moves at.
         [SerializeField] 
@@ -51,6 +53,8 @@ namespace Platformer.Entities.Components {
         // Incase this has an elongatable length.
         public Elongatable m_Elongatable;
 
+        private Reset reset;
+
         // Used to cache references.
         void Awake() {
             // if (m_Entity == null) {
@@ -59,6 +63,16 @@ namespace Platformer.Entities.Components {
         }
 
         void Start() {
+
+            foreach (Transform child in transform) {
+                if (child.GetComponent<Power>() != null) {
+                    m_Speed /= 2f;
+                }
+                if (child.GetComponent<Reset>() != null) {
+                    reset = child.GetComponent<Reset>();
+                }
+            }
+
             for (int i = 0; i < m_Nodes.Length; i++) {
                 m_Nodes[i].transform.parent = transform.parent;
             }
@@ -93,7 +107,7 @@ namespace Platformer.Entities.Components {
         private void SetTarget(float dt) {
             // Take a step.
             float distance = ((Vector2)currentTargetPos - (Vector2)transform.position).magnitude;
-            if (distance == 0f && m_PauseTimer.Value == m_PauseDuration) {
+            if (distance == 0f && m_PauseTimer.Value == PauseDuration) {
                 // Game.Audio.Sounds.PlaySound(m_StopMovingSound);
             }
 
@@ -103,7 +117,10 @@ namespace Platformer.Entities.Components {
             if (finished || neverStarted) {
                 // Game.Audio.Sounds.PlaySound(m_StartMovingSound);
                 m_PathIndex = (m_PathIndex + 1) % m_Nodes.Length;
-                m_PauseTimer.Start(m_PauseDuration);
+                m_PauseTimer.Start(PauseDuration);
+                if (reset != null) {
+                    reset.HardReset();
+                }
             }
 
         }

@@ -12,7 +12,7 @@ namespace Platformer.Character {
     ///<summary>
     /// An ability that near-instantly moves the character.
     ///<summary>
-    [System.Serializable]
+    [CreateAssetMenu(fileName="StickyAction", menuName ="Actions/Sticky")]
     public class StickyAction : CharacterAction {
 
         #region Variables

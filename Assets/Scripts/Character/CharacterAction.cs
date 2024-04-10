@@ -16,7 +16,10 @@ namespace Platformer.Character {
     /// character's action. 
     ///<summary>
     [System.Serializable]
-    public abstract class CharacterAction {
+    public abstract class CharacterAction : ScriptableObject {
+
+        // The increment with which to notify charge.
+        public const float CHARGE_INCREMENT = 0.1f;
 
         #region Enumerations
 

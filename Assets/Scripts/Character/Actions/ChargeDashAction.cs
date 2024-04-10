@@ -14,14 +14,11 @@ namespace Platformer.Character {
     ///<summary>
     /// An ability that near-instantly moves the character.
     ///<summary>
-    [System.Serializable]
+    [CreateAssetMenu(fileName="ChargeDashAction", menuName ="Actions/ChargeDash")]
     public class ChargeDashAction : CharacterAction {
 
         #region Variables.
-
-        // The increment with which to notify charge.
-        public const float CHARGE_INCREMENT = 0.1f;
-
+        
         // The duration between pressing and moving, gives a little anticapatory feel.
         [SerializeField] 
         protected float m_PredashDuration = 0.16f;
@@ -237,7 +234,7 @@ namespace Platformer.Character {
             character.Animator.Remove(m_PredashAnimation);
             character.Animator.Push(m_DashAnimation, CharacterAnimator.AnimationPriority.ActionActive);
             character.Animator.PlayAudioVisualEffect(m_StartDashEffect, m_StartDashSound);
-            character.Default.Trail.Play();
+            if (character.Default.Trail != null) { character.Default.Trail.Play(); }
 
             //
             m_ChargeDashSound.Stop();
@@ -272,7 +269,7 @@ namespace Platformer.Character {
         protected virtual void OnEndDash(CharacterController character) {
             character.Animator.Remove(m_PostdashAnimation);
             m_ActionPhase = ActionPhase.None;
-            character.Default.Trail.Stop();
+            if (character.Default.Trail != null) { character.Default.Trail.Stop(); }
         }
 
         private void WhileCharging(CharacterController character, float dt) {

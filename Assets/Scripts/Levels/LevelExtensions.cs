@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 
-namespace Gobblefish.Levels {
+namespace Platformer.Levels {
 
     public static class BoundsIntExtensions {
 

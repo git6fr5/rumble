@@ -15,13 +15,10 @@ namespace Platformer.Character {
     ///<summary>
     /// An ability that near-instantly moves the character.
     ///<summary>
-    [System.Serializable]
+    [CreateAssetMenu(fileName="HopAction", menuName ="Actions/Hop")]
     public class HopAction : CharacterAction {
 
         #region Variables.
-
-        // The increment with which to notify charge.
-        public const float CHARGE_INCREMENT = 0.1f;
 
         // The height to be covered by a fully charged jump.
         [SerializeField] 
@@ -201,11 +198,11 @@ namespace Platformer.Character {
             character.Animator.Remove(m_ChargeHopAnimation);
             character.Animator.Push(m_HopAnimation, CharacterAnimator.AnimationPriority.ActionActive);
             
-            m_OnReleaseHopEffect.Play();
-            m_HopSound.Play();
-            m_ChargeHopSound.Stop();
+            if (m_OnReleaseHopEffect != null) { m_OnReleaseHopEffect.Play(); }
+            if (m_HopSound != null) { m_HopSound.Play(); }
+            if (m_ChargeHopSound != null) { m_ChargeHopSound.Stop(); }
             // Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
-            character.Default.Trail.Play();
+            if (character.Default.Trail != null) { character.Default.Trail.Play(); }
 
             m_ChargeTimer.Stop();
             m_ActionPhase = ActionPhase.MidAction;

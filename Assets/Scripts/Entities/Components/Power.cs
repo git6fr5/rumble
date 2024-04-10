@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 // Platformer.
 using Platformer;
+using Platformer.Character;
 
 // Definitions.
 using CharacterController = Platformer.Character.CharacterController;
@@ -24,7 +25,8 @@ namespace Platformer.Entities.Components {
             Hop, 
             Ghost, 
             Shadow, 
-            Sticky
+            Sticky,
+            Bouncy
         }
 
         // The type of orb this is.
@@ -39,19 +41,22 @@ namespace Platformer.Entities.Components {
             character.DisableAllAbilityActions();
             switch (m_Type) {
                 case Type.Dash:
-                    character.Dash.Enable(character, true);
+                    character.GetPowerAction(typeof(ChargeDashAction).ToString()).Enable(character, true);
                     break;
                 case Type.Hop:
-                    character.Hop.Enable(character, true);
+                    character.GetPowerAction(typeof(HopAction).ToString()).Enable(character, true);
                     break;
-                case Type.Ghost:
-                    character.Ghost.Enable(character, true);
-                    break;
-                case Type.Shadow:
-                    // character.Shadow.Enable(character, true);
-                    break;
+                // case Type.Ghost:
+                //     character.GetPowerAction<GhostAction>().Enable(character, true);
+                //     break;
+                // case Type.Shadow:
+                //     // character.Shadow.Enable(character, true);
+                //     break;
                 case Type.Sticky:
-                    character.Sticky.Enable(character, true);
+                    character.GetPowerAction(typeof(StickyAction).ToString()).Enable(character, true);
+                    break;
+                case Type.Bouncy:
+                    character.GetPowerAction(typeof(BouncyAction).ToString()).Enable(character, true);
                     break;
                 default:
                     character.Default.Enable(character, true);

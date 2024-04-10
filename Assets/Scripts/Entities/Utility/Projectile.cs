@@ -59,7 +59,9 @@ namespace Platformer.Entities.Utility {
 
         public void Fire(float speed, Vector2 direction, float torque) {
             Fire(speed, direction);
-            // m_Body.AddTorque(torque);
+            if (!m_PointInDirection) {
+                m_Body.AddTorque(torque);
+            }
         }
 
         public void DeleteSelf() {

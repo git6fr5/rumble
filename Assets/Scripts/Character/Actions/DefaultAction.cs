@@ -15,7 +15,7 @@ namespace Platformer.Character {
     ///<summary>
     /// The default ability for controlling the character.
     ///<summary>
-    [System.Serializable]
+    [CreateAssetMenu(fileName="DefaultAction", menuName ="Actions/Default")]
     public class DefaultAction : CharacterAction {
 
         #region Variables
@@ -294,7 +294,7 @@ namespace Platformer.Character {
             character.Animator.Remove(m_RisingAnimation);
             character.Animator.Remove(m_FallingAnimation);
             character.Animator.PlayAudioVisualEffect(m_LandEffect, m_LandSound);
-            character.Default.Trail.Stop();
+            if (character.Default.Trail != null) { character.Default.Trail.Stop(); }
         }
 
         // Process the physics of this action.
