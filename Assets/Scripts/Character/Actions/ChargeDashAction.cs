@@ -271,6 +271,8 @@ namespace Platformer.Character {
             character.Animator.Remove(m_PostdashAnimation);
             m_ActionPhase = ActionPhase.None;
             if (character.Default.Trail != null) { character.Default.Trail.Stop(); }
+
+            // character.Animator.RotateBody(0f);
         }
 
         private void WhileCharging(CharacterController character, float dt) {
@@ -282,10 +284,13 @@ namespace Platformer.Character {
                 m_ChargeIncrementTimer.Start(CHARGE_INCREMENT);
             }
 
+            // m_PredashAnimation.fps = predashAnimBaseFPS + (predashAnimMaxFPS - predashAnimBaseFPS) * m_ChargeTimer.InverseRatio;
+            // character.Animator.RotateBody(m_ChargeTimer.InverseRatio * 30f);
+
         }
 
         private void WhilePredashing(CharacterController character, float dt) {
-
+            
         }
 
         private float predashAnimBaseFPS = 4f;
@@ -295,9 +300,6 @@ namespace Platformer.Character {
             if (Mathf.Abs(character.Body.velocity.x) < DashSpeed / 2f || Mathf.Abs(character.Body.velocity.y) > 0.2f) {
                 OnStartPostdash(character);
             }
-
-            m_PredashAnimation.fps = predashAnimBaseFPS + (predashAnimMaxFPS - predashAnimBaseFPS) * m_ChargeTimer.InverseRatio;
-            
         }
 
         private void WhilePostdashing(CharacterController character, float dt) {

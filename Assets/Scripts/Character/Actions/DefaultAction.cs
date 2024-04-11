@@ -168,6 +168,7 @@ namespace Platformer.Character {
             m_MoveEnabled = true;
             m_FallEnabled = true;
             m_ClampJump = false;
+            m_Refreshed = false;
 
             character.Animator.Push(m_IdleAnimation, CharacterAnimator.AnimationPriority.DefaultIdle);
             character.Animator.Remove(m_MovementAnimation);

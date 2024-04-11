@@ -105,21 +105,27 @@ namespace Platformer.Levels {
         void OnTriggerEnter2D(Collider2D collider) {
             if (collider == PlayerManager.Character.Collider) {
                 LevelManager.SetCurrentSection(this);
-                
-                m_Entities = m_Entities.FindAll(entity => entity != null);
+                EnableEntities(true);
+            }
+        }
+
+        public void EnableEntities(bool enable) {
+            m_Entities = m_Entities.FindAll(entity => entity != null);
+            for (int i = 0; i < m_Entities.Count; i++) {
+                m_Entities[i].gameObject.SetActive(enable);
+            }
+            if (enable) {
                 for (int i = 0; i < m_Entities.Count; i++) {
-                    m_Entities[i].gameObject.SetActive(true);
+                    if (m_Entities[i].GetComponent<Platformer.Entities.Utility.Reset>()) {
+                        m_Entities[i].GetComponent<Platformer.Entities.Utility.Reset>().HardReset();
+                    }
                 }
             }
         }
 
         void OnTriggerExit2D(Collider2D collider) {
             if (collider == PlayerManager.Character.Collider) {
-
-                // m_Entities = m_Entities.FindAll(entity => entity != null);
-                // for (int i = 0; i < m_Entities.Count; i++) {
-                //     m_Entities[i].gameObject.SetActive(false);
-                // }
+                EnableEntities(false);                
             }
         }
 

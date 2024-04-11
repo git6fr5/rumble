@@ -225,6 +225,10 @@ namespace Platformer.Character {
                 m_ChargeIncrementTimer.Start(CHARGE_INCREMENT);
             }
 
+            // float angle = Vector2.Angle(Vector2.up, new Vector2(character.Input.Direction.Horizontal, m_Height / 2f)); 
+            // if (character.Input.Direction.Horizontal == 0f) { angle = 0f; }
+            // character.Animator.RotateBody(-angle); //  * (m_ChargeTimer.Ratio / 2f + 0.5f)
+
         }
 
         private void WhileHopping(CharacterController character, float dt) {

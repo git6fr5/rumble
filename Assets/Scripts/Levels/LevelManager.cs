@@ -33,6 +33,9 @@ namespace Platformer.Levels {
         protected override void Awake() {
             m_Settings = new LevelSettings();
             base.Awake();
+            foreach (LevelSection section in m_Sections) {
+                section.EnableEntities(false);
+            }
             // Decoration decor = m_LevelDecorations.GetNew("Demo");
         }
 

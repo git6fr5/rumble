@@ -179,6 +179,13 @@ namespace Platformer.Character {
             }
         }
 
+        public void RotateBody(float angle) {
+            Quaternion q = Quaternion.Euler(0f, 0f, angle);
+            m_Body.transform.localRotation = q;
+            m_Foreleg.transform.localRotation = q;
+            m_Backleg.transform.localRotation = q;
+        }
+
         private void Scale(float dt) {
             transform.localScale = new Vector3(1f, 1f, 1f);
             Vector2 stretch = Vector2.zero;
