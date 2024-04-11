@@ -117,6 +117,18 @@ namespace Platformer.Character {
         [SerializeField]
         private Sprite[] m_IdleAnimation = null;
 
+        // The animation for the character when idle.
+        [SerializeField]
+        private Sprite[] m_InitialJumpFrame = null;
+
+        // The animation for the character when idle.
+        [SerializeField]
+        private Sprite[] m_HangFrame = null;
+
+        // The animation for the character when idle.
+        [SerializeField]
+        private Sprite[] m_InitialFallFrame = null;
+
         // The animation for the character when moving.
         [SerializeField]
         private Sprite[] m_MovementAnimation = null;
@@ -325,6 +337,8 @@ namespace Platformer.Character {
             
         }
 
+        public float factor = 2f;
+
         // Not really falling, but rather "while default grav acting on this body"
         private void WhileFalling(CharacterController character, float dt) {
             // Set the m_Weight to the default.
@@ -344,8 +358,13 @@ namespace Platformer.Character {
                         character.Body.SetVelocity(new Vector2(character.Body.velocity.x, character.Body.velocity.y * (1f - RISE_FRICTION)));
                     }
 
-                    character.Animator.Push(m_RisingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpRising);
-                    
+                    if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD / factor) {
+                        character.Animator.Push(m_RisingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpRising);
+                    }
+                    else {
+                        character.Animator.Push(m_InitialJumpFrame, CharacterAnimator.AnimationPriority.DefaultJumpRising);
+                    }
+               
                 }
                 else {
                     // If it is falling, also multiply the sink m_Weight.
@@ -355,6 +374,9 @@ namespace Platformer.Character {
                     if (m_HangTimer.Active) {
                         weight *= m_HangFactor;
                         m_HangTimer.TickDown(dt);
+
+                        character.Animator.Push(m_HangFrame, CharacterAnimator.AnimationPriority.DefaultJumpRising);
+
                     }
 
                     // If the m_CoyoteTimer timer is still ticking, fall slower.
@@ -368,8 +390,11 @@ namespace Platformer.Character {
                     if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
                         character.Animator.Push(m_FallingFastAnimation, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
                     }
-                    else {
+                    else if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD / factor) {
                         character.Animator.Push(m_FallingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpFalling);
+                    }
+                    else {
+                        character.Animator.Push(m_InitialFallFrame, CharacterAnimator.AnimationPriority.DefaultJumpFalling);
                     }
 
                 }
@@ -379,6 +404,9 @@ namespace Platformer.Character {
                 character.Animator.Remove(m_RisingAnimation);
                 character.Animator.Remove(m_FallingAnimation);
                 character.Animator.Remove(m_FallingFastAnimation);
+                character.Animator.Remove(m_InitialFallFrame);
+                character.Animator.Remove(m_InitialJumpFrame);
+                character.Animator.Remove(m_HangFrame);
             }
 
             // Set the m_Weight.

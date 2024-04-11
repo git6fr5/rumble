@@ -904,15 +904,21 @@ MonoBehaviour:
     - {fileID: 106838162, guid: b97ee9a46d185104f9fcc69de4f41c5d, type: 3}
     - {fileID: -1738255972, guid: b97ee9a46d185104f9fcc69de4f41c5d, type: 3}
     - {fileID: -774235776, guid: b97ee9a46d185104f9fcc69de4f41c5d, type: 3}
+    m_InitialJumpFrame:
+    - {fileID: 21300000, guid: 239a74d81a44042d2b989d13d113ca51, type: 3}
+    m_HangFrame:
+    - {fileID: 21300000, guid: f06a0d44ceb9e43dd8cee0efc2ce9f70, type: 3}
+    m_InitialFallFrame:
+    - {fileID: 21300000, guid: 9f2e4768bb3554a00b39b6284355a275, type: 3}
     m_MovementAnimation:
     - {fileID: 1085534387, guid: a030854f7db359344a169a594a424505, type: 3}
     - {fileID: -1790268056, guid: a030854f7db359344a169a594a424505, type: 3}
     - {fileID: 1198564007, guid: a030854f7db359344a169a594a424505, type: 3}
     - {fileID: -1648906800, guid: a030854f7db359344a169a594a424505, type: 3}
     m_RisingAnimation:
-    - {fileID: 21300000, guid: 24a1725695b907847ac9816786e47266, type: 3}
+    - {fileID: 21300000, guid: 051a4f7d8697c467087b223369f357d4, type: 3}
     m_FallingAnimation:
-    - {fileID: 21300000, guid: 388d884cf4469b84dbe66bf4272e4089, type: 3}
+    - {fileID: 21300000, guid: f3cc08fa653ae434c9c37acfdda65831, type: 3}
     m_FallingFastAnimation:
     - {fileID: -585288431, guid: c8e8e242d05793942ad1f7aa97bb1e48, type: 3}
     - {fileID: 1016135861, guid: c8e8e242d05793942ad1f7aa97bb1e48, type: 3}
