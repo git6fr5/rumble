@@ -76,6 +76,11 @@ namespace Platformer.Character {
         [SerializeField]
         private float m_Tiredness = 0f;
 
+        public bool quadriped = false;
+
+        // [SerializeField]
+        // private SpriteRenderer m_TirednessRenderer;
+
         // The amount this character was stretched last frame.
         [SerializeField, ReadOnly]
         private Vector2 m_CachedStretch = new Vector2(0f, 0f);
@@ -119,9 +124,14 @@ namespace Platformer.Character {
                 return;
             }
 
-            m_Foreleg.sprite =  m_CurrentAnimation.GetFrame();
-            m_Backleg.sprite = m_CurrentAnimation.sprites[halfNextFrame];
+            if (!quadriped) {
+                m_Foreleg.sprite =  m_CurrentAnimation.GetFrame();
+                m_Backleg.sprite = m_CurrentAnimation.sprites[halfNextFrame];
+            }
+            else {
 
+            }
+            
         }
 
         public void PlayAudioVisualEffect(VisualEffect visualEffect, AudioSnippet audioSnippet) {

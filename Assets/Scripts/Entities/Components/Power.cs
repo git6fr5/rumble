@@ -28,6 +28,7 @@ namespace Platformer.Entities.Components {
             Sticky,
             Bouncy,
             Gravity,
+            Warp,
         }
 
         // The type of orb this is.
@@ -60,10 +61,13 @@ namespace Platformer.Entities.Components {
                     character.GetPowerAction(typeof(StickyAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
                     break;
                 case Type.Bouncy:
-                    character.GetPowerAction(typeof(BouncyAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
+                    character.GetPowerAction(typeof(ThrowAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
                     break;
                 case Type.Gravity:
                     character.GetPowerAction(typeof(GravityAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
+                    break;
+                case Type.Warp:
+                    character.GetPowerAction(typeof(WarpAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
                     break;
                 default:
                     character.Default.Enable(character, true);

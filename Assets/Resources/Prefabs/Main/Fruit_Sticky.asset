@@ -17,17 +17,17 @@ MonoBehaviour:
   m_Enabled: 0
   m_ClimbSpeed: 4
   m_ClimbAcceleration: 30
-  m_WallJumpSpeed: 20
-  m_WallJumpWiggleSpeed: 0
+  m_WallJumpSpeed: 8
+  m_WallJumpWiggleSpeed: 3
   m_CanClimb: 0
   m_ClimbTimer:
     m_Value: 0
-    m_MaxValue: 1.2
+    m_MaxValue: 0.08
   m_ClimbDuration: 1.2
   m_EndClimbBuffer: 0.08
   m_ClimbAnimation:
     currentFrame: 4
-    fps: 10.529821
+    fps: 12.258324
     sprites:
     - {fileID: -472046722, guid: c91c268fffb524478b18126dcf4f8248, type: 3}
     - {fileID: 837453557, guid: c91c268fffb524478b18126dcf4f8248, type: 3}
@@ -37,11 +37,11 @@ MonoBehaviour:
     - {fileID: -116312690, guid: c91c268fffb524478b18126dcf4f8248, type: 3}
     - {fileID: 2008219508, guid: c91c268fffb524478b18126dcf4f8248, type: 3}
     - {fileID: -113185599, guid: c91c268fffb524478b18126dcf4f8248, type: 3}
-    ticks: 166.79881
+    ticks: 182.44215
     orderOffset: 0
   m_WallJumpAnimation:
     currentFrame: 0
     fps: 0
     sprites: []
-    ticks: 74.49951
+    ticks: 99.87525
     orderOffset: 0

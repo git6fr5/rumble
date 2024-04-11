@@ -63,12 +63,18 @@ namespace Platformer.Character {
                 character.Input.Direction.Clear();
             }
 
-            if (character.Input.Actions[1].Pressed && m_ActionPhase == ActionPhase.None && m_Refreshed) {
+            if (character.Input.Actions[1].Pressed && m_ActionPhase == ActionPhase.None && m_Count >= 1) {
                 // The character should start dashing.
 
                 character.Body.SetWeight(0f);
                 character.Body.velocity = Vector2.zero;
                 started = false;
+
+                SetGravity(Vector3.zero, 0f);
+                Rigidbody2D[] bodies = (Rigidbody2D[])GameObject.FindObjectsOfType<Rigidbody2D>();
+                for (int i = 0; i < bodies.Length; i++) {
+                    if (bodies[i].gameObject.activeSelf) { bodies[i].velocity = Vector2.zero; }
+                }
 
                 // Release the input and reset the refresh.
                 character.Input.Actions[1].ClearPressBuffer();
@@ -113,6 +119,13 @@ namespace Platformer.Character {
             if (character.Body.velocity.normalized != Physics2D.gravity.normalized) {
                 character.Body.velocity = Physics2D.gravity.normalized * character.Body.velocity.magnitude;
             }
+
+            // if (!started) {
+            //     Rigidbody2D[] bodies = (Rigidbody2D[])GameObject.FindObjectsOfType<Rigidbody2D>();
+            //     for (int i = 0; i < bodies.Length; i++) {
+            //         if (bodies[i].gameObject.activeSelf) { bodies[i].velocity = Vector2.zero; }
+            //     }
+            // }
 
 
         }

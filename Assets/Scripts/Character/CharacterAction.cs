@@ -21,6 +21,9 @@ namespace Platformer.Character {
         // The increment with which to notify charge.
         public const float CHARGE_INCREMENT = 0.1f;
 
+        //
+        public const float CHARGE_WEIGHT = 0.05f;
+
         #region Enumerations
 
         public enum ActionPhase {

@@ -55,6 +55,8 @@ namespace Platformer.Entities.Components {
 
         private Reset reset;
 
+        [HideInInspector] public int speedLevel;
+
         // Used to cache references.
         void Awake() {
             // if (m_Entity == null) {
@@ -144,9 +146,10 @@ namespace Platformer.Entities.Components {
             m_Entity = entity;
         }
 
-        public void SetPath(List<PathingNode> path, float speed = 3f) {
+        public void SetPath(List<PathingNode> path, int speedLevel, float speed = 3f) {
             m_Nodes = path.ToArray();
-            m_Speed = speed;
+            m_Speed = speed + (2f / 3f * speed * speedLevel);
+            // speedLevel = path.speedLevel;
         }
 
     }

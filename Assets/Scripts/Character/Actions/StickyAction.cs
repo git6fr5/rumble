@@ -247,7 +247,7 @@ namespace Platformer.Character {
 
             // Set the velocity.
             character.Body.SetVelocity(velocity);
-            character.Animator.RotateBody(60f);
+            // character.Animator.RotateBody(60f);
             m_ClimbAnimation.fps = 8f + 8f * Mathf.Sqrt(m_ClimbTimer.InverseRatio);
 
         }

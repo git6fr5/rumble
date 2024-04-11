@@ -52,9 +52,9 @@ namespace Platformer.Graphics {
 
         private void WhileFollowing() {
             Vector3 offset = Quaternion.Euler(0f, m_Parent.eulerAngles.y, 0f) * m_Offset;
-            if (flipX) {
-                offset.x *= -1f;
-            }
+            // if (flipX) {
+            //     offset.x *= -1f;
+            // }
 
             transform.eulerAngles = m_Parent.eulerAngles;
             transform.localScale = m_Scale * (new Vector3(1f, 1f, 1f) + (m_Parent.localScale - m_BaseParentScale));
@@ -63,9 +63,9 @@ namespace Platformer.Graphics {
             float mag = (followPosition - transform.position).magnitude;
             transform.Move(followPosition, mag * m_FollowStrength, Time.fixedDeltaTime);
 
-            if (onlyHorizontal) {
-                transform.position = new Vector3(followPosition.x, transform.position.y, transform.position.z);
-            }
+            // if (onlyHorizontal) {
+            //     transform.position = new Vector3(followPosition.x, transform.position.y, transform.position.z);
+            // }
         }
 
     }
