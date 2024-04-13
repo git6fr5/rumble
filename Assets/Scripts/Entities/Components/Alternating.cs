@@ -183,7 +183,6 @@ namespace Platformer.Entities {
                 m_ChangeOffEvent.Invoke();
             }
 
-
             m_Entity.EnableColliders(enable);
             // m_Entity.SetMaterialValue("_DissolveAmount", val);
             
@@ -194,6 +193,11 @@ namespace Platformer.Entities {
             
 
         }
+
+        public void SetType(AlternatingType altType) {
+            m_AlternatingType = altType;
+        }
+        
     }
 
 }

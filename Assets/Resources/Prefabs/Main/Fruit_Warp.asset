@@ -18,8 +18,8 @@ MonoBehaviour:
   m_WarpDistance: 3
   m_ChargeDuration: 0.5
   m_ChargeTimer:
-    m_Value: 0.4600007
-    m_MaxValue: 1.2
+    m_Value: 0.7400012
+    m_MaxValue: 2
   m_ChargeIncrementTimer:
     m_Value: 0
     m_MaxValue: 0
@@ -54,14 +54,18 @@ MonoBehaviour:
     clip: {fileID: 0}
     volume: 1
     priority: 0
-  m_WarpIndicatorSprite: {fileID: 68275284, guid: 12c793e9dc1c528458a02243ae2589a1, type: 3}
-  CYCLE_DURATION: 1.2
+  m_WarpIndicatorSprite: {fileID: -1081127225, guid: 12c793e9dc1c528458a02243ae2589a1, type: 3}
+  CYCLE_DURATION: 2
   m_PostwarpWeight: 2
   m_PostwarpDuration: 0.2
-  m_PostwarpSpeed: 1
+  m_PostwarpSpeed: 4
   m_WarpTimer:
     m_Value: 0
     m_MaxValue: 0.2
-  option0: 0
+  option0: 1
   option1: 0
-  option2: 1
+  option2: 0
+  bigThrow: 0
+  bigThrowDuration: 10
+  bigThrowSpeed: 20
+  bigThrowWeight: 3

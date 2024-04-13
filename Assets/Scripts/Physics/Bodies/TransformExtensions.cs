@@ -58,6 +58,13 @@ namespace Platformer.Physics {
             }
         }
 
+        public static void RotateAround(this Transform transform, Vector3 origin, float dphi, float radius) {
+
+            Vector3 v = transform.position - origin;
+            transform.position = origin + Quaternion.Euler(0f, 0f, dphi) * (v.normalized * radius);
+
+        }
+
         // Drags a collection of transforms with the obstacle.
         public static void Drag(this List<Transform> transforms, Vector3 deltaPosition) {
             for (int i = 0; i < transforms.Count; i++) {

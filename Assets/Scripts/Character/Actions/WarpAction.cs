@@ -94,7 +94,10 @@ namespace Platformer.Character {
             m_ActionPhase = ActionPhase.None;
 
             if (!enable) {
+                character.Default.Enable(character, true);
                 character.Animator.Remove(m_WarpAnimation);
+                m_WarpIndicator.gameObject.SetActive(false);
+                character.Body.isKinematic = false;
             }
 
             if (enable && m_WarpIndicator == null) {
@@ -102,9 +105,17 @@ namespace Platformer.Character {
                 m_WarpIndicator.GetComponent<SpriteRenderer>().sprite = m_WarpIndicatorSprite;
                 m_WarpIndicator.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
                 m_WarpIndicator.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                // m_WarpIndicator.transform.SetParent(character.transform);
+
+                m_WarpIndicator.position = character.transform.position + Vector3.up * m_WarpDistance;
+                m_WarpIndicator.localScale *= 0.4f;
+                rotationDir = (m_WarpIndicator.position - character.transform.position).normalized;
+                
             }
 
             if (enable) {
+                m_WarpIndicator.gameObject.SetActive(true);
+
                 moving = m_WarpIndicator;
                 stationary = character.transform;
                 
@@ -137,14 +148,28 @@ namespace Platformer.Character {
             // }
 
             if (character.Input.Actions[1].Pressed && m_ActionPhase == ActionPhase.None) {
-                if (option0) { OnWarp(character); }
-
-                if (moving == m_WarpIndicator) { Swap(); }
-                else {
-                    if (option1) { Swap(); }
-                    else if (option2) { Throw(character); }
+                if (option0) { 
+                    OnWarp(character); 
                 }
-
+                else {
+                    if (moving == m_WarpIndicator) { 
+                        if (option2) {
+                            character.Default.Enable(character, false);
+                            character.Body.velocity *= 0f;
+                            character.Body.isKinematic = true;
+                            character.Body.SetWeight(0f);
+                        }
+                        Swap(); 
+                    }
+                    else {
+                        if (option1) { 
+                            Swap(); 
+                        }
+                        else if (option2) { 
+                            Throw(character); 
+                        }
+                    }
+                }
 
                 character.Input.Actions[1].ClearPressBuffer();
                 m_Refreshed = false;
@@ -186,21 +211,49 @@ namespace Platformer.Character {
                 m_ChargeTimer.Start(CYCLE_DURATION);
             }
 
+            Rotate(dt, character);
+
             if (option0) {
-                m_WarpIndicator.position = character.transform.position + Quaternion.Euler(0f, 0f, -m_ChargeTimer.Ratio * 360f) * (m_WarpDistance / 2f * Vector3.right);
+                m_WarpIndicator.position = character.transform.position + (m_WarpDistance * rotationDir);
             }
             else if (option1) {
-                moving.position = stationary.transform.position + Quaternion.Euler(0f, 0f, -m_ChargeTimer.Ratio * 360f + offset) * (m_WarpDistance * Vector3.right);
+                moving.position = stationary.position + m_WarpDistance * rotationDir;
             }
-            else if (option2 && m_ActionPhase == ActionPhase.None) {
-                moving.position = stationary.transform.position + Quaternion.Euler(0f, 0f, -m_ChargeTimer.Ratio * 360f + offset) * (m_WarpDistance * Vector3.right);
+            else if (option2) {
+                if (m_ActionPhase == ActionPhase.None) {
+                    moving.position = stationary.position + m_WarpDistance * rotationDir;
+                }
+                
+            }
+
+            if (moving == m_WarpIndicator) {
+                m_WarpIndicator.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, rotationDir);
+            }
+            else {
+                m_WarpIndicator.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, -rotationDir);
             }
 
         }
 
+        private Vector3 rotationDir; 
+        public void Rotate(float dt, CharacterController character) {
+
+            float dir = -1f;
+            if (option2 && bigThrow) {
+                dir = -character.FacingDirection;
+            }
+
+            rotationDir = Quaternion.Euler(0f, 0f, dir * dt / CYCLE_DURATION * 360f) * rotationDir;
+            rotationDir = rotationDir.normalized;
+        }
+
         public void OnWarp(CharacterController character) {
-            character.transform.position += Quaternion.Euler(0f, 0f, -m_ChargeTimer.Ratio * 360f) * (m_WarpDistance * Vector3.right);
-            character.Body.velocity = Quaternion.Euler(0f, 0f, -m_ChargeTimer.Ratio * 360f) * (m_PostwarpSpeed * Vector3.right);
+
+            Vector3 dir = (m_WarpIndicator.position - character.transform.position).normalized;
+
+            character.transform.position += (m_WarpDistance * dir);
+
+            character.Body.velocity = (m_PostwarpSpeed * rotationDir);
             character.Body.SetWeight(m_PostwarpWeight);
             character.Default.Enable(character, false);
 
@@ -213,20 +266,42 @@ namespace Platformer.Character {
             m_ActionPhase = ActionPhase.None;
         }
 
+        
         public void Swap() {
 
             Transform tmp = moving;
             moving = stationary;
             stationary = tmp;
 
+            rotationDir = (moving.position - stationary.position).normalized;
+
             offset = Vector2.SignedAngle(Vector2.right, moving.position - stationary.position);
 
         }
 
+        public bool bigThrow = false;
+
+        public float bigThrowDuration = 10f;
+        public float bigThrowSpeed = 10f;
+        public float bigThrowWeight = 5f;
+
         public void Throw(CharacterController character) {
 
-            character.Body.velocity = Quaternion.Euler(0f, 0f, -m_ChargeTimer.Ratio * 360f - 90f) * (m_PostwarpSpeed * Vector3.right);
+            character.Body.isKinematic = false;
+            
+            
+            character.Body.velocity = Quaternion.Euler(0f, 0f, -90f) * (m_PostwarpSpeed * rotationDir);
             character.Body.SetWeight(0f);
+
+            if (bigThrow) {
+
+                float dir = -character.FacingDirection;
+
+                character.Body.velocity = Quaternion.Euler(0f, 0f, dir * 90f) * (bigThrowSpeed * rotationDir);
+                character.Body.SetWeight(bigThrowWeight);
+                m_WarpTimer.Start(bigThrowDuration);
+            }
+
             character.Default.Enable(character, false);
 
             m_WarpTimer.Start(m_PostwarpDuration);

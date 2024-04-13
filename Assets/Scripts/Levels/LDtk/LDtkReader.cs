@@ -100,6 +100,7 @@ namespace Platformer.Levels.LDtk {
 
             m_LDtkTilemapManager.Refresh(sections, m_LDtkLayers.Ground);    
 
+            m_LDtkEntityManager.staticAlternator.Refresh();
             for (int i = 0; i < sections.Count; i++) {
                 sections[i].transform.parent = transform;
                 sections[i].DestroyEntities();

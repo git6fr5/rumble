@@ -62,6 +62,33 @@ namespace Platformer.Entities {
                 m_Colliders[i].enabled = enable;
             }
         }
+
+        // Enable the colliders on this entity.
+        public void EnableRenderers(bool enable) {
+
+            SpriteRenderer r1 = null;
+            SpriteShapeRenderer r2 = null;
+
+            foreach (Transform child in transform) {
+                
+                r1 = child.GetComponent<SpriteRenderer>();
+                if (r1 != null) {
+                    r1.enabled = enable;
+                }
+
+                r2 = child.GetComponent<SpriteShapeRenderer>();
+                if (r2 != null) {
+                    r2.enabled = enable;
+                }
+
+            }
+
+            for (int i = 0; i < m_Colliders.Count; i++) {
+                m_Colliders[i].enabled = enable;
+            }
+        }
+
+        
         
         // Check the state of the collision on this entity. 
         public bool CollisionEnabled => AllCollidersEnabled(true); 
