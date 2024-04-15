@@ -46,6 +46,14 @@ namespace Platformer.Character {
             public string name;
             public AnimationPriority priority;
             public UnityAnimation animation;
+            public float playbackSpeed = 1f;
+            public Vector2 playbackRange = new Vector2(0f, 1f);
+            public bool loop = true;
+
+            public float minTicks => animation == null ? 0f : playbackRange.x * animation.length;
+            public float maxTicks => animation == null ? 0f : playbackRange.y * animation.length;
+
+            // public bool pauseAtEnd;
             // public VisualEffect visualEffect;
             // public AudioSnippet audioSnippet;
         }
@@ -58,16 +66,18 @@ namespace Platformer.Character {
         private AudioVisualEffectCollection m_AudioVisualEffectCollection;
 
         [SerializeField]
-        private List<AnimationItem> m_AnimationCollection = new List<AnimationItem>();
+        private UnityAnimation m_ResetAnimation;
 
         [SerializeField]
-        private UnityAnimation[] m_AnimationSheet;
+        private List<AnimationItem> m_AnimationCollection = new List<AnimationItem>();
+
+        private AnimationItem[] m_AnimationSheet;
 
         // Runs once before the first frame.
         void Start() {
             m_Animator = GetComponent<UnityAnimator>();
             m_Character = transform.parent.GetComponent<CharacterController>();
-            m_AnimationSheet = new UnityAnimation[(int)AnimationPriority.Count];
+            m_AnimationSheet = new AnimationItem[(int)AnimationPriority.Count];
             // m_Animator.StartPlayback();
         }
 
@@ -77,32 +87,36 @@ namespace Platformer.Character {
             Rotate();
         }
 
-        UnityAnimation prevAnim;
+        float ticks = 0f;
+        AnimationItem prevAnim;
 
         // Animates the flipbook by setting the animation, frame, and playing any effects.
         private void Animate(float dt) {
             // Animator.
-            UnityAnimation animation = GetHighestPriorityAnimation();
-            print(animation.name);
+            AnimationItem anim = GetHighestPriorityAnimation();
+            print(anim.name);
 
-            if (animation != prevAnim) {
-                m_Ticks = 0f;
-                prevAnim = animation;
-            }
-            
-            if (animation == null) {
+            if (anim == null) {
                 return;
             }
 
-            m_Ticks += (1f + m_Character.Body.velocity.magnitude / 5f) * dt;
-
-            float length = animation.length; // m_Animator.GetCurrentAnimatorClipInfo(_cacheLayer)[0].clip.length;
-            print(length);
-            if (m_Ticks >= length) {
-                m_Ticks -= length;
+            if (anim != prevAnim) {
+                ticks = anim.minTicks;
+                prevAnim = anim;
+                m_ResetAnimation.SampleAnimation(gameObject, ticks);
             }
 
-            animation.SampleAnimation(gameObject, m_Ticks);
+            ticks += anim.playbackSpeed * dt;
+            if (ticks >= anim.maxTicks) {
+                if (anim.loop) {
+                    ticks -= anim.maxTicks;
+                }
+                else {
+                    ticks = anim.maxTicks;
+                }
+            }
+
+            anim.animation.SampleAnimation(gameObject, ticks);
 
             // m_Animator.playbackTime	= m_Ticks; // 
             // m_Animator.PlayInFixedTime(_cacheHash, _cacheLayer, m_Ticks);
@@ -120,37 +134,15 @@ namespace Platformer.Character {
         }
 
         public void PlayAnimation(string name) {
-            string[] x = name.Split(".");
-            if (x.Length >= 2) {
-                print(x[0]);
-                print(x[1]);
-                PlayAnimation(x[0], x[1]);
-            }
-        }
-
-        float m_Ticks = 0f;
-        int _cacheHash;
-        int _cacheLayer;
-
-        public void PlayAnimation(string layer, string name) {
-            // int stateHash = UnityAnimator.StringToHash(name);
-            // int layerIndex = m_Animator.GetLayerIndex(layer);
-            // if (m_Animator.HasState(layerIndex, stateHash)) {
-            //     // m_Animator.CrossFade(name, 0.5f, -1, float.NegativeInfinity, 0.0f);
-            //     m_Animator.Play(stateHash, layerIndex);
-            //     _cacheHash = stateHash;
-            //     _cacheLayer = layerIndex;
-            // }
-            
             AnimationItem anim = m_AnimationCollection.Find(anim => anim.name == name);
             if (anim != null) {
-                m_AnimationSheet[(int)anim.priority] = anim.animation;
+                m_AnimationSheet[(int)anim.priority] = anim;
             }
         }
 
         public void StopAnimation(string name) {
             AnimationItem anim = m_AnimationCollection.Find(anim => anim.name == name);
-            if (anim != null && m_AnimationSheet[(int)anim.priority] == anim.animation) {
+            if (anim != null && m_AnimationSheet[(int)anim.priority] == anim) {
                 m_AnimationSheet[(int)anim.priority] = null;
             }
         }
@@ -172,7 +164,7 @@ namespace Platformer.Character {
             }
         }
 
-        public UnityAnimation GetHighestPriorityAnimation() {
+        private AnimationItem GetHighestPriorityAnimation() {
             for (int i = m_AnimationSheet.Length - 1; i >= 0; i--) {
                 if (m_AnimationSheet[i] != null) {
                     return m_AnimationSheet[i];

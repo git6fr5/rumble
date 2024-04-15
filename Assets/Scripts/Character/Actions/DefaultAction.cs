@@ -38,6 +38,12 @@ namespace Platformer.Character {
         // The maximum speed with which this character can fall.
         public const float MAX_FALL_SPEED = 25f;
 
+        // The maximum speed with which this character can fall.
+        public const float REST_IDLE = 1.5f;
+
+        // The maximum speed with which this character can fall.
+        public const float SITTING_IDLE = 4f;
+
         /* --- Member Variables --- */
 
         [SerializeField, ReadOnly]
@@ -114,6 +120,10 @@ namespace Platformer.Character {
         [HideInInspector] 
         private Timer m_HangTimer = new Timer(0f, 0f);
 
+        // Tracks how long its been since the character reached the m_HangTimer.
+        [HideInInspector] 
+        private float m_IdleTicks = 0f;
+
         #endregion
 
         // When enabling/disabling this ability.
@@ -130,10 +140,10 @@ namespace Platformer.Character {
             m_ClampJump = false;
             m_Refreshed = false;
 
-            character.Animator.PlayAnimation("Default.Idle");
-            character.Animator.StopAnimation("Default.Moving");
-            character.Animator.StopAnimation("Default.Rising");
-            character.Animator.StopAnimation("Default.Falling");
+            character.Animator.PlayAnimation("Idle");
+            character.Animator.StopAnimation("Moving");
+            character.Animator.StopAnimation("Rising");
+            character.Animator.StopAnimation("Falling");
         }
 
         // When enabling/disabling this ability by movement and falling seperately.
@@ -254,10 +264,12 @@ namespace Platformer.Character {
 
         private void OnLand(CharacterController character) {
             m_ClampJump = false;
-            character.Animator.StopAnimation("Default.Rising");
-            character.Animator.StopAnimation("Default.Falling");
+            character.Animator.StopAnimation("Rising");
+            character.Animator.StopAnimation("Hanging");
+            character.Animator.StopAnimation("Falling");
+            character.Animator.StopAnimation("FallingFast");
             // character.Animator.PlayAudioVisualEffect(m_LandEffect, m_LandSound);
-            // if (character.Default.Trail != null) { character.Default.Trail.Stop(); }
+            // if (character.Trail != null) { character.Trail.Stop(); }
         }
 
         // Process the physics of this action.
@@ -280,10 +292,23 @@ namespace Platformer.Character {
             character.Body.SetVelocity(velocity);
 
             if (character.Input.Direction.Horizontal != 0f) {
-                character.Animator.PlayAnimation("Default.Moving");
+                character.Animator.PlayAnimation("Moving");
+                m_IdleTicks = 0f;
             }
             else {
-                character.Animator.StopAnimation("Default.Moving");
+                character.Animator.StopAnimation("Moving");
+                m_IdleTicks += dt;
+
+                if (m_IdleTicks > SITTING_IDLE) {
+                    character.Animator.PlayAnimation("Idle Sit");
+                }
+                else if (m_IdleTicks > REST_IDLE) {
+                    character.Animator.PlayAnimation("Idle Rest");
+                }
+                else {
+                    character.Animator.PlayAnimation("Idle");
+                }
+
             }
             
         }
@@ -325,25 +350,28 @@ namespace Platformer.Character {
                         weight *= COYOTE_FRICTION;
                     }
 
-                    character.Animator.PlayAnimation("Default.Falling");
 
                     Vector2 footPosition = character.Body.position + character.Collider.offset + Vector2.down * (character.Collider.radius + 0.1f);
                     float dist = PhysicsManager.Collisions.DistanceToFirst(footPosition, Vector3.down, PhysicsManager.CollisionLayers.Solid);
 
-                    if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
-                        // character.Animator.Push(m_FallingFastAnimation, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
+                    if (m_HangTimer.Active) {
+                        character.Animator.PlayAnimation("Hanging");
+                    }
+                    else if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
+                        character.Animator.PlayAnimation("FallingFast");
                     }
                     else {
-                        // character.Animator.Push(m_FallingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpFalling);
+                        character.Animator.PlayAnimation("Falling");
                     }
 
                 }
 
             }
             else {
-                character.Animator.StopAnimation("Default.Rising");
-                character.Animator.StopAnimation("Default.Falling");
-                character.Animator.StopAnimation("Default.FallingFast");
+                character.Animator.StopAnimation("Rising");
+                character.Animator.StopAnimation("Falling");
+                character.Animator.StopAnimation("Hanging");
+                character.Animator.StopAnimation("FallingFast");
             }
 
             // Set the m_Weight.

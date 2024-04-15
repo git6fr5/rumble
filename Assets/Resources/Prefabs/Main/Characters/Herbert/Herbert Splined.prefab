@@ -1300,7 +1300,8 @@ MonoBehaviour:
   m_Respawn: {fileID: 0}
   m_Interactable: {fileID: 0}
   m_DefaultAction: {fileID: 11400000, guid: 6c5544aa1e734470fb5c3f8b3fb0a285, type: 2}
-  m_PowerActions: []
+  m_PowerActions:
+  - {fileID: 11400000, guid: 72dd0222e675e462b8650de026b195c0, type: 2}
   m_DefaultBody: {fileID: 21300000, guid: 2d6426e1c2f8c4cdaac989e626a1e2ee, type: 3}
 --- !u!114 &7019485275600138027
 MonoBehaviour:
