@@ -120,8 +120,8 @@ namespace Platformer.Character {
         // Runs once before the first frame.
         void Start() {
             m_DefaultAction.Enable(this, true);
-            EnableAllAbilityActions();
-            DisableAllAbilityActions();
+            // EnableAllAbilityActions();
+            // DisableAllAbilityActions();
         }
 
 
