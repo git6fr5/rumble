@@ -189,8 +189,6 @@ namespace Platformer.Character {
             m_Dying = false;
             m_DefaultAction.Enable(this, true);
 
-            m_Animator.SetBody(m_DefaultBody);
-            // Game.Audio.Sounds.PlaySound(m_OnRespawnSound, 0.15f);
         }
 
         public void SetRespawn(Respawn respawn) {

@@ -57,8 +57,8 @@
 
 //         // Okay. Lets see if this works.
 //         [HideInInspector]
-//         private Dictionary<AnimationPriority, Sprite[]> m_Spritesheet = new Dictionary<AnimationPriority, Sprite[]>();
-//         // private Sprite[][] m_Spritesheet;
+//         private Dictionary<AnimationPriority, Sprite[]> m_AnimationSheet = new Dictionary<AnimationPriority, Sprite[]>();
+//         // private Sprite[][] m_AnimationSheet;
 //         // The sprites this is currently animating through.
 //         [SerializeField]
 //         private Sprite[] m_CurrentAnimation = null;
@@ -94,7 +94,7 @@
 //         void Start() {
 //             m_Character = transform.parent.GetComponent<CharacterController>();
 //             m_SpriteRenderer = GetComponent<SpriteRenderer>();
-//             // m_Spritesheet = new Sprite[(int)AnimationPriority.Count][];
+//             // m_AnimationSheet = new Sprite[(int)AnimationPriority.Count][];
 //         }
 
 //         void Update() {
@@ -118,41 +118,41 @@
 //         }
 
 //         public Sprite[] GetHighestPriorityAnimation() {
-//             // for (int i = m_Spritesheet.Length - 1; i >= 0; i--) {
-//             //     if (m_Spritesheet[i] != null) {
-//             //         return m_Spritesheet[i];
+//             // for (int i = m_AnimationSheet.Length - 1; i >= 0; i--) {
+//             //     if (m_AnimationSheet[i] != null) {
+//             //         return m_AnimationSheet[i];
 //             //     }
 //             // }
 //             // return null;
-//             return m_Spritesheet[m_Spritesheet.Keys.Max()];
+//             return m_AnimationSheet[m_AnimationSheet.Keys.Max()];
 //         }
 
 //         public void Push(Sprite[] animation, AnimationPriority priority) {
 //             if (animation == null || animation.Length == 0) { return; }
 
-//             // m_Spritesheet[(int)priority] = animation;
+//             // m_AnimationSheet[(int)priority] = animation;
 
-//             if (m_Spritesheet.ContainsKey(priority)) {
-//                 m_Spritesheet[priority] = animation;
+//             if (m_AnimationSheet.ContainsKey(priority)) {
+//                 m_AnimationSheet[priority] = animation;
 //             }
 //             else {
-//                 m_Spritesheet.Add(priority, animation);
+//                 m_AnimationSheet.Add(priority, animation);
 //             }
 //         }
 
 //         public void Remove(Sprite[] animation) {
 //             if (animation == null) { return; }
 
-//             // for (int i = 0; i < m_Spritesheet.Length; i++) {
-//             //     if (m_Spritesheet[i] == animation) {
+//             // for (int i = 0; i < m_AnimationSheet.Length; i++) {
+//             //     if (m_AnimationSheet[i] == animation) {
 //             //         print("Remmoving");
-//             //         m_Spritesheet[i] = null;
+//             //         m_AnimationSheet[i] = null;
 //             //     }
 //             // }
 
-//             List<KeyValuePair<AnimationPriority, Sprite[]>> kvp = m_Spritesheet.Where(kv => kv.Value == animation).ToList();
+//             List<KeyValuePair<AnimationPriority, Sprite[]>> kvp = m_AnimationSheet.Where(kv => kv.Value == animation).ToList();
 //             foreach(KeyValuePair<AnimationPriority, Sprite[]> kv in kvp) {
-//                 m_Spritesheet.Remove(kv.Key);
+//                 m_AnimationSheet.Remove(kv.Key);
 //             }
 //         }
 

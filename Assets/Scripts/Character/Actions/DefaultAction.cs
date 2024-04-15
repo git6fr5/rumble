@@ -164,16 +164,16 @@ namespace Platformer.Character {
             m_CoyoteTimer = new Timer(0f, m_CoyoteBuffer);
             RefreshJumpSettings(ref m_JumpSpeed, ref m_Weight, ref m_Sink, m_Height, m_RisingTime, m_FallingTime);
 
-            m_Interacting = false;
             m_MoveEnabled = true;
             m_FallEnabled = true;
+            m_Interacting = false;
             m_ClampJump = false;
             m_Refreshed = false;
 
-            character.Animator.Push(m_IdleAnimation, CharacterAnimator.AnimationPriority.DefaultIdle);
-            character.Animator.Remove(m_MovementAnimation);
-            character.Animator.Remove(m_RisingAnimation);
-            character.Animator.Remove(m_FallingAnimation);
+            // character.Animator.PlayAnimation("Idle");
+            // character.Animator.StopAnimation("Moving");
+            // character.Animator.StopAnimation("Rising");
+            // character.Animator.StopAnimation("Falling");
         }
 
         // When enabling/disabling this ability by movement and falling seperately.
@@ -266,8 +266,9 @@ namespace Platformer.Character {
             // These two lines are the key!!!
             character.Body.ClampFallSpeed(0f); 
             character.Body.AddVelocity(Vector2.up * m_JumpSpeed);
+            
             // The effect.
-            character.Animator.PlayAudioVisualEffect(m_JumpEffect, m_JumpSound);
+            character.Animator.PlayAnimation("Jump");
 
         }
 
@@ -293,10 +294,10 @@ namespace Platformer.Character {
 
         private void OnLand(CharacterController character) {
             m_ClampJump = false;
-            character.Animator.Remove(m_RisingAnimation);
-            character.Animator.Remove(m_FallingAnimation);
-            character.Animator.PlayAudioVisualEffect(m_LandEffect, m_LandSound);
-            if (character.Default.Trail != null) { character.Default.Trail.Stop(); }
+            character.Animator.StopAnimation("Rising");
+            character.Animator.StopAnimation("Falling");
+            // character.Animator.PlayAudioVisualEffect(m_LandEffect, m_LandSound);
+            // if (character.Default.Trail != null) { character.Default.Trail.Stop(); }
         }
 
         // Process the physics of this action.
@@ -319,10 +320,10 @@ namespace Platformer.Character {
             character.Body.SetVelocity(velocity);
 
             if (character.Input.Direction.Horizontal != 0f) {
-                character.Animator.Push(m_MovementAnimation, CharacterAnimator.AnimationPriority.DefaultMoving);
+                character.Animator.PlayAnimation("Moving");
             }
             else {
-                character.Animator.Remove(m_MovementAnimation);
+                character.Animator.StopAnimation("Moving");
             }
             
         }
@@ -346,7 +347,7 @@ namespace Platformer.Character {
                         character.Body.SetVelocity(new Vector2(character.Body.velocity.x, character.Body.velocity.y * (1f - RISE_FRICTION)));
                     }
 
-                    character.Animator.Push(m_RisingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpRising);
+                    character.Animator.PlayAnimation("Rising");
                     
                 }
                 else {
@@ -364,23 +365,25 @@ namespace Platformer.Character {
                         weight *= COYOTE_FRICTION;
                     }
 
+                    character.Animator.PlayAnimation("Falling");
+
                     Vector2 footPosition = character.Body.position + character.Collider.offset + Vector2.down * (character.Collider.radius + 0.1f);
                     float dist = PhysicsManager.Collisions.DistanceToFirst(footPosition, Vector3.down, PhysicsManager.CollisionLayers.Solid);
 
                     if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
-                        character.Animator.Push(m_FallingFastAnimation, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
+                        // character.Animator.Push(m_FallingFastAnimation, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
                     }
                     else {
-                        character.Animator.Push(m_FallingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpFalling);
+                        // character.Animator.Push(m_FallingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpFalling);
                     }
 
                 }
 
             }
             else {
-                character.Animator.Remove(m_RisingAnimation);
-                character.Animator.Remove(m_FallingAnimation);
-                character.Animator.Remove(m_FallingFastAnimation);
+                character.Animator.StopAnimation("Rising");
+                character.Animator.StopAnimation("Falling");
+                character.Animator.StopAnimation("FallingFast");
             }
 
             // Set the m_Weight.

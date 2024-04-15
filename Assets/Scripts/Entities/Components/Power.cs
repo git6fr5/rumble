@@ -46,10 +46,10 @@ namespace Platformer.Entities.Components {
             character.DisableAllAbilityActions();
             switch (m_Type) {
                 case Type.Dash:
-                    character.GetPowerAction(typeof(ChargeDashAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
+                    character.GetPowerAction(typeof(DashAction).ToString()).Enable(character, true);
                     break;
                 case Type.Hop:
-                    character.GetPowerAction(typeof(HopAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
+                    character.GetPowerAction(typeof(HopAction).ToString()).Enable(character, true);
                     break;
                 // case Type.Ghost:
                 //     character.GetPowerAction<GhostAction>().Enable(character, true);
@@ -58,16 +58,16 @@ namespace Platformer.Entities.Components {
                 //     // character.Shadow.Enable(character, true);
                 //     break;
                 case Type.Sticky:
-                    character.GetPowerAction(typeof(StickyAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
+                    character.GetPowerAction(typeof(StickyAction).ToString()).Enable(character, true);
                     break;
                 case Type.Bouncy:
-                    character.GetPowerAction(typeof(ThrowAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
+                    character.GetPowerAction(typeof(ThrowAction).ToString()).Enable(character, true);
                     break;
                 case Type.Gravity:
-                    character.GetPowerAction(typeof(GravityAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
+                    character.GetPowerAction(typeof(GravityAction).ToString()).Enable(character, true);
                     break;
                 case Type.Warp:
-                    character.GetPowerAction(typeof(WarpAction).ToString()).EnablePower(character, true, m_SpriteRenderer.sprite);
+                    character.GetPowerAction(typeof(WarpAction).ToString()).Enable(character, true);
                     break;
                 default:
                     character.Default.Enable(character, true);

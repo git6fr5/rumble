@@ -467,10 +467,14 @@ PrefabInstance:
       objectReference: {fileID: 1017779064, guid: 8d55422f1a3887d45b21e251088246aa, type: 3}
     - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
@@ -478,7 +482,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 884351003957379461}
     - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 884351003957379461}
+    - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
@@ -486,11 +498,23 @@ PrefabInstance:
       value: OnStartTensing
       objectReference: {fileID: 0}
     - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: ClampMainPlayerJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: Platformer.Entities.Components.Bouncing, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Platformer.Entities.Components.Bouncing, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270168730054871778, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_PressEvent.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6975919904161349787, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}

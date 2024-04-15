@@ -91,7 +91,7 @@ namespace Platformer.Entities.Components {
         public void CreateNewShell(CharacterController character) {
             character.transform.position = transform.position + Vector3.up * 1.5f;
             character.Body.SetVelocity(8f * (transform.localRotation * Vector3.up));
-            character.Animator.Push(character.Default.FallingFastAnim, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
+            // character.Animator.Push(character.Default.FallingFastAnim, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
 
             m_RespawnEvent.Invoke();
         }

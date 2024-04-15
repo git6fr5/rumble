@@ -88,6 +88,11 @@ namespace Platformer.Entities.Components {
 
         }
 
+        public void ClampMainPlayerJump() {
+            Platformer.Character.CharacterController character = Platformer.PlayerManager.Character;
+            // character.Default.ClampJump(true);
+        }
+
         public void OnStartTensing() {
             if (m_BounceState != BounceState.Tensing) {
                 m_BounceState = BounceState.Tensing;
@@ -146,7 +151,7 @@ namespace Platformer.Entities.Components {
             for (int i = 0; i < m_Entity.CollisionContainer.Count; i++) {
                 CharacterController character = m_Entity.CollisionContainer[i].GetComponent<CharacterController>();
                 if (character != null) {
-                    if (character.Input.Actions[0].Held) {
+                    if (true || character.Input.Actions[0].Held) {
                         print("pre-emptive bounce");
                         character.Default.OnExternalJump(character, BOUNCE_SPEED);
                         character.Default.ClampJump(false);
@@ -159,12 +164,21 @@ namespace Platformer.Entities.Components {
         // Bounce a character that did not pre-emptively bounce if it
         // PRESSES jump while the platform is releasing.
         private void CheckBounce() {
-            print("checking bounce");
+            for (int i = 0; i < m_Entity.CollisionContainer.Count; i++) {
+                CharacterController character = m_Entity.CollisionContainer[i].GetComponent<CharacterController>();
+                if (character != null) {
+                    character.Default.OnExternalJump(character, character.Default.JumpSpeed + BOUNCE_SPEED);
+                    character.Default.ClampJump(false);
+                }
+            }
+        }
+
+        private void OldCheckBounce() {
             print(m_Entity.CollisionContainer.Count);
             for (int i = 0; i < m_Entity.CollisionContainer.Count; i++) {
                 CharacterController character = m_Entity.CollisionContainer[i].GetComponent<CharacterController>();
                 if (character != null) {
-                    if (character.Input.Actions[0].Held) {
+                    if (true || character.Input.Actions[0].Held) {
                         print("releasing bounce");
                         character.Default.OnExternalJump(character, BOUNCE_SPEED);
                         character.Default.ClampJump(false);

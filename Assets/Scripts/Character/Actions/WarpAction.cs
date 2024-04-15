@@ -18,57 +18,22 @@ namespace Platformer.Character {
     [CreateAssetMenu(fileName="WarpAction", menuName ="Actions/Warp")]
     public class WarpAction : CharacterAction {
 
-        #region Variables.
-        
+        /* --- */
+        public const float CHARGE_INCREMENT = 0.1f;
+        public const float CHARGE_WEIGHT = 0.05f;
+        public const float MIN_CHARGE_VALUE = 0.2f;
+        public float m_ChargeDuration = 0.5f;
+        private Timer m_ChargeTimer = new Timer(0f, 0f);
+        private Timer m_ChargeIncrementTimer = new Timer(0f, 0f);
+        /* --- */
+
         // The speed of the actual warp.
         [SerializeField] 
         private float m_WarpDistance = 2f;
 
-        // The speed of the actual warp.
-        [SerializeField] 
-        private float m_ChargeDuration = 0.5f;
-
-        [SerializeField]
-        private Timer m_ChargeTimer = new Timer(0f, 0f);
-
-        [SerializeField]
-        private Timer m_ChargeIncrementTimer = new Timer(0f, 0f);
-
         // The direction the player was facing before the warp started.
         [HideInInspector]
         protected Vector2 m_CachedDirection = new Vector2(0f, 0f);
-
-        // The sprites this is currently animating through.
-        [SerializeField]
-        protected SpriteAnimation m_PrewarpAnimation = null;
-
-        // The sprites this is currently animating through.
-        [SerializeField]
-        protected SpriteAnimation m_WarpAnimation = null;
-
-        // The sprites this is currently animating through.
-        [SerializeField]
-        protected SpriteAnimation m_PostwarpAnimation = null;
-
-        // The visual effect that plays at the start of the warp.
-        [SerializeField]
-        protected VisualEffect m_StartWarpEffect;
-
-        // The visual effect that plays at the start of the warp.
-        [SerializeField]
-        protected AudioSnippet m_StartWarpSound;
-
-        // The visual effect that plays at the start of the warp.
-        [SerializeField]
-        protected VisualEffect m_EndWarpEffect;
-
-        // The sounds that plays when charging the hop.
-        [SerializeField]
-        private VisualEffect m_ChargeEffect = null;
-
-        // The sounds that plays when charging the hop.
-        [SerializeField]
-        private AudioSnippet m_ChargeSound = null;
 
         [SerializeField]
         private Sprite m_WarpIndicatorSprite = null;
@@ -83,21 +48,24 @@ namespace Platformer.Character {
 
         public float m_PostwarpSpeed;
 
-        [SerializeField]
         private Timer m_WarpTimer = new Timer(0f, 0f);
 
-        #endregion
+        public bool option0;
+        public bool option1;
+        public bool option2;
+
+        Transform moving;
+        Transform stationary;
+        float offset = 0f;
 
         // When enabling/disabling this ability.
         public override void Enable(CharacterController character, bool enable = true) {
             base.Enable(character, enable);
             m_ActionPhase = ActionPhase.None;
+            OnEndAction(character);
 
             if (!enable) {
                 character.Default.Enable(character, true);
-                character.Animator.Remove(m_WarpAnimation);
-                m_WarpIndicator.gameObject.SetActive(false);
-                character.Body.isKinematic = false;
             }
 
             if (enable && m_WarpIndicator == null) {
@@ -128,28 +96,13 @@ namespace Platformer.Character {
 
         }
 
-        public bool option0;
-        public bool option1;
-        public bool option2;
-
         // When this ability is activated.
         public override void InputUpdate(CharacterController character) {
             if (!m_Enabled) { return; }
 
-            // if (character.Input.Actions[1].Pressed && m_Refreshed && m_ActionPhase == ActionPhase.None && !character.OnGround) {
-                
-            //     m_WarpTimer.Start(1f);
-            //     m_ActionPhase = ActionPhase.PreAction;
-            //     character.Default.Enable(character, false);
-            //     character.Body.SetWeight(CHARGE_WEIGHT);
-                
-            //     character.Input.Actions[1].ClearPressBuffer();
-            //     m_Refreshed = false;
-            // }
-
             if (character.Input.Actions[1].Pressed && m_ActionPhase == ActionPhase.None) {
                 if (option0) { 
-                    OnWarp(character); 
+                    OnStartAction(character); 
                 }
                 else {
                     if (moving == m_WarpIndicator) { 
@@ -176,10 +129,6 @@ namespace Platformer.Character {
             }
 
         }
-
-        Transform moving;
-        Transform stationary;
-        float offset = 0f;
         
         // Refreshes the settings for this ability every interval.
         public override void PhysicsUpdate(CharacterController character, float dt){
@@ -194,9 +143,7 @@ namespace Platformer.Character {
             if (finished) {
                 switch (m_ActionPhase) {
                     case ActionPhase.PostAction:
-                        
-                        OnEndWarp(character);
-
+                        OnEndAction(character);
                         break;
                     default:
                         break;
@@ -235,19 +182,8 @@ namespace Platformer.Character {
 
         }
 
-        private Vector3 rotationDir; 
-        public void Rotate(float dt, CharacterController character) {
-
-            float dir = -1f;
-            if (option2 && bigThrow) {
-                dir = -character.FacingDirection;
-            }
-
-            rotationDir = Quaternion.Euler(0f, 0f, dir * dt / CYCLE_DURATION * 360f) * rotationDir;
-            rotationDir = rotationDir.normalized;
-        }
-
-        public void OnWarp(CharacterController character) {
+        protected override void OnStartAction(CharacterController character) {
+            base.OnStartAction(character);
 
             Vector3 dir = (m_WarpIndicator.position - character.transform.position).normalized;
 
@@ -258,12 +194,33 @@ namespace Platformer.Character {
             character.Default.Enable(character, false);
 
             m_WarpTimer.Start(m_PostwarpDuration);
-            m_ActionPhase = ActionPhase.PostAction;
+            
+            OnStartPostaction(character);
         }
 
-        public void OnEndWarp(CharacterController character) {
-            character.Default.Enable(character, true);
-            m_ActionPhase = ActionPhase.None;
+        protected override void OnStartPostaction(CharacterController character) {
+            base.OnStartPostaction(character);
+        }
+
+        protected override void OnEndAction(CharacterController character) {
+            base.OnEndAction(character);
+            character.Animator.StopAnimation("OnPostwarp");
+            character.Body.isKinematic = false;
+            m_WarpIndicator.gameObject.SetActive(false);
+        }
+
+        /* ---- */
+
+
+        private Vector3 rotationDir; 
+        public void Rotate(float dt, CharacterController character) {
+            float dir = -1f;
+            if (option2 && bigThrow) {
+                dir = -character.FacingDirection;
+            }
+
+            rotationDir = Quaternion.Euler(0f, 0f, dir * dt / CYCLE_DURATION * 360f) * rotationDir;
+            rotationDir = rotationDir.normalized;
         }
 
         
