@@ -1303,6 +1303,8 @@ MonoBehaviour:
   m_PowerActions:
   - {fileID: 11400000, guid: 72dd0222e675e462b8650de026b195c0, type: 2}
   m_DefaultBody: {fileID: 21300000, guid: 2d6426e1c2f8c4cdaac989e626a1e2ee, type: 3}
+  deathWeight: 3
+  deathSpeed: 10
 --- !u!114 &7019485275600138027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2641,6 +2643,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6117855876194627102}
     m_Modifications:
+    - target: {fileID: 5804328122302037586, guid: b062b6dc0c4494adab98dd723cd42d09, type: 3}
+      propertyPath: m_AnimationCollection.Array.data[10].playbackRange.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6237388323010364976, guid: b062b6dc0c4494adab98dd723cd42d09, type: 3}
       propertyPath: m_Name
       value: Body

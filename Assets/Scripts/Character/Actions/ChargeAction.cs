@@ -89,6 +89,8 @@ namespace Platformer.Character {
             bool chargeIncremented = m_ChargeIncrementTimer.TickDown(dt);
 
             m_ChargeTimer.TickDown(dt);
+            character.Animator.PlayAnimation("OnStartCharge", 1f + 5f * ChargeValue);
+
             if (chargeIncremented && m_ChargeTimer.InverseRatio < 1f) {
                 // character.Animator.PlayAudioVisualEffect(m_ChargeDashEffect, m_ChargeDashSound);
                 m_ChargeIncrementTimer.Start(CHARGE_INCREMENT);

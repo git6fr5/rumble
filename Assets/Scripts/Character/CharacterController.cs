@@ -40,8 +40,8 @@ namespace Platformer.Character {
 
         // The component used to animate this character.
         [SerializeField]
-        private CharacterAnimator m_Animator;
-        public CharacterAnimator Animator => m_Animator;
+        private SplineAnimator m_Animator;
+        public SplineAnimator Animator => m_Animator;
 
         /* --- Members --- */
 
@@ -135,20 +135,11 @@ namespace Platformer.Character {
                 return;
             }
 
-            // GraphicsManager.
             // The visual feedback played when dying.
             PhysicsManager.Time.RunHitStop(16);
-            // GraphicsManager.Effects.PlayImpactEffect(m_OnDeathParticle,30, 5f, transform, Vector3.zero);
-            // Audio.AudioManager.Sounds.PlaySound(m_OnDeathSnippet);
+            m_Animator.PlayAnimation("OnDeath");
             m_Animator.PlayAudioVisualEffect(m_DeathEffect, m_DeathSound);
-            m_Animator.gameObject.SetActive(false);
-            m_DeathAnimation.PlayFromStart();
-            m_DeathAnimation.transform.FromMatrix(m_Animator.transform.localToWorldMatrix);
             Gobblefish.Graphics.GraphicsManager.CamShake.ShakeCamera(0.1f, 0.2f);
-
-            // m_Animator.Push(m_DeathAnimation,  CharacterAnimator.AnimationPriority.ActionPostActive);
-            // transform.localPosition += Vector3.up * 0.5f;
-            // m_Animator.Push(m_DeathAnimation,  CharacterAnimator.AnimationPriority.ActionPostActive);
 
             // Noting the death in the stats.
             // LevelManager.AddDeath();
@@ -157,28 +148,50 @@ namespace Platformer.Character {
             // Resetting the character.
             m_Respawn.CreateCorpse(this);
 
-            float BUFFER = 0.2f;
-            Disable(Respawn.RESPAWN_DELAY + BUFFER);
+            float respawnDelay = 1.2f;
+            float floatTime = 0.6f;
+
+            Disable(respawnDelay);
             DisableAllAbilityActions();
-            m_Body.Stop();
-            m_Body.SetWeight(0f);
-            m_Body.AddVelocity(Vector3.up * 2f);
+            // m_Body.velocity = -m_Body.velocity; // (-Vector3.up * 2f);
+            // if (m_Body.velocity.sqrMagnitude == 0f) {
+            //     m_Body.velocity = Vector3.up * 2f;
+            // }
+            // if (m_Body.velocity.sqrMagnitude < 3f * 3f) {
+            //     m_Body.velocity = m_Body.velocity.normalized * 3f;
+            // }
+            // if (m_Body.velocity.sqrMagnitude > 15f * 15f) {
+            // }
+
+            m_Body.SetWeight(deathWeight);
+            // if (Mathf.Abs(m_Body.velocity.x) > 2f * -m_Body.velocity.y) {
+            //     m_Body.velocity = new Vector2(Mathf.Sign(m_Body.velocity.x), -0.5f);
+            // }
+            m_Body.velocity = -m_Body.velocity.normalized * deathSpeed;
+            // Vector2.up + Random.Range(-0.4f, 0.4f) * Vector2.right;
+            // m_Body.velocity = m_Body.velocity.normalized * deathSpeed;
+
             // m_Body.ReleaseAll();
             // m_Body.AddTorque(10f);
 
             m_Dying = true;
 
             // transform.position = m_Respawn.RespawnPosition;
-            StartCoroutine(IERespawn(Respawn.RESPAWN_DELAY));
+            StartCoroutine(IERespawn(respawnDelay, floatTime));
 
         }
 
-        private IEnumerator IERespawn(float delay) {
-            float FLOAT_TIME = 4f/12f;
-            yield return new WaitForSeconds(FLOAT_TIME);
+        public float deathWeight;
+        public float deathSpeed;
+
+        private IEnumerator IERespawn(float respawnDelay, float floatTime) {
+            yield return new WaitForSeconds(floatTime);
+
+            m_Animator.gameObject.SetActive(false);
+            m_Body.SetWeight(0f);
             m_Body.SetVelocity(Vector3.zero);
 
-            yield return new WaitForSeconds(delay - FLOAT_TIME);
+            yield return new WaitForSeconds(respawnDelay - floatTime);
             m_Respawn.CreateNewShell(this);
             m_Animator.gameObject.SetActive(true);
             m_DeathAnimation.Stop();
@@ -188,6 +201,7 @@ namespace Platformer.Character {
             m_Body.ReleaseXY();
             m_Dying = false;
             m_DefaultAction.Enable(this, true);
+            m_Animator.StopAnimation("OnDeath");
 
         }
 

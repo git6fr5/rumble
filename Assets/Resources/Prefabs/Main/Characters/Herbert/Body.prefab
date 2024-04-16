@@ -1145,35 +1145,87 @@ MonoBehaviour:
     priority: 0
     animation: {fileID: 7400000, guid: 2f08c38bd8ac24b36aacdb6a4324b79d, type: 2}
     playbackSpeed: 1
+    modifiedSpeed: 1
     playbackRange: {x: 0, y: 1}
     loop: 1
+    removeOnEnd: 0
   - name: Idle Rest
     priority: 0
     animation: {fileID: 7400000, guid: 2f08c38bd8ac24b36aacdb6a4324b79d, type: 2}
     playbackSpeed: 1
+    modifiedSpeed: 1
     playbackRange: {x: 0, y: 1}
     loop: 1
+    removeOnEnd: 0
   - name: Idle Sit
     priority: 0
     animation: {fileID: 7400000, guid: 2265727b703ce4aab8bb39bd30ec056c, type: 2}
     playbackSpeed: 1
+    modifiedSpeed: 1
     playbackRange: {x: 0, y: 1}
     loop: 1
+    removeOnEnd: 0
   - name: Moving
     priority: 1
     animation: {fileID: 7400000, guid: dd2da2ed4529a4013aacc7e3f36576df, type: 2}
     playbackSpeed: 1.5
+    modifiedSpeed: 1
     playbackRange: {x: 0, y: 1}
     loop: 1
+    removeOnEnd: 0
   - name: Rising
     priority: 2
-    animation: {fileID: 7400000, guid: a4067d2a98fbe47db8405c2816176139, type: 2}
+    animation: {fileID: 7400000, guid: da8e8245291b64e6e91b97b82564034b, type: 2}
     playbackSpeed: 2
+    modifiedSpeed: 1
     playbackRange: {x: 0, y: 0.4}
     loop: 0
+    removeOnEnd: 0
+  - name: Hanging
+    priority: 2
+    animation: {fileID: 7400000, guid: da8e8245291b64e6e91b97b82564034b, type: 2}
+    playbackSpeed: 2
+    modifiedSpeed: 1
+    playbackRange: {x: 0.4, y: 0.6}
+    loop: 0
+    removeOnEnd: 0
   - name: Falling
     priority: 3
-    animation: {fileID: 7400000, guid: a4067d2a98fbe47db8405c2816176139, type: 2}
+    animation: {fileID: 7400000, guid: da8e8245291b64e6e91b97b82564034b, type: 2}
     playbackSpeed: 2
-    playbackRange: {x: 0.5, y: 0.9}
+    modifiedSpeed: 1
+    playbackRange: {x: 0.6, y: 0.9}
     loop: 0
+    removeOnEnd: 0
+  - name: OnLand
+    priority: 3
+    animation: {fileID: 7400000, guid: da8e8245291b64e6e91b97b82564034b, type: 2}
+    playbackSpeed: 1
+    modifiedSpeed: 1
+    playbackRange: {x: 0.9, y: 1}
+    loop: 0
+    removeOnEnd: 1
+  - name: FallingFast
+    priority: 3
+    animation: {fileID: 7400000, guid: caaf7a3670d1a4830b03685e400be607, type: 2}
+    playbackSpeed: 6
+    modifiedSpeed: 1
+    playbackRange: {x: 0, y: 1}
+    loop: 1
+    removeOnEnd: 0
+  - name: OnStartCharge
+    priority: 8
+    animation: {fileID: 7400000, guid: aa9e8b8e1d4cc4830a984d6bec7dcf14, type: 2}
+    playbackSpeed: 1
+    modifiedSpeed: 1
+    playbackRange: {x: 0, y: 1}
+    loop: 1
+    removeOnEnd: 0
+  - name: OnDeath
+    priority: 10
+    animation: {fileID: 7400000, guid: b50edf57cde094d1ca63c400c52a0971, type: 2}
+    playbackSpeed: 1
+    modifiedSpeed: 1
+    playbackRange: {x: 0.5, y: 1}
+    loop: 1
+    removeOnEnd: 0

@@ -264,6 +264,7 @@ namespace Platformer.Character {
 
         private void OnLand(CharacterController character) {
             m_ClampJump = false;
+            character.Animator.PlayAnimation("OnLand");
             character.Animator.StopAnimation("Rising");
             character.Animator.StopAnimation("Hanging");
             character.Animator.StopAnimation("Falling");
@@ -297,7 +298,9 @@ namespace Platformer.Character {
             }
             else {
                 character.Animator.StopAnimation("Moving");
-                m_IdleTicks += dt;
+                if (character.Body.velocity.sqrMagnitude < 0.01f) {
+                    m_IdleTicks += dt;
+                }
 
                 if (m_IdleTicks > SITTING_IDLE) {
                     character.Animator.PlayAnimation("Idle Sit");
