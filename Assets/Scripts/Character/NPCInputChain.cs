@@ -19,12 +19,10 @@ namespace Gobblefish.Input {
             public float verticalDirection;
             public bool[] actionInput;
             public float duration;
-
             public Vector2 direction => new Vector2(horizontalDirection, verticalDirection);
         }
 
         public Vector3 origin;
-
         public NPCInputBlock[] chain;
 
     }

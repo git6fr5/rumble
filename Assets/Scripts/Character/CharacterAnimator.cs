@@ -66,6 +66,14 @@ namespace Platformer.Character {
             }
         }
 
+        public virtual void PlayAnimation(string name, AnimationPriority priority) {
+            
+        }
+
+        public virtual void StopAnimation(AnimationPriority priority) {
+            
+        }
+
         public virtual void PlayAnimation(string name, float speed) {
             
         }

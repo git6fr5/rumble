@@ -102,6 +102,14 @@ namespace Platformer.Character {
             
         }
 
+        public override void PlayAnimation(string name, AnimationPriority priority) {
+            AnimationItem anim = m_AnimationCollection.Find(anim => anim.name == name);
+            if (anim != null) {
+                m_AnimationSheet[(int)priority] = anim;
+                anim.modifiedSpeed = 1f;
+            }
+        }
+
         public override void PlayAnimation(string name, float speed) {
             AnimationItem anim = m_AnimationCollection.Find(anim => anim.name == name);
             if (anim != null) {
