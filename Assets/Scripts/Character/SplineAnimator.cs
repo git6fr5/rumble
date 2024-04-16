@@ -21,25 +21,7 @@ namespace Platformer.Character {
     /// Animates the character.
     ///<summary>
     // [RequireComponent(typeof(SpriteRenderer))]
-    public class SplineAnimator : MonoBehaviour {
-
-        public enum AnimationPriority {
-            // Default.
-            DefaultIdle,
-            DefaultMoving,
-            DefaultJumpRising,
-            DefaultJumpFalling,
-            // Action Passive.
-            ActionPassiveIdle,
-            ActionPassiveMoving,
-            ActionPassiveRising,
-            ActionPassiveFalling,
-            // Action Active
-            ActionPreActive,
-            ActionActive,
-            ActionPostActive,
-            Count,
-        }
+    public class SplineAnimator : CharacterAnimator {
 
         [System.Serializable]
         protected class AnimationItem {
@@ -63,11 +45,6 @@ namespace Platformer.Character {
 
         private UnityAnimator m_Animator = null;
 
-        private CharacterController m_Character = null;
-
-        [SerializeField]
-        private AudioVisualEffectCollection m_AudioVisualEffectCollection;
-
         [SerializeField]
         private UnityAnimation m_ResetAnimation;
 
@@ -76,25 +53,18 @@ namespace Platformer.Character {
 
         private AnimationItem[] m_AnimationSheet;
 
-        // Runs once before the first frame.
-        void Start() {
-            m_Animator = GetComponent<UnityAnimator>();
-            m_Character = transform.parent.GetComponent<CharacterController>();
-            m_AnimationSheet = new AnimationItem[(int)AnimationPriority.Count];
-            // m_Animator.StartPlayback();
-        }
-
-        // Runs once every frame.
-        void Update() {
-            Animate(Time.deltaTime);
-            Rotate();
-        }
-
         float ticks = 0f;
         AnimationItem prevAnim;
 
+        // Runs once before the first frame.
+        protected override void Start() {
+            m_Animator = GetComponent<UnityAnimator>();
+            m_Character = transform.parent.GetComponent<CharacterController>();
+            m_AnimationSheet = new AnimationItem[(int)AnimationPriority.Count];
+        }
+        
         // Animates the flipbook by setting the animation, frame, and playing any effects.
-        private void Animate(float dt) {
+        protected override void Animate(float dt) {
             // Animator.
             AnimationItem anim = GetHighestPriorityAnimation();
             print(anim.name);
@@ -132,15 +102,7 @@ namespace Platformer.Character {
             
         }
 
-        private void Rotate() {
-            float currentAngle = transform.eulerAngles.y;
-            float angle = m_Character.FacingDirection < 0f ? 180f : m_Character.FacingDirection > 0f ? 0f : currentAngle;
-            if (transform.eulerAngles.y != angle) {
-                transform.eulerAngles = angle * Vector3.up;
-            }
-        }
-
-        public void PlayAnimation(string name, float speed) {
+        public override void PlayAnimation(string name, float speed) {
             AnimationItem anim = m_AnimationCollection.Find(anim => anim.name == name);
             if (anim != null) {
                 m_AnimationSheet[(int)anim.priority] = anim;
@@ -148,7 +110,7 @@ namespace Platformer.Character {
             }
         }
 
-        public void PlayAnimation(string name) {
+        public override void PlayAnimation(string name) {
             AnimationItem anim = m_AnimationCollection.Find(anim => anim.name == name);
             if (anim != null) {
                 m_AnimationSheet[(int)anim.priority] = anim;
@@ -156,27 +118,10 @@ namespace Platformer.Character {
             }
         }
 
-        public void StopAnimation(string name) {
+        public override void StopAnimation(string name) {
             AnimationItem anim = m_AnimationCollection.Find(anim => anim.name == name);
             if (anim != null && m_AnimationSheet[(int)anim.priority] == anim) {
                 m_AnimationSheet[(int)anim.priority] = null;
-            }
-        }
-
-        public void PlayEffect(string name) {
-
-        }
-
-        public void StopEffect(string name) {
-
-        }
-
-        public void PlayAudioVisualEffect(VisualEffect visualEffect, AudioSnippet audioSnippet) {
-            if (visualEffect != null) {
-                visualEffect.Play();
-            }
-            if (audioSnippet != null && audioSnippet.clip != null) {
-                audioSnippet.Play();
             }
         }
 

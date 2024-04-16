@@ -2643,10 +2643,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6117855876194627102}
     m_Modifications:
-    - target: {fileID: 5804328122302037586, guid: b062b6dc0c4494adab98dd723cd42d09, type: 3}
-      propertyPath: m_AnimationCollection.Array.data[10].playbackRange.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6237388323010364976, guid: b062b6dc0c4494adab98dd723cd42d09, type: 3}
       propertyPath: m_Name
       value: Body
@@ -2726,6 +2722,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd27a5c2bf48f54d8f0c801f9d801d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 978f168bc682f432693537df654b53bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -40,8 +40,8 @@ namespace Platformer.Character {
 
         // The component used to animate this character.
         [SerializeField]
-        private SplineAnimator m_Animator;
-        public SplineAnimator Animator => m_Animator;
+        private CharacterAnimator m_Animator;
+        public CharacterAnimator Animator => m_Animator;
 
         /* --- Members --- */
 
