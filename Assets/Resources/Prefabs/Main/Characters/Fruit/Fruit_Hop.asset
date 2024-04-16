@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionPhase: 0
   m_Refreshed: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_ChargeDuration: 0.5
   m_ChargeTimer:
     m_Value: 0
-    m_MaxValue: 0
+    m_MaxValue: 0.5
   m_ChargeIncrementTimer:
     m_Value: 0
-    m_MaxValue: 0
-  m_Height: 3.25
+    m_MaxValue: 0.1
+  m_Height: 4.5
   m_RisingTime: 0.3
-  m_Speed: 0
-  m_Weight: 0
+  m_Speed: 29.999998
+  m_Weight: 10.193679

@@ -115,7 +115,8 @@ MonoBehaviour:
       currentFrame: 0
       fps: 0
       sprites:
-      - {fileID: 21300000, guid: b7196dadd0c5a4bdfa98738a560591a5, type: 3}
+      - {fileID: 1289013869, guid: 7b8e4815b967b42829f30948d0f10f3e, type: 3}
+      - {fileID: -1161145486, guid: 7b8e4815b967b42829f30948d0f10f3e, type: 3}
       ticks: 0
       orderOffset: 0
     loop: 1
@@ -157,6 +158,20 @@ MonoBehaviour:
       sprites:
       - {fileID: -473262215, guid: 638229cf91e6b41b191b698afc62004d, type: 3}
       - {fileID: -2014508713, guid: 638229cf91e6b41b191b698afc62004d, type: 3}
+      ticks: 0
+      orderOffset: 0
+    loop: 1
+    removeOnEnd: 0
+    modifiedSpeed: 0
+  - name: OnStartCharge
+    priority: 3
+    animation:
+      currentFrame: 0
+      fps: 6
+      sprites:
+      - {fileID: 348101738, guid: 4d895cc0f864c47e799c0dc0de4feb7d, type: 3}
+      - {fileID: -535409411, guid: 4d895cc0f864c47e799c0dc0de4feb7d, type: 3}
+      - {fileID: -1883801677, guid: 4d895cc0f864c47e799c0dc0de4feb7d, type: 3}
       ticks: 0
       orderOffset: 0
     loop: 1

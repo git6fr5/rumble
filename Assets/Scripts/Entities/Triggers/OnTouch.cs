@@ -26,7 +26,7 @@ namespace Platformer.Entities.Triggers {
         private int m_HitStopFrames = 8;
 
         [SerializeField]
-        private UnityEvent m_TouchEvent;
+        private UnityEvent<Platformer.Character.CharacterController> m_TouchEvent;
 
         [SerializeField]
         private UnityEvent m_TouchExitEvent;
@@ -48,7 +48,7 @@ namespace Platformer.Entities.Triggers {
             CharacterController character = collider.GetComponent<CharacterController>();
             if (character != null) {
                 PhysicsManager.Time.RunHitStop(m_HitStopFrames);
-                m_TouchEvent.Invoke();
+                m_TouchEvent.Invoke(character);
             }
             else if (!m_DisableGroundTouching) {
                 bool hitGround = collider.gameObject.layer == PhysicsManager.CollisionLayers.PlatformLayer;

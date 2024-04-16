@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    ticks: 0
     duration: 3
     loop: 1
     basePosition: {x: 0, y: 0}
@@ -537,7 +538,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8883544437578853683}
         m_TargetAssemblyTypeName: Platformer.Entities.Components.Power, Assembly-CSharp
         m_MethodName: SwapPower
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -20,20 +20,21 @@ namespace Gobblefish.Input {
         public bool m_Loop = false;
 
         public bool reset = false;
-        Vector3 origin;
+        Vector3 _origin;
 
         public bool useChainPosition = false;
         public bool setChainPosition = false;
 
         protected override void Awake() {
-            origin = transform.position;
-            
-            if (useChainPosition) {
-                origin = m_InputChain.origin;
-                transform.position = origin;
-            }
-
+            _origin = transform.position;
             CreateInputs();
+            Reset();
+        }
+
+        public void SetChain(NPCInputChain chain) {
+            m_InputChain = chain;
+            useChainPosition = true;
+            Reset();
         }
 
         protected override void CreateInputs() {
@@ -49,22 +50,32 @@ namespace Gobblefish.Input {
         }
 
         protected override void Think(float dt) {
+        
         }
 
         void FixedUpdate() {
             FixedThink(Time.fixedDeltaTime);
 
             if (setChainPosition) {
-                m_InputChain.origin = origin;
+                m_InputChain.origin = _origin;
             }
 
             if (reset) {
-                transform.position = origin;
-                m_Ticks = 0f;
-                m_Index = 0;
-                reset = false;
-                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                Reset();
             }
+        }
+
+        void Reset() {
+            if (useChainPosition) {
+                transform.position = m_InputChain.origin;
+            }
+            else {
+                transform.position = _origin;
+            }
+            m_Ticks = 0f;
+            m_Index = 0;
+            reset = false;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
         // Updates the inputs.

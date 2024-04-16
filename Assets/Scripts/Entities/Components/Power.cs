@@ -39,8 +39,8 @@ namespace Platformer.Entities.Components {
         private SpriteRenderer m_SpriteRenderer;
 
         // Collects this orb.
-        public void SwapPower() {
-            CharacterController character = PlayerManager.Character;
+        public void SwapPower(CharacterController character) {
+            // CharacterController character = PlayerManager.Character;
 
             // Swap the power based on the type of orb.
             character.DisableAllAbilityActions();
