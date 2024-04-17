@@ -18,6 +18,8 @@ namespace Platformer.Physics {
         public Rigidbody2D trackBody;
         public float bodyFactor;
 
+        protected RopeCollider ropeCollider;
+
         /* --- Variables --- */
         [SerializeField] private int segmentCount; // The number of segments.
 
@@ -33,7 +35,7 @@ namespace Platformer.Physics {
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.useWorldSpace = true;
             ropeConstraint.Initialize(lineRenderer);
-            
+            ropeCollider = GetComponent<RopeCollider>();
             // Initialize.
             InitalizeRopeSegments();
         }
@@ -44,9 +46,22 @@ namespace Platformer.Physics {
             ropeConstraint.Simulate(ropeSegments, prevRopeSegments, velocities, bodyVel, segmentCount, Time.fixedDeltaTime);
             ropeConstraint.Constrain(transform.position, ropeSegments, segmentCount);
 
+            if (ropeCollider != null) {
+                ropeCollider.ProcessCollision(ropeSegments, segmentCount, Time.fixedDeltaTime);
+            }
+
             lineRenderer.positionCount = segmentCount;
             lineRenderer.SetPositions(ropeSegments);
 
+        }
+
+        // Runs if this trigger is activated.
+        void OnTriggerStay2D(Collider2D collider) {
+            if (ropeCollider == null) { return; }
+            Rigidbody2D body = collider.GetComponent<Rigidbody2D>();
+            if (body != null) {
+                ropeCollider.NoticeCollision(body, ropeSegments, segmentCount);
+            }
         }
 
         // Initalizes the rope segments.
@@ -69,6 +84,10 @@ namespace Platformer.Physics {
                 ropeSegments[i] = ropeSegments[i - 1] + (Vector3)offset;
                 prevRopeSegments[i] = ropeSegments[i];
                 velocities[i] = new Vector2(0f, 0f);
+            }
+
+            if (ropeCollider != null) {
+                ropeCollider.Initialize(segmentCount);
             }
         }
 

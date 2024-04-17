@@ -37,7 +37,7 @@ namespace Platformer.LevelEditing {
                 Vector3 direction = (ropeSegments[i - 1] - ropeSegments[i]).normalized;
 
                 // Get the error term.
-                float error = newDist - SegmentLength;
+                float error = newDist - segmentLength;
                 Vector3 errorVector = direction * error;
 
                 // Adjust the segments by the error term.

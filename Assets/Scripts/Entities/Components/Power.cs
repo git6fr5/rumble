@@ -37,6 +37,7 @@ namespace Platformer.Entities.Components {
 
         [SerializeField]
         private SpriteRenderer m_SpriteRenderer;
+        public SpriteRenderer spriteRenderer => m_SpriteRenderer;
 
         // Collects this orb.
         public void SwapPower(CharacterController character) {
@@ -47,9 +48,11 @@ namespace Platformer.Entities.Components {
             switch (m_Type) {
                 case Type.Dash:
                     character.GetPowerAction(typeof(DashAction).ToString()).Enable(character, true);
+                    character.Animator.SetPowerIndicator(this);
                     break;
                 case Type.Hop:
                     character.GetPowerAction(typeof(HopAction).ToString()).Enable(character, true);
+                    character.Animator.SetPowerIndicator(this);
                     break;
                 // case Type.Ghost:
                 //     character.GetPowerAction<GhostAction>().Enable(character, true);

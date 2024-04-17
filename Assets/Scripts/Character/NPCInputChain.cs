@@ -25,6 +25,21 @@ namespace Gobblefish.Input {
         public Vector3 origin;
         public NPCInputBlock[] chain;
 
+        public bool turnOffOnEnd;
+        public bool snapToPosOnEnd;
+        public Vector3 positionOnEnd;
+
+        public void OnEnd(NPCInputSystem npc) {
+
+            if (turnOffOnEnd) {
+                npc.gameObject.SetActive(false);
+            }
+            else if (snapToPosOnEnd) {
+                npc.transform.position = positionOnEnd;
+            }
+                        
+        }
+
     }
 
 }

@@ -18,7 +18,27 @@ MonoBehaviour:
     horizontalDirection: 0
     verticalDirection: 0
     actionInput: 000000
-    duration: 2
+    duration: 1.2
+  - name: look left
+    horizontalDirection: -0.01
+    verticalDirection: 0
+    actionInput: 000000
+    duration: 0.02
+  - name: wait
+    horizontalDirection: 0
+    verticalDirection: 0
+    actionInput: 000000
+    duration: 0.2
+  - name: startle up
+    horizontalDirection: 0
+    verticalDirection: 0
+    actionInput: 010000
+    duration: 0.02
+  - name: startle down
+    horizontalDirection: 0
+    verticalDirection: 0
+    actionInput: 000000
+    duration: 1.5
   - name: run to edge
     horizontalDirection: 1
     verticalDirection: 0
@@ -34,3 +54,6 @@ MonoBehaviour:
     verticalDirection: 0
     actionInput: 000000
     duration: 1.8
+  turnOffOnEnd: 0
+  snapToPosOnEnd: 0
+  positionOnEnd: {x: 0, y: 0, z: 0}

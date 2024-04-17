@@ -46,6 +46,9 @@ namespace Platformer.Character {
         private UnityAnimator m_Animator = null;
 
         [SerializeField]
+        private SpriteRenderer m_Shell;
+
+        [SerializeField]
         private UnityAnimation m_ResetAnimation;
 
         [SerializeField]
@@ -100,6 +103,10 @@ namespace Platformer.Character {
             // animatePhysics	
             // print(m_Animator.GetCurrentAnimatorStateInfo(_cacheLayer).loop);
             
+        }
+
+        public override void SetPowerIndicator(Platformer.Entities.Components.Power power) {
+            m_Shell.sprite = power.spriteRenderer.sprite;
         }
 
         public override void PlayAnimation(string name, AnimationPriority priority) {

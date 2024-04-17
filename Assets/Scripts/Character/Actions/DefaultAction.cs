@@ -124,6 +124,10 @@ namespace Platformer.Character {
         [HideInInspector] 
         private float m_IdleTicks = 0f;
 
+        //
+        [SerializeField]
+        private Vector2 m_Direction = new Vector2(0f, 0f);
+
         #endregion
 
         // When enabling/disabling this ability.
@@ -157,12 +161,14 @@ namespace Platformer.Character {
 
         // Runs once every frame to check the inputs for this ability.
         public override void InputUpdate(CharacterController character) {
-            if (!m_Enabled) { return; }
+            if (!m_Enabled) {  return;  }
 
             // Current.
             if (character.CurrentInteractable == null) {
                 m_Interacting = false;
             }
+
+            m_Direction = new Vector2(character.Input.Direction.Horizontal, character.Input.Direction.Vertical);
 
             // Jumping.
             if (character.Input.Actions[0].Pressed && m_Refreshed) {
@@ -191,8 +197,6 @@ namespace Platformer.Character {
 
         // 
         public override void PhysicsUpdate(CharacterController character, float dt) {
-            if (!m_Enabled) { return; }
-
             // Landing.
             if (character.OnGround && !m_Refreshed) {
                 OnLand(character);
@@ -200,7 +204,10 @@ namespace Platformer.Character {
 
             // Refreshing.
             m_Refreshed = character.OnGround || m_CoyoteTimer.Value > 0f;
-            
+
+            GetDefaultState(character, dt);
+            if (!m_Enabled) { return; }
+
             // Tick the m_CoyoteTimer timer.
             m_CoyoteTimer.TickDownIfElseReset(dt, !character.OnGround);
             if (m_MoveEnabled) { 
@@ -213,6 +220,57 @@ namespace Platformer.Character {
                 WhileDucking(character, dt);
             }
             
+        }
+
+        private void GetDefaultState(CharacterController character, float dt) {
+
+            if (!character.OnGround) {
+                if (character.Rising) {
+                    character.Animator.PlayAnimation("Rising");
+                }
+                else {
+
+                    Vector2 footPosition = character.Body.position + character.Collider.offset + Vector2.down * (character.Collider.radius + 0.1f);
+                    float dist = PhysicsManager.Collisions.DistanceToFirst(footPosition, Vector3.down, PhysicsManager.CollisionLayers.Solid);
+
+                    if (m_HangTimer.Active) {
+                        character.Animator.PlayAnimation("Hanging");
+                    }
+                    else if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
+                        character.Animator.PlayAnimation("FallingFast");
+                    }
+                    else {
+                        character.Animator.PlayAnimation("Falling");
+                    }
+
+                }
+                return;
+            }
+
+            // character.Animator.StopAnimation("Rising");
+            // character.Animator.StopAnimation("Falling");
+            // character.Animator.StopAnimation("Hanging");
+            // character.Animator.StopAnimation("FallingFast");
+
+            if (character.Input.Direction.Horizontal != 0f && !character.Disabled) {
+                character.Animator.PlayAnimation("Moving");
+                m_IdleTicks = 0f;
+            }
+            else {
+                character.Animator.StopAnimation("Moving");
+
+                m_IdleTicks += dt;
+                if (m_IdleTicks > SITTING_IDLE) {
+                    character.Animator.PlayAnimation("Idle Sit");
+                }
+                else if (m_IdleTicks > REST_IDLE) {
+                    character.Animator.PlayAnimation("Idle Rest");
+                }
+                else {
+                    character.Animator.PlayAnimation("Idle");
+                }
+
+            }
         }
 
         //
@@ -276,7 +334,7 @@ namespace Platformer.Character {
         // Process the physics of this action.
         private void WhileMoving(CharacterController character, float dt) {
             // Cache the target and current velocities.
-            float targetSpeed = character.Input.Direction.Horizontal * m_Speed;
+            float targetSpeed = m_Direction.x * m_Speed;
             float currentSpeed = character.Body.velocity.x;
 
             // Calculate the change in velocity this frame.
@@ -291,28 +349,7 @@ namespace Platformer.Character {
 
             // Set the velocity.
             character.Body.SetVelocity(velocity);
-
-            if (character.Input.Direction.Horizontal != 0f) {
-                character.Animator.PlayAnimation("Moving");
-                m_IdleTicks = 0f;
-            }
-            else {
-                character.Animator.StopAnimation("Moving");
-                if (character.Body.velocity.sqrMagnitude < 0.01f) {
-                    m_IdleTicks += dt;
-                }
-
-                if (m_IdleTicks > SITTING_IDLE) {
-                    character.Animator.PlayAnimation("Idle Sit");
-                }
-                else if (m_IdleTicks > REST_IDLE) {
-                    character.Animator.PlayAnimation("Idle Rest");
-                }
-                else {
-                    character.Animator.PlayAnimation("Idle");
-                }
-
-            }
+            // m_Direction = Vector2.zero;
             
         }
 
@@ -334,8 +371,6 @@ namespace Platformer.Character {
                     if (!character.Input.Actions[0].Held) {
                         character.Body.SetVelocity(new Vector2(character.Body.velocity.x, character.Body.velocity.y * (1f - RISE_FRICTION)));
                     }
-
-                    character.Animator.PlayAnimation("Rising");
                     
                 }
                 else {
@@ -353,30 +388,10 @@ namespace Platformer.Character {
                         weight *= COYOTE_FRICTION;
                     }
 
-
-                    Vector2 footPosition = character.Body.position + character.Collider.offset + Vector2.down * (character.Collider.radius + 0.1f);
-                    float dist = PhysicsManager.Collisions.DistanceToFirst(footPosition, Vector3.down, PhysicsManager.CollisionLayers.Solid);
-
-                    if (m_HangTimer.Active) {
-                        character.Animator.PlayAnimation("Hanging");
-                    }
-                    else if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
-                        character.Animator.PlayAnimation("FallingFast");
-                    }
-                    else {
-                        character.Animator.PlayAnimation("Falling");
-                    }
-
                 }
 
             }
-            else {
-                character.Animator.StopAnimation("Rising");
-                character.Animator.StopAnimation("Falling");
-                character.Animator.StopAnimation("Hanging");
-                character.Animator.StopAnimation("FallingFast");
-            }
-
+            
             // Set the m_Weight.
             character.Body.SetWeight(weight);
 

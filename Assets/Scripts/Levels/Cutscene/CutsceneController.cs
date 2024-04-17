@@ -17,19 +17,10 @@ namespace Platformer.Levels {
     public class CutsceneCharacter {
         public NPCInputSystem characterInputSystem;
         public NPCInputChain characterInputChain;
-        public bool dissappearOnEnd;
-    }
-
-    [System.Serializable]
-    public class PlayerAnimationOverride {
-        public string animationName = "Idle";
-        public float duration = 1f;
-        private float ticks = 0f;
+        public NPCInputChain onEndChain;
     }
 
     public class CutsceneController : MonoBehaviour {
-
-        public AnimationPriority priority;
 
         [SerializeField]
         private Volume m_Volume;
@@ -42,9 +33,6 @@ namespace Platformer.Levels {
         private float m_FadeOutDuration = 1f;
         private bool m_FadeOut = false;
 
-        [SerializeField]
-        private PlayerAnimationOverride[] m_PlayerAnimationOverrides;
-        
         [SerializeField]
         public CutsceneCharacter[] m_NPCs;
 
@@ -68,6 +56,10 @@ namespace Platformer.Levels {
             m_FadeOut = false;
             m_FadeIn = true;
 
+            if (m_Volume != null) { 
+                m_Volume.weight = 0f; 
+            }
+
         }
 
         public void OnPlayerEntered(Platformer.Character.CharacterController character) {
@@ -77,16 +69,14 @@ namespace Platformer.Levels {
         }
 
         public void FreezePlayer() {
-            Platformer.PlayerManager.Character.Body.Stop();
-            Platformer.PlayerManager.Character.Body.SetWeight(3f);
+            // Platformer.PlayerManager.Character.Body.SetWeight(0f);
+            Platformer.PlayerManager.Character.Body.velocity *= 0f;
             Platformer.PlayerManager.Character.Disable(m_Duration);
-            Platformer.PlayerManager.Character.Default.Enable(Platformer.PlayerManager.Character, false);
-            Platformer.PlayerManager.Character.Animator.PlayAnimation(m_PlayerAnimationOverride);
+            Platformer.PlayerManager.Character.Default.Enable(Platformer.PlayerManager.Character, false, true);
         }
 
         public void UnfreezePlayer() {
             Platformer.PlayerManager.Character.Default.Enable(Platformer.PlayerManager.Character, true);
-            Platformer.PlayerManager.Character.Animator.StopAnimation(m_PlayerAnimationOverride);
         }
 
         public void FixedUpdate() {
@@ -99,13 +89,21 @@ namespace Platformer.Levels {
             UnfreezePlayer();
 
             foreach (CutsceneCharacter npc in m_NPCs) {
-                npc.characterInputSystem.gameObject.SetActive(!npc.dissappearOnEnd);
+                npc.characterInputChain.OnEnd(npc.characterInputSystem);
+                npc.characterInputSystem.FullClear();
+                npc.characterInputSystem.SetChain(npc.onEndChain);
             }
             
             m_Playing = false;
             m_Ticks = 0f;
             m_FadeOut = false;
             m_FadeIn = false;
+
+            if (m_Volume != null) { 
+                m_Volume.weight = 0f; 
+            }
+
+            Destroy(gameObject);
 
         }
 
@@ -116,22 +114,23 @@ namespace Platformer.Levels {
                 return;
             }
 
-            m_PlayerAnimationOverrides[m_AnimationOverrideIndex].ticks += dt;
-            if (m_PlayerAnimationOverrides[m_AnimationOverrideIndex].ticks > m_PlayerAnimationOverrides[m_AnimationOverrideIndex].duration) {
-                Platformer.PlayerManager.Character.StopAnimation(m_PlayerAnimationOverrides[m_Index].priority);
-                
-                m_AnimationOverrideIndex += 1;
-                if (m_AnimationOverrideIndex < m_PlayerAnimationOverrides.Length) {
-                    Platformer.PlayerManager.Character.PlayAnimation(m_PlayerAnimationOverrides[m_Index].animationName, m_PlayerAnimationOverrides[m_Index].priority);
-                }
-
-            }
-
             if (m_Volume != null && m_Ticks < m_FadeInDuration) {
-                m_Volume.weight += m_FadeInDuration * dt;
+                if (m_FadeInDuration != 0f) { 
+                    m_Volume.weight += dt / m_FadeInDuration; 
+                }
+                else { 
+                    m_Volume.weight = 1f; 
+                }
+                if (m_Volume.weight > 1f) { m_Volume.weight = 1f; }
             }
             else if (m_Volume != null && m_Ticks > m_Duration - m_FadeOutDuration) {
-                m_Volume.weight -= m_FadeOutDuration * dt;
+                if (m_FadeOutDuration != 0f) { 
+                    m_Volume.weight -= dt / m_FadeOutDuration; 
+                }
+                else { 
+                    m_Volume.weight = 0f; 
+                }
+                if (m_Volume.weight < 0f) { m_Volume.weight = 0f; }
             }
 
         }

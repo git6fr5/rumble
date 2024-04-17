@@ -152,6 +152,7 @@ namespace Platformer.Character {
             float floatTime = 0.6f;
 
             Disable(respawnDelay);
+            m_DefaultAction.Enable(this, false, true);
             DisableAllAbilityActions();
             // m_Body.velocity = -m_Body.velocity; // (-Vector3.up * 2f);
             // if (m_Body.velocity.sqrMagnitude == 0f) {
@@ -219,6 +220,11 @@ namespace Platformer.Character {
         }
 
         public void Disable(float duration) {
+            m_Input.Direction.Clear();
+            foreach (ActionInput actionInput in m_Input.Actions) {
+                actionInput.ClearPressBuffer();
+                actionInput.ClearReleaseBuffer();
+            }
             m_DisableTimer.Start(duration);
         }
 
@@ -246,11 +252,13 @@ namespace Platformer.Character {
             m_Rising = m_Body.Rising();
             m_Falling = m_Body.Falling();
             // m_DirectionLocked = m_DisableTimer.Active;
-            m_FacingDirection = m_DirectionLocked ? m_FacingDirection : m_Input.Direction.Horizontal != 0f ? m_Input.Direction.Horizontal : m_FacingDirection;
             m_OnGround = PhysicsManager.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.down, PhysicsManager.CollisionLayers.Ground);
+            m_FacingDirection = m_DirectionLocked ? m_FacingDirection : m_Input.Direction.Horizontal != 0f ? m_Input.Direction.Horizontal : m_FacingDirection;
             m_FacingWall = PhysicsManager.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.right * m_FacingDirection,  PhysicsManager.CollisionLayers.Ground);
 
-            if (m_DisableTimer.Active) { return; }
+            if (m_DisableTimer.Active) { 
+                return; 
+            }
 
             m_DefaultAction.PhysicsUpdate(this, Time.fixedDeltaTime);
             for (int i = 0; i < m_PowerActions.Count; i++) {

@@ -43,11 +43,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 0
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -152,7 +152,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fruits_0
+      name: spr_fruit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aacd99d1a3d22524cbf2ce29140488d9
-      internalID: -1821275019
+      spriteID: 144402fcd03a440bfb477678967b3f81
+      internalID: -1182398566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fruits_1
+      name: spr_fruit_1
       rect:
         serializedVersion: 2
         x: 128
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c22afec1bfbb35a47882b37c5a767b13
-      internalID: 1814348745
+      spriteID: feb8edf5a13c145f8b3a43b4a478d5cc
+      internalID: -1384830861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fruits_2
+      name: spr_fruit_2
       rect:
         serializedVersion: 2
         x: 256
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fc4bb9ffc50b3d4e975f4c3cd5f9f06
-      internalID: -419108942
+      spriteID: d44bfae6842e34bf39b5bfb4eba9dfee
+      internalID: 932632344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fruits_3
+      name: spr_fruit_3
       rect:
         serializedVersion: 2
         x: 384
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46c0d6ad1fd062b40b07ec07b07df0dc
-      internalID: -1334929706
+      spriteID: 4916b43f45fc04af38f1c1ef40822ae0
+      internalID: -540649101
       vertices: []
       indices: 
       edges: []
@@ -246,10 +246,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fruits_3: -1334929706
-      fruits_0: -1821275019
-      fruits_1: 1814348745
-      fruits_2: -419108942
+      spr_fruit_3: -540649101
+      spr_fruit_0: -1182398566
+      spr_fruit_1: -1384830861
+      spr_fruit_2: 932632344
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

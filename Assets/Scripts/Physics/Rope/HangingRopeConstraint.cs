@@ -47,7 +47,7 @@ namespace Platformer.Physics {
                     // Get the error term.
                     float error = newDist - segmentLength;
                     Vector3 errorVector = direction * error;
-
+                    
                     // Adjust the segments by the error term.
                     if (i != 1) {
                         ropeSegments[i - 1] -= errorVector * 0.5f;

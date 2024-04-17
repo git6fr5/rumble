@@ -28,7 +28,7 @@ namespace Platformer.LevelEditing {
                 Vector3 direction = (ropeSegments[i - 1] - ropeSegments[i]).normalized;
 
                 // Get the error term.
-                float error = newDist - SegmentLength;
+                float error = newDist - segmentLength;
                 Vector3 errorVector = direction * error;
 
                 // Adjust the segments by the error term.
@@ -36,6 +36,12 @@ namespace Platformer.LevelEditing {
                     ropeSegments[i - 1] -= errorVector * 0.5f;
                 }
                 ropeSegments[i] += errorVector * 0.5f;
+
+                newDist = (ropeSegments[i - 1] - ropeSegments[i]).magnitude;
+                if (newDist < segmentLength / 4f) {
+                    ropeSegments[i] = ropeSegments[i-1] + (ropeSegments[i] - ropeSegments[i-1]).normalized * segmentLength / 4f;
+                }
+
             }
         }
 

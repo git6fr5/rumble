@@ -66,10 +66,10 @@ namespace Gobblefish.Input {
         }
 
         void Reset() {
-            if (useChainPosition) {
+            if (m_InputChain != null && useChainPosition) {
                 transform.position = m_InputChain.origin;
             }
-            else {
+            else if (!useChainPosition) {
                 transform.position = _origin;
             }
             m_Ticks = 0f;
@@ -80,6 +80,9 @@ namespace Gobblefish.Input {
 
         // Updates the inputs.
         protected void FixedThink(float dt) {
+            if (m_InputChain == null) {
+                return;
+            }
 
             if (m_Index >= m_InputChain.chain.Length) {
                 return;
@@ -104,6 +107,14 @@ namespace Gobblefish.Input {
                 m_Actions[i].OnUpdate(m_InputChain.chain[m_Index].actionInput[i], !m_InputChain.chain[m_Index].actionInput[i], dt);
             }
 
+        }
+
+        public void FullClear() {
+            m_Direction.Clear();
+            for (int i = 0; i < m_Actions.Length; i++) {
+                m_Actions[i].ClearPressBuffer();
+                m_Actions[i].ClearReleaseBuffer();
+            }
         }
 
     }
