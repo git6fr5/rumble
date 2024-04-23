@@ -18,7 +18,7 @@ namespace Platformer.Physics {
         public Rigidbody2D trackBody;
         public float bodyFactor;
 
-        protected RopeCollider ropeCollider;
+        [SerializeField] protected RopeCollider ropeCollider;
 
         /* --- Variables --- */
         [SerializeField] private int segmentCount; // The number of segments.

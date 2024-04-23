@@ -30,9 +30,6 @@ namespace Platformer.Character {
         [SerializeField] 
         protected float m_DashDistance = 5f;
 
-        // Runs through the phases of the dash cycle.
-        protected Timer m_DashTimer = new Timer(0f, 0f);
-
         // The direction the player was facing before the dash started.
         protected Vector2 m_CachedDirection = new Vector2(0f, 0f);
 
@@ -43,7 +40,7 @@ namespace Platformer.Character {
         public override void Enable(CharacterController character, bool enable = true) {
             base.Enable(character, enable);
             
-            if (!enable || m_DashTimer.Active) {
+            if (!enable || m_ActionTimer.Active) {
                 OnEndAction(character);
             }
 
@@ -55,9 +52,12 @@ namespace Platformer.Character {
             
             // character.Animator.PlayAudioVisualEffect(m_StartDashEffect, m_StartDashSound);
 
-            m_DashTimer.Start(m_DashDuration * ChargeValue);
+            Debug.Log(ChargeValue);
+            Debug.Log(DashSpeed);
+
+            m_ActionTimer.Start(m_DashDuration * ChargeValue);
             m_CachedDirection = new Vector2(character.FacingDirection, 0f);
-            character.Body.SetVelocity(m_CachedDirection * DashSpeed);
+            character.Body.SetVelocity(m_CachedDirection * DashSpeed); // m_CachedDirection * DashSpeed
             
         }
 
@@ -74,15 +74,16 @@ namespace Platformer.Character {
                 character.Body.SetVelocity(Vector2.zero);
             }
 
+            character.Default.Enable(character, true);
+
             // Start the post-dash (dash cooldown) timer.
-            m_DashTimer.Start(m_PostdashDuration);
+            m_ActionTimer.Start(m_PostdashDuration);
         }
 
         protected override void OnEndAction(CharacterController character) {
             base.OnEndAction(character);
             character.Animator.StopAnimation("OnStartDash");
             character.Animator.StopAnimation("OnStartPostdash");
-            m_DashTimer.Stop();
         }
 
         protected override void WhileAction(CharacterController character, float dt) {

@@ -40,12 +40,18 @@ namespace Platformer.Character {
 
         public float ChargeValue => Mathf.Max(MIN_CHARGE_VALUE, Mathf.Sqrt(m_ChargeTimer.InverseRatio));
 
+        [SerializeField]
+        private AudioSnippet m_ChargeSound;
+
+        [SerializeField]
+        private VisualEffect m_ChargeEffect;
+
         // When this ability is activated.
         public override void InputUpdate(CharacterController character) {
             if (!m_Enabled) { return; }
 
             // The character should start charging.
-            if (character.Input.Actions[1].Pressed && m_ActionPhase == ActionPhase.None && m_Refreshed) {
+            if ((character.Input.Actions[1].Held || character.Input.Actions[1].Pressed) && m_ActionPhase == ActionPhase.None && m_Refreshed) {
                 OnStartPreaction(character);
                 character.Input.Actions[1].ClearPressBuffer();
                 m_Refreshed = false;
@@ -74,14 +80,15 @@ namespace Platformer.Character {
             // Set the action phase.
             m_ActionPhase = ActionPhase.PreAction;
             character.Animator.PlayAnimation("OnStartCharge");
-            // character.Animator.PlayAudioVisualEffect(m_ChargeEffect, m_ChargeSound);
+            character.Animator.PlayAudioVisualEffect("WhileCharging");
         }
 
         protected override void OnEndPreaction(CharacterController character) {
             // Stop the charge timers.
-            m_ChargeTimer.Stop();
+            // m_ChargeTimer.Stop();
             m_ChargeIncrementTimer.Stop();
             character.Animator.StopAnimation("OnStartCharge");
+            character.Animator.StopAudioVisualEffect("WhileCharging");
         }
 
         protected override void WhilePreaction(CharacterController character, float dt) {
@@ -92,7 +99,7 @@ namespace Platformer.Character {
             character.Animator.PlayAnimation("OnStartCharge", 1f + 5f * ChargeValue);
 
             if (chargeIncremented && m_ChargeTimer.InverseRatio < 1f) {
-                // character.Animator.PlayAudioVisualEffect(m_ChargeDashEffect, m_ChargeDashSound);
+                character.Animator.PlayAudioVisualEffect("WhileCharging");
                 m_ChargeIncrementTimer.Start(CHARGE_INCREMENT);
             }
         }

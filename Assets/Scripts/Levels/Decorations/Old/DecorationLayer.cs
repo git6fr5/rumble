@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-using Platformer.LevelEditing;
 using Gobblefish;
 
-namespace Platformer.LevelEditing {
+namespace Platformer.Levels {
 
     ///<summary>
     ///

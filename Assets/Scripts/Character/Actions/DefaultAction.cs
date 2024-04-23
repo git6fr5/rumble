@@ -124,6 +124,11 @@ namespace Platformer.Character {
         [HideInInspector] 
         private float m_IdleTicks = 0f;
 
+        // Tracks how long its been since the character reached the m_HangTimer.
+        [HideInInspector] 
+        private float m_FootstepTicks = 0f;
+        public float FootstepInterval = 0.3f;
+
         //
         [SerializeField]
         private Vector2 m_Direction = new Vector2(0f, 0f);
@@ -247,19 +252,31 @@ namespace Platformer.Character {
                 return;
             }
 
-            // character.Animator.StopAnimation("Rising");
-            // character.Animator.StopAnimation("Falling");
-            // character.Animator.StopAnimation("Hanging");
-            // character.Animator.StopAnimation("FallingFast");
+            character.Animator.StopAnimation("Rising");
+            character.Animator.StopAnimation("Falling");
+            character.Animator.StopAnimation("Hanging");
+            character.Animator.StopAnimation("FallingFast");
 
             if (character.Input.Direction.Horizontal != 0f && !character.Disabled) {
                 character.Animator.PlayAnimation("Moving");
+
+                if (m_FootstepTicks == -1f) {
+                    character.Animator.PlayAudioVisualEffect("Footstep"+Random.Range(1,4).ToString());
+                    m_FootstepTicks = 0f;
+                }
+
+                m_FootstepTicks += dt;
+                if (m_FootstepTicks > FootstepInterval) {
+                    character.Animator.PlayAudioVisualEffect("Footstep"+Random.Range(1,4).ToString());
+                    m_FootstepTicks -= FootstepInterval;
+                }
                 m_IdleTicks = 0f;
             }
             else {
                 character.Animator.StopAnimation("Moving");
 
-                m_IdleTicks += dt;
+                m_IdleTicks += character.Body.velocity.sqrMagnitude < 0.1f ? dt : 0f;
+                m_FootstepTicks = -1f;
                 if (m_IdleTicks > SITTING_IDLE) {
                     character.Animator.PlayAnimation("Idle Sit");
                 }
@@ -297,6 +314,8 @@ namespace Platformer.Character {
             
             // The effect.
             character.Animator.PlayAnimation("Jump");
+            character.Animator.PlayAudioVisualEffect("OnJump");
+            character.Animator.PlayAudioVisualEffect("WhileJumping");
 
         }
 
@@ -322,12 +341,14 @@ namespace Platformer.Character {
 
         private void OnLand(CharacterController character) {
             m_ClampJump = false;
+
             character.Animator.PlayAnimation("OnLand");
+            character.Animator.PlayAudioVisualEffect("OnLand");
+
             character.Animator.StopAnimation("Rising");
             character.Animator.StopAnimation("Hanging");
             character.Animator.StopAnimation("Falling");
             character.Animator.StopAnimation("FallingFast");
-            // character.Animator.PlayAudioVisualEffect(m_LandEffect, m_LandSound);
             // if (character.Trail != null) { character.Trail.Stop(); }
         }
 
@@ -353,6 +374,10 @@ namespace Platformer.Character {
             
         }
 
+        public void SetIdleTicks(float ticks) {
+            m_IdleTicks = ticks;
+        }
+
         // Not really falling, but rather "while default grav acting on this body"
         private void WhileFalling(CharacterController character, float dt) {
             // Set the m_Weight to the default.
@@ -370,6 +395,7 @@ namespace Platformer.Character {
                     // If not holding jump, then rapidly slow the rising body.
                     if (!character.Input.Actions[0].Held) {
                         character.Body.SetVelocity(new Vector2(character.Body.velocity.x, character.Body.velocity.y * (1f - RISE_FRICTION)));
+                        character.Animator.StopAudioVisualEffect("WhileJumping");
                     }
                     
                 }

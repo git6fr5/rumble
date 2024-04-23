@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    currentFrame: 0
+    fps: 12
     sprites:
     - {fileID: 21300000, guid: a8ccd4bf37f5a0a43ab17e8aeed865fc, type: 3}
     - {fileID: 21300000, guid: ef2d21d369bf2f94ea7ef133822fb9a4, type: 3}
@@ -259,8 +261,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: a0c5dcea900108944a0ef46890577a0d, type: 3}
     - {fileID: 21300000, guid: f398dc81dc4d5334997bfbcb80ecb491, type: 3}
     ticks: 0
-    fps: 12
-    currentFrame: 0
     orderOffset: 0
   m_Animate: 0
   m_Loop: 0
@@ -643,7 +643,7 @@ MonoBehaviour:
       - m_Target: {fileID: 9026948846908625529}
         m_TargetAssemblyTypeName: Platformer.Entities.Components.Hazard, Assembly-CSharp
         m_MethodName: Kill
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -984,14 +984,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    currentFrame: 0
+    fps: 4
     sprites:
     - {fileID: 494291276, guid: dddaa703faa0e814f8b382da969c6dab, type: 3}
     - {fileID: -1089972721, guid: dddaa703faa0e814f8b382da969c6dab, type: 3}
     - {fileID: 494291276, guid: dddaa703faa0e814f8b382da969c6dab, type: 3}
     - {fileID: 236335, guid: dddaa703faa0e814f8b382da969c6dab, type: 3}
     ticks: 0
-    fps: 4
-    currentFrame: 0
     orderOffset: -100
   m_Animate: 1
   m_Loop: 1
@@ -1010,6 +1010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    ticks: 0
     duration: 3
     loop: 1
     basePosition: {x: 0, y: 0}

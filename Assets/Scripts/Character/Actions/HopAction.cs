@@ -35,6 +35,9 @@ namespace Platformer.Character {
         [SerializeField, ReadOnly] 
         private float m_Weight = 0f;
 
+        [SerializeField]
+        private AudioSnippet m_OnStartHopSound;
+
         // When enabling/disabling this ability.
         public override void Enable(CharacterController character, bool enable = true) {
             base.Enable(character, enable);
@@ -47,6 +50,7 @@ namespace Platformer.Character {
         protected override void OnStartAction(CharacterController character) {
             base.OnStartAction(character);
             character.Animator.PlayAnimation("OnStartHop");
+            character.Animator.PlayAudioVisualEffect("OnStartHop");
 
             character.Default.Enable(character, true, false);
             character.Body.Move(Vector2.up * 2f * PhysicsManager.Settings.collisionPrecision);
@@ -58,6 +62,7 @@ namespace Platformer.Character {
         protected override void OnStartPostaction(CharacterController character) {
             base.OnStartPostaction(character);
             character.Animator.PlayAnimation("OnStartPosthop");
+            character.Animator.PlayAudioVisualEffect("OnStartPosthop");
         }
 
         protected override void WhileAction(CharacterController character, float dt) {
@@ -67,6 +72,8 @@ namespace Platformer.Character {
         }
 
         protected override void WhilePostaction(CharacterController character, float dt) {
+            Debug.Log("While post hop action");
+
             if (character.OnGround) {
                 OnEndAction(character);
             }

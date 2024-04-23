@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Events;
 //
 using Gobblefish.Input;
 //
@@ -27,11 +28,9 @@ namespace Platformer.Levels {
 
         [SerializeField]
         private float m_FadeInDuration = 1f;
-        private bool m_FadeIn = false;
 
         [SerializeField]
         private float m_FadeOutDuration = 1f;
-        private bool m_FadeOut = false;
 
         [SerializeField]
         public CutsceneCharacter[] m_NPCs;
@@ -43,6 +42,12 @@ namespace Platformer.Levels {
         private float m_Duration = 3f;
         private float m_Ticks = 0f;
 
+        [SerializeField]
+        private UnityEvent m_OnCutsceneBegin = new UnityEvent();
+
+        [SerializeField]
+        private UnityEvent m_OnCutsceneEnd = new UnityEvent();
+
         void Play() {
             FreezePlayer();
 
@@ -53,12 +58,12 @@ namespace Platformer.Levels {
 
             m_Playing = true;
             m_Ticks = 0f;
-            m_FadeOut = false;
-            m_FadeIn = true;
 
             if (m_Volume != null) { 
                 m_Volume.weight = 0f; 
             }
+
+            m_OnCutsceneBegin.Invoke();
 
         }
 
@@ -96,12 +101,12 @@ namespace Platformer.Levels {
             
             m_Playing = false;
             m_Ticks = 0f;
-            m_FadeOut = false;
-            m_FadeIn = false;
 
             if (m_Volume != null) { 
                 m_Volume.weight = 0f; 
             }
+
+            m_OnCutsceneEnd.Invoke();
 
             Destroy(gameObject);
 

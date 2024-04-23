@@ -94,7 +94,11 @@ namespace Platformer.Levels.LDtk {
                     if (entity != null && entity.gameObject != null) {
                         entities.Add(entity);
                         entity.gameObject.SetActive(true);
+                        if (entity.GetComponent<Platformer.Tests.GetRoomName>() != null) {
+                            entity.GetComponent<Platformer.Tests.GetRoomName>().SetRoomName(section.name);
+                        }
                     }
+
                 }
             }
 

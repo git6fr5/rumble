@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    currentFrame: 0
+    fps: 12
     sprites:
     - {fileID: 21300000, guid: 7c88fcbcad0ba664fac0ea19f74cf181, type: 3}
     - {fileID: 21300000, guid: 39f80fb13b0c2684690349af99c7adf9, type: 3}
@@ -105,8 +107,6 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 7f83562042303ed45b18b1b64ae82c8c, type: 3}
     - {fileID: 21300000, guid: b95a3df45f963f145bad60f71330c00f, type: 3}
     ticks: 0
-    fps: 12
-    currentFrame: 0
     orderOffset: 0
   m_Animate: 1
   m_Loop: 0
@@ -671,7 +671,7 @@ MonoBehaviour:
   m_VisualEffects:
   - {fileID: 6040584180502544570}
   - {fileID: 7176765617320601589}
-  m_Ticks: 1.1706152
+  m_Ticks: 0.4238204
   m_Duration: 2
 --- !u!1 &8611092737858379842
 GameObject:
@@ -774,6 +774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    currentFrame: 0
+    fps: 8
     sprites:
     - {fileID: -351847693, guid: 1317da9308aa32a4db575ab2983d7758, type: 3}
     - {fileID: -1352612110, guid: 1317da9308aa32a4db575ab2983d7758, type: 3}
@@ -782,8 +784,6 @@ MonoBehaviour:
     - {fileID: -2086432599, guid: 1317da9308aa32a4db575ab2983d7758, type: 3}
     - {fileID: 912148984, guid: 1317da9308aa32a4db575ab2983d7758, type: 3}
     ticks: 0
-    fps: 8
-    currentFrame: 0
     orderOffset: 0
   m_Animate: 1
   m_Loop: 1
@@ -1006,6 +1006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    ticks: 0
     duration: 3
     loop: 1
     basePosition: {x: 0, y: 0}
@@ -1184,7 +1185,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8611092738165268245}
         m_TargetAssemblyTypeName: Platformer.Entities.Components.Hazard, Assembly-CSharp
         m_MethodName: Kill
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

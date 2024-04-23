@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
+using Platformer.Graphics;
 
 namespace Gobblefish.Graphics {
 
@@ -29,6 +30,11 @@ namespace Gobblefish.Graphics {
         [SerializeField]
         private PostProcessorController m_PostProcessor;
         public static PostProcessorController PostProcessor => Instance.m_PostProcessor;
+
+        // The post processor controller.
+        [SerializeField]
+        private Starmap m_Starmap;
+        public static Starmap Starmap => Instance.m_Starmap;
 
         protected override void Awake() {
             m_Camera = Camera.main;

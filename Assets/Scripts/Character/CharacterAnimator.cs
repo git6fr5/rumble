@@ -39,8 +39,11 @@ namespace Platformer.Character {
 
         protected CharacterController m_Character = null;
 
+        // [SerializeField]
+        // private AudioVisualEffectCollection m_AudioVisualEffectCollection;
+
         [SerializeField]
-        private AudioVisualEffectCollection m_AudioVisualEffectCollection;
+        private AudioSnippetCollection m_AudioSnippets;
 
         // Runs once before the first frame.
         protected virtual void Start() {
@@ -96,6 +99,14 @@ namespace Platformer.Character {
 
         public virtual void SetPowerIndicator(Platformer.Entities.Components.Power power) {
 
+        }
+
+        public void PlayAudioVisualEffect(string name) {
+            m_AudioSnippets.Play(name);
+        }
+
+        public void StopAudioVisualEffect(string name) {
+            m_AudioSnippets.Stop(name);
         }
 
         public void PlayAudioVisualEffect(VisualEffect visualEffect, AudioSnippet audioSnippet) {

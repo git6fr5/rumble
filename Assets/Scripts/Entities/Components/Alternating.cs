@@ -150,23 +150,10 @@ namespace Platformer.Entities {
 
         private void WhileChanging(bool enable) {
 
-            // float t = (PhysicsManager.Time.Ticks % (PERIOD / 2f)) - (PERIOD / 2f - PRE_CHANGE_DURATION);
-            // float x = t / PRE_CHANGE_DURATION;
-            
-            // // If we're enabled, then the change is towards disabled
-            // if (enable) {
-            //     x *= -1f;
-            // }
-
-            // float val = m_AlternatingCurve.Evaluate(x);
-            // m_Entity.SetMaterialValue("_DissolveAmount", val);
-
         }
 
         private void OnPreChange() {
-            // m_Entity.Renderer.transform.localPosition = -Vector3.down * PRE_CHANGE_OFFSET;
             if (m_Entity.CollisionEnabled) {
-                // m_PreChangeSound.Play(0.05f);
                 m_PreChangeEvent.Invoke();
             }
             else {
@@ -176,22 +163,12 @@ namespace Platformer.Entities {
 
         private void OnChange(bool enable) {
             if (enable) {
-                // m_ChangeSound.Play(0.03f);
                 m_ChangeOnEvent.Invoke();
             }
             else {
                 m_ChangeOffEvent.Invoke();
             }
-
             m_Entity.EnableColliders(enable);
-            // m_Entity.SetMaterialValue("_DissolveAmount", val);
-            
-            // m_Entity.Renderer.transform.localPosition = Vector3.zero;
-            // m_SpriteShapeRenderer.enabled = enable;
-            // m_Hitbox.enabled = enable;
-            // m_DisabledObject.SetActive(!enable);
-            
-
         }
 
         public void SetType(AlternatingType altType) {

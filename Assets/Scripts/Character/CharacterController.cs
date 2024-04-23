@@ -108,6 +108,9 @@ namespace Platformer.Character {
         [SerializeField]
         private Sprite m_DefaultBody;
 
+        public float deathWeight = 3f;
+        public float deathSpeed = 10f;
+
         #endregion
 
         // Runs once on instantiation.
@@ -134,6 +137,8 @@ namespace Platformer.Character {
             if (m_Dying) {
                 return;
             }
+
+            Gobblefish.Graphics.GraphicsManager.Starmap.AddPoint(transform.position);
 
             // The visual feedback played when dying.
             PhysicsManager.Time.RunHitStop(16);
@@ -181,9 +186,6 @@ namespace Platformer.Character {
             StartCoroutine(IERespawn(respawnDelay, floatTime));
 
         }
-
-        public float deathWeight;
-        public float deathSpeed;
 
         private IEnumerator IERespawn(float respawnDelay, float floatTime) {
             yield return new WaitForSeconds(floatTime);

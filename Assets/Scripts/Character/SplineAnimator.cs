@@ -64,13 +64,14 @@ namespace Platformer.Character {
             m_Animator = GetComponent<UnityAnimator>();
             m_Character = transform.parent.GetComponent<CharacterController>();
             m_AnimationSheet = new AnimationItem[(int)AnimationPriority.Count];
+            defaultColor = m_Shell.color;
         }
         
         // Animates the flipbook by setting the animation, frame, and playing any effects.
         protected override void Animate(float dt) {
             // Animator.
             AnimationItem anim = GetHighestPriorityAnimation();
-            print(anim.name);
+            // print(anim.name);
 
             if (anim == null) {
                 return;
@@ -105,8 +106,16 @@ namespace Platformer.Character {
             
         }
 
+        private Color defaultColor = new Color(0f, 0f, 0f, 0f);
         public override void SetPowerIndicator(Platformer.Entities.Components.Power power) {
-            m_Shell.sprite = power.spriteRenderer.sprite;
+            // m_Shell.sprite = power.spriteRenderer.sprite;
+            if (power == null) {
+                m_Shell.color = defaultColor;
+            }
+            else {
+                m_Shell.color = power.spriteRenderer.GetComponent<UnityEngine.Rendering.Universal.Light2D>().color; // .sprite;
+            }
+            // m_Shell.transform.localScale *=  4f;
         }
 
         public override void PlayAnimation(string name, AnimationPriority priority) {

@@ -74,9 +74,10 @@ namespace Platformer.Entities.Components {
             }
         }
 
-        public void SetRespawnPoint() {
-            CharacterController character = PlayerManager.Character;
-            character.SetRespawn(this);
+        public void SetRespawnPoint(CharacterController character) {
+            if (character == PlayerManager.Character) {
+                character.SetRespawn(this);
+            }
         }
 
         public void CreateCorpse(CharacterController character) {
@@ -107,6 +108,9 @@ namespace Platformer.Entities.Components {
             }
             if (m_TotalActivatedTime == 0f) {
                 m_FirstActivationTime = PhysicsManager.Time.Ticks;
+
+                Gobblefish.Graphics.GraphicsManager.Starmap.AddPoint(transform.position);
+
             }
             
         }

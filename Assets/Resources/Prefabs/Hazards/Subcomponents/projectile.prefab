@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    currentFrame: 0
+    fps: 4
     sprites:
     - {fileID: 1097427666, guid: d1ca136f5bb0b4a599981757b063a683, type: 3}
     - {fileID: -1338178234, guid: d1ca136f5bb0b4a599981757b063a683, type: 3}
@@ -106,8 +108,6 @@ MonoBehaviour:
     - {fileID: 516364838, guid: d1ca136f5bb0b4a599981757b063a683, type: 3}
     - {fileID: -1582674598, guid: d1ca136f5bb0b4a599981757b063a683, type: 3}
     ticks: 0
-    fps: 4
-    currentFrame: 0
     orderOffset: 0
   m_Animate: 1
   m_Loop: 1
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 1280062844208643215}
   - component: {fileID: 1275918169304464760}
   m_Layer: 7
-  m_Name: Projectile
+  m_Name: projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
       - m_Target: {fileID: 4172868447638371445}
         m_TargetAssemblyTypeName: Platformer.Entities.Components.Hazard, Assembly-CSharp
         m_MethodName: Kill
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

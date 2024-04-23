@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Platformer.Levels;
 
-namespace Platformer.LevelEditing {
+namespace Platformer.Levels {
 
     [ExecuteInEditMode]
     public class DecorationEditor : MonoBehaviour {
@@ -36,15 +36,50 @@ namespace Platformer.LevelEditing {
             }
 
             if (m_Reorganize && !Application.isPlaying) {
-
-                m_DecorationSection = new List<DecorationSection>();
-                if (m_LevelManager != null) {
-                    // Reorganize();
-                }
-
                 m_Reorganize = false;
-
             }
+
+            // if (m_Reorganize && !Application.isPlaying) {
+            //     m_Reorganize = false;
+            // }
+
+            // if (m_UpdateSections) {
+            //     UpdateDecorationSections();
+            // }
+            
+        }
+
+        private void Reposition() {
+            if (m_LevelManager == null) { return; }
+
+            foreach (DecorationSection section in m_DecorationSection) {
+                // FindLevelSection();
+            } 
+
+        }
+
+        private void UpdateDecorationSections() {
+            foreach (DecorationSection section in m_DecorationSection) {
+                if (section.levelSection == null) {
+                    section.SetSection(FindLevelSection(section.gameObject.name));
+                    section.GetLayers();
+                }
+            }
+        }
+
+        private LevelSection FindLevelSection(string name) {
+            string sectionName = name.Split(" ")[0];
+            print(sectionName);
+
+            foreach (LevelSection section in m_LevelManager.Sections) {
+                if (section.gameObject.name == sectionName) {
+                    print("found section");
+                    return section;
+                }
+            }
+
+            return null;
+
         }
 
         private void Reorganize() {
@@ -58,7 +93,6 @@ namespace Platformer.LevelEditing {
             //         }
             //     }
             // }
-            
 
             for (int i = 0; i < m_LevelManager.Sections.Count; i++) {
                 DecorationSection section = DecorationSection.New(m_LevelManager.Sections[i].gameObject.name + " Decorations");

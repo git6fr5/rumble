@@ -113,6 +113,9 @@ namespace Platformer.Character {
         protected virtual void OnStartPostaction(CharacterController character) {
             m_ActionPhase = ActionPhase.PostAction;
             character.Default.Enable(character, true);
+
+            //
+            character.Animator.SetPowerIndicator(null);
         }
 
         protected virtual void OnEndPreaction(CharacterController character) {
@@ -122,6 +125,7 @@ namespace Platformer.Character {
 
         protected virtual void OnEndAction(CharacterController character) {
             m_ActionPhase = ActionPhase.None;
+            if (m_ActionTimer.Active) { m_ActionTimer.Stop(); }
             character.Default.Enable(character, true);
         }
 

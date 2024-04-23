@@ -45,6 +45,23 @@ namespace Platformer.Levels.LDtk {
             for (int i = 0; i < sections.Count; i++) {
                 GenerateDecorationSection(sections[i], layerName);
             }
+
+            // super inefficient but whatever.
+            // Vector3Int max = m_DecorationMap.cellBounds.max;
+            // VectorInt min = m_DecorationMap.cellBounds.min;
+
+            // //
+            // TileBase tile = m_DecorationTiles[0];
+            // for (int x = min.x; x < max.x; x++) {
+            // for (int y = min.y; y < max.y; y++) {
+            //     m_DecorationMap.SetTile(new Vector3Int(x, y, 0), tile);
+            // }
+            // }
+
+            // for (int i = 0; i < sections.Count; i++) {
+            //     GenerateDecorationSection(sections[i], layerName);
+            // }
+
             RefreshCollisionMap();
         }
 

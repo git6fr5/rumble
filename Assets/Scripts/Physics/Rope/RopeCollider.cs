@@ -23,10 +23,10 @@ namespace Platformer.Physics {
 
         public void Initialize(int segmentCount) {
             edgeCollider = GetComponent<EdgeCollider2D>();
-            edgeCollider.isTrigger = false;
+            edgeCollider.isTrigger = true;
             edgeCollider.edgeRadius = edgeWidth;
 
-            Vector3[] jiggle = new Vector3[segmentCount];
+            jiggle = new Vector3[segmentCount];
         }
 
         // Adds a jiggle whenever a body collides with this.
@@ -59,7 +59,7 @@ namespace Platformer.Physics {
 
             Vector2[] points = new Vector2[segmentCount];
             for (int i = 0; i < segmentCount; i++) {
-                points[i] = (Vector2)ropeSegments[i];
+                points[i] = (Vector2)(ropeSegments[i] - ropeSegments[0]);
             }
             edgeCollider.points = points;
             edgeCollider.edgeRadius = edgeWidth;
