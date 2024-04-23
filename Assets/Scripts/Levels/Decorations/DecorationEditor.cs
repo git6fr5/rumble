@@ -24,6 +24,7 @@ namespace Platformer.Levels {
         [Header("Controls")]
         public bool m_UpdateSections = false;
         public bool m_Reposition = false;
+        public bool m_Reorganize = false;
 
         [SerializeField]
         private DecorationLayer m_CurrentLayer = null;
@@ -37,12 +38,12 @@ namespace Platformer.Levels {
             }
 
             if (m_Reposition && !Application.isPlaying) {
-                Reposition();
+                // Reposition();
                 m_Reposition = false;
             }
 
             if (m_Reorganize && !Application.isPlaying) {
-                Reorganize();
+                // Reorganize2();
                 m_Reorganize = false;
             }
 
@@ -60,55 +61,53 @@ namespace Platformer.Levels {
             if (m_LevelManager == null) { return; }
 
             foreach (DecorationSection section in m_DecorationSection) {
-                
                 if (section.levelSection != null) {
-                    section.transform.position = section.levelSection.GetComponent<BoxCollider2D>().offset;
+                    section.transform.position = section.levelSection.camHandles.transform.position;
                 }
-
             } 
 
         }
 
-        private void Reorganize() {
+        // public enum LayerName {
+        //     Background,
+        //     Midground,
+        //     Foreground,
+        // }
 
-            List<Transform> unorganizedTransforms = new List<Transform>();
+        // public LayerName currentEditingLayer;
 
-            foreach (DecorationSection section in m_DecorationSection) {
-                foreach (DecorationLayer layer in section.layers) {
-                    foreach (Transform child in layer.transform) {
-
-                        if (section.levelSection != null) {
-
-                            if (!section.levelSection.camHandles.Box.bounds.Contains(child.position)) {
-                                unorganizedTransforms.Add(child);
-                            }
-
-                        }
-
-                    }
-                }
-            }
-
-            foreach (Transform child in unorganizedTransforms) {
+        private void Reorganize2() {
+            // SpriteRenderer[] allObjects = (SpriteRenderer[])GameObject.FindObjectsOfType<SpriteRenderer>();
+            // for (int i = 0; i < allObjects.Length; i++) {
                 
-                foreach (DecorationSection section in m_DecorationSection) {
-                    if (section.levelSection != null) {
-                        if (section.levelSection.camHandles.Box.bounds.Contains(child.position)) {
-                            section.ParentToSection(child);
-                            break;
-                        }
-                    }
-                }
-
-            }
-
+            //     if (allObjects[i].transform.parent == null) {
+            //         foreach (DecorationSection section in m_DecorationSection) {
+            //             if (section.levelSection != null) {
+            //                 if (section.levelSection.camHandles.Box.bounds.Contains(child.position)) {
+            //                     section.ParentToSection(child, currentEditingLayer.ToString());
+            //                     break;
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
 
         private void UpdateDecorationSections() {
             foreach (DecorationSection section in m_DecorationSection) {
+                section.GetLayers();
                 if (section.levelSection == null) {
                     section.SetSection(FindLevelSection(section.gameObject.name));
-                    section.GetLayers();
+                }
+            }
+
+            for (int i = 0; i < m_LevelManager.Sections.Count; i++) {
+                DecorationSection section = m_DecorationSection.Find(section => section.levelSection == m_LevelManager.Sections[i]);
+                if (section == null) {
+                    section = DecorationSection.New(m_LevelManager.Sections[i].gameObject.name + " Decorations");
+                    m_DecorationSection.Add(section);
+                    section.transform.SetParent(transform);
+                    section.SetSection(m_LevelManager.Sections[i]);
                 }
             }
         }
@@ -125,26 +124,6 @@ namespace Platformer.Levels {
             }
 
             return null;
-
-        }
-
-        private void Reorganize() {
-
-            Transform temp = new GameObject("Temp").transform;
-
-            // foreach (DecorationSection section in m_DecorationSection) {
-            //     foreach (DecorationLayer layer in section.Layers) {
-            //         foreach (SpriteRenderer spriteRenderer in layer.SpriteRenderers) {
-            //             spriteRenderer.transform.SetParent(temp);
-            //         }
-            //     }
-            // }
-
-            for (int i = 0; i < m_LevelManager.Sections.Count; i++) {
-                DecorationSection section = DecorationSection.New(m_LevelManager.Sections[i].gameObject.name + " Decorations");
-                m_DecorationSection.Add(section);
-                section.transform.SetParent(transform);
-            }
 
         }
 

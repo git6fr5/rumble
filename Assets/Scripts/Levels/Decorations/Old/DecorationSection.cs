@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Platformer.Levels {
 
+    [ExecuteInEditMode]
     public class DecorationSection : MonoBehaviour {
 
         [SerializeField]
@@ -13,8 +14,8 @@ namespace Platformer.Levels {
         public LevelSection levelSection => m_LevelSection;
 
         [SerializeField]
-        private DecorationLayer[] m_Layers;
-        public DecorationLayer[] layers => m_Layers;
+        private List<DecorationLayer> m_Layers = new List<DecorationLayer>();
+        public List<DecorationLayer> layers => m_Layers;
 
         public static DecorationSection New(string name) {
             return new GameObject(name, typeof(DecorationSection)).GetComponent<DecorationSection>();
@@ -25,6 +26,7 @@ namespace Platformer.Levels {
         }
 
         public void GetLayers() {
+            m_Layers = new List<DecorationLayer>();
             DecorationLayer[] _layers = transform.GetComponentsInChildren<DecorationLayer>();
             for (int i = 0; i < _layers.Length; i++) {
                 m_Layers.Add(_layers[i]);
@@ -35,9 +37,9 @@ namespace Platformer.Levels {
             
             SpriteRenderer spriteRenderer = transform.GetComponent<SpriteRenderer>();
             if (spriteRenderer != null) {
-                DecorationLayer l = m_Layers.Find(_l => _l.sortingLayer == spriteRenderer.sortingLayer);
+                DecorationLayer l = m_Layers.Find(_l => _l.sortingLayer == spriteRenderer.sortingLayerName);
                 if (l != null) {
-                    transform.SetParent(l);
+                    transform.SetParent(l.transform);
                 }
             }
 

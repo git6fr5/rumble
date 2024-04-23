@@ -37,10 +37,10 @@ namespace Platformer.Levels {
         void Update() {
             if (!Application.isPlaying) {
                 SetName();
-                // if (DecorationEditor.CurrentLayer == this) { 
-                //     ParentAllDecorations(transform);
-                //     ParentAllSpriteRenderers(transform);
-                // }
+                if (DecorationEditor.CurrentLayer == this) { 
+                    ParentAllDecorations(transform);
+                    ParentAllSpriteRenderers(transform);
+                }
 
                 // m_Decorations = transform.GetComponentsInChildren<Decoration>();
                 m_SpriteRenderers = transform.GetComponentsInChildren<SpriteRenderer>();
@@ -63,7 +63,7 @@ namespace Platformer.Levels {
             gameObject.name = roomName + " " + m_SortingLayer + " " + m_SortingOrderOffset.ToString(); // " (" + matName + ")";
         }
 
-        void ParentAllDecorations(Transform parent) {
+        public void ParentAllDecorations(Transform parent) {
             Decoration[] allObjects = (Decoration[])GameObject.FindObjectsOfType<Decoration>();
             for (int i = 0; i < allObjects.Length; i++) {
                 if (allObjects[i].transform.parent == null) {
@@ -73,14 +73,13 @@ namespace Platformer.Levels {
 
         }
 
-        void ParentAllSpriteRenderers(Transform parent) {
+        public void ParentAllSpriteRenderers(Transform parent) {
             SpriteRenderer[] allObjects = (SpriteRenderer[])GameObject.FindObjectsOfType<SpriteRenderer>();
             for (int i = 0; i < allObjects.Length; i++) {
                 if (allObjects[i].transform.parent == null) {
                     allObjects[i].transform.SetParent(transform);
                 }
             }
-
         }
 
         void EditSpriteRenderer(SpriteRenderer spriteRenderer, Material mat, string sortingLayer, int sortingOrder, Color color) {

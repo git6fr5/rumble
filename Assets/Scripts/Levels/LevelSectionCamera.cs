@@ -18,6 +18,7 @@ namespace Platformer.Levels {
         private const float BOUNDARYBOX_SHAVE = 1.99f * 0.25f; // 0.1f; // 0.775f;
 
         // The trigger box for this camera node.
+        [SerializeField]
         private BoxCollider2D m_Box;
         public BoxCollider2D Box => m_Box;
 
