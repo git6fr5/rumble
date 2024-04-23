@@ -25,7 +25,22 @@ namespace Platformer.Levels {
         }
 
         public void GetLayers() {
-            m_Layers = transform.GetComponentsInChildren<DecorationLayer>();
+            DecorationLayer[] _layers = transform.GetComponentsInChildren<DecorationLayer>();
+            for (int i = 0; i < _layers.Length; i++) {
+                m_Layers.Add(_layers[i]);
+            }
+        }
+
+        public void ParentToSection(Transform transform) {
+            
+            SpriteRenderer spriteRenderer = transform.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null) {
+                DecorationLayer l = m_Layers.Find(_l => _l.sortingLayer == spriteRenderer.sortingLayer);
+                if (l != null) {
+                    transform.SetParent(l);
+                }
+            }
+
         }
 
     }

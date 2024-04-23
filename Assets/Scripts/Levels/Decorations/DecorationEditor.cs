@@ -22,7 +22,8 @@ namespace Platformer.Levels {
         private List<DecorationSection> m_DecorationSection = new List<DecorationSection>();
 
         [Header("Controls")]
-        public bool m_Reorganize = false;
+        public bool m_UpdateSections = false;
+        public bool m_Reposition = false;
 
         [SerializeField]
         private DecorationLayer m_CurrentLayer = null;
@@ -35,7 +36,13 @@ namespace Platformer.Levels {
                 }
             }
 
+            if (m_Reposition && !Application.isPlaying) {
+                Reposition();
+                m_Reposition = false;
+            }
+
             if (m_Reorganize && !Application.isPlaying) {
+                Reorganize();
                 m_Reorganize = false;
             }
 
@@ -43,9 +50,9 @@ namespace Platformer.Levels {
             //     m_Reorganize = false;
             // }
 
-            // if (m_UpdateSections) {
-            //     UpdateDecorationSections();
-            // }
+            if (m_UpdateSections) {
+                UpdateDecorationSections();
+            }
             
         }
 
@@ -53,8 +60,47 @@ namespace Platformer.Levels {
             if (m_LevelManager == null) { return; }
 
             foreach (DecorationSection section in m_DecorationSection) {
-                // FindLevelSection();
+                
+                if (section.levelSection != null) {
+                    section.transform.position = section.levelSection.GetComponent<BoxCollider2D>().offset;
+                }
+
             } 
+
+        }
+
+        private void Reorganize() {
+
+            List<Transform> unorganizedTransforms = new List<Transform>();
+
+            foreach (DecorationSection section in m_DecorationSection) {
+                foreach (DecorationLayer layer in section.layers) {
+                    foreach (Transform child in layer.transform) {
+
+                        if (section.levelSection != null) {
+
+                            if (!section.levelSection.camHandles.Box.bounds.Contains(child.position)) {
+                                unorganizedTransforms.Add(child);
+                            }
+
+                        }
+
+                    }
+                }
+            }
+
+            foreach (Transform child in unorganizedTransforms) {
+                
+                foreach (DecorationSection section in m_DecorationSection) {
+                    if (section.levelSection != null) {
+                        if (section.levelSection.camHandles.Box.bounds.Contains(child.position)) {
+                            section.ParentToSection(child);
+                            break;
+                        }
+                    }
+                }
+
+            }
 
         }
 

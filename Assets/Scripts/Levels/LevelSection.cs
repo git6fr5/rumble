@@ -29,10 +29,7 @@ namespace Platformer.Levels {
         // The trigger box for the camera.
         [SerializeField]
         private LevelSectionCamera m_CameraBox;
-
-        // The trigger box for the entities.
-        [SerializeField]
-        private BoxCollider2D m_TriggerBox;
+        public LevelSectionCamera camHandles => m_CameraBox;
 
         // The id of this level.
         [SerializeField]
@@ -78,53 +75,13 @@ namespace Platformer.Levels {
             Camera camera = Gobblefish.Graphics.GraphicsManager.MainCamera;
             (Vector2, Vector2) camCorners = camera.GetCorners();
 
-            if (m_TriggerBox == null) {
-                return false;
-            }
-
             Vector3 dim = (Vector3)(camCorners.Item2 - camCorners.Item1) + Vector3.forward;
             Bounds camBounds = new Bounds((camCorners.Item1 + camCorners.Item2) / 2f, dim);
-            return camBounds.Intersects(m_TriggerBox.bounds);
+            return camBounds.Intersects(m_CameraBox.Box.bounds);
 
 
-            // if (camera.FullyOnScreen(min, max)) {
-            //     return true;
-            // }
-
-            // // if the min corner is within the screen
-            // // so greater than cam min and less than cam max.
-            // bool minCornerA = min.x >= camCorners.Item1.x && min.y >= camCorners.Item1.y;
-            // bool minCornerB = min.x <= camCorners.Item2.x && min.y <= camCorners.Item2.y;
-            
-            // if (m_ID == 0) {
-            //     print("Min Corner A : " + minCornerA.ToString());
-            //     print("Min Corner B : " + minCornerB.ToString());
-            // }
-
-            // // if the max corner is within the screen
-            // // so greater than cam min and less than cam max.
-            // bool maxCornerA = max.x >= camCorners.Item1.x && max.y >= camCorners.Item1.y;
-            // bool maxCornerB = max.x <= camCorners.Item2.x && max.y <= camCorners.Item2.y;
-
-            // if (minCornerA && minCornerB) {
-            //     return true;
-            // }
-            // if (maxCornerA && maxCornerB) {
-            //     return true;
-            // }
-
-            // if (minCornerA && (max.x >= camCorners.Item2.x || max.y >= camCorners.Item2.y)) {
-            //     return true;
-            // }
-            // if ((min.x <= camCorners.Item1.x || min.y <= camCorners.Item1.y) && maxCornerB) {
-            //     return true;
-            // }
-
-            // return false;
         }
 
-        public Vector2 min;
-        public Vector2 max;
         public void Set(int jsonID, LDtkUnity.LdtkJson json) {
             transform.localPosition = Vector3.zero;
 
@@ -136,15 +93,6 @@ namespace Platformer.Levels {
             m_WorldPosition.x = (int)(m_LDtkLevel.WorldX / json.DefaultGridSize);
             
             m_CameraBox = LevelSectionCamera.New(this);
-
-            m_TriggerBox = GetComponent<BoxCollider2D>();
-            m_TriggerBox.isTrigger = true;
-            m_TriggerBox.size = new Vector2((float)Width, (float)Height);
-            m_TriggerBox.offset = WorldCenter;
-
-            min = new Vector2(m_TriggerBox.offset.x - m_TriggerBox.size.x, m_TriggerBox.offset.y - m_TriggerBox.size.y);
-            max = new Vector2(m_TriggerBox.offset.x + m_TriggerBox.size.x, m_TriggerBox.offset.y + m_TriggerBox.size.y);
-            
         }
 
         public void GenerateEntities(LDtk.LDtkEntityManager entityManager, LDtkLayers ldtkLayers) {

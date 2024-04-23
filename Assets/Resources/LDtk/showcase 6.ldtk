@@ -11,7 +11,7 @@
 	"iid": "54884560-7820-11ed-b2f0-7b0f41a55bad",
 	"jsonVersion": "1.2.5",
 	"appBuildId": 464870,
-	"nextUid": 215,
+	"nextUid": 220,
 	"identifierStyle": "Uppercase",
 	"toc": [],
 	"worldLayout": "Free",
@@ -40,7 +40,7 @@
 	"defs": { "layers": [
 		{
 			"__type": "Tiles",
-			"identifier": "CAMERA",
+			"identifier": "ALTERNATE",
 			"type": "Tiles",
 			"uid": 142,
 			"doc": null,
@@ -104,7 +104,7 @@
 			"guideGridWid": 0,
 			"guideGridHei": 0,
 			"displayOpacity": 1,
-			"inactiveOpacity": 1,
+			"inactiveOpacity": 0.5,
 			"hideInList": false,
 			"hideFieldsWhenInactive": false,
 			"canSelectWhenInactive": true,
@@ -132,7 +132,7 @@
 			"guideGridWid": 0,
 			"guideGridHei": 0,
 			"displayOpacity": 1,
-			"inactiveOpacity": 1,
+			"inactiveOpacity": 0.5,
 			"hideInList": false,
 			"hideFieldsWhenInactive": false,
 			"canSelectWhenInactive": true,
@@ -197,13 +197,13 @@
 		},
 		{
 			"__cWid": 5,
-			"__cHei": 1,
+			"__cHei": 4,
 			"identifier": "GROUND",
 			"uid": 2,
 			"relPath": "References/reference_ldtk_ground.png",
 			"embedAtlas": null,
 			"pxWid": 80,
-			"pxHei": 16,
+			"pxHei": 64,
 			"tileGridSize": 16,
 			"spacing": 0,
 			"padding": 0,
@@ -212,7 +212,10 @@
 			"enumTags": [],
 			"customData": [],
 			"savedSelections": [],
-			"cachedPixelData": { "opaqueTiles": "11111", "averageColors": "f444f576f566f5b7f587" }
+			"cachedPixelData": {
+				"opaqueTiles": "11000000001100011000",
+				"averageColors": "f555f55500000000000000000000000000000000f142f142000000000000f142f142000000000000"
+			}
 		},
 		{
 			"__cWid": 8,
@@ -260,7 +263,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -518,7 +521,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -695,7 +698,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -880,7 +883,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -1090,7 +1093,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -1306,7 +1309,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -1556,7 +1559,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -1774,7 +1777,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -2010,7 +2013,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -2241,7 +2244,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -2497,7 +2500,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -2748,7 +2751,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -2999,7 +3002,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -3227,7 +3230,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -3462,7 +3465,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -3687,7 +3690,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -3894,7 +3897,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -4173,7 +4176,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -4391,7 +4394,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -4646,7 +4649,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -4917,7 +4920,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -5196,7 +5199,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -5446,7 +5449,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -5625,7 +5628,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -5873,7 +5876,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -6122,7 +6125,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -6370,7 +6373,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -6589,7 +6592,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 22,
@@ -7003,7 +7006,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 22,
@@ -7369,7 +7372,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 22,
@@ -7746,7 +7749,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -7998,7 +8001,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -8230,7 +8233,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -8451,7 +8454,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 47,
 					"__cHei": 11,
@@ -8976,7 +8979,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 30,
 					"__cHei": 11,
@@ -9239,7 +9242,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 22,
@@ -9464,7 +9467,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 22,
@@ -9672,7 +9675,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 22,
@@ -9901,7 +9904,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 38,
 					"__cHei": 11,
@@ -10230,7 +10233,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 38,
 					"__cHei": 11,
@@ -10553,7 +10556,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 38,
 					"__cHei": 11,
@@ -10822,7 +10825,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 38,
 					"__cHei": 11,
@@ -11154,7 +11157,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 11,
 					"__cHei": 22,
@@ -11331,69 +11334,69 @@
 						{ "px": [160,144], "src": [0,0], "f": 0, "t": 0, "d": [109] },
 						{ "px": [0,160], "src": [0,0], "f": 0, "t": 0, "d": [110] },
 						{ "px": [16,160], "src": [0,0], "f": 0, "t": 0, "d": [111] },
-						{ "px": [32,160], "src": [0,0], "f": 0, "t": 0, "d": [112] },
-						{ "px": [48,160], "src": [0,0], "f": 0, "t": 0, "d": [113] },
+						{ "px": [32,160], "src": [16,0], "f": 0, "t": 1, "d": [112] },
+						{ "px": [48,160], "src": [16,0], "f": 0, "t": 1, "d": [113] },
 						{ "px": [128,160], "src": [0,0], "f": 0, "t": 0, "d": [118] },
 						{ "px": [144,160], "src": [0,0], "f": 0, "t": 0, "d": [119] },
 						{ "px": [160,160], "src": [0,0], "f": 0, "t": 0, "d": [120] },
 						{ "px": [0,176], "src": [0,0], "f": 0, "t": 0, "d": [121] },
 						{ "px": [16,176], "src": [0,0], "f": 0, "t": 0, "d": [122] },
-						{ "px": [32,176], "src": [0,0], "f": 0, "t": 0, "d": [123] },
-						{ "px": [48,176], "src": [0,0], "f": 0, "t": 0, "d": [124] },
+						{ "px": [32,176], "src": [16,0], "f": 0, "t": 1, "d": [123] },
+						{ "px": [48,176], "src": [16,0], "f": 0, "t": 1, "d": [124] },
 						{ "px": [128,176], "src": [0,0], "f": 0, "t": 0, "d": [129] },
 						{ "px": [144,176], "src": [0,0], "f": 0, "t": 0, "d": [130] },
 						{ "px": [160,176], "src": [0,0], "f": 0, "t": 0, "d": [131] },
 						{ "px": [0,192], "src": [0,0], "f": 0, "t": 0, "d": [132] },
 						{ "px": [16,192], "src": [0,0], "f": 0, "t": 0, "d": [133] },
-						{ "px": [32,192], "src": [0,0], "f": 0, "t": 0, "d": [134] },
-						{ "px": [48,192], "src": [0,0], "f": 0, "t": 0, "d": [135] },
+						{ "px": [32,192], "src": [16,0], "f": 0, "t": 1, "d": [134] },
+						{ "px": [48,192], "src": [16,0], "f": 0, "t": 1, "d": [135] },
 						{ "px": [128,192], "src": [0,0], "f": 0, "t": 0, "d": [140] },
 						{ "px": [144,192], "src": [0,0], "f": 0, "t": 0, "d": [141] },
 						{ "px": [160,192], "src": [0,0], "f": 0, "t": 0, "d": [142] },
 						{ "px": [0,208], "src": [0,0], "f": 0, "t": 0, "d": [143] },
 						{ "px": [16,208], "src": [0,0], "f": 0, "t": 0, "d": [144] },
-						{ "px": [32,208], "src": [0,0], "f": 0, "t": 0, "d": [145] },
-						{ "px": [48,208], "src": [0,0], "f": 0, "t": 0, "d": [146] },
+						{ "px": [32,208], "src": [16,0], "f": 0, "t": 1, "d": [145] },
+						{ "px": [48,208], "src": [16,0], "f": 0, "t": 1, "d": [146] },
 						{ "px": [128,208], "src": [0,0], "f": 0, "t": 0, "d": [151] },
 						{ "px": [144,208], "src": [0,0], "f": 0, "t": 0, "d": [152] },
 						{ "px": [160,208], "src": [0,0], "f": 0, "t": 0, "d": [153] },
 						{ "px": [0,224], "src": [0,0], "f": 0, "t": 0, "d": [154] },
 						{ "px": [16,224], "src": [0,0], "f": 0, "t": 0, "d": [155] },
-						{ "px": [32,224], "src": [0,0], "f": 0, "t": 0, "d": [156] },
-						{ "px": [48,224], "src": [0,0], "f": 0, "t": 0, "d": [157] },
+						{ "px": [32,224], "src": [16,0], "f": 0, "t": 1, "d": [156] },
+						{ "px": [48,224], "src": [16,0], "f": 0, "t": 1, "d": [157] },
 						{ "px": [128,224], "src": [0,0], "f": 0, "t": 0, "d": [162] },
 						{ "px": [144,224], "src": [0,0], "f": 0, "t": 0, "d": [163] },
 						{ "px": [160,224], "src": [0,0], "f": 0, "t": 0, "d": [164] },
 						{ "px": [0,240], "src": [0,0], "f": 0, "t": 0, "d": [165] },
 						{ "px": [16,240], "src": [0,0], "f": 0, "t": 0, "d": [166] },
-						{ "px": [32,240], "src": [0,0], "f": 0, "t": 0, "d": [167] },
-						{ "px": [48,240], "src": [0,0], "f": 0, "t": 0, "d": [168] },
+						{ "px": [32,240], "src": [16,0], "f": 0, "t": 1, "d": [167] },
+						{ "px": [48,240], "src": [16,0], "f": 0, "t": 1, "d": [168] },
 						{ "px": [128,240], "src": [0,0], "f": 0, "t": 0, "d": [173] },
 						{ "px": [144,240], "src": [0,0], "f": 0, "t": 0, "d": [174] },
 						{ "px": [160,240], "src": [0,0], "f": 0, "t": 0, "d": [175] },
 						{ "px": [0,256], "src": [0,0], "f": 0, "t": 0, "d": [176] },
 						{ "px": [16,256], "src": [0,0], "f": 0, "t": 0, "d": [177] },
-						{ "px": [32,256], "src": [0,0], "f": 0, "t": 0, "d": [178] },
-						{ "px": [48,256], "src": [0,0], "f": 0, "t": 0, "d": [179] },
+						{ "px": [32,256], "src": [16,0], "f": 0, "t": 1, "d": [178] },
+						{ "px": [48,256], "src": [16,0], "f": 0, "t": 1, "d": [179] },
 						{ "px": [128,256], "src": [0,0], "f": 0, "t": 0, "d": [184] },
 						{ "px": [144,256], "src": [0,0], "f": 0, "t": 0, "d": [185] },
 						{ "px": [160,256], "src": [0,0], "f": 0, "t": 0, "d": [186] },
 						{ "px": [0,272], "src": [0,0], "f": 0, "t": 0, "d": [187] },
 						{ "px": [16,272], "src": [0,0], "f": 0, "t": 0, "d": [188] },
-						{ "px": [32,272], "src": [0,0], "f": 0, "t": 0, "d": [189] },
-						{ "px": [48,272], "src": [0,0], "f": 0, "t": 0, "d": [190] },
+						{ "px": [32,272], "src": [16,0], "f": 0, "t": 1, "d": [189] },
+						{ "px": [48,272], "src": [16,0], "f": 0, "t": 1, "d": [190] },
 						{ "px": [0,288], "src": [0,0], "f": 0, "t": 0, "d": [198] },
 						{ "px": [16,288], "src": [0,0], "f": 0, "t": 0, "d": [199] },
-						{ "px": [32,288], "src": [0,0], "f": 0, "t": 0, "d": [200] },
-						{ "px": [48,288], "src": [0,0], "f": 0, "t": 0, "d": [201] },
+						{ "px": [32,288], "src": [16,0], "f": 0, "t": 1, "d": [200] },
+						{ "px": [48,288], "src": [16,0], "f": 0, "t": 1, "d": [201] },
 						{ "px": [0,304], "src": [0,0], "f": 0, "t": 0, "d": [209] },
 						{ "px": [16,304], "src": [0,0], "f": 0, "t": 0, "d": [210] },
-						{ "px": [32,304], "src": [0,0], "f": 0, "t": 0, "d": [211] },
-						{ "px": [48,304], "src": [0,0], "f": 0, "t": 0, "d": [212] },
+						{ "px": [32,304], "src": [16,0], "f": 0, "t": 1, "d": [211] },
+						{ "px": [48,304], "src": [16,0], "f": 0, "t": 1, "d": [212] },
 						{ "px": [0,320], "src": [0,0], "f": 0, "t": 0, "d": [220] },
 						{ "px": [16,320], "src": [0,0], "f": 0, "t": 0, "d": [221] },
-						{ "px": [32,320], "src": [0,0], "f": 0, "t": 0, "d": [222] },
-						{ "px": [48,320], "src": [0,0], "f": 0, "t": 0, "d": [223] },
+						{ "px": [32,320], "src": [16,0], "f": 0, "t": 1, "d": [222] },
+						{ "px": [48,320], "src": [16,0], "f": 0, "t": 1, "d": [223] },
 						{ "px": [0,336], "src": [0,0], "f": 0, "t": 0, "d": [231] },
 						{ "px": [16,336], "src": [0,0], "f": 0, "t": 0, "d": [232] },
 						{ "px": [32,336], "src": [0,0], "f": 0, "t": 0, "d": [233] },
@@ -11440,7 +11443,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -11774,7 +11777,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 5,
 					"__cHei": 22,
@@ -12009,7 +12012,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 73,
 					"__cHei": 11,
@@ -12944,7 +12947,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 19,
 					"__cHei": 11,
@@ -13278,7 +13281,7 @@
 			"fieldInstances": [],
 			"layerInstances": [
 				{
-					"__identifier": "CAMERA",
+					"__identifier": "ALTERNATE",
 					"__type": "Tiles",
 					"__cWid": 111,
 					"__cHei": 4,

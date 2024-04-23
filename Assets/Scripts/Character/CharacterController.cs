@@ -159,6 +159,8 @@ namespace Platformer.Character {
             Disable(respawnDelay);
             m_DefaultAction.Enable(this, false, true);
             DisableAllAbilityActions();
+            m_Animator.SetPowerIndicator(null);
+
             // m_Body.velocity = -m_Body.velocity; // (-Vector3.up * 2f);
             // if (m_Body.velocity.sqrMagnitude == 0f) {
             //     m_Body.velocity = Vector3.up * 2f;
@@ -181,6 +183,7 @@ namespace Platformer.Character {
             // m_Body.AddTorque(10f);
 
             m_Dying = true;
+            
 
             // transform.position = m_Respawn.RespawnPosition;
             StartCoroutine(IERespawn(respawnDelay, floatTime));

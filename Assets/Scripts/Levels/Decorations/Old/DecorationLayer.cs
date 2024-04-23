@@ -19,6 +19,7 @@ namespace Platformer.Levels {
 
         [SerializeField]
         private string m_SortingLayer;
+        public string sortingLayer => m_SortingLayer;
 
         [SerializeField]
         private Color m_Color = new Color(1f, 1f, 1f, 1f);
@@ -36,10 +37,10 @@ namespace Platformer.Levels {
         void Update() {
             if (!Application.isPlaying) {
                 SetName();
-                if (DecorationEditor.CurrentLayer == this) { 
-                    ParentAllDecorations(transform);
-                    ParentAllSpriteRenderers(transform);
-                }
+                // if (DecorationEditor.CurrentLayer == this) { 
+                //     ParentAllDecorations(transform);
+                //     ParentAllSpriteRenderers(transform);
+                // }
 
                 // m_Decorations = transform.GetComponentsInChildren<Decoration>();
                 m_SpriteRenderers = transform.GetComponentsInChildren<SpriteRenderer>();
