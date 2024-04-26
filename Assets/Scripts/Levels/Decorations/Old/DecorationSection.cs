@@ -31,6 +31,9 @@ namespace Platformer.Levels {
             for (int i = 0; i < _layers.Length; i++) {
                 m_Layers.Add(_layers[i]);
             }
+
+            // for (int i = 0; i < )
+
         }
 
         public void ParentToSection(Transform transform) {
