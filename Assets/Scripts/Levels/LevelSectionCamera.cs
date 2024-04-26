@@ -15,9 +15,10 @@ namespace Platformer.Levels {
     public class LevelSectionCamera : MonoBehaviour {
 
         // The slight shave off the boundary box for entering/exiting.
-        private const float BOUNDARYBOX_SHAVE = 1.99f * 0.375f; // 0.1f; // 0.775f;
+        private const float BOUNDARYBOX_SHAVE = 1.99f * 0.25f; // 0.1f; // 0.775f;
 
         // The trigger box for this camera node.
+        [SerializeField]
         private BoxCollider2D m_Box;
         public BoxCollider2D Box => m_Box;
 
@@ -54,7 +55,7 @@ namespace Platformer.Levels {
         void OnTriggerEnter2D(Collider2D collider) {
             if (collider == PlayerManager.Character.Collider) {
                 Debug.Log(gameObject.name);
-                GraphicsManager.CamMovement.AddTarget(transform);
+                GraphicsManager.CamMovement.AddTarget(this);
                 // cameraMovement.SetDefaultTarget(transform);
                 // cameraMovement.RemoveAll()
             }
@@ -62,8 +63,49 @@ namespace Platformer.Levels {
 
         void OnTriggerExit2D(Collider2D collider) {
             if (collider == PlayerManager.Character.Collider) {
-                GraphicsManager.CamMovement.RemoveTarget(transform);
+                GraphicsManager.CamMovement.RemoveTarget(this);
             }
+        }
+
+        public Vector2 GetPosition(Transform track) {
+            return CheckBounds(transform.position, track.position);
+        }
+
+        private Vector2 CheckBounds(Vector2 centerPosition, Vector2 trackPosition) {
+
+            if (m_Box == null) {
+                m_Box = gameObject.GetComponent<BoxCollider2D>();
+                Debug.Log("Box was null");
+            }
+
+            Vector2 size = m_Box.size / 2f;
+            Vector2 dim = GraphicsManager.MainCamera.GetOrthographicDimensions() / 2f;
+
+            float y = CheckDim(trackPosition.y, dim.y, centerPosition.y, size.y);
+            float x = CheckDim(trackPosition.x, dim.x, centerPosition.x, size.x);
+            
+            return new Vector2(x, y); 
+            
+        }
+
+        private float CheckDim(float track, float dim, float center, float size) {
+            float a = track;
+            if (size < dim) {
+                a = center;
+            }
+            else {
+                // If the top of the camera is higher than the box.
+                if (track + dim > center + size) {
+                    // print("tracked position ")
+                    a = center + size - dim; 
+                }
+                // If the bottom of the camera is less than the box.
+                if (track - dim < center - size) {
+                    // Move the bottom of the camera up to the bottom of the level.
+                    a = center - size + dim;
+                }
+            }
+            return a;
         }
 
         public bool debug = true;

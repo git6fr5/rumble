@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-using Platformer.LevelEditing;
 using Gobblefish;
 
-namespace Platformer.LevelEditing {
+namespace Platformer.Levels {
 
     ///<summary>
     ///
@@ -20,6 +19,7 @@ namespace Platformer.LevelEditing {
 
         [SerializeField]
         private string m_SortingLayer;
+        public string sortingLayer => m_SortingLayer;
 
         [SerializeField]
         private Color m_Color = new Color(1f, 1f, 1f, 1f);
@@ -63,7 +63,7 @@ namespace Platformer.LevelEditing {
             gameObject.name = roomName + " " + m_SortingLayer + " " + m_SortingOrderOffset.ToString(); // " (" + matName + ")";
         }
 
-        void ParentAllDecorations(Transform parent) {
+        public void ParentAllDecorations(Transform parent) {
             Decoration[] allObjects = (Decoration[])GameObject.FindObjectsOfType<Decoration>();
             for (int i = 0; i < allObjects.Length; i++) {
                 if (allObjects[i].transform.parent == null) {
@@ -73,14 +73,13 @@ namespace Platformer.LevelEditing {
 
         }
 
-        void ParentAllSpriteRenderers(Transform parent) {
+        public void ParentAllSpriteRenderers(Transform parent) {
             SpriteRenderer[] allObjects = (SpriteRenderer[])GameObject.FindObjectsOfType<SpriteRenderer>();
             for (int i = 0; i < allObjects.Length; i++) {
                 if (allObjects[i].transform.parent == null) {
                     allObjects[i].transform.SetParent(transform);
                 }
             }
-
         }
 
         void EditSpriteRenderer(SpriteRenderer spriteRenderer, Material mat, string sortingLayer, int sortingOrder, Color color) {

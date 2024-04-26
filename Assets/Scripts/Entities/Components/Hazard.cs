@@ -20,10 +20,12 @@ namespace Platformer.Entities.Components {
     public class Hazard : MonoBehaviour {
 
         // Collects this orb.
-        public void Kill() {
-            Debug.Log("Player killed");
-            CharacterController character = PlayerManager.Character;
-            character.Reset();
+        public void Kill(CharacterController character) {
+            if (character == PlayerManager.Character) { 
+                character.Reset();
+                Debug.Log("Player killed"); 
+            }
+            // CharacterController character = PlayerManager.Character;
         }
         
     }

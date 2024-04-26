@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff1bcf3ae7710244973163e4353aacd, type: 3}
+  m_Name: herbert_sounds
+  m_EditorClassIdentifier: 
+  m_Snippets:
+  - name: Footstep1
+    clip: {fileID: 8300000, guid: 5a34968c3143146d8813444e12487e0b, type: 3}
+    volume: 0.327
+    priority: 0
+  - name: Footstep2
+    clip: {fileID: 8300000, guid: 0bc6b78105640426493b511ded4e32b9, type: 3}
+    volume: 0.236
+    priority: 0
+  - name: Footstep3
+    clip: {fileID: 8300000, guid: ff98096e74a2947ad9e4b16fedde180c, type: 3}
+    volume: 0.241
+    priority: 0
+  - name: OnJump
+    clip: {fileID: 8300000, guid: 7c93c4fa1ad1a463eacfd42eb14efd36, type: 3}
+    volume: 0.376
+    priority: 0
+  - name: OnLand
+    clip: {fileID: 8300000, guid: 0e83422ad482949ceb9ff6533dc45759, type: 3}
+    volume: 0.343
+    priority: 0
+  - name: WhileJumping
+    clip: {fileID: 8300000, guid: 21b2caf911c124ddeb1b4e6b4056068d, type: 3}
+    volume: 0.198
+    priority: 0
+  - name: WhileCharging
+    clip: {fileID: 8300000, guid: f4d5690ef871cc64395fe48487cd3c39, type: 3}
+    volume: 0.347
+    priority: 0
+  - name: OnStartHop
+    clip: {fileID: 8300000, guid: 9c725ad98df2d4db7866cd4275d5837d, type: 3}
+    volume: 0.306
+    priority: 0

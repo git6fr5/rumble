@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 // Gobblefish.
 using Gobblefish.Audio;
+using Gobblefish.Animation;
 // Platformer.
 using Platformer.Physics;
 
@@ -15,7 +16,7 @@ namespace Platformer.Character {
     ///<summary>
     /// The default ability for controlling the character.
     ///<summary>
-    [System.Serializable]
+    [CreateAssetMenu(fileName="DefaultAction", menuName ="Actions/Default")]
     public class DefaultAction : CharacterAction {
 
         #region Variables
@@ -36,6 +37,12 @@ namespace Platformer.Character {
 
         // The maximum speed with which this character can fall.
         public const float MAX_FALL_SPEED = 25f;
+
+        // The maximum speed with which this character can fall.
+        public const float REST_IDLE = 1.5f;
+
+        // The maximum speed with which this character can fall.
+        public const float SITTING_IDLE = 4f;
 
         /* --- Member Variables --- */
 
@@ -113,65 +120,39 @@ namespace Platformer.Character {
         [HideInInspector] 
         private Timer m_HangTimer = new Timer(0f, 0f);
 
-        // The animation for the character when idle.
-        [SerializeField]
-        private Sprite[] m_IdleAnimation = null;
+        // Tracks how long its been since the character reached the m_HangTimer.
+        [HideInInspector] 
+        private float m_IdleTicks = 0f;
 
-        // The animation for the character when moving.
-        [SerializeField]
-        private Sprite[] m_MovementAnimation = null;
+        // Tracks how long its been since the character reached the m_HangTimer.
+        [HideInInspector] 
+        private float m_FootstepTicks = 0f;
+        public float FootstepInterval = 0.3f;
 
-        // The animation for the character when rising.
+        //
         [SerializeField]
-        private Sprite[] m_RisingAnimation = null;
-
-        // The animation for the character when falling.
-        [SerializeField]
-        private Sprite[] m_FallingAnimation = null;
-
-        // The animation for the character when falling fast.
-        [SerializeField]
-        private Sprite[] m_FallingFastAnimation = null;
-        public Sprite[] FallingFastAnim => m_FallingFastAnimation;
-
-        [SerializeField]
-        private VisualEffect m_TrailEffect;
-        public VisualEffect Trail => m_TrailEffect;
-
-        // The effect that plays when the player jumps.
-        [SerializeField]
-        private VisualEffect m_JumpEffect;
-
-        // The sound that plays when the player jumps.
-        [SerializeField]
-        private AudioSnippet m_JumpSound;
-
-        // The effect that plays when the player lands.
-        [SerializeField]
-        private VisualEffect m_LandEffect;
-
-        // The sound that plays when the player lands.
-        [SerializeField]
-        private AudioSnippet m_LandSound;
+        private Vector2 m_Direction = new Vector2(0f, 0f);
 
         #endregion
 
         // When enabling/disabling this ability.
         public override void Enable(CharacterController character, bool enable = true) {
-            base.Enable(character, enable);
+            m_Enabled = enable;
+            m_Refreshed = false;
             m_HangTimer = new Timer(0f, m_HangBuffer);
             m_CoyoteTimer = new Timer(0f, m_CoyoteBuffer);
             RefreshJumpSettings(ref m_JumpSpeed, ref m_Weight, ref m_Sink, m_Height, m_RisingTime, m_FallingTime);
 
-            m_Interacting = false;
             m_MoveEnabled = true;
             m_FallEnabled = true;
+            m_Interacting = false;
             m_ClampJump = false;
+            m_Refreshed = false;
 
-            character.Animator.Push(m_IdleAnimation, CharacterAnimator.AnimationPriority.DefaultIdle);
-            character.Animator.Remove(m_MovementAnimation);
-            character.Animator.Remove(m_RisingAnimation);
-            character.Animator.Remove(m_FallingAnimation);
+            character.Animator.PlayAnimation("Idle");
+            character.Animator.StopAnimation("Moving");
+            character.Animator.StopAnimation("Rising");
+            character.Animator.StopAnimation("Falling");
         }
 
         // When enabling/disabling this ability by movement and falling seperately.
@@ -185,12 +166,14 @@ namespace Platformer.Character {
 
         // Runs once every frame to check the inputs for this ability.
         public override void InputUpdate(CharacterController character) {
-            if (!m_Enabled) { return; }
+            if (!m_Enabled) {  return;  }
 
             // Current.
             if (character.CurrentInteractable == null) {
                 m_Interacting = false;
             }
+
+            m_Direction = new Vector2(character.Input.Direction.Horizontal, character.Input.Direction.Vertical);
 
             // Jumping.
             if (character.Input.Actions[0].Pressed && m_Refreshed) {
@@ -219,8 +202,6 @@ namespace Platformer.Character {
 
         // 
         public override void PhysicsUpdate(CharacterController character, float dt) {
-            if (!m_Enabled) { return; }
-
             // Landing.
             if (character.OnGround && !m_Refreshed) {
                 OnLand(character);
@@ -228,7 +209,10 @@ namespace Platformer.Character {
 
             // Refreshing.
             m_Refreshed = character.OnGround || m_CoyoteTimer.Value > 0f;
-            
+
+            GetDefaultState(character, dt);
+            if (!m_Enabled) { return; }
+
             // Tick the m_CoyoteTimer timer.
             m_CoyoteTimer.TickDownIfElseReset(dt, !character.OnGround);
             if (m_MoveEnabled) { 
@@ -241,6 +225,69 @@ namespace Platformer.Character {
                 WhileDucking(character, dt);
             }
             
+        }
+
+        private void GetDefaultState(CharacterController character, float dt) {
+
+            if (!character.OnGround) {
+                if (character.Rising) {
+                    character.Animator.PlayAnimation("Rising");
+                }
+                else {
+
+                    Vector2 footPosition = character.Body.position + character.Collider.offset + Vector2.down * (character.Collider.radius + 0.1f);
+                    float dist = PhysicsManager.Collisions.DistanceToFirst(footPosition, Vector3.down, PhysicsManager.CollisionLayers.Solid);
+
+                    if (m_HangTimer.Active) {
+                        character.Animator.PlayAnimation("Hanging");
+                    }
+                    else if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
+                        character.Animator.PlayAnimation("FallingFast");
+                    }
+                    else {
+                        character.Animator.PlayAnimation("Falling");
+                    }
+
+                }
+                return;
+            }
+
+            character.Animator.StopAnimation("Rising");
+            character.Animator.StopAnimation("Falling");
+            character.Animator.StopAnimation("Hanging");
+            character.Animator.StopAnimation("FallingFast");
+
+            if (character.Input.Direction.Horizontal != 0f && !character.Disabled) {
+                character.Animator.PlayAnimation("Moving");
+
+                if (m_FootstepTicks == -1f) {
+                    character.Animator.PlayAudioVisualEffect("Footstep"+Random.Range(1,4).ToString());
+                    m_FootstepTicks = 0f;
+                }
+
+                m_FootstepTicks += dt;
+                if (m_FootstepTicks > FootstepInterval) {
+                    character.Animator.PlayAudioVisualEffect("Footstep"+Random.Range(1,4).ToString());
+                    m_FootstepTicks -= FootstepInterval;
+                }
+                m_IdleTicks = 0f;
+            }
+            else {
+                character.Animator.StopAnimation("Moving");
+
+                m_IdleTicks += character.Body.velocity.sqrMagnitude < 0.1f ? dt : 0f;
+                m_FootstepTicks = -1f;
+                if (m_IdleTicks > SITTING_IDLE) {
+                    character.Animator.PlayAnimation("Idle Sit");
+                }
+                else if (m_IdleTicks > REST_IDLE) {
+                    character.Animator.PlayAnimation("Idle Rest");
+                }
+                else {
+                    character.Animator.PlayAnimation("Idle");
+                }
+
+            }
         }
 
         //
@@ -264,8 +311,11 @@ namespace Platformer.Character {
             // These two lines are the key!!!
             character.Body.ClampFallSpeed(0f); 
             character.Body.AddVelocity(Vector2.up * m_JumpSpeed);
+            
             // The effect.
-            character.Animator.PlayAudioVisualEffect(m_JumpEffect, m_JumpSound);
+            character.Animator.PlayAnimation("Jump");
+            character.Animator.PlayAudioVisualEffect("OnJump");
+            character.Animator.PlayAudioVisualEffect("WhileJumping");
 
         }
 
@@ -291,16 +341,21 @@ namespace Platformer.Character {
 
         private void OnLand(CharacterController character) {
             m_ClampJump = false;
-            character.Animator.Remove(m_RisingAnimation);
-            character.Animator.Remove(m_FallingAnimation);
-            character.Animator.PlayAudioVisualEffect(m_LandEffect, m_LandSound);
-            character.Default.Trail.Stop();
+
+            character.Animator.PlayAnimation("OnLand");
+            character.Animator.PlayAudioVisualEffect("OnLand");
+
+            character.Animator.StopAnimation("Rising");
+            character.Animator.StopAnimation("Hanging");
+            character.Animator.StopAnimation("Falling");
+            character.Animator.StopAnimation("FallingFast");
+            // if (character.Trail != null) { character.Trail.Stop(); }
         }
 
         // Process the physics of this action.
         private void WhileMoving(CharacterController character, float dt) {
             // Cache the target and current velocities.
-            float targetSpeed = character.Input.Direction.Horizontal * m_Speed;
+            float targetSpeed = m_Direction.x * m_Speed;
             float currentSpeed = character.Body.velocity.x;
 
             // Calculate the change in velocity this frame.
@@ -315,14 +370,12 @@ namespace Platformer.Character {
 
             // Set the velocity.
             character.Body.SetVelocity(velocity);
-
-            if (character.Input.Direction.Horizontal != 0f) {
-                character.Animator.Push(m_MovementAnimation, CharacterAnimator.AnimationPriority.DefaultMoving);
-            }
-            else {
-                character.Animator.Remove(m_MovementAnimation);
-            }
+            // m_Direction = Vector2.zero;
             
+        }
+
+        public void SetIdleTicks(float ticks) {
+            m_IdleTicks = ticks;
         }
 
         // Not really falling, but rather "while default grav acting on this body"
@@ -342,9 +395,8 @@ namespace Platformer.Character {
                     // If not holding jump, then rapidly slow the rising body.
                     if (!character.Input.Actions[0].Held) {
                         character.Body.SetVelocity(new Vector2(character.Body.velocity.x, character.Body.velocity.y * (1f - RISE_FRICTION)));
+                        character.Animator.StopAudioVisualEffect("WhileJumping");
                     }
-
-                    character.Animator.Push(m_RisingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpRising);
                     
                 }
                 else {
@@ -362,25 +414,10 @@ namespace Platformer.Character {
                         weight *= COYOTE_FRICTION;
                     }
 
-                    Vector2 footPosition = character.Body.position + character.Collider.offset + Vector2.down * (character.Collider.radius + 0.1f);
-                    float dist = PhysicsManager.Collisions.DistanceToFirst(footPosition, Vector3.down, PhysicsManager.CollisionLayers.Solid);
-
-                    if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
-                        character.Animator.Push(m_FallingFastAnimation, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
-                    }
-                    else {
-                        character.Animator.Push(m_FallingAnimation, CharacterAnimator.AnimationPriority.DefaultJumpFalling);
-                    }
-
                 }
 
             }
-            else {
-                character.Animator.Remove(m_RisingAnimation);
-                character.Animator.Remove(m_FallingAnimation);
-                character.Animator.Remove(m_FallingFastAnimation);
-            }
-
+            
             // Set the m_Weight.
             character.Body.SetWeight(weight);
 

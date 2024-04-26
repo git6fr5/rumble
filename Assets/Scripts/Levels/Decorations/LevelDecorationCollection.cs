@@ -7,7 +7,7 @@ using UnityEngine.VFX;
 // Gobblefish.
 using Gobblefish;
 
-using Platformer.LevelEditing;
+using Platformer.Levels;
 
 namespace Platformer {
 

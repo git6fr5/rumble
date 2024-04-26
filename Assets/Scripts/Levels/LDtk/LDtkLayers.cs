@@ -15,6 +15,10 @@ namespace Platformer.Levels.LDtk {
     [System.Serializable]
     public class LDtkLayers {
 
+        [SerializeField]
+        private string m_Alternate = "ALTERNATE";
+        public string Alternate => m_Alternate;
+
         // Layer Names
         [SerializeField]
         private string m_Path = "PATH";

@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
+//
+using Platformer.Entities;
+using Platformer.Entities.Utility;
 
 namespace Platformer.Levels.LDtk {
 
@@ -23,6 +26,9 @@ namespace Platformer.Levels.LDtk {
 
         // A list of all the entities.
         public List<LDtkEntity> All => m_References;
+
+        //
+        public StaticAlternator staticAlternator;
 
         public void CollectReferences() {
             m_References = new List<LDtkEntity>();
@@ -59,6 +65,7 @@ namespace Platformer.Levels.LDtk {
 
             List<LDtkTileData> entityData = LDtkReader.GetLayerData(section.ldtkLevel, ldtkLayers.Entity);
             List<LDtkTileData> pathData = LDtkReader.GetLayerData(section.ldtkLevel, ldtkLayers.Path);
+            List<LDtkTileData> altData = LDtkReader.GetLayerData(section.ldtkLevel, ldtkLayers.Alternate);
 
             List<LDtkEntity> entities = new List<LDtkEntity>();
 
@@ -80,14 +87,22 @@ namespace Platformer.Levels.LDtk {
                     entity.SetPosition(section.WorldPosition);
                     entity.SetPath(pathData);
                     entity.SetLength(entityData); // Can possible destroy this entity.
+                    
+                    entity.SetAlternate(altData, staticAlternator); // Can possible destroy this entity.
 
                     //
                     if (entity != null && entity.gameObject != null) {
                         entities.Add(entity);
                         entity.gameObject.SetActive(true);
+                        if (entity.GetComponent<Platformer.Tests.GetRoomName>() != null) {
+                            entity.GetComponent<Platformer.Tests.GetRoomName>().SetRoomName(section.name);
+                        }
                     }
+
                 }
             }
+
+            Debug.Log(entities.Count);
    
             return entities;
 

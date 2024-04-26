@@ -4,6 +4,8 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.VFX;
+//
+using Gobblefish.Animation;
 // Platformer.
 using Platformer.Physics;
 
@@ -12,17 +14,11 @@ namespace Platformer.Character {
     ///<summary>
     /// An ability that near-instantly moves the character.
     ///<summary>
-    [System.Serializable]
+    [CreateAssetMenu(fileName="StickyAction", menuName ="Actions/Sticky")]
     public class StickyAction : CharacterAction {
-
-        #region Variables
-
-        /* --- Constants --- */
 
         // The threshold speed for ending a wall jump.
         private const float WALLJUMP_SPEED_THRESHOLD = 0.8f;
-
-        /* --- Members --- */
 
         // The speed with which this moves while climbing.
         [SerializeField]
@@ -56,20 +52,6 @@ namespace Platformer.Character {
         [SerializeField]
         private float m_EndClimbBuffer = 0.08f;
 
-        // The animation that plays while climbing.
-        [SerializeField]
-        private Sprite[] m_ClimbAnimation = null;
-
-        // The animation that plays while wall jumping.
-        [SerializeField]
-        private Sprite[] m_WallJumpAnimation = null;
-
-        // // An index to the particle that is associated with the charge timer.
-        // [SerializeField] 
-        // private int m_CircleEffectIndex = -1;
-
-        #endregion
-
         // When enabling/disabling this ability.
         public override void Enable(CharacterController character, bool enable = true) {
             base.Enable(character, enable);
@@ -79,10 +61,6 @@ namespace Platformer.Character {
                 OnEndPostClimb(character);
             }
 
-            if (!enable) {
-                character.Animator.Remove(m_ClimbAnimation);
-                character.Animator.Remove(m_WallJumpAnimation);
-            }
         }
 
         // When this ability is activated.
@@ -151,7 +129,6 @@ namespace Platformer.Character {
         private void OnStartClimb(CharacterController character) {
             // If coming from a wall jump.
             character.LockDirection(false);
-            character.Animator.Remove(m_WallJumpAnimation);
 
             // Set the action phase and timer.
             // Pre action is climbing, actual action is wall jumping.
@@ -163,11 +140,6 @@ namespace Platformer.Character {
             character.Body.SetWeight(0f);
             character.Body.SetVelocity(Vector2.zero);
 
-            // Set the animation.
-            character.Animator.Push(m_ClimbAnimation, CharacterAnimator.AnimationPriority.ActionPreActive);
-            // m_CircleEffectIndex = Game.Visuals.Effects.PlayCircleEffect(m_ClimbDuration, character.transform, Vector3.zero);
-
-            
         }
 
         private void OnEndClimb(CharacterController character) {
@@ -177,11 +149,6 @@ namespace Platformer.Character {
             m_ActionPhase = ActionPhase.PostAction;
             m_ClimbTimer.Start(m_EndClimbBuffer);
 
-            // Remove the animation.
-            character.Animator.Remove(m_ClimbAnimation);
-            // character.Animator.Push(m_PostClimbAnimation);
-            // Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
-
         }
 
         private void OnEndPostClimb(CharacterController character) {
@@ -189,10 +156,6 @@ namespace Platformer.Character {
             m_ActionPhase = ActionPhase.None;
             character.Default.Enable(character, true);
             m_ClimbTimer.Stop();
-
-            // Remove possible animations.
-            character.Animator.Remove(m_ClimbAnimation);
-            character.Animator.Remove(m_WallJumpAnimation);
 
             // If coming from a wall jump.
             character.LockDirection(false);
@@ -208,10 +171,6 @@ namespace Platformer.Character {
             // Set the action phase and pause the climb timer. 
             m_ActionPhase = ActionPhase.MidAction;
             m_ClimbTimer.Stop();
-
-            // Set the animation.
-            character.Animator.Push(m_WallJumpAnimation, CharacterAnimator.AnimationPriority.ActionActive);
-            // Game.Visuals.Effects.StopEffect(m_CircleEffectIndex);
 
         }
 

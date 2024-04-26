@@ -5,6 +5,7 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.Events;
 // Platformer.
 using Platformer.Physics;
 
@@ -60,6 +61,17 @@ namespace Platformer.Entities.Components {
         [SerializeField] 
         private Timer m_CrumbleTimer = new Timer(0f, 0f);
 
+        // Tracks whether        
+        [SerializeField] 
+        private Timer m_InitialCrumbleTimer = new Timer(0f, 0f);
+
+        public UnityEvent m_CrumbleEvent = new UnityEvent();
+
+        public UnityEvent m_CrumbleSecondPhaseEvent = new UnityEvent();
+        private bool m_CrumbleSecondPhaseStarted = false;
+        
+        public UnityEvent m_ReformEvent = new UnityEvent();
+
         // The sound this plays on crumbling.
         // [SerializeField] 
         // private AudioClip m_OnCrumbleSound = null;
@@ -68,12 +80,21 @@ namespace Platformer.Entities.Components {
         // [SerializeField] 
         // private AudioClip m_OnReformSound = null;
 
+        // The strength with which this shakes while crumbling
+        [SerializeField] 
+        private float m_ShakeStrength = 0.12f;
+
+        public Transform m_Renderer;
+
+        private Vector3 m_RendererOrigin;
+
         #endregion
 
         #region Methods.
 
         void Awake() {
             m_Entity = GetComponent<Entity>();
+            m_RendererOrigin = m_Renderer.transform.localPosition;
         }
 
         void Start() {
@@ -117,7 +138,11 @@ namespace Platformer.Entities.Components {
             if (m_CrumbleState != CrumbleState.None) { return; }
 
             m_CrumbleTimer.Start(m_CrumbleDuration);
+            m_InitialCrumbleTimer.Start(m_CrumbleDuration - 0.3f);
+            
             m_CrumbleState = CrumbleState.Crumbling;
+            m_CrumbleSecondPhaseStarted = false;
+
         }
 
         private void OnCrumble() {
@@ -125,22 +150,40 @@ namespace Platformer.Entities.Components {
             m_Entity.EnableColliders(false);
             m_CrumbleTimer.Start(m_ReformDuration);
             // Game.Audio.Sounds.PlaySound(m_OnCrumbleSound, 0.15f);
+
+            m_CrumbleEvent.Invoke();
+
         }
 
         private void OnReform() {
             m_CrumbleState = CrumbleState.None;
             m_Entity.EnableColliders(true);
+
+            m_ReformEvent.Invoke();
+
             // Game.Audio.Sounds.PlaySound(m_OnReformSound, 0.15f);
             // m_Platform.entity.SetMaterialValue("_DissolveAmount", val);
         }
 
         private void WhileCrumbling(float dt) {
-            if (m_CrumbleTimer.InverseRatio < THRESHOLD) { return; }
+            m_InitialCrumbleTimer.TickDown(dt);
+            if (m_InitialCrumbleTimer.Active) {
+                m_Renderer.localPosition = m_RendererOrigin + m_ShakeStrength * (Vector3)Random.insideUnitCircle.normalized;
+            }
+            else {
+                m_Renderer.localPosition = m_RendererOrigin;
+                if (!m_CrumbleSecondPhaseStarted) {
+                    m_CrumbleSecondPhaseEvent.Invoke();
+                    m_CrumbleSecondPhaseStarted = true;
+                }
+            }
 
-            // Game.Audio.Sounds.PlaySound(m_WhileCrumblingSound, Mathf.Sqrt(m_CrumbleTimer.InverseRatio) * 1f);
-            float x = (m_CrumbleTimer.InverseRatio - THRESHOLD) / (1f - THRESHOLD);
-            float val = m_CrumbleScale * m_CrumbleCurve.Evaluate(x);
-            m_Entity.SetMaterialValue("_DissolveAmount", val);
+            // if (m_CrumbleTimer.InverseRatio < THRESHOLD) { return; }
+
+            // // Game.Audio.Sounds.PlaySound(m_WhileCrumblingSound, Mathf.Sqrt(m_CrumbleTimer.InverseRatio) * 1f);
+            // float x = (m_CrumbleTimer.InverseRatio - THRESHOLD) / (1f - THRESHOLD);
+            // float val = m_CrumbleScale * m_CrumbleCurve.Evaluate(x);
+            // m_Entity.SetMaterialValue("_DissolveAmount", val);
         }
 
         private void WhileReforming(float dt) {

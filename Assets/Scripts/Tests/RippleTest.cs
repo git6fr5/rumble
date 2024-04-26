@@ -25,6 +25,12 @@ namespace Platformer.Tests {
             spriteShapeRenderer.materials[1].SetFloat("_StartTime", time);
         }
 
+        public void SetPositionToMainPlayer() {
+            if (Platformer.PlayerManager.Instance != null) {
+                SetPositionToTransform(Platformer.PlayerManager.Character.transform);
+            }
+        }
+
     }
 
 }

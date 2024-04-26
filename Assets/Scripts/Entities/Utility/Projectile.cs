@@ -22,6 +22,11 @@ namespace Platformer.Entities.Utility {
 
         protected Rigidbody2D m_Body;
 
+        protected Vector3 m_Scale;
+
+        [SerializeField]
+        protected bool m_PointInDirection;
+
         public Projectile CreateInstance() {
             Projectile projectile = Instantiate(gameObject).GetComponent<Projectile>();
             projectile.transform.position = transform.position;
@@ -30,6 +35,20 @@ namespace Platformer.Entities.Utility {
 
         void Awake() {
             m_Body = GetComponent<Rigidbody2D>();
+            m_Scale = transform.localScale;
+        }
+
+        void FixedUpdate() {
+            if (m_PointInDirection) {
+                float signedAngle = Vector2.SignedAngle(Vector2.right, m_Body.velocity);
+                if (signedAngle < -90f || signedAngle > 90f) {
+                    signedAngle += 180f;
+                    signedAngle = signedAngle % 360f;
+                    transform.localScale = new Vector3(-m_Scale.x, m_Scale.y, m_Scale.z);
+                }
+                Quaternion direction = Quaternion.Euler(0f, 0f, signedAngle);
+                transform.localRotation = direction;
+            }
         }
 
         public virtual void Fire(float speed, Vector2 direction) {
@@ -40,7 +59,9 @@ namespace Platformer.Entities.Utility {
 
         public void Fire(float speed, Vector2 direction, float torque) {
             Fire(speed, direction);
-            m_Body.AddTorque(torque);
+            if (!m_PointInDirection) {
+                m_Body.AddTorque(torque);
+            }
         }
 
         public void DeleteSelf() {

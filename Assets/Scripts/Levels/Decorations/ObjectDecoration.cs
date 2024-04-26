@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer.LevelEditing {
+namespace Platformer.Levels {
 
     [ExecuteInEditMode]
     public class ObjectDecoration : Decoration {

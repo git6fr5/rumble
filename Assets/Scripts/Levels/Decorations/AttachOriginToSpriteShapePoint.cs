@@ -17,20 +17,24 @@ namespace Platformer.LevelEditing {
         private SpriteShapeController m_SpriteShapeController;
 
         [SerializeField]
-        private int m_Index;
+        private float m_Ratio;
 
         [SerializeField]
         private Transform m_Scale;
 
         void Update() {
 
-            if (m_Index >= m_SpriteShapeController.spline.GetPointCount()) {
+            int index = (int)Mathf.Floor(m_Ratio * m_SpriteShapeController.spline.GetPointCount());
+            if (index >= m_SpriteShapeController.spline.GetPointCount()) {
                 return;
             }
 
-            Vector3 v =  m_SpriteShapeController.spline.GetPosition(m_Index);
-            v.x *= m_Scale.localScale.x;
-            v.y *= m_Scale.localScale.y;
+            Vector3 v =  m_SpriteShapeController.spline.GetPosition(index);
+
+            if (m_Scale != null) {
+                v.x *= m_Scale.localScale.x;
+                v.y *= m_Scale.localScale.y;
+            }
 
             transform.position = m_SpriteShapeController.transform.position + (Quaternion.Euler(0f, 0f, m_SpriteShapeController.transform.eulerAngles.z) * v);
 

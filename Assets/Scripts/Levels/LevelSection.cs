@@ -7,6 +7,7 @@ using UnityEngine;
 // LDtk.
 using LDtkUnity;
 using Platformer.Levels.LDtk;
+using Gobblefish.Graphics;
 
 namespace Platformer.Levels {
 
@@ -28,9 +29,7 @@ namespace Platformer.Levels {
         // The trigger box for the camera.
         [SerializeField]
         private LevelSectionCamera m_CameraBox;
-
-        // The trigger box for the entities.
-        private BoxCollider2D m_TriggerBox;
+        public LevelSectionCamera camHandles => m_CameraBox;
 
         // The id of this level.
         [SerializeField]
@@ -50,6 +49,7 @@ namespace Platformer.Levels {
         public Vector2 WorldCenter => GetCenter(this.Width, this.Height, this.m_WorldPosition);
 
         // The entities currently loaded into the level.
+        [SerializeField]
         private List<LDtkEntity> m_Entities = new List<LDtkEntity>();
         public List<LDtkEntity> Entities => m_Entities;
 
@@ -58,6 +58,28 @@ namespace Platformer.Levels {
             LevelSection section = new GameObject(json.Levels[jsonID].Identifier, typeof(LevelSection)).GetComponent<LevelSection>();
             section.Set(jsonID, json);
             return section;
+        }
+
+        void Update() {
+            
+            if (PartiallyOnScreen() && !entitiesEnabled) {
+                EnableEntities(true);
+            }
+            else if (!PartiallyOnScreen() && entitiesEnabled) {
+                EnableEntities(false);
+            }
+
+        }
+
+        public bool PartiallyOnScreen() {
+            Camera camera = Gobblefish.Graphics.GraphicsManager.MainCamera;
+            (Vector2, Vector2) camCorners = camera.GetCorners();
+
+            Vector3 dim = (Vector3)(camCorners.Item2 - camCorners.Item1) + Vector3.forward;
+            Bounds camBounds = new Bounds((camCorners.Item1 + camCorners.Item2) / 2f, dim);
+            return camBounds.Intersects(m_CameraBox.Box.bounds);
+
+
         }
 
         public void Set(int jsonID, LDtkUnity.LdtkJson json) {
@@ -71,16 +93,12 @@ namespace Platformer.Levels {
             m_WorldPosition.x = (int)(m_LDtkLevel.WorldX / json.DefaultGridSize);
             
             m_CameraBox = LevelSectionCamera.New(this);
-
-            m_TriggerBox = GetComponent<BoxCollider2D>();
-            m_TriggerBox.isTrigger = true;
-            m_TriggerBox.size = new Vector2((float)Width, (float)Height);
-            m_TriggerBox.offset = WorldCenter;
         }
 
         public void GenerateEntities(LDtk.LDtkEntityManager entityManager, LDtkLayers ldtkLayers) {
             m_Entities.RemoveAll(entity => entity == null);
             m_Entities = entityManager.Generate(this, ldtkLayers);
+            Debug.Log(m_Entities.Count);
             m_Entities = m_Entities.FindAll(entity => entity != null);
         }
 
@@ -103,21 +121,29 @@ namespace Platformer.Levels {
         void OnTriggerEnter2D(Collider2D collider) {
             if (collider == PlayerManager.Character.Collider) {
                 LevelManager.SetCurrentSection(this);
-                
-                m_Entities = m_Entities.FindAll(entity => entity != null);
+                // EnableEntities(true);
+            }
+        }
+
+        public bool entitiesEnabled = false;
+        public void EnableEntities(bool enable) {
+            m_Entities = m_Entities.FindAll(entity => entity != null);
+            for (int i = 0; i < m_Entities.Count; i++) {
+                m_Entities[i].gameObject.SetActive(enable);
+            }
+            if (enable) {
                 for (int i = 0; i < m_Entities.Count; i++) {
-                    m_Entities[i].gameObject.SetActive(true);
+                    if (m_Entities[i].GetComponent<Platformer.Entities.Utility.Reset>()) {
+                        m_Entities[i].GetComponent<Platformer.Entities.Utility.Reset>().HardReset();
+                    }
                 }
             }
+            entitiesEnabled = enable;
         }
 
         void OnTriggerExit2D(Collider2D collider) {
             if (collider == PlayerManager.Character.Collider) {
-
-                // m_Entities = m_Entities.FindAll(entity => entity != null);
-                // for (int i = 0; i < m_Entities.Count; i++) {
-                //     m_Entities[i].gameObject.SetActive(false);
-                // }
+                // EnableEntities(false);
             }
         }
 

@@ -98,16 +98,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    currentFrame: 0
+    fps: 8
     sprites:
     - {fileID: 1672226, guid: c1d84b8fa283e4805975a8c1cc211e15, type: 3}
     - {fileID: 182432930, guid: c1d84b8fa283e4805975a8c1cc211e15, type: 3}
     - {fileID: 1767354615, guid: c1d84b8fa283e4805975a8c1cc211e15, type: 3}
     - {fileID: 855120678, guid: c1d84b8fa283e4805975a8c1cc211e15, type: 3}
     ticks: 0
-    fps: 8
-    currentFrame: 0
     orderOffset: 0
   m_Animate: 1
+  m_Loop: 1
+  m_TurnOffOnEnd: 0
+  m_RandomizeInitialTick: 0
 --- !u!1001 &1034626009318600642
 PrefabInstance:
   m_ObjectHideFlags: 0

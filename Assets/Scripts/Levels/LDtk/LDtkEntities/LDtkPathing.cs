@@ -15,6 +15,7 @@ namespace Platformer.Levels.LDtk {
 
         public Vector2Int origin;
         public List<Vector3> nodes;
+        public int speedLevel;
 
         public void Add(Vector2Int node) {
             Vector3 v = (Vector3)(Vector2)(node - origin);
@@ -29,6 +30,7 @@ namespace Platformer.Levels.LDtk {
         public LDtkPath(Vector2Int origin) {
             this.origin = origin;
             this.nodes = new List<Vector3>();
+            this.speedLevel = 0;
             Add(origin);
         }
     } 
@@ -56,7 +58,7 @@ namespace Platformer.Levels.LDtk {
             for (int i = 0; i < ldtkPath.nodes.Count; i++) {
                 pathingNodes.Add(PathingNode.Create(pathing.transform, pathing.transform.position + ldtkPath.nodes[i]));
             }
-            pathing.SetPath(pathingNodes, 4f);
+            pathing.SetPath(pathingNodes, ldtkPath.speedLevel, 4f);
         }
 
         public static Pathing AddPath(this LDtkEntity entity) {
@@ -76,12 +78,15 @@ namespace Platformer.Levels.LDtk {
             // Cache the direction of the path.
             // int speed = 0;
             int xOffset = 0;
+            int speedLevel = 0;
             if (pathTile.vectorID.x == 4) { 
                 return ldtkPath; 
             }
-            if (pathTile.vectorID.x > 4) {
-                xOffset = 5;
-                // speed = 1;
+            
+            if (pathTile.vectorID.x >= 5) {
+                xOffset = 5 * (int)Mathf.Floor((float)pathTile.vectorID.x / 5f);
+                // Debug.Log("X Offset " + xOffset.ToString());
+                speedLevel = (int)Mathf.Floor((float)pathTile.vectorID.x / 5f);
             }
 
             int controlColor = pathTile.vectorID.y;
@@ -98,6 +103,8 @@ namespace Platformer.Levels.LDtk {
             while (continueSearch && distance < 50) {
 
                 distance += 1;
+
+                // if (xOffset > 4) { Debug.Log("X Offset " + distance.ToString()); }
 
                 currentOffset += gridDirection;
                 currentPosition = pathTile.gridPosition + currentOffset;
@@ -134,14 +141,17 @@ namespace Platformer.Levels.LDtk {
                 
             }
 
+            ldtkPath.speedLevel = speedLevel;
+
             return ldtkPath;
 
         }
 
         public static Vector2Int GetGridDirection(LDtkTileData pathTile, int xOffset) {
-            Vector2 worldDirection = Quaternion.Euler(0f, 0f, -90f * pathTile.vectorID.x - xOffset) * Vector2.up;
+            Vector2 worldDirection = Quaternion.Euler(0f, 0f, -90f * (pathTile.vectorID.x - xOffset)) * Vector2.up;
             Vector2Int gridDirection = new Vector2Int((int)Mathf.Round(worldDirection.x), (int)Mathf.Round(worldDirection.y));
             gridDirection.y *= -1;
+            // if (xOffset > 4) { Debug.Log(gridDirection); }
             return gridDirection;
         }
         

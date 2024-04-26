@@ -46,6 +46,9 @@ namespace Platformer.Entities.Components {
         [SerializeField] 
         private float m_SpitSpeed = 10f;
 
+        [SerializeField]
+        private float m_SpitTorque = 0f;
+
         // The projectile that this thing fires.
         [SerializeField]
         private Projectile m_SpitProjectile = null;
@@ -85,7 +88,7 @@ namespace Platformer.Entities.Components {
 
         private void OnSpit() {
             Projectile projectile = m_SpitProjectile.CreateInstance();
-            projectile.Fire(m_SpitSpeed, Quaternion.Euler(0f, 0f, SpitAngle) * Vector2.right, 100f);
+            projectile.Fire(m_SpitSpeed, Quaternion.Euler(0f, 0f, SpitAngle) * Vector2.right, m_SpitTorque);
             
             if (m_SpitSound != null) {
                 m_SpitSound.Play(); // Game.Audio.Sounds.PlaySound(m_SpitSound, 0.15f);

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace Platformer.LevelEditing {
+namespace Platformer.Levels {
 
     [ExecuteInEditMode]
     [RequireComponent(typeof(SpriteRenderer))]

@@ -51,6 +51,12 @@ namespace Platformer.Entities.Components {
         [SerializeField]
         private UnityEvent m_RespawnEvent;
 
+        [SerializeField]
+        private UnityEvent m_ActivateEvent;
+
+        [SerializeField]
+        private UnityEvent m_DeactivateEvent;
+
         // Runs once before the first frame.
         void Start() {
             if (PlayerManager.Character.CurrentRespawn == this) {
@@ -68,9 +74,10 @@ namespace Platformer.Entities.Components {
             }
         }
 
-        public void SetRespawnPoint() {
-            CharacterController character = PlayerManager.Character;
-            character.SetRespawn(this);
+        public void SetRespawnPoint(CharacterController character) {
+            if (character == PlayerManager.Character) {
+                character.SetRespawn(this);
+            }
         }
 
         public void CreateCorpse(CharacterController character) {
@@ -83,26 +90,36 @@ namespace Platformer.Entities.Components {
         }
 
         public void CreateNewShell(CharacterController character) {
-            character.transform.position = transform.position;
+            character.transform.position = transform.position + Vector3.up * 1.5f;
             character.Body.SetVelocity(8f * (transform.localRotation * Vector3.up));
-            character.Animator.Push(character.Default.FallingFastAnim, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
+            // character.Animator.Push(character.Default.FallingFastAnim, CharacterAnimator.AnimationPriority.ActionPassiveFalling);
 
             m_RespawnEvent.Invoke();
         }
 
         public void Activate() {
-            print("activating");
+            if (!m_Active) {
+                m_ActivateEvent.Invoke();
+            }
+            
             m_Active = true;
             if (m_EmissionParticle != null) {
                 m_EmissionParticle.Play();
             }
             if (m_TotalActivatedTime == 0f) {
                 m_FirstActivationTime = PhysicsManager.Time.Ticks;
+
+                Gobblefish.Graphics.GraphicsManager.Starmap.AddPoint(transform.position);
+
             }
             
         }
 
         public void Deactivate() {
+            if (m_Active) {
+                m_DeactivateEvent.Invoke();
+            }
+
             m_Active = false;
             if (m_EmissionParticle != null) {
                 m_EmissionParticle.Stop();

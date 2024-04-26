@@ -9,6 +9,8 @@ Shader "Custom/Ripple"
         _Rotation ("Rotation", float) = 0
         _RipplePos ("Ripple Position", Vector) = (0, 0, 0, 0)
         _StartTime ("StartTime", float) = 0
+        WHATISTHISNUM ("x", float) = 0
+
         [HideInInspector][NoScaleOffset]unity_Lightmaps("unity_Lightmaps", 2DArray) = "" {}
         [HideInInspector][NoScaleOffset]unity_LightmapsInd("unity_LightmapsInd", 2DArray) = "" {}
         [HideInInspector][NoScaleOffset]unity_ShadowMasks("unity_ShadowMasks", 2DArray) = "" {}
@@ -65,6 +67,7 @@ Shader "Custom/Ripple"
             float4 _RipplePos;
             float _Rotation;
             float _StartTime;
+            float WHATISTHISNUM;
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -82,12 +85,12 @@ Shader "Custom/Ripple"
                 float m = _ScrollWavelength * dist;
 
                 // Everything within the distance the wave has travelled through.
-                if (dist < speed * time) {
+                if (dist > speed * time - WHATISTHISNUM && dist < speed * time) {
 
                     // The intensity of the ripple should decrease as time increases and as distance increases.
-                    float ampFactor = 5 / (0.2 * (time * time) + 0.2 * (dist * dist));
+                    float ampFactor = 5 / (0.2 * (time * time) + 4 * (dist * dist));
                     if (ampFactor > 1) { ampFactor = 1; }
-                    i.uv.y += rotFactor * ampFactor * _Amplitude * sin(t + m);
+                    i.uv.y += rotFactor * ampFactor * _Amplitude * sin(3.1415 * t);
                 
                 }
 
