@@ -43,8 +43,8 @@ namespace Platformer.Character {
 
         // Checks whether this ability is enabled.
         [SerializeField] 
-        protected bool m_Enabled = false;
-        public bool Enabled => m_Enabled;
+        protected bool m_ActionEnabled = false;
+        public bool Enabled => m_ActionEnabled;
 
         // Runs through the phases of the dash cycle.
         protected Timer m_ActionTimer = new Timer(0f, 0f);
@@ -96,7 +96,7 @@ namespace Platformer.Character {
 
         // Enables the action.
         public virtual void Enable(CharacterController character, bool enable = true) {
-            m_Enabled = enable;
+            m_ActionEnabled = enable;
             m_Refreshed = enable;
             OnEndAction(character);
         }

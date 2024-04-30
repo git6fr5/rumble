@@ -48,7 +48,7 @@ namespace Platformer.Character {
 
         // When this ability is activated.
         public override void InputUpdate(CharacterController character) {
-            if (!m_Enabled) { return; }
+            if (!m_ActionEnabled) { return; }
 
             // The character should start charging.
             if ((character.Input.Actions[1].Held || character.Input.Actions[1].Pressed) && m_ActionPhase == ActionPhase.None && m_Refreshed) {

@@ -43,7 +43,7 @@
         
 //         // Refreshes the settings for this ability every interval.
 //         public override void PhysicsUpdate(CharacterController character, float dt){
-//             if (!m_Enabled) { return; }
+//             if (!m_ActionEnabled) { return; }
 
 //             // Tick down the climb timer.
 //             bool finished = m_RespawnTimer.TickDown(dt);

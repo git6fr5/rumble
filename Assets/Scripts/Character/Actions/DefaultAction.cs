@@ -137,7 +137,7 @@ namespace Platformer.Character {
 
         // When enabling/disabling this ability.
         public override void Enable(CharacterController character, bool enable = true) {
-            m_Enabled = enable;
+            m_ActionEnabled = enable;
             m_Refreshed = false;
             m_HangTimer = new Timer(0f, m_HangBuffer);
             m_CoyoteTimer = new Timer(0f, m_CoyoteBuffer);
@@ -166,7 +166,7 @@ namespace Platformer.Character {
 
         // Runs once every frame to check the inputs for this ability.
         public override void InputUpdate(CharacterController character) {
-            if (!m_Enabled) {  return;  }
+            if (!m_ActionEnabled) {  return;  }
 
             // Current.
             if (character.CurrentInteractable == null) {
@@ -211,7 +211,7 @@ namespace Platformer.Character {
             m_Refreshed = character.OnGround || m_CoyoteTimer.Value > 0f;
 
             GetDefaultState(character, dt);
-            if (!m_Enabled) { return; }
+            if (!m_ActionEnabled) { return; }
 
             // Tick the m_CoyoteTimer timer.
             m_CoyoteTimer.TickDownIfElseReset(dt, !character.OnGround);

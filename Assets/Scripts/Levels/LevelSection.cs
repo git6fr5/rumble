@@ -78,8 +78,7 @@ namespace Platformer.Levels {
             Vector3 dim = (Vector3)(camCorners.Item2 - camCorners.Item1) + Vector3.forward;
             Bounds camBounds = new Bounds((camCorners.Item1 + camCorners.Item2) / 2f, dim);
             return camBounds.Intersects(m_CameraBox.Box.bounds);
-
-
+            
         }
 
         public void Set(int jsonID, LDtkUnity.LdtkJson json) {

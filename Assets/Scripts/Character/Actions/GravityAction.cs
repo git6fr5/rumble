@@ -22,7 +22,7 @@ namespace Platformer.Character {
 
         // When enabling/disabling this ability.
         public override void Enable(CharacterController character, bool enable = true) {
-            if (m_Enabled && !enable) {
+            if (m_ActionEnabled && !enable) {
                 character.Body.velocity = Vector2.zero;
             }
 
@@ -51,7 +51,7 @@ namespace Platformer.Character {
 
         // When this ability is activated.
         public override void InputUpdate(CharacterController character) {
-            if (!m_Enabled) { return; }
+            if (!m_ActionEnabled) { return; }
 
             if (character.Input.Direction.Normal != Vector2.zero && (dontCount || m_Count > 0)) {
                 if (dontCare || !started || character.Input.Direction.MostRecent.normalized != Physics2D.gravity.normalized) {
@@ -99,7 +99,7 @@ namespace Platformer.Character {
         
         // Refreshes the settings for this ability every interval.
         public override void PhysicsUpdate(CharacterController character, float dt){
-            if (!m_Enabled) { return; }
+            if (!m_ActionEnabled) { return; }
 
             // Whether the power has been reset by touching ground after using it.
             character.Default.Enable(character, false);

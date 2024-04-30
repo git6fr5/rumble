@@ -83,7 +83,7 @@
 
 //         // When this ability is activated.
 //         public override void InputUpdate(CharacterController character) {
-//             if (!m_Enabled) { return; }
+//             if (!m_ActionEnabled) { return; }
 
 //             // Dashing.
 //             if (character.Input.Actions[1].Pressed && m_ActionPhase == ActionPhase.None && m_Refreshed) {
@@ -109,7 +109,7 @@
         
 //         // Refreshes the settings for this ability every interval.
 //         public override void PhysicsUpdate(CharacterController character, float dt){
-//             if (!m_Enabled) { return; }
+//             if (!m_ActionEnabled) { return; }
 
 //             // Whether the power has been reset by touching ground after using it.
 //             m_Refreshed = character.OnGround && !m_ShadowTimer.Active ? true : m_Refreshed;
