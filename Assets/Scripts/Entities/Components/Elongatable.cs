@@ -7,6 +7,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.Rendering.Universal;
+using Platformer.Entities.Utility;
 
 namespace Platformer.Entities.Components {
 
@@ -17,16 +18,6 @@ namespace Platformer.Entities.Components {
             Vertical
         }
 
-        [System.Serializable]
-        public class OverrideLength {
-            public int length;
-            public GameObject gameObject;
-        }
-
-        // Overrides.
-        [SerializeField]
-        private OverrideLength[] m_Overrides;
-
         // The box collider.
         private BoxCollider2D m_BoxCollider;
         
@@ -34,15 +25,6 @@ namespace Platformer.Entities.Components {
         [SerializeField]
         private SpriteShapeController m_SpriteShapeController;
         public Spline spline => m_SpriteShapeController.spline;
-
-        [SerializeField]
-        private Light2D m_Light;
-
-        [SerializeField]
-        private Transform[] m_TileAlongPath;
-        
-        [SerializeField]
-        private SpriteShapeController[] m_SubShapes;
 
         // Height.
         [SerializeField]
@@ -77,62 +59,34 @@ namespace Platformer.Entities.Components {
                 else { Destroy(gameObject); }
                 return;
             }
+
             SetSpriteshapePoints(length);
             SetHitbox((float)length);
-            SetLightShape((float)length);
-            TileObjects(length);
+
+
+            ElongatableExtras extras = GetComponent<ElongatableExtras>();
+            if (extras) {
+                extras.SetLength(length, m_ColliderHeight);
+            }
+
         }
 
-        public bool SetSpriteshapePoints(int length) {
+        public void SetSpriteshapePoints(int length) {
             Spline spline = m_SpriteShapeController.spline;
 
-            // In the special case that the length of this is 0 or less.
-            // if (length <= 2) { return false; }
-
-            m_SpriteShapeController.gameObject.SetActive(false);
-            for (int i = 0; i < m_Overrides.Length; i++) {
-                if (m_Overrides[i].gameObject != null) {
-                    m_Overrides[i].gameObject.SetActive(false);
-                }
+            length -= 1;
+            if (length <= 0) {
+                return;
             }
 
-            for (int i = 0; i < m_Overrides.Length; i++) {
-                if (length == m_Overrides[i].length) {
-                    if (m_Overrides[i].gameObject != null) {
-                        m_Overrides[i].gameObject.SetActive(true);
-                    }
-                    return false;
-                }
-            }
-
-            length -= 2;
             spline.Clear();
 
             Quaternion q = transform.localRotation;
-
-            spline.InsertPointAt(0, q * (0.5f * Vector3.right));
-            spline.InsertPointAt(1, q * ((length + 0.5f) * Vector3.right));
+            spline.InsertPointAt(0, Vector2.zero);
+            spline.InsertPointAt(1, q * (length * Vector3.right));
             spline.SetTangentMode(0, ShapeTangentMode.Continuous);
             spline.SetTangentMode(1, ShapeTangentMode.Continuous);
             m_SpriteShapeController.gameObject.SetActive(true);
-
-            if (m_SubShapes != null && m_SubShapes.Length > 0) {
-
-                for (int i = 0; i < m_SubShapes.Length; i++) {
-
-                    Spline _spline = m_SubShapes[i].spline;
-
-                    _spline.Clear();
-                    _spline.InsertPointAt(0, q * (0.5f * Vector3.right));
-                    _spline.InsertPointAt(1, q * ((length + 0.5f) * Vector3.right));
-                    _spline.SetTangentMode(0, ShapeTangentMode.Continuous);
-                    _spline.SetTangentMode(1, ShapeTangentMode.Continuous);
-                    
-                }
-
-            }
-
-            return true;
 
         }
 
@@ -158,47 +112,6 @@ namespace Platformer.Entities.Components {
             m_BoxCollider.size = size;
             m_BoxCollider.offset = offset;
             
-        }
-
-        public void SetLightShape(float length) {
-            if (m_Light == null) { return; }
-            // m_Light.
-            print(m_Light.shapePath);
-
-            List<Vector3> shapePath = new List<Vector3>(); //  new Vector3[4 + (int)length * 2]
-            int i = 0;
-            while (i < (int)length) {
-                shapePath.Add(new Vector3(i, -m_ColliderHeight / 2f, 0f));
-                i+=1;
-            }
-            while (i >= 0) {
-                shapePath.Add(new Vector3(i, m_ColliderHeight / 2f, 0f));
-                i-=1;
-            }
-
-            // m_Light.SetShapePath(shapePath);
-            SetShapePath(m_Light, shapePath.ToArray());
-            // m_Light.BroadcastMessage("UpdateMesh");
-        
-        }
-
-        void SetFieldValue<T>(object obj, string name, T val) {
-            var field = obj.GetType().GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            field?.SetValue(obj, val);
-        }
-        
-        void SetShapePath(Light2D light, Vector3[] path) {
-            SetFieldValue<Vector3[]>(light, "m_ShapePath",  path);
-        }
-
-        public void TileObjects(int length) {
-            // for (int i = 0; i < m_TileAlongPath.Length; i++) {
-            //     for (int j = 0; j < length; j++) {
-            //         Transform newTile = Instantiate(m_TileAlongPath[i].gameObject).transform;
-            //         newTile.transform.SetParent(m_TileAlongPath[i].parent); 
-            //         newTile.localPosition = m_TileAlongPath[i].localPosition + Vector3.right * j; 
-            //     }
-            // }
         }
 
     }

@@ -40,9 +40,9 @@ namespace Platformer.Character {
         public override void Enable(CharacterController character, bool enable = true) {
             base.Enable(character, enable);
             
-            if (!enable || m_ActionTimer.Active) {
+            if (m_ActionTimer.Active) {
                 OnStartPostaction(character);
-                OnEndAction(character);
+                // OnEndAction(character);
             }
 
         }

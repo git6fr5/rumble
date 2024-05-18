@@ -64,9 +64,17 @@ PrefabInstance:
       value: Hop Fruit
       objectReference: {fileID: 0}
     - target: {fileID: 3600940583916435708, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: a13c654e4993e4a1895da3e459afbef2, type: 3}
+      propertyPath: m_Color.b
+      value: 0.25516194
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600940583916435708, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_Color.g
+      value: 0.25516194
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600940583916435708, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8867924
+      objectReference: {fileID: 0}
     - target: {fileID: 4224600035145687196, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.size
       value: 1
@@ -99,6 +107,18 @@ PrefabInstance:
       propertyPath: m_Snippets.Array.data[0].clip
       value: 
       objectReference: {fileID: 8300000, guid: a39b11d9dd5f06f4bbde391441551257, type: 3}
+    - target: {fileID: 7511721293029774807, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_Color.b
+      value: 0.25490198
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511721293029774807, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_Color.g
+      value: 0.25490198
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511721293029774807, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8862746
+      objectReference: {fileID: 0}
     - target: {fileID: 8784647743442127538, guid: 3f186a61cb06b8a478d1839227b4edab, type: 3}
       propertyPath: m_TouchEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
       value: Hop_OnTouch

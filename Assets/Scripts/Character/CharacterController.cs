@@ -122,9 +122,12 @@ namespace Platformer.Character {
 
         // Runs once before the first frame.
         void Start() {
+            m_DefaultAction = Instantiate(m_DefaultAction);
             m_DefaultAction.Enable(this, true);
-            // EnableAllAbilityActions();
-            // DisableAllAbilityActions();
+            
+            for (int i = 0; i < m_PowerActions.Count; i++) {
+                m_PowerActions[i] = Instantiate(m_PowerActions[i]);
+            }
         }
 
 
@@ -138,7 +141,7 @@ namespace Platformer.Character {
                 return;
             }
 
-            Gobblefish.Graphics.GraphicsManager.Starmap.AddPoint(transform.position);
+            // Gobblefish.Graphics.GraphicsManager.m_ActionEnabledp.AddPoint(transform.position);
 
             // The visual feedback played when dying.
             PhysicsManager.Time.RunHitStop(16);

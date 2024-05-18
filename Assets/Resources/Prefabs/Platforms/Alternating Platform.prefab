@@ -12,6 +12,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 192506045, guid: f242e026dd3c176419a60671fbd9061d, type: 3}
     - target: {fileID: 69833310066636803, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 69833310066636803, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 929171a144c4b6448b47cb478a904f51, type: 2}
@@ -67,10 +71,22 @@ PrefabInstance:
       propertyPath: m_VectorID.x
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 4031899501694130170, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
-      propertyPath: m_SpriteShape
+    - target: {fileID: 5492281587404949929, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_ShapeTexture
       value: 
-      objectReference: {fileID: 11400000, guid: eb1c4f85cda9d664ba848b67347029b4, type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492281587404949929, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_Sprites.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492281587404949929, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492281587404949929, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5492281587404949929, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -147,20 +163,10 @@ MonoBehaviour:
   m_PlayDirection: 1
   m_SpriteRenderer: {fileID: 8323681220177549662}
   m_ExtraRenderers:
-  - {fileID: 2118079794414738973}
-  - {fileID: 1419984975269880262}
+  - {fileID: 0}
+  - {fileID: 0}
   m_ExtraShapeRenderers:
   - {fileID: 4558557614559455476}
---- !u!212 &1419984975269880262 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6975919904161349787, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
-  m_PrefabInstance: {fileID: 8321454737182892381}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &2118079794414738973 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7935149747717996352, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
-  m_PrefabInstance: {fileID: 8321454737182892381}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1971053207 &4558557614559455476 stripped
 SpriteShapeRenderer:
   m_CorrespondingSourceObject: {fileID: 5492281587404949929, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}

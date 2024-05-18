@@ -109,7 +109,7 @@ namespace Platformer.Entities.Components {
             if (m_TotalActivatedTime == 0f) {
                 m_FirstActivationTime = PhysicsManager.Time.Ticks;
 
-                Gobblefish.Graphics.GraphicsManager.Starmap.AddPoint(transform.position);
+                // Gobblefish.Graphics.GraphicsManager.Starmap.AddPoint(transform.position);
 
             }
             
