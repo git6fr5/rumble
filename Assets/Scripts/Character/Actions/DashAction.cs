@@ -42,7 +42,7 @@ namespace Platformer.Character {
             
             if (!enable || m_ActionTimer.Active) {
                 OnStartPostaction(character);
-                OnEndAction(character);
+                // OnEndAction(character);
             }
 
         }
