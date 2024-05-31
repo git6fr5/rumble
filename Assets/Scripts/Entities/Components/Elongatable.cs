@@ -63,7 +63,10 @@ namespace Platformer.Entities.Components {
             SetSpriteshapePoints(length);
             SetHitbox((float)length);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> updated-animation-system
             ElongatableExtras extras = GetComponent<ElongatableExtras>();
             if (extras) {
                 extras.SetLength(length, m_ColliderHeight);
@@ -74,7 +77,11 @@ namespace Platformer.Entities.Components {
         public void SetSpriteshapePoints(int length) {
             Spline spline = m_SpriteShapeController.spline;
 
+<<<<<<< HEAD
             length -= 1;
+=======
+            length -= 2;
+>>>>>>> updated-animation-system
             if (length <= 0) {
                 return;
             }
@@ -82,8 +89,13 @@ namespace Platformer.Entities.Components {
             spline.Clear();
 
             Quaternion q = transform.localRotation;
+<<<<<<< HEAD
             spline.InsertPointAt(0, Vector2.zero);
             spline.InsertPointAt(1, q * (length * Vector3.right));
+=======
+            spline.InsertPointAt(0, 0.5f * Vector2.right);
+            spline.InsertPointAt(1, q * ((length + 0.5f) * Vector3.right));
+>>>>>>> updated-animation-system
             spline.SetTangentMode(0, ShapeTangentMode.Continuous);
             spline.SetTangentMode(1, ShapeTangentMode.Continuous);
             m_SpriteShapeController.gameObject.SetActive(true);

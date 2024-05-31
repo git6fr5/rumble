@@ -21,9 +21,11 @@ namespace Platformer.Physics {
         [SerializeField] private float jiggleDamp;
         [SerializeField] private float edgeWidth;
 
+        [SerializeField] private bool isTrigger = true;
+
         public void Initialize(int segmentCount) {
             edgeCollider = GetComponent<EdgeCollider2D>();
-            edgeCollider.isTrigger = true;
+            edgeCollider.isTrigger = isTrigger;
             edgeCollider.edgeRadius = edgeWidth;
 
             jiggle = new Vector3[segmentCount];

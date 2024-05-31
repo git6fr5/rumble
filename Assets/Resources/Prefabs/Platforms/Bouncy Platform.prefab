@@ -292,8 +292,21 @@ PrefabInstance:
       propertyPath: m_SubShapes.Array.data[0]
       value: 
       objectReference: {fileID: 5557508604591937788}
+<<<<<<< HEAD
     - target: {fileID: 5492281587404949929, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_ShapeTexture
+=======
+    - target: {fileID: 3764475035523072827, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_SubShapes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764475035523072827, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_SubShapes.Array.data[0]
+      value: 
+      objectReference: {fileID: 5557508604591937788}
+    - target: {fileID: 4031899501694130170, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_SpriteShape
+>>>>>>> updated-animation-system
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5492281587404949929, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
