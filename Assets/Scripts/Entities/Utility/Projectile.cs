@@ -27,13 +27,6 @@ namespace Platformer.Entities.Utility {
         [SerializeField]
         protected bool m_PointInDirection;
 
-        public float baseSpeed = 4f;
-
-        public void CreateAndFire(float angle) {
-            Projectile projectile = CreateInstance();
-            projectile.Fire(baseSpeed, Quaternion.Euler(0f, 0f, transform.eulerAngles.z + angle) * Vector2.right, 0f);
-        }
-
         public Projectile CreateInstance() {
             Projectile projectile = Instantiate(gameObject).GetComponent<Projectile>();
             projectile.transform.position = transform.position;

@@ -299,3 +299,4 @@ namespace Platformer.Character {
     }
 
 }
+
