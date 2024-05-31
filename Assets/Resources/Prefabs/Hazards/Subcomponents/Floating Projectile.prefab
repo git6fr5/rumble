@@ -83,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6063014543142210645
@@ -99,14 +99,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    currentFrame: 0
+    fps: 12
     sprites:
     - {fileID: 1672226, guid: c1d84b8fa283e4805975a8c1cc211e15, type: 3}
     - {fileID: 182432930, guid: c1d84b8fa283e4805975a8c1cc211e15, type: 3}
     - {fileID: 1767354615, guid: c1d84b8fa283e4805975a8c1cc211e15, type: 3}
     - {fileID: 855120678, guid: c1d84b8fa283e4805975a8c1cc211e15, type: 3}
     ticks: 0
-    fps: 12
-    currentFrame: 0
     orderOffset: 0
   m_Animate: 1
   m_Loop: 1
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    ticks: 0
     duration: 0.6666667
     loop: 1
     basePosition: {x: 0, y: 0}
@@ -288,12 +289,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214318356233104252}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c667a0ad8f95435428983f0e4cbed6c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animation:
+    ticks: 0
     duration: 0.6666667
     loop: 1
     basePosition: {x: 0, y: 0}
