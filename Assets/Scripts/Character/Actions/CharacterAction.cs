@@ -98,7 +98,7 @@ namespace Platformer.Character {
         public virtual void Enable(CharacterController character, bool enable = true) {
             m_Enabled = enable;
             m_Refreshed = enable;
-            // OnEndAction(character);
+            OnEndAction(character);
         }
 
         protected virtual void OnStartPreaction(CharacterController character) {

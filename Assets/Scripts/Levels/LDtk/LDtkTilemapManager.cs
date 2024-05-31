@@ -18,6 +18,8 @@ namespace Platformer.Levels.LDtk {
     public class LDtkTileEntity {
         public TileBase tile;
         public Vector2Int vectorID;
+
+        public string layerName = "Foreground";
         public int order = 0;
 
         public Tilemap map;
@@ -67,6 +69,7 @@ namespace Platformer.Levels.LDtk {
 
                 // Create a new map.
                 Tilemap decorMap = Instantiate(m_DecorationMap.gameObject).GetComponent<Tilemap>();
+                decorMap.GetComponent<TilemapRenderer>().sortingLayerName = m_DecorationTiles[i].layerName;
                 decorMap.GetComponent<TilemapRenderer>().sortingOrder += m_DecorationTiles[i].order;
                 decorMap.gameObject.SetActive(true);
                 decorMap.transform.SetParent(m_DecorationMap.transform.parent);
@@ -119,10 +122,12 @@ namespace Platformer.Levels.LDtk {
             List<LDtkTileData> tileData = LDtkReader.GetLayerData(section.ldtkLevel, layerName);
 
             for (int i = 0; i < tileData.Count; i++) {
-                LDtkTileEntity tileEntity = m_DecorationTiles.Find(tileEnt => tileEnt.vectorID == tileData[i].vectorID);
-                if (tileEntity != null && tileEntity.map != null) {
-                    Vector3Int tilePosition = section.GridToTilePosition(tileData[i].gridPosition);
-                    tileEntity.map.SetTile(tilePosition, tileEntity.tile);
+                List<LDtkTileEntity> tileEntities = m_DecorationTiles.FindAll(tileEnt => tileEnt.vectorID == tileData[i].vectorID);
+                foreach (LDtkTileEntity tEnt in tileEntities) {
+                    if (tEnt != null && tEnt.map != null) {
+                        Vector3Int tilePosition = section.GridToTilePosition(tileData[i].gridPosition);
+                        tEnt.map.SetTile(tilePosition, tEnt.tile);
+                    }
                 }
             }
 

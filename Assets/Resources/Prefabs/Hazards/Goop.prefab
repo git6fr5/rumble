@@ -442,6 +442,7 @@ GameObject:
   - component: {fileID: 7338219324955481948}
   - component: {fileID: 7338219324955481951}
   - component: {fileID: 195903466699754876}
+  - component: {fileID: 8687526943496728432}
   - component: {fileID: 1783239970336808598}
   - component: {fileID: 1323020567517330172}
   m_Layer: 7
@@ -542,21 +543,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581a26b2ed7ee4e938fbadc4f056048b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Overrides:
-  - length: 1
-    gameObject: {fileID: 5741557889606899799}
-  - length: 2
-    gameObject: {fileID: 8612104476007002843}
   m_SpriteShapeController: {fileID: 6088725179361872797}
-  m_Light: {fileID: 3443820356465010954}
-  m_TileAlongPath:
-  - {fileID: 2227088186156592064}
-  m_SubShapes: []
   m_ColliderHeight: 0.7
   m_ColliderVerticalOffset: -0.6
   m_ColliderHorizontalInset: 0.3
   m_LengthUnits: 1
   m_SearchDirection: 0
+--- !u!114 &8687526943496728432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7338219324955481946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 415892c75ddb94bf98d88ce496d96753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Overrides:
+  - length: 1
+    gameObject: {fileID: 5741557889606899799}
+  - length: 2
+    gameObject: {fileID: 8612104476007002843}
+  m_Light: {fileID: 3443820356465010954}
+  m_TileAlongPath: []
+  m_SubShapes: []
 --- !u!61 &1783239970336808598
 BoxCollider2D:
   m_ObjectHideFlags: 0

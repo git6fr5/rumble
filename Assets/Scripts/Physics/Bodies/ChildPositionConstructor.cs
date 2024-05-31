@@ -10,6 +10,8 @@ namespace Platformer.Physics {
     [ExecuteInEditMode, DefaultExecutionOrder(-1000)]
     public class ChildPositionConstructor : MonoBehaviour {
 
+        public float rScale = 1f;
+
         public AnimationCurve x;
         public float xScale;
         public AnimationCurve y;
@@ -51,7 +53,7 @@ namespace Platformer.Physics {
                 float r = (float)i / (float)(count - 1);
                 Vector3 localPosition = new Vector3(x.Evaluate(r) * xScale, y.Evaluate(r) * yScale, 0f);
                 if (children[i] != null) {
-                    children[i].localPosition = localPosition;
+                    children[i].localPosition = rScale * localPosition;
                 }
             }
 

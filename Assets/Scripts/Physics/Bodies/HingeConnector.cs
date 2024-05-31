@@ -13,8 +13,43 @@ namespace Platformer.Physics {
         public HingeJoint2D[] hinges;
         // Transform anchor;
 
+        // public float dampening;
+        public AnimationCurve dampingCurve;
+
+        public float angleLimit;
+        public AnimationCurve limitCurve;
+
+        Vector3[] origins;
+        Rigidbody2D[] bodies;
+
+        public bool staticTip;
+
+        void Start() {
+
+            if (Application.isPlaying) {
+
+                origins = new Vector3[hinges.Length];
+                bodies = new Rigidbody2D[hinges.Length];
+                for (int n=0; n < hinges.Length; n++) {
+                    origins[n] = hinges[n].transform.localPosition;
+                    bodies[n] = hinges[n].GetComponent<Rigidbody2D>();
+                    if (staticTip && n==hinges.Length-1) { bodies[n].bodyType = RigidbodyType2D.Static; }
+                }
+
+                return;
+            }
+
+        }
+
         void Update() {
             if (Application.isPlaying) {
+
+                for (int n=0; n < hinges.Length; n++) {
+                    float r = (float)n / (float)(hinges.Length-1);
+                    bodies[n].velocity *= dampingCurve.Evaluate(r);
+                    bodies[n].velocity -= (Vector2)(bodies[n].transform.localPosition - origins[n]) * 0.02f;
+                }
+
                 return;
             }
 
@@ -32,8 +67,18 @@ namespace Platformer.Physics {
                     hinge = child.gameObject.AddComponent<HingeJoint2D>();
                 }
 
+
                 hinges[i] = hinge;
                 i += 1;
+
+                float r = (float)i / (float)(transform.childCount);
+
+                JointAngleLimits2D _limits = new JointAngleLimits2D();
+                _limits.max = angleLimit * r;
+                _limits.min = -angleLimit * r;
+                hinge.limits = _limits;
+
+                hinge.useLimits = true;
 
             }
 
