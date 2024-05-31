@@ -44,6 +44,13 @@ namespace Platformer.Character {
             // if (!enable && m_ActionPhase == ActionPhase.MidAction) {
             //     character.Body.ClampRiseSpeed(Mathf.Min(character.Body.velocity.y, character.Default.JumpSpeed));
             // }
+<<<<<<< HEAD
+=======
+            if (enable && (m_ActionPhase != ActionPhase.None || m_ActionPhase != ActionPhase.PreAction)) {
+                OnStartPostaction(character);
+                OnEndAction(character);
+            }
+>>>>>>> updated-animation-system
             RefreshHopSettings(ref m_Speed, ref m_Weight, m_Height, m_RisingTime);
 
             if (m_ActionPhase != ActionPhase.None) {
