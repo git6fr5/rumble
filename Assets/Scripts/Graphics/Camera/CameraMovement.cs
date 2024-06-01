@@ -37,6 +37,7 @@ namespace Gobblefish.Graphics {
         void Start() {
             if (Application.isPlaying && Platformer.PlayerManager.Instance != null) {
                 m_DefaultTarget = Platformer.PlayerManager.Character.transform;
+                transform.position = (Vector3)m_DefaultTarget.transform.position + CameraPlane;
             }
         }
 
