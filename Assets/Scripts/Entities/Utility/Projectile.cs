@@ -34,6 +34,12 @@ namespace Platformer.Entities.Utility {
             projectile.Fire(baseSpeed, Quaternion.Euler(0f, 0f, transform.eulerAngles.z + angle) * Vector2.right, 0f);
         }
 
+        public Projectile CreateInstance(Vector3 position) {
+            Projectile projectile = Instantiate(gameObject).GetComponent<Projectile>();
+            projectile.transform.position = position;
+            return projectile;
+        }
+
         public Projectile CreateInstance() {
             Projectile projectile = Instantiate(gameObject).GetComponent<Projectile>();
             projectile.transform.position = transform.position;
