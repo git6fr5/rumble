@@ -16,11 +16,14 @@ namespace Blobbers.Graphics {
 
         // The sprite renderer attached to this object.
         public List<SpriteRenderer> m_OutlineRenderers;
+        public List<SpriteMask> m_Masks;
 
         public float outlineWidth;
         public Color outlineColor;
 
-        public int minToOutline = 0;
+        public int minSortingLayerValue;
+        public string minSortingLayerName;
+        public int minSortingOrder = 0;
         public int offset = -1;
 
         // Runs once before the first frame.
@@ -30,16 +33,30 @@ namespace Blobbers.Graphics {
             transform.localPosition = Vector3.zero;
 
             m_OutlineRenderers = new List<SpriteRenderer>();
+            m_Masks = new List<SpriteMask>();
 
             for (int i = 0; i < m_ToOutline.Length; i++) {
                 SpriteRenderer spriteRenderer = new GameObject(m_ToOutline[i].name + " outline", typeof(SpriteRenderer)).GetComponent<SpriteRenderer>();
-                
                 spriteRenderer.transform.SetParent(transform);
                 spriteRenderer.transform.FromMatrix(m_ToOutline[i].localToWorldMatrix);
+                spriteRenderer.maskInteraction = SpriteMaskInteraction.VisibleOutsideMask;
+
+                SpriteMask spriteMask = new GameObject(m_ToOutline[i].name + " mask", typeof(SpriteMask)).GetComponent<SpriteMask>();
+                spriteMask.transform.SetParent(transform);
+                spriteMask.transform.FromMatrix(m_ToOutline[i].localToWorldMatrix);
 
                 m_OutlineRenderers.Add(spriteRenderer);
+                m_Masks.Add(spriteMask);
 
-                minToOutline = m_ToOutline[i].sortingOrder < minToOutline ? m_ToOutline[i].sortingOrder : minToOutline;
+                int sortingLayerValue = SortingLayer.GetLayerValueFromID(m_ToOutline[i].sortingLayerID);
+                if (sortingLayerValue < minSortingLayerValue) {
+                    minSortingLayerValue = sortingLayerValue;
+                    minSortingLayerName = m_ToOutline[i].sortingLayerName;
+                    minSortingOrder = m_ToOutline[i].sortingOrder;
+                }
+                else if (sortingLayerValue == minSortingLayerValue) {
+                    minSortingOrder = m_ToOutline[i].sortingOrder < minSortingOrder ? m_ToOutline[i].sortingOrder : minSortingOrder;
+                }
                 
             }
 
@@ -51,22 +68,24 @@ namespace Blobbers.Graphics {
 
             for (int i = 0; i < m_ToOutline.Length; i++) {
 
-                m_OutlineRenderers[i].sortingOrder = minToOutline-offset;
-                m_OutlineRenderers[i].sortingLayerName = m_ToOutline[i].sortingLayerName;
+                m_OutlineRenderers[i].sortingOrder = minSortingOrder+offset;
+                m_OutlineRenderers[i].sortingLayerName = minSortingLayerName;
                 
                 m_OutlineRenderers[i].color = outlineColor;
 
                 m_OutlineRenderers[i].transform.FromMatrix(m_ToOutline[i].transform.localToWorldMatrix);
                 m_OutlineRenderers[i].transform.position = m_ToOutline[i].transform.position;
-
-                // m_OutlineRenderer.transform.localPosition = Vector3.zero;
-                // m_OutlineRenderer.transform.localRotation = Quaternion.identity;
-                // m_OutlineRenderer.transform.localScale = Vector3.right + Vector3.up + Vector3.forward;
-
                 m_OutlineRenderers[i].transform.localScale = m_ToOutline[i].transform.lossyScale + new Vector3(outlineWidth, outlineWidth, 0f);
+
+                m_Masks[i].transform.FromMatrix(m_ToOutline[i].transform.localToWorldMatrix);
+                m_Masks[i].transform.position = m_ToOutline[i].transform.position;
+                m_Masks[i].transform.localScale = m_ToOutline[i].transform.lossyScale;
 
                 if (m_OutlineRenderers[i].sprite != m_ToOutline[i].sprite) {
                     m_OutlineRenderers[i].sprite = m_ToOutline[i].sprite;
+                } 
+                if (m_Masks[i].sprite != m_ToOutline[i].sprite) {
+                    m_Masks[i].sprite = m_ToOutline[i].sprite;
                 } 
 
             }

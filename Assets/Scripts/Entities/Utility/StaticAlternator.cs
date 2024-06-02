@@ -10,6 +10,8 @@ using Gobblefish.Audio;
 // Platformer.
 using Platformer.Physics;
 
+using Outliner = Blobbers.Graphics.Outliner;
+
 namespace Platformer.Entities.Utility {
 
     public class StaticAlternator : MonoBehaviour {
@@ -38,9 +40,11 @@ namespace Platformer.Entities.Utility {
 
         [System.Serializable]
         public class GeneratedAlternatingGroup {
-            public Timer timer;
+            public Timer timer = new Timer(0f, 0f);
             public List<AlternatingEntity> ents;
+            public List<Outliner> outlines;
             public bool currState;
+            public Timer pretimer = new Timer(0f, 0f);
         }
 
         [System.Serializable]
@@ -52,6 +56,8 @@ namespace Platformer.Entities.Utility {
             
             public AudioSnippet preChangeSound;
             public AudioSnippet changeSound;
+
+            public AnimationCurve prechangeOutlineWidthCurve;
 
             // public Timer changeTimer = new Timer(0f, 0f);
             // public Timer prechangeTimer = new Timer(0f, 0f);
@@ -91,17 +97,23 @@ namespace Platformer.Entities.Utility {
                     timer.Start(period * r);
 
                     List<AlternatingEntity> forthistimer = entityList.FindAll(e => e.index == index && e.offset == i);
+                    List<Outliner> outlines = new List<Outliner>();
+
                     GeneratedAlternatingGroup g = new GeneratedAlternatingGroup();
                     g.timer=timer;
                     g.ents = forthistimer;
                     g.currState = !startOff;
                     generatedGroups.Add(g);
                     
-                    // entityDict.Add(timer, forthistimer);
+                    foreach (AlternatingEntity e in forthistimer) {
+                        Outliner outliner = new GameObject("outline", typeof(Outliner)).GetComponent<Outliner>();
+                        outliner.m_ToOutline = e.entity.transform.GetComponentsInChildren<SpriteRenderer>();
+                        outliner.outlineColor = new Color(0f, 0f, 0f, 1f); // new Color((float)e.index/5f, 1f-(float)e.index/5f, 0f, 0.2f);
+                        outliner.outlineWidth = BASE_OUTLINE_WIDTH;
+                        outlines.Add(outliner);
+                    }
 
-                    // foreach (AlternatingEntity e in forthistimer) {
-                    //     e.entity.gameObject.SetActive(!startOff);
-                    // }
+                    g.outlines = outlines;
 
                 }
 
@@ -114,8 +126,19 @@ namespace Platformer.Entities.Utility {
                     bool changeFin = group.timer.TickDown(dt) || !group.timer.Active;
 
                     if (changeFin) {
-                        group.currState = !group.currState;
+                        group.pretimer.Start(PRE_CHANGE_DURATION);
                         group.timer.Start(period);
+                    }
+
+                    bool prechangeFin = group.pretimer.TickDown(dt);
+                    if (group.pretimer.Active) {
+                        foreach (var o in group.outlines) {
+                            o.outlineWidth = BASE_OUTLINE_WIDTH * (1+ prechangeOutlineWidthCurve.Evaluate(group.pretimer.InverseRatio));
+                        }
+                    }
+
+                    if (prechangeFin) {
+                        group.currState = !group.currState;
                     }
 
                     foreach (AlternatingEntity e in group.ents) {
@@ -164,6 +187,7 @@ namespace Platformer.Entities.Utility {
 
         // The duration before changing that we indicate a change is happening.
         private const float PRE_CHANGE_DURATION = 0.3f;
+        private const float BASE_OUTLINE_WIDTH = 0.1f;
 
         public int index;
         public int offIndex => (index + (int)Mathf.Floor((float)(int)AlternatingType.Count / 2f)) % (int)AlternatingType.Count;
