@@ -67,6 +67,10 @@ namespace Platformer.Levels.LDtk {
             List<LDtkTileData> pathData = LDtkReader.GetLayerData(section.ldtkLevel, ldtkLayers.Path);
             List<LDtkTileData> altData = LDtkReader.GetLayerData(section.ldtkLevel, ldtkLayers.Alternate);
 
+            //
+            List<LDtkTileData> orbitData = LDtkReader.GetLayerData(section.ldtkLevel, ldtkLayers.Orbit);
+            LDtkOrbit.CreateFulcrums(orbitData, pathData, section);
+
             List<LDtkEntity> entities = new List<LDtkEntity>();
 
             for (int i = 0; i < entityData.Count; i++) {
@@ -86,7 +90,10 @@ namespace Platformer.Levels.LDtk {
                     entity.SetRotation();
                     entity.SetPosition(section.WorldPosition);
                     entity.SetPath(pathData);
+                    
                     entity.SetLength(entityData); // Can possible destroy this entity.
+                    
+                    entity.SetOrbit(orbitData, section.WorldPosition); // Can possible destroy this entity.
                     
                     entity.SetAlternate(altData, staticAlternator); // Can possible destroy this entity.
 

@@ -88,7 +88,7 @@ namespace Platformer.Entities.Components {
 
         // Runs once every fixed interval.
         private void FixedUpdate() {
-            transform.Move(currentTargetPos, m_Speed, Time.fixedDeltaTime, m_Entity.CollisionContainer);
+            transform.Move(currentTargetPos, m_Speed, Time.fixedDeltaTime, m_Entity?.CollisionContainer);
             SetTarget(Time.fixedDeltaTime);
         }
 

@@ -10,7 +10,6 @@ namespace Platformer.Entities.Utility {
     [CreateAssetMenu(fileName="FiringPattern", menuName="FiringPattern")]
     public class FiringPattern : ScriptableObject {
 
-        public Projectile projectile;
         public int projectileCount;
 
         public float speedScale = 1f;
@@ -24,12 +23,12 @@ namespace Platformer.Entities.Utility {
         public float angleScale = 360f;
         public AnimationCurve angleCurve;
         public float angle(float t) { return angleScale * angleCurve.Evaluate(t); }
-        
 
-        public void Fire(Transform origin) {
+        public void Fire(Projectile projectile, Transform origin) {
             GameObject newObject = new GameObject("firing pattern holder", typeof(TempFiringPatternObject));
             TempFiringPatternObject tmpObj = newObject.GetComponent<TempFiringPatternObject>();
             tmpObj.pattern = this;
+            tmpObj.projectile = projectile;
             tmpObj.origin = origin;
             tmpObj.Execute();
         }
@@ -38,15 +37,16 @@ namespace Platformer.Entities.Utility {
 
     public class TempFiringPatternObject : MonoBehaviour {
 
+        public Projectile projectile;
         public FiringPattern pattern;
         public Transform origin;
 
         public Vector3 lastKnownPos;
-        public Vector3 lastKnownRot;
+        public Quaternion lastKnownRot;
 
         public void Execute() {
             lastKnownPos = origin.position;
-            lastKnownRot = origin.right;
+            lastKnownRot = origin.rotation;
             StartCoroutine(IEExecute());
         }
 
@@ -54,13 +54,16 @@ namespace Platformer.Entities.Utility {
             for (int i = 0; i < pattern.projectileCount; i++) {
                 if (origin != null) { 
                     lastKnownPos = origin.position; 
-                    lastKnownRot = origin.right;
+                    lastKnownRot = origin.rotation;
+                }
+                if (projectile == null) {
+                    break;
                 }
 
-                Projectile instance = pattern.projectile.CreateInstance(lastKnownPos);
+                Projectile instance = projectile.CreateInstance(lastKnownPos);
 
                 float t = (float)i / (float)pattern.projectileCount;
-                instance.Fire(pattern.speed(t), Quaternion.Euler(0f, 0f, pattern.angle(t)) * lastKnownRot);
+                instance.Fire(pattern.speed(t), Quaternion.Euler(0f, 0f, pattern.angle(t)) * (lastKnownRot * Vector3.right));
 
                 if (pattern.delay(t)>0f) {
                     yield return new WaitForSeconds(pattern.delay(t));

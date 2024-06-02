@@ -26,58 +26,136 @@ namespace Platformer.Entities.Utility {
         public class AlternatingEntity {
             public Entity entity;
             public int index;
-            public bool flipped;
+            // public bool flipped;
+            public int offset;
             public AlternatingEntity(Entity e, int x, int y) { 
                 this.entity=e; 
                 this.index=x; 
-                this.flipped= y == 0 ? false : true;
+                this.offset=y;
+                // this.flipped= y == 0 ? false : true;
             }
         }
 
         [System.Serializable]
+        public class GeneratedAlternatingGroup {
+            public Timer timer;
+            public List<AlternatingEntity> ents;
+            public bool currState;
+        }
+
+        [System.Serializable]
         public class AlternatingSettings {
+
             public int index;
             public float period;
-            public float offset;
+            public int offsetRange;
             
             public AudioSnippet preChangeSound;
             public AudioSnippet changeSound;
 
-            public Timer changeTimer = new Timer(0f, 0f);
-            public Timer prechangeTimer = new Timer(0f, 0f);
+            // public Timer changeTimer = new Timer(0f, 0f);
+            // public Timer prechangeTimer = new Timer(0f, 0f);
+            // public Timer halfChangeTimer = new Timer(0f, 0f);
+            // public Timer prehalfChangeTimer = new Timer(0f, 0f);
 
-            bool on;
 
-            public void Start() {
-                changeTimer.Start(offset);
-                on = true;
-            }
+            // Dictionary<Timer, List<AlternatingEntity>> entityDict = new Dictionary<Timer, List<AlternatingEntity>>();
 
-            public void Update(float dt, List<AlternatingEntity> entityList) {
-                bool changeFin = changeTimer.TickDown(dt) || !changeTimer.Active;
-                if (changeFin) {
-                    prechangeTimer.Start(PRE_CHANGE_DURATION);
-                    changeTimer.Start(period);
+            public List<GeneratedAlternatingGroup> generatedGroups = new List<GeneratedAlternatingGroup>();
 
-                    // preChangeSound.Play();
+            // bool on;
+
+            public void Start(List<AlternatingEntity> entityList) {
+                // entityDict = new Dictionary<Timer, List<AlternatingEntity>>();
+                generatedGroups = new List<GeneratedAlternatingGroup>();
+
+                offsetRange = 1;
+                foreach (AlternatingEntity e in entityList) {
+                    if (e.index == index && e.offset >= offsetRange) {
+                        offsetRange = e.offset + 1;
+                    }
                 }
 
-                bool prechangeFin = prechangeTimer.TickDown(dt);
+                print("Alternator " + offsetRange.ToString());
+
+                for (int i = 0; i < offsetRange; i++) {
+
+                    Timer timer = new Timer(0f, 0f);
+                    float r = 2 * (float)i / (float)offsetRange;
+
+                    bool startOff = r >= 1f;
+                    if (startOff) {
+                        r = r % 1;
+                    }
+
+                    timer.Start(period * r);
+
+                    List<AlternatingEntity> forthistimer = entityList.FindAll(e => e.index == index && e.offset == i);
+                    GeneratedAlternatingGroup g = new GeneratedAlternatingGroup();
+                    g.timer=timer;
+                    g.ents = forthistimer;
+                    g.currState = !startOff;
+                    generatedGroups.Add(g);
+                    
+                    // entityDict.Add(timer, forthistimer);
+
+                    // foreach (AlternatingEntity e in forthistimer) {
+                    //     e.entity.gameObject.SetActive(!startOff);
+                    // }
+
+                }
+
+            }
+
+            public void Update(float dt) {
+
+                foreach (var group in generatedGroups) {
+
+                    bool changeFin = group.timer.TickDown(dt) || !group.timer.Active;
+
+                    if (changeFin) {
+                        group.currState = !group.currState;
+                        group.timer.Start(period);
+                    }
+
+                    foreach (AlternatingEntity e in group.ents) {
+                        if (e.entity.gameObject.activeSelf != group.currState) {
+                            e.entity.gameObject.SetActive(group.currState);
+                        }
+                    }
+                    
+                }
                 
-                if (prechangeFin) {
-                    List<AlternatingEntity> curatedOn = entityList.FindAll(e => e.index == index && !e.flipped);
-                    List<AlternatingEntity> curatedOff = entityList.FindAll(e => e.index == index && e.flipped);
-                    foreach (AlternatingEntity e in curatedOn) {
-                        e.entity.gameObject.SetActive(on);
-                    }
-                    foreach (AlternatingEntity e in curatedOff) {
-                        e.entity.gameObject.SetActive(!on);
-                    }
-                    on = !on;
-
-                    // changeSound.Play();
-                }
             }
+
+            // public void X() {
+
+            //     bool changeFin = changeTimer.TickDown(dt) || !changeTimer.Active;
+            //     if (changeFin) {
+            //         prechangeTimer.Start(PRE_CHANGE_DURATION);
+            //         changeTimer.Start(period);
+
+            //         // preChangeSound.Play();
+            //     }
+
+            //     bool prechangeFin = prechangeTimer.TickDown(dt);
+                
+            //     if (prechangeFin) {
+
+            //         List<AlternatingEntity> curatedOn = entityList.FindAll(e => e.index == index && !e.flipped);
+            //         List<AlternatingEntity> curatedOff = entityList.FindAll(e => e.index == index && e.flipped);
+
+            //         foreach (AlternatingEntity e in curatedOn) {
+            //             e.entity.gameObject.SetActive(on);
+            //         }
+            //         foreach (AlternatingEntity e in curatedOff) {
+            //             e.entity.gameObject.SetActive(!on);
+            //         }
+            //         on = !on;
+
+            //         // changeSound.Play();
+            //     }
+            // }
         }
 
         public List<AlternatingEntity> entityList = new List<AlternatingEntity>();
@@ -92,7 +170,7 @@ namespace Platformer.Entities.Utility {
 
         void Start() {
             foreach (AlternatingSettings s in settingsList) {
-                s.Start();
+                s.Start(entityList);
             }
         }
         
@@ -111,7 +189,7 @@ namespace Platformer.Entities.Utility {
 
             float dt = Time.fixedDeltaTime;
             foreach (AlternatingSettings s in settingsList) {
-                s.Update(dt, entityList);
+                s.Update(dt);
             }
             
         }

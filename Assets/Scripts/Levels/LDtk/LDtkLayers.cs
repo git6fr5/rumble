@@ -24,6 +24,11 @@ namespace Platformer.Levels.LDtk {
         private string m_Path = "PATH";
         public string Path => m_Path;
 
+        // Layer Names
+        [SerializeField]
+        private string m_Orbit = "ORBIT";
+        public string Orbit => m_Orbit;
+
         [SerializeField]
         private string m_Entity = "ENTITIES";
         public string Entity => m_Entity;

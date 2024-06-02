@@ -91,7 +91,7 @@ namespace Platformer.Levels.LDtk {
         }
 
         public void OnReload() {
-            m_JSON = m_LDtkData.FromJson();
+            m_JSON = m_LDtkData.Json.FromJson;
             m_LDtkEntityManager.CollectReferences();
 
             List<LevelSection> sections = CollectSections(m_JSON);

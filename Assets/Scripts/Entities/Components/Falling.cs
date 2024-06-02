@@ -126,6 +126,7 @@ namespace Platformer.Entities.Components {
             if (!m_Entity.CollisionEnabled) {
                 return;
             }
+            m_FallRenderer.localPosition = Vector3.zero;
 
             m_Body.ReleaseXY();
             m_Body.SetWeight(WEIGHT);

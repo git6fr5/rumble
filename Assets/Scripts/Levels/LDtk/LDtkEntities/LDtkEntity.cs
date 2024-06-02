@@ -60,6 +60,11 @@ namespace Platformer.Levels.LDtk {
             transform.position = worldPosition;
         }
 
+        public static void SetPosition(Transform transform, Vector2Int roomOrigin, Vector2Int gridPosition, int gridSize) {
+            Vector3 worldPosition = LevelSection.GridToWorldPosition(gridPosition, roomOrigin, gridSize);      
+            transform.position = worldPosition;
+        }
+
         public void SetRotation() {
             RotationID rotationID = m_Rotations.Find(rotationID => rotationID.VectorID == m_VectorID);
             float rotation = 0f;
