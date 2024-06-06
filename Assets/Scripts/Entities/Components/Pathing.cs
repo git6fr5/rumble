@@ -11,19 +11,24 @@ using Platformer.Physics;
 /* --- Definitions --- */
 using PathingNode = Platformer.Entities.Utility.PathingNode;
 using Reset = Platformer.Entities.Utility.Reset;
+using IReset = Platformer.Entities.Utility.IReset;
 
 namespace Platformer.Entities.Components {
 
     ///<summary>
     ///
     ///<summary>
-    public class Pathing : MonoBehaviour {
+    public class Pathing : MonoBehaviour, IReset{
 
         public Entity m_Entity;
 
         // The path that this platform follows.
         [SerializeField]
         private PathingNode[] m_Nodes;
+        public PathingNode[] nodes => m_Nodes;
+
+        [SerializeField]
+        private bool triggerNodeEvents = false;
         
         // The current position in the path that the path is following.
         [SerializeField, ReadOnly] 
@@ -92,7 +97,7 @@ namespace Platformer.Entities.Components {
             SetTarget(Time.fixedDeltaTime);
         }
 
-        Vector3 currentTargetPos => GetTargetPosition();
+        public Vector3 currentTargetPos => GetTargetPosition();
         private Vector3 GetTargetPosition() {
             // if (m_Elongatable != null && m_Elongatable.LengthUnits > 1) {
             //     if (m_Elongatable.searchDirection == Elongatable.SearchDirection.Horizontal) {
@@ -111,6 +116,9 @@ namespace Platformer.Entities.Components {
             float distance = ((Vector2)currentTargetPos - (Vector2)transform.position).magnitude;
             if (distance == 0f && m_PauseTimer.Value == PauseDuration) {
                 // Game.Audio.Sounds.PlaySound(m_StopMovingSound);
+                if (triggerNodeEvents) {
+                    m_Nodes[m_PathIndex].OnReached.Invoke(m_PathIndex);
+                }
             }
 
             // At an end point.
@@ -150,6 +158,19 @@ namespace Platformer.Entities.Components {
             m_Nodes = path.ToArray();
             m_Speed = speed + (2f / 3f * speed * speedLevel);
             // speedLevel = path.speedLevel;
+        }
+
+        public void OnStartResetting() {
+            print("is this being called");
+            // m_PathIndex = 0;
+            // transform.position = currentTargetPos;
+        }
+
+        public void OnFinishResetting() {
+            // m_FallState = FallState.Stable;
+            m_PathIndex = 0;
+            transform.localPosition = currentTargetPos;
+            m_PauseTimer = new Timer(0f, 0f);
         }
 
     }

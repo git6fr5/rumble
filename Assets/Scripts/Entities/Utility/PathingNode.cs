@@ -5,6 +5,7 @@ using System.Collections.Generic;
 // Unity.
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.Events;
 
 namespace Platformer.Entities.Utility {
 
@@ -15,6 +16,9 @@ namespace Platformer.Entities.Utility {
 
         private Vector3 m_Position;
         public Vector3 Position => m_Position;
+
+        [SerializeField]
+        public UnityEvent<int> OnReached;
 
         void Awake() {
             m_Position = transform.position;
