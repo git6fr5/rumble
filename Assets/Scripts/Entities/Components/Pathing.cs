@@ -87,9 +87,10 @@ namespace Platformer.Entities.Components {
                 m_Nodes[i].transform.parent = transform.parent;
             }
 
-            Entity entity = GetComponentInChildren<Entity>();
-            if (entity != null) {
-                m_Elongatable = entity.GetComponent<Elongatable>();
+            // m_Entity 
+            // m_Entity = GetComponentInChildren<Entity>();
+            if (m_Entity != null) {
+                m_Elongatable = m_Entity.GetComponent<Elongatable>();
             }
 
         }
@@ -132,7 +133,13 @@ namespace Platformer.Entities.Components {
                 float _dt = dt / m_PathTimer.MaxValue;
                 ds = movementAnimator.GetStepDistance(m_PathTimer.InverseRatio, _dt);
             }
-            transform.position += ds * m_Direction; // , 1f, m_Entity?.CollisionContainer);
+
+            transform.localPosition += ds * m_Direction; // , 1f, m_Entity?.CollisionContainer);
+            if (m_Entity != null) {
+                foreach (var col in m_Entity.CollisionContainer) {
+                    col.localPosition += ds * m_Direction;
+                }
+            }
         }
 
         // Sets the target for this platform.
@@ -149,7 +156,7 @@ namespace Platformer.Entities.Components {
         }
 
         private void Wait() {
-            transform.position = m_Nodes[m_PathIndex].Position;
+            transform.localPosition = m_Nodes[m_PathIndex].Position;
             if (triggerNodeEvents) {
                 m_Nodes[m_PathIndex].OnReached.Invoke(m_PathIndex);
             }
