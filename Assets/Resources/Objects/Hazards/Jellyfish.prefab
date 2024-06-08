@@ -755,7 +755,7 @@ MonoBehaviour:
   m_VisualEffects:
   - {fileID: 6040584180502544570}
   - {fileID: 7176765617320601589}
-  m_Ticks: 1.1121243
+  m_Ticks: 1.08782
   m_Duration: 2
 --- !u!1 &6964254958105069928
 GameObject:
@@ -1278,6 +1278,7 @@ GameObject:
   - component: {fileID: 8611092738165268245}
   - component: {fileID: 3588003386251054248}
   - component: {fileID: 1601727122755300331}
+  - component: {fileID: 7731067519061110173}
   m_Layer: 9
   m_Name: Jellyfish
   m_TagString: Untagged
@@ -1467,3 +1468,58 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7731067519061110173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611092738165268255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda99240a21824901b41a3a3e88b1081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MovementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.009712203
+      outSlope: -0.009712203
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.11105806
+      value: -0.0010786185
+      inSlope: 0.041055445
+      outSlope: 0.041055445
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8884114
+      value: 0.0009496438
+      inSlope: -0.042220302
+      outSlope: -0.042220302
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17864043
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0041809
+      value: -0.00024414062
+      inSlope: 0.11491985
+      outSlope: 0.11491985
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.50616926
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_DistanceFactor: 0

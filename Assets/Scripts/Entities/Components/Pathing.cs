@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 // Platformer.
+using Gobblefish;
 using Platformer.Physics;
 
 /* --- Definitions --- */
@@ -19,6 +20,13 @@ namespace Platformer.Entities.Components {
     ///
     ///<summary>
     public class Pathing : MonoBehaviour, IReset{
+
+        public enum PathingState {
+            Moving,
+            Waiting,
+        }
+
+        public PathingState m_PathState;
 
         public Entity m_Entity;
 
@@ -36,7 +44,7 @@ namespace Platformer.Entities.Components {
 
         // The pause timer.
         [SerializeField]
-        protected Timer m_PauseTimer = new Timer(0f, 0f);
+        protected Timer m_PathTimer = new Timer(0f, 0f);
 
         // The amount of time the platform pauses
         // [SerializeField]
@@ -47,37 +55,32 @@ namespace Platformer.Entities.Components {
         [SerializeField] 
         protected float m_Speed = 3f;
 
-        // The sound that plays when the platform starts moving.
-        [SerializeField]
-        private AudioClip m_StartMovingSound = null;
-
-        // The sound that plays when the platform stops moving.
-        [SerializeField]
-        private AudioClip m_StopMovingSound = null;
+        // The speed with which the platform moves at.
+        [SerializeField] 
+        protected Vector3 m_Direction = new Vector3(0f, 0f, 0f);
 
         // Incase this has an elongatable length.
         public Elongatable m_Elongatable;
 
         private Reset reset;
+        private MovementAnimator movementAnimator;
+        public Vector3 currentTargetPos => m_Nodes[m_PathIndex].Position;
 
         [HideInInspector] public int speedLevel;
 
-        // Used to cache references.
-        void Awake() {
-            // if (m_Entity == null) {
-            //     m_Entity = GetComponent<Entity>();
-            // }
-        }
-
         void Start() {
+
+            m_PathState = PathingState.Moving; 
+            Wait();
 
             foreach (Transform child in transform) {
                 if (child.GetComponent<Power>() != null) {
                     m_Speed /= 2f;
                 }
-                // if (child.GetComponent<Reset>() != null) {
-                //     reset = child.GetComponent<Reset>();
-                // }
+                if (child.GetComponent<MovementAnimator>() != null) {
+                    movementAnimator = child.GetComponent<MovementAnimator>();
+                    // movementAnimator.RecalculateDistance(m_Nodes[0], m_Nodes[1]);
+                }
             }
 
             for (int i = 0; i < m_Nodes.Length; i++) {
@@ -92,47 +95,66 @@ namespace Platformer.Entities.Components {
         }
 
         // Runs once every fixed interval.
-        private void FixedUpdate() {
-            transform.Move(currentTargetPos, m_Speed, Time.fixedDeltaTime, m_Entity?.CollisionContainer);
-            SetTarget(Time.fixedDeltaTime);
+        void FixedUpdate() {
+            bool finished = m_PathTimer.TickDown(Time.fixedDeltaTime);
+
+            // Whenever the path timer hits 0.
+            if (finished) {
+
+                switch (m_PathState) {
+                    case PathingState.Waiting:
+                        Next();
+                        break;
+                    case PathingState.Moving:
+                        Wait();
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
+            // What to do for each state.
+            switch (m_PathState) {
+                case PathingState.Moving:
+                    Move(Time.fixedDeltaTime);
+                    break;
+                default:
+                    break;
+            }
+
         }
 
-        public Vector3 currentTargetPos => GetTargetPosition();
-        private Vector3 GetTargetPosition() {
-            // if (m_Elongatable != null && m_Elongatable.LengthUnits > 1) {
-            //     if (m_Elongatable.searchDirection == Elongatable.SearchDirection.Horizontal) {
-            //         Vector3 direction = (m_Nodes[m_PathIndex].Position - transform.position).normalized;
-            //         if (direction.x > 0f && m_PathIndex != 0) {
-            //             return m_Nodes[m_PathIndex].Position - Mathf.Sign(direction.x) * Vector3.right * m_Elongatable.spline.GetPosition(1).x;
-            //         }
-            //     }
-            // }
-            return m_Nodes[m_PathIndex].Position;
+        // Runs once every fixed interval.
+        private void Move(float dt) {
+            float ds = m_Speed * dt;
+            if (movementAnimator != null) {
+                float _dt = dt / m_PathTimer.MaxValue;
+                ds = movementAnimator.GetStepDistance(m_PathTimer.InverseRatio, _dt);
+            }
+            transform.position += ds * m_Direction; // , 1f, m_Entity?.CollisionContainer);
         }
 
         // Sets the target for this platform.
-        private void SetTarget(float dt) {
-            // Take a step.
-            float distance = ((Vector2)currentTargetPos - (Vector2)transform.position).magnitude;
-            if (distance == 0f && m_PauseTimer.Value == PauseDuration) {
-                // Game.Audio.Sounds.PlaySound(m_StopMovingSound);
-                if (triggerNodeEvents) {
-                    m_Nodes[m_PathIndex].OnReached.Invoke(m_PathIndex);
-                }
+        private void Next() {
+            int prevIndex = m_PathIndex;
+            m_PathIndex = (m_PathIndex + 1) % m_Nodes.Length;
+            if (movementAnimator != null) {
+                movementAnimator.RecalculateDistance(m_Nodes[prevIndex].Position, m_Nodes[m_PathIndex].Position);
             }
+            Vector3 displacement = (m_Nodes[prevIndex].Position-m_Nodes[m_PathIndex].Position);
+            m_PathTimer.Start(displacement.magnitude/m_Speed);
+            m_Direction = -displacement.normalized;
+            m_PathState = PathingState.Moving;
+        }
 
-            // At an end point.
-            bool finished = m_PauseTimer.TickDownIf(dt, distance < 0.01f);
-            bool neverStarted = distance == 0f && m_PauseTimer.MaxValue == 0f;
-            if (finished || neverStarted) {
-                // Game.Audio.Sounds.PlaySound(m_StartMovingSound);
-                m_PathIndex = (m_PathIndex + 1) % m_Nodes.Length;
-                m_PauseTimer.Start(PauseDuration);
-                if (reset != null) {
-                    reset.HardReset();
-                }
+        private void Wait() {
+            transform.position = m_Nodes[m_PathIndex].Position;
+            if (triggerNodeEvents) {
+                m_Nodes[m_PathIndex].OnReached.Invoke(m_PathIndex);
             }
-
+            m_PathTimer.Start(PauseDuration);
+            m_PathState = PathingState.Waiting;
         }
 
         public bool debugPath = true;
@@ -167,10 +189,10 @@ namespace Platformer.Entities.Components {
         }
 
         public void OnFinishResetting() {
-            // m_FallState = FallState.Stable;
+            // m_PathState = FallState.Stable;
             m_PathIndex = 0;
             transform.localPosition = currentTargetPos;
-            m_PauseTimer = new Timer(0f, 0f);
+            // m_PauseTimer = new Timer(0f, 0f);
         }
 
     }
