@@ -1,47 +1,30 @@
-/* --- Libraries --- */
 // System.
 using System.Collections;
 using System.Collections.Generic;
 // Unity.
 using UnityEngine;
-// Platformer.
-using Platformer.Physics;
-
-/* --- Definitions --- */
-using IReset = Platformer.Entities.Utility.IReset;
-using CharacterController = Platformer.Character.CharacterController;
-// using TrailAnimator = Gobblefish.Animation.TrailAnimator;
 
 namespace Platformer.Entities.Components {
 
-    ///<summary>
-    ///
-    ///<summary>
+    using Platformer.Physics;
+    using IReset = Platformer.Entities.Utility.IReset;
+    using CharacterController = Platformer.Character.CharacterController;
+    // using TrailAnimator = Gobblefish.Animation.TrailAnimator;
+
     [RequireComponent(typeof(Entity))]
     public class Following : MonoBehaviour, IReset {
 
-        #region Enumerations.
-
         public enum FollowState {
             Still, 
-            Following, 
+            Following,
+            Returning,
         }
-
-        #endregion
-
-        #region Variables.
-
-        /* --- Constants --- */
 
         // The weight with which gravity pulls this.
         // private static float WEIGHT = 1f;
 
-        /* --- Components --- */
-        
         // The body attached to this gameObject 
         private Entity m_Entity;
-
-        /* --- Members --- */
 
         // The current fall state of this falling spike.
         [SerializeField]
@@ -53,25 +36,18 @@ namespace Platformer.Entities.Components {
         public Transform FollowTransform => m_FollowTransform;
 
         private Transform m_Parent;
-
-        // // The duration this crumbles for before falling.
-        // [SerializeField] 
-        // private float m_FollowDelay = 0.5f;
-        
-        // // Tracks how long this is crumbling for
-        // [SerializeField] 
-        // private Timer m_FallDelayTimer = new Timer(0f, 0f);
-
-        // The strength with which this shakes while crumbling
-        // [SerializeField] 
-        // private float m_ShakeStrength = 0.12f;
-        // private float Strength => m_ShakeStrength * m_FallDelayTimer.InverseRatio;
-
-        #endregion
+        GameObject originObject = null;
 
         void Awake() {
             m_Parent = transform.parent;
             m_Entity = GetComponent<Entity>();
+
+            if (Application.isPlaying) {
+                originObject = new GameObject("origin " + gameObject.name);
+                originObject.transform.SetParent(transform.parent);
+                originObject.transform.position = transform.position;
+            }
+
         }
 
         // Initialize the spike.
@@ -86,25 +62,29 @@ namespace Platformer.Entities.Components {
                 case FollowState.Following:
                     WhileFollowing();
                     break;
+                case FollowState.Returning:
+                    WhileReturning();
+                    break;
                 default:
                     break;
             }
 
         }
 
-        public void StartFollowing() {
-            if (m_Entity.CollisionEnabled && m_FollowState == FollowState.Still) {
+        public void StartFollowing(CharacterController character) {
+            // if (m_Entity.CollisionEnabled && m_FollowState == FollowState.Still) {
+            if (m_FollowState == FollowState.Still) {
+                OnFollow(character.transform);
                 m_FollowState = FollowState.Following;
-                OnFollow();
             }
         }
 
-        private void OnFollow() {
+        private void OnFollow(Transform toFollow) {
             // Index.
             Following[] followingArray = (Following[])GameObject.FindObjectsOfType(typeof(Following));
-            Following following = FindFollowing(followingArray, PlayerManager.Character.transform);
+            Following following = FindFollowing(followingArray, toFollow);
             if (following == null) {
-                m_FollowTransform = PlayerManager.Character.transform;
+                m_FollowTransform = toFollow;
             }
             else {
                 Following cachedFollowing = following;
@@ -116,8 +96,10 @@ namespace Platformer.Entities.Components {
             }
 
             transform.SetParent(m_FollowTransform.parent);
+            
         }
 
+        // super inefficient.
         public static Following FindFollowing(Following[] following, Transform transform) {
             for (int i = 0; i < following.Length; i++) {
                 if (following[i].FollowTransform == transform) { 
@@ -128,19 +110,35 @@ namespace Platformer.Entities.Components {
         }
 
         private void WhileFollowing() { 
+            if (m_FollowTransform == null) {
+                m_FollowState = FollowState.Returning;
+                return;
+            }
+
             Vector3 direction = -(m_FollowTransform.position - transform.position).normalized;
             Vector3 followPosition = m_FollowTransform.position + direction; // (m_Follow.position - transform.position).normalized * m_Index;
             float mag = (followPosition - transform.position).magnitude;
             transform.Move(followPosition, mag * 5f, Time.fixedDeltaTime);
         }
 
+        private void WhileReturning() {
+            OnFinishResetting();
+        }
+
         public void OnStartResetting() {
-            transform.SetParent(m_Parent);
             print("is this being called");
         }
 
         public void OnFinishResetting() {
+            transform.SetParent(m_Parent);
+            // m_FollowTransform = originObject.transform;
+            
+            transform.position = originObject.transform.position;
+            m_FollowTransform = null;
             m_FollowState = FollowState.Still;
+
+            // m_FollowState = FollowState.Following;
+
         }
 
     }

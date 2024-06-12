@@ -11,7 +11,7 @@
 	"iid": "54884560-7820-11ed-b2f0-7b0f41a55bad",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 223,
+	"nextUid": 224,
 	"identifierStyle": "Uppercase",
 	"toc": [],
 	"worldLayout": "Free",
@@ -889,7 +889,6 @@
 						{ "px": [32,16], "src": [0,16], "f": 0, "t": 5, "d": [21], "a": 1 },
 						{ "px": [16,32], "src": [16,0], "f": 0, "t": 1, "d": [39], "a": 1 },
 						{ "px": [32,32], "src": [16,16], "f": 0, "t": 6, "d": [40], "a": 1 },
-						{ "px": [48,32], "src": [16,32], "f": 0, "t": 11, "d": [41], "a": 1 },
 						{ "px": [112,32], "src": [0,0], "f": 0, "t": 0, "d": [45], "a": 1 },
 						{ "px": [16,48], "src": [32,0], "f": 0, "t": 2, "d": [58], "a": 1 },
 						{ "px": [32,48], "src": [32,16], "f": 0, "t": 7, "d": [59], "a": 1 },
@@ -1063,10 +1062,231 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "735abdf0-fec0-11ee-99a9-35b270ff3bad", "dir": "e" }, { "levelIid": "775ae970-fec0-11ee-99a9-336ebcb56f31", "dir": "ne" } ]
+			"__neighbours": [ { "levelIid": "20eb4e60-25d0-11ef-9624-cf1b21115fea", "dir": "s" }, { "levelIid": "735abdf0-fec0-11ee-99a9-35b270ff3bad", "dir": "e" }, { "levelIid": "775ae970-fec0-11ee-99a9-336ebcb56f31", "dir": "ne" } ]
 		},
 		{
 			"identifier": "SHOWCASE_3",
+			"iid": "20eb4e60-25d0-11ef-9624-cf1b21115fea",
+			"uid": 223,
+			"worldX": -1472,
+			"worldY": -176,
+			"worldDepth": 0,
+			"pxWid": 304,
+			"pxHei": 176,
+			"__bgColor": "#696A79",
+			"bgColor": null,
+			"useAutoIdentifier": true,
+			"bgRelPath": null,
+			"bgPos": null,
+			"bgPivotX": 0.5,
+			"bgPivotY": 0.5,
+			"__smartColor": "#ADADB5",
+			"__bgPos": null,
+			"externalRelPath": null,
+			"fieldInstances": [],
+			"layerInstances": [
+				{
+					"__identifier": "ORBIT",
+					"__type": "Tiles",
+					"__cWid": 19,
+					"__cHei": 11,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 4,
+					"__tilesetRelPath": "References/reference_ldtk_controls.png",
+					"iid": "20eb4e61-25d0-11ef-9624-59f22a0d92ee",
+					"levelId": 223,
+					"layerDefUid": 220,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 4475595,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "ALTERNATE",
+					"__type": "Tiles",
+					"__cWid": 19,
+					"__cHei": 11,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 222,
+					"__tilesetRelPath": "References/reference_ldtk_alternate.png",
+					"iid": "20eb4e62-25d0-11ef-9624-4de43f900e22",
+					"levelId": 223,
+					"layerDefUid": 142,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 8548838,
+					"overrideTilesetUid": 222,
+					"gridTiles": [
+						{ "px": [48,64], "src": [16,0], "f": 0, "t": 1, "d": [79], "a": 1 },
+						{ "px": [112,64], "src": [16,16], "f": 0, "t": 6, "d": [83], "a": 1 },
+						{ "px": [48,112], "src": [0,0], "f": 0, "t": 0, "d": [136], "a": 1 },
+						{ "px": [80,112], "src": [0,16], "f": 0, "t": 5, "d": [138], "a": 1 },
+						{ "px": [112,112], "src": [0,32], "f": 0, "t": 10, "d": [140], "a": 1 },
+						{ "px": [144,112], "src": [0,48], "f": 0, "t": 15, "d": [142], "a": 1 }
+					],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "PATH",
+					"__type": "Tiles",
+					"__cWid": 19,
+					"__cHei": 11,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 4,
+					"__tilesetRelPath": "References/reference_ldtk_controls.png",
+					"iid": "20eb4e63-25d0-11ef-9624-a567cdb63fa9",
+					"levelId": 223,
+					"layerDefUid": 1,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 2586007,
+					"overrideTilesetUid": null,
+					"gridTiles": [],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "ENTITIES",
+					"__type": "Tiles",
+					"__cWid": 19,
+					"__cHei": 11,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 3,
+					"__tilesetRelPath": "References/reference_ldtk_entities.png",
+					"iid": "20eb4e64-25d0-11ef-9624-6f5683fcb31b",
+					"levelId": 223,
+					"layerDefUid": 5,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 8579099,
+					"overrideTilesetUid": null,
+					"gridTiles": [
+						{ "px": [48,64], "src": [0,16], "f": 0, "t": 8, "d": [79], "a": 1 },
+						{ "px": [112,64], "src": [0,16], "f": 0, "t": 8, "d": [83], "a": 1 },
+						{ "px": [48,112], "src": [0,16], "f": 0, "t": 8, "d": [136], "a": 1 },
+						{ "px": [80,112], "src": [0,16], "f": 0, "t": 8, "d": [138], "a": 1 },
+						{ "px": [112,112], "src": [0,16], "f": 0, "t": 8, "d": [140], "a": 1 },
+						{ "px": [144,112], "src": [0,16], "f": 0, "t": 8, "d": [142], "a": 1 },
+						{ "px": [176,112], "src": [0,16], "f": 0, "t": 8, "d": [144], "a": 1 },
+						{ "px": [208,112], "src": [0,16], "f": 0, "t": 8, "d": [146], "a": 1 },
+						{ "px": [240,112], "src": [0,16], "f": 0, "t": 8, "d": [148], "a": 1 },
+						{ "px": [272,112], "src": [0,16], "f": 0, "t": 8, "d": [150], "a": 1 },
+						{ "px": [128,144], "src": [96,0], "f": 0, "t": 6, "d": [179], "a": 1 }
+					],
+					"entityInstances": []
+				},
+				{
+					"__identifier": "GROUND",
+					"__type": "Tiles",
+					"__cWid": 19,
+					"__cHei": 11,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 2,
+					"__tilesetRelPath": "References/reference_ldtk_ground.png",
+					"iid": "20eb4e65-25d0-11ef-9624-257c8cc36d5d",
+					"levelId": 223,
+					"layerDefUid": 6,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 1691094,
+					"overrideTilesetUid": null,
+					"gridTiles": [
+						{ "px": [0,0], "src": [0,0], "f": 0, "t": 0, "d": [0], "a": 1 },
+						{ "px": [16,0], "src": [0,0], "f": 0, "t": 0, "d": [1], "a": 1 },
+						{ "px": [32,0], "src": [0,0], "f": 0, "t": 0, "d": [2], "a": 1 },
+						{ "px": [48,0], "src": [0,0], "f": 0, "t": 0, "d": [3], "a": 1 },
+						{ "px": [64,0], "src": [0,0], "f": 0, "t": 0, "d": [4], "a": 1 },
+						{ "px": [80,0], "src": [0,0], "f": 0, "t": 0, "d": [5], "a": 1 },
+						{ "px": [96,0], "src": [0,0], "f": 0, "t": 0, "d": [6], "a": 1 },
+						{ "px": [112,0], "src": [0,0], "f": 0, "t": 0, "d": [7], "a": 1 },
+						{ "px": [128,0], "src": [0,0], "f": 0, "t": 0, "d": [8], "a": 1 },
+						{ "px": [144,0], "src": [0,0], "f": 0, "t": 0, "d": [9], "a": 1 },
+						{ "px": [160,0], "src": [0,0], "f": 0, "t": 0, "d": [10], "a": 1 },
+						{ "px": [176,0], "src": [0,0], "f": 0, "t": 0, "d": [11], "a": 1 },
+						{ "px": [192,0], "src": [0,0], "f": 0, "t": 0, "d": [12], "a": 1 },
+						{ "px": [208,0], "src": [0,0], "f": 0, "t": 0, "d": [13], "a": 1 },
+						{ "px": [224,0], "src": [0,0], "f": 0, "t": 0, "d": [14], "a": 1 },
+						{ "px": [240,0], "src": [0,0], "f": 0, "t": 0, "d": [15], "a": 1 },
+						{ "px": [256,0], "src": [0,0], "f": 0, "t": 0, "d": [16], "a": 1 },
+						{ "px": [272,0], "src": [0,0], "f": 0, "t": 0, "d": [17], "a": 1 },
+						{ "px": [288,0], "src": [0,0], "f": 0, "t": 0, "d": [18], "a": 1 },
+						{ "px": [0,16], "src": [0,0], "f": 0, "t": 0, "d": [19], "a": 1 },
+						{ "px": [288,16], "src": [0,0], "f": 0, "t": 0, "d": [37], "a": 1 },
+						{ "px": [0,32], "src": [0,0], "f": 0, "t": 0, "d": [38], "a": 1 },
+						{ "px": [288,32], "src": [0,0], "f": 0, "t": 0, "d": [56], "a": 1 },
+						{ "px": [0,48], "src": [0,0], "f": 0, "t": 0, "d": [57], "a": 1 },
+						{ "px": [288,48], "src": [0,0], "f": 0, "t": 0, "d": [75], "a": 1 },
+						{ "px": [0,64], "src": [0,0], "f": 0, "t": 0, "d": [76], "a": 1 },
+						{ "px": [288,64], "src": [0,0], "f": 0, "t": 0, "d": [94], "a": 1 },
+						{ "px": [0,80], "src": [0,0], "f": 0, "t": 0, "d": [95], "a": 1 },
+						{ "px": [288,80], "src": [0,0], "f": 0, "t": 0, "d": [113], "a": 1 },
+						{ "px": [0,96], "src": [0,0], "f": 0, "t": 0, "d": [114], "a": 1 },
+						{ "px": [0,112], "src": [0,0], "f": 0, "t": 0, "d": [133], "a": 1 },
+						{ "px": [0,128], "src": [0,0], "f": 0, "t": 0, "d": [152], "a": 1 },
+						{ "px": [0,144], "src": [0,0], "f": 0, "t": 0, "d": [171], "a": 1 },
+						{ "px": [0,160], "src": [0,0], "f": 0, "t": 0, "d": [190], "a": 1 },
+						{ "px": [16,160], "src": [0,0], "f": 0, "t": 0, "d": [191], "a": 1 },
+						{ "px": [32,160], "src": [0,0], "f": 0, "t": 0, "d": [192], "a": 1 },
+						{ "px": [48,160], "src": [0,0], "f": 0, "t": 0, "d": [193], "a": 1 },
+						{ "px": [64,160], "src": [0,0], "f": 0, "t": 0, "d": [194], "a": 1 },
+						{ "px": [80,160], "src": [0,0], "f": 0, "t": 0, "d": [195], "a": 1 },
+						{ "px": [96,160], "src": [0,0], "f": 0, "t": 0, "d": [196], "a": 1 },
+						{ "px": [112,160], "src": [0,0], "f": 0, "t": 0, "d": [197], "a": 1 },
+						{ "px": [128,160], "src": [0,0], "f": 0, "t": 0, "d": [198], "a": 1 },
+						{ "px": [144,160], "src": [0,0], "f": 0, "t": 0, "d": [199], "a": 1 },
+						{ "px": [160,160], "src": [0,0], "f": 0, "t": 0, "d": [200], "a": 1 },
+						{ "px": [176,160], "src": [0,0], "f": 0, "t": 0, "d": [201], "a": 1 },
+						{ "px": [192,160], "src": [0,0], "f": 0, "t": 0, "d": [202], "a": 1 },
+						{ "px": [208,160], "src": [0,0], "f": 0, "t": 0, "d": [203], "a": 1 },
+						{ "px": [224,160], "src": [0,0], "f": 0, "t": 0, "d": [204], "a": 1 },
+						{ "px": [240,160], "src": [0,0], "f": 0, "t": 0, "d": [205], "a": 1 },
+						{ "px": [256,160], "src": [0,0], "f": 0, "t": 0, "d": [206], "a": 1 },
+						{ "px": [272,160], "src": [0,0], "f": 0, "t": 0, "d": [207], "a": 1 },
+						{ "px": [288,160], "src": [0,0], "f": 0, "t": 0, "d": [208], "a": 1 }
+					],
+					"entityInstances": []
+				}
+			],
+			"__neighbours": [ { "levelIid": "2634e510-fec0-11ee-b80b-ade692a82fc8", "dir": "n" }, { "levelIid": "735abdf0-fec0-11ee-99a9-35b270ff3bad", "dir": "e" }, { "levelIid": "30d7b1c0-fec0-11ee-99a9-e1c61c0321a5", "dir": "se" } ]
+		},
+		{
+			"identifier": "SHOWCASE_4",
 			"iid": "589c9070-d7b0-11ee-85a4-0193543f9380",
 			"uid": 153,
 			"worldX": -608,
@@ -1282,7 +1502,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_4",
+			"identifier": "SHOWCASE_5",
 			"iid": "f8c06a40-d7b0-11ee-a8d0-f3cc450b8597",
 			"uid": 155,
 			"worldX": -304,
@@ -1524,7 +1744,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_5",
+			"identifier": "SHOWCASE_6",
 			"iid": "01e5e050-d7b0-11ee-a8d0-7592c9e7d32b",
 			"uid": 156,
 			"worldX": 0,
@@ -1772,7 +1992,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_6",
+			"identifier": "SHOWCASE_7",
 			"iid": "a01aab70-d7b0-11ee-a8d0-972cad2dad8c",
 			"uid": 157,
 			"worldX": 304,
@@ -2047,7 +2267,7 @@
 			"__neighbours": [ { "levelIid": "01e5e050-d7b0-11ee-a8d0-7592c9e7d32b", "dir": "w" }, { "levelIid": "a1e3d2b0-d7b0-11ee-a8d0-8f28780c5d5c", "dir": "n" }, { "levelIid": "47ac7cc0-d7b0-11ee-a8d0-cf7e7ceb5a5f", "dir": "nw" }, { "levelIid": "30d7b1c0-fec0-11ee-99a9-e1c61c0321a5", "dir": "s" } ]
 		},
 		{
-			"identifier": "SHOWCASE_7",
+			"identifier": "SHOWCASE_8",
 			"iid": "a1e3d2b0-d7b0-11ee-a8d0-8f28780c5d5c",
 			"uid": 158,
 			"worldX": 304,
@@ -2290,7 +2510,7 @@
 			"__neighbours": [ { "levelIid": "01e5e050-d7b0-11ee-a8d0-7592c9e7d32b", "dir": "sw" }, { "levelIid": "a01aab70-d7b0-11ee-a8d0-972cad2dad8c", "dir": "s" }, { "levelIid": "47ac7cc0-d7b0-11ee-a8d0-cf7e7ceb5a5f", "dir": "w" }, { "levelIid": "19f8d3f0-d7b0-11ee-9ddb-fb149ba04ad7", "dir": "nw" } ]
 		},
 		{
-			"identifier": "SHOWCASE_8",
+			"identifier": "SHOWCASE_9",
 			"iid": "47ac7cc0-d7b0-11ee-a8d0-cf7e7ceb5a5f",
 			"uid": 159,
 			"worldX": 0,
@@ -2559,7 +2779,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_9",
+			"identifier": "SHOWCASE_10",
 			"iid": "51971790-d7b0-11ee-a8d0-b7ad68293151",
 			"uid": 160,
 			"worldX": -304,
@@ -2823,7 +3043,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_10",
+			"identifier": "SHOWCASE_11",
 			"iid": "55c30e00-d7b0-11ee-a8d0-37896ca8f384",
 			"uid": 161,
 			"worldX": 0,
@@ -3104,7 +3324,7 @@
 			"__neighbours": [ { "levelIid": "57480050-d7b0-11ee-a8d0-cb8d434f22ad", "dir": "e" }, { "levelIid": "19f8d3f0-d7b0-11ee-9ddb-fb149ba04ad7", "dir": "s" } ]
 		},
 		{
-			"identifier": "SHOWCASE_11",
+			"identifier": "SHOWCASE_12",
 			"iid": "57480050-d7b0-11ee-a8d0-cb8d434f22ad",
 			"uid": 162,
 			"worldX": 304,
@@ -3380,7 +3600,7 @@
 			"__neighbours": [ { "levelIid": "5d8bb710-b0a0-11ee-83f2-25aee04aacdc", "dir": "e" }, { "levelIid": "55c30e00-d7b0-11ee-a8d0-37896ca8f384", "dir": "w" }, { "levelIid": "19f8d3f0-d7b0-11ee-9ddb-fb149ba04ad7", "dir": "sw" } ]
 		},
 		{
-			"identifier": "SHOWCASE_12",
+			"identifier": "SHOWCASE_13",
 			"iid": "59d2c9e0-d7b0-11ee-a8d0-f196c4900051",
 			"uid": 163,
 			"worldX": 912,
@@ -3656,7 +3876,7 @@
 			"__neighbours": [ { "levelIid": "5d8bb710-b0a0-11ee-83f2-25aee04aacdc", "dir": "w" }, { "levelIid": "c9770540-d7b0-11ee-9ed3-07b261644d4a", "dir": "e" } ]
 		},
 		{
-			"identifier": "SHOWCASE_13",
+			"identifier": "SHOWCASE_14",
 			"iid": "919ae760-d7b0-11ee-a8d0-497f2634e79d",
 			"uid": 164,
 			"worldX": 1824,
@@ -3909,7 +4129,7 @@
 			"__neighbours": [ { "levelIid": "9314dd31-d7b0-11ee-a8d0-c7ea0a6aaab5", "dir": "e" }, { "levelIid": "e231e560-d7b0-11ee-a8d0-43a6381d271a", "dir": "s" }, { "levelIid": "6b947d40-d7b0-11ee-a8d0-1719cad14b6c", "dir": "se" }, { "levelIid": "c9770540-d7b0-11ee-9ed3-07b261644d4a", "dir": "w" } ]
 		},
 		{
-			"identifier": "SHOWCASE_14",
+			"identifier": "SHOWCASE_15",
 			"iid": "9314dd31-d7b0-11ee-a8d0-c7ea0a6aaab5",
 			"uid": 165,
 			"worldX": 2128,
@@ -4169,7 +4389,7 @@
 			"__neighbours": [ { "levelIid": "919ae760-d7b0-11ee-a8d0-497f2634e79d", "dir": "w" }, { "levelIid": "e231e560-d7b0-11ee-a8d0-43a6381d271a", "dir": "sw" }, { "levelIid": "6b947d40-d7b0-11ee-a8d0-1719cad14b6c", "dir": "s" }, { "levelIid": "88197cb0-d7b0-11ee-aefb-e57d5737c3de", "dir": "se" } ]
 		},
 		{
-			"identifier": "SHOWCASE_15",
+			"identifier": "SHOWCASE_16",
 			"iid": "e231e560-d7b0-11ee-a8d0-43a6381d271a",
 			"uid": 166,
 			"worldX": 1824,
@@ -4419,7 +4639,7 @@
 			"__neighbours": [ { "levelIid": "919ae760-d7b0-11ee-a8d0-497f2634e79d", "dir": "n" }, { "levelIid": "9314dd31-d7b0-11ee-a8d0-c7ea0a6aaab5", "dir": "ne" }, { "levelIid": "6b947d40-d7b0-11ee-a8d0-1719cad14b6c", "dir": "e" }, { "levelIid": "c9770540-d7b0-11ee-9ed3-07b261644d4a", "dir": "nw" } ]
 		},
 		{
-			"identifier": "SHOWCASE_16",
+			"identifier": "SHOWCASE_17",
 			"iid": "6b947d40-d7b0-11ee-a8d0-1719cad14b6c",
 			"uid": 167,
 			"worldX": 2128,
@@ -4651,7 +4871,7 @@
 			"__neighbours": [ { "levelIid": "919ae760-d7b0-11ee-a8d0-497f2634e79d", "dir": "nw" }, { "levelIid": "9314dd31-d7b0-11ee-a8d0-c7ea0a6aaab5", "dir": "n" }, { "levelIid": "e231e560-d7b0-11ee-a8d0-43a6381d271a", "dir": "w" }, { "levelIid": "88197cb0-d7b0-11ee-aefb-e57d5737c3de", "dir": "e" } ]
 		},
 		{
-			"identifier": "SHOWCASE_17",
+			"identifier": "SHOWCASE_18",
 			"iid": "ac627480-d7b0-11ee-a8d0-89a9888128da",
 			"uid": 168,
 			"worldX": 3648,
@@ -4955,7 +5175,7 @@
 			"__neighbours": [ { "levelIid": "c11fc620-d7b0-11ee-a8d0-45875d7fc598", "dir": "e" }, { "levelIid": "4b221fe3-d7b0-11ee-9ddb-1bd8e9095aa7", "dir": "s" }, { "levelIid": "c75a3fc0-d7b0-11ee-9ed3-e3ade47fe619", "dir": "w" } ]
 		},
 		{
-			"identifier": "SHOWCASE_18",
+			"identifier": "SHOWCASE_19",
 			"iid": "53ed2c50-d7b0-11ee-a8d0-651c15d1cdaa",
 			"uid": 169,
 			"worldX": 3648,
@@ -5198,7 +5418,7 @@
 			"__neighbours": [ { "levelIid": "5b2f3c60-d7b0-11ee-a8d0-f715853c07a9", "dir": "e" }, { "levelIid": "cd2e5264-d7b0-11ee-a8d0-0985c948c6a9", "dir": "w" }, { "levelIid": "4b221fe3-d7b0-11ee-9ddb-1bd8e9095aa7", "dir": "n" } ]
 		},
 		{
-			"identifier": "SHOWCASE_19",
+			"identifier": "SHOWCASE_20",
 			"iid": "5b2f3c60-d7b0-11ee-a8d0-f715853c07a9",
 			"uid": 170,
 			"worldX": 3952,
@@ -5478,7 +5698,7 @@
 			"__neighbours": [ { "levelIid": "53ed2c50-d7b0-11ee-a8d0-651c15d1cdaa", "dir": "w" }, { "levelIid": "4b221fe3-d7b0-11ee-9ddb-1bd8e9095aa7", "dir": "nw" }, { "levelIid": "d3184ae3-d7b0-11ee-b6ec-fbe0eac94d12", "dir": "e" } ]
 		},
 		{
-			"identifier": "SHOWCASE_20",
+			"identifier": "SHOWCASE_21",
 			"iid": "5dff9a70-d7b0-11ee-a8d0-8569e319bba8",
 			"uid": 171,
 			"worldX": 4256,
@@ -5774,7 +5994,7 @@
 			"__neighbours": [ { "levelIid": "c11fc620-d7b0-11ee-a8d0-45875d7fc598", "dir": "nw" }, { "levelIid": "d3184ae3-d7b0-11ee-b6ec-fbe0eac94d12", "dir": "s" }, { "levelIid": "de8a3924-d7b0-11ee-9ed3-1d764c5cd81b", "dir": "e" } ]
 		},
 		{
-			"identifier": "SHOWCASE_21",
+			"identifier": "SHOWCASE_22",
 			"iid": "5f2ad400-d7b0-11ee-a8d0-858c428c598d",
 			"uid": 172,
 			"worldX": 5168,
@@ -6078,7 +6298,7 @@
 			"__neighbours": [ { "levelIid": "e8bc75c0-d7b0-11ee-a8d0-2f7596265160", "dir": "n" }, { "levelIid": "dd7d0ee0-d7b0-11ee-9ed3-95aadb614cba", "dir": "e" }, { "levelIid": "de8a3924-d7b0-11ee-9ed3-1d764c5cd81b", "dir": "w" } ]
 		},
 		{
-			"identifier": "SHOWCASE_22",
+			"identifier": "SHOWCASE_23",
 			"iid": "606af524-d7b0-11ee-a8d0-f1265f4f0b99",
 			"uid": 173,
 			"worldX": 6080,
@@ -6353,7 +6573,7 @@
 			"__neighbours": [ { "levelIid": "f537fea0-d7b0-11ee-9ddb-1579959e9926", "dir": "e" }, { "levelIid": "a37a4a03-d7b0-11ee-9ed3-bd7c8efd3690", "dir": "ne" }, { "levelIid": "dd7d0ee0-d7b0-11ee-9ed3-95aadb614cba", "dir": "w" } ]
 		},
 		{
-			"identifier": "SHOWCASE_23",
+			"identifier": "SHOWCASE_24",
 			"iid": "35f31210-d7b0-11ee-a8d0-95e298683efe",
 			"uid": 174,
 			"worldX": 8048,
@@ -6557,7 +6777,7 @@
 			"__neighbours": [{ "levelIid": "9a336940-d7b0-11ee-9ed3-ab5d99499b7e", "dir": "w" }]
 		},
 		{
-			"identifier": "SHOWCASE_24",
+			"identifier": "SHOWCASE_25",
 			"iid": "c11fc620-d7b0-11ee-a8d0-45875d7fc598",
 			"uid": 175,
 			"worldX": 3952,
@@ -6830,7 +7050,7 @@
 			"__neighbours": [ { "levelIid": "ac627480-d7b0-11ee-a8d0-89a9888128da", "dir": "w" }, { "levelIid": "5dff9a70-d7b0-11ee-a8d0-8569e319bba8", "dir": "se" }, { "levelIid": "4b221fe3-d7b0-11ee-9ddb-1bd8e9095aa7", "dir": "sw" } ]
 		},
 		{
-			"identifier": "SHOWCASE_25",
+			"identifier": "SHOWCASE_26",
 			"iid": "e8bc75c0-d7b0-11ee-a8d0-2f7596265160",
 			"uid": 178,
 			"worldX": 5168,
@@ -7104,7 +7324,7 @@
 			"__neighbours": [ { "levelIid": "5f2ad400-d7b0-11ee-a8d0-858c428c598d", "dir": "s" }, { "levelIid": "dd7d0ee0-d7b0-11ee-9ed3-95aadb614cba", "dir": "se" }, { "levelIid": "de8a3924-d7b0-11ee-9ed3-1d764c5cd81b", "dir": "sw" } ]
 		},
 		{
-			"identifier": "SHOWCASE_26",
+			"identifier": "SHOWCASE_27",
 			"iid": "cd2e5264-d7b0-11ee-a8d0-0985c948c6a9",
 			"uid": 177,
 			"worldX": 3344,
@@ -7377,7 +7597,7 @@
 			"__neighbours": [ { "levelIid": "53ed2c50-d7b0-11ee-a8d0-651c15d1cdaa", "dir": "e" }, { "levelIid": "4b221fe3-d7b0-11ee-9ddb-1bd8e9095aa7", "dir": "ne" } ]
 		},
 		{
-			"identifier": "SHOWCASE_27",
+			"identifier": "SHOWCASE_28",
 			"iid": "88197cb0-d7b0-11ee-aefb-e57d5737c3de",
 			"uid": 179,
 			"worldX": 2432,
@@ -7621,7 +7841,7 @@
 			"__neighbours": [ { "levelIid": "9314dd31-d7b0-11ee-a8d0-c7ea0a6aaab5", "dir": "nw" }, { "levelIid": "6b947d40-d7b0-11ee-a8d0-1719cad14b6c", "dir": "w" }, { "levelIid": "3cb83e80-d7b0-11ee-9ddb-1938610584c8", "dir": "e" } ]
 		},
 		{
-			"identifier": "SHOWCASE_28",
+			"identifier": "SHOWCASE_29",
 			"iid": "19f8d3f0-d7b0-11ee-9ddb-fb149ba04ad7",
 			"uid": 183,
 			"worldX": 0,
@@ -8067,7 +8287,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_29",
+			"identifier": "SHOWCASE_30",
 			"iid": "3cb83e80-d7b0-11ee-9ddb-1938610584c8",
 			"uid": 187,
 			"worldX": 2736,
@@ -8458,7 +8678,7 @@
 			"__neighbours": [ { "levelIid": "88197cb0-d7b0-11ee-aefb-e57d5737c3de", "dir": "w" }, { "levelIid": "c75a3fc0-d7b0-11ee-9ed3-e3ade47fe619", "dir": "e" } ]
 		},
 		{
-			"identifier": "SHOWCASE_30",
+			"identifier": "SHOWCASE_31",
 			"iid": "4b221fe3-d7b0-11ee-9ddb-1bd8e9095aa7",
 			"uid": 188,
 			"worldX": 3648,
@@ -8867,7 +9087,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_31",
+			"identifier": "SHOWCASE_32",
 			"iid": "f537fea0-d7b0-11ee-9ddb-1579959e9926",
 			"uid": 192,
 			"worldX": 6384,
@@ -9144,7 +9364,7 @@
 			"__neighbours": [ { "levelIid": "606af524-d7b0-11ee-a8d0-f1265f4f0b99", "dir": "w" }, { "levelIid": "a37a4a03-d7b0-11ee-9ed3-bd7c8efd3690", "dir": "n" } ]
 		},
 		{
-			"identifier": "SHOWCASE_32",
+			"identifier": "SHOWCASE_33",
 			"iid": "ff2112d0-d7b0-11ee-9ddb-5d1ceec5564b",
 			"uid": 193,
 			"worldX": 6384,
@@ -9401,7 +9621,7 @@
 			"__neighbours": [ { "levelIid": "00641a20-d7b0-11ee-9ddb-1d064c4171b3", "dir": "e" }, { "levelIid": "71faae90-d7b0-11ee-b4cf-fd0602bdcb47", "dir": "w" }, { "levelIid": "a37a4a03-d7b0-11ee-9ed3-bd7c8efd3690", "dir": "s" } ]
 		},
 		{
-			"identifier": "SHOWCASE_33",
+			"identifier": "SHOWCASE_34",
 			"iid": "00641a20-d7b0-11ee-9ddb-1d064c4171b3",
 			"uid": 194,
 			"worldX": 6688,
@@ -9647,7 +9867,7 @@
 			"__neighbours": [ { "levelIid": "ff2112d0-d7b0-11ee-9ddb-5d1ceec5564b", "dir": "w" }, { "levelIid": "22e64e60-d7b0-11ee-b40c-c1775599b390", "dir": "e" }, { "levelIid": "a37a4a03-d7b0-11ee-9ed3-bd7c8efd3690", "dir": "sw" } ]
 		},
 		{
-			"identifier": "SHOWCASE_34",
+			"identifier": "SHOWCASE_35",
 			"iid": "22e64e60-d7b0-11ee-b40c-c1775599b390",
 			"uid": 198,
 			"worldX": 6992,
@@ -10197,7 +10417,7 @@
 			"__neighbours": [ { "levelIid": "00641a20-d7b0-11ee-9ddb-1d064c4171b3", "dir": "w" }, { "levelIid": "9a336940-d7b0-11ee-9ed3-ab5d99499b7e", "dir": "e" } ]
 		},
 		{
-			"identifier": "SHOWCASE_35",
+			"identifier": "SHOWCASE_36",
 			"iid": "71faae90-d7b0-11ee-b4cf-fd0602bdcb47",
 			"uid": 199,
 			"worldX": 5904,
@@ -10485,7 +10705,7 @@
 			"__neighbours": [ { "levelIid": "ff2112d0-d7b0-11ee-9ddb-5d1ceec5564b", "dir": "e" }, { "levelIid": "a37a4a03-d7b0-11ee-9ed3-bd7c8efd3690", "dir": "se" } ]
 		},
 		{
-			"identifier": "SHOWCASE_36",
+			"identifier": "SHOWCASE_37",
 			"iid": "9a336940-d7b0-11ee-9ed3-ab5d99499b7e",
 			"uid": 202,
 			"worldX": 7744,
@@ -10735,7 +10955,7 @@
 			"__neighbours": [ { "levelIid": "35f31210-d7b0-11ee-a8d0-95e298683efe", "dir": "e" }, { "levelIid": "22e64e60-d7b0-11ee-b40c-c1775599b390", "dir": "w" } ]
 		},
 		{
-			"identifier": "SHOWCASE_37",
+			"identifier": "SHOWCASE_38",
 			"iid": "a37a4a03-d7b0-11ee-9ed3-bd7c8efd3690",
 			"uid": 203,
 			"worldX": 6384,
@@ -10974,7 +11194,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_38",
+			"identifier": "SHOWCASE_39",
 			"iid": "d3184ae3-d7b0-11ee-b6ec-fbe0eac94d12",
 			"uid": 208,
 			"worldX": 4256,
@@ -11228,7 +11448,7 @@
 			"__neighbours": [ { "levelIid": "5b2f3c60-d7b0-11ee-a8d0-f715853c07a9", "dir": "w" }, { "levelIid": "5dff9a70-d7b0-11ee-a8d0-8569e319bba8", "dir": "n" }, { "levelIid": "de8a3924-d7b0-11ee-9ed3-1d764c5cd81b", "dir": "ne" } ]
 		},
 		{
-			"identifier": "SHOWCASE_39",
+			"identifier": "SHOWCASE_40",
 			"iid": "c75a3fc0-d7b0-11ee-9ed3-e3ade47fe619",
 			"uid": 204,
 			"worldX": 3040,
@@ -11582,7 +11802,7 @@
 			"__neighbours": [ { "levelIid": "ac627480-d7b0-11ee-a8d0-89a9888128da", "dir": "e" }, { "levelIid": "3cb83e80-d7b0-11ee-9ddb-1938610584c8", "dir": "w" }, { "levelIid": "4b221fe3-d7b0-11ee-9ddb-1bd8e9095aa7", "dir": "se" } ]
 		},
 		{
-			"identifier": "SHOWCASE_40",
+			"identifier": "SHOWCASE_41",
 			"iid": "c9770540-d7b0-11ee-9ed3-07b261644d4a",
 			"uid": 205,
 			"worldX": 1216,
@@ -11930,7 +12150,7 @@
 			"__neighbours": [ { "levelIid": "59d2c9e0-d7b0-11ee-a8d0-f196c4900051", "dir": "w" }, { "levelIid": "919ae760-d7b0-11ee-a8d0-497f2634e79d", "dir": "e" }, { "levelIid": "e231e560-d7b0-11ee-a8d0-43a6381d271a", "dir": "se" } ]
 		},
 		{
-			"identifier": "SHOWCASE_41",
+			"identifier": "SHOWCASE_42",
 			"iid": "dd7d0ee0-d7b0-11ee-9ed3-95aadb614cba",
 			"uid": 206,
 			"worldX": 5472,
@@ -12224,7 +12444,7 @@
 			"__neighbours": [ { "levelIid": "5f2ad400-d7b0-11ee-a8d0-858c428c598d", "dir": "w" }, { "levelIid": "606af524-d7b0-11ee-a8d0-f1265f4f0b99", "dir": "e" }, { "levelIid": "e8bc75c0-d7b0-11ee-a8d0-2f7596265160", "dir": "nw" } ]
 		},
 		{
-			"identifier": "SHOWCASE_42",
+			"identifier": "SHOWCASE_43",
 			"iid": "de8a3924-d7b0-11ee-9ed3-1d764c5cd81b",
 			"uid": 207,
 			"worldX": 4560,
@@ -12581,7 +12801,7 @@
 			"__neighbours": [ { "levelIid": "5dff9a70-d7b0-11ee-a8d0-8569e319bba8", "dir": "w" }, { "levelIid": "5f2ad400-d7b0-11ee-a8d0-858c428c598d", "dir": "e" }, { "levelIid": "e8bc75c0-d7b0-11ee-a8d0-2f7596265160", "dir": "ne" }, { "levelIid": "d3184ae3-d7b0-11ee-b6ec-fbe0eac94d12", "dir": "sw" } ]
 		},
 		{
-			"identifier": "SHOWCASE_43",
+			"identifier": "SHOWCASE_44",
 			"iid": "879ea5d0-fec0-11ee-99a9-cdc211e99971",
 			"uid": 209,
 			"worldX": -784,
@@ -12892,7 +13112,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_44",
+			"identifier": "SHOWCASE_45",
 			"iid": "703b2e70-fec0-11ee-99a9-5fc55e9f7ea5",
 			"uid": 210,
 			"worldX": -1088,
@@ -13251,7 +13471,7 @@
 			"__neighbours": [ { "levelIid": "b1101730-d7b0-11ee-8e93-9b7dade27279", "dir": "n" }, { "levelIid": "879ea5d0-fec0-11ee-99a9-cdc211e99971", "dir": "e" }, { "levelIid": "735abdf0-fec0-11ee-99a9-35b270ff3bad", "dir": "w" }, { "levelIid": "30d7b1c0-fec0-11ee-99a9-e1c61c0321a5", "dir": "s" } ]
 		},
 		{
-			"identifier": "SHOWCASE_45",
+			"identifier": "SHOWCASE_46",
 			"iid": "735abdf0-fec0-11ee-99a9-35b270ff3bad",
 			"uid": 211,
 			"worldX": -1168,
@@ -13511,13 +13731,14 @@
 			"__neighbours": [
 				{ "levelIid": "b1101730-d7b0-11ee-8e93-9b7dade27279", "dir": "e" },
 				{ "levelIid": "2634e510-fec0-11ee-b80b-ade692a82fc8", "dir": "w" },
+				{ "levelIid": "20eb4e60-25d0-11ef-9624-cf1b21115fea", "dir": "w" },
 				{ "levelIid": "703b2e70-fec0-11ee-99a9-5fc55e9f7ea5", "dir": "e" },
 				{ "levelIid": "775ae970-fec0-11ee-99a9-336ebcb56f31", "dir": "n" },
 				{ "levelIid": "30d7b1c0-fec0-11ee-99a9-e1c61c0321a5", "dir": "s" }
 			]
 		},
 		{
-			"identifier": "SHOWCASE_46",
+			"identifier": "SHOWCASE_47",
 			"iid": "775ae970-fec0-11ee-99a9-336ebcb56f31",
 			"uid": 212,
 			"worldX": -1168,
@@ -14479,7 +14700,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_47",
+			"identifier": "SHOWCASE_48",
 			"iid": "202518e0-fec0-11ee-99a9-8548e7eddac6",
 			"uid": 213,
 			"worldX": -608,
@@ -14844,7 +15065,7 @@
 			]
 		},
 		{
-			"identifier": "SHOWCASE_48",
+			"identifier": "SHOWCASE_49",
 			"iid": "30d7b1c0-fec0-11ee-99a9-e1c61c0321a5",
 			"uid": 214,
 			"worldX": -1168,
@@ -15436,6 +15657,7 @@
 				}
 			],
 			"__neighbours": [
+				{ "levelIid": "20eb4e60-25d0-11ef-9624-cf1b21115fea", "dir": "nw" },
 				{ "levelIid": "589c9070-d7b0-11ee-85a4-0193543f9380", "dir": "n" },
 				{ "levelIid": "f8c06a40-d7b0-11ee-a8d0-f3cc450b8597", "dir": "n" },
 				{ "levelIid": "01e5e050-d7b0-11ee-a8d0-7592c9e7d32b", "dir": "n" },

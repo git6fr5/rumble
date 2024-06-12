@@ -199,6 +199,8 @@ namespace Platformer.Entities.Components {
             // m_PathState = FallState.Stable;
             m_PathIndex = 0;
             transform.localPosition = currentTargetPos;
+            m_PathState = PathingState.Moving; 
+            Wait();
             // m_PauseTimer = new Timer(0f, 0f);
         }
 

@@ -755,7 +755,7 @@ MonoBehaviour:
   m_VisualEffects:
   - {fileID: 6040584180502544570}
   - {fileID: 7176765617320601589}
-  m_Ticks: 1.08782
+  m_Ticks: 1.2880611
   m_Duration: 2
 --- !u!1 &6964254958105069928
 GameObject:
@@ -1278,7 +1278,7 @@ GameObject:
   - component: {fileID: 8611092738165268245}
   - component: {fileID: 3588003386251054248}
   - component: {fileID: 1601727122755300331}
-  - component: {fileID: 7731067519061110173}
+  - component: {fileID: 6736263194419353925}
   m_Layer: 9
   m_Name: Jellyfish
   m_TagString: Untagged
@@ -1468,7 +1468,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7731067519061110173
+--- !u!114 &6736263194419353925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1497,6 +1497,15 @@ MonoBehaviour:
       value: -0.0010786185
       inSlope: 0.041055445
       outSlope: 0.041055445
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5312305
+      value: 0.008106323
+      inSlope: 0.0007995066
+      outSlope: 0.0007995066
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334

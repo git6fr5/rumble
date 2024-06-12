@@ -212,6 +212,8 @@ namespace Platformer.Character {
             m_DefaultAction.Enable(this, true);
             m_Animator.StopAnimation("OnDeath");
 
+            Platformer.Levels.LevelManager.ResetActiveLevels();
+
         }
 
         public void SetRespawn(Respawn respawn) {
@@ -282,6 +284,20 @@ namespace Platformer.Character {
                 }
             }
             return null;
+        }
+
+        private Power powerGiver = null;
+        public void SetPowerGiver(Power power) {
+            powerGiver = power;
+        }
+
+        public void RefreshPowerGiver() {
+            if (powerGiver != null) {
+                Platformer.Entities.Utility.Reset reset = powerGiver.GetComponent<Platformer.Entities.Utility.Reset>();
+                if (reset) {
+                    reset.GoToBlinking();
+                }
+            }
         }
 
         public void EnableAllAbilityActions() {

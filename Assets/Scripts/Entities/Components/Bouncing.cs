@@ -35,10 +35,10 @@ namespace Platformer.Entities.Components {
         /* --- Constants --- */
 
         // The default bounce speed.
-        private const float BOUNCE_SPEED = 26f;
+        private const float BOUNCE_SPEED = 20f; // 26f;
 
         // The jump speed for missed bounces.
-        private const float MISSED_BOUNCE_SPEED = 18f;
+        private const float MISSED_BOUNCE_SPEED = 8f; // 18f;
 
         /* --- Members --- */
 
@@ -90,7 +90,7 @@ namespace Platformer.Entities.Components {
 
         public void ClampMainPlayerJump() {
             Platformer.Character.CharacterController character = Platformer.PlayerManager.Character;
-            // character.Default.ClampJump(true);
+            character.Default.ClampJump(true);
         }
 
         public void OnStartTensing() {
@@ -121,7 +121,8 @@ namespace Platformer.Entities.Components {
 
             // Bounce a character that did not pre-emptively bounce if it
             // PRESSES jump while the platform is releasing.
-            CheckBounce();
+            // CheckBounce();
+            OldCheckBounce();
 
             float distance = (transform.localPosition - m_Entity.Origin).magnitude;
             if (distance < PhysicsManager.Settings.collisionPrecision) {

@@ -11,6 +11,9 @@ using Gobblefish.Graphics;
 
 namespace Platformer.Levels {
 
+    using Reset = Platformer.Entities.Utility.Reset;
+    using IReset = Platformer.Entities.Utility.IReset;
+
     /// <summary>
     ///
     /// <summary>
@@ -131,14 +134,50 @@ namespace Platformer.Levels {
                 m_Entities[i].gameObject.SetActive(enable);
             }
             if (enable) {
-                for (int i = 0; i < m_Entities.Count; i++) {
-                    if (m_Entities[i].GetComponent<Platformer.Entities.Utility.Reset>()) {
-                        m_Entities[i].GetComponent<Platformer.Entities.Utility.Reset>().HardReset();
-                    }
-                }
+                // for (int i = 0; i < m_Entities.Count; i++) {
+                //     if (m_Entities[i].GetComponent<Platformer.Entities.Utility.Reset>()) {
+                //         m_Entities[i].GetComponent<Platformer.Entities.Utility.Reset>().HardReset();
+                //     }
+                // }
+                ResetEntities();
             }
             entitiesEnabled = enable;
         }
+
+        public void ResetEntities() {
+            m_Entities = m_Entities.FindAll(entity => entity != null);
+
+            for (int i = 0; i < m_Entities.Count; i++) {
+                recursive_ResetEntities(m_Entities[i].transform, true, true);
+            }
+
+            void recursive_ResetEntities(Transform transform, bool checkParent, bool checkChidlren) {
+                Reset reset = transform.GetComponent<Reset>();
+                if (reset) {
+                    reset.HardReset();
+                }
+                else {
+                    IReset[] resets = transform.gameObject.GetComponents<IReset>();
+                    for (int i = 0; i < resets.Length; i++) {
+                        resets[i].OnFinishResetting();
+                    }
+                }
+
+                if (checkChidlren && transform.childCount > 0) {
+                    foreach (Transform child in transform) {
+                        recursive_ResetEntities(child, false, true);
+                    }
+                }
+
+                if (checkParent && (transform.parent != null && transform.parent != this.transform)) {
+                    recursive_ResetEntities(transform.parent, true, false);
+                }
+
+            }
+
+        }
+
+        
 
         void OnTriggerExit2D(Collider2D collider) {
             if (collider == PlayerManager.Character.Collider) {

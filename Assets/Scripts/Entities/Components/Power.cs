@@ -45,14 +45,13 @@ namespace Platformer.Entities.Components {
 
             // Swap the power based on the type of orb.
             character.DisableAllAbilityActions();
+            
             switch (m_Type) {
                 case Type.Dash:
                     character.GetPowerAction(typeof(DashAction).ToString()).Enable(character, true);
-                    character.Animator.SetPowerIndicator(this);
                     break;
                 case Type.Hop:
                     character.GetPowerAction(typeof(HopAction).ToString()).Enable(character, true);
-                    character.Animator.SetPowerIndicator(this);
                     break;
                 // case Type.Ghost:
                 //     character.GetPowerAction<GhostAction>().Enable(character, true);
@@ -76,6 +75,9 @@ namespace Platformer.Entities.Components {
                     character.Default.Enable(character, true);
                     break;
             }
+
+            character.Animator.SetPowerIndicator(this);
+            character.SetPowerGiver(this);
 
         }
         

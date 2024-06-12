@@ -1,5 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9128800064897081878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba243fd669284460b7bad35d4ff539c, type: 3}
+  m_Name: PosterizationFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  m_Settings:
+    renderPassEvent: 550
+    valuePosterizationLevel: 7
+    posterizationMaterial: {fileID: 0}
+  m_posterizationShader: {fileID: 4800000, guid: edcdf9befd5a44223af9eb0b422ba0b1, type: 3}
+--- !u!114 &-5798437109185275632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41f26195cf644d9c9848878c1ffdcaa, type: 3}
+  m_Name: DitherFeature
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  m_Settings:
+    passName: Dither Pass
+    renderPassEvent: 550
+    material: {fileID: 0}
+    spread: 0.6
+    bayerLevel: 1
+    r: 0
+    g: 0
+    b: 0
+  m_Shader: {fileID: 4800000, guid: 0fd5b01b5fc2341ac89a2e896e13cf05, type: 3}
+--- !u!114 &-3831913397533137323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced57fd7d2be74e8c97a2bacec4e38af, type: 3}
+  m_Name: PixelationFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  m_Settings:
+    renderPassEvent: 550
+    pixelsPerUnit: 18
+    pixelationMaterial: {fileID: 0}
+  m_pixelationShader: {fileID: 4800000, guid: 5c9ccfb7d96f24e65be7ec562f1a25a2, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,8 +74,12 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
-  - {fileID: 3048535804201023912}
-  m_RendererFeatureMap: a839767e29934e2a
+  - {fileID: -9128800064897081878}
+  - {fileID: 8201086074830945226}
+  - {fileID: 6430948801604645563}
+  - {fileID: -5798437109185275632}
+  - {fileID: -3831913397533137323}
+  m_RendererFeatureMap: ea1d3f1ab5fc4f81ca7bb376551cd071bb725ec8dc513f59109991ae2bd087af5526fa39114fd2ca
   m_UseNativeRenderPass: 0
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
@@ -59,7 +122,7 @@ MonoBehaviour:
   m_DefaultLitMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_DefaultUnlitMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_DefaultMaskMaterial: {fileID: 2100000, guid: 15d0c3709176029428a0da2f8cecf0b5, type: 2}
---- !u!114 &3048535804201023912
+--- !u!114 &6430948801604645563
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,33 +131,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
+  m_Script: {fileID: 11500000, guid: e41f26195cf644d9c9848878c1ffdcaa, type: 3}
+  m_Name: DitherFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
-  settings:
-    passTag: RenderObjects
-    Event: 300
-    filterSettings:
-      RenderQueueType: 0
-      LayerMask:
-        serializedVersion: 2
-        m_Bits: 0
-      PassNames: []
-    overrideMaterial: {fileID: 0}
-    overrideMaterialPassIndex: 0
-    overrideDepthState: 0
-    depthCompareFunction: 4
-    enableWrite: 1
-    stencilSettings:
-      overrideStencilState: 0
-      stencilReference: 0
-      stencilCompareFunction: 8
-      passOperation: 0
-      failOperation: 0
-      zFailOperation: 0
-    cameraSettings:
-      overrideCamera: 0
-      restoreCamera: 1
-      offset: {x: 0, y: 0, z: 0, w: 0}
-      cameraFieldOfView: 60
+  m_Active: 0
+  m_Settings:
+    passName: Dither Pass
+    renderPassEvent: 550
+    material: {fileID: 0}
+    spread: 1
+    bayerLevel: 2
+    r: 30
+    g: 2
+    b: 2
+  m_Shader: {fileID: 4800000, guid: 0fd5b01b5fc2341ac89a2e896e13cf05, type: 3}
+--- !u!114 &8201086074830945226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31fe4b3c25fa742b59ac50e9a81ef1fb, type: 3}
+  m_Name: KuwaharaFeature
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  m_Settings:
+    passName: Kuwahara Pass
+    renderPassEvent: 550
+    material: {fileID: 0}
+    boxSize: 1
+  m_Shader: {fileID: 4800000, guid: 75088efe8ddcc4a92beaf57df9535bcc, type: 3}

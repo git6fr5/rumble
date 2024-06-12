@@ -77,6 +77,14 @@ namespace Platformer.Entities.Components {
         public void SetRespawnPoint(CharacterController character) {
             if (character == PlayerManager.Character) {
                 character.SetRespawn(this);
+
+                Following[] followingArray = (Following[])GameObject.FindObjectsOfType(typeof(Following));
+                foreach (Following following in followingArray) {
+                    if (following.FollowTransform == character.transform) {
+                        Destroy(following.gameObject);
+                    }
+                }
+
             }
         }
 

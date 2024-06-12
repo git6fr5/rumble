@@ -81,6 +81,17 @@ namespace Platformer.Entities.Utility {
 
         }
 
+        private bool straightToBlinking = false;
+        public void GoToBlinking() {
+            straightToBlinking = true;
+            Refresh();
+        }
+
+        public void DisableEntity() {
+            m_Entity.EnableColliders(false);
+            m_Entity.Renderer.enabled = false;
+        }
+
         // A coroutine to eventually reset this orb object.
         protected IEnumerator IEReset() {
             // Wait a little until this orb starts blinking back into existence.
@@ -89,7 +100,10 @@ namespace Platformer.Entities.Utility {
                 resets[i].OnStartResetting();
             }
 
-            yield return new WaitForSeconds(GetPreBlinkTime());
+            if (!straightToBlinking) {
+                yield return new WaitForSeconds(GetPreBlinkTime());
+            }
+            
             m_Entity.ResetPosition();
 
             // Break if the orb has been prematurely reset.

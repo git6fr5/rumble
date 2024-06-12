@@ -74,6 +74,18 @@ namespace Platformer.Levels {
         [SerializeField]
         private GameObject m_CollisionBlock;
 
+        public static void ResetActiveLevels() {
+            Instance._ResetActiveLevels();
+        }
+
+        private void _ResetActiveLevels() {
+            foreach (LevelSection section in m_Sections) {
+                if (section.entitiesEnabled) {
+                    section.ResetEntities();
+                }
+            }
+        }
+
         public List<Rigidbody2D> ConvertToBlocks(BoundsInt bounds) {
 
             int sortingOrder = m_DecorationMap.GetComponent<TilemapRenderer>().sortingOrder;

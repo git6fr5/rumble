@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b331e07b82cb044938e68c235a673b3e, type: 3}
   m_Name: SimpleDouble
   m_EditorClassIdentifier: 
-  projectile: {fileID: 6793848105456430590, guid: 53d36c009815841bf97272e6229dd10d, type: 3}
   projectileCount: 4
   speedScale: 1
   speedCurve:
@@ -39,7 +38,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  delayScale: 0
+  delayScale: 0.01
   delayCurve:
     serializedVersion: 2
     m_Curve:
@@ -64,7 +63,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  angleScale: 360
+  angleScale: 90
   angleCurve:
     serializedVersion: 2
     m_Curve:

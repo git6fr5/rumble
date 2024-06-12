@@ -94,7 +94,8 @@ namespace Platformer.Entities.Utility {
                         r = r % 1;
                     }
 
-                    timer.Start(period * r);
+                    // timer.Start(period * r);
+                    timer.Start(period * (float)i / offsetRange);
 
                     List<AlternatingEntity> forthistimer = entityList.FindAll(e => e.index == index && e.offset == i);
                     List<Outliner> outlines = new List<Outliner>();
@@ -102,7 +103,7 @@ namespace Platformer.Entities.Utility {
                     GeneratedAlternatingGroup g = new GeneratedAlternatingGroup();
                     g.timer=timer;
                     g.ents = forthistimer;
-                    g.currState = !startOff;
+                    g.currState = false; // !startOff;
                     generatedGroups.Add(g);
                     
                     foreach (AlternatingEntity e in forthistimer) {
@@ -119,6 +120,8 @@ namespace Platformer.Entities.Utility {
 
             }
 
+            public float activeRatio => 1f / (float)offsetRange;
+
             public void Update(float dt) {
 
                 foreach (var group in generatedGroups) {
@@ -127,7 +130,12 @@ namespace Platformer.Entities.Utility {
 
                     if (changeFin) {
                         group.pretimer.Start(PRE_CHANGE_DURATION);
-                        group.timer.Start(period);
+                        if (group.currState) {
+                            group.timer.Start(period * (1f - activeRatio));
+                        }
+                        else {
+                            group.timer.Start(period * activeRatio);
+                        }
                     }
 
                     bool prechangeFin = group.pretimer.TickDown(dt);
@@ -186,7 +194,7 @@ namespace Platformer.Entities.Utility {
         public List<AlternatingSettings> settingsList = new List<AlternatingSettings>();
 
         // The duration before changing that we indicate a change is happening.
-        private const float PRE_CHANGE_DURATION = 0.3f;
+        private const float PRE_CHANGE_DURATION = 0.1f;
         private const float BASE_OUTLINE_WIDTH = 0.1f;
 
         public int index;

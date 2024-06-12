@@ -127,6 +127,8 @@ namespace Platformer.Character {
             m_ActionPhase = ActionPhase.None;
             if (m_ActionTimer.Active) { m_ActionTimer.Stop(); }
             character.Default.Enable(character, true);
+            
+            character.RefreshPowerGiver();
         }
 
         protected virtual void WhilePreaction(CharacterController character, float dt) {

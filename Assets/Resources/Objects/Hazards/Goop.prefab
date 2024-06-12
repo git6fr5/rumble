@@ -662,7 +662,7 @@ MonoBehaviour:
   m_SpriteShapeController: {fileID: 6088725179361872797}
   m_ColliderHeight: 0.25
   m_ColliderVerticalOffset: -0.5
-  m_ColliderHorizontalInset: 0
+  m_ColliderHorizontalInset: 0.05
   m_LengthUnits: 1
   m_SearchDirection: 0
 --- !u!114 &1613016829423369035
@@ -680,8 +680,9 @@ MonoBehaviour:
   m_Overrides:
   - length: 1
     gameObject: {fileID: 1974480403096415827}
-  m_Light: {fileID: 0}
-  m_TileAlongPath: []
+  m_Light: {fileID: 3443820356465010954}
+  m_TileAlongPath:
+  - {fileID: 2227088186156592064}
   m_SubShapes: []
 --- !u!61 &1783239970336808598
 BoxCollider2D:
