@@ -11,6 +11,14 @@ namespace Platformer.Tests {
 
         public List<Color> colors;
 
+        public bool debugColorer = false;
+
+        void Update() {
+            if (Application.isPlaying && debugColorer) {
+                Color(0);
+            }
+        }
+
         public void Color(int index) {
             if (index > colors.Count || index < 0) {
                 return;

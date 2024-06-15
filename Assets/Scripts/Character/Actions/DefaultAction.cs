@@ -47,7 +47,7 @@ namespace Platformer.Character {
         /* --- Member Variables --- */
 
         [SerializeField, ReadOnly]
-        private bool m_Interacting = false;
+        protected bool m_Interacting = false;
 
         // Whether the character is using the default movement.
         [SerializeField, ReadOnly] 
@@ -67,24 +67,24 @@ namespace Platformer.Character {
 
         // The default speed the character moves at.
         [SerializeField] 
-        private float m_Speed = 7.5f;
+        protected float m_Speed = 7.5f;
         public float Speed => m_Speed;
 
         // The default acceleration of the character.
         [SerializeField] 
-        private float m_Acceleration = 75f;
+        protected float m_Acceleration = 75f;
 
         // The default jump height of the character.
         [SerializeField] 
-        private float m_Height = 3.5f;
+        protected float m_Height = 3.5f;
 
         // The default time taken to reach the m_HangTimer of the jump.
         [SerializeField] 
-        private float m_RisingTime = 0.45f;
+        protected float m_RisingTime = 0.45f;
 
         // The default time taken to fall from the m_HangTimer of the jump.
         [SerializeField] 
-        private float m_FallingTime = 0.4f;
+        protected float m_FallingTime = 0.4f;
 
         // The amount of time before noticing we're falling.
         [SerializeField] 
@@ -100,38 +100,38 @@ namespace Platformer.Character {
 
         // The calculated jump speed based on the height, rising and falling time.
         [SerializeField, ReadOnly] 
-        private float m_JumpSpeed = 0f;
+        protected float m_JumpSpeed = 0f;
         public float JumpSpeed => m_JumpSpeed;
 
         // The calculated m_Weight based on the height, rising and falling time.
         [SerializeField, ReadOnly] 
-        private float m_Weight = 0f;
+        protected float m_Weight = 0f;
 
         // The calculated sink factor based on the height, rising and falling time.
         // The sink is the factor applied to the m_Weight when falling.
         [SerializeField, ReadOnly] 
-        private float m_Sink = 0f;
+        protected float m_Sink = 0f;
 
         // Tracks how long the character has not been on the ground.
         [HideInInspector] 
-        private Timer m_CoyoteTimer = new Timer(0f, 0f);
+        protected Timer m_CoyoteTimer = new Timer(0f, 0f);
 
         // Tracks how long its been since the character reached the m_HangTimer.
         [HideInInspector] 
-        private Timer m_HangTimer = new Timer(0f, 0f);
+        protected Timer m_HangTimer = new Timer(0f, 0f);
 
         // Tracks how long its been since the character reached the m_HangTimer.
         [HideInInspector] 
-        private float m_IdleTicks = 0f;
+        protected float m_IdleTicks = 0f;
 
         // Tracks how long its been since the character reached the m_HangTimer.
         [HideInInspector] 
-        private float m_FootstepTicks = 0f;
+        protected float m_FootstepTicks = 0f;
         public float FootstepInterval = 0.3f;
 
         //
         [SerializeField]
-        private Vector2 m_Direction = new Vector2(0f, 0f);
+        protected Vector2 m_Direction = new Vector2(0f, 0f);
 
         #endregion
 
@@ -227,7 +227,7 @@ namespace Platformer.Character {
             
         }
 
-        private void GetDefaultState(CharacterController character, float dt) {
+        protected void GetDefaultState(CharacterController character, float dt) {
 
             if (!character.OnGround) {
                 if (character.Rising) {
@@ -291,16 +291,16 @@ namespace Platformer.Character {
         }
 
         //
-        private void OnInteract(CharacterController character) {
+        protected void OnInteract(CharacterController character) {
             m_Interacting = character.CurrentInteractable.StartInteraction();
         }
 
         //
-        private void WhileInteracting(CharacterController character) {
+        protected void WhileInteracting(CharacterController character) {
             m_Interacting = character.CurrentInteractable.ContinueInteraction();
         }
 
-        private void OnJump(CharacterController character) {
+        protected void OnJump(CharacterController character) {
             // Refresh the jump settings.
             if (m_ClampJump) { return; }
 
@@ -339,7 +339,7 @@ namespace Platformer.Character {
 
         }
 
-        private void OnLand(CharacterController character) {
+        protected void OnLand(CharacterController character) {
             m_ClampJump = false;
 
             character.Animator.PlayAnimation("OnLand");
@@ -353,7 +353,7 @@ namespace Platformer.Character {
         }
 
         // Process the physics of this action.
-        private void WhileMoving(CharacterController character, float dt) {
+        protected void WhileMoving(CharacterController character, float dt) {
             // Cache the target and current velocities.
             float targetSpeed = m_Direction.x * m_Speed;
             float currentSpeed = character.Body.velocity.x;
@@ -379,7 +379,7 @@ namespace Platformer.Character {
         }
 
         // Not really falling, but rather "while default grav acting on this body"
-        private void WhileFalling(CharacterController character, float dt) {
+        protected void WhileFalling(CharacterController character, float dt) {
             // Set the m_Weight to the default.
             float weight = m_Weight;
 
@@ -426,7 +426,7 @@ namespace Platformer.Character {
         }
 
         // While ducking.
-        private void WhileDucking(CharacterController character, float dt) {
+        protected void WhileDucking(CharacterController character, float dt) {
 
             int characterLayer = LayerMask.NameToLayer("Characters");
             if (character.Input.Direction.Vertical == -1f && character.gameObject.layer == characterLayer) {

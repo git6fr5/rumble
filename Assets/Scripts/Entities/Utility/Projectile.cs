@@ -52,16 +52,20 @@ namespace Platformer.Entities.Utility {
         }
 
         void FixedUpdate() {
-            if (m_PointInDirection) {
-                float signedAngle = Vector2.SignedAngle(Vector2.right, m_Body.velocity);
-                if (signedAngle < -90f || signedAngle > 90f) {
-                    signedAngle += 180f;
-                    signedAngle = signedAngle % 360f;
-                    transform.localScale = new Vector3(-m_Scale.x, m_Scale.y, m_Scale.z);
-                }
-                Quaternion direction = Quaternion.Euler(0f, 0f, signedAngle);
-                transform.localRotation = direction;
+            if (m_PointInDirection && m_Body.velocity.sqrMagnitude != 0f) {
+                PointInDirection(m_Body.velocity);
             }
+        }
+
+        public void PointInDirection(Vector2 direction) {
+            float signedAngle = Vector2.SignedAngle(Vector2.right, direction);
+            if (signedAngle < -90f || signedAngle > 90f) {
+                signedAngle += 180f;
+                signedAngle = signedAngle % 360f;
+                transform.localScale = new Vector3(-m_Scale.x, m_Scale.y, m_Scale.z);
+            }
+            Quaternion rot = Quaternion.Euler(0f, 0f, signedAngle);
+            transform.localRotation = rot;
         }
 
         public virtual void Fire(float speed, Vector2 direction) {

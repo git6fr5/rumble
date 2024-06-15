@@ -117,6 +117,7 @@ namespace Platformer.Character {
         void Awake() {
             m_Input = GetComponent<InputSystem>();
             m_Body = GetComponent<Rigidbody2D>();
+            // Debug.Log("body: " + m_Body.ToString());
             m_Collider = GetComponent<CircleCollider2D>();
         }
 
@@ -128,6 +129,7 @@ namespace Platformer.Character {
             for (int i = 0; i < m_PowerActions.Count; i++) {
                 m_PowerActions[i] = Instantiate(m_PowerActions[i]);
             }
+            
         }
 
 

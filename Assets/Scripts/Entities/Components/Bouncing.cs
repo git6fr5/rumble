@@ -12,6 +12,8 @@ using CharacterController = Platformer.Character.CharacterController;
 
 namespace Platformer.Entities.Components {
 
+    using Gobblefish;
+
     ///<summary>
     ///
     ///<summary>
@@ -42,37 +44,87 @@ namespace Platformer.Entities.Components {
 
         /* --- Members --- */
 
-        // The threshold between which 
+        // The threshold between which
         private Entity m_Entity;
 
         // Whether this is bouncing or releasing.
-        [SerializeField] 
+        [SerializeField]
         private BounceState m_BounceState = BounceState.None;
-        
-        // The speed with which this moves.
-        [SerializeField] 
-        private float m_SinkSpeed = 2f;
-        
-        // The speed with which this moves.
-        [SerializeField] 
-        private float m_RiseSpeed = 6f;
-        
-        // The max tension before releasing.
-        [SerializeField] 
-        private float m_MaxTension = 0.7f;
-        private Vector3 MaxTensionPosition => m_Entity.Origin + Vector3.down * m_MaxTension;
 
-        // The sound that plays when this bounces.
-        // [SerializeField] 
-        // private AudioClip m_BounceSound = null;
+        // The pause timer.
+        [SerializeField]
+        protected Timer m_BounceTimer = new Timer(0f, 0f);
+
+        // The curve that controls the motion towards the nadir.
+        [SerializeField]
+        private AnimationCurve m_SinkCurve;
+
+        // The scale of the sinking.
+        [SerializeField]
+        private float m_SinkDuration = 0.7f;
+
+        // The scale of the sinking.
+        [SerializeField]
+        private float m_SinkScale = 0.7f;
+
+        // The point during sinking after which the character's jump is "clamped".
+        [SerializeField, Range(0f, 1f)]
+        private float m_ClampJumpThreshold;
+
+        // The speed with which this moves away from its zenith.
+        [SerializeField]
+        private float m_RiseDuration = 0.6f;
+
+        // The curve that controls the motion towards the zenith.
+        [SerializeField]
+        private AnimationCurve m_RiseCurve;
+
+        // The point during rising after which a bounce is considered "missed".
+        [SerializeField, Range(0f, 1f)]
+        private float m_MissedBounceThreshold;
+
+        private MovementAnimator m_SinkAnimator;
+        private MovementAnimator m_RisingAnimator;
 
         #endregion
-        
+
         void Awake() {
             m_Entity = GetComponent<Entity>();
+            // m_Origin = transform.localPosition;
+
+            if (Application.isPlaying) {
+
+                GameObject animatorObject = new GameObject("animator object");
+                animatorObject.transform.SetParent(transform.parent);
+                m_SinkAnimator = MovementAnimator.New(animatorObject, m_SinkCurve, m_SinkScale);
+                m_RisingAnimator = MovementAnimator.New(animatorObject, m_RiseCurve, m_SinkScale);
+
+            }
+
         }
 
         void FixedUpdate() {
+            bool finished = m_BounceTimer.TickDown(Time.fixedDeltaTime);
+
+            // Whenever the path timer hits 0.
+            if (finished) {
+
+                switch (m_BounceState) {
+                    case BounceState.Tensing:
+                        CheckPreemptiveBounce();
+                        m_BounceState = BounceState.Releasing;
+                        transform.localPosition = m_Entity.Origin + Vector3.down * m_SinkScale;
+                        m_BounceTimer.Start(m_RiseDuration);
+                        break;
+                    case BounceState.Releasing:
+                        m_BounceState = BounceState.None;
+                        transform.localPosition = m_Entity.Origin;
+                        break;
+                    default:
+                        break;
+                }
+
+            }
 
             // What to do for each state.
             switch (m_BounceState) {
@@ -94,40 +146,43 @@ namespace Platformer.Entities.Components {
         }
 
         public void OnStartTensing() {
-            if (m_BounceState != BounceState.Tensing) {
+            if (m_BounceState != BounceState.Tensing || (m_BounceState == BounceState.Releasing && m_BounceTimer.InverseRatio > m_MissedBounceThreshold)) {
                 m_BounceState = BounceState.Tensing;
+                m_BounceTimer.Start(m_SinkDuration);
             }
         }
 
         private void WhileTensing(float dt) {
-            transform.Move(MaxTensionPosition, m_SinkSpeed, dt, m_Entity.CollisionContainer);
-            
-            float distance = (transform.localPosition - MaxTensionPosition).magnitude;
-            
-            // float distance = (m_Origin - MaxTensionPosition).magnitude / m_SinkSpeed;
-            if (distance < (m_Entity.Origin - MaxTensionPosition).magnitude / 2f) {
+            MoveTransform(dt, m_BounceTimer, m_SinkAnimator, Vector3.down);
+
+            if (m_BounceTimer.InverseRatio > m_ClampJumpThreshold) {
                 PreemptiveClamp();
             }
 
-            if (distance < PhysicsManager.Settings.collisionPrecision) {
-                CheckPreemptiveBounce();
-                // Game.Audio.Sounds.PlaySound(m_BounceSound, 0.2f);
-                m_BounceState = BounceState.Releasing;
-            }
         }
 
         private void WhileReleasing(float dt) {
-            transform.Move(m_Entity.Origin, m_RiseSpeed, dt, m_Entity.CollisionContainer);
+            MoveTransform(dt, m_BounceTimer, m_RisingAnimator, Vector3.up);
 
-            // Bounce a character that did not pre-emptively bounce if it
-            // PRESSES jump while the platform is releasing.
-            // CheckBounce();
             OldCheckBounce();
 
             float distance = (transform.localPosition - m_Entity.Origin).magnitude;
-            if (distance < PhysicsManager.Settings.collisionPrecision) {
-                m_BounceState = BounceState.None;
+            if (m_BounceTimer.InverseRatio > m_MissedBounceThreshold) {
                 MissedBounce();
+            }
+
+        }
+
+        private void MoveTransform(float dt, Timer timer, MovementAnimator animator, Vector3 direction) {
+            float normalizedDeltaTime = dt / timer.MaxValue;
+            float ds = animator.GetStepDistance(timer.InverseRatio, normalizedDeltaTime);
+
+            transform.localPosition += ds * direction;
+
+            if (m_Entity != null) {
+                foreach (var col in m_Entity.CollisionContainer) {
+                    col.localPosition += ds * direction;
+                }
             }
 
         }
@@ -157,7 +212,7 @@ namespace Platformer.Entities.Components {
                         character.Default.OnExternalJump(character, BOUNCE_SPEED);
                         character.Default.ClampJump(false);
                     }
-                    
+
                 }
             }
         }

@@ -20,6 +20,17 @@ namespace Gobblefish {
         [SerializeField, ReadOnly]
         private float m_DistanceFactor = 0f;
 
+        public static MovementAnimator New(GameObject gameObject, AnimationCurve curve, float distance) {
+            MovementAnimator newMovement = gameObject.AddComponent<MovementAnimator>();
+            newMovement.Set(curve, distance);
+            return newMovement;
+        }
+
+        public void Set(AnimationCurve curve, float distance) {
+            m_MovementCurve = curve;
+            m_DistanceFactor = NormalizedAreaFactor(m_MovementCurve, 0f, 1f, distance);
+        }
+
         // Runs once every fixed interval.
         public float GetStepDistance(float t, float dt) {
             return IntegrationStep(m_MovementCurve, t, dt, m_DistanceFactor);
