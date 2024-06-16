@@ -100,8 +100,8 @@ public class DoGFeature : ScriptableRendererFeature {
 
                 m_Settings.material.SetTexture("_GaussianTex", gaussian2);
 
-                Blit(cmd, m_CameraColorBuffer, m_OutputColorBuffer0, m_Settings.material, 2);
-                Blit(cmd, m_OutputColorBuffer0, m_CameraColorBuffer);
+                Blit(cmd, m_CameraColorBuffer, m_OutputColorBuffer, m_Settings.material, 2);
+                Blit(cmd, m_OutputColorBuffer, m_CameraColorBuffer);
             }
 
             // Execute then release.

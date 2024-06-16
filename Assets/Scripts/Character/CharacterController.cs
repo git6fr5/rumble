@@ -130,7 +130,8 @@ namespace Platformer.Character {
                 m_PowerActions[i] = Instantiate(m_PowerActions[i]);
             }
 
-            m_DefaultAction._SetColorIndex(transform, 0);
+            m_DefaultAction._SetColorIndex(this, 1);
+            m_DefaultAction._SetColorIndex(this, 0);
             
         }
 
@@ -163,7 +164,7 @@ namespace Platformer.Character {
             float respawnDelay = 1.2f;
             float floatTime = 0.6f;
 
-            m_DefaultAction._SetColorIndex(transform, 0);
+            // m_DefaultAction._SetColorIndex(transform, 0);
             // ColorSwap.ColorSwapManager.Instance.SwapColorInGame(transform, 0);
 
             Disable(respawnDelay);
@@ -275,7 +276,7 @@ namespace Platformer.Character {
             int count = m_Collider.GetContacts(contactPoint2Ds);
             for (int i = 0; i < count; i++) {
                 print("ground check: " + contactPoint2Ds[i].collider.gameObject.name);
-                if (contactPoint2Ds[i].collider.gameObject.layer == gameObject.layer && Vector2.Dot(contactPoint2Ds[i].normal, Vector3.up) > 0.99f) {
+                if (contactPoint2Ds[i].collider.gameObject.layer != gameObject.layer && Vector2.Dot(contactPoint2Ds[i].normal, Vector3.up) > 0.95f) {
                     print("on ground");
                     m_OnGround = true;
                     break;

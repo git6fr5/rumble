@@ -25,6 +25,7 @@ namespace Platformer.Levels.LDtk {
 
         [SerializeField]
         private Tilemap[] m_Submaps;
+        [SerializeField]
         private Tilemap m_TrackingColorMap;
 
         [SerializeField]
@@ -58,8 +59,9 @@ namespace Platformer.Levels.LDtk {
             }
 
             m_TrackingColorMap = MakeMap();
-            ColorSwap.TrackPlayerColor t = m_TrackingColorMap.gameObject.AddComponent<ColorSwap.TrackPlayerColor>();
-            t.offset = 2;
+            m_TrackingColorMap.gameObject.layer = LayerMask.NameToLayer("Water");
+            // ColorSwap.TrackPlayerColor t = m_TrackingColorMap.gameObject.AddComponent<ColorSwap.TrackPlayerColor>();
+            // t.offset = 2;
 
             for (int i = 0; i < sections.Count; i++) {
                 GenerateSection(sections[i], layerName);
@@ -85,7 +87,7 @@ namespace Platformer.Levels.LDtk {
 
                 if (tileData[i].vectorID.x == 0) {
                     Vector3Int tilePosition = section.GridToTilePosition(tileData[i].gridPosition);
-                    m_TrackingColorMap.SetTile(tilePosition, m_ChangingTile);
+                    m_TrackingColorMap.SetTile(tilePosition, m_StaticTile);
                 }
                 else if (tileData[i].vectorID.x == 1) {
                     LDtkTileData color = colorData.Find(n=>n.gridPosition == tileData[i].gridPosition);
@@ -96,7 +98,7 @@ namespace Platformer.Levels.LDtk {
 
                     if (mapNumber < m_Submaps.Length) {
                         Vector3Int tilePosition = section.GridToTilePosition(tileData[i].gridPosition);
-                        m_Submaps[mapNumber].SetTile(tilePosition, m_StaticTile);
+                        m_Submaps[mapNumber].SetTile(tilePosition, m_ChangingTile);
                     }     
                 }
                                   

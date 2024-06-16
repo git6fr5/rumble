@@ -31,12 +31,12 @@ namespace Platformer.Entities.Utility {
             m_Body.SetVelocity(speed * direction);
         }
 
-        // void FixedUpdate() {
-        //     transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, m_Body.velocity);
+        void FixedUpdate() {
+            transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, m_Body.velocity);
 
-        //     Vector2 deltaVelocity = m_Acceleration * Time.fixedDeltaTime * (HomingTarget.position - transform.position).normalized;
-        //     m_Body.AddVelocity(deltaVelocity);
-        // }
+            Vector2 deltaVelocity = m_Acceleration * Time.fixedDeltaTime * (HomingTarget.position - transform.position).normalized;
+            m_Body.AddVelocity(deltaVelocity);
+        }
 
     }
 

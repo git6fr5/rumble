@@ -200,7 +200,7 @@ namespace Platformer.Character {
 
             if (character.Input.Actions[1].Pressed) {
                 // The character should jump.
-                _SetColorIndex(character.transform, colorIndex + 1);
+                _SetColorIndex(character, colorIndex + 1);
 
                 // Release the input and reset the refresh.
                 character.Input.Actions[1].ClearPressBuffer();
@@ -209,13 +209,15 @@ namespace Platformer.Character {
         }
 
         private int colorIndex = 0;
-        public void _SetColorIndex(Transform transform, int index) {
+        public int cIndex => colorIndex;
+        public void _SetColorIndex(CharacterController character, int index) {
             if (index < 0) {
-                index += ColorSwap.ColorSwapManager.Instance.coloredLayers.Length;
+                index += ColorSwap.ColorSwapManager.Instance.maxColors;
             }
-            colorIndex = index % ColorSwap.ColorSwapManager.Instance.coloredLayers.Length;
-            ColorSwap.ColorSwapManager.Instance.SwapColorInGame(transform, colorIndex);
+            colorIndex = index % ColorSwap.ColorSwapManager.Instance.maxColors;
+            ColorSwap.ColorSwapManager.Instance.SwapColorInGame(character.transform, colorIndex);
             Physics.PhysicsManager.Time.RunHitStop((int)(Mathf.Floor(0.2f / Time.deltaTime)));
+            character.Animator.SetPowerIndicator(null);
         }
 
         // 
@@ -245,6 +247,8 @@ namespace Platformer.Character {
             
         }
 
+        private float fallingTicks = 0f;
+
         protected void GetDefaultState(CharacterController character, float dt) {
 
             if (!character.OnGround) {
@@ -261,6 +265,13 @@ namespace Platformer.Character {
                     }
                     else if (Mathf.Abs(character.Body.velocity.y) > FAST_FALL_SPEED_THRESHOLD && dist > FAST_FALL_DIST_THRESHOLD) {
                         character.Animator.PlayAnimation("FallingFast");
+
+                        fallingTicks += dt;
+                        if (fallingTicks > 1.2f && dist > 1000f) {
+                            character.Reset();
+                            fallingTicks = 0f;
+                        }
+
                     }
                     else {
                         character.Animator.PlayAnimation("Falling");
@@ -269,6 +280,8 @@ namespace Platformer.Character {
                 }
                 return;
             }
+
+            fallingTicks = 0f;
 
             character.Animator.StopAnimation("Rising");
             character.Animator.StopAnimation("Falling");
@@ -431,6 +444,8 @@ namespace Platformer.Character {
                     if (m_CoyoteTimer.Active) {
                         weight *= COYOTE_FRICTION;
                     }
+
+                    
 
                 }
 

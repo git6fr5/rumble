@@ -66,7 +66,7 @@ namespace Platformer.Character {
             m_AnimationSheet = new AnimationItem[(int)AnimationPriority.Count];
             defaultColor = m_Shell.color;
         }
-        
+
         // Animates the flipbook by setting the animation, frame, and playing any effects.
         protected override void Animate(float dt) {
             // Animator.
@@ -99,23 +99,31 @@ namespace Platformer.Character {
 
             anim.animation.SampleAnimation(gameObject, ticks);
 
-            // m_Animator.playbackTime	= m_Ticks; // 
+            // m_Animator.playbackTime	= m_Ticks; //
             // m_Animator.PlayInFixedTime(_cacheHash, _cacheLayer, m_Ticks);
-            // animatePhysics	
+            // animatePhysics
             // print(m_Animator.GetCurrentAnimatorStateInfo(_cacheLayer).loop);
-            
+
         }
 
         private Color defaultColor = new Color(0f, 0f, 0f, 0f);
         public override void SetPowerIndicator(Platformer.Entities.Components.Power power) {
             // m_Shell.sprite = power.spriteRenderer.sprite;
-            if (power == null) {
-                m_Shell.color = defaultColor;
-            }
-            else {
-                m_Shell.color = power.spriteRenderer.GetComponent<UnityEngine.Rendering.Universal.Light2D>().color; // .sprite;
-            }
+            // if (power == null) {
+            //     m_Shell.color = defaultColor;
+            // }
+            // else {
+            //     m_Shell.color = power.spriteRenderer.GetComponent<UnityEngine.Rendering.Universal.Light2D>().color; // .sprite;
+            // }
             // m_Shell.transform.localScale *=  4f;
+
+            // if (m_Character.Default.cIndex == 0) {
+                // m_Shell.color
+            // }
+
+            ColorSwap.ColorSwapManager x = ColorSwap.ColorSwapManager.Instance;
+            x.SwapColorInGame(m_Shell.transform, (m_Character.Default.cIndex) % x.maxColors, true);
+
         }
 
         public override void PlayAnimation(string name, AnimationPriority priority) {

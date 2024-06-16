@@ -12,6 +12,8 @@ namespace ColorSwap {
 
         public static ColorSwapManager Instance = null;
 
+        public int maxColors;
+
         void Update() {
             if (Instance == null) {
                 Instance = this;
@@ -38,7 +40,7 @@ namespace ColorSwap {
                 SetLayer(entity.transform, coloredLayers[0].layer);
             }
             else {
-                if (tile.vectorID.x < coloredLayers.Length) {
+                if (tile.vectorID.x < maxColors) {
                     SetColor(entity.transform, coloredLayers[tile.vectorID.x].color);
                     SetLayer(entity.transform, coloredLayers[tile.vectorID.x].layer);
                 }
@@ -46,7 +48,7 @@ namespace ColorSwap {
         }
 
         public void SwapColor(Transform transform, int index, bool swapColor = true, bool swapLayer = true) {
-            if (index < coloredLayers.Length) {
+            if (index < maxColors) {
                 if (swapColor) { SetColor(transform, coloredLayers[index].color); }
                 if (swapLayer) { SetLayer(transform, coloredLayers[index].layer); }
             }
@@ -54,7 +56,7 @@ namespace ColorSwap {
 
         public void SwapColorInGame(Transform transform, int index, bool onlyColor = false) {
             if (!Application.isPlaying) { return; }
-            if (index < coloredLayers.Length) {
+            if (index < maxColors) {
                 SetColor(transform, coloredLayers[index].color);
                 SetLayer(transform, coloredLayers[index].layer);
             }
@@ -62,9 +64,9 @@ namespace ColorSwap {
 
         public void SwapColorInGameByLayer(Transform transform, int layer, int offset = 0, bool onlyColor = false) {
             if (!Application.isPlaying) { return; }
-            for (int i = 0; i < coloredLayers.Length; i++) {
+            for (int i = 0; i < maxColors; i++) {
                 if (layer == coloredLayers[i].layer) {
-                    int n = (i + offset) % coloredLayers.Length;
+                    int n = (i + offset) % maxColors;
                     SetColor(transform, coloredLayers[n].color);
                     SetLayer(transform, coloredLayers[n].layer);
                     return;

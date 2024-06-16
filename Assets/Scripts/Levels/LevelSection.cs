@@ -137,7 +137,7 @@ namespace Platformer.Levels {
                 ResetEntities();
             }
 
-            Levels.LevelManager.SetCurrentSection(this);
+            // Levels.LevelManager.SetCurrentSection(this);
             entitiesEnabled = enable;
         }
 
