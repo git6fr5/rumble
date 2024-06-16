@@ -134,13 +134,10 @@ namespace Platformer.Levels {
                 m_Entities[i].gameObject.SetActive(enable);
             }
             if (enable) {
-                // for (int i = 0; i < m_Entities.Count; i++) {
-                //     if (m_Entities[i].GetComponent<Platformer.Entities.Utility.Reset>()) {
-                //         m_Entities[i].GetComponent<Platformer.Entities.Utility.Reset>().HardReset();
-                //     }
-                // }
                 ResetEntities();
             }
+
+            Levels.LevelManager.SetCurrentSection(this);
             entitiesEnabled = enable;
         }
 

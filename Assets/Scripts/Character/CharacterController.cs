@@ -129,6 +129,8 @@ namespace Platformer.Character {
             for (int i = 0; i < m_PowerActions.Count; i++) {
                 m_PowerActions[i] = Instantiate(m_PowerActions[i]);
             }
+
+            m_DefaultAction._SetColorIndex(transform, 0);
             
         }
 
@@ -160,6 +162,9 @@ namespace Platformer.Character {
 
             float respawnDelay = 1.2f;
             float floatTime = 0.6f;
+
+            m_DefaultAction._SetColorIndex(transform, 0);
+            // ColorSwap.ColorSwapManager.Instance.SwapColorInGame(transform, 0);
 
             Disable(respawnDelay);
             m_DefaultAction.Enable(this, false, true);
@@ -258,15 +263,28 @@ namespace Platformer.Character {
 
         }
 
+        ContactPoint2D[] contactPoint2Ds = new ContactPoint2D[100];
         void FixedUpdate() {
             m_DisableTimer.TickDown(Time.fixedDeltaTime);
 
             m_Rising = m_Body.Rising();
             m_Falling = m_Body.Falling();
             // m_DirectionLocked = m_DisableTimer.Active;
-            m_OnGround = PhysicsManager.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.down, PhysicsManager.CollisionLayers.Ground);
+            
+            m_OnGround = false;
+            int count = m_Collider.GetContacts(contactPoint2Ds);
+            for (int i = 0; i < count; i++) {
+                print("ground check: " + contactPoint2Ds[i].collider.gameObject.name);
+                if (contactPoint2Ds[i].collider.gameObject.layer == gameObject.layer && Vector2.Dot(contactPoint2Ds[i].normal, Vector3.up) > 0.99f) {
+                    print("on ground");
+                    m_OnGround = true;
+                    break;
+                }
+            }
+
+            
             m_FacingDirection = m_DirectionLocked ? m_FacingDirection : m_Input.Direction.Horizontal != 0f ? m_Input.Direction.Horizontal : m_FacingDirection;
-            m_FacingWall = PhysicsManager.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.right * m_FacingDirection,  PhysicsManager.CollisionLayers.Ground);
+            m_FacingWall = PhysicsManager.Collisions.Touching(m_Body.position + m_Collider.offset, m_Collider.radius, Vector3.right * m_FacingDirection,  (LayerMask)gameObject.layer);
 
             if (m_DisableTimer.Active) { 
                 return; 

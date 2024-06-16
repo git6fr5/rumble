@@ -66,6 +66,7 @@ namespace Platformer.Levels.LDtk {
             List<LDtkTileData> entityData = LDtkReader.GetLayerData(section.ldtkLevel, ldtkLayers.Entity);
             List<LDtkTileData> pathData = LDtkReader.GetLayerData(section.ldtkLevel, ldtkLayers.Path);
             List<LDtkTileData> altData = LDtkReader.GetLayerData(section.ldtkLevel, ldtkLayers.Alternate);
+            List<LDtkTileData> colorData = LDtkReader.GetLayerData(section.ldtkLevel, "COLOR");
 
             //
             List<LDtkTileData> orbitData = LDtkReader.GetLayerData(section.ldtkLevel, ldtkLayers.Orbit);
@@ -104,6 +105,11 @@ namespace Platformer.Levels.LDtk {
                         if (entity.GetComponent<Platformer.Tests.GetRoomName>() != null) {
                             entity.GetComponent<Platformer.Tests.GetRoomName>().SetRoomName(section.name);
                         }
+
+                        if (ColorSwap.ColorSwapManager.Instance != null) {
+                            ColorSwap.ColorSwapManager.Instance.ColorFromLDtk(entity, colorData);
+                        }
+                        
                     }
 
                 }

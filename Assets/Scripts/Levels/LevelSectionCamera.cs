@@ -36,6 +36,7 @@ namespace Platformer.Levels {
         // Sets the parameters of a level section camera.
         public void Set(LevelSection section) {
             transform.SetParent(section.transform);
+            gameObject.layer = LayerMask.NameToLayer("Water");
 
             // Edit the hitbox.
             m_Box = gameObject.GetComponent<BoxCollider2D>();

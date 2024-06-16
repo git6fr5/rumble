@@ -16,7 +16,7 @@ namespace Platformer.Physics {
         public bool Touching(Vector3 center, float radius, Vector3 direction, LayerMask layer) {
             Vector3 normal = Quaternion.Euler(0f, 0f, 90f) * direction;
             for (int i = -1; i <= 1; i++) {
-                Vector3 offset = direction * radius + i * normal * radius / 1.5f;
+                Vector3 offset = direction * (radius + PhysicsManager.Settings.collisionPrecision) + i * normal * radius / 1.5f;
                 Collider2D temp = Physics2D.OverlapCircle(center + offset, PhysicsManager.Settings.collisionPrecision, layer);
                 if (temp != null) {
                     return true;
@@ -27,6 +27,7 @@ namespace Platformer.Physics {
 
         // Finds all object of the given class within a specified radius (null if none exist).
         public bool Touching(Vector3 position, float radius, LayerMask layers) {
+            Debug.Log(layers);
             Collider2D[] colliders = UnityEngine.Physics2D.OverlapCircleAll(position, radius, layers);
             return colliders.Length != 0;
         }

@@ -191,7 +191,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4232806562910073837}
-  m_LocalRotation: {x: 0, y: 0, z: 0.1451918, w: 0.98940355}
+  m_LocalRotation: {x: 0, y: 0, z: -0.080014266, w: 0.99679375}
   m_LocalPosition: {x: 0.014, y: 0.06, z: 0}
   m_LocalScale: {x: 0.2047284, y: 1.6958524, z: 1}
   m_ConstrainProportionsScale: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d5246fe376471e915987785799f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BaseRotation: {x: -0, y: -0, z: 0.1451918, w: 0.98940355}
+  m_BaseRotation: {x: 0, y: 0, z: 0.1451918, w: 0.98940355}
   m_AngleRange: 30
 --- !u!1 &4861445387493386128
 GameObject:
@@ -290,7 +290,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4861445387493386128}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.031328354, w: 0.99950916}
   m_LocalPosition: {x: 0.384, y: 0.093, z: 0}
   m_LocalScale: {x: 0.2047284, y: 1.7100037, z: 1}
   m_ConstrainProportionsScale: 0
@@ -810,7 +810,7 @@ GameObject:
   - component: {fileID: 1783239970336808598}
   - component: {fileID: 1323020567517330172}
   m_Layer: 7
-  m_Name: Goop
+  m_Name: Goop B
   m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -973,14 +973,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Singular: 0
   m_Unloadable: 1
-  m_VectorID: {x: 0, y: 2}
+  m_VectorID: {x: 3, y: 2}
   m_GridPosition: {x: 0, y: 0}
   m_GridSize: 16
   m_Rotations:
   - Rotation: 0
-    VectorID: {x: 0, y: 2}
+    VectorID: {x: 3, y: 2}
   - Rotation: 180
-    VectorID: {x: 1, y: 2}
+    VectorID: {x: 2, y: 2}
 --- !u!1 &7524820432033301000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,7 +1365,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8376035759901616907}
-  m_LocalRotation: {x: -0, y: 0, z: 0.11663108, w: -0.9931754}
+  m_LocalRotation: {x: 0, y: 0, z: 0.09869987, w: -0.99511725}
   m_LocalPosition: {x: 0.754, y: 0.095, z: 0}
   m_LocalScale: {x: 0.2047284, y: 1.6532607, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1437,5 +1437,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6d5246fe376471e915987785799f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BaseRotation: {x: -0, y: -0, z: 0.11663108, w: -0.9931754}
+  m_BaseRotation: {x: -0, y: 0, z: 0.11663108, w: -0.9931754}
   m_AngleRange: 30

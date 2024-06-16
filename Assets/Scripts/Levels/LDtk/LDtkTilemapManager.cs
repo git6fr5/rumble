@@ -11,25 +11,6 @@ using Gobblefish;
 
 namespace Platformer.Levels.LDtk {
 
-    /// <summary>
-    /// A tile entity used to match tiles to the ldtk file.
-    /// </summary>
-    [System.Serializable]
-    public class LDtkTileEntity {
-        public TileBase tile;
-        public Vector2Int vectorID;
-
-        public string layerName = "Foreground";
-        public int order = 0;
-
-        public Tilemap map;
-    }
-
-    // [System.Serializable]
-    // public class DecorationMapParams {
-    //     public string name;
-    //     public Color color;
-    // }
 
     /// <summary>
     /// Stores specific data on how to generate the level.
@@ -40,101 +21,90 @@ namespace Platformer.Levels.LDtk {
         private Grid m_Grid;
 
         [SerializeField]
-        private Tilemap m_DecorationMap;
-
-        [SerializeField]
         private Tilemap m_CollisionMap;
 
-        [SerializeField] 
-        private List<LDtkTileEntity> m_DecorationTiles = new List<LDtkTileEntity>();
+        [SerializeField]
+        private Tilemap[] m_Submaps;
+        private Tilemap m_TrackingColorMap;
 
         [SerializeField]
-        private TileBase m_CollisionTile;
+        private TileBase m_ChangingTile;
 
-        // [SerializeField]
-        // private List<DecorationMapParams> m_DecorMapParams = new List<DecorationMapParams>();
-        
+        [SerializeField]
+        private TileBase m_StaticTile;
+
         // Loads the map layouts for all the given levels.
         public void Refresh(List<LevelSection> sections, string layerName) {
+            print("is this running on load");
 
-            m_DecorationMap.ClearAllTiles();
-
-            for (int i = 0; i < m_DecorationTiles.Count; i++) {
-                if (m_DecorationTiles[i].map != null && m_DecorationTiles[i].map.gameObject != null) {
-                    GameObject.DestroyImmediate(m_DecorationTiles[i].map.gameObject);
+            if (m_Submaps != null) {
+                for (int i = 0; i < m_Submaps.Length; i++) {
+                    if (m_Submaps[i] != null) {
+                        GameObject.DestroyImmediate(m_Submaps[i].gameObject);
+                    }
                 }
             }
-            
-            for (int i = 0; i < m_DecorationTiles.Count; i++) {
-
-                // Create a new map.
-                Tilemap decorMap = Instantiate(m_DecorationMap.gameObject).GetComponent<Tilemap>();
-                decorMap.GetComponent<TilemapRenderer>().sortingLayerName = m_DecorationTiles[i].layerName;
-                decorMap.GetComponent<TilemapRenderer>().sortingOrder += m_DecorationTiles[i].order;
-                decorMap.gameObject.SetActive(true);
-                decorMap.transform.SetParent(m_DecorationMap.transform.parent);
-                decorMap.transform.localPosition = m_DecorationMap.transform.localPosition;
-
-                m_DecorationTiles[i].map = decorMap;
+            if (m_TrackingColorMap != null) {
+                GameObject.DestroyImmediate(m_TrackingColorMap.gameObject);
             }
-
-            for (int i = 0; i < sections.Count; i++) {
-                GenerateDecorationSection(sections[i], layerName);
-            }
-            
-
-            // super inefficient but whatever.
-            // Vector3Int max = m_DecorationMap.cellBounds.max;
-            // VectorInt min = m_DecorationMap.cellBounds.min;
-
-            // //
-            // TileBase tile = m_DecorationTiles[0];
-            // for (int x = min.x; x < max.x; x++) {
-            // for (int y = min.y; y < max.y; y++) {
-            //     m_DecorationMap.SetTile(new Vector3Int(x, y, 0), tile);
-            // }
-            // }
-
-            // for (int i = 0; i < sections.Count; i++) {
-            //     GenerateDecorationSection(sections[i], layerName);
-            // }
-
-            RefreshCollisionMap();
-        }
-
-        public void RefreshCollisionMap() {
-            if (m_CollisionMap == null) { return; }
 
             m_CollisionMap.ClearAllTiles();
-            for (int i = 0; i < m_DecorationTiles.Count; i++) {
-                if (m_DecorationTiles[i].map != null) {
-                    foreach (Vector3Int pos in m_DecorationTiles[i].map.cellBounds.allPositionsWithin) {
-                        if (m_DecorationTiles[i].map.HasTile(pos)) {
-                            m_CollisionMap.SetTile(pos, m_CollisionTile);
-                        }
-                    }
-                }
+
+            ColorSwap.ColorSwappingLayer[] layers = ColorSwap.ColorSwapManager.Instance.coloredLayers;
+            m_Submaps = new Tilemap[layers.Length];
+
+            for (int i = 0; i < layers.Length; i++) {
+                m_Submaps[i] = MakeMap();
             }
-            
+
+            m_TrackingColorMap = MakeMap();
+            ColorSwap.TrackPlayerColor t = m_TrackingColorMap.gameObject.AddComponent<ColorSwap.TrackPlayerColor>();
+            t.offset = 2;
+
+            for (int i = 0; i < sections.Count; i++) {
+                GenerateSection(sections[i], layerName);
+            }
+
         }
 
-        public void GenerateDecorationSection(LevelSection section, string layerName) {
+        private Tilemap MakeMap() {
+            Tilemap colMap = Instantiate(m_CollisionMap.gameObject).GetComponent<Tilemap>();
+            colMap.GetComponent<TilemapRenderer>().sortingLayerName = "Foreground";
+            colMap.GetComponent<TilemapRenderer>().sortingOrder = 0;
+            colMap.gameObject.SetActive(true);
+            colMap.transform.SetParent(m_CollisionMap.transform.parent);
+            colMap.transform.localPosition = m_CollisionMap.transform.localPosition;
+            return colMap;
+        }
+
+        public void GenerateSection(LevelSection section, string layerName) {
             List<LDtkTileData> tileData = LDtkReader.GetLayerData(section.ldtkLevel, layerName);
+            List<LDtkTileData> colorData = LDtkReader.GetLayerData(section.ldtkLevel, "COLOR");
 
             for (int i = 0; i < tileData.Count; i++) {
-                List<LDtkTileEntity> tileEntities = m_DecorationTiles.FindAll(tileEnt => tileEnt.vectorID == tileData[i].vectorID);
-                foreach (LDtkTileEntity tEnt in tileEntities) {
-                    if (tEnt != null && tEnt.map != null) {
-                        Vector3Int tilePosition = section.GridToTilePosition(tileData[i].gridPosition);
-                        tEnt.map.SetTile(tilePosition, tEnt.tile);
-                    }
+
+                if (tileData[i].vectorID.x == 0) {
+                    Vector3Int tilePosition = section.GridToTilePosition(tileData[i].gridPosition);
+                    m_TrackingColorMap.SetTile(tilePosition, m_ChangingTile);
                 }
+                else if (tileData[i].vectorID.x == 1) {
+                    LDtkTileData color = colorData.Find(n=>n.gridPosition == tileData[i].gridPosition);
+                    int mapNumber = 0;
+                    if (color != null) {
+                        mapNumber = color.vectorID.x; 
+                    }
+
+                    if (mapNumber < m_Submaps.Length) {
+                        Vector3Int tilePosition = section.GridToTilePosition(tileData[i].gridPosition);
+                        m_Submaps[mapNumber].SetTile(tilePosition, m_StaticTile);
+                    }     
+                }
+                                  
             }
 
-            for (int i = 0; i < m_DecorationTiles.Count; i++) {
-                if (m_DecorationTiles[i].map != null) {
-                    m_DecorationTiles[i].map.RefreshAllTiles();
-                }
+            for (int i = 0; i < m_Submaps.Length; i++) {
+                m_Submaps[i].RefreshAllTiles();
+                ColorSwap.ColorSwapManager.Instance.SwapColor(m_Submaps[i].transform, i);
             }
 
         }

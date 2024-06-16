@@ -25,6 +25,7 @@ namespace Platformer.Levels {
         public List<LevelSection> Sections => m_Sections;
 
         // The current section.
+        [SerializeField]
         private LevelSection m_CurrentSection = null;
         public static LevelSection CurrentSection => Instance.m_CurrentSection;
 
@@ -46,6 +47,11 @@ namespace Platformer.Levels {
                 }
             }
             m_Sections = sections;
+        }
+
+        void Update() {
+            // print("hi");
+            print("current section: " + m_CurrentSection == null ? "null" : m_CurrentSection.gameObject.name); 
         }
 
         public static void AddDeath() {

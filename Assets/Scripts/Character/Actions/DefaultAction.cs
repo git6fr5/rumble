@@ -197,7 +197,25 @@ namespace Platformer.Character {
                 m_CoyoteTimer.Stop();
                 m_Refreshed = false;
             }
+
+            if (character.Input.Actions[1].Pressed) {
+                // The character should jump.
+                _SetColorIndex(character.transform, colorIndex + 1);
+
+                // Release the input and reset the refresh.
+                character.Input.Actions[1].ClearPressBuffer();
+            }
             
+        }
+
+        private int colorIndex = 0;
+        public void _SetColorIndex(Transform transform, int index) {
+            if (index < 0) {
+                index += ColorSwap.ColorSwapManager.Instance.coloredLayers.Length;
+            }
+            colorIndex = index % ColorSwap.ColorSwapManager.Instance.coloredLayers.Length;
+            ColorSwap.ColorSwapManager.Instance.SwapColorInGame(transform, colorIndex);
+            Physics.PhysicsManager.Time.RunHitStop((int)(Mathf.Floor(0.2f / Time.deltaTime)));
         }
 
         // 
@@ -236,7 +254,7 @@ namespace Platformer.Character {
                 else {
 
                     Vector2 footPosition = character.Body.position + character.Collider.offset + Vector2.down * (character.Collider.radius + 0.1f);
-                    float dist = PhysicsManager.Collisions.DistanceToFirst(footPosition, Vector3.down, PhysicsManager.CollisionLayers.Solid);
+                    float dist = PhysicsManager.Collisions.DistanceToFirst(footPosition, Vector3.down, (LayerMask)character.gameObject.layer);
 
                     if (m_HangTimer.Active) {
                         character.Animator.PlayAnimation("Hanging");
@@ -428,13 +446,13 @@ namespace Platformer.Character {
         // While ducking.
         protected void WhileDucking(CharacterController character, float dt) {
 
-            int characterLayer = LayerMask.NameToLayer("Characters");
-            if (character.Input.Direction.Vertical == -1f && character.gameObject.layer == characterLayer) {
-                character.gameObject.layer = LayerMask.NameToLayer("Ignore Character");
-            }
-            else if (character.Input.Direction.Vertical != -1f && character.gameObject.layer != characterLayer) {
-                character.gameObject.layer = characterLayer;
-            }
+            // int characterLayer = LayerMask.NameToLayer("Characters");
+            // if (character.Input.Direction.Vertical == -1f && character.gameObject.layer == characterLayer) {
+            //     character.gameObject.layer = LayerMask.NameToLayer("Ignore Character");
+            // }
+            // else if (character.Input.Direction.Vertical != -1f && character.gameObject.layer != characterLayer) {
+            //     character.gameObject.layer = characterLayer;
+            // }
 
         }
 
