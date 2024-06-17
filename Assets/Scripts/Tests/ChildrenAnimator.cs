@@ -16,7 +16,9 @@ namespace Gobblefish.Animation {
         [HideInInspector] public float ticks;
         public float duration;
         public bool loop;
-        private float t => ticks / duration;
+        // private float t => ;
+        private float t(int i) => ((ticks + t0[i]) / duration) % 1;
+
         [HideInInspector] public int arrLength = 0; 
         [HideInInspector] public float[] t0;
         [HideInInspector] public Transform[] children;
@@ -83,19 +85,19 @@ namespace Gobblefish.Animation {
 
         public void SetPosition() {
             for (int i = 0; i < arrLength; i++) {
-                children[i].localPosition = basePosition[i] + new Vector2(posScale.x * horPosCurve.Evaluate(t + t0[i]), posScale.y * vertPosCurve.Evaluate(t + t0[i]));
+                children[i].localPosition = basePosition[i] + new Vector2(posScale.x * horPosCurve.Evaluate(t(i)), posScale.y * vertPosCurve.Evaluate(t(i)));
             }
         }
 
         public void SetStretch() {
             for (int i = 0; i < arrLength; i++) {
-                children[i].localScale = baseStretch[i] + new Vector2(baseStretch[i].x * strectchScale.x * horStretchCurve.Evaluate(t + t0[i]), baseStretch[i].y * strectchScale.y * vertStretchCurve.Evaluate(t + t0[i]));
+                children[i].localScale = baseStretch[i] + new Vector2(baseStretch[i].x * strectchScale.x * horStretchCurve.Evaluate(t(i)), baseStretch[i].y * strectchScale.y * vertStretchCurve.Evaluate(t(i)));
             }
         }
 
         public void SetRotation() {
             for (int i = 0; i < arrLength; i++) {
-                children[i].localRotation = baseRotation[i] * Quaternion.Euler(0f, 0f, rotationScale * rotationCurve.Evaluate(t + t0[i]));
+                children[i].localRotation = baseRotation[i] * Quaternion.Euler(0f, 0f, rotationScale * rotationCurve.Evaluate(t(i)));
             }
         }
 
@@ -121,9 +123,9 @@ namespace Gobblefish.Animation {
         // Runs once on instantiation.
         void Start() {
             m_Animation.SetTransformParams(transform);
-            if (m_RandomizeInitialTick) {
-                m_Animation.SetTime(Randomizer.Range(0f, m_Animation.duration));
-            }
+            // if (m_RandomizeInitialTick) {
+            //     m_Animation.SetTime(Randomizer.Range(0f, m_Animation.duration));
+            // }
         }
 
         public void SetDuration(float duration) {

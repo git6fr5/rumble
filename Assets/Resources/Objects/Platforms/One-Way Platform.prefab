@@ -76,7 +76,7 @@ SpriteShapeRenderer:
   m_SortingLayerID: 618029683
   m_SortingLayer: 3
   m_SortingOrder: 12
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5770627, g: 0.9056604, b: 0.5254539, a: 1}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 0}
   m_Sprites:
@@ -304,6 +304,14 @@ PrefabInstance:
       propertyPath: m_SubShapes.Array.data[0]
       value: 
       objectReference: {fileID: 8564381884175841422}
+    - target: {fileID: 3170056685398023405, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4031899501694130170, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
+      propertyPath: m_SpriteShape
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5492281587404949929, guid: 6e17942bc246942a4b308c65d66a5bff, type: 3}
       propertyPath: m_ShapeTexture
       value: 

@@ -35,7 +35,7 @@ MonoBehaviour:
     passName: Value Map Pass
     renderPassEvent: 500
     material: {fileID: 0}
-    value: 0.5
+    value: 0.8
   m_Shader: {fileID: 4800000, guid: 47b8c2a2ff3f349de92b01ee17b20cc6, type: 3}
 --- !u!114 &-5798437109185275632
 MonoBehaviour:
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41f26195cf644d9c9848878c1ffdcaa, type: 3}
   m_Name: DitherFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   m_Settings:
     passName: Dither Pass
     renderPassEvent: 550
