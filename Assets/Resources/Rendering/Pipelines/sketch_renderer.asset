@@ -96,13 +96,14 @@ MonoBehaviour:
     renderPassEvent: 500
     material: {fileID: 0}
     gaussianKernelSize: 5
-    stdev: 2
-    stdevScale: 2.97
+    stdev: 1.19
+    stdevScale: 2.51
     tau: 1
     thresholding: 1
     tanh: 0
     phi: 1
     threshold: 0.005
+    outlineColor: {r: 1, g: 0, b: 0, a: 0}
     invert: 1
   m_Shader: {fileID: 4800000, guid: 15ff8a40d33b84098a71848ad78c51ae, type: 3}
 --- !u!114 &11400000
@@ -124,10 +125,10 @@ MonoBehaviour:
   - {fileID: 6430948801604645563}
   - {fileID: -5798437109185275632}
   - {fileID: -3831913397533137323}
-  - {fileID: -8094370488033910098}
+  - {fileID: 3779697652174007249}
   - {fileID: -3084674899176306650}
   - {fileID: 9038334775415967017}
-  m_RendererFeatureMap: ea1d3f1ab5fc4f81bb725ec8dc513f59109991ae2bd087af5526fa39114fd2caae62554ced04ab8f264808c3850831d5298dba51979d6e7d
+  m_RendererFeatureMap: ea1d3f1ab5fc4f81bb725ec8dc513f59109991ae2bd087af5526fa39114fd2cad1ab352cfd2e7434264808c3850831d5298dba51979d6e7d
   m_UseNativeRenderPass: 0
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 1, z: 0}
@@ -170,6 +171,33 @@ MonoBehaviour:
   m_DefaultLitMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_DefaultUnlitMaterial: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_DefaultMaskMaterial: {fileID: 2100000, guid: 15d0c3709176029428a0da2f8cecf0b5, type: 2}
+--- !u!114 &3779697652174007249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02eb5c24f09a4a3e8344971aea799b5, type: 3}
+  m_Name: RemapValueFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  m_Settings:
+    passName: Remap Values Pass
+    renderPassEvent: 500
+    material: {fileID: 0}
+    flatValue: 0.8
+    preLinTrans: 0
+    preLinScale: 1
+    expScale: 1
+    postLinTrans: 0
+    postLinScale: 1
+    keepOnlyValues: 0
+    clampValues: 1
+    posterizeLevel: 8
+  m_Shader: {fileID: 4800000, guid: 47b8c2a2ff3f349de92b01ee17b20cc6, type: 3}
 --- !u!114 &6430948801604645563
 MonoBehaviour:
   m_ObjectHideFlags: 0

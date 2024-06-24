@@ -290,6 +290,7 @@ namespace Platformer.Character {
 
         private Power powerGiver = null;
         public void SetPowerGiver(Power power) {
+            RefreshPowerGiver();
             powerGiver = power;
         }
 

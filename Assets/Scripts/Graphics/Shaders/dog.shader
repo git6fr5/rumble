@@ -32,6 +32,7 @@ Shader "Custom/DifferenceOfGaussians" {
         float4 _MainTex_TexelSize;
         int _GaussianKernelSize, _Thresholding, _Invert, _Tanh;
         float _Sigma, _Threshold, _K, _Tau, _Phi;
+        float4 _OutlineColor;
         
         float gaussian(float sigma, float pos) {
             return (1.0f / sqrt(2.0f * PI * sigma * sigma)) * exp(-(pos * pos) / (2.0f * sigma * sigma));

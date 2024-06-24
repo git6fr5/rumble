@@ -35,6 +35,9 @@ public class DoGFeature : ScriptableRendererFeature {
         [Range(-1.0f, 1.0f)]
         public float threshold = 0.005f;
 
+        [SerializeField]
+        public Color outlineColor;
+
         public bool invert = false;
 
         public void OnSetup(ref RenderingData renderingData) {
@@ -48,6 +51,7 @@ public class DoGFeature : ScriptableRendererFeature {
             material.SetInt("_Thresholding", thresholding ? 1 : 0);
             material.SetInt("_Invert", invert ? 1 : 0);
             material.SetInt("_Tanh", tanh ? 1 : 0);
+            material.SetVector("_OutlineColor", outlineColor);
 
         }
         
